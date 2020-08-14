@@ -1,4 +1,4 @@
-# Terra Docs
+# Terra Graphs
 
 [![NPM version](https://badgen.net/npm/v/terra-graphs)](https://www.npmjs.com/package/terra-graphs)
 [![Build Status](https://badgen.net/travis/cerner/terra-core)](https://travis-ci.com/cerner/terra-graphs)
