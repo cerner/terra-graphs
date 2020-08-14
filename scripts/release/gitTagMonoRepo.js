@@ -34,14 +34,17 @@ const getTags = (output) => {
 // If the publish output exists create a tag for each released component and pus it to main
 if (fs.existsSync(filePath)) {
   const output = fs.readFileSync(filePath, 'utf8');
+  // eslint-disable-next-line no-console
   console.log(output);
   const tags = getTags(output);
   if (tags) {
     setupGit();
+    // eslint-disable-next-line no-console
     console.log('tags', JSON.stringify(tags, null, 2));
     tags.forEach(tag => execSync(`git tag -a ${tag} -m "${tag}"`));
     execSync('git push origin --tags');
   } else {
+    // eslint-disable-next-line no-console
     console.log('Nothing to tag');
   }
 }
