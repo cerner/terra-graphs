@@ -1,0 +1,11 @@
+.DS_Store
+.git
+.gitignore
+.idea
+log/*
+tmp
+node_modules
+packages/*/node_modules
+lib
+build
+generated-themes
