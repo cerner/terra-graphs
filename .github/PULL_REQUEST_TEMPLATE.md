@@ -25,4 +25,5 @@ https://terra-graphs-deployed-pr-#.herokuapp.com/
 -->
 
 Thank you for contributing to Terra.
+@cerner/terra
 @cerner/carbon
