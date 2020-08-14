@@ -9,7 +9,7 @@ module.exports = {
     './jestsetup.js',
   ],
   testMatch: [
-    '**/jest/**/(*.)(spec|test).js?(x)',
+    '**/jest/**/*.test.js?(x)',
   ],
   roots: [process.cwd()],
   snapshotSerializers: [
