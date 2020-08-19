@@ -3,7 +3,7 @@
 [![NPM version](https://badgen.net/npm/v/terra-graphs)](https://www.npmjs.com/package/terra-graphs)
 [![Build Status](https://badgen.net/travis/cerner/terra-core)](https://travis-ci.com/cerner/terra-graphs)
 
-{insert description}
+A react graphing library built using d3 based on Cerner design standards.
 
 - [Getting Started](#getting-started)
 - [Documentation](https://github.com/cerner/terra-core/tree/main/packages/terra-graphs/docs)

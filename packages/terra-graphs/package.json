@@ -2,7 +2,7 @@
   "name": "@cerner/terra-graphs",
   "main": "lib/Graphs.js",
   "version": "0.0.0",
-  "description": "{insert description}",
+  "description": "A react graphing library built using d3 based on Cerner design standards",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-graphs.git",
