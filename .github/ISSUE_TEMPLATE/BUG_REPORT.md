@@ -14,6 +14,17 @@ assignees: ''
 <!-- A clear and concise description of what the bug is. -->
 <!-- Providing a link to a live example / minimal demo of the problem greatly helps us debug issues. -->
 
+### Graphs affected
+
+* [ ]  Bar graph
+* [ ]  Bubble graph
+* [ ]  Gantt chart
+* [ ]  Line graph
+* [ ]  Paired result
+* [ ]  Pie chart
+* [ ]  Scatter plot
+* [ ]  Timeline
+
 ## Steps to Reproduce
 <!-- Please specify the exact steps you took for this bug to occur. -->
 <!-- Provide as much detail as possible so we're able to reproduce these steps. -->

@@ -1,6 +1,6 @@
 # Contributing
 
-Help us to make this project better by contributing. Whether it's new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a [github issue][1] or submit a pull request.
+Help us to make this project better by contributing. Whether it's new features, bug fixes, or simply improving documentation, your contributions are welcome. Please start with logging a [github issue][1] or submitting a pull request.
 
 Before you contribute, please review these guidelines to help ensure a smooth process for everyone.
 
@@ -14,6 +14,7 @@ Thanks.
 * Please be as clear and explicit as you can in your description of the problem.
 * Please state the version of Operating System, Browser, and terra-graphs you are using in the description.
 * Include any relevant code in the issue summary.
+* If an issue already exists, please add a comment to help indicate that multiple people are facing the issue.
 
 ## Pull Requests
 

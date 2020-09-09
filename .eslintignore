@@ -1,6 +1,6 @@
+**/aggregated-translations/*.*
+build
+coverage
+generated-themes
 lib
 node_modules
-coverage
-build
-**/aggregated-translations/*.*
-generated-themes
