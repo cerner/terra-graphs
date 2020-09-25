@@ -1,0 +1,6 @@
+**/aggregated-translations/*.*
+build
+coverage
+generated-themes
+lib
+node_modules
