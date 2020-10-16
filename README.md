@@ -13,8 +13,25 @@
 [![Build Status](https://badgen.net/travis/cerner/terra-graphs)](https://travis-ci.com/cerner/terra-graphs)
 [![devDependencies status](https://badgen.net/david/dev/cerner/terra-graphs)](https://david-dm.org/cerner/terra-graphs?type=dev)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
+[![npm latest version](https://img.shields.io/npm/v/@cerner/carbon-graphs/latest.svg)](https://www.npmjs.com/package/@cerner/carbon-graphs)
+[![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](https://engineering.cerner.com/open_source/)
+[![License](https://badgen.net/badge/license/Apache-2.0/blue)](https://github.com/cerner/terra-graphs/blob/main/LICENSE)
+[![dependencies Status](https://david-dm.org/cerner/carbon-graphs/status.svg)](https://david-dm.org/cerner/terra-graphs)
+[![devDependencies status](https://badgen.net/david/dev/cerner/terra-graphs)](https://david-dm.org/cerner/terra-graphs?type=dev)
+<!-- [![Bugs](https://img.shields.io/github/issues/cerner/carbon-graphs/bug.svg)](https://github.com/cerner/terra-graphs/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug) -->
+<!-- [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) -->
+
+Terra Graphs is a graphing library built using D3 visualization library. It provides an API for generating native graphs such as Line and Paired Result graphs based on design standards.
 
 - [Supported Browsers](#supported-browsers)
+- [Getting Started](#getting-started)
+  - [Dependencies](#dependencies)
+  - [Install](#install)
+- [Features](#features)
+    -   [Graph types](#graph-types)
+    -   [Graph Settings/Toggles](#graph-settingstoggles)
+    -   [Other highlights](#other-highlights)
+- [Potential features](#potential-features)
 - [Packages](#packages)
   - [Versioning](#versioning)
   - [Status](#status)
@@ -25,6 +42,109 @@
 - [Contributing](#contributing)
 - [Local Development](#local-development)
 - [LICENSE](#license)
+
+
+
+<!-- - [Supported Browsers](#supported-browsers)
+- [Packages](#packages)
+  - [Versioning](#versioning)
+  - [Status](#status)
+  - [Deprecated](#deprecated)
+- [Supported Browsers](#supported-browsers)
+- [Internationalization (I18n)](#internationalization-i18n)
+  - [Packages Requiring I18n](#packages-requiring-i18n)
+- [Contributing](#contributing)
+- [Local Development](#local-development)
+- [LICENSE](#license) -->
+
+<hr>
+<!--  -->
+
+## Supported Browsers
+
+| Browser                     | Version |
+|-----------------------------|---------|
+| Chrome & Chrome for Android | Current |
+| Edge                        | Current |
+| Firefox                     | Current |
+| Internet Explorer           | 10 & 11 |
+| Safari & Mobile Safari      | Current |
+
+<hr>
+<!--  -->
+
+## Getting Started
+
+### Dependencies
+-   D3
+-   Polyfills:
+    -   Object.assign
+    -   Object.values
+
+### Install
+
+You can install Carbon via `npm` or download the [latest release](https://github.com/cerner/terra-graphs/releases/latest) from GitHub.
+
+```sh
+npm i @cerner/carbon-graphs --save-dev
+```
+
+<!-- ```sh
+npm i @cerner/Terra Graphs-graphs --save-dev
+``` -->
+
+### Getting Started
+
+-   [Getting Started](./docs/getting-started/GettingStarted.md)
+-   [API Reference](docs/README.md)
+
+<hr>
+<!--  -->
+
+## Features
+
+-   Adheres to Cerner standard design template
+-   Responsive
+-   Native-built graphs
+-   Default theme for data points
+
+### Graph types
+
+-   [Line](./docs/controls/Line.md#usage)
+-   [Multi Line](./docs/controls/Line.md#multi-line)
+-   [Spline Line](./docs/controls/Line.md#spline-line)
+-   [Paired Result](./docs/controls/PairedResult.md#usage)
+-   [Bar](./docs/controls/Bar.md#usage)
+-   [Timeline](./docs/controls/Timeline.md#usage)
+-   [Pie](./docs/controls/Pie.md#usage)
+-   [Gantt](./docs/controls/Gantt.md#usage)
+-   [Scatter](./docs/controls/Scatter.md#usage)
+-   [Bubble](./docs/controls/Bubble.md#usage)
+    -   [Bubble Single Dataset](./docs/controls/BubbleSingleDataset.md)
+    -   [Bubble Multiple Dataset](./docs/controls/BubbleMultipleDataset.md)
+
+
+### Graph Settings/Toggles
+
+-   Legend
+-   Labels
+-   Grid `vertical & horizontal`
+-   Axes `x and y or y2`
+-   Regions `horizontal`
+
+### Other highlights
+
+-   Supports different shapes for each data-set
+-   Supports custom SVG shapes for data-sets
+-   `Non-contiguous` data point line graph
+-   `Sparkline` graph (with Shapes as hidden)
+-   Criticality indicators for data point
+-   Locale support for axes ticks
+-   Y and Y2 Axes label along with respective shapes
+-   Graph Panning
+
+<hr>
+<!--  -->
 
 <h2 id="packages">
   Packages
@@ -59,18 +179,8 @@ Components in beta stage may include breaking changes, new features, and bug fix
 |--------------------|---------|--------|--------------|
 <!-- AUTO-GENERATED-CONTENT:END *-->
 
-
-<h2 id="supported-browsers">
-  Supported Browsers
-</h2>
-
-| Browser                     | Version |
-|-----------------------------|---------|
-| Chrome & Chrome for Android | Current |
-| Edge                        | Current |
-| Firefox                     | Current |
-| Internet Explorer           | 10 & 11 |
-| Safari & Mobile Safari      | Current |
+<hr>
+<!--  -->
 
 <h2 id="internationalization-i18n">
   Internationalization (I18n)
@@ -78,12 +188,17 @@ Components in beta stage may include breaking changes, new features, and bug fix
 
 Please review [Terra's Internationalization documentation](https://engineering.cerner.com/terra-ui/#/getting-started/terra-ui/internationalization) for more information. Included are directions on consumption and how internationalization is setup.
 
+<hr>
+<!--  -->
 
 <h2 id="contributing">
   Contributing
 </h2>
 
 Please read through our [contributing guidelines](CONTRIBUTING.md). Included are directions for issue reporting and pull requests.
+
+<hr>
+<!--  -->
 
 <h2 id="local-development">
   Local Development
@@ -95,6 +210,9 @@ Please read through our [contributing guidelines](CONTRIBUTING.md). Included are
 npm install
 npm run test
 ```
+
+<hr>
+<!--  -->
 
 <h2 id="license">
   LICENSE
