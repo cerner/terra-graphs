@@ -46,6 +46,21 @@
           "import/first": "off",
           "import/no-duplicates": "off"
         }
+      },
+      {
+        "files": [
+          "*.js"
+        ],
+        "rules": {
+          "import/no-cycle": "off",
+          "no-param-reassign": "off",
+          "template-curly-spacing" : "off",
+          "indent": ["error", 2, {
+            "ignoredNodes": ["TemplateLiteral"]
+          }],
+          "strict": "off",
+          "func-names": "off"
+        }
       }
     ],
     "rules": {
@@ -110,8 +125,8 @@
     "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.5.0",
     "@babel/preset-react": "^7.0.0",
-    "@cerner/eslint-config-terra": "^4.0.0",
     "@cerner/browserslist-config-terra": "^3.0.0",
+    "@cerner/eslint-config-terra": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^24.8.0",
     "check-installed-dependencies": "^1.0.0",
