@@ -94,6 +94,7 @@
     "compile:fusion": "rm -rf ./build; THEME=orion-fusion-theme webpack -p",
     "danger": "danger ci",
     "dependency-markdown": "node scripts/dependency-markdown-generator/DependencyMarkdownGenerator.js",
+    "dev": "node ./build/webpack/dev-server.js",
     "docs": "node scripts/root-readme-updater/index.js",
     "docs:peerDependencies": "node scripts/peer-dependency-generator/index.js",
     "heroku-prebuild": "npx lerna init",
@@ -116,6 +117,9 @@
     "wdio-fusion": "THEME=orion-fusion-theme wdio",
     "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion",
     "version": "lerna version --no-git-tag-version && node ./scripts/changelog-updater/index.js"
+  },
+  "dependencies": {
+    "d3": "^5.16.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
