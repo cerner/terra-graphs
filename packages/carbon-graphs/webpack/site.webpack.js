@@ -5,9 +5,9 @@ const { jsOptions, cssOptions } = require('./helpers/rules');
 
 const webpackConfig = (env) => ({
   mode: 'development',
-  entry: ['./dev/app.js'],
+  entry: ['./packages/carbon-graphs/dev/app.js'],
   output: {
-    path: path.resolve(__dirname, '../..', '.site'),
+    path: path.resolve(__dirname, '../../..', '.site'),
     filename: 'carbon-graphs.js',
     library: 'Carbon',
     libraryExport: 'default',
@@ -29,8 +29,9 @@ const webpackConfig = (env) => ({
       {
         test: /\.(js|jsx)$/,
         include: [
-          path.join(__dirname, '../../src/main/js'),
-          path.join(__dirname, '../..', 'dev'),
+
+          path.join(__dirname, '../src/main/js'),
+          path.join(__dirname, '../../..', 'dev'),
         ],
         use: jsOptions(env.TYPE),
       },
@@ -42,11 +43,13 @@ const webpackConfig = (env) => ({
       chunkFilename: 'carbon-graphs.css',
     }),
     new HtmlWebpackPlugin({
-      template: 'build/assets/index.ejs',
+      // packages/carbon-graphs/dev-site/assets/index.ejs
+      // ../assets/index.ejs
+      template: 'packages/carbon-graphs/dev-site/assets/index.ejs',
       title: 'Carbon',
       filename: 'index.html',
       inject: 'body',
-      favicon: 'build/assets/icons/Carbon_48.png',
+      favicon: 'packages/carbon-graphs/dev-site/assets/icons/Carbon_48.png',
     }),
   ],
   stats: {

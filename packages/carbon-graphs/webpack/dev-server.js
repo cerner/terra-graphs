@@ -9,7 +9,7 @@ const compiler = webpack({
   devtool: 'inline-source-map',
   entry: [
         `webpack-dev-server/client?http://localhost:${port}/`,
-        './dev/app.js',
+        './packages/carbon-graphs/dev/app.js',
   ],
   output: {
     path: path.join(process.cwd(), 'dist'),
@@ -28,8 +28,8 @@ const compiler = webpack({
       {
         test: /\.(js|jsx)$/,
         include: [
-          path.join(__dirname, '../..', 'src'),
-          path.join(__dirname, '../..', 'dev'),
+          path.join(__dirname, '..', 'src'),
+          path.join(__dirname, '../../..', 'dev'),
         ],
         use: jsOptions('DEV'),
       },
@@ -49,7 +49,7 @@ const server = new WebpackDevServer(compiler, {
   open: true,
   overlay: true,
   headers: { 'Access-Control-Allow-Origin': '*' },
-  contentBase: './build',
+  contentBase: './packages/carbon-graphs/dev-site',
 });
 
 server.listen(port, '0.0.0.0', () => {
