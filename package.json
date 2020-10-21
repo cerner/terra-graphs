@@ -124,7 +124,8 @@
     "glob": "^7.1.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
-    "lerna": "^3.16.4",
+    "karma": "^5.1.0",
+    "lerna": "^3.22.1",
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "link-parent-bin": "^1.0.0",
@@ -144,10 +145,11 @@
     "url-loader": "^4.1.1",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1",
-    "karma": "^5.1.0"
+    "webpack-dev-server": "^3.3.1"
   },
   "scripts": {
+    "build": "webpack --config ./packages/carbon-graphs/webpack/webpack.config.js --env.TYPE=LIB",
+    "build:dist": "webpack --config ./packages/carbon-graphs/webpack/webpack.config.js --env.TYPE=DIST",
     "bootstrap:hoist": "lerna bootstrap --hoist",
     "clean": "lerna clean --yes && rm -rf node_modules || true",
     "clean:install": "npm run clean && npm install",
@@ -161,7 +163,6 @@
     "compile:fusion": "rm -rf ./build; THEME=orion-fusion-theme webpack -p",
     "danger": "danger ci",
     "dependency-markdown": "node scripts/dependency-markdown-generator/DependencyMarkdownGenerator.js",
-    "build:dist": "webpack --config ./packages/carbon-graphs/webpack/webpack.config.js --env.TYPE=DIST",
     "dev": "node packages/carbon-graphs/webpack/dev-server.js",
     "docs": "node scripts/root-readme-updater/index.js",
     "docs:peerDependencies": "node scripts/peer-dependency-generator/index.js",
@@ -180,10 +181,11 @@
     "start-prod": "tt-serve --env.disableHotReloading -p",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
+    "unit": "karma start ./packages/carbon-graphs/karma.config.js --single-run --no-auto-watch",
+    "version": "lerna version --no-git-tag-version && node ./scripts/changelog-updater/index.js",
     "wdio-default": "wdio",
     "wdio-lowlight": "NODE_OPTIONS=--max-old-space-size=2048 THEME=clinical-lowlight-theme wdio",
     "wdio-fusion": "THEME=orion-fusion-theme wdio",
-    "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion",
-    "version": "lerna version --no-git-tag-version && node ./scripts/changelog-updater/index.js"
+    "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
   }
 }

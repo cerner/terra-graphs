@@ -29,7 +29,6 @@ const webpackConfig = (env, folder = '') => ({
       {
         test: /\.(js|jsx)$/,
         include: [path.join(__dirname, '../src/main/js')],
-        // include: [path.join(__dirname, './packages/carbon-graphs/src/main/js')],
         use: jsOptions(env.TYPE),
       },
     ],
