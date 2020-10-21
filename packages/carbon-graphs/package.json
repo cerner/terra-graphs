@@ -1,5 +1,5 @@
 {
-  "name": "@cerner/terra-graphs",
+  "name": "@cerner/carbon-graphs",
   "main": "lib/Graphs.js",
   "private": true,
   "version": "0.0.0",
