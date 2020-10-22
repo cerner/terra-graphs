@@ -1,5 +1,3 @@
-/* eslint-disable operator-assignment */
-
 import * as d3 from 'd3';
 import Carbon from '../../../src/main/js/carbon';
 import { getBar, getHashedBar } from '../../../src/main/js/helpers/barType';
@@ -24,7 +22,7 @@ const constructSVGObject = (shape, { posX = 1, posY = 1, scale = 2 }) => {
   const d3Shape = utils.deepClone(shape);
   d3Shape.options.x = shape.options.x * posX;
   d3Shape.options.y = shape.options.y * posY;
-  d3Shape.options.scale = d3Shape.options.scale * scale;
+  d3Shape.options.scale *= scale;
   return d3Shape;
 };
 

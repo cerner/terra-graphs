@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';
 import { getDemoData } from '../data';
@@ -152,13 +150,13 @@ export const renderScatterWithPanning = (id) => {
   );
   graphData.regions = [regions[0]];
 
-  const createGraph = () => {
-    graph.reflow();
-  };
-
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.scatter(graphData));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -180,14 +178,15 @@ export const renderScatterY2AxisWithPanning = (id) => {
     getDemoData(`#${id}`, 'LINE_TIMESERIES').data[1],
   );
   graphDataY.regions = [regions[0]];
-  const createGraph = () => {
-    graph.reflow();
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.scatter(graphDataY));
   graph.loadContent(Carbon.api.scatter(graphDataY2));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -207,16 +206,16 @@ export const renderScatterPanningWithDynamicData = (id) => {
   );
   graphData.regions = [regions[0]];
 
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.scatter(graphData));
+  axisData.axis = graph.config.axis;
+
   const createGraph = () => {
     const graphDataY = utils.deepClone(
       getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1],
     );
     graph.reflow(graphDataY);
   };
-
-  const graph = Carbon.api.graph(axisData);
-  graph.loadContent(Carbon.api.scatter(graphData));
-  axisData.axis = graph.config.axis;
 
   createPanningControls(id, {
     axisData,

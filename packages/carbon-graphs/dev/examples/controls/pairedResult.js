@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';
 import { getDemoData } from '../data';
@@ -537,13 +535,13 @@ export const renderPairedResultWithPanning = (id) => {
   };
   axisData.axis.x.ticks = {};
 
-  const createGraph = () => {
-    graph.reflow();
-  };
-
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.pairedResult(graphData[0]));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -563,14 +561,14 @@ export const renderPairedResultY2AxisWithPanning = (id) => {
   axisData.axis.x.ticks = {};
   axisData.axis.y2.show = true;
 
-  const createGraph = () => {
-    graph.reflow();
-  };
-
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.pairedResult(graphData[0]));
   graph.loadContent(Carbon.api.pairedResult(graphData[1]));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -591,13 +589,13 @@ export const renderPairedResultPanningWithDynamicData = (id) => {
   axisData.axis.x.ticks = {};
   axisData.axis.y.rangeRounding = false;
 
-  const createGraph = () => {
-    graph.reflow(graphData[2]);
-  };
-
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.pairedResult(graphData[0]));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow(graphData[2]);
+  };
 
   createPanningControls(id, {
     axisData,

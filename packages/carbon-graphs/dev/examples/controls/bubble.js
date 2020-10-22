@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-/* eslint-disable no-use-before-define */
 
 import Carbon from '../../../src/main/js/carbon';
 import { loadPopup, loadBubblePopup } from '../popup';
@@ -347,13 +346,14 @@ export const renderBubbleWithPanning = (id) => {
     enabled: true,
   };
   const graphDataY = data5;
-  const createGraph = () => {
-    graph.reflow();
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.bubble(graphDataY));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -368,14 +368,15 @@ export const renderBubblePanningWithDynamicData = (id) => {
     enabled: true,
   };
   const graphDataY = data5;
-  const createGraph = () => {
-    const graphData = panData;
-    graph.reflow(graphData);
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.bubble(graphDataY));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    const graphData = panData;
+    graph.reflow(graphData);
+  };
 
   createPanningControls(id, {
     axisData,

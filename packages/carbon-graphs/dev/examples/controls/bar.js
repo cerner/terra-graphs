@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-sequences */
-/* eslint-disable prefer-destructuring */
-
+/* eslint prefer-destructuring: ["error", {VariableDeclarator: {object: true}}] */
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';
 import { getDemoData } from '../data';
@@ -546,7 +545,6 @@ export const renderBarPanningWithDynamicData = (id) => {
   const createGraph = () => {
     graph.reflow(graphData[1]);
   };
-
   createPanningControls(id, {
     axisData,
     creationHandler: createGraph,

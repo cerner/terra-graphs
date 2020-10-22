@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 import * as d3 from 'd3';
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';
@@ -513,13 +511,14 @@ export const renderLineWithPanning = (id) => {
     getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[0],
   );
   graphDataY.regions = [regions[0]];
-  const createGraph = () => {
-    graph.reflow();
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.line(graphDataY));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -549,14 +548,15 @@ export const renderLineY2AxisWithPanning = (id) => {
     yLabel: 'yLabel',
     y2Label: 'y2Label',
   };
-  const createGraph = () => {
-    graph.reflow(graphDataY3);
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.line(graphDataY));
   graph.loadContent(Carbon.api.line(graphDataY2));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow(graphDataY3);
+  };
 
   createPanningControls(id, {
     axisData,
@@ -575,16 +575,17 @@ export const renderLinePanningWithDynamicData = (id) => {
     getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[0],
   );
   graphData.regions = [regions[0]];
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.line(graphData));
+  axisData.axis = graph.config.axis;
+
   const createGraph = () => {
     const graphDataY = utils.deepClone(
       getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1],
     );
     graph.reflow(graphDataY);
   };
-
-  const graph = Carbon.api.graph(axisData);
-  graph.loadContent(Carbon.api.line(graphData));
-  axisData.axis = graph.config.axis;
 
   createPanningControls(id, {
     axisData,
@@ -607,6 +608,11 @@ export const renderLinePanningWithUpdatedLegend = (id) => {
     values: [],
   };
   graphData.regions = [regions[0]];
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.line(graphData));
+  axisData.axis = graph.config.axis;
+
   const createGraph = () => {
     const graphDataY = utils.deepClone(
       getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1],
@@ -619,10 +625,6 @@ export const renderLinePanningWithUpdatedLegend = (id) => {
       graphData = graphDataH;
     }
   };
-
-  const graph = Carbon.api.graph(axisData);
-  graph.loadContent(Carbon.api.line(graphData));
-  axisData.axis = graph.config.axis;
 
   createPanningControls(id, {
     axisData,

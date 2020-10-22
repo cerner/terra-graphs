@@ -1,5 +1,3 @@
-/* eslint-disable no-use-before-define */
-
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';
 import { getDemoData } from '../data';
@@ -61,13 +59,14 @@ export const renderTimelinePanning = (id) => {
   const graphData = utils.deepClone(
     getDemoData(`#${id}`, 'TIMELINE').data[1],
   );
-  const createGraph = () => {
-    graph.reflow();
-  };
 
   const graph = Carbon.api.timeline(axisData);
   graph.loadContent(graphData);
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -87,13 +86,14 @@ export const renderTimelinePanningWithDynamicData = (id) => {
     getDemoData(`#${id}`, 'TIMELINE').data[0],
   );
   const panData = utils.deepClone(getDemoData(`#${id}`, 'TIMELINE').data[2]);
-  const createGraph = () => {
-    graph.reflow(panData);
-  };
 
   const graph = Carbon.api.timeline(axisData);
   graph.loadContent(graphData);
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow(panData);
+  };
 
   createPanningControls(id, {
     axisData,

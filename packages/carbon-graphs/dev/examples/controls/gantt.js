@@ -1,7 +1,3 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-shadow */
-/* eslint-disable no-restricted-syntax */
-
 'use strict';
 
 import Carbon from '../../../src/main/js/carbon';
@@ -94,6 +90,50 @@ const dueSoon = {
     y: -7,
     scale: 0.35,
   },
+};
+/**
+ * Helper function to load tracks.
+ *
+ * @private
+ * @param {object} gantt - gantt object where its components needs to be loaded.
+ * @param {Array} tasks - gantt tasks that needs to be loaded
+ * @param {Array} activities - gantt activities that needs to be loaded
+ * @param {Array} events - gantt events that needs to be loaded
+ * @param {Array} actions - gantt actions that needs to be loaded
+ * @param {number} totalTracks - total required number of tracks
+ * @param {boolean} isTrackSelectable - indicator to specify if track is selectable or not.
+ * @returns {undefined} - returns nothing
+ */
+const loadTracks = (
+  gantt,
+  tasks = [],
+  activities = [],
+  events = [],
+  actions = [],
+  totalTracks = 1,
+  isTrackSelectable = false,
+) => {
+  // eslint-disable-next-line no-restricted-syntax
+  for (const each of Array(totalTracks).keys()) {
+    gantt.loadContent({
+      key: `track ${each}`,
+      onClick: isTrackSelectable ? loadTrackPopup : undefined,
+      trackLabel: {
+        display: `Project ${String.fromCharCode(65 + each)}`,
+        onClick: loadXAndYAxisLabelPopup,
+      },
+      tasks: tasks[each] ? tasks[each] : {},
+      activities: activities[each] ? activities[each] : {},
+      events: events[each] ? events[each] : {},
+      actions: actions[each] ? actions[each] : {},
+    });
+  }
+  /* gantt.unloadContent({
+        key: "track 3",
+        trackLabel: {
+            display: "Project C"
+        }
+    }); */
 };
 const tasks = [
   [
@@ -560,13 +600,14 @@ export const renderGanttPanning = (id) => {
     },
     tasks: tasks2[0],
   };
-  const createGraph = () => {
-    graph.reflow();
-  };
 
   const graph = Carbon.api.gantt(axisData);
   graph.loadContent(graphData);
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -612,13 +653,14 @@ export const renderGanttPanningWithDynamicData = (id) => {
     events: panData.events,
     activities: panData.activities,
   };
-  const createGraph = () => {
-    graph.reflow(graphDataY);
-  };
 
   const graph = Carbon.api.gantt(axisData);
   graph.loadContent(graphData);
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow(graphDataY);
+  };
 
   createPanningControls(id, {
     axisData,
@@ -1012,49 +1054,6 @@ export const renderGanttTrackSelection = (id) => {
     true,
   );
   return ganttDefault;
-};
-/**
- * Helper function to load tracks.
- *
- * @private
- * @param {object} gantt - gantt object where its components needs to be loaded.
- * @param {Array} tasks - gantt tasks that needs to be loaded
- * @param {Array} activities - gantt activities that needs to be loaded
- * @param {Array} events - gantt events that needs to be loaded
- * @param {Array} actions - gantt actions that needs to be loaded
- * @param {number} totalTracks - total required number of tracks
- * @param {boolean} isTrackSelectable - indicator to specify if track is selectable or not.
- * @returns {undefined} - returns nothing
- */
-const loadTracks = (
-  gantt,
-  tasks = [],
-  activities = [],
-  events = [],
-  actions = [],
-  totalTracks = 1,
-  isTrackSelectable = false,
-) => {
-  for (const each of Array(totalTracks).keys()) {
-    gantt.loadContent({
-      key: `track ${each}`,
-      onClick: isTrackSelectable ? loadTrackPopup : undefined,
-      trackLabel: {
-        display: `Project ${String.fromCharCode(65 + each)}`,
-        onClick: loadXAndYAxisLabelPopup,
-      },
-      tasks: tasks[each] ? tasks[each] : {},
-      activities: activities[each] ? activities[each] : {},
-      events: events[each] ? events[each] : {},
-      actions: actions[each] ? actions[each] : {},
-    });
-  }
-  /* gantt.unloadContent({
-        key: "track 3",
-        trackLabel: {
-            display: "Project C"
-        }
-    }); */
 };
 export const renderGanttGraphAndLegendPaddingReduced = (id) => {
   const data = utils.deepClone(getDemoData(`#${id}`, 'GANTT'));
