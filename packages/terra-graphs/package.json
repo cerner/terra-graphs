@@ -1,9 +1,6 @@
 {
   "name": "@cerner/terra-graphs",
   "main": "lib/Graphs.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "private": true,
   "version": "0.0.0",
   "description": "A react graphing library built using d3 based on Cerner design standards",
@@ -29,9 +26,29 @@
     "url": "https://github.com/cerner/terra-graphs/issues"
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
-  "peerDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5"
+  "files": [
+    "dist",
+    "lib",
+    "README.md"
+  ],
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "semi": true,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "overrides": [
+      {
+        "files": "package.json",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 250
+        }
+      }
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -103,29 +120,9 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   },
-  "files": [
-    "dist",
-    "lib",
-    "README.md"
-  ],
-  "prettier": {
-    "arrowParens": "always",
-    "bracketSpacing": true,
-    "semi": true,
-    "tabWidth": 4,
-    "trailingComma": "none",
-    "overrides": [
-      {
-        "files": "package.json",
-        "options": {
-          "tabWidth": 2,
-          "printWidth": 250
-        }
-      }
-    ]
-  },
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",

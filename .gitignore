@@ -15,6 +15,7 @@
 .rvmrc
 .sass-cache/
 .vscode/
+
 *.bridgesupport
 *.css.map
 *.gem
@@ -23,9 +24,12 @@
 *.pid.lock
 *.rbc
 *.seed
+
 **/__snapshots__/diff
 **/__snapshots__/latest
 **/aggregated-translations/*.*
+**/dist
+
 /_yardoc/
 /.bundle/
 /.config
@@ -42,6 +46,7 @@
 /test/version_tmp/
 /tmp/
 /vendor/bundle
+
 build-iPhoneOS/
 build-iPhoneSimulator/
 build/

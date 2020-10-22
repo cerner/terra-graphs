@@ -26,9 +26,29 @@
     "url": "https://github.com/cerner/terra-graphs/issues"
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
-  "peerDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5"
+  "files": [
+    "dist",
+    "lib",
+    "README.md"
+  ],
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "semi": true,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "overrides": [
+      {
+        "files": "package.json",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 250
+        }
+      }
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -87,29 +107,9 @@
     "webpack-cli": "^3.3.12",
     "webpack-merge": "^4.2.2"
   },
-  "files": [
-    "dist",
-    "lib",
-    "README.md"
-  ],
-  "prettier": {
-    "arrowParens": "always",
-    "bracketSpacing": true,
-    "semi": true,
-    "tabWidth": 4,
-    "trailingComma": "none",
-    "overrides": [
-      {
-        "files": "package.json",
-        "options": {
-          "tabWidth": 2,
-          "printWidth": 250
-        }
-      }
-    ]
-  },
-  "publishConfig": {
-    "access": "public"
+  "peerDependencies": {
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",
