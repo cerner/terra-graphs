@@ -1,11 +1,13 @@
 'use strict';
 
+/* eslint-disable import/no-extraneous-dependencies */
+
+const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');
 const { svgFolderToJSON } = require('@cerner/svg-to-carbon');
 const SHAPES = require('./shapesDictionary').CARBON_SHAPES;
 const { parserOptions } = require('./fileSkeleton');
-const fs = require('fs');
 
 const iconPath = path.join(
   __dirname,

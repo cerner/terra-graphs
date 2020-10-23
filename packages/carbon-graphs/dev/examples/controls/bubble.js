@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-use-before-define */
+
 import Carbon from '../../../src/main/js/carbon';
 import { loadPopup, loadBubblePopup } from '../popup';
 import { createPanningControls } from '../panHelpers';

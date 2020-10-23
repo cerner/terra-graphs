@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-sequences */
+/* eslint-disable prefer-destructuring */
+
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';
 import { getDemoData } from '../data';
@@ -504,13 +506,14 @@ export const renderBarWithPanning = (id) => {
     ],
     format: '%H',
   };
-  const createGraph = () => {
-    graph.reflow();
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.bar(graphData[0]));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow();
+  };
 
   createPanningControls(id, {
     axisData,
@@ -535,13 +538,14 @@ export const renderBarPanningWithDynamicData = (id) => {
     ],
     format: '%H',
   };
-  const createGraph = () => {
-    graph.reflow(graphData[1]);
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.bar(graphData[0]));
   axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflow(graphData[1]);
+  };
 
   createPanningControls(id, {
     axisData,

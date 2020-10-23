@@ -1,5 +1,9 @@
 'use strict';
 
+/* eslint-disable no-plusplus */
+/* eslint-disable prefer-rest-params */
+/* eslint-disable no-restricted-syntax */
+
 (function () {
   // object conversion errors
   const CANNOT_CNVT_TO_OBJ = 'Cannot convert undefined or null to object';

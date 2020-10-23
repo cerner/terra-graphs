@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+
 import * as d3 from 'd3';
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';

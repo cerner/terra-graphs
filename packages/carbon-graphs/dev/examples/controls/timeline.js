@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+
 import Carbon from '../../../src/main/js/carbon';
 import utils from '../../../src/main/js/helpers/utils';
 import { getDemoData } from '../data';

@@ -1,3 +1,7 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-shadow */
+/* eslint-disable no-restricted-syntax */
+
 'use strict';
 
 import Carbon from '../../../src/main/js/carbon';

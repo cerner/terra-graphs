@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 const commander = require('commander');
 const serve = require('./serve-static');
 

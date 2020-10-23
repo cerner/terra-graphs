@@ -1,3 +1,5 @@
+/* eslint-disable operator-assignment */
+
 import * as d3 from 'd3';
 import Carbon from '../../../src/main/js/carbon';
 import { getBar, getHashedBar } from '../../../src/main/js/helpers/barType';
