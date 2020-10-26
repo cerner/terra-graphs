@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable import/no-extraneous-dependencies */
+
 
 const fs = require('fs');
 const path = require('path');

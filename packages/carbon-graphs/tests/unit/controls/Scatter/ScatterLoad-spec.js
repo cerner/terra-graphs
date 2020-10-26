@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 import sinon from 'sinon';
 import Graph from '../../../../src/main/js/controls/Graph/Graph';
 import Scatter from '../../../../src/main/js/controls/Scatter';

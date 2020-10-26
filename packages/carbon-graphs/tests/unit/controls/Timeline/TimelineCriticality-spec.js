@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 import sinon from 'sinon';
 import Timeline from '../../../../src/main/js/controls/Timeline';
 import { Shape } from '../../../../src/main/js/core';
