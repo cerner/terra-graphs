@@ -8,7 +8,6 @@ branches:
 cache:
   directories:
     - travis-build
-    - node_modules
 before_install:
   # Clean install on any new build
   - npm run clean
