@@ -11,7 +11,8 @@ cache:
 before_install:
   # Clean install on any new build
   - npm run clean
-  - npm install -g npm@6.14.7
+  - rm -rf node_modules && rehash -r && npm install
+
 jobs:
   include:
     - stage: danger lint jest and compile
