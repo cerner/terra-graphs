@@ -5,6 +5,9 @@ services:
 branches:
   only:
     - main
+cache:
+  directories:
+    - travis-build
 before_install:
   # Clean install on any new build
   - npm run clean
