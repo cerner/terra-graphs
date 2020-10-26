@@ -10,7 +10,6 @@ cache:
     - travis-build
 before_install:
   # Clean install on any new build
-  - npm install -g npm@6.14.7
   - npm run clean
 jobs:
   include:
