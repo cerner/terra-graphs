@@ -7,7 +7,7 @@ branches:
     - main
 cache:
   directories:
-    - travis-buil
+    - travis-build
     - node_modules
 before_install:
   # Clean install on any new build
