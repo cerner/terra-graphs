@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const path = require('path');
 const packagePaths = require('../common/getPackagePaths');
 const findAndReplace = require('../common/findAndReplace');

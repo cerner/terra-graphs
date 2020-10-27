@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const fs = require('fs');
 const path = require('path');
 const packagePaths = require('../common/getPackagePaths');

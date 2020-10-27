@@ -1,5 +1,3 @@
-/* eslint-disable import/no-named-default */
-
 import { default as de } from './de-DE';
 import { default as au } from './en-AU';
 import { default as ca } from './en-CA';

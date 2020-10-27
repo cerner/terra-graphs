@@ -2325,7 +2325,6 @@ const DATA = [
     }),
   },
 ];
-// eslint-disable-next-line import/prefer-default-export
 export const getDemoData = (id, type) => {
   const res = DATA.find((t) => t[type]);
   return res ? res[type](id) : null;

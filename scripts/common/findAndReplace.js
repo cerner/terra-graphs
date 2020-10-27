@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const fs = require('fs');
 
 const findAndReplace = (options) => {
