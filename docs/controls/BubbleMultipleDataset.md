@@ -23,7 +23,7 @@ A native bubble graph for multiple datasets using D3 based on standard design pa
 
 ## Usage
 
-**Note: Bubble Muliple Dataset is limited to 7 datasets. any additional datasets will be ignored.**
+**Note: Bubble Multiple Dataset is limited to 7 datasets. any additional datasets will be ignored.**
 
 ### Structure
 
