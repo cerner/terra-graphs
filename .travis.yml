@@ -12,6 +12,7 @@ before_install:
   - cd ..
   # Clean install on any new build
   - npm run clean
+  - export PATH="$home/travis/build/cerner/terra-graphs"
 jobs:
   include:
     - stage: danger lint jest and compile
