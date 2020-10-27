@@ -10,7 +10,7 @@ cache:
     - travis-build
 before_install:
   # Clean install on any new build
-  #- npm run clean
+  - npm run clean
 jobs:
   include:
     - stage: danger lint jest and compile
