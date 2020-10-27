@@ -9,6 +9,7 @@ cache:
   directories:
     - travis-build
 before_install:
+  - cd ..
   # Clean install on any new build
   - npm run clean
 jobs:
