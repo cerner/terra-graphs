@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { danger, fail } from 'danger';
 
 const lernaConfig = require('./lerna.json');

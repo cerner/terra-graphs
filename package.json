@@ -205,7 +205,7 @@
     "jest:coverage": "jest --coverage",
     "link-parent-bin": "link-parent-bin",
     "lint": "npm run lint:js && npm run lint:scss",
-    "lint:js": "eslint --ext .js,.jsx . --fix",
+    "lint:js": "eslint --ext .js,.jsx .",
     "lint:scss": "stylelint 'packages/**/src/**/*.scss' --syntax scss",
     "pretest": "npm run lint",
     "postinstall": "link-parent-bin && npm run compile && npm run bootstrap:hoist",
