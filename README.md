@@ -10,16 +10,13 @@
 
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
 [![License](https://badgen.net/github/license/cerner/terra-graphs)](https://github.com/cerner/terra-graphs/blob/main/LICENSE)
-[![Build Status](https://badgen.net/travis/cerner/terra-graphs)](https://travis-ci.com/cerner/terra-graphs)
-[![devDependencies status](https://badgen.net/david/dev/cerner/terra-graphs)](https://david-dm.org/cerner/terra-graphs?type=dev)
+[![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
 [![npm latest version](https://img.shields.io/npm/v/@cerner/carbon-graphs/latest.svg)](https://www.npmjs.com/package/@cerner/carbon-graphs)
-[![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](https://engineering.cerner.com/open_source/)
-[![License](https://badgen.net/badge/license/Apache-2.0/blue)](https://github.com/cerner/terra-graphs/blob/main/LICENSE)
-[![dependencies Status](https://david-dm.org/cerner/carbon-graphs/status.svg)](https://david-dm.org/cerner/terra-graphs)
+[![dependencies Status](https://david-dm.org/cerner/terra-graphs/status.svg)](https://david-dm.org/cerner/terra-graphs)
 [![devDependencies status](https://badgen.net/david/dev/cerner/terra-graphs)](https://david-dm.org/cerner/terra-graphs?type=dev)
-<!-- [![Bugs](https://img.shields.io/github/issues/cerner/carbon-graphs/bug.svg)](https://github.com/cerner/terra-graphs/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug) -->
-<!-- [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release) -->
+[![Bugs](https://img.shields.io/github/issues/cerner/carbon-graphs/bug.svg)](https://github.com/cerner/terra-graphs/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 Terra Graphs is a graphing library built using D3 visualization library. It provides an API for generating native graphs such as Line and Paired Result graphs based on design standards.
 
