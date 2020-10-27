@@ -1,0 +1,7 @@
+---
+    parser: babel-eslint
+    plugins: 
+        - eslint-plugin-import
+    rules: 
+        no-extraneous-dependencies: 0
+    
