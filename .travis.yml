@@ -9,9 +9,9 @@ cache:
   directories:
     - travis-build
 before_install:
+  - npm i npm@6.14.8
   # Clean install on any new build
   - npm run clean
-  - npm i npm@6.14.8
 jobs:
   include:
     - stage: danger lint jest and compile
