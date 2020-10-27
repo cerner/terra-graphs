@@ -214,7 +214,7 @@
     "start-prod": "tt-serve --env.disableHotReloading -p",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "unit": "karma start ./packages/carbon-graphs/karma.config.js --single-run --no-auto-watch",
+    "karma": "karma start ./packages/carbon-graphs/karma.config.js --single-run --no-auto-watch",
     "version": "lerna version --no-git-tag-version && node ./scripts/changelog-updater/index.js",
     "wdio-default": "wdio",
     "wdio-lowlight": "NODE_OPTIONS=--max-old-space-size=2048 THEME=clinical-lowlight-theme wdio",
