@@ -1,10 +1,10 @@
 'use strict';
 
-import Graph from '../../../../../src/main/js/controls/Graph/Graph';
-import { BubbleMultipleDataset } from '../../../../../src/main/js/controls/Bubble';
-import errors from '../../../../../src/main/js/helpers/errors';
-import styles from '../../../../../src/main/js/helpers/styles';
-import utils from '../../../../../src/main/js/helpers/utils';
+import Graph from '../../../../../src/js/controls/Graph/Graph';
+import { BubbleMultipleDataset } from '../../../../../src/js/controls/Bubble';
+import errors from '../../../../../src/js/helpers/errors';
+import styles from '../../../../../src/js/helpers/styles';
+import utils from '../../../../../src/js/helpers/utils';
 import {
   axisDefault,
   axisTimeSeries,

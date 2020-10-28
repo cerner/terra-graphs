@@ -1,11 +1,11 @@
 'use strict';
 
 import * as d3 from 'd3';
-import Timeline from '../../../../src/main/js/controls/Timeline';
-import { getXAxisYPosition } from '../../../../src/main/js/controls/Timeline/helpers/creationHelpers';
-import { getYAxisHeight } from '../../../../src/main/js/helpers/axis';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
+import Timeline from '../../../../src/js/controls/Timeline';
+import { getXAxisYPosition } from '../../../../src/js/controls/Timeline/helpers/creationHelpers';
+import { getYAxisHeight } from '../../../../src/js/helpers/axis';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
 import { toNumber } from '../../helpers/commonHelpers';
 import {
   axisJSON,

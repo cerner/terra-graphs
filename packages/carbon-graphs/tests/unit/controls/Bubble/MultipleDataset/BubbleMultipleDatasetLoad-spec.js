@@ -1,19 +1,19 @@
 'use strict';
 
 import sinon from 'sinon';
-import Graph from '../../../../../src/main/js/controls/Graph/Graph';
+import Graph from '../../../../../src/js/controls/Graph/Graph';
 import {
   Bubble,
   BubbleMultipleDataset,
-} from '../../../../../src/main/js/controls/Bubble';
+} from '../../../../../src/js/controls/Bubble';
 import constants, {
   AXIS_TYPE,
   BUBBLE,
   COLORS,
-} from '../../../../../src/main/js/helpers/constants';
-import errors from '../../../../../src/main/js/helpers/errors';
-import styles from '../../../../../src/main/js/helpers/styles';
-import utils from '../../../../../src/main/js/helpers/utils';
+} from '../../../../../src/js/helpers/constants';
+import errors from '../../../../../src/js/helpers/errors';
+import styles from '../../../../../src/js/helpers/styles';
+import utils from '../../../../../src/js/helpers/utils';
 import { triggerEvent } from '../../../helpers/commonHelpers';
 import {
   axisDefault,

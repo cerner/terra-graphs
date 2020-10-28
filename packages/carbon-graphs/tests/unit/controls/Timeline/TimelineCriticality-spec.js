@@ -3,19 +3,19 @@
 
 
 import sinon from 'sinon';
-import Timeline from '../../../../src/main/js/controls/Timeline';
-import { Shape } from '../../../../src/main/js/core';
+import Timeline from '../../../../src/js/controls/Timeline';
+import { Shape } from '../../../../src/js/core';
 import {
   getShapeForTarget,
   getXAxisWidth,
-} from '../../../../src/main/js/controls/Timeline/helpers/creationHelpers';
-import styles from '../../../../src/main/js/helpers/styles';
+} from '../../../../src/js/controls/Timeline/helpers/creationHelpers';
+import styles from '../../../../src/js/helpers/styles';
 import {
   getCurrentTransform,
   getSVGAnimatedTransformList,
   getTransformScale,
-} from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
 import {
   delay,
   TRANSITION_DELAY,

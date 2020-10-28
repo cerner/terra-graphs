@@ -1,16 +1,16 @@
 'use strict';
 
 import sinon from 'sinon';
-import Graph from '../../../../../src/main/js/controls/Graph/Graph';
-import { BubbleSingleDataset } from '../../../../../src/main/js/controls/Bubble';
+import Graph from '../../../../../src/js/controls/Graph/Graph';
+import { BubbleSingleDataset } from '../../../../../src/js/controls/Bubble';
 import constants, {
   AXIS_TYPE,
   BUBBLE,
   COLORS,
-} from '../../../../../src/main/js/helpers/constants';
-import errors from '../../../../../src/main/js/helpers/errors';
-import styles from '../../../../../src/main/js/helpers/styles';
-import utils from '../../../../../src/main/js/helpers/utils';
+} from '../../../../../src/js/helpers/constants';
+import errors from '../../../../../src/js/helpers/errors';
+import styles from '../../../../../src/js/helpers/styles';
+import utils from '../../../../../src/js/helpers/utils';
 import { triggerEvent } from '../../../helpers/commonHelpers';
 import {
   axisDefault,
@@ -24,7 +24,7 @@ import {
   valuesTimeSeries,
   fetchElementByTag,
 } from '../helpers';
-import { generateColorSingleDataset } from '../../../../../src/main/js/controls/Bubble/helpers/colorGradient';
+import { generateColorSingleDataset } from '../../../../../src/js/controls/Bubble/helpers/colorGradient';
 
 describe('Bubble Single Dataset - Load', () => {
   let graphDefault = null;

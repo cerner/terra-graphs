@@ -2,23 +2,23 @@
 
 import * as d3 from 'd3';
 import sinon from 'sinon';
-import Gantt from '../../../../src/main/js/controls/Gantt';
+import Gantt from '../../../../src/js/controls/Gantt';
 import {
   calculatePercentage,
   getEndDuration,
   getStartDuration,
   getTaskStyle,
   isAChunk,
-} from '../../../../src/main/js/controls/Gantt/helpers/durationHelpers';
+} from '../../../../src/js/controls/Gantt/helpers/durationHelpers';
 import {
   getBar,
   getChunk,
   getHashedBar,
   getPercentageBar,
-} from '../../../../src/main/js/helpers/barType';
-import constants, { COLORS } from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
+} from '../../../../src/js/helpers/barType';
+import constants, { COLORS } from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
 import {
   delay,
   toNumber,

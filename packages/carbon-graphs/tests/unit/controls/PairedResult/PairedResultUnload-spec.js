@@ -1,9 +1,9 @@
 'use strict';
 
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import PairedResult from '../../../../src/main/js/controls/PairedResult';
-import constants from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import PairedResult from '../../../../src/js/controls/PairedResult';
+import constants from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
 import {
   axisDefault,
   fetchElementByClass,

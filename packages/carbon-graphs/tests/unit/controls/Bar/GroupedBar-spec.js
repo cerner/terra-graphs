@@ -1,14 +1,14 @@
 'use strict';
 
-import Bar from '../../../../src/main/js/controls/Bar/Bar';
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import styles from '../../../../src/main/js/helpers/styles';
+import Bar from '../../../../src/js/controls/Bar/Bar';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import styles from '../../../../src/js/helpers/styles';
 import {
   getCurrentTransform,
   getSVGAnimatedTransformList,
   round2Decimals,
-} from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   toNumber,

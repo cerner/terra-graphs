@@ -1,12 +1,12 @@
 'use strict';
 
-import Graph from '../../../../../src/main/js/controls/Graph/Graph';
+import Graph from '../../../../../src/js/controls/Graph/Graph';
 import {
   Bubble,
   BubbleMultipleDataset,
-} from '../../../../../src/main/js/controls/Bubble';
-import constants from '../../../../../src/main/js/helpers/constants';
-import styles from '../../../../../src/main/js/helpers/styles';
+} from '../../../../../src/js/controls/Bubble';
+import constants from '../../../../../src/js/helpers/constants';
+import styles from '../../../../../src/js/helpers/styles';
 import {
   axisDefault,
   fetchElementByClass,

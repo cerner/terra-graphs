@@ -1,12 +1,12 @@
 'use strict';
 
 import * as d3 from 'd3';
-import Graph from '../../../../src/main/js/controls/Graph/index';
-import Line from '../../../../src/main/js/controls/Line/Line';
-import { getXAxisWidth } from '../../../../src/main/js/helpers/axis';
-import constants from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+import Graph from '../../../../src/js/controls/Graph/index';
+import Line from '../../../../src/js/controls/Line/Line';
+import { getXAxisWidth } from '../../../../src/js/helpers/axis';
+import constants from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   toNumber,

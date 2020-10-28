@@ -1,7 +1,7 @@
 'use strict';
 
-import Construct from '../../../../src/main/js/core/Construct';
-import errors from '../../../../src/main/js/helpers/errors';
+import Construct from '../../../../src/js/core/Construct';
+import errors from '../../../../src/js/helpers/errors';
 
 describe('Construct', () => {
   let content = null;

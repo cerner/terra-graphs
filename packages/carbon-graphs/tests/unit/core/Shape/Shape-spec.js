@@ -3,14 +3,14 @@
 
 
 import sinon from 'sinon';
-import { Shape } from '../../../../src/main/js/core';
-import { getDefaultSVGProps } from '../../../../src/main/js/core/Shape';
+import { Shape } from '../../../../src/js/core';
+import { getDefaultSVGProps } from '../../../../src/js/core/Shape';
 import constants, {
   SHAPES,
   SHAPES_LIGHT,
-} from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
+} from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
 import { toNumber } from '../../helpers/commonHelpers';
 
 describe('Shape', () => {

@@ -1,11 +1,11 @@
 'use strict';
 
-import Graph from '../../../../../src/main/js/controls/Graph/Graph';
-import { BubbleSingleDataset } from '../../../../../src/main/js/controls/Bubble';
-import { COLORS, SHAPES } from '../../../../../src/main/js/helpers/constants';
-import styles from '../../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../../src/main/js/helpers/utils';
+import Graph from '../../../../../src/js/controls/Graph/Graph';
+import { BubbleSingleDataset } from '../../../../../src/js/controls/Bubble';
+import { COLORS, SHAPES } from '../../../../../src/js/helpers/constants';
+import styles from '../../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../../src/js/helpers/transformUtils';
+import utils from '../../../../../src/js/helpers/utils';
 import {
   delay,
   loadCustomJasmineMatcher,

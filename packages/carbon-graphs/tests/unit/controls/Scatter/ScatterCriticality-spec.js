@@ -3,18 +3,18 @@
 
 
 import sinon from 'sinon';
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import { getShapeForTarget } from '../../../../src/main/js/controls/Graph/helpers/helpers';
-import Scatter from '../../../../src/main/js/controls/Scatter';
-import { Shape } from '../../../../src/main/js/core';
-import styles from '../../../../src/main/js/helpers/styles';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import { getShapeForTarget } from '../../../../src/js/controls/Graph/helpers/helpers';
+import Scatter from '../../../../src/js/controls/Scatter';
+import { Shape } from '../../../../src/js/core';
+import styles from '../../../../src/js/helpers/styles';
 import {
   getCurrentTransform,
   getSVGAnimatedTransformList,
   getTransformScale,
   round2Decimals,
-} from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
 import { triggerEvent } from '../../helpers/commonHelpers';
 import {
   axisDefault,

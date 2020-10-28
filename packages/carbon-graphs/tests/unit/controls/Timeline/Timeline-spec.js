@@ -1,13 +1,13 @@
 'use strict';
 
-import Timeline from '../../../../src/main/js/controls/Timeline';
-import { getXAxisWidth } from '../../../../src/main/js/controls/Timeline/helpers/creationHelpers';
-import constants, { AXIS_TYPE } from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import { loadLegendItem } from '../../../../src/main/js/helpers/legend';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
-import LOCALE from '../../../../src/main/js/locale/index';
+import Timeline from '../../../../src/js/controls/Timeline';
+import { getXAxisWidth } from '../../../../src/js/controls/Timeline/helpers/creationHelpers';
+import constants, { AXIS_TYPE } from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import { loadLegendItem } from '../../../../src/js/helpers/legend';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
+import LOCALE from '../../../../src/js/locale/index';
 import {
   axisJSON,
   BASE_CANVAS_HEIGHT_PADDING,

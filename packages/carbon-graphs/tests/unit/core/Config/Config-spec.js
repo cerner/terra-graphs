@@ -1,7 +1,7 @@
 'use strict';
 
-import BaseConfig from '../../../../src/main/js/core/BaseConfig';
-import errors from '../../../../src/main/js/helpers/errors';
+import BaseConfig from '../../../../src/js/core/BaseConfig';
+import errors from '../../../../src/js/helpers/errors';
 
 describe('BaseConfig', () => {
   let config = null;

@@ -1,18 +1,18 @@
-import Carbon from '../../../../src/main/js/carbon';
-import Bar from '../../../../src/main/js/controls/Bar';
-import Gantt from '../../../../src/main/js/controls/Gantt';
-import Graph from '../../../../src/main/js/controls/Graph';
-import Line from '../../../../src/main/js/controls/Line';
-import PairedResult from '../../../../src/main/js/controls/PairedResult';
-import Pie from '../../../../src/main/js/controls/Pie';
-import Timeline from '../../../../src/main/js/controls/Timeline';
-import Shape from '../../../../src/main/js/core/Shape/Shape';
-import Scatter from '../../../../src/main/js/controls/Scatter';
+import Carbon from '../../../../src/js/carbon';
+import Bar from '../../../../src/js/controls/Bar';
+import Gantt from '../../../../src/js/controls/Gantt';
+import Graph from '../../../../src/js/controls/Graph';
+import Line from '../../../../src/js/controls/Line';
+import PairedResult from '../../../../src/js/controls/PairedResult';
+import Pie from '../../../../src/js/controls/Pie';
+import Timeline from '../../../../src/js/controls/Timeline';
+import Shape from '../../../../src/js/core/Shape/Shape';
+import Scatter from '../../../../src/js/controls/Scatter';
 import {
   Bubble,
   BubbleSingleDataset,
   BubbleMultipleDataset,
-} from '../../../../src/main/js/controls/Bubble';
+} from '../../../../src/js/controls/Bubble';
 
 import {
   ganttInput,

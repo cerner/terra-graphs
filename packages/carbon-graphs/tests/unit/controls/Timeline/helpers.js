@@ -4,8 +4,8 @@ import sinon from 'sinon';
 import constants, {
   COLORS,
   SHAPES,
-} from '../../../../src/main/js/helpers/constants';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/constants';
+import utils from '../../../../src/js/helpers/utils';
 
 const onClickFunctionSpy = sinon.spy();
 export const BASE_CANVAS_HEIGHT_PADDING = (constants.PADDING.bottom * 2 + constants.PADDING.top) * 2;

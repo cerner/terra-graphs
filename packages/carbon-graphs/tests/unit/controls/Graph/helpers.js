@@ -3,8 +3,8 @@ import {
   COLORS,
   SHAPES,
   AXES_ORIENTATION,
-} from '../../../../src/main/js/helpers/constants';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/constants';
+import utils from '../../../../src/js/helpers/utils';
 
 /**
  * Creates and returns an example input with custom axis values

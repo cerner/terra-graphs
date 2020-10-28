@@ -1,17 +1,17 @@
 'use strict';
 
 import * as d3 from 'd3';
-import Graph from '../../../../src/main/js/controls/Graph/index';
-import Line from '../../../../src/main/js/controls/Line/Line';
-import { getYAxisHeight } from '../../../../src/main/js/helpers/axis';
+import Graph from '../../../../src/js/controls/Graph/index';
+import Line from '../../../../src/js/controls/Line/Line';
+import { getYAxisHeight } from '../../../../src/js/helpers/axis';
 import constants, {
   AXES_ORIENTATION,
-} from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import { loadLegendItem } from '../../../../src/main/js/helpers/legend';
-import styles from '../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import { loadLegendItem } from '../../../../src/js/helpers/legend';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   toNumber,

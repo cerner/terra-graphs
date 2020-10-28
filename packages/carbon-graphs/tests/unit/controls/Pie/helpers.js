@@ -1,8 +1,8 @@
 
 
 import sinon from 'sinon';
-import Carbon from '../../../../src/main/js/carbon';
-import utils from '../../../../src/main/js/helpers/utils';
+import Carbon from '../../../../src/js/carbon';
+import utils from '../../../../src/js/helpers/utils';
 
 export const labelFormatSpy = sinon.spy();
 export const onClickFunctionSpy = sinon.spy();

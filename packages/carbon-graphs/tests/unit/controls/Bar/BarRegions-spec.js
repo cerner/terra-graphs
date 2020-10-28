@@ -1,11 +1,11 @@
 'use strict';
 
-import Bar from '../../../../src/main/js/controls/Bar/Bar';
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
-import constants from '../../../../src/main/js/helpers/constants';
+import Bar from '../../../../src/js/controls/Bar/Bar';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
+import constants from '../../../../src/js/helpers/constants';
 import {
   loadCustomJasmineMatcher,
   toNumber,

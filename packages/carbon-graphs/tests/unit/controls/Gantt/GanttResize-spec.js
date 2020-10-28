@@ -1,10 +1,10 @@
 'use strict';
 
 import * as d3 from 'd3';
-import Gantt from '../../../../src/main/js/controls/Gantt';
-import { getXAxisWidth } from '../../../../src/main/js/controls/Gantt/helpers/creationHelpers';
-import constants from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
+import Gantt from '../../../../src/js/controls/Gantt';
+import { getXAxisWidth } from '../../../../src/js/controls/Gantt/helpers/creationHelpers';
+import constants from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
 import {
   toNumber,
   TRANSITION_DELAY,

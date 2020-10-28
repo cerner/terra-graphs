@@ -1,9 +1,9 @@
 'use strict';
 
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import Line from '../../../../src/main/js/controls/Line';
-import constants from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import Line from '../../../../src/js/controls/Line';
+import constants from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
 import {
   axisDefault,
   fetchElementByClass,

@@ -2,14 +2,14 @@
 
 import * as d3 from 'd3';
 import sinon from 'sinon';
-import Gantt from '../../../../src/main/js/controls/Gantt';
+import Gantt from '../../../../src/js/controls/Gantt';
 import constants, {
   COLORS,
   SHAPES,
-} from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
+} from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import { TRANSITION_DELAY, triggerEvent } from '../../helpers/commonHelpers';
 import {
   axisJSON,

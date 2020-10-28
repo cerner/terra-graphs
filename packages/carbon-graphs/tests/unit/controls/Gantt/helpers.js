@@ -1,7 +1,7 @@
 import sinon from 'sinon';
-import Carbon from '../../../../src/main/js/carbon';
-import constants from '../../../../src/main/js/helpers/constants';
-import utils from '../../../../src/main/js/helpers/utils';
+import Carbon from '../../../../src/js/carbon';
+import constants from '../../../../src/js/helpers/constants';
+import utils from '../../../../src/js/helpers/utils';
 
 export const onClickFunctionSpy = sinon.spy();
 export const taskStartDate = new Date(2018, 2, 1).toISOString();

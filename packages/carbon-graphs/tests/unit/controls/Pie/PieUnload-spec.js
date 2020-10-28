@@ -1,9 +1,9 @@
 'use strict';
 
 import * as d3 from 'd3';
-import Pie from '../../../../src/main/js/controls/Pie';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
+import Pie from '../../../../src/js/controls/Pie';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
 import { loadCustomJasmineMatcher } from '../../helpers/commonHelpers';
 import {
   dataPrimary,

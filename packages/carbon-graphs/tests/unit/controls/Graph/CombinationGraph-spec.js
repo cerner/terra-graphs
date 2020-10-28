@@ -1,13 +1,13 @@
-import Graph from '../../../../src/main/js/controls/Graph/index';
-import Line from '../../../../src/main/js/controls/Line/Line';
-import PairedResult from '../../../../src/main/js/controls/PairedResult';
+import Graph from '../../../../src/js/controls/Graph/index';
+import Line from '../../../../src/js/controls/Line/Line';
+import PairedResult from '../../../../src/js/controls/PairedResult';
 import {
   loadCustomJasmineMatcher,
   triggerEvent,
 } from '../../helpers/commonHelpers';
 import { getAxes, axisDefault, fetchElementByClass } from './helpers';
-import constants from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
+import constants from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
 import {
   valuesDefault as valuesLineDefault,
   getInput as getLineInput,

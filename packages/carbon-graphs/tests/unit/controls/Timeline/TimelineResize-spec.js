@@ -1,13 +1,13 @@
 'use strict';
 
-import Timeline from '../../../../src/main/js/controls/Timeline';
+import Timeline from '../../../../src/js/controls/Timeline';
 import {
   getXAxisWidth,
   getXAxisYPosition,
-} from '../../../../src/main/js/controls/Timeline/helpers/creationHelpers';
-import { getYAxisHeight } from '../../../../src/main/js/helpers/axis';
-import constants from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
+} from '../../../../src/js/controls/Timeline/helpers/creationHelpers';
+import { getYAxisHeight } from '../../../../src/js/helpers/axis';
+import constants from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
 import { toNumber, triggerEvent } from '../../helpers/commonHelpers';
 import {
   axisJSON,

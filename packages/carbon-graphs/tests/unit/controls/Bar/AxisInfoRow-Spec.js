@@ -1,13 +1,13 @@
 'use strict';
 
 import sinon from 'sinon';
-import Carbon from '../../../../src/main/js/carbon';
-import Bar from '../../../../src/main/js/controls/Bar/Bar';
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import { AXES_ORIENTATION } from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
+import Carbon from '../../../../src/js/carbon';
+import Bar from '../../../../src/js/controls/Bar/Bar';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import { AXES_ORIENTATION } from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   toNumber,

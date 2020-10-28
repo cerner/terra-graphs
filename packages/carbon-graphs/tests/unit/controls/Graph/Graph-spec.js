@@ -1,16 +1,16 @@
 'use strict';
 
 import { rgb } from 'd3';
-import Graph from '../../../../src/main/js/controls/Graph/index';
-import Line from '../../../../src/main/js/controls/Line/Line';
+import Graph from '../../../../src/js/controls/Graph/index';
+import Line from '../../../../src/js/controls/Line/Line';
 import constants, {
   AXES_ORIENTATION,
   AXIS_TYPE,
-} from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   toNumber,

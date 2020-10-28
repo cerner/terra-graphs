@@ -1,15 +1,15 @@
 'use strict';
 
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import Scatter from '../../../../src/main/js/controls/Scatter';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import Scatter from '../../../../src/js/controls/Scatter';
 import {
   getXAxisWidth,
   getXAxisXPosition,
-} from '../../../../src/main/js/helpers/axis';
-import constants from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/axis';
+import constants from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   toNumber,

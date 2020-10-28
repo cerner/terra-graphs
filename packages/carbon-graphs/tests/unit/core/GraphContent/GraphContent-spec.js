@@ -1,7 +1,7 @@
 'use strict';
 
-import { GraphContent } from '../../../../src/main/js/core';
-import errors from '../../../../src/main/js/helpers/errors';
+import { GraphContent } from '../../../../src/js/core';
+import errors from '../../../../src/js/helpers/errors';
 
 describe('GraphContent', () => {
   let content = null;

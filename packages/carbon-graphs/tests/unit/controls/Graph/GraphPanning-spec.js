@@ -1,9 +1,9 @@
 'use strict';
 
 import * as d3 from 'd3';
-import Graph from '../../../../src/main/js/controls/Graph/index';
-import styles from '../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
+import Graph from '../../../../src/js/controls/Graph/index';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import {
   loadCustomJasmineMatcher,
   PADDING_BOTTOM,

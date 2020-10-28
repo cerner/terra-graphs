@@ -1,15 +1,15 @@
 'use strict';
 
-import Graph from '../../../../src/main/js/controls/Graph/index';
-import Line from '../../../../src/main/js/controls/Line/Line';
-import styles from '../../../../src/main/js/helpers/styles';
+import Graph from '../../../../src/js/controls/Graph/index';
+import Line from '../../../../src/js/controls/Line/Line';
+import styles from '../../../../src/js/helpers/styles';
 import {
   getXAxisWidth,
   getYAxisHeight,
   getXAxisLabelXPosition,
   getYAxisLabelYPosition,
-} from '../../../../src/main/js/helpers/axis';
-import constants from '../../../../src/main/js/helpers/constants';
+} from '../../../../src/js/helpers/axis';
+import constants from '../../../../src/js/helpers/constants';
 import {
   loadCustomJasmineMatcher,
   toNumber,

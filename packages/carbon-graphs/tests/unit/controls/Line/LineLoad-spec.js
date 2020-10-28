@@ -1,17 +1,17 @@
 'use strict';
 
 import sinon from 'sinon';
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import Line from '../../../../src/main/js/controls/Line';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import Line from '../../../../src/js/controls/Line';
 import constants, {
   AXIS_TYPE,
   COLORS,
   LINE_TYPE,
   SHAPES,
-} from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import { triggerEvent } from '../../helpers/commonHelpers';
 import {
   axisDefault,
@@ -26,7 +26,7 @@ import {
 import {
   LINE,
   LINE_DASHED,
-} from '../../../../src/main/js/core/Shape/shapeDefinitions';
+} from '../../../../src/js/core/Shape/shapeDefinitions';
 
 describe('Line - Load', () => {
   let graphDefault = null;

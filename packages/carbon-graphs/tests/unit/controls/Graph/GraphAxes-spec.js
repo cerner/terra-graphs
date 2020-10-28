@@ -2,15 +2,15 @@
 
 import sinon from 'sinon';
 import * as d3 from 'd3';
-import Graph from '../../../../src/main/js/controls/Graph/index';
-import Line from '../../../../src/main/js/controls/Line/Line';
+import Graph from '../../../../src/js/controls/Graph/index';
+import Line from '../../../../src/js/controls/Line/Line';
 import constants, {
   AXES_ORIENTATION,
-} from '../../../../src/main/js/helpers/constants';
-import styles from '../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
-import LOCALE from '../../../../src/main/js/locale/index';
+} from '../../../../src/js/helpers/constants';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
+import LOCALE from '../../../../src/js/locale/index';
 import {
   loadCustomJasmineMatcher,
   triggerEvent,
@@ -27,7 +27,7 @@ import {
   generateYAxesTickValues,
   getTicksCountFromRange,
   getAverageTicksCount,
-} from '../../../../src/main/js/helpers/axis';
+} from '../../../../src/js/helpers/axis';
 
 describe('Graph - Axes', () => {
   let graph = null;

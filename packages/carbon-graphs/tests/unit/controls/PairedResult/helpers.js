@@ -3,8 +3,8 @@ import {
   AXIS_TYPE,
   COLORS,
   SHAPES,
-} from '../../../../src/main/js/helpers/constants';
-import utils from '../../../../src/main/js/helpers/utils';
+} from '../../../../src/js/helpers/constants';
+import utils from '../../../../src/js/helpers/utils';
 
 export const dataPointClickHandlerSpy = sinon.spy();
 /**

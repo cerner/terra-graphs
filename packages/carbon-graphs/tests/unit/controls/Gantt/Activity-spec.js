@@ -2,11 +2,11 @@
 
 import * as d3 from 'd3';
 import sinon from 'sinon';
-import Gantt from '../../../../src/main/js/controls/Gantt';
-import { getActivityStyle } from '../../../../src/main/js/controls/Gantt/helpers/durationHelpers';
-import constants, { COLORS } from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
+import Gantt from '../../../../src/js/controls/Gantt';
+import { getActivityStyle } from '../../../../src/js/controls/Gantt/helpers/durationHelpers';
+import constants, { COLORS } from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
 import {
   toNumber,
   TRANSITION_DELAY,

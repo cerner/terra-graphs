@@ -4,18 +4,18 @@
 
 import * as d3 from 'd3';
 import sinon from 'sinon';
-import Timeline from '../../../../src/main/js/controls/Timeline';
+import Timeline from '../../../../src/js/controls/Timeline';
 import {
   getShapeForTarget,
   getXAxisYPosition,
-} from '../../../../src/main/js/controls/Timeline/helpers/creationHelpers';
-import { getYAxisHeight } from '../../../../src/main/js/helpers/axis';
+} from '../../../../src/js/controls/Timeline/helpers/creationHelpers';
+import { getYAxisHeight } from '../../../../src/js/helpers/axis';
 import constants, {
   COLORS,
   SHAPES,
-} from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
+} from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
 import {
   delay,
   toNumber,

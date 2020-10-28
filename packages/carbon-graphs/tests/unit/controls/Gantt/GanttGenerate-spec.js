@@ -2,17 +2,17 @@
 
 import * as d3 from 'd3';
 import sinon from 'sinon';
-import Gantt from '../../../../src/main/js/controls/Gantt';
+import Gantt from '../../../../src/js/controls/Gantt';
 import constants, {
   COLORS,
   SHAPES,
-} from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import { loadLegendItem } from '../../../../src/main/js/helpers/legend';
-import styles from '../../../../src/main/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
-import utils from '../../../../src/main/js/helpers/utils';
-import LOCALE from '../../../../src/main/js/locale/index';
+} from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import { loadLegendItem } from '../../../../src/js/helpers/legend';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import utils from '../../../../src/js/helpers/utils';
+import LOCALE from '../../../../src/js/locale/index';
 import {
   delay,
   PADDING_BOTTOM,

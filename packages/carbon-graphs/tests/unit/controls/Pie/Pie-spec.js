@@ -1,9 +1,9 @@
 'use strict';
 
-import Pie from '../../../../src/main/js/controls/Pie';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+import Pie from '../../../../src/js/controls/Pie';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   triggerEvent,

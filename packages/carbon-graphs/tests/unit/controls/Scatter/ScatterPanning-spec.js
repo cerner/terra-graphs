@@ -1,9 +1,9 @@
 'use strict';
 
-import Graph from '../../../../src/main/js/controls/Graph/Graph';
-import Scatter from '../../../../src/main/js/controls/Scatter';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+import Graph from '../../../../src/js/controls/Graph/Graph';
+import Scatter from '../../../../src/js/controls/Scatter';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import {
   axisTimeSeries,
   getAxes,
@@ -13,8 +13,8 @@ import {
   fetchElementByClass,
 } from './helpers';
 import { toNumber, delay, PADDING_BOTTOM } from '../../helpers/commonHelpers';
-import { COLORS, SHAPES } from '../../../../src/main/js/helpers/constants';
-import { getSVGAnimatedTransformList } from '../../../../src/main/js/helpers/transformUtils';
+import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 
 describe('Scatter - Panning', () => {
   let graphDefault = null;

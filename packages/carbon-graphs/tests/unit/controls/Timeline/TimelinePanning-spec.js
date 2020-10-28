@@ -1,8 +1,8 @@
 'use strict';
 
-import Timeline from '../../../../src/main/js/controls/Timeline';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+import Timeline from '../../../../src/js/controls/Timeline';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import {
   axisJSON,
   fetchElementByClass,
@@ -14,7 +14,7 @@ import {
 import {
   getSVGAnimatedTransformList,
   getCurrentTransform,
-} from '../../../../src/main/js/helpers/transformUtils';
+} from '../../../../src/js/helpers/transformUtils';
 
 describe('Panning', () => {
   let timeline = null;

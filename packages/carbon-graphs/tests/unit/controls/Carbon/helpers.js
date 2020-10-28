@@ -1,4 +1,4 @@
-import Carbon from '../../../../src/main/js/carbon';
+import Carbon from '../../../../src/js/carbon';
 
 export const LIBRARY_LIST = [
   'gantt',

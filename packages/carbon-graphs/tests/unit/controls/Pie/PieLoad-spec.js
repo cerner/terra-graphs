@@ -2,13 +2,13 @@
 
 import * as d3 from 'd3';
 import sinon from 'sinon';
-import Carbon from '../../../../src/main/js/carbon';
-import Pie from '../../../../src/main/js/controls/Pie';
-import { getSlicePercentage } from '../../../../src/main/js/controls/Pie/helpers/translateHelpers';
-import constants from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+import Carbon from '../../../../src/js/carbon';
+import Pie from '../../../../src/js/controls/Pie';
+import { getSlicePercentage } from '../../../../src/js/controls/Pie/helpers/translateHelpers';
+import constants from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import {
   loadCustomJasmineMatcher,
   triggerEvent,

@@ -1,12 +1,12 @@
 'use strict';
 
-import Gantt from '../../../../src/main/js/controls/Gantt';
-import { getXAxisWidth } from '../../../../src/main/js/controls/Gantt/helpers/creationHelpers';
-import Track from '../../../../src/main/js/controls/Gantt/Track';
-import constants, { AXIS_TYPE } from '../../../../src/main/js/helpers/constants';
-import errors from '../../../../src/main/js/helpers/errors';
-import styles from '../../../../src/main/js/helpers/styles';
-import utils from '../../../../src/main/js/helpers/utils';
+import Gantt from '../../../../src/js/controls/Gantt';
+import { getXAxisWidth } from '../../../../src/js/controls/Gantt/helpers/creationHelpers';
+import Track from '../../../../src/js/controls/Gantt/Track';
+import constants, { AXIS_TYPE } from '../../../../src/js/helpers/constants';
+import errors from '../../../../src/js/helpers/errors';
+import styles from '../../../../src/js/helpers/styles';
+import utils from '../../../../src/js/helpers/utils';
 import {
   axisJSON,
   BASE_CANVAS_HEIGHT_PADDING,

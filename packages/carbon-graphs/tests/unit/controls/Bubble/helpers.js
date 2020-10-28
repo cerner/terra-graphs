@@ -1,6 +1,6 @@
 import sinon from 'sinon';
-import { AXIS_TYPE, COLORS } from '../../../../src/main/js/helpers/constants';
-import utils from '../../../../src/main/js/helpers/utils';
+import { AXIS_TYPE, COLORS } from '../../../../src/js/helpers/constants';
+import utils from '../../../../src/js/helpers/utils';
 
 export const dataPointClickHandlerSpy = sinon.spy();
 /**
