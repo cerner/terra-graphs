@@ -91,7 +91,7 @@ npm i @cerner/Terra Graphs-graphs --save-dev
 
 ### Getting Started
 
--   [Getting Started](./docs/getting-started/GettingStarted.md)
+-   [Getting Started](./packages/terra-graphs/docs/getting-started/GettingStarted.md)
 -   [API Reference](docs/README.md)
 
 <hr>
@@ -106,18 +106,18 @@ npm i @cerner/Terra Graphs-graphs --save-dev
 
 ### Graph types
 
--   [Line](./docs/controls/Line.md#usage)
--   [Multi Line](./docs/controls/Line.md#multi-line)
--   [Spline Line](./docs/controls/Line.md#spline-line)
--   [Paired Result](./docs/controls/PairedResult.md#usage)
--   [Bar](./docs/controls/Bar.md#usage)
--   [Timeline](./docs/controls/Timeline.md#usage)
--   [Pie](./docs/controls/Pie.md#usage)
--   [Gantt](./docs/controls/Gantt.md#usage)
--   [Scatter](./docs/controls/Scatter.md#usage)
--   [Bubble](./docs/controls/Bubble.md#usage)
-    -   [Bubble Single Dataset](./docs/controls/BubbleSingleDataset.md)
-    -   [Bubble Multiple Dataset](./docs/controls/BubbleMultipleDataset.md)
+-   [Line](./packages/terra-graphs/docs/controls/Line.md#usage)
+-   [Multi Line](./packages/terra-graphs/docs/controls/Line.md#multi-line)
+-   [Spline Line](./packages/terra-graphs/docs/controls/Line.md#spline-line)
+-   [Paired Result](./packages/terra-graphs/docs/controls/PairedResult.md#usage)
+-   [Bar](./packages/terra-graphs/docs/controls/Bar.md#usage)
+-   [Timeline](./packages/terra-graphs/docs/controls/Timeline.md#usage)
+-   [Pie](./packages/terra-graphs/docs/controls/Pie.md#usage)
+-   [Gantt](./packages/terra-graphs/docs/controls/Gantt.md#usage)
+-   [Scatter](./packages/terra-graphs/docs/controls/Scatter.md#usage)
+-   [Bubble](./packages/terra-graphs/docs/controls/Bubble.md#usage)
+    -   [Bubble Single Dataset](./packages/terra-graphs/docs/controls/BubbleSingleDataset.md)
+    -   [Bubble Multiple Dataset](./packages/terra-graphs/docs/controls/BubbleMultipleDataset.md)
 
 
 ### Graph Settings/Toggles

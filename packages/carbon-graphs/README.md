@@ -5,7 +5,7 @@
 A graphing library built using d3 based on Cerner design standards.
 
 - [Getting Started](#getting-started)
-- [Documentation](https://github.com/cerner/terra-core/tree/main/packages/terra-graphs/docs)
+- [Documentation](../terra-graphs/docs/README.md)
 - [LICENSE](#license)
 
 ## Getting Started
