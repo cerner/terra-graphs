@@ -1,9 +1,8 @@
-# Terra Graphs
+# Carbon Graphs
 
-[![NPM version](https://badgen.net/npm/v/terra-graphs)](https://www.npmjs.com/package/terra-graphs)
-[![Build Status](https://badgen.net/travis/cerner/terra-core)](https://travis-ci.com/cerner/terra-graphs)
+[![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
 
-A react graphing library built using d3 based on Cerner design standards.
+A graphing library built using d3 based on Cerner design standards.
 
 - [Getting Started](#getting-started)
 - [Documentation](https://github.com/cerner/terra-core/tree/main/packages/terra-graphs/docs)
@@ -11,7 +10,10 @@ A react graphing library built using d3 based on Cerner design standards.
 
 ## Getting Started
 
-- Install from [npmjs](https://www.npmjs.com): `npm install terra-graphs`
+- Install from [npmjs](https://www.npmjs.com): 
+```
+npm i @cerner/carbon-graphs --save-dev
+```
 
 ## LICENSE
 
