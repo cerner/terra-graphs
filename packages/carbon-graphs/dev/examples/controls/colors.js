@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import Carbon from '../../../src/main/js/carbon';
+import Carbon from '../../../src/js/carbon';
 
 import { vector } from '../helpers';
 

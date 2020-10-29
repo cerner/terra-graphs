@@ -1,6 +1,6 @@
 'use strict';
 
-import Carbon from '../../src/main/js/carbon';
+import Carbon from '../../src/js/carbon';
 import {
   loadBarPopup,
   loadDatelinePopup,

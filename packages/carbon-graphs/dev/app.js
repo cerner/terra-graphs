@@ -1,8 +1,6 @@
-
-
 import '@babel/polyfill';
 import renderSiteApp from '@cerner/carbon-site-helpers';
-import '../src/main/less/carbon.less';
+import '../src/less/carbon.less';
 
 import './app.less';
 import {

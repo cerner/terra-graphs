@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as d3 from "d3";
-import constants from "../../src/main/js/helpers/constants";
-import utils from "../../src/main/js/helpers/utils";
+import constants from "../../src/js/helpers/constants";
+import utils from "../../src/js/helpers/utils";
 
 const getDate = (d) => new Date(d).toLocaleString();
 const getPairData = (value) =>

@@ -1,10 +1,10 @@
 import * as d3 from 'd3';
-import Carbon from '../../src/main/js/carbon';
+import Carbon from '../../src/js/carbon';
 
 import {
   LEFT_CHEVRON,
   RIGHT_CHEVRON,
-} from '../../src/main/js/core/Shape/shapeDefinitions';
+} from '../../src/js/core/Shape/shapeDefinitions';
 
 /**
  * Creates Panning container to hold the navigation buttons

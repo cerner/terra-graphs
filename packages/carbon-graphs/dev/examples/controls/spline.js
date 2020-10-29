@@ -1,4 +1,4 @@
-import Carbon from '../../../src/main/js/carbon';
+import Carbon from '../../../src/js/carbon';
 import { getDemoData } from '../data';
 
 export const renderSplineLine = (id) => {

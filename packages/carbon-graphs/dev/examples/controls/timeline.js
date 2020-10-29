@@ -1,5 +1,5 @@
-import Carbon from '../../../src/main/js/carbon';
-import utils from '../../../src/main/js/helpers/utils';
+import Carbon from '../../../src/js/carbon';
+import utils from '../../../src/js/helpers/utils';
 import { getDemoData } from '../data';
 import { CUSTOM_CONTAINER_STYLE } from '../helpers';
 import { createPanningControls } from '../panHelpers';
