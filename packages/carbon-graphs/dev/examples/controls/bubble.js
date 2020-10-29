@@ -1,9 +1,9 @@
 /* eslint-disable no-shadow */
 
-import Carbon from '../../../src/main/js/carbon';
+import Carbon from '../../../src/js/carbon';
 import { loadPopup, loadBubblePopup } from '../popup';
 import { createPanningControls } from '../panHelpers';
-import { BUBBLE } from '../../../src/main/js/helpers/constants';
+import { BUBBLE } from '../../../src/js/helpers/constants';
 
 const simpleAxisData = (id) => ({
   bindTo: id,

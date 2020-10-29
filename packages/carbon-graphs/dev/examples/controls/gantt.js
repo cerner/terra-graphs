@@ -1,8 +1,8 @@
 'use strict';
 
-import Carbon from '../../../src/main/js/carbon';
-import { COLORS } from '../../../src/main/js/helpers/constants';
-import utils from '../../../src/main/js/helpers/utils';
+import Carbon from '../../../src/js/carbon';
+import { COLORS } from '../../../src/js/helpers/constants';
+import utils from '../../../src/js/helpers/utils';
 import { CUSTOM_CONTAINER_STYLE } from '../helpers';
 import { getDemoData } from '../data';
 import {

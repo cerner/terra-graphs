@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
-import Carbon from '../../../src/main/js/carbon';
-import { getBar, getHashedBar } from '../../../src/main/js/helpers/barType';
-import styles from '../../../src/main/js/helpers/styles';
-import utils from '../../../src/main/js/helpers/utils';
+import Carbon from '../../../src/js/carbon';
+import { getBar, getHashedBar } from '../../../src/js/helpers/barType';
+import styles from '../../../src/js/helpers/styles';
+import utils from '../../../src/js/helpers/utils';
 import { h3, vector } from '../helpers';
 
 const viewBoxSize = '0 0 1000 500';

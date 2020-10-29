@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-sequences */
 /* eslint prefer-destructuring: ["error", {VariableDeclarator: {object: true}}] */
-import Carbon from '../../../src/main/js/carbon';
-import utils from '../../../src/main/js/helpers/utils';
+import Carbon from '../../../src/js/carbon';
+import utils from '../../../src/js/helpers/utils';
 import { getDemoData } from '../data';
 import { loadDatelinePopup, loadTextLabelPopup, loadBarPopup } from '../popup';
 import { createPanningControls } from '../panHelpers';
