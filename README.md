@@ -12,13 +12,15 @@
 [![License](https://badgen.net/github/license/cerner/terra-graphs)](https://github.com/cerner/terra-graphs/blob/main/LICENSE)
 [![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
-[![npm latest version](https://img.shields.io/npm/v/@cerner/carbon-graphs/latest.svg)](https://www.npmjs.com/package/@cerner/carbon-graphs)
-[![dependencies Status](https://david-dm.org/cerner/terra-graphs/status.svg)](https://david-dm.org/cerner/terra-graphs)
 [![devDependencies status](https://badgen.net/david/dev/cerner/terra-graphs)](https://david-dm.org/cerner/terra-graphs?type=dev)
 [![Bugs](https://img.shields.io/github/issues/cerner/carbon-graphs/bug.svg)](https://github.com/cerner/terra-graphs/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
 
 Terra Graphs is a graphing library built using D3 visualization library. It provides an API for generating native graphs such as Line and Paired Result graphs based on design standards.
 
+- [Packages](#packages)
+  - [Versioning](#versioning)
+  - [Status](#status)
+  - [Deprecated](#deprecated)
 - [Supported Browsers](#supported-browsers)
 - [Getting Started](#getting-started)
   - [Dependencies](#dependencies)
@@ -28,10 +30,6 @@ Terra Graphs is a graphing library built using D3 visualization library. It prov
     -   [Graph Settings/Toggles](#graph-settingstoggles)
     -   [Other highlights](#other-highlights)
 - [Potential features](#potential-features)
-- [Packages](#packages)
-  - [Versioning](#versioning)
-  - [Status](#status)
-  - [Deprecated](#deprecated)
 - [Supported Browsers](#supported-browsers)
 - [Internationalization (I18n)](#internationalization-i18n)
   - [Packages Requiring I18n](#packages-requiring-i18n)
@@ -40,20 +38,46 @@ Terra Graphs is a graphing library built using D3 visualization library. It prov
 - [LICENSE](#license)
 
 
+<hr>
+<!--  -->
 
-<!-- - [Supported Browsers](#supported-browsers)
-- [Packages](#packages)
-  - [Versioning](#versioning)
-  - [Status](#status)
-  - [Deprecated](#deprecated)
-- [Supported Browsers](#supported-browsers)
-- [Internationalization (I18n)](#internationalization-i18n)
-  - [Packages Requiring I18n](#packages-requiring-i18n)
-- [Contributing](#contributing)
-- [Local Development](#local-development)
-- [LICENSE](#license) -->
+<h2 id="packages">
+  Packages
+</h2>
+
+<h3 id="versioning">
+  Versioning
+</h3>
+
+When a component reaches v1.0.0., it is considered to be stable and will follow [SemVer](http://semver.org/) for versioning.
+1. MAJOR versions represent breaking changes
+2. MINOR versions represent added functionality in a backwards-compatible manner
+3. PATCH versions represent backwards-compatible bug fixes
+
+Consult the component CHANGELOGs, related issues, and PRs for more information.
+
+We view the React.js props API of our components as our main public API. We use this to guide us when versioning components.
+
+Prior to components reaching v1.0.0, a component is considered to be in a beta stage.
+Components in beta stage may include breaking changes, new features, and bug fixes all within v0.x.x releases.
+
+<h3 id="status">
+  Status
+</h3>
+
+![Stable](https://badgen.net/badge/status/Stable/green)
+![Beta](https://badgen.net/badge/status/Beta/orange)
+![Deprecated](https://badgen.net/badge/status/Deprecated/grey)
+
+<!-- AUTO-GENERATED-CONTENT:START (SUBPACKAGELIST) -->
+| Terra-Graphs Package      | Version | Status | Dependencies |
+|--------------------|---------|--------|--------------|
+| Carbon-graphs| ![npm](https://img.shields.io/npm/v/@cerner/carbon-graphs)| ![Stable](https://badgen.net/badge/status/Stable/green)| [![carbon-graphs](https://img.shields.io/david/cerner/terra-graphs?path=packages%2Fcarbon-graphs)](https://david-dm.org/cerner/terra-graphs?path=packages/carbon-graphs)|
+
+<!-- AUTO-GENERATED-CONTENT:END *-->
 
 <hr>
+
 <!--  -->
 
 ## Supported Browsers
@@ -140,42 +164,7 @@ npm i @cerner/Terra Graphs-graphs --save-dev
 -   Graph Panning
 
 <hr>
-<!--  -->
 
-<h2 id="packages">
-  Packages
-</h2>
-
-<h3 id="versioning">
-  Versioning
-</h3>
-
-When a component reaches v1.0.0., it is considered to be stable and will follow [SemVer](http://semver.org/) for versioning.
-1. MAJOR versions represent breaking changes
-2. MINOR versions represent added functionality in a backwards-compatible manner
-3. PATCH versions represent backwards-compatible bug fixes
-
-Consult the component CHANGELOGs, related issues, and PRs for more information.
-
-We view the React.js props API of our components as our main public API. We use this to guide us when versioning components.
-
-Prior to components reaching v1.0.0, a component is considered to be in a beta stage.
-Components in beta stage may include breaking changes, new features, and bug fixes all within v0.x.x releases.
-
-<h3 id="status">
-  Status
-</h3>
-
-![Stable](https://badgen.net/badge/status/Stable/green)
-![Beta](https://badgen.net/badge/status/Beta/orange)
-![Deprecated](https://badgen.net/badge/status/Deprecated/grey)
-
-<!-- AUTO-GENERATED-CONTENT:START (SUBPACKAGELIST) -->
-| Terra Package      | Version | Status | Dependencies |
-|--------------------|---------|--------|--------------|
-<!-- AUTO-GENERATED-CONTENT:END *-->
-
-<hr>
 <!--  -->
 
 <h2 id="internationalization-i18n">
