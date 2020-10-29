@@ -30,7 +30,6 @@ Terra Graphs is a graphing library built using D3 visualization library. It prov
     -   [Graph Settings/Toggles](#graph-settingstoggles)
     -   [Other highlights](#other-highlights)
 - [Potential features](#potential-features)
-- [Supported Browsers](#supported-browsers)
 - [Internationalization (I18n)](#internationalization-i18n)
   - [Packages Requiring I18n](#packages-requiring-i18n)
 - [Contributing](#contributing)
