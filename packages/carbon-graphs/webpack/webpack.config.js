@@ -8,8 +8,8 @@ const webpackConfig = (env, folder = '') => ({
   mode: 'production',
   bail: true,
   entry: {
-    'carbon-graphs': './packages/carbon-graphs/src/main/js/carbon.js',
-    style: './packages/carbon-graphs/src/main/less/carbon.less',
+    'carbon-graphs': './packages/carbon-graphs/src/js/carbon.js',
+    style: './packages/carbon-graphs/src/less/carbon.less',
   },
   output: {
     path: path.resolve(__dirname, '..'),
@@ -29,7 +29,7 @@ const webpackConfig = (env, folder = '') => ({
       },
       {
         test: /\.(js|jsx)$/,
-        include: [path.join(__dirname, '../src/main/js')],
+        include: [path.join(__dirname, '../src/js')],
         use: jsOptions(env.TYPE),
       },
     ],
