@@ -12,6 +12,7 @@
 [![License](https://badgen.net/github/license/cerner/terra-graphs)](https://github.com/cerner/terra-graphs/blob/main/LICENSE)
 [![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/cerner/terra-graphs)
 [![devDependencies status](https://badgen.net/david/dev/cerner/terra-graphs)](https://david-dm.org/cerner/terra-graphs?type=dev)
 [![Bugs](https://img.shields.io/github/issues/cerner/carbon-graphs/bug.svg)](https://github.com/cerner/terra-graphs/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
 
