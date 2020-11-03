@@ -70,7 +70,7 @@ Components in beta stage may include breaking changes, new features, and bug fix
 ![Deprecated](https://badgen.net/badge/status/Deprecated/grey)
 
 <!-- AUTO-GENERATED-CONTENT:START (SUBPACKAGELIST) -->
-| Terra-Graphs Package      | Version | Status | Dependencies |
+| Packages     | Version | Status | Dependencies |
 |--------------------|---------|--------|--------------|
 | Carbon-graphs| ![npm](https://img.shields.io/npm/v/@cerner/carbon-graphs)| ![Stable](https://badgen.net/badge/status/Stable/green)| [![carbon-graphs](https://img.shields.io/david/cerner/terra-graphs?path=packages%2Fcarbon-graphs)](https://david-dm.org/cerner/terra-graphs?path=packages/carbon-graphs)|
 
