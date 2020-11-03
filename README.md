@@ -13,8 +13,8 @@
 [![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/cerner/terra-graphs)
-[![devDependencies status](https://badgen.net/david/dev/cerner/terra-graphs)](https://david-dm.org/cerner/terra-graphs?type=dev)
-[![Bugs](https://img.shields.io/github/issues/cerner/carbon-graphs/bug.svg)](https://github.com/cerner/terra-graphs/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
+[![carbon-graphs bugs](https://img.shields.io/github/issues/cerner/terra-graphs/carbon-graphs%20bug?label=carbon-graphs%20bug)](https://github.com/cerner/terra-graphs/labels/carbon-graphs%20bug)
+[![terra-graphs bugs](https://img.shields.io/github/issues/cerner/terra-graphs/terra-graphs%20bug?label=terra-graphs%20bug)](https://github.com/cerner/terra-graphs/labels/terra-graphs%20bug)
 
 Terra Graphs is a graphing library built using D3 visualization library. It provides an API for generating native graphs such as Line and Paired Result graphs based on design standards.
 
