@@ -175,7 +175,7 @@ npm i @cerner/Terra Graphs-graphs --save-dev
   Internationalization (I18n)
 </h2>
 
-Please review [Terra's Internationalization documentation](https://engineering.cerner.com/terra-ui/#/getting-started/terra-ui/internationalization) for more information. Included are directions on consumption and how internationalization is setup.
+Please review [Terra's Internationalization documentation](https://engineering.cerner.com/terra-ui/guides/terra-ui/internationalization/internationalization-intro) for more information. Included are directions on consumption and how internationalization is setup.
 
 <hr>
 <!--  -->
@@ -193,11 +193,19 @@ Please read through our [contributing guidelines](CONTRIBUTING.md). Included are
   Local Development
 </h2>
 
-1. Install docker https://www.docker.com/ to run browser tests.
-2. Install dependencies and run tests.
+* For local development on Terra-graphs, first install dependencies using:
 ```sh
 npm install
+```
+
+* Tests can be executed using:
+```sh
 npm run test
+```
+
+* To view any visual changes, the dev site can be launched using:
+```sh
+npm run dev 
 ```
 
 <hr>
