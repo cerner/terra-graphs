@@ -27,7 +27,7 @@ Terra Graphs is a graphing library built using D3 visualization library. It prov
   - [Install](#install)
 - [Features](#features)
     -   [Graph types](#graph-types)
-    -   [Graph Settings/Toggles](#graph-settingstoggles)
+    -   [Graph Settings and Toggles](#graph-settings-and-toggles)
     -   [Other highlights](#other-highlights)
 - [Internationalization (I18n)](#internationalization-i18n)
   - [Packages Requiring I18n](#packages-requiring-i18n)
@@ -146,7 +146,7 @@ npm i @cerner/Terra Graphs-graphs --save-dev
     -   [Bubble Multiple Dataset](./packages/terra-graphs/docs/controls/BubbleMultipleDataset.md)
 
 
-### Graph Settings/Toggles
+### Graph Settings and Toggles
 
 -   Legend
 -   Labels
