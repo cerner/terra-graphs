@@ -1,4 +1,3 @@
-
 const babelJest = require('babel-jest');
 
 /**
