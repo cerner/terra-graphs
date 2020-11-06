@@ -32,8 +32,8 @@ const webpackConfig = (env) => ({
         test: /\.(js|jsx)$/,
         include: [
 
-          path.join(__dirname, '../src/main/js'),
-          path.join(__dirname, '../../..', 'dev'),
+          path.join(__dirname, '../src/js'),
+          path.join(__dirname, '../..', 'dev'),
         ],
         use: jsOptions(env.TYPE),
       },
