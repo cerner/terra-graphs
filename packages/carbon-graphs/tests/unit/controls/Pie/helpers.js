@@ -1,5 +1,3 @@
-
-
 import sinon from 'sinon';
 import Carbon from '../../../../src/js/carbon';
 import utils from '../../../../src/js/helpers/utils';

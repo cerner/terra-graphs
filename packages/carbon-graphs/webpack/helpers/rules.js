@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const { version } = require('../../package.json');
