@@ -24,70 +24,6 @@
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
   ],
-  "eslintConfig": {
-    "extends": "@cerner/terra",
-    "overrides": [
-      {
-        "files": [
-          "**/*/terra-dev-site/**/*.jsx"
-        ],
-        "rules": {
-          "import/no-extraneous-dependencies": "off",
-          "import/no-unresolved": "off",
-          "import/extensions": "off"
-        }
-      },
-      {
-        "files": [
-          "*.doc.jsx"
-        ],
-        "rules": {
-          "import/no-webpack-loader-syntax": "off",
-          "import/first": "off",
-          "import/no-duplicates": "off"
-        }
-      },
-      {
-        "files": [
-          "*.js"
-        ],
-        "rules": {
-          "import/no-cycle": "off",
-          "no-param-reassign": "off",
-          "template-curly-spacing": "off",
-          "indent": [
-            "error",
-            2,
-            {
-              "ignoredNodes": [
-                "TemplateLiteral"
-              ]
-            }
-          ],
-          "strict": "off",
-          "func-names": "off",
-          "no-undef": "off",
-          "no-unused-expressions": "off",
-          "no-new": "off",
-          "no-underscore-dangle": "off",
-          "no-console": "off"
-        },
-        "env": {
-          "jasmine": true
-        }
-      }
-    ],
-    "rules": {
-      "react/forbid-prop-types": "off"
-    },
-    "parser": "babel-eslint",
-    "settings": {
-      "polyfills": [
-        "Promise",
-        "Map"
-      ]
-    }
-  },
   "stylelint": {
     "extends": "stylelint-config-terra",
     "rules": {
@@ -191,7 +127,9 @@
     "jest:coverage": "jest --coverage",
     "link-parent-bin": "link-parent-bin",
     "lint": "npm run lint:js",
+    "lint:fix": "npm run lint:js:fix",
     "lint:js": "eslint --ext .js,.jsx .",
+    "lint:js:fix": "eslint --fix --ext .js,.jsx .",
     "lint:scss": "stylelint 'packages/**/src/**/*.scss' --syntax scss",
     "pretest": "npm run lint",
     "postinstall": "link-parent-bin && npm run compile && npm run bootstrap:hoist && npm run build && npm run build:dist",

@@ -1,3 +1,74 @@
 # ---
     parser: babel-eslint
-    
+    # extends: "@cerner/eslint-config-terra"
+    settings: 
+        polyfills: 
+            - Promise
+            - Map
+
+    rules: 
+        react/forbid-prop-types: off  
+
+    overrides:
+        - files: "*.js"
+          rules: 
+            import/no-cycle: off
+            no-param-reassign: off
+            template-curly-spacing: off
+            indent: 
+                - error
+                - 2
+                - ignoredNodes:
+                    - TemplateLiteral
+            strict: off
+            func-names: off
+            no-undef: off
+            no-unused-expressions: off
+            no-new: off
+            no-underscore-dangle: off
+            no-console: off
+
+        - files: "**/scripts/**/*.js"
+          rules:
+            import/no-extraneous-dependencies: off
+            import/no-unresolved: off
+            import/extensions: off
+
+        - files: "**/*.config.js"
+          rules:
+            import/no-extraneous-dependencies: off
+
+        - files: "**/webpack/**/*.js"
+          rules:
+            import/no-extraneous-dependencies: off
+            import/no-unresolved: off
+            import/extensions: off
+
+        - files: "**/tests/**/*.js"
+          rules:
+            import/no-extraneous-dependencies: off
+            import/no-unresolved: off
+            import/extensions: off
+
+        - files: "**/dev/**/*.js"
+          rules:
+            import/no-extraneous-dependencies: off
+            import/no-unresolved: off
+
+        - files: "**/dev-site/**/*.js"
+          rules:
+            import/no-extraneous-dependencies: off
+            import/no-unresolved: off
+            import/extensions: off
+
+        - files: "*.doc.jsx"
+          rules: 
+            import/no-webpack-loader-syntax: off
+            import/first: off
+            import/no-duplicates: off
+
+        - files: "**/*/terra-dev-site/**/*.jsx"
+          rules:
+            import/no-extraneous-dependencies: off
+            import/no-unresolved: off
+            import/extensions: off
