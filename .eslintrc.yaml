@@ -66,9 +66,3 @@
             import/no-webpack-loader-syntax: off
             import/first: off
             import/no-duplicates: off
-
-        - files: "**/*/terra-dev-site/**/*.jsx"
-          rules:
-            import/no-extraneous-dependencies: off
-            import/no-unresolved: off
-            import/extensions: off
