@@ -28,8 +28,8 @@ const compiler = webpack({
       {
         test: /\.(js|jsx)$/,
         include: [
-          path.join(__dirname, '..', 'src'),
-          path.join(__dirname, '../../..', 'dev'),
+          path.join(__dirname, '../', 'src'),
+          path.join(__dirname, '../','../','../', 'dev'),
         ],
         use: jsOptions('DEV'),
       },
