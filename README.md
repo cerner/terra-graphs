@@ -79,7 +79,6 @@ Components in beta stage may include breaking changes, new features, and bug fix
 <!-- AUTO-GENERATED-CONTENT:END *-->
 
 <hr>
-
 <!--  -->
 
 ## Supported Browsers
@@ -110,10 +109,6 @@ You can install Carbon via `npm` or download the [latest release](https://github
 ```sh
 npm i @cerner/carbon-graphs --save-dev
 ```
-
-<!-- ```sh
-npm i @cerner/Terra Graphs-graphs --save-dev
-``` -->
 
 ### Getting Started
 
@@ -166,7 +161,6 @@ npm i @cerner/Terra Graphs-graphs --save-dev
 -   Graph Panning
 
 <hr>
-
 <!--  -->
 
 <h2 id="internationalization-i18n">
