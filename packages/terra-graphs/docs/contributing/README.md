@@ -100,7 +100,7 @@ Your commit message should look something like this:
 ```
 
 **Note**:
-1234 is the Carbon [Github issue](https://github.com/cerner/carbon-graphs/issues/237) number.
+1234 in the above example is the [Github issue](https://github.com/cerner/terra-graphs/issues) number.
 
 #### Pull Request
 
