@@ -43,8 +43,6 @@ const webpackConfig = (env) => ({
       chunkFilename: 'carbon-graphs.css',
     }),
     new HtmlWebpackPlugin({
-      // packages/carbon-graphs/dev-site/assets/index.ejs
-      // ../assets/index.ejs
       template: 'packages/carbon-graphs/dev-site/assets/index.ejs',
       title: 'Carbon',
       filename: 'index.html',
