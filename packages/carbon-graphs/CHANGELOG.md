@@ -2,4 +2,4 @@
 
 ## Unreleased
 
--   Initial stable release
+-   Migrated to the terra-graphs mono-rep.

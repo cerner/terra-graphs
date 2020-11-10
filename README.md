@@ -44,7 +44,7 @@ Terra Graphs is a graphing library built using D3 visualization library. It prov
 </h2>
 
 This repo consists of two packages: 
-1. Carbon-graphs: Vanila JavaScript implementation of the graphing library.
+1. Carbon-graphs: Vanilla JavaScript implementation of the graphing library.
 2. Terra-graphs: React implementation of graphing library.
 
 <h3 id="versioning">
