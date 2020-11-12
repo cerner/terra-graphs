@@ -1,4 +1,3 @@
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const fs = require('fs');
 const glob = require('glob');
 const lernaJson = require('../../lerna.json');

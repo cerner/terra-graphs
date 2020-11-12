@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const fs = require('fs');
 const path = require('path');
 const packagePaths = require('../common/getPackagePaths');
@@ -11,7 +10,7 @@ const findAndReplace = require('../common/findAndReplace');
 packagePaths.forEach((packagePath) => {
   const packageFile = path.resolve(packagePath, 'package.json');
   const readmeFile = path.resolve(packagePath, 'README.md');
-  const docReadmeFile = path.resolve(packagePath, 'docs/README.md');
+  const docReadmeFile = path.resolve(packagePath, 'docs','README.md');
 
   if (!fs.existsSync(packageFile) || !fs.existsSync(readmeFile) || !fs.existsSync(docReadmeFile)) {
     return;

@@ -1,9 +1,6 @@
 {
   "name": "@cerner/terra-graphs",
   "main": "lib/Graphs.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "private": true,
   "version": "0.0.0",
   "description": "A react graphing library built using d3 based on Cerner design standards",
@@ -18,7 +15,10 @@
     "terra-graphs",
     "carbon",
     "graphs",
-    "UI"
+    "UI",
+    "d3",
+    "d3-module",
+    "graphing"
   ],
   "author": "Cerner Corporation",
   "license": "Apache-2.0",
@@ -26,14 +26,39 @@
     "url": "https://github.com/cerner/terra-graphs/issues"
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
-  "peerDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5"
+  "files": [
+    "dist",
+    "lib",
+    "README.md"
+  ],
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "semi": true,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "overrides": [
+      {
+        "files": "package.json",
+        "options": {
+          "tabWidth": 2,
+          "printWidth": 250
+        }
+      }
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "d3": "^5.16.0",
     "prop-types": "^15.5.8",
     "terra-theme-context": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",

@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 const path = require('path');
 const packagePaths = require('../common/getPackagePaths');
 const findAndReplace = require('../common/findAndReplace');
 
-const rootReadMe = path.join(__dirname, '../../README.md');
+const rootReadMe = path.join(__dirname, '../','../','README.md');
 
 // Clean up package entries array
 const packages = packagePaths
