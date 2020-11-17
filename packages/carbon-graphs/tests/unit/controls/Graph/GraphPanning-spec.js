@@ -15,7 +15,11 @@ import {
   axisTimeseriesWithDateline,
   axisDefaultWithPanning,
   axisDefaultWithoutPanning,
+  axisTimeseriesWithEventline,
 } from './helpers';
+import {
+  COLORS,
+} from "../../../../src/js/helpers/constants";
 
 describe('Graph - Panning', () => {
   let graph = null;
@@ -71,6 +75,111 @@ describe('Graph - Panning', () => {
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
         done();
+      });
+    });
+    it("EventlineGroup translates properly when panning is enabled", (done) => {
+      if(graph) {
+        graph.destroy();
+      }
+      graph = new Graph(axisTimeseriesWithEventline);
+      const eventlineGroup = fetchElementByClass(styles.eventlineGroup);
+      delay(() => {
+        const translate = getSVGAnimatedTransformList(
+          eventlineGroup.getAttribute("transform")
+        ).translate;
+        expect(toNumber(translate[0], 10)).toBeCloserTo(72);
+        expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
+        done();
+      });
+    });
+    describe("should update the eventline", () => {
+      beforeEach(() => {
+        if(graph) {
+          graph.destroy();
+        }
+        graph = new Graph(axisTimeseriesWithEventline);
+      });
+      it("When eventline is passed, when creating the graph", () => {
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+        const panData = {
+          eventline: [
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: "4,4"
+              },
+              value: new Date(2016, 9, 28).toISOString()
+            },
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: "4,4"
+              },
+              value: new Date(2016, 10, 28).toISOString()
+            }
+          ]
+        };
+        graph.reflow(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        console.log(eventlines);
+        expect(eventlines.length).toBe(2);
+      });
+      it("Removes the eventline when empty dataset is passed", () => {
+        console.log("Before: ", graph.config.eventline);
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+        const panData = {
+          eventline: []
+        };
+        graph.reflow(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        console.log("After: ", graph.config.eventline);
+        expect(eventlines.length).toBe(0);
+      });
+    });
+    describe("should not update the eventline", () => {
+      beforeEach(() => {
+        if(graph) {
+          graph.destroy();
+        }
+      });
+      it ("When eventline attribute is not passed or passed as null to reflow data", () => {
+        graph = new Graph(axisTimeseriesWithEventline);
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+        const panData = {
+          eventline: null
+        };
+        graph.reflow(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+      });
+      it("When eventline is not passed while creating the graph", () => {
+        graph = new Graph(axisTimeseriesWithDateline);
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(0);
+        const panData = {
+          eventline: [
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: "4,4"
+              },
+              value: new Date(2016, 9, 28).toISOString()
+            },
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: "4,4"
+              },
+              value: new Date(2016, 10, 28).toISOString()
+            }
+          ]
+        };
+        graph.reflow(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(0);
       });
     });
   });
