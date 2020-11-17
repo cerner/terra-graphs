@@ -134,3 +134,10 @@ Deployment of site is automated, and will be performed when PR is merged to `mai
 For any breaking changes, add information on how to migrate from previous version along with changes that was provided.
 Create an issue and add any stakeholders to that issue.
 This issue will be closed once you have :+1: from all of the stakeholders (or subsequent issues are created within their own git repo queues).
+
+####Note: 
+
+To run WDIO test cases in local, you must install docker on your machine.
+
+Install Docker version 17.09.0 or higher. Installation instructions can be found at https://docs.docker.com/install/.
+
