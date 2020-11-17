@@ -150,21 +150,15 @@ Each paired result can have a style object in [Values](#values) level.
 
 ### Values
 
-#### Required
-
 | Property Name | Expected | Value                                            | Description                                               |
 | ------------- | -------- | ------------------------------------------------ | --------------------------------------------------------- |
 | high          | object   | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
 | low           | object   | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
-
-#### Optional
-
-| Property Name | Expected | Value                                            | Description                                               |
-| ------------- | -------- | ------------------------------------------------ | --------------------------------------------------------- |
 | mid           | object   | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
 
 `Note:`
 
+- At least one of the high/low/medium should be provided with valid data.
 -   `isCritical` toggle is disabled by default
 -   When `isCritical` toggle is enabled, an indicator will be shown surrounding the data point
 
@@ -177,17 +171,10 @@ Draws a Horizontal area along the X-Axis
 -   Each pair type mentioned above needs to have a `start` and `end`,
 -   If at least one region is defined for a value in the element, it will take precedence over the element's region and the element's region will not be displayed.
 
-#### Required
-
 | Property Name | Expected | Value                              | Description                   |
 | ------------- | -------- | ---------------------------------- | ----------------------------- |
 | high          | object   | _{start: `number`, end: `number`}_ | Start and end `@type: number` |
 | low           | object   | _{start: `number`, end: `number`}_ | Start and end `@type: number` |
-
-#### Optional
-
-| Property Name | Expected | Value                              | Description                   |
-| ------------- | -------- | ---------------------------------- | ----------------------------- |
 | mid           | object   | _{start: `number`, end: `number`}_ | Start and end `@type: number` |
 
 #### Optional type properties
