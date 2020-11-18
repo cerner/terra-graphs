@@ -11,6 +11,7 @@
 - Ben Cai [@benbcai]
 - Matt Henkes [@mjhenkes]
 - Janani Gunasekaran [@JananiGunasekaran]
+- Ashish Motanam Gurunadham[@ashishmotanamgurunadham]
 
 [@abhijit945]: https://github.com/abhijit945
 [@dinesh94singh]: https://github.com/Dinesh94Singh
@@ -23,3 +24,4 @@
 [@benbcai]: https://github.com/benbcai
 [@mjhenkes]: https://github.com/mjhenkes
 [@JananiGunasekaran]: https://github.com/JananiGunasekaran
+[@ashishmotanamgurunadham]: https://github.com/AshishMotanamGurunadham
