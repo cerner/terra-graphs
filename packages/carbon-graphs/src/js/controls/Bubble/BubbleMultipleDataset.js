@@ -132,6 +132,7 @@ class BubbleMultipleDataset extends Bubble {
       graph.config,
       pointPath.enter(),
       this.dataTarget,
+      graph.legendSVG
     );
     pointPath
       .exit()

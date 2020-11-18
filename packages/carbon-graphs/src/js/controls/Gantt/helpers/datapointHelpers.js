@@ -30,6 +30,7 @@ export const drawDataPoints = (
   dataTarget,
   drawDataPointsHandler,
   event,
+  legendSVG,
 ) => {
   const allPointsPath = ganttContentContainerPath
     .append('g')
@@ -44,7 +45,7 @@ export const drawDataPoints = (
   const pointPath = allPointsPath
     .selectAll(`.${styles.point}`)
     .data(dataTarget);
-  drawDataPointsHandler(scale, config, pointPath.enter());
+  drawDataPointsHandler(scale, config, pointPath.enter(), legendSVG);
   pointPath
     .exit()
     .transition()

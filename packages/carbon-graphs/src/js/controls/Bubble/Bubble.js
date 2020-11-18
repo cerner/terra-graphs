@@ -194,6 +194,7 @@ class Bubble extends GraphContent {
       graph.config,
       pointPath.enter(),
       this.dataTarget,
+      graph.legendSVG
     );
     pointPath
       .exit()
@@ -216,7 +217,7 @@ class Bubble extends GraphContent {
      */
   redraw(graph) {
     clear(graph.svg, this.dataTarget);
-    draw(graph.scale, graph.config, graph.svg, this.dataTarget);
+    draw(graph.scale, graph.config, graph.svg, this.dataTarget, graph.legendSVG);
     return this;
   }
 }

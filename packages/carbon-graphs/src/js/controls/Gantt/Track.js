@@ -342,7 +342,7 @@ class Track extends GraphContent {
       const trackGroupPath = graph.svg.selectAll(
         `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
-      reflowEvents(graph.config, graph.scale, this, trackGroupPath);
+      reflowEvents(graph.config, graph.scale, this, trackGroupPath, graph.legendSVG);
     }
     if (
       utils.notEmpty(graphData.actions)
@@ -366,7 +366,7 @@ class Track extends GraphContent {
       const trackGroupPath = graph.svg.selectAll(
         `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
-      reflowActions(graph.config, graph.scale, this, trackGroupPath);
+      reflowActions(graph.config, graph.scale, this, trackGroupPath, graph.legendSVG);
     }
 
     this.resize(graph);
