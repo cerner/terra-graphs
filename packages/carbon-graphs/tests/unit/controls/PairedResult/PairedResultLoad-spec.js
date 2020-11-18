@@ -1999,7 +1999,7 @@ describe('Paired Result - Load', () => {
       ).toEqual(pairPrimary.key);
     });
     describe('When multiple canvases with paired results present', () => {
-      it('Shoud not affect paired results in other canvases', () => {
+      it('Should not affect paired results in other canvases', () => {
         const inputPrimary = getInput(valuesDefault);
         const primaryGraph = new Graph(getAxes(axisDefault));
         primaryGraph.loadContent(new PairedResult(inputPrimary));

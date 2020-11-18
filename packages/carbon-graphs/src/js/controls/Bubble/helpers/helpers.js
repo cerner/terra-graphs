@@ -258,9 +258,10 @@ const decideColor = (dataTarget, value) => {
  * @param {object} config - Graph config object derived from input JSON
  * @param {Array} pointGroupPath - d3 html element of the points group
  * @param {object} dataTarget - data for the bubble graph
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {undefined} - returns nothing
  */
-const drawBubbles = (scale, config, pointGroupPath, dataTarget) => {
+const drawBubbles = (scale, config, pointGroupPath, dataTarget, legendSVG) => {
   const renderDataPoint = (path, value, index) => {
     const bubblePoint = path
       .append('g')
@@ -270,12 +271,7 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget) => {
       .attr('aria-describedby', `${value.key}`)
       .attr('aria-selected', false)
       .attr(
-        'aria-hidden',
-        document
-          .querySelector(
-            `.${styles.legendItem}[aria-describedby="${value.key}"]`,
-          )
-          ?.getAttribute('aria-current') === 'false',
+        'aria-hidden',legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${value.key}']`)?.attr('aria-current') === 'false' : 'false',
       )
       .on('click', function () {
         dataPointActionHandler(value, index, this);
@@ -330,9 +326,10 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget) => {
  * @param {object} config - config object derived from input JSON
  * @param {d3.selection} canvasSVG - d3 selection node of canvas svg
  * @param {Array} dataTarget - Data points
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {undefined} - returns nothing
  */
-const draw = (scale, config, canvasSVG, dataTarget) => {
+const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
   const BubbleSVG = canvasSVG
     .append('g')
     .classed(styles.bubbleGraphContent, true)
@@ -362,7 +359,7 @@ const draw = (scale, config, canvasSVG, dataTarget) => {
   const bubblePoint = BubbleSVG.select(`.${styles.currentPointsGroup}`)
     .selectAll(`.${styles.point}`)
     .data(getDataPointValues(dataTarget).filter((d) => d.y !== null));
-  drawBubbles(scale, config, bubblePoint.enter(), dataTarget);
+  drawBubbles(scale, config, bubblePoint.enter(), dataTarget, legendSVG);
   bubblePoint
     .exit()
     .transition()
