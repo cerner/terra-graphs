@@ -317,10 +317,13 @@ class Graph extends Construct {
      *  @returns {Graph} - Graph instance
      */
   resize() {
-    setCanvasWidth(this.graphContainer, this.config);
-    scaleGraph(this.scale, this.config);
-    translateGraph(this);
-    this.content.forEach((control) => control.resize(this));
+    // Check if graphContainer is present and then resize the graph
+    if (this.graphContainer) {
+      setCanvasWidth(this.graphContainer, this.config);
+      scaleGraph(this.scale, this.config);
+      translateGraph(this);
+      this.content.forEach((control) => control.resize(this));
+    }
     return this;
   }
 
