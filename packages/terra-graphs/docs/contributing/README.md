@@ -135,9 +135,6 @@ For any breaking changes, add information on how to migrate from previous versio
 Create an issue and add any stakeholders to that issue.
 This issue will be closed once you have :+1: from all of the stakeholders (or subsequent issues are created within their own git repo queues).
 
-####Note: 
+#### Note: 
 
-To run WDIO test cases in local, you must install docker on your machine.
-
-Install Docker version 17.09.0 or higher. Installation instructions can be found at https://docs.docker.com/install/.
-
+To run the WDIO tests locally, please install docker version 17.09.0 or higher. Installation instructions can found [here](https://docs.docker.com/get-docker/).

@@ -88,11 +88,10 @@ const loadInput = (inputJSON) => new PairedResultConfig()
 const filterPairedResultData = (data) => {
   let filteredData = [];
   data.map((value) => {
-    let temp = {};
+    let filteredValue = {};
     iterateOnPairType((t) => {
-
       if(value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0)){
-        temp[t] = value[t];
+        filteredValue[t] = value[t];
       }
     });
     filteredData.push(temp);
