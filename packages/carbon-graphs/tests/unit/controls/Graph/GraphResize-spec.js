@@ -586,8 +586,8 @@ describe('Graph - Resize', () => {
       expect(graph.config.canvasHeight).toBe(250);
     });
   });
-  describe("Only when graph container is present", () => {
-    it("Resize the graph", (done) => {
+  describe("When the graph container is present", () => {
+    it("Should resize the graph", (done) => {
       expect(graph.config.canvasWidth).toBe(1024);
       const canvasElement = fetchElementByClass(styles.canvas);
       graphContainer.setAttribute("style", "width: 800px; height: 200px");
