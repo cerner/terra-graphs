@@ -94,7 +94,7 @@ const filterPairedResultData = (data) => {
         filteredValue[t] = value[t];
       }
     });
-    filteredData.push(temp);
+    filteredData.push(filteredValue);
   });
   return filteredData;
 }
