@@ -578,7 +578,7 @@ export const renderBarPanningWithDynamicEventline = (id) => {
     format: "%H"
   };
   const createGraph = () => {
-    graphData[0].eventline = [
+    graphData[1].eventline = [
       {
         color: Carbon.helpers.COLORS.BLACK,
         style: {
@@ -587,7 +587,7 @@ export const renderBarPanningWithDynamicEventline = (id) => {
         value: new Date(2016, 0, 1, 7, 30).toISOString()
       }
     ]
-    graph.reflow(graphData[0]);
+    graph.reflow(graphData[1]);
   };
 
   const graph = Carbon.api.graph(axisData);
