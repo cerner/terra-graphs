@@ -10,6 +10,7 @@
 - Avinash Gupta [@avinashg1994]
 - Ben Cai [@benbcai]
 - Matt Henkes [@mjhenkes]
+- Janani Gunasekaran [@JananiGunasekaran]
 
 [@abhijit945]: https://github.com/abhijit945
 [@dinesh94singh]: https://github.com/Dinesh94Singh
@@ -21,3 +22,4 @@
 [@avinashg1994]: https://github.com/avinashg1994
 [@benbcai]: https://github.com/benbcai
 [@mjhenkes]: https://github.com/mjhenkes
+[@JananiGunasekaran]: https://github.com/JananiGunasekaran
