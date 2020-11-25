@@ -135,10 +135,9 @@ const loadEventInput = (inputJSON) => {
  * @param {object} scale - d3 scale for Graph
  * @param {object} gantt - Graph config object for the content.
  * @param {object} trackGroupPath - Container for the track
- * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {undefined} - returns nothing
  */
-const reflowEvents = (config, scale, gantt, trackGroupPath, legendSVG) => {
+const reflowEvents = (config, scale, gantt, trackGroupPath) => {
   gantt.config.events.forEach((event) => {
     validateEvent(event);
   });
