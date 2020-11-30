@@ -86,17 +86,15 @@ const loadInput = (inputJSON) => new PairedResultConfig()
  * @returns {object} filteredData - filtered data object
  */
 const filterPairedResultData = (data) => {
-  let filteredData = [];
   data.map((value) => {
     let filteredValue = {};
     iterateOnPairType((t) => {
-      if(value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0)){
-        filteredValue[t] = value[t];
+      if(!(value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0))){
+        delete value[t];
       }
     });
-    filteredData.push(filteredValue);
   });
-  return filteredData;
+  return data;
 }
 /**
  * A Paired result graph is a graph that is represented by 2 points
