@@ -15,6 +15,7 @@ import {
 import { toNumber, delay, PADDING_BOTTOM } from '../../helpers/commonHelpers';
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import errors from "../../../../src/js/helpers/errors";
 
 describe('Scatter - Panning', () => {
   let graphDefault = null;
@@ -49,6 +50,38 @@ describe('Scatter - Panning', () => {
       const input = getInput(valuesTimeSeries, false, false);
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Scatter(input));
+    });
+    it('throws error when null value is passed as y', () => {
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: null,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+      };
+      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+    });
+    it('throws error when undefined value is passed as y', () => {
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: undefined,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+      };
+      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);

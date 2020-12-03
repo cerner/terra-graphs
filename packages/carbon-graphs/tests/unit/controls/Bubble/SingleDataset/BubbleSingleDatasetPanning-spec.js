@@ -20,6 +20,7 @@ import {
   fetchAllElementsByClass,
   fetchElementByClass,
 } from '../helpers';
+import errors from "../../../../../src/js/helpers/errors";
 
 describe('Bubble Single Dataset - Panning', () => {
   let graphDefault = null;
@@ -81,6 +82,38 @@ describe('Bubble Single Dataset - Panning', () => {
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
         done();
       });
+    });
+    it('throws error when null value is passed as y', () => {
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: null,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+      };
+      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+    });
+    it('throws error when undefined value is passed as y', () => {
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: undefined,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+      };
+      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     describe('when key matches', () => {
       describe('label is not passed', () => {

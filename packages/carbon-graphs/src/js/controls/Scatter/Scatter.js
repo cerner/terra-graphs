@@ -29,6 +29,7 @@ import {
   getDataPointValues,
 } from './helpers/helpers';
 import ScatterConfig from './ScatterConfig';
+import { validateData } from "../../helpers/constructUtils";
 
 /**
  * @typedef {object} Scatter
@@ -104,6 +105,7 @@ class Scatter extends GraphContent {
      * @inheritdoc
      */
   load(graph) {
+    validateData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config);
     draw(graph.scale, graph.config, graph.svg, this.dataTarget);
     if (utils.notEmpty(this.dataTarget.regions)) {
@@ -189,6 +191,7 @@ class Scatter extends GraphContent {
      */
   reflow(graph, graphData) {
     this.config.values = graphData.values;
+    validateData(this.config.values);
     const eventHandlers = {
       clickHandler: clickHandler(graph, this, graph.config, graph.svg),
       hoverHandler: hoverHandler(graph.config.shownTargets, graph.svg),

@@ -83,6 +83,8 @@ export default {
         'Clone input function has not been implemented.',
   THROW_MSG_INVALID_LOAD_CONTENT_AT_INDEX:
         'Invalid input provided. Content cannot be loaded at index less than zero.',
+  THROW_MSG_INVALID_DATA:
+      'Invalid data provided, data cannot consists of values like null/undefined',
   /**
      * @description Region
      */

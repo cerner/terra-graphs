@@ -50,7 +50,7 @@ import LineConfig from './LineConfig';
  * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
  */
 const calculateValuesRange = (values, axis = constants.Y_AXIS) => {
-  const yAxisValuesList = values.filter((i) => i.y !== null).map((i) => i.y);
+  const yAxisValuesList = values.filter((i) => i.y !== null && i.y !== undefined).map((i) => i.y);
   return {
     [axis]: {
       min: Math.min(...yAxisValuesList),
@@ -266,7 +266,7 @@ class Line extends GraphContent {
         .select(`g[aria-describedby="${graphData.key}"]`)
         .select(`.${styles.currentPointsGroup}`)
         .selectAll(`[class*="${styles.point}"]`)
-        .data(getDataPointValues(this.dataTarget));
+        .data(getDataPointValues(this.dataTarget).filter((d) => d.y !== null && d.y !== undefined));
       drawDataPoints(graph.scale, graph.config, pointPath.enter(), graph.legendSVG);
       pointPath
         .exit()

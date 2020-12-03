@@ -159,6 +159,8 @@ Refer [Graph](../core/Graph.md) `Root` for more details.
 | x             | string   | Co-ordinate x, for plotting the data point |
 | y             | string   | Co-ordinate y, for plotting the data point |
 
+**Note: providing invalid data to x or y will lead to console error.**
+
 #### Optional
 
 | Property Name | Expected | Default | Description                                                |

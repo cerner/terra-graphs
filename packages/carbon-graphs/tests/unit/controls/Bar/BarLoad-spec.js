@@ -24,6 +24,8 @@ import {
   valuesDefault,
   valuesTimeSeries,
 } from './helpers';
+import Scatter from "../../../../src/js/controls/Scatter";
+import errors from "../../../../src/js/helpers/errors";
 
 describe('Bar - Load lifecycle', () => {
   let graphDefault = null;
@@ -49,6 +51,28 @@ describe('Bar - Load lifecycle', () => {
     const loadedBar = new Bar(getInput(valuesDefault, false, false));
     loadedBar.load(graphDefault);
     expect(loadedBar instanceof Bar).toBeTruthy();
+  });
+  it('throws error when null value is passed as y', () => {
+    let input = null;
+    expect(() => {
+      graphDefault.destroy();
+      const graph = new Graph(getAxes(axisDefault));
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = null;
+      input = getInput(data);
+      graph.loadContent(new Bar(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+  });
+  it('throws error when undefined value is passed as y', () => {
+    let input = null;
+    expect(() => {
+      graphDefault.destroy();
+      const graph = new Graph(getAxes(axisDefault));
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = undefined;
+      input = getInput(data);
+      graph.loadContent(new Bar(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
   });
   it('internal subsets gets created correctly for each data point', () => {
     const graph = graphDefault.loadContent(

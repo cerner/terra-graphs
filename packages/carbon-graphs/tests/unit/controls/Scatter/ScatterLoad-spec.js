@@ -21,6 +21,7 @@ import {
   valuesDefault,
   valuesTimeSeries,
 } from './helpers';
+import {BubbleSingleDataset} from "../../../../src/js/controls/Bubble";
 
 describe('Scatter - Load', () => {
   let graphDefault = null;
@@ -60,6 +61,28 @@ describe('Scatter - Load', () => {
       const validGraph = new Graph(getAxes(utils.deepClone(axisDefault)));
       validGraph.loadContent(new Scatter(input));
     }).toThrowError(errors.THROW_MSG_INVALID_FORMAT_TYPE);
+  });
+  it('throws error when null value is passed as y', () => {
+    let input = null;
+    expect(() => {
+      graphDefault.destroy();
+      const graph = new Graph(getAxes(axisDefault));
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = null;
+      input = getInput(data);
+      graph.loadContent(new Scatter(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+  });
+  it('throws error when undefined value is passed as y', () => {
+    let input = null;
+    expect(() => {
+      graphDefault.destroy();
+      const graph = new Graph(getAxes(axisDefault));
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = undefined;
+      input = getInput(data);
+      graph.loadContent(new Scatter(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
   });
   it('internal subsets gets created correctly for each data point', () => {
     const graph = graphDefault.loadContent(
@@ -192,24 +215,6 @@ describe('Scatter - Load', () => {
       expect(scatterGroup).not.toBeNull();
       expect(scatterGroup.tagName).toBe('g');
       expect(scatterGroup.getAttribute('transform')).not.toBeNull();
-    });
-    it('does not show data point if data point is null', () => {
-      graphDefault.destroy();
-      const graph = new Graph(getAxes(axisDefault));
-      const data = utils.deepClone(valuesDefault);
-      data[0].y = null;
-      input = getInput(data);
-      graph.loadContent(new Scatter(input));
-      const pointsGroup = fetchElementByClass(
-        scatterGraphContainer,
-        styles.currentPointsGroup,
-      );
-      const selectedPoint = fetchElementByClass(
-        pointsGroup,
-        styles.dataPointSelection,
-      );
-      expect(pointsGroup.children.length).toBe(valuesDefault.length - 1);
-      expect(selectedPoint.getAttribute('aria-hidden')).toContain('true');
     });
     it('add points group for data points', () => {
       const pointsGroup = fetchElementByClass(
@@ -467,115 +472,6 @@ describe('Scatter - Load', () => {
             );
             done();
           });
-        });
-      });
-    });
-    describe('When values are non-contiguous', () => {
-      const axis = {
-        x: {
-          label: 'Some X Label',
-          lowerLimit: 0,
-          upperLimit: 100,
-        },
-        y: {
-          label: 'Some Y Label',
-          lowerLimit: 20,
-          upperLimit: 200,
-        },
-        y2: {
-          show: true,
-          label: 'Some Y2 Label',
-          lowerLimit: 20,
-          upperLimit: 200,
-        },
-      };
-      const values = [
-        { x: 35, y: 40 },
-        { x: 55, y: 50 },
-        { x: 45, y: null },
-        { x: 25, y: 100 },
-        { x: 45, y: 150 },
-      ];
-      describe('In Y Axis', () => {
-        it('Displays graph properly', () => {
-          graphDefault.destroy();
-          const graph = new Graph(getAxes(axis));
-          input = getInput(values, true, true, false);
-          input.values = values;
-          graph.loadContent(new Scatter(input));
-          graph.resize();
-          const scatterGroup = scatterGraphContainer.querySelectorAll(
-                        `.${styles.currentPointsGroup}`,
-          );
-          expect(scatterGroup.length).toBe(1);
-          expect(
-            scatterGraphContainer.querySelectorAll(
-                            `.${styles.point}`,
-            ).length,
-          ).toBe(values.length - 1);
-          expect(graph.config.axis.y.domain.lowerLimit).toBe(11);
-          expect(graph.config.axis.y.domain.upperLimit).toBe(209);
-        });
-        it('Displays graph properly without domain padding', () => {
-          graphDefault.destroy();
-          const data = getAxes(axis);
-          data.axis.y.padDomain = false;
-          const graph = new Graph(data);
-          input = getInput(values, true, true, false);
-          input.values = values;
-          graph.loadContent(new Scatter(input));
-          graph.resize();
-          const scatterGroup = scatterGraphContainer.querySelectorAll(
-                        `.${styles.currentPointsGroup}`,
-          );
-          expect(scatterGroup.length).toBe(1);
-          expect(
-            scatterGraphContainer.querySelectorAll(
-                            `.${styles.point}`,
-            ).length,
-          ).toBe(values.length - 1);
-          expect(graph.config.axis.y.domain.lowerLimit).toBe(20);
-          expect(graph.config.axis.y.domain.upperLimit).toBe(200);
-        });
-      });
-      describe('In Y2 Axis', () => {
-        it('Displays graph properly', () => {
-          graphDefault.destroy();
-          const graph = new Graph(getAxes(axis));
-          input = getInput(values, true, true, true);
-          graph.loadContent(new Scatter(input));
-          graph.resize();
-          const scatterGroup = scatterGraphContainer.querySelectorAll(
-                        `.${styles.currentPointsGroup}`,
-          );
-          expect(scatterGroup.length).toBe(1);
-          expect(
-            scatterGraphContainer.querySelectorAll(
-                            `.${styles.point}`,
-            ).length,
-          ).toBe(values.length - 1);
-          expect(graph.config.axis.y2.domain.lowerLimit).toBe(11);
-          expect(graph.config.axis.y2.domain.upperLimit).toBe(209);
-        });
-        it('Displays graph properly without domain padding', () => {
-          graphDefault.destroy();
-          const data = getAxes(axis);
-          data.axis.y2.padDomain = false;
-          const graph = new Graph(data);
-          input = getInput(values, true, true, true);
-          graph.loadContent(new Scatter(input));
-          graph.resize();
-          const scatterGroup = scatterGraphContainer.querySelectorAll(
-                        `.${styles.currentPointsGroup}`,
-          );
-          expect(scatterGroup.length).toBe(1);
-          expect(
-            scatterGraphContainer.querySelectorAll(
-                            `.${styles.point}`,
-            ).length,
-          ).toBe(values.length - 1);
-          expect(graph.config.axis.y2.domain.lowerLimit).toBe(20);
-          expect(graph.config.axis.y2.domain.upperLimit).toBe(200);
         });
       });
     });

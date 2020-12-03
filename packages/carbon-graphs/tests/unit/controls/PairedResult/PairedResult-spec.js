@@ -62,7 +62,139 @@ describe('PairedResult', () => {
       input.values = [];
       expect(() => {
         graphDefault.loadContent(new PairedResult(input));
-      }).not.toThrow();
+      }).not.toThrow(errors.THROW_MSG_UNIQUE_KEY_NOT_PROVIDED);
+    });
+    describe('For Paired result high', () => {
+      it('throw an error when null value is provided for y', () => {
+        expect(() => {
+          const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
+          graphTimeSeries.loadContent(
+            new PairedResult(
+              getInput(
+                [
+                  {
+                    high: {
+                      x: '2016-02-03T12:00:00.000Z',
+                      y: null,
+                    },
+                  },
+                ],
+                false,
+                false,
+              ),
+            ),
+          );
+        }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+      it('throw an error when undeifned value is provided for y', () => {
+        expect(() => {
+          const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
+          graphTimeSeries.loadContent(
+            new PairedResult(
+              getInput(
+                [
+                  {
+                    high: {
+                      x: '2016-02-03T12:00:00.000Z',
+                      y: undefined,
+                    },
+                  },
+                ],
+                false,
+                false,
+              ),
+            ),
+          );
+        }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+    });
+    describe('For Paired result mid', () => {
+      it('throw an error when null value is provided for y', () => {
+        expect(() => {
+          const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
+          graphTimeSeries.loadContent(
+            new PairedResult(
+              getInput(
+                [
+                  {
+                    mid: {
+                      x: '2016-02-03T12:00:00.000Z',
+                      y: null,
+                    },
+                  },
+                ],
+                false,
+                false,
+              ),
+            ),
+          );
+        }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+      it('throw an error when undefined value is provided for y', () => {
+        expect(() => {
+          const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
+          graphTimeSeries.loadContent(
+            new PairedResult(
+              getInput(
+                [
+                  {
+                    mid: {
+                      x: '2016-02-03T12:00:00.000Z',
+                      y: undefined,
+                    },
+                  },
+                ],
+                false,
+                false,
+              ),
+            ),
+          );
+        }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+    });
+    describe('For Paired result low', () => {
+      it('throw an error when null value is provided for y', () => {
+        expect(() => {
+          const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
+          graphTimeSeries.loadContent(
+            new PairedResult(
+              getInput(
+                [
+                  {
+                    low: {
+                      x: '2016-02-03T12:00:00.000Z',
+                      y: null,
+                    },
+                  },
+                ],
+                false,
+                false,
+              ),
+            ),
+          );
+        }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+      it('throw an error when undefined value is provided for y', () => {
+        expect(() => {
+          const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
+          graphTimeSeries.loadContent(
+            new PairedResult(
+              getInput(
+                [
+                  {
+                    low: {
+                      x: '2016-02-03T12:00:00.000Z',
+                      y: undefined,
+                    },
+                  },
+                ],
+                false,
+                false,
+              ),
+            ),
+          );
+        }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
     });
     it('display the legend when empty array is provided as input', () => {
       const input = utils.deepClone(getInput(valuesDefault));

@@ -20,6 +20,7 @@ import {
 } from './helpers';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
+import errors from "../../../../src/js/helpers/errors";
 
 describe('Bar - Panning', () => {
   let graphDefault = null;
@@ -60,6 +61,40 @@ describe('Bar - Panning', () => {
     });
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
+    });
+    it('throws error when null value is passed as y', () => {
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: null,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+      };
+
+      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+    });
+    it('throws error when undefined value is passed as y', () => {
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: undefined,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+      };
+
+      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('DatelineGroup translates properly when panning is enabled', (done) => {
       const datelineGroup = document.querySelector(

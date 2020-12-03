@@ -39,6 +39,8 @@ import {
   calculateVerticalPadding,
   getXAxisXPosition,
 } from '../../helpers/axis';
+import { validatePairedResultData } from "../../helpers/constructUtils";
+
 
 /**
  * @typedef {object} PairedResult
@@ -158,6 +160,7 @@ class PairedResult extends GraphContent {
      * @inheritdoc
      */
   load(graph) {
+    validatePairedResultData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config);
     draw(graph.scale, graph.config, graph.svg, this.dataTarget);
     if (
@@ -294,6 +297,7 @@ class PairedResult extends GraphContent {
     const reflow = !!this.config.values.length;
     this.config.values = utils.deepClone(graphData.values);
     this.config.values = filterPairedResultData(this.config.values);
+    validatePairedResultData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config, reflow);
     const drawBox = (boxPath) => {
       drawSelectionIndicator(graph.scale, graph.config, boxPath);
