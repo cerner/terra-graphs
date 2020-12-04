@@ -4,15 +4,12 @@ import * as d3 from 'd3';
 import Construct from '../../core/Construct';
 import { getYAxisHeight, updateXAxisDomain } from '../../helpers/axis';
 import constants from '../../helpers/constants';
-import {
-  contentLoadHandler,
-  contentUnloadHandler,
-} from '../../helpers/constructUtils';
+import { contentHandler } from '../../helpers/constructUtils';
 import { createDateline } from '../../helpers/dateline';
 import errors from '../../helpers/errors';
 import {
   createEventline,
-  redrawEventlineContent 
+  redrawEventlineContent
 } from "../../helpers/eventline";
 import { createLegend, reflowLegend } from '../../helpers/legend';
 import getElementBoxSizingParameters from '../../helpers/paddingUtils';
@@ -277,15 +274,15 @@ class Gantt extends Construct {
   }
 
   /**
-     * Loads the content onto the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * @param {object|Array} content - Gantt content to be loaded
-     * @returns {Gantt} - Gantt instance
-     */
+   * Loads the content into the graph.
+   * Content can be provided as a singular data set, or as an array when
+   * rendering multiple data sets.
+   *
+   * @param {object|array} content - Gantt content to be loaded
+   * @returns {Gantt} - Gantt instance
+   */
   loadContent(content) {
-    contentLoadHandler(content, (i) => {
+    contentHandler(content, (i) => {
       const index = prepareLoadAtIndex(
         this.scale,
         this.config,
@@ -306,15 +303,16 @@ class Gantt extends Construct {
   }
 
   /**
-     * Unloads the content from the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * @param {object|Array} content - Gantt content to be removed
-     * @returns {Gantt} - Gantt instance
-     */
+   *
+   * Unloads the content from the graph.
+   * Content can be provided as a singular data set, or as an array when
+   * rendering multiple data sets.
+   *
+   * @param {object|array} content - Gantt content to be removed
+   * @returns {Gantt} - Gantt instance
+   */
   unloadContent(content) {
-    contentUnloadHandler(content, (i) => {
+    contentHandler(content, (i) => {
       const index = this.tracks.indexOf(i.key);
       if (index < 0) {
         throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);

@@ -414,12 +414,10 @@ export const renderLineLegendTo = (id) => {
   );
   data.bindLegendTo = '#legendContainer';
   const lineTime = Carbon.api.graph(data);
-  lineTime.loadContent(
-    Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[0]),
-  );
-  lineTime.loadContent(
-    Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[2]),
-  );
+  const line1 = Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[0]);
+  const line2 = Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[2]);
+
+  lineTime.loadBatchContent([line1, line2])
   return lineTime;
 };
 export const renderLineDateTimeBuckets = (id) => {

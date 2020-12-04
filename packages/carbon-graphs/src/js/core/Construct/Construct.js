@@ -30,13 +30,13 @@ export default class Construct {
 
   /**
      * Load a content onto the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
+     * Content can be provided as a singular data set, or as an array when
+     * rendering multiple data sets
      *
      * @abstract
      * @function Construct#loadContent
      * @throws {module:errors.THROW_MSG_CONSTRUCT_LOAD_NOT_IMPLEMENTED}
-     * @param {object} graphContent - Graph content
+     * @param {object|array} graphContent - Graph content or an array of Graph content
      * @returns {object} - inherited class instance
      */
   // eslint-disable-next-line no-unused-vars,class-methods-use-this
@@ -45,12 +45,12 @@ export default class Construct {
   }
 
   /**
-     * Remove a Content from the chart.
+     * Remove a Content or Array of Content from the chart.
      *
      * @abstract
      * @function Construct#unloadContent
      * @throws {module:errors.THROW_MSG_CONSTRUCT_UNLOAD_NOT_IMPLEMENTED}
-     * @param {object} graphContent - Graph content
+     * @param {object|array} graphContent - Graph content
      * @returns {object} - inherited class instance
      */
   // eslint-disable-next-line no-unused-vars,class-methods-use-this

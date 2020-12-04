@@ -66,13 +66,35 @@ timelineDefault.loadContent(data);
 ```
 
 For loading multiple data-sets, you can load as additional content:
-
 ```javascript
-var timelineDefault = Carbon.api.timeline(/* Input JSON */);
-timelineDefault.loadContent(/* Data array A */);
-timelineDefault.loadContent(/* Data array B */);
-timelineDefault.loadContent(/* Data array C */);
-timelineDefault.loadContent(/* Data array D */);
+var dataArray = [
+    {
+        key: "uid_2",
+        label: {
+            display: "ORANGE"
+        },
+        shape: Carbon.helpers.SHAPES.DARK.RHOMBUS,
+        color: Carbon.helpers.COLORS.ORANGE,
+        values: [ /* array of values */] 
+    },
+    {
+        key: "uid_3",
+        label: {
+            display: "Green"
+        },
+        color: Carbon.helpers.COLORS.GREEN,
+        values: [ /* array of values */] 
+    },
+    {
+        key: "uid_4",
+        label: {
+            display: "Light Purple"
+        },
+        color: Carbon.helpers.COLORS.LIGHT_PURPLE,
+        values: [ /* array of values */] 
+    }
+];
+timelineDefault.loadContent(dataArray);
 ```
 
 ## JSON Properties

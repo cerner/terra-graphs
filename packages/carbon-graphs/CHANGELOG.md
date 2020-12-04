@@ -5,6 +5,7 @@
 * Changed
   * For consistency updated reflow in Graph and Gantt constructs to update the eventlines.
   * Added code to handle null/undefined/blank in paired result graph during both initial load and reflow.
+  * Added array handling for loadContent on Construct based graphs.
 
 ## 2.15.0 - (November 24, 2020)
 

@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import Construct from '../../core/Construct';
 import errors from '../../helpers/errors';
 import { createLegend } from '../../helpers/legend';
-import { contentLoadHandler } from '../../helpers/constructUtils';
+import { contentHandler } from '../../helpers/constructUtils';
 import styles from '../../helpers/styles';
 import { d3RemoveElement } from '../Graph/helpers/helpers';
 import {
@@ -203,15 +203,15 @@ class Pie extends Construct {
   }
 
   /**
-     * Loads the content onto the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * @param {object|Array} input - Pie content
-     * @returns {Pie} - Pie instance
-     */
+   * Loads the content into the graph.
+   * Content can be provided as a singular data set, or as an array when
+   * rendering multiple data sets.
+   *
+   * @param {object|Array} input - Pie content
+   * @returns {Pie} - Pie instance
+   */
   loadContent(input) {
-    contentLoadHandler(input, (i) => {
+    contentHandler(input, (i) => {
       const content = new PieContent(i);
       content.load(this);
       this.content.push(i.key);
@@ -222,22 +222,24 @@ class Pie extends Construct {
   }
 
   /**
-     * Unloads the content from the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * @param {object} input - Pie content to be removed
-     * @returns {Pie} - Pie instance
-     */
+   * Unloads the content from the graph.
+   * Content can be provided as a singular data set, or as an array when
+   * rendering multiple data sets.
+   *
+   * @param {object} input - Pie content to be removed
+   * @returns {Pie} - Pie instance
+   */
   unloadContent(input) {
-    const index = this.content.indexOf(input.key);
-    if (index < 0) {
-      throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
-    }
-    this.contentConfig[index].unload(this);
-    this.content.splice(index, 1);
-    this.contentConfig.splice(index, 1);
-    this.contentConfig.forEach((control) => control.resize(this));
+    contentHandler(input, (i) => {
+      const index = this.content.indexOf(i.key);
+      if (index < 0) {
+        throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
+      }
+      this.contentConfig[index].unload(this);
+      this.content.splice(index, 1);
+      this.contentConfig.splice(index, 1);
+      this.contentConfig.forEach((control) => control.resize(this));
+    });
     return this;
   }
 

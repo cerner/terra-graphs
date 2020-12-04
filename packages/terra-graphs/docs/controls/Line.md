@@ -115,15 +115,21 @@ lineDefault.loadContent(Carbon.api.line(data));
 ```
 
 #### Multi Line
-
-For loading multiple data-sets, you can load as additional content:
-
+Adding a single Data set can be done by creating a line with a [Data](#Data) set.
 ```javascript
 var lineDefault = Carbon.api.graph(/* Input JSON */);
 lineDefault.loadContent(Carbon.api.line(/* Data array A */));
-lineDefault.loadContent(Carbon.api.line(/* Data array B */));
-lineDefault.loadContent(Carbon.api.line(/* Data array C */));
-lineDefault.loadContent(Carbon.api.line(/* Data array D */));
+```
+
+For loading multiple data-sets, you can load as additional content as an array:
+```javascript
+var lineDefault = Carbon.api.graph(/* Input JSON */);
+var lineA = Carbon.api.line(/* Data array A */);
+var lineB = Carbon.api.line(/* Data array B */);
+var lineC = Carbon.api.line(/* Data array C */);
+var lineD = Carbon.api.line(/* Data array D */);
+
+lineDefault.loadContent([lineA, lineB, lineC, lineD ]);
 ```
 
 #### Spline Line

@@ -184,6 +184,68 @@ describe('Gantt', () => {
       expect(gantt.tracks.length).toBe(1);
       expect(gantt.trackConfig.length).toBe(1);
     });
+    it('Loads multiple content correctly', () => {
+      const primaryContent = getData();
+      const secondaryContent = getData();
+      secondaryContent.key = 'track2';
+      const mockTrackOne = new Track(primaryContent);
+      const mockTrackTwo = new Track(secondaryContent);
+
+      gantt = new Gantt(getAxes(axisJSON));
+      gantt.loadContent([primaryContent, secondaryContent]);
+      expect(gantt.tracks).toEqual([primaryContent.key, secondaryContent.key]);
+      expect(gantt.trackConfig[0].key).toEqual(mockTrackOne.key);
+      expect(gantt.trackConfig[1].key).toEqual(mockTrackTwo.key);
+      expect(gantt.trackConfig[0].trackLabel).toEqual(mockTrackOne.trackLabel);
+      expect(gantt.trackConfig[1].trackLabel).toEqual(mockTrackTwo.trackLabel);
+      expect(gantt.trackConfig[0].tasks).toEqual(mockTrackOne.tasks);
+      expect(gantt.trackConfig[1].tasks).toEqual(mockTrackTwo.tasks);
+      expect(gantt.tracks.length).toBe(2);
+      expect(gantt.trackConfig.length).toBe(2);
+    });
+    it('unloads content correctly', () => {
+      const primaryContent = getData();
+      const secondaryContent = getData();
+      secondaryContent.key = 'track2';
+      const mockTrackOne = new Track(primaryContent);
+      const mockTrackTwo = new Track(secondaryContent);
+
+      gantt = new Gantt(getAxes(axisJSON));
+      gantt.loadContent([primaryContent, secondaryContent]);
+      expect(gantt.tracks).toEqual([primaryContent.key, secondaryContent.key]);
+      expect(gantt.tracks.length).toBe(2);
+      expect(gantt.trackConfig.length).toBe(2);
+
+      gantt.unloadContent(primaryContent);
+      expect(gantt.tracks).toEqual([secondaryContent.key]);
+      expect(gantt.trackConfig[0].key).toEqual(mockTrackTwo.key);
+      expect(gantt.trackConfig[0].trackLabel).toEqual(mockTrackTwo.trackLabel);
+      expect(gantt.trackConfig[0].tasks).toEqual(mockTrackTwo.tasks);
+      expect(gantt.tracks.length).toBe(1);
+      expect(gantt.trackConfig.length).toBe(1);
+    });
+    it('unloads an array of content correctly', () => {
+      const primaryContent = getData();
+      const secondaryContent = getData();
+      const tertiaryContent = getData();
+      secondaryContent.key = 'track2';
+      tertiaryContent.key = 'track3';
+      const mockTrackTwo = new Track(secondaryContent);
+
+      gantt = new Gantt(getAxes(axisJSON));
+      gantt.loadContent([primaryContent, secondaryContent, tertiaryContent]);
+      expect(gantt.tracks).toEqual([primaryContent.key, secondaryContent.key, tertiaryContent.key]);
+      expect(gantt.tracks.length).toBe(3);
+      expect(gantt.trackConfig.length).toBe(3);
+
+      gantt.unloadContent([primaryContent, tertiaryContent]);
+      expect(gantt.tracks).toEqual([secondaryContent.key]);
+      expect(gantt.trackConfig[0].key).toEqual(mockTrackTwo.key);
+      expect(gantt.trackConfig[0].trackLabel).toEqual(mockTrackTwo.trackLabel);
+      expect(gantt.trackConfig[0].tasks).toEqual(mockTrackTwo.tasks);
+      expect(gantt.tracks.length).toBe(1);
+      expect(gantt.trackConfig.length).toBe(1);
+    });
     it('Throws error when duplicate key is provided for content', () => {
       expect(() => {
         const primaryContent = getData();
