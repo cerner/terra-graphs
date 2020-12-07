@@ -213,6 +213,258 @@ describe('PairedResult', () => {
       );
       expect(pairedContent.length).toEqual(2);
     });
+    describe('when invalid data is passed', () => {
+      describe('for paired result high,', () => {
+        it('should remove datapoint when undefined is passed', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: undefined,
+                mid: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when null is passed ', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: null,
+                mid: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when blank is passed ', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                },
+                mid: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+      });
+      describe('for paired result mid', () => {
+        it('should remove datapoint when undefined is passed', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: undefined,
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when null is passed ', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: null,
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when blank is passed ', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: { },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+      });
+      describe('for paired result low', () => {
+        it('should remove datapoint when undefined is passed', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: undefined,
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when null is passed ', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: null,
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when blank is passed ', () => {
+          const panData = {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: { },
+              },
+            ],
+          };
+          graphDefault.reflow(panData);
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+      });
+    });
     describe('when there is no data', () => {
       it('should update the dynamic data and disable the legend', () => {
         const panData = {
