@@ -1,19 +1,111 @@
 # Carbon Graphs
 
 [![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
+![npm](https://img.shields.io/npm/v/@cerner/carbon-graphs)
 
-A graphing library built using d3 based on Cerner design standards.
+A vanilla JavaScript graphing library built using d3 based on Cerner design standards.
 
+<br>
+
+
+- [Installing Carbon](#installing-carbon)
 - [Getting Started](#getting-started)
-- [Documentation](../terra-graphs/docs/README.md)
+- [Graph Types](#graph-types)
 - [LICENSE](#license)
+
+## Installing Carbon
+
+- Install from [npmjs](https://www.npmjs.com/package/@cerner/carbon-graphs): 
+```sh
+npm i @cerner/carbon-graphs --save-dev
+```
 
 ## Getting Started
 
-- Install from [npmjs](https://www.npmjs.com): 
+To create a graph with carbon, first let's create a graph configuration object and use it to initialize that canvas:
+
+```javascript
+const GRAPH_DATA = {
+  bindTo: "#root",
+  axis: {
+    x: {
+      show: true,
+      label: "x-axis label",
+      lowerLimit: 0,
+      upperLimit: 100
+    },
+    y: {
+      show: true,
+      label: "y-axis label",
+      lowerLimit: 0,
+      upperLimit: 10,
+    },
+  }
+};
+
+var canvas = Carbon.api.graph(GRAPH_DATA);
 ```
-npm i @cerner/carbon-graphs --save-dev
+
+Let's create a sample dataset to plot:
+```javascript
+const CONTENT_DATA1 = {
+  key: "uid_1",
+  label: {
+    display: "Dataset A"
+  },
+  values: [
+    {
+      x: 10,
+      y: 9
+    },
+    {
+      x: 45,
+      y: 3
+    },
+    {
+      x: 60,
+      y: 7
+    },
+    {
+      x: 77,
+      y: 8
+    },
+    {
+      x: 94,
+      y: 2
+    }
+  ]
+};
 ```
+
+The data can now by plotted by as a line graph by using the following:
+
+```javascript
+    canvas.loadContent(Carbon.api.line(CONTENT_DATA1));
+```
+
+This results in the following graph:
+
+![Alt](../terra-graphs/docs/assets/carbon-simple-line-graph.png "simple line graph")
+
+
+## Graph types
+
+The following graph types can be plotted using Carbon:
+
+-   [Line](./packages/terra-graphs/docs/controls/Line.md#usage)
+-   [Multi Line](./packages/terra-graphs/docs/controls/Line.md#multi-line)
+-   [Spline Line](./packages/terra-graphs/docs/controls/Line.md#spline-line)
+-   [Paired Result](./packages/terra-graphs/docs/controls/PairedResult.md#usage)
+-   [Bar](./packages/terra-graphs/docs/controls/Bar.md#usage)
+-   [Timeline](./packages/terra-graphs/docs/controls/Timeline.md#usage)
+-   [Pie](./packages/terra-graphs/docs/controls/Pie.md#usage)
+-   [Gantt](./packages/terra-graphs/docs/controls/Gantt.md#usage)
+-   [Scatter](./packages/terra-graphs/docs/controls/Scatter.md#usage)
+-   [Bubble](./packages/terra-graphs/docs/controls/Bubble.md#usage)
+    -   [Bubble Single Dataset](./packages/terra-graphs/docs/controls/BubbleSingleDataset.md)
+    -   [Bubble Multiple Dataset](./packages/terra-graphs/docs/controls/BubbleMultipleDataset.md)
+
 
 ## LICENSE
 

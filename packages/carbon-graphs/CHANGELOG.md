@@ -5,6 +5,7 @@
 * Changed
   * For consistency updated reflow in Graph and Gantt constructs to update the eventlines.
   * Added code to handle null/undefined/blank in paired result graph during both initial load and reflow.
+  * Updated `packages/carbon-graphs/README.md` so that it has more basic information about Carbon.
 
 ## 2.15.0 - (November 24, 2020)
 
