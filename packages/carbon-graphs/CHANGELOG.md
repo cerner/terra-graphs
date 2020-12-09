@@ -3,6 +3,9 @@
 ## Unreleased
 
 * Changed
+  * For consistency replaced `document` in all draw helpers with `graph.legendSVG` for better control.
+
+* Changed
   * For consistency updated reflow in Graph and Gantt constructs to update the eventlines.
   * Added code to handle null/undefined/blank in paired result graph during both initial load and reflow.
 
@@ -11,6 +14,3 @@
 * Changed
   * Added a condition to check if graphContainer is present and then resize the graph.
   * Migrated to the terra-graphs mono-rep.
-
-* Changed
-  * For consistency replaced `document` in all draw helpers with `graph.legendSVG` for better control.

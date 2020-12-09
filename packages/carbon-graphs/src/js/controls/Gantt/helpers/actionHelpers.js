@@ -246,6 +246,7 @@ const renderDataPointPath = (scale, config, path, dataPoint, index, legendSVG) =
  * @param {object} scale - d3 scale for Graph
  * @param {object} config - Graph config object derived from input JSON
  * @param {d3.selection} canvasSVG - d3 html element of the canvas
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {object} - d3 append object
  */
 const drawActionDataPoints = (scale, config, canvasSVG, legendSVG) => canvasSVG
