@@ -79,6 +79,24 @@ const loadInput = (inputJSON) => new PairedResultConfig()
   .getConfig();
 
 /**
+ * Filters invalid data like null and blank.
+ *
+ * @private
+ * @param {object} data - Data points object
+ * @returns {object} filteredData - filtered data object
+ */
+const filterPairedResultData = (data) => {
+  return data.map((value) => {
+    let filteredValue = {};
+    iterateOnPairType((t) => {
+      if(value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0)){
+        filteredValue[t] = value[t];
+      }
+    });
+    return filteredValue;
+  });
+}
+/**
  * A Paired result graph is a graph that is represented by 2 points
  * and a line connecting them. There may be an optional 3rd datapoint
  * representing a median between them.
@@ -128,6 +146,7 @@ class PairedResult extends GraphContent {
       this.config.yAxis,
       constants.Y_AXIS,
     );
+    this.config.values  = filterPairedResultData(this.config.values);
     this.valuesRange = calculateValuesRange(
       this.config.values,
       this.config.yAxis,
@@ -273,7 +292,8 @@ class PairedResult extends GraphContent {
       type,
     });
     const reflow = !!this.config.values.length;
-    this.config.values = graphData.values;
+    this.config.values = utils.deepClone(graphData.values);
+    this.config.values = filterPairedResultData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config, reflow);
     const drawBox = (boxPath) => {
       drawSelectionIndicator(graph.scale, graph.config, boxPath);

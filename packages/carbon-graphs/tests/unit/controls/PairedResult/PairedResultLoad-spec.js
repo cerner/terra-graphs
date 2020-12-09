@@ -367,6 +367,286 @@ describe('Paired Result - Load', () => {
       );
       expect(point.length).toBe(0);
     });
+    describe('when invalid data is passed', () => {
+      describe('for paired result high,', () => {
+        it('should remove datapoint when undefined is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: undefined,
+                mid: {
+                  x: 45,
+                  y: 146,
+                },
+                low: {
+                  x: 20,
+                  y: 120,
+                },
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when null is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: null,
+                mid: {
+                  x: 45,
+                  y: 146,
+                },
+                low: {
+                  x: 20,
+                  y: 120,
+                },
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when blank is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: {
+
+                },
+                mid: {
+                  x: 45,
+                  y: 146,
+                },
+                low: {
+                  x: 20,
+                  y: 120,
+                },
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+      });
+      describe('for paired result mid,', () => {
+        it('should remove datapoint when undefined is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: {
+                  x: 45,
+                  y: 146,
+                },
+                mid: undefined,
+                low: {
+                  x: 20,
+                  y: 120,
+                },
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when null is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: {
+                  x: 45,
+                  y: 146,
+                },
+                mid: null,
+                low: {
+                  x: 20,
+                  y: 120,
+                },
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when blank is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: {
+                  x: 45,
+                  y: 146,
+                },
+                mid: {},
+                low: {
+                  x: 20,
+                  y: 120,
+                },
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+      });
+      describe('for paired result low,', () => {
+        it('should remove datapoint when undefined is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: {
+                  x: 45,
+                  y: 146,
+                },
+                mid: {
+                  x: 20,
+                  y: 120,
+                },
+                low: undefined,
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when null is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: {
+                  x: 45,
+                  y: 146,
+                },
+                mid: {
+                  x: 20,
+                  y: 120,
+                },
+                low: null,
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+        it('should remove datapoint when blank is passed', () => {
+          graphDefault.destroy();
+          graphDefault = new Graph(getAxes(axisDefault));
+          input = getInput(
+            [
+              {
+                high: {
+                  x: 45,
+                  y: 146,
+                },
+                mid: {
+                  x: 20,
+                  y: 120,
+                },
+                low: {},
+              },
+            ],
+            false,
+            false,
+          );
+          graphDefault.loadContent(new PairedResult(input));
+          const pair = fetchElementByClass(
+            pairedResultGraphContainer,
+            styles.pairedBox,
+          );
+          const pointGroup = pair.querySelectorAll(
+              `.${styles.pointGroup}`,
+          );
+          expect(pointGroup.length).toEqual(2);
+        });
+      });
+    });
     describe('data points have correct unique key', () => {
       it('line', () => {
         const lineElement = fetchElementByClass(
