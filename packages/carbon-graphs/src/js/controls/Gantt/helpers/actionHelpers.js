@@ -98,7 +98,7 @@ export const clickHandler = (graphContext, config, canvasSVG) => (
   item,
 ) => {
   legendClickHandler(element);
-  updateShownTarget(config.shownTargets, item);
+  updateShownTarget(config.shownTargets, item.key);
   canvasSVG
     .selectAll(`.${styles.point}[aria-describedby="${item.key}"]`)
     .attr('aria-hidden', function () {
@@ -214,9 +214,10 @@ const loadActionInput = (inputJSON) => {
  * @param {SVGElement} path - svg Path element
  * @param {object} dataPoint - data point properties such as shape, color and onClick callback function
  * @param {number} index - data point index
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {object} - d3 selection object
  */
-const renderDataPointPath = (scale, config, path, dataPoint, index) => path.append(() => new Shape(getShapeForTarget(dataPoint)).getShapeElement(
+const renderDataPointPath = (scale, config, path, dataPoint, index, legendSVG) => path.append(() => new Shape(getShapeForTarget(dataPoint)).getShapeElement(
   getDefaultSVGProps({
     svgClassNames: styles.point,
     svgStyles: `fill: ${getColorForTarget(dataPoint)};`,
@@ -225,15 +226,7 @@ const renderDataPointPath = (scale, config, path, dataPoint, index) => path.appe
       dataPointActionHandler(dataPoint, index, this);
     },
     a11yAttributes: {
-      'aria-hidden': document.querySelector(
-        `li[aria-describedby="${dataPoint.key}"]`,
-      )
-        ? document
-          .querySelector(
-            `li[aria-describedby="${dataPoint.key}"]`,
-          )
-          .getAttribute('aria-current') === 'false'
-        : false,
+      'aria-hidden': legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${dataPoint.key}']`)?.attr('aria-current') === 'false' : 'false',
       'aria-describedby': dataPoint.key,
       'aria-disabled': !utils.isFunction(dataPoint.onClick),
     },
@@ -253,15 +246,16 @@ const renderDataPointPath = (scale, config, path, dataPoint, index) => path.appe
  * @param {object} scale - d3 scale for Graph
  * @param {object} config - Graph config object derived from input JSON
  * @param {d3.selection} canvasSVG - d3 html element of the canvas
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {object} - d3 append object
  */
-const drawActionDataPoints = (scale, config, canvasSVG) => canvasSVG
+const drawActionDataPoints = (scale, config, canvasSVG, legendSVG) => canvasSVG
   .append('g')
   .classed(styles.pointGroup, true)
   .each(function (dataPoint, index) {
     const dataPointSVG = d3.select(this);
     renderSelectionPath(scale, config, dataPointSVG, dataPoint, index);
-    renderDataPointPath(scale, config, dataPointSVG, dataPoint, index);
+    renderDataPointPath(scale, config, dataPointSVG, dataPoint, index, legendSVG);
   });
 /**
  * Creates an element container with data points from the input JSON property: action
@@ -297,9 +291,10 @@ const loadActions = (graphContext, trackPathSVG, trackLabel, gantt) => gantt.act
  * @param {object} scale - d3 scale for Graph
  * @param {object} gantt - Graph config object for the content.
  * @param {object} trackGroupPath - Container for the track
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {undefined} - returns nothing
  */
-const reflowActions = (config, scale, gantt, trackGroupPath) => {
+const reflowActions = (config, scale, gantt, trackGroupPath, legendSVG) => {
   gantt.config.actions.forEach((action) => {
     validateActionContent(action);
   });
@@ -318,6 +313,7 @@ const reflowActions = (config, scale, gantt, trackGroupPath) => {
       ),
       drawActionDataPoints,
       false,
+      legendSVG,
     );
   });
 };

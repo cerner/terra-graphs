@@ -162,6 +162,7 @@ class BubbleSingleDataset extends Bubble {
       graph.config,
       pointPath.enter(),
       this.dataTarget,
+      graph.legendSVG
     );
     pointPath
       .exit()
@@ -184,7 +185,7 @@ class BubbleSingleDataset extends Bubble {
      */
   redraw(graph) {
     clear(graph.svg, this.dataTarget);
-    draw(graph.scale, graph.config, graph.svg, this.dataTarget);
+    draw(graph.scale, graph.config, graph.svg, this.dataTarget, graph.legendSVG);
     return this;
   }
 }

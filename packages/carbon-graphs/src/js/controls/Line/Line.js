@@ -267,7 +267,7 @@ class Line extends GraphContent {
         .select(`.${styles.currentPointsGroup}`)
         .selectAll(`[class*="${styles.point}"]`)
         .data(getDataPointValues(this.dataTarget));
-      drawDataPoints(graph.scale, graph.config, pointPath.enter());
+      drawDataPoints(graph.scale, graph.config, pointPath.enter(), graph.legendSVG);
       pointPath
         .exit()
         .transition()
@@ -289,7 +289,7 @@ class Line extends GraphContent {
      */
   redraw(graph) {
     clear(graph.svg, this.dataTarget);
-    draw(graph.scale, graph.config, graph.svg, this.dataTarget);
+    draw(graph.scale, graph.config, graph.svg, this.dataTarget, graph.legendSVG);
     return this;
   }
 }
