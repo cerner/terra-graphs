@@ -264,9 +264,10 @@ const drawCriticalityPoints = (
  * @param {object} scale - d3 scale for Graph
  * @param {object} config - Graph config object derived from input JSON
  * @param {d3.selection} canvasSVG - d3 html element of the canvas
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {undefined} - returns nothing
  */
-const drawPoints = (scale, config, canvasSVG) => {
+const drawPoints = (scale, config, canvasSVG, legendSVG) => {
   const getDataPointPath = (path, type, value, index) => path.append(() => new Shape(getShapeForTarget(getValue(value, type))).getShapeElement(
     getDefaultSVGProps({
       svgClassNames: `${styles.pairedPoint} ${getValue(
@@ -286,14 +287,7 @@ const drawPoints = (scale, config, canvasSVG) => {
         );
       },
       a11yAttributes: {
-        'aria-hidden':
-                document
-                  .querySelector(
-                    `.${styles.legendItem}[aria-describedby="${
-                      getValue(value, type).key
-                    }"]`,
-                  )
-                  ?.getAttribute('aria-current') === 'false',
+        'aria-hidden': legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${getValue(value, type).key}']`)?.attr('aria-current') === 'false' : 'false',
         'aria-describedby': getValue(value, type).key,
         'aria-disabled': !utils.isFunction(value.onClick),
       },
@@ -343,13 +337,14 @@ const getDataPointValues = (target) => target.internalValuesSubset;
  * @param {object} config - config object derived from input JSON
  * @param {d3.selection} canvasSVG - d3 selection node of canvas svg
  * @param {Array} dataTarget - Data points
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {undefined} - returns nothing
  */
-const draw = (scale, config, canvasSVG, dataTarget) => {
+const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
   const drawBox = (boxPath) => {
     drawSelectionIndicator(scale, config, boxPath);
     drawLine(scale, config, boxPath);
-    drawPoints(scale, config, boxPath);
+    drawPoints(scale, config, boxPath, legendSVG);
   };
   const pairedBoxGroupSVG = canvasSVG
     .append('g')

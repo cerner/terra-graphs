@@ -21,6 +21,7 @@ import { transformPoint } from './translateHelpers';
  * @param {object} dataTarget - Data point values and their properties for each action item
  * @param {Function} drawDataPointsHandler - call back function to draw points with options.
  * @param {boolean} event - Data point is an event or not.
+ * @param {object} legendSVG - d3 element path of the legend from the parent control
  * @returns {undefined} - returns nothing
  */
 export const drawDataPoints = (
@@ -30,6 +31,7 @@ export const drawDataPoints = (
   dataTarget,
   drawDataPointsHandler,
   event,
+  legendSVG,
 ) => {
   const allPointsPath = ganttContentContainerPath
     .append('g')
@@ -44,7 +46,11 @@ export const drawDataPoints = (
   const pointPath = allPointsPath
     .selectAll(`.${styles.point}`)
     .data(dataTarget);
-  drawDataPointsHandler(scale, config, pointPath.enter());
+  if (legendSVG) {
+    drawDataPointsHandler(scale, config, pointPath.enter(), legendSVG);
+  } else {
+    drawDataPointsHandler(scale, config, pointPath.enter());
+  }
   pointPath
     .exit()
     .transition()
