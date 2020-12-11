@@ -21,4 +21,4 @@ const contentHandler = (input, task) => {
   }
 };
 
-export { contentHandler};
+export { contentHandler };
