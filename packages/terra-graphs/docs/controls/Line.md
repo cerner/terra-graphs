@@ -121,7 +121,7 @@ var lineDefault = Carbon.api.graph(/* Input JSON */);
 lineDefault.loadContent(Carbon.api.line(/* Data array A */));
 ```
 
-For loading multiple data-sets, you can load as additional content as an array:
+For loading multiple data-sets, you can load additional content as an array:
 ```javascript
 var lineDefault = Carbon.api.graph(/* Input JSON */);
 var lineA = Carbon.api.line(/* Data array A */);
