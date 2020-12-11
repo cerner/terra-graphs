@@ -417,7 +417,7 @@ export const renderLineLegendTo = (id) => {
   const line1 = Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[0]);
   const line2 = Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[2]);
 
-  lineTime.loadBatchContent([line1, line2])
+  lineTime.loadContent([line1, line2])
   return lineTime;
 };
 export const renderLineDateTimeBuckets = (id) => {
