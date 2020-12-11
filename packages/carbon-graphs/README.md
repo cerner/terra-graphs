@@ -93,18 +93,18 @@ This results in the following graph:
 
 The following graph types can be plotted using Carbon:
 
--   [Line](./packages/terra-graphs/docs/controls/Line.md#usage)
--   [Multi Line](./packages/terra-graphs/docs/controls/Line.md#multi-line)
--   [Spline Line](./packages/terra-graphs/docs/controls/Line.md#spline-line)
--   [Paired Result](./packages/terra-graphs/docs/controls/PairedResult.md#usage)
--   [Bar](./packages/terra-graphs/docs/controls/Bar.md#usage)
--   [Timeline](./packages/terra-graphs/docs/controls/Timeline.md#usage)
--   [Pie](./packages/terra-graphs/docs/controls/Pie.md#usage)
--   [Gantt](./packages/terra-graphs/docs/controls/Gantt.md#usage)
--   [Scatter](./packages/terra-graphs/docs/controls/Scatter.md#usage)
--   [Bubble](./packages/terra-graphs/docs/controls/Bubble.md#usage)
-    -   [Bubble Single Dataset](./packages/terra-graphs/docs/controls/BubbleSingleDataset.md)
-    -   [Bubble Multiple Dataset](./packages/terra-graphs/docs/controls/BubbleMultipleDataset.md)
+-   [Line](../terra-graphs/docs/controls/Line.md#usage)
+-   [Multi Line](../terra-graphs/docs/controls/Line.md#multi-line)
+-   [Spline Line](../terra-graphs/docs/controls/Line.md#spline-line)
+-   [Paired Result](../terra-graphs/docs/controls/PairedResult.md#usage)
+-   [Bar](../terra-graphs/docs/controls/Bar.md#usage)
+-   [Timeline](../terra-graphs/docs/controls/Timeline.md#usage)
+-   [Pie](../terra-graphs/docs/controls/Pie.md#usage)
+-   [Gantt](../terra-graphs/docs/controls/Gantt.md#usage)
+-   [Scatter](../terra-graphs/docs/controls/Scatter.md#usage)
+-   [Bubble](../terra-graphs/docs/controls/Bubble.md#usage)
+    -   [Bubble Single Dataset](../terra-graphs/docs/controls/BubbleSingleDataset.md)
+    -   [Bubble Multiple Dataset](../terra-graphs/docs/controls/BubbleMultipleDataset.md)
 
 
 ## LICENSE
