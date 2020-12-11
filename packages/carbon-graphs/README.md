@@ -15,7 +15,7 @@ A vanilla JavaScript graphing library built using d3 based on Cerner design stan
 
 ## Installing Carbon
 
-- Install from [npmjs](https://www.npmjs.com/package/@cerner/carbon-graphs): 
+- Install from [npmjs](https://www.npmjs.com/package/@cerner/carbon-graphs) using the command below: 
 ```sh
 npm i @cerner/carbon-graphs --save-dev
 ```
