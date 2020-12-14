@@ -258,6 +258,59 @@ describe('Graph', () => {
       expect(graph.content.length).toBe(1);
       expect(graph.contentConfig.length).toBe(1);
     });
+    it('Loads an array of content correctly', () => {
+      const firstContent = new Line(getData(valuesDefault));
+      const secondContent = new Line(getData(valuesDefault));
+      secondContent.config.key = 'uid_2';
+      const contentArray = [firstContent, secondContent];
+
+      graph = new Graph(getAxes(axisDefault));
+      graph.loadContent(contentArray);
+      expect(graph.content).toEqual(contentArray);
+      expect(graph.contentConfig).toEqual([firstContent.config, secondContent.config]);
+      expect(graph.content.length).toBe(2);
+      expect(graph.contentConfig.length).toBe(2);
+    });
+    it('unloads content correctly', () => {
+      const firstContent = new Line(getData(valuesDefault));
+      const secondContent = new Line(getData(valuesDefault));
+      secondContent.config.key = 'uid_2';
+      const contentArray = [firstContent, secondContent];
+
+      graph = new Graph(getAxes(axisDefault));
+      graph.loadContent(contentArray);
+      expect(graph.content).toEqual(contentArray);
+      expect(graph.contentConfig).toEqual([firstContent.config, secondContent.config]);
+      expect(graph.content.length).toBe(2);
+      expect(graph.contentConfig.length).toBe(2);
+
+      graph.unloadContent(firstContent);
+      expect(graph.content).toEqual[secondContent];
+      expect(graph.contentConfig).toEqual([secondContent.config]);
+      expect(graph.content.length).toBe(1);
+      expect(graph.contentConfig.length).toBe(1);
+    });
+    it('unloads an array content correctly', () => {
+      const firstContent = new Line(getData(valuesDefault));
+      const secondContent = new Line(getData(valuesDefault));
+      const thirdContent = new Line(getData(valuesDefault));
+      secondContent.config.key = 'uid_2';
+      thirdContent.config.key = 'uid_3';
+      const contentArray = [firstContent, secondContent, thirdContent];
+
+      graph = new Graph(getAxes(axisDefault));
+      graph.loadContent(contentArray);
+      expect(graph.content).toEqual(contentArray);
+      expect(graph.contentConfig).toEqual([firstContent.config, secondContent.config, thirdContent.config]);
+      expect(graph.content.length).toBe(3);
+      expect(graph.contentConfig.length).toBe(3);
+
+      graph.unloadContent([firstContent, thirdContent]);
+      expect(graph.content).toEqual[secondContent];
+      expect(graph.contentConfig).toEqual([secondContent.config]);
+      expect(graph.content.length).toBe(1);
+      expect(graph.contentConfig.length).toBe(1);
+    });
     it('Changes to new object has no impact on base object', () => {
       const data = getData(valuesDefault);
       const input = getAxes(axisDefault);

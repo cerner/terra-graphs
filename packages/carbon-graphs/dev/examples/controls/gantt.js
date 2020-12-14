@@ -752,7 +752,8 @@ export const renderGanttStyle = (id) => {
   data.showActionLegend = false;
   data.dateline = [];
   const ganttDefault = Carbon.api.gantt(data);
-  ganttDefault.loadContent({
+  const contentArray = [];
+  contentArray.push({
     key: 'track 0',
     trackLabel: {
       display: 'Default',
@@ -770,7 +771,8 @@ export const renderGanttStyle = (id) => {
       },
     ],
   });
-  ganttDefault.loadContent({
+
+  contentArray.push({
     key: 'track 1',
     trackLabel: {
       display: 'Hollow only',
@@ -791,7 +793,8 @@ export const renderGanttStyle = (id) => {
       },
     ],
   });
-  ganttDefault.loadContent({
+
+  contentArray.push({
     key: 'track 2',
     trackLabel: {
       display: 'Dotted, Hollow',
@@ -812,7 +815,8 @@ export const renderGanttStyle = (id) => {
       },
     ],
   });
-  ganttDefault.loadContent({
+
+  contentArray.push({
     key: 'track 3',
     trackLabel: {
       display: 'Percentage',
@@ -831,7 +835,8 @@ export const renderGanttStyle = (id) => {
       },
     ],
   });
-  ganttDefault.loadContent({
+
+  contentArray.push({
     key: 'track 4',
     trackLabel: {
       display: 'Task Hashed',
@@ -852,7 +857,8 @@ export const renderGanttStyle = (id) => {
       },
     ],
   });
-  ganttDefault.loadContent({
+
+  contentArray.push({
     key: 'track 5',
     trackLabel: {
       display: 'Activity',
@@ -870,7 +876,7 @@ export const renderGanttStyle = (id) => {
     ],
   });
 
-  ganttDefault.loadContent({
+  contentArray.push({
     key: 'track 6',
     trackLabel: {
       display: 'Activity Hashed',
@@ -891,7 +897,7 @@ export const renderGanttStyle = (id) => {
     ],
   });
 
-  ganttDefault.loadContent({
+  contentArray.push({
     key: 'track 7',
     trackLabel: {
       display: 'Activity and Task',
@@ -919,6 +925,8 @@ export const renderGanttStyle = (id) => {
       },
     ],
   });
+
+  ganttDefault.loadContent(contentArray);
   return ganttDefault;
 };
 export const renderGanttDateTimeBuckets = (id) => {

@@ -2,6 +2,7 @@
 
 import * as d3 from 'd3';
 import Construct from '../../core/Construct';
+import { contentHandler } from "../../helpers/constructUtils";
 import {
   calculateAxesLabelSize,
   calculateAxesSize,
@@ -328,14 +329,11 @@ class Graph extends Construct {
   }
 
   /**
-     * Loads the content onto the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * @param {object} content - Graph content
-     * @returns {Graph} - Graph instance
-     */
-  loadContent(content) {
+   * Performs the needed tasks to add content to this graph
+   * @param {object} content - a single content object.
+   * @returns nothing
+   */
+  processContent(content) {
     validateContent(this.content, content);
     this.content.push(content);
     this.contentConfig.push(content.config);
@@ -349,56 +347,74 @@ class Graph extends Construct {
     );
     if (
       this.config.allowCalibration
-            && isRangeModified(this.config, content.config.yAxis)
+      && isRangeModified(this.config, content.config.yAxis)
     ) {
       updateAxesDomain(this.config, content);
     }
     content.load(this);
     if (
       utils.notEmpty(this.config.dateline)
-            && this.config.axis.x.type === AXIS_TYPE.TIME_SERIES
+      && this.config.axis.x.type === AXIS_TYPE.TIME_SERIES
     ) {
       redrawDatelineContent(this.scale, this.config, this.svg);
     }
     if (
       utils.notEmpty(this.config.eventline)
-            && this.config.axis.x.type === AXIS_TYPE.TIME_SERIES
+      && this.config.axis.x.type === AXIS_TYPE.TIME_SERIES
     ) {
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
     if (utils.notEmpty(content.config.values)) {
       removeNoDataView(this.svg);
     }
+  }
+
+  /**
+   * Loads the content into the graph.
+   * Content can be provided as a singular data set, or as an array when
+   * rendering multiple data sets.
+   *
+   * @param {object|array} content - Graph content
+   * @returns {Graph} - Graph instance
+   */
+  loadContent(content) {
+    contentHandler(content, (i) => {
+      this.processContent(i);
+    })
+
     this.resize();
     return this;
   }
 
   /**
-     * Unloads the content from the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * Input can be either a GraphContent instance or
-     * just an object containing a `key` of the content to be removed
-     *
-     * @param {object} input - Graph content to be removed
-     * @returns {Graph} - Graph instance
-     */
+   * Unloads the content from the graph.
+   * Content can be provided as a singular data set, or as an array when
+   * rendering multiple data sets.
+   *
+   * Input can be either a GraphContent instance or
+   * just an object containing a `key` of the content to be removed
+   *
+   * @param {object|array} input - Graph content to be removed
+   * @returns {Graph} - Graph instance
+   */
   unloadContent(input) {
-    const index = this.contentKeys.indexOf(input.key || input.config.key);
-    if (index < 0) {
-      throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
-    }
-    this.content[index].unload(this);
-    this.content.splice(index, 1);
-    this.contentConfig.splice(index, 1);
-    this.contentKeys.splice(index, 1);
-    if (
-      this.config.showNoDataText
-            && this.content.every((content) => utils.isEmpty(content.config.values))
-    ) {
-      drawNoDataView(this.config, this.svg);
-    }
+    contentHandler(input, (i) => {
+      const index = this.contentKeys.indexOf(i.key || i.config.key);
+      if (index < 0) {
+        throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
+      }
+      this.content[index].unload(this);
+      this.content.splice(index, 1);
+      this.contentConfig.splice(index, 1);
+      this.contentKeys.splice(index, 1);
+      if (
+        this.config.showNoDataText
+        && this.content.every((content) => utils.isEmpty(content.config.values))
+      ) {
+        drawNoDataView(this.config, this.svg);
+      }
+    })
+
     this.resize();
     return this;
   }

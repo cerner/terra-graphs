@@ -195,6 +195,69 @@ describe('Timeline', () => {
       );
       expect(timeline.contentConfig.length).toBe(1);
     });
+    it('Loads an array of content correctly', () => {
+      const primaryContent = getData(valuesJSON);
+      const secondaryContent = getData(valuesJSON);
+      secondaryContent.key = 'uid_2';
+      timeline = new Timeline(getAxes(axisJSON));
+
+      timeline.loadContent([primaryContent, secondaryContent]);
+      expect(timeline.content).toEqual([primaryContent.key, secondaryContent.key]);
+      expect(timeline.content.length).toBe(2);
+      expect(timeline.contentConfig[0].config.key).toEqual(primaryContent.key);
+      expect(timeline.contentConfig[0].config.label).toEqual(primaryContent.label);
+      expect(timeline.contentConfig[0].config.shape).toEqual(primaryContent.shape);
+      expect(timeline.contentConfig[0].config.color).toEqual(primaryContent.color);
+      expect(timeline.contentConfig[0].config.values).toEqual(primaryContent.values);
+      expect(timeline.contentConfig[1].config.key).toEqual(secondaryContent.key);
+      expect(timeline.contentConfig[1].config.label).toEqual(secondaryContent.label);
+      expect(timeline.contentConfig[1].config.shape).toEqual(secondaryContent.shape);
+      expect(timeline.contentConfig[1].config.color).toEqual(secondaryContent.color);
+      expect(timeline.contentConfig[1].config.values).toEqual(secondaryContent.values);
+      expect(timeline.contentConfig.length).toBe(2);
+    });
+    it('unloads content correctly', () => {
+      const primaryContent = getData(valuesJSON);
+      const secondaryContent = getData(valuesJSON);
+      secondaryContent.key = 'uid_2';
+      timeline = new Timeline(getAxes(axisJSON));
+
+      timeline.loadContent([primaryContent, secondaryContent]);
+      expect(timeline.content).toEqual([primaryContent.key, secondaryContent.key]);
+      expect(timeline.content.length).toBe(2);
+      expect(timeline.contentConfig.length).toBe(2);
+
+      timeline.unloadContent(primaryContent);
+      expect(timeline.content.length).toBe(1);
+      expect(timeline.contentConfig[0].config.key).toEqual(secondaryContent.key);
+      expect(timeline.contentConfig[0].config.label).toEqual(secondaryContent.label);
+      expect(timeline.contentConfig[0].config.shape).toEqual(secondaryContent.shape);
+      expect(timeline.contentConfig[0].config.color).toEqual(secondaryContent.color);
+      expect(timeline.contentConfig[0].config.values).toEqual(secondaryContent.values);
+      expect(timeline.contentConfig.length).toBe(1);
+    });
+    it('unloads an array of content correctly', () => {
+      const primaryContent = getData(valuesJSON);
+      const secondaryContent = getData(valuesJSON);
+      const tertiaryContent = getData(valuesJSON);
+      secondaryContent.key = 'uid_2';
+      tertiaryContent.key = 'uid_3';
+      timeline = new Timeline(getAxes(axisJSON));
+
+      timeline.loadContent([primaryContent, secondaryContent, tertiaryContent]);
+      expect(timeline.content).toEqual([primaryContent.key, secondaryContent.key, tertiaryContent.key]);
+      expect(timeline.content.length).toBe(3);
+      expect(timeline.contentConfig.length).toBe(3);
+
+      timeline.unloadContent([primaryContent, tertiaryContent]);
+      expect(timeline.content.length).toBe(1);
+      expect(timeline.contentConfig[0].config.key).toEqual(secondaryContent.key);
+      expect(timeline.contentConfig[0].config.label).toEqual(secondaryContent.label);
+      expect(timeline.contentConfig[0].config.shape).toEqual(secondaryContent.shape);
+      expect(timeline.contentConfig[0].config.color).toEqual(secondaryContent.color);
+      expect(timeline.contentConfig[0].config.values).toEqual(secondaryContent.values);
+      expect(timeline.contentConfig.length).toBe(1);
+    });
     it('Throws error when duplicate key is provided for content', () => {
       expect(() => {
         const primaryContent = getData(valuesJSON);

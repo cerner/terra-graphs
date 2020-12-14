@@ -29,6 +29,7 @@ import {
 } from './helpers/translateHelpers';
 import TimelineConfig, { processInput } from './TimelineConfig';
 import TimelineContent from './TimelineContent';
+import {contentHandler} from '../../helpers/constructUtils';
 
 /**
  * @typedef {object} Timeline
@@ -247,38 +248,43 @@ class Timeline extends Construct {
   }
 
   /**
-     * Loads the content onto the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * @param {object} input - Timeline content
-     * @returns {Timeline} - Timeline instance
-     */
+   * Loads the content into the graph.
+   * Content can be provided as a singular data set, or as an array when
+   * rendering multiple data sets
+   *
+   * @param {object} input - Timeline content
+   * @returns {Timeline} - Timeline instance
+   */
   loadContent(input) {
-    const content = new TimelineContent(input);
-    content.load(this);
-    this.content.push(input.key);
-    this.contentConfig.push(content);
+    contentHandler(input, (i) => {
+      const content = new TimelineContent(i);
+      content.load(this);
+      this.content.push(i.key);
+      this.contentConfig.push(content);
+    })
+
     this.resize();
     return this;
   }
 
   /**
-     * Unloads the content from the graph.
-     * The content serves as a 1to1 relationship. For rendering
-     * multiple data sets respective number of content needs to be provided.
-     *
-     * @param {object} input - Timeline content to be removed
-     * @returns {Timeline} - Timeline instance
-     */
+   * Unloads the content from the graph.
+   * The content serves as a 1to1 relationship. For rendering
+   * multiple data sets respective number of content needs to be provided.
+   *
+   * @param {object} input - Timeline content to be removed
+   * @returns {Timeline} - Timeline instance
+   */
   unloadContent(input) {
-    const index = this.content.indexOf(input.key);
-    if (index < 0) {
-      throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
-    }
-    this.contentConfig[index].unload(this);
-    this.content.splice(index, 1);
-    this.contentConfig.splice(index, 1);
+    contentHandler(input, (i) => {
+      const index = this.content.indexOf(i.key);
+      if (index < 0) {
+        throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
+      }
+      this.contentConfig[index].unload(this);
+      this.content.splice(index, 1);
+      this.contentConfig.splice(index, 1);
+    })
     this.resize();
     return this;
   }

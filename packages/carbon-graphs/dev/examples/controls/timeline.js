@@ -18,8 +18,11 @@ export const renderTimeline = (id) => {
   const timelineDefault = Carbon.api.timeline(
     getDemoData(`#${id}`, 'TIMELINE'),
   );
-  timelineDefault.loadContent(getDemoData(`#${id}`, 'TIMELINE').data[0]);
-  timelineDefault.loadContent(getDemoData(`#${id}`, 'TIMELINE').data[1]);
+  const contentArray = [
+    getDemoData(`#${id}`, 'TIMELINE').data[0],
+    getDemoData(`#${id}`, 'TIMELINE').data[1]
+  ];
+  timelineDefault.loadContent(contentArray);
   return timelineDefault;
 };
 export const renderTimelineCustomContentPadding = (id) => {
