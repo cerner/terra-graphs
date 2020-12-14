@@ -683,6 +683,8 @@ const clickHandler = (graphContext, control, config, canvasSVG) => (
   const pairedBoxGroup = d3.selectAll(`.${styles.pairedBoxGroup}`);
   pairedBoxGroup.each(function () {
     const clipPath = d3.select(this).attr('clip-path');
+    /* In IE the clip path is encapsulated in quotes (ex: (url(“#carbon-1607926345895-clip"))) and in other browsers it is not.
+    we are using logic below to remove quotes in internet explorer if present. */
     if (clipPath.replace(/['"]+/g, '') === pairedBoxGroupClipPath) {
       const boxPath = d3.select(this).selectAll(`.${styles.pairedBox}`);
       showLine(config, boxPath);
