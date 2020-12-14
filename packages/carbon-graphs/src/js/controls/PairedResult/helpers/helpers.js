@@ -683,7 +683,7 @@ const clickHandler = (graphContext, control, config, canvasSVG) => (
   const pairedBoxGroup = d3.selectAll(`.${styles.pairedBoxGroup}`);
   pairedBoxGroup.each(function () {
     const clipPath = d3.select(this).attr('clip-path');
-    if (clipPath === pairedBoxGroupClipPath) {
+    if (clipPath.replace(/['"]+/g, '') === pairedBoxGroupClipPath) {
       const boxPath = d3.select(this).selectAll(`.${styles.pairedBox}`);
       showLine(config, boxPath);
     }
