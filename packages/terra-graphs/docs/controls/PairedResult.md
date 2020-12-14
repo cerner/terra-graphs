@@ -161,7 +161,7 @@ Each paired result can have a style object in [Values](#values) level.
 - At least one of the high/low/medium should be provided with valid data.
 -   `isCritical` toggle is disabled by default
 -   When `isCritical` toggle is enabled, an indicator will be shown surrounding the data point
--   Providing invalid data to x or y will lead to console error.
+-   Providing invalid data to x or y will lead to an error.
 
 
 ### Regions

@@ -237,7 +237,7 @@ Each bar can have a legendOptions object in [Values](#values) level.
 | x             | string   | Co-ordinate x, for plotting the bar |
 | y             | string   | Co-ordinate y, for height of bar    |
 
-**Note: providing invalid data to x or y will lead to console error.**
+**Note: Providing invalid data to x or y will lead to an error.**
 
 #### Optional
 
