@@ -164,7 +164,7 @@ const draw = (scale, config, canvasSVG, dataTarget) => {
 
   const bubblePoint = BubbleSVG.select(`.${styles.currentPointsGroup}`)
     .selectAll(`.${styles.point}`)
-    .data(getDataPointValues(dataTarget).filter((d) => d.y !== null));
+    .data(getDataPointValues(dataTarget));
   drawBubbles(scale, config, bubblePoint.enter(), dataTarget);
   bubblePoint
     .exit()

@@ -20,6 +20,7 @@ import {
   fetchAllElementsByClass,
   fetchElementByClass,
 } from './helpers';
+import errors from "../../../../src/js/helpers/errors";
 
 describe('PairedResult', () => {
   let graphDefault = null;
@@ -75,7 +76,96 @@ describe('PairedResult', () => {
         done();
       });
     });
-
+    describe('For paired result high', () => {
+      it('throw an error when null value is provided for y', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              high: {
+                x: '2016-09-17T12:00:00Z',
+                y: null,
+              },
+            },
+          ],
+        };
+        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+      it('throw an error when undefined value is provided for y', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              high: {
+                x: '2016-09-17T12:00:00Z',
+                y: undefined,
+              },
+            },
+          ],
+        };
+        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+    });
+    describe('For paired result mid', () => {
+      it('throw an error when null value is provided for y', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              mid: {
+                x: '2016-09-18T12:00:00Z',
+                y: null,
+              },
+            },
+          ],
+        };
+        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+      it('throw an error when undefined value is provided for y', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              mid: {
+                x: '2016-09-17T12:00:00Z',
+                y: undefined,
+              },
+            },
+          ],
+        };
+        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+    });
+    describe('For paired result low', () => {
+      it('throw an error when null value is provided for y', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              low: {
+                x: '2016-09-18T12:00:00Z',
+                y: null,
+              },
+            },
+          ],
+        };
+        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+      it('throw an error when undefined value is provided for y', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              low: {
+                x: '2016-09-17T12:00:00Z',
+                y: undefined,
+              },
+            },
+          ],
+        };
+        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      });
+    });
     describe('when key matches', () => {
       describe('label is not passed', () => {
         it('should update dynamic data and retain label', () => {

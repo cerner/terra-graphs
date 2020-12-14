@@ -281,7 +281,7 @@ const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
   const pointPath = scatterSVG
     .select(`.${styles.currentPointsGroup}`)
     .selectAll(`.${styles.point}`)
-    .data(getDataPointValues(dataTarget).filter((d) => d.y !== null));
+    .data(getDataPointValues(dataTarget));
   drawDataPoints(scale, config, pointPath.enter(), legendSVG);
   pointPath
     .exit()

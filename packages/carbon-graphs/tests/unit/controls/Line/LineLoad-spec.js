@@ -257,6 +257,24 @@ describe('Line - Load', () => {
       expect(pointsGroup.children.length).toBe(valuesDefault.length - 1);
       expect(selectedPoint.getAttribute('aria-hidden')).toContain('true');
     });
+    it('does not render data point if data point is undefiend', () => {
+      graphDefault.destroy();
+      const graph = new Graph(getAxes(axisDefault));
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = undefined;
+      input = getInput(data);
+      graph.loadContent(new Line(input));
+      const pointsGroup = fetchElementByClass(
+        lineGraphContainer,
+        styles.currentPointsGroup,
+      );
+      const selectedPoint = fetchElementByClass(
+        pointsGroup,
+        styles.dataPointSelection,
+      );
+      expect(pointsGroup.children.length).toBe(valuesDefault.length - 1);
+      expect(selectedPoint.getAttribute('aria-hidden')).toContain('true');
+    });
     it('does not render points if shapes needs to be hidden', () => {
       graphDefault.destroy();
       const hiddenShapeInput = getAxes(axisDefault);

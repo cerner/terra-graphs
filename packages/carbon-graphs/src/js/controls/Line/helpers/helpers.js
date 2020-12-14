@@ -63,7 +63,7 @@ const getDataPointValues = (target) => target.internalValuesSubset;
 const createLine = (scale, d) => {
   const newLine = d3
     .line()
-    .defined((value) => value.y !== null)
+    .defined((value) => value.y !== null && value.y !== undefined)
     .x((value) => scale.x(value.x))
     .y((value) => scale[value.yAxis](value.y))
     .curve(d.interpolationType);
@@ -363,7 +363,7 @@ const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
     const pointPath = lineSVG
       .select(`.${styles.currentPointsGroup}`)
       .selectAll(`.${styles.point}`)
-      .data(getDataPointValues(dataTarget).filter((d) => d.y !== null));
+      .data(getDataPointValues(dataTarget).filter((d) => d.y !== null && d.y !== undefined));
     drawDataPoints(scale, config, pointPath.enter(), legendSVG);
     pointPath
       .exit()

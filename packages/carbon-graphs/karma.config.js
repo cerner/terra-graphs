@@ -29,7 +29,7 @@ module.exports = function (config) {
     },
     singleRun: true,
     files: [
-      './node_modules/@babel/polyfill/dist/polyfill.js',
+      './../../node_modules/@babel/polyfill/dist/polyfill.js',
       './webpack/tests.webpack.js',
     ],
     frameworks: ['parallel', 'jasmine'],

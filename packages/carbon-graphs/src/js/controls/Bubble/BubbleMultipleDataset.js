@@ -16,6 +16,7 @@ import {
 } from './helpers/helpers';
 import { draw, drawBubbles } from './helpers/helpersMultipleDataset';
 import Bubble from './Bubble';
+import {validateData} from "../../helpers/constructUtils";
 
 /**
  * A Bubble graph is a graph used to represent a collection of data
@@ -43,7 +44,7 @@ class BubbleMultipleDataset extends Bubble {
       );
       return this;
     }
-
+    validateData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config);
     draw(graph.scale, graph.config, graph.svg, this.dataTarget);
     if (utils.notEmpty(this.dataTarget.regions)) {
@@ -99,6 +100,7 @@ class BubbleMultipleDataset extends Bubble {
       hoverHandler: hoverHandler(graph.config.shownTargets, graph.svg),
     };
     this.config.values = graphData.values;
+    validateData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config);
     const position = graph.config.shownTargets.lastIndexOf(graphData.key);
 

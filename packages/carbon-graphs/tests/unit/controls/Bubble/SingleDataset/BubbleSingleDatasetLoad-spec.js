@@ -2,7 +2,7 @@
 
 import sinon from 'sinon';
 import Graph from '../../../../../src/js/controls/Graph/Graph';
-import { BubbleSingleDataset } from '../../../../../src/js/controls/Bubble';
+import {BubbleMultipleDataset, BubbleSingleDataset} from '../../../../../src/js/controls/Bubble';
 import constants, {
   AXIS_TYPE,
   BUBBLE,
@@ -81,6 +81,28 @@ describe('Bubble Single Dataset - Load', () => {
       const validGraph = new Graph(getAxes(utils.deepClone(axisDefault)));
       validGraph.loadContent(new BubbleSingleDataset(input));
     }).toThrowError(errors.THROW_MSG_INVALID_FORMAT_TYPE);
+  });
+  it('throws error when y values is passed as null', () => {
+    let input = null;
+    expect(() => {
+      graphDefault.destroy();
+      const graph = new Graph(getAxes(axisDefault));
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = null;
+      input = getInput(data);
+      graph.loadContent(new BubbleSingleDataset(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+  });
+  it('throws error when y values is passed as undefined', () => {
+    let input = null;
+    expect(() => {
+      graphDefault.destroy();
+      const graph = new Graph(getAxes(axisDefault));
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = undefined;
+      input = getInput(data);
+      graph.loadContent(new BubbleSingleDataset(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
   });
   it('internal subsets gets created correctly for each data point', () => {
     const graph = graphDefault.loadContent(
@@ -178,19 +200,6 @@ describe('Bubble Single Dataset - Load', () => {
       expect(bubbleGroup).not.toBeNull();
       expect(bubbleGroup.tagName).toBe('g');
       expect(bubbleGroup.getAttribute('transform')).not.toBeNull();
-    });
-
-    it('does not show data point if data point is null', () => {
-      graphDefault.destroy();
-      const graph = new Graph(getAxes(axisDefault));
-      const data = utils.deepClone(valuesDefault);
-      data[0].y = null;
-      input = getInput(data);
-      graph.loadContent(new BubbleSingleDataset(input));
-      const pointsGroups = bubbleGraphContainer.querySelectorAll(
-                `.${styles.point}`,
-      );
-      expect(pointsGroups.length).toBe(2);
     });
     it('add points group for data points', () => {
       const pointsGroup = fetchElementByClass(
@@ -539,75 +548,6 @@ describe('Bubble Single Dataset - Load', () => {
             );
             done();
           });
-        });
-      });
-    });
-    describe('When values are non-contiguous', () => {
-      const axis = {
-        x: {
-          label: 'Some X Label',
-          lowerLimit: 0,
-          upperLimit: 100,
-        },
-        y: {
-          label: 'Some Y Label',
-          lowerLimit: 20,
-          upperLimit: 200,
-        },
-        y2: {
-          show: true,
-          label: 'Some Y2 Label',
-          lowerLimit: 20,
-          upperLimit: 200,
-        },
-      };
-      const values = [
-        { x: 35, y: 40 },
-        { x: 55, y: 50 },
-        { x: 45, y: null },
-        { x: 25, y: 100 },
-        { x: 45, y: 150 },
-      ];
-      describe('In Y Axis', () => {
-        it('Displays graph properly', () => {
-          graphDefault.destroy();
-          const graph = new Graph(getAxes(axis));
-          input = getInput(values, true, false);
-          input.values = values;
-          graph.loadContent(new BubbleSingleDataset(input));
-          graph.resize();
-          const bubbleGroup = bubbleGraphContainer.querySelectorAll(
-                        `.${styles.bubbleGraphContent}`,
-          );
-          expect(bubbleGroup.length).toBe(1);
-          expect(
-            bubbleGraphContainer.querySelectorAll(
-                            `.${styles.point}`,
-            ).length,
-          ).toBe(4);
-          expect(graph.config.axis.y.domain.lowerLimit).toBe(11);
-          expect(graph.config.axis.y.domain.upperLimit).toBe(209);
-        });
-        it('Displays graph properly without domain padding', () => {
-          graphDefault.destroy();
-          const data = getAxes(axis);
-          data.axis.y.padDomain = false;
-          const graph = new Graph(data);
-          input = getInput(values, true, true, false);
-          input.values = values;
-          graph.loadContent(new BubbleSingleDataset(input));
-          graph.resize();
-          const bubbleGroup = bubbleGraphContainer.querySelectorAll(
-                        `.${styles.bubbleGraphContent}`,
-          );
-          expect(bubbleGroup.length).toBe(1);
-          expect(
-            bubbleGraphContainer.querySelectorAll(
-                            `.${styles.point}`,
-            ).length,
-          ).toBe(4);
-          expect(graph.config.axis.y.domain.lowerLimit).toBe(20);
-          expect(graph.config.axis.y.domain.upperLimit).toBe(200);
         });
       });
     });

@@ -24,6 +24,7 @@ import {
   valuesDefault,
   valuesTimeSeries,
 } from './helpers';
+import errors from "../../../../src/js/helpers/errors";
 
 describe('Bar - Load lifecycle', () => {
   let graphDefault = null;
@@ -49,6 +50,24 @@ describe('Bar - Load lifecycle', () => {
     const loadedBar = new Bar(getInput(valuesDefault, false, false));
     loadedBar.load(graphDefault);
     expect(loadedBar instanceof Bar).toBeTruthy();
+  });
+  it('throws error when null value is passed as y', () => {
+    let input = null;
+    expect(() => {
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = null;
+      input = getInput(data);
+      graphDefault.loadContent(new Bar(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+  });
+  it('throws error when undefined value is passed as y', () => {
+    let input = null;
+    expect(() => {
+      const data = utils.deepClone(valuesDefault);
+      data[0].y = undefined;
+      input = getInput(data);
+      graphDefault.loadContent(new Bar(input));
+    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
   });
   it('internal subsets gets created correctly for each data point', () => {
     const graph = graphDefault.loadContent(

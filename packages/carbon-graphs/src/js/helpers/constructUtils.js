@@ -4,6 +4,9 @@
  */
 
 import utils from './utils';
+import errors from "./errors";
+import { iterateOnPairType } from '../controls/PairedResult/helpers/helpers.js';
+import {getValue} from "../controls/PairedResult/helpers/helpers";
 
 /**
  * Simple utility that checks if the input is an array or objects or simple object.
@@ -21,4 +24,35 @@ const contentHandler = (input, task) => {
   }
 };
 
-export { contentHandler };
+/**
+ * validates data passed by consumer.
+ *
+ * @param {object} data - Data points object
+ * @returns {undefined} returns nothing
+ */
+const validateData = (data) => {
+  data.map((value) => {
+    if(utils.isEmpty(value.y)) {
+      throw new Error(errors.THROW_MSG_INVALID_DATA);
+    }
+  });
+}
+
+/**
+ * validates paired result data passed by consumer.
+ *
+ * @param {object} data - Data points object
+ * @returns {undefined} returns nothing
+ */
+const validatePairedResultData = (data) => {
+  data.map((value) => {
+    iterateOnPairType((t) => {
+      if (utils.isDefined(getValue(value, t))) {
+        if(utils.isEmpty(value[t].y)){
+          throw new Error(errors.THROW_MSG_INVALID_DATA);
+        }
+      }
+    });
+  });
+}
+export { contentHandler, validateData, validatePairedResultData };

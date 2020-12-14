@@ -305,6 +305,8 @@ Palette: BUBBLE.PALETTE.ORANGE
 | x             | string   | Co-ordinate x, for plotting the data point |
 | y             | string   | Co-ordinate y, for plotting the data point |
 
+**Note: providing invalid data to x or y will lead to an error.**
+
 #### Optional
 
 | Property Name | Expected | Default   | Description                                                                                                       |

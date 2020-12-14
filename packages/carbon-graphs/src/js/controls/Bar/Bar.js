@@ -10,6 +10,7 @@ import {
 import { removeLegendItem, reflowLegend } from '../../helpers/legend';
 import styles from '../../helpers/styles';
 import utils from '../../helpers/utils';
+import { validateData } from '../../helpers/constructUtils';
 import BarConfig from './BarConfig';
 import { removeAxisInfoRowLabels } from './helpers/axisInfoRowHelpers';
 import {
@@ -117,6 +118,7 @@ class Bar extends GraphContent {
      * @inheritdoc
      */
   load(graph) {
+    validateData(this.config.values);
     setGroupName(this.config, graph.content);
     scaleBandAxis(this.bandScale, graph.config, graph.content);
     this.dataTarget = processDataPoints(graph.config, this.config);
@@ -231,6 +233,7 @@ class Bar extends GraphContent {
       hoverHandler: hoverHandler(graph.config.shownTargets, graph.svg),
     };
     this.config.values = graphData.values;
+    validateData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config);
     const position = graph.config.shownTargets.lastIndexOf(graphData.key);
     if (position > -1) {

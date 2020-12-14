@@ -122,11 +122,9 @@ describe('Graph - Panning', () => {
         };
         graph.reflow(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
-        console.log(eventlines);
         expect(eventlines.length).toBe(2);
       });
       it("Removes the eventline when empty dataset is passed", () => {
-        console.log("Before: ", graph.config.eventline);
         let eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(1);
         const panData = {
@@ -134,7 +132,6 @@ describe('Graph - Panning', () => {
         };
         graph.reflow(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
-        console.log("After: ", graph.config.eventline);
         expect(eventlines.length).toBe(0);
       });
     });
