@@ -235,7 +235,28 @@ describe('Timeline', () => {
       expect(timeline.contentConfig[0].config.color).toEqual(secondaryContent.color);
       expect(timeline.contentConfig[0].config.values).toEqual(secondaryContent.values);
       expect(timeline.contentConfig.length).toBe(1);
+    });
+    it('unloads an array of content correctly', () => {
+      const primaryContent = getData(valuesJSON);
+      const secondaryContent = getData(valuesJSON);
+      const tertiaryContent = getData(valuesJSON);
+      secondaryContent.key = 'uid_2';
+      tertiaryContent.key = 'uid_3';
+      timeline = new Timeline(getAxes(axisJSON));
 
+      timeline.loadContent([primaryContent, secondaryContent, tertiaryContent]);
+      expect(timeline.content).toEqual([primaryContent.key, secondaryContent.key, tertiaryContent.key]);
+      expect(timeline.content.length).toBe(3);
+      expect(timeline.contentConfig.length).toBe(3);
+
+      timeline.unloadContent([primaryContent, tertiaryContent]);
+      expect(timeline.content.length).toBe(1);
+      expect(timeline.contentConfig[0].config.key).toEqual(secondaryContent.key);
+      expect(timeline.contentConfig[0].config.label).toEqual(secondaryContent.label);
+      expect(timeline.contentConfig[0].config.shape).toEqual(secondaryContent.shape);
+      expect(timeline.contentConfig[0].config.color).toEqual(secondaryContent.color);
+      expect(timeline.contentConfig[0].config.values).toEqual(secondaryContent.values);
+      expect(timeline.contentConfig.length).toBe(1);
     });
     it('Throws error when duplicate key is provided for content', () => {
       expect(() => {

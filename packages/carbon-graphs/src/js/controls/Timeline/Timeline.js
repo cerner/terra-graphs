@@ -277,7 +277,7 @@ class Timeline extends Construct {
    */
   unloadContent(input) {
     contentHandler(input, (i) => {
-      const index = this.content.indexOf(input.key);
+      const index = this.content.indexOf(i.key);
       if (index < 0) {
         throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
       }
