@@ -298,7 +298,7 @@ class PairedResult extends GraphContent {
     const drawBox = (boxPath) => {
       drawSelectionIndicator(graph.scale, graph.config, boxPath);
       drawLine(graph.scale, graph.config, boxPath);
-      drawPoints(graph.scale, graph.config, boxPath);
+      drawPoints(graph.scale, graph.config, boxPath, graph.legendSVG);
     };
     const types = ['high', 'mid', 'low'];
     types.forEach((type) => {
@@ -364,7 +364,7 @@ class PairedResult extends GraphContent {
      */
   redraw(graph) {
     clear(graph.svg, this.dataTarget);
-    draw(graph.scale, graph.config, graph.svg, this.dataTarget);
+    draw(graph.scale, graph.config, graph.svg, this.dataTarget, graph.legendSVG);
     return this;
   }
 }
