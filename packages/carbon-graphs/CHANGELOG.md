@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.16.0 - (December 16, 2020)
+
 * Changed
   * For consistency replaced `document` in all draw helpers with `graph.legendSVG` for better control.
   * For consistency updated reflow in Graph and Gantt constructs to update the eventlines.
