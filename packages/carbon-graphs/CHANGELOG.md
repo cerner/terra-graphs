@@ -9,7 +9,8 @@
   * Updated `packages/carbon-graphs/README.md` so that it has more essential information about Carbon.
   * Added array handling for loadContent on Construct based graphs.
   * Throw an error when null/undefined/blank is passed as y value.
-  
+  * Connecting line does not go away for paired results when toggled off in Internet Explorer.
+
 ## 2.15.0 - (November 24, 2020)
 
 * Changed
