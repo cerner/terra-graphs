@@ -62,7 +62,7 @@ const determineHeight = (config) => (utils.isEmpty(config.axis.y.trackList)
  * @param {boolean} [isLoad=false] True if load workflow, false if unload
  * @returns {number} current track count within the graph
  */
-// eslint-disable-next-line no-return-assign
+// eslint-disable-next-line no-return-assign,no-param-reassign
 const updateTrackCount = (config, isLoad = false) => (isLoad ? config.axis.y.trackCount += 1 : config.axis.y.trackCount -= 1);
 
 /**
@@ -114,9 +114,10 @@ const updateTrackList = (content, trackIndex, trackListObject) => {
  * @returns {undefined} - returns nothing
  */
 const updateTrackProps = (config, content, isLoad = false) => {
-  updateTrackCount(config, isLoad);
+  const configTempParam = config;
+  updateTrackCount(configTempParam, isLoad);
   if (!isLoad) {
-    delete config.axis.y.trackList[content.key];
+    delete configTempParam.axis.y.trackList[content.key];
   }
 };
 /**
@@ -127,11 +128,12 @@ const updateTrackProps = (config, content, isLoad = false) => {
  * @returns {object} config - config object derived from input JSON
  */
 const updateAxesDomain = (config) => {
-  config.axis.y.domain = {
+  const configTempParam = config;
+  configTempParam.axis.y.domain = {
     lowerLimit: 0,
-    upperLimit: config.axis.y.trackCount || 1,
+    upperLimit: configTempParam.axis.y.trackCount || 1,
   };
-  return config;
+  return configTempParam;
 };
 /**
  * Checks if the track label needs to be truncated and returns the truncated value
@@ -207,9 +209,10 @@ const getYAxisWidth = (config) => {
  *  @returns {undefined} - returns nothing
  */
 const calculateAxesSize = (config) => {
-  config.axisSizes = {};
-  config.axisSizes.x = getXAxisHeight(config);
-  config.axisSizes.y = getYAxisWidth(config);
+  const configTempParam = config;
+  configTempParam.axisSizes = {};
+  configTempParam.axisSizes.x = getXAxisHeight(configTempParam);
+  configTempParam.axisSizes.y = getYAxisWidth(configTempParam);
 };
 /**
  *  Calculates the label size needed for each axes.
@@ -220,8 +223,9 @@ const calculateAxesSize = (config) => {
  *  @returns {undefined} - returns nothing
  */
 const calculateAxesLabelSize = (config) => {
-  config.axisLabelWidths = {};
-  config.axisLabelWidths.y = config.padding.left;
+  const configTempParam = config;
+  configTempParam.axisLabelWidths = {};
+  configTempParam.axisLabelWidths.y = configTempParam.padding.left;
 };
 /**
  * X Axis's position vertically relative to the canvas
@@ -260,7 +264,8 @@ const getYAxisYPosition = (config) => getXAxisYPosition(config);
  * @returns {object} - Scaled axes object
  */
 const getAxesScale = (axis, scale, config) => {
-  axis.x = prepareXAxis(
+  const axisTempParam = axis;
+  axisTempParam.x = prepareXAxis(
     scale.x,
     config.axis.x.ticks.values,
     getXAxisWidth(config),
@@ -271,8 +276,8 @@ const getAxesScale = (axis, scale, config) => {
     ),
     AXES_ORIENTATION.X.TOP,
   );
-  axis.y = prepareYAxis(scale.y, getYAxisHeight(config));
-  return axis;
+  axisTempParam.y = prepareYAxis(scale.y, getYAxisHeight(config));
+  return axisTempParam;
 };
 /**
  * Creates and sets the d3 scale for the Graph. Once the scale is created
@@ -294,17 +299,18 @@ const getAxesScale = (axis, scale, config) => {
  * @returns {undefined} - returns nothing
  */
 const scaleGraph = (scale, config) => {
-  scale.x = d3
+  const scaleTempParam = scale;
+  scaleTempParam.x = d3
     .scaleTime()
     .domain(config.axis.x.domain)
     .range([0, getXAxisWidth(config)])
     .clamp(config.settingsDictionary.shouldClamp);
-  scale.y = d3
+  scaleTempParam.y = d3
     .scaleOrdinal()
     .domain(getYAxisDomain(config.axis.y.trackList))
     .range([0, ...getYAxisRange(config.axis.y.trackList)]);
   if (config.axis.x.rangeRounding) {
-    scale.x.nice();
+    scaleTempParam.x.nice();
   }
 };
 /**
@@ -490,24 +496,25 @@ const createGanttContent = (config, canvasSVG) => canvasSVG
  * @returns {number} - index where we would insert the new track content
  */
 const prepareLoadAtIndex = (scale, config, content, length) => {
+  const configTempParam = config;
   validateContent(content);
   if (utils.notEmpty(content) && utils.notEmpty(content.loadAtIndex)) {
     if (content.loadAtIndex < 0) {
       throw new Error(errors.THROW_MSG_INVALID_LOAD_CONTENT_AT_INDEX);
     }
     const index = content.loadAtIndex;
-    config.axis.y.trackList = updateTrackList(
+    configTempParam.axis.y.trackList = updateTrackList(
       content,
       index,
-      config.axis.y.trackList,
+      configTempParam.axis.y.trackList,
     );
-    scaleGraph(scale, config);
+    scaleGraph(scale, configTempParam);
     return index;
   }
-  config.axis.y.trackList = updateTrackList(
+  configTempParam.axis.y.trackList = updateTrackList(
     content,
     length,
-    config.axis.y.trackList,
+    configTempParam.axis.y.trackList,
   );
   return length;
 };

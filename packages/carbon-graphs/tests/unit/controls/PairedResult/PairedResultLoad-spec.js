@@ -2311,17 +2311,17 @@ describe('Paired Result - Load', () => {
     });
   });
   describe('clip-path', () => {
-    it("should return correct id without quotes ", () => {
+    it('should return correct id without quotes ', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const primaryPRContent = new PairedResult(inputPrimary);
       graphDefault.loadContent(primaryPRContent);
       document.querySelector(`.${styles.pairedBoxGroup}`)
-        .setAttribute("clip-path", 'Dummy-"variable"');
+        .setAttribute('clip-path', 'Dummy-"variable"');
       const clipId = document.querySelector(`.${styles.pairedBoxGroup}`).getAttribute('clip-path');
-      expect(clipId).toBe('Dummy-"variable"')
+      expect(clipId).toBe('Dummy-"variable"');
       expect(
-        clipId.replace(/['"]+/g, '')
-      ).toBe('Dummy-variable')
+        clipId.replace(/['"]+/g, ''),
+      ).toBe('Dummy-variable');
     });
   });
 });

@@ -29,7 +29,7 @@ import {
   getDataPointValues,
 } from './helpers/helpers';
 import ScatterConfig from './ScatterConfig';
-import { validateData } from "../../helpers/constructUtils";
+import { validateData } from '../../helpers/constructUtils';
 
 /**
  * @typedef {object} Scatter
@@ -164,25 +164,26 @@ class Scatter extends GraphContent {
      * @inheritdoc
      */
   resize(graph) {
+    const graphTempParam = graph;
     if (utils.notEmpty(this.dataTarget.regions)) {
-      if (graph.content.length > 1 && !graph.config.shouldHideAllRegion) {
-        if (areRegionsIdentical(graph.svg)) {
-          graph.config.shouldHideAllRegion = false;
+      if (graphTempParam.content.length > 1 && !graphTempParam.config.shouldHideAllRegion) {
+        if (areRegionsIdentical(graphTempParam.svg)) {
+          graphTempParam.config.shouldHideAllRegion = false;
         } else {
-          hideAllRegions(graph.svg);
-          graph.config.shouldHideAllRegion = true;
+          hideAllRegions(graphTempParam.svg);
+          graphTempParam.config.shouldHideAllRegion = true;
         }
       }
     } else {
-      hideAllRegions(graph.svg);
-      graph.config.shouldHideAllRegion = true;
+      hideAllRegions(graphTempParam.svg);
+      graphTempParam.config.shouldHideAllRegion = true;
     }
     translateRegion(
-      graph.scale,
-      graph.config,
-      graph.svg.select(`.${styles.regionGroup}`),
+      graphTempParam.scale,
+      graphTempParam.config,
+      graphTempParam.svg.select(`.${styles.regionGroup}`),
     );
-    translateScatterGraph(graph.scale, graph.svg, graph.config);
+    translateScatterGraph(graphTempParam.scale, graphTempParam.svg, graphTempParam.config);
     return this;
   }
 

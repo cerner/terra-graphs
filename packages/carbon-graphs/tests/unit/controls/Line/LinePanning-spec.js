@@ -283,7 +283,7 @@ describe('Line - Panning', () => {
       });
     });
   });
-  describe("When values are non-contiguous", () => {
+  describe('When values are non-contiguous', () => {
     beforeEach(() => {
       const axisData = utils.deepClone(getAxes(axisTimeSeries));
       axisData.pan = { enabled: true };
@@ -291,47 +291,47 @@ describe('Line - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Line(input));
     });
-    it("should remove datapoint with y value as null", () => {
+    it('should remove datapoint with y value as null', () => {
       const panData = {
-        key: "uid_1",
+        key: 'uid_1',
         values: [
           {
-            x: "2016-03-03T12:00:00Z",
-            y: null
+            x: '2016-03-03T12:00:00Z',
+            y: null,
           },
           {
-            x: "2016-04-03T12:00:00Z",
-            y: 20
-          }
-        ]
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
       };
       graphDefault.reflow(panData);
-      let lineContent = fetchAllElementsByClass(
+      const lineContent = fetchAllElementsByClass(
         lineGraphContainer,
-        styles.pointGroup
+        styles.pointGroup,
       );
-      expect(lineContent.length).toEqual(panData.values.length-1);
+      expect(lineContent.length).toEqual(panData.values.length - 1);
     });
-    it("should remove datapoint with y value as null", () => {
+    it('should remove datapoint with y value as null', () => {
       const panData = {
-        key: "uid_1",
+        key: 'uid_1',
         values: [
           {
-            x: "2016-03-03T12:00:00Z",
-            y: undefined
+            x: '2016-03-03T12:00:00Z',
+            y: undefined,
           },
           {
-            x: "2016-04-03T12:00:00Z",
-            y: 20
-          }
-        ]
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
       };
       graphDefault.reflow(panData);
-      let lineContent = fetchAllElementsByClass(
+      const lineContent = fetchAllElementsByClass(
         lineGraphContainer,
-        styles.pointGroup
+        styles.pointGroup,
       );
-      expect(lineContent.length).toEqual(panData.values.length-1);
+      expect(lineContent.length).toEqual(panData.values.length - 1);
     });
   });
   describe('When pan is disabled', () => {

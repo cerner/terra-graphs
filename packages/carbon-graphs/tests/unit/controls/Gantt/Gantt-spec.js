@@ -79,18 +79,18 @@ describe('Gantt', () => {
       expect(() => {
         const input = getAxes(axisJSON);
         input.bindTo = '';
-        new Gantt(input);
+        gantt = new Gantt(input);
       }).toThrowError(errors.THROW_MSG_NO_BIND);
     });
     describe('Axis - throws error', () => {
       it('if no axis is present', () => {
         expect(() => {
-          new Gantt(getAxes({}));
+          gantt = new Gantt(getAxes({}));
         }).toThrowError(errors.THROW_MSG_NO_AXIS_INFO);
       });
       it('if no x axis is present', () => {
         expect(() => {
-          new Gantt(
+          gantt = new Gantt(
             getAxes({
               x: {},
             }),
@@ -99,7 +99,7 @@ describe('Gantt', () => {
       });
       it('if x axis lowerLimit is not present', () => {
         expect(() => {
-          new Gantt(
+          gantt = new Gantt(
             getAxes({
               x: {
                 upperLimit: new Date(
@@ -115,7 +115,7 @@ describe('Gantt', () => {
       });
       it('if x axis upperLimit is not present', () => {
         expect(() => {
-          new Gantt(
+          gantt = new Gantt(
             getAxes({
               x: {
                 lowerLimit: new Date(
@@ -131,7 +131,7 @@ describe('Gantt', () => {
       });
       it('if x axis lowerLimit is not valid', () => {
         expect(() => {
-          new Gantt(
+          gantt = new Gantt(
             getAxes({
               x: {
                 lowerLimit: 10,
@@ -148,7 +148,7 @@ describe('Gantt', () => {
       });
       it('if x axis upperLimit is not valid', () => {
         expect(() => {
-          new Gantt(
+          gantt = new Gantt(
             getAxes({
               x: {
                 lowerLimit: new Date(
@@ -207,7 +207,6 @@ describe('Gantt', () => {
       const primaryContent = getData();
       const secondaryContent = getData();
       secondaryContent.key = 'track2';
-      const mockTrackOne = new Track(primaryContent);
       const mockTrackTwo = new Track(secondaryContent);
 
       gantt = new Gantt(getAxes(axisJSON));

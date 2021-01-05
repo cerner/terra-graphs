@@ -347,6 +347,7 @@ const prepareHAxis = (
   prepareXAxisHandler,
   orientation = config.axis.x.orientation,
 ) => {
+  const axisTempParam = axis;
   if (hasDatetimeBuckets(config.axis.x.ticks)) {
     const values = config.axis.x.ticks.lowerStepTickValues
       ? config.axis.x.ticks.lowerStepTickValues
@@ -355,7 +356,7 @@ const prepareHAxis = (
       values,
       upperStepTickValues: config.axis.x.ticks.upperStepTickValues,
     };
-    axis.x = prepareXAxisHandler(
+    axisTempParam.x = prepareXAxisHandler(
       scale,
       constructDatetimeBucketValues(datetimeBuckets),
       config,

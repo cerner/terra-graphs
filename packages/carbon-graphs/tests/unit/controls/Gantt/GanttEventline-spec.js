@@ -24,6 +24,8 @@ import {
 describe('Eventline', () => {
   let ganttChartContainer;
   let axisObj;
+  // eslint-disable-next-line no-unused-vars
+  let gantt = null;
 
   beforeAll(() => {
     loadCustomJasmineMatcher();
@@ -49,14 +51,14 @@ describe('Eventline', () => {
     it('Throws error when eventline is not provided', () => {
       axisObj.eventline = [{}];
       expect(() => {
-        new Gantt(axisObj);
+        gantt = new Gantt(axisObj);
       }).toThrowError(errors.THROW_MSG_EVENTLINE_OBJECT_NOT_PROVIDED);
     });
     it('Throws error when eventline value is not provided', () => {
       axisObj.eventline = utils.deepClone(eventlineJSON);
       axisObj.eventline[0].value = '';
       expect(() => {
-        new Gantt(axisObj);
+        gantt = new Gantt(axisObj);
       }).toThrowError(errors.THROW_MSG_EVENTLINE_NOT_PROVIDED);
     });
 
@@ -67,7 +69,7 @@ describe('Eventline', () => {
       axisObj.eventline = utils.deepClone(eventlineJSON);
       axisObj.eventline[0].color = '';
       expect(() => {
-        new Gantt(axisObj);
+        gantt = new Gantt(axisObj);
       }).toThrowError(errors.THROW_MSG_EVENTLINE_COLOR_NOT_PROVIDED);
     });
 
@@ -75,14 +77,14 @@ describe('Eventline', () => {
       axisObj.eventline = utils.deepClone(eventlineJSON);
       axisObj.eventline[0].value = 'HELLO';
       expect(() => {
-        new Gantt(axisObj);
+        gantt = new Gantt(axisObj);
       }).toThrowError(errors.THROW_MSG_EVENTLINE_TYPE_NOT_VALID);
     });
   });
 
   it('Creates eventline group element', (done) => {
     axisObj.eventline = utils.deepClone(eventlineJSON);
-    new Gantt(axisObj);
+    gantt = new Gantt(axisObj);
     const eventlineGroupElement = fetchElementByClass(
       styles.eventlineGroup,
     );
@@ -104,7 +106,7 @@ describe('Eventline', () => {
   });
   it('Creates eventline correctly', (done) => {
     axisObj.eventline = utils.deepClone(eventlineJSON);
-    new Gantt(axisObj);
+    gantt = new Gantt(axisObj);
     const eventline = fetchElementByClass(styles.eventline);
     expect(eventline.getAttribute('pointer-events')).toBe('auto');
     expect(eventline).not.toBeNull();
@@ -143,7 +145,7 @@ describe('Eventline', () => {
         value: new Date(2018, 8, 1).toISOString(),
       },
     ];
-    new Gantt(axisObj);
+    gantt = new Gantt(axisObj);
     const eventlines = document.querySelectorAll(`.${styles.eventline}`);
     expect(eventlines.length).toBe(2);
     expect(eventlines[0].getAttribute('pointer-events')).toBe('auto');
@@ -154,7 +156,7 @@ describe('Eventline', () => {
       beforeEach(() => {
         axisObj = getAxes(axisJSON);
         axisObj.eventline = utils.deepClone(eventlineJSON);
-        new Gantt(axisObj);
+        gantt = new Gantt(axisObj);
       });
       it('set pointer-events correctly', () => {
         const eventline = fetchElementByClass(styles.eventline);
@@ -169,7 +171,7 @@ describe('Eventline', () => {
           },
         });
         axisObj.eventline = utils.deepClone(eventlineJSON);
-        new Gantt(axisObj);
+        gantt = new Gantt(axisObj);
       });
       it('set pointer-events correctly', () => {
         const eventline = fetchElementByClass(styles.eventline);
@@ -184,7 +186,7 @@ describe('Eventline', () => {
           },
         });
         axisObj.eventline = utils.deepClone(eventlineJSON);
-        new Gantt(axisObj);
+        gantt = new Gantt(axisObj);
       });
       it('set pointer-events correctly', () => {
         const eventline = fetchElementByClass(styles.eventline);

@@ -67,18 +67,18 @@ describe('Graph', () => {
       expect(() => {
         const input = getAxes(axisDefault);
         input.bindTo = '';
-        new Graph(input);
+        graph = new Graph(input);
       }).toThrowError(errors.THROW_MSG_NO_BIND);
     });
     describe('Axis - throws error', () => {
       it('If no axis is present', () => {
         expect(() => {
-          new Graph(getAxes({}));
+          graph = new Graph(getAxes({}));
         }).toThrowError(errors.THROW_MSG_NO_AXIS_INFO);
       });
       it('If no x axis is present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: {},
               y: axisDefault.y,
@@ -88,7 +88,7 @@ describe('Graph', () => {
       });
       it('If no y axis is present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: axisDefault.x,
               y: {},
@@ -98,7 +98,7 @@ describe('Graph', () => {
       });
       it('If x axis type is different than allowed', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: {
                 type: 'DIFFERENT_TYPE',
@@ -113,7 +113,7 @@ describe('Graph', () => {
       });
       it('If x axis lowerLimit is not present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: {
                 label: 'Some X Label',
@@ -126,7 +126,7 @@ describe('Graph', () => {
       });
       it('If x axis upperLimit is not present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: {
                 label: 'Some X Label',
@@ -139,7 +139,7 @@ describe('Graph', () => {
       });
       it('If y axis lowerLimit is not present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: axisDefault.x,
               y: {
@@ -152,7 +152,7 @@ describe('Graph', () => {
       });
       it('If y axis upperLimit is not present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: axisDefault.x,
               y: {
@@ -165,7 +165,7 @@ describe('Graph', () => {
       });
       it('If y axis label is not present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: axisDefault.x,
               y: {
@@ -178,7 +178,7 @@ describe('Graph', () => {
       });
       it('If y2 axis is enabled but not lowerLimit is present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: axisDefault.x,
               y: axisDefault.y,
@@ -192,7 +192,7 @@ describe('Graph', () => {
       });
       it('If y2 axis is enabled but not upperLimit is present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: axisDefault.x,
               y: axisDefault.y,
@@ -207,7 +207,7 @@ describe('Graph', () => {
       });
       it('If y2 axis is enabled but not label is present', () => {
         expect(() => {
-          new Graph(
+          graph = new Graph(
             getAxes({
               x: axisDefault.x,
               y: axisDefault.y,
@@ -285,7 +285,7 @@ describe('Graph', () => {
       expect(graph.contentConfig.length).toBe(2);
 
       graph.unloadContent(firstContent);
-      expect(graph.content).toEqual[secondContent];
+      expect(graph.content).toEqual([secondContent]);
       expect(graph.contentConfig).toEqual([secondContent.config]);
       expect(graph.content.length).toBe(1);
       expect(graph.contentConfig.length).toBe(1);
@@ -306,7 +306,7 @@ describe('Graph', () => {
       expect(graph.contentConfig.length).toBe(3);
 
       graph.unloadContent([firstContent, thirdContent]);
-      expect(graph.content).toEqual[secondContent];
+      expect(graph.content).toEqual([secondContent]);
       expect(graph.contentConfig).toEqual([secondContent.config]);
       expect(graph.content.length).toBe(1);
       expect(graph.contentConfig.length).toBe(1);
@@ -800,7 +800,7 @@ describe('Graph', () => {
     it('sets background as white when opaqueBackground is set to true', () => {
       const input = getAxes(axisDefault);
       input.opaqueBackground = true;
-      new Graph(input);
+      graph = new Graph(input);
       expect(
         fetchElementByClass(
           styles.container,
@@ -810,14 +810,14 @@ describe('Graph', () => {
     it('sets background as transparent when opaqueBackground is set to false', () => {
       const input = getAxes(axisDefault);
       input.opaqueBackground = false;
-      new Graph(input);
+      graph = new Graph(input);
       expect(
         fetchElementByClass(styles.container).style.backgroundColor,
       ).toEqual('');
     });
     it('sets background as transparent when opaqueBackground is set to undefined', () => {
       const input = getAxes(axisDefault);
-      new Graph(input);
+      graph = new Graph(input);
       expect(
         fetchElementByClass(styles.container).style.backgroundColor,
       ).toEqual('');

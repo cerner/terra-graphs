@@ -15,7 +15,7 @@ import {
 import { toNumber, delay, PADDING_BOTTOM } from '../../helpers/commonHelpers';
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
-import errors from "../../../../src/js/helpers/errors";
+import errors from '../../../../src/js/helpers/errors';
 
 describe('Scatter - Panning', () => {
   let graphDefault = null;
@@ -65,7 +65,7 @@ describe('Scatter - Panning', () => {
           },
         ],
       };
-      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('throws error when undefined value is passed as y', () => {
       const panData = {
@@ -81,7 +81,7 @@ describe('Scatter - Panning', () => {
           },
         ],
       };
-      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);

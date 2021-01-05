@@ -57,18 +57,19 @@ const getBandwidthPaddingRatio = (content, shownTargets) => constants.DEFAULT_BA
  * @returns {undefined} - returns nothing
  */
 const scaleBandAxis = (bandScale, config, content) => {
+  const bandScaleTempParam = bandScale;
   if (
     utils.notEmpty(config.axis.x.ticks)
         && utils.notEmpty(config.axis.x.ticks.values)
   ) {
-    bandScale.x0 = d3
+    bandScaleTempParam.x0 = d3
       .scaleBand()
       .domain(config.axis.x.ticks.values)
       .range(getXAxisRange(config))
       .paddingInner(
         getBandwidthPaddingRatio(content, config.shownTargets),
       );
-    bandScale.x1 = d3.scaleBand();
+    bandScaleTempParam.x1 = d3.scaleBand();
   }
 };
 /**
@@ -105,10 +106,11 @@ const setX0X1Scale = (bands, content, bandScale, config) => {
  */
 const setStackOffset = (inputValues, group) => {
   inputValues.forEach((value) => {
+    const valueTempParam = value;
     let upY = 0;
     let downY = 0;
     group.forEach((prev) => {
-      const f = prev.values.filter((p) => utils.isEqual(p.x, value.x));
+      const f = prev.values.filter((p) => utils.isEqual(p.x, valueTempParam.x));
       if (f.length > 0) {
         if (f[0].y > 0) {
           upY += f[0].y;
@@ -117,7 +119,7 @@ const setStackOffset = (inputValues, group) => {
         }
       }
     });
-    value.y0 = value.y < 0 ? downY : upY;
+    valueTempParam.y0 = valueTempParam.y < 0 ? downY : upY;
   });
 };
 /**

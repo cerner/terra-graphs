@@ -46,18 +46,19 @@ const getXDataValues = (x) => {
  * @returns {object} dataTarget - Updated data target object
  */
 const processDataPoints = (graphConfig, dataTarget) => {
-  graphConfig.shownTargets.push(dataTarget.key);
-  dataTarget.internalValuesSubset = dataTarget.values.map((value) => ({
-    onClick: dataTarget.onClick,
+  const dataTargetTempParam = dataTarget;
+  graphConfig.shownTargets.push(dataTargetTempParam.key);
+  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => ({
+    onClick: dataTargetTempParam.onClick,
     isCritical: value.isCritical || false,
     x: getXDataValues(value.x),
     content: value.content,
-    color: dataTarget.color || constants.DEFAULT_COLOR,
-    label: dataTarget.label || {},
-    shape: dataTarget.shape || SHAPES.CIRCLE,
-    key: dataTarget.key,
+    color: dataTargetTempParam.color || constants.DEFAULT_COLOR,
+    label: dataTargetTempParam.label || {},
+    shape: dataTargetTempParam.shape || SHAPES.CIRCLE,
+    key: dataTargetTempParam.key,
   }));
-  return dataTarget;
+  return dataTargetTempParam;
 };
 /**
  * Validates the newly added timeline content into the graph before rendering

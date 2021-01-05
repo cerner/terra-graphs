@@ -178,9 +178,10 @@ class Line extends GraphContent {
      * @inheritdoc
      */
   resize(graph) {
+    const graphTempParam = graph;
     if (
       !utils.isEmptyArray(this.dataTarget.values)
-            && graph.config.shownTargets.indexOf(this.dataTarget.key) > -1
+            && graphTempParam.config.shownTargets.indexOf(this.dataTarget.key) > -1
     ) {
       if (
         utils.notEmpty(this.dataTarget.regions)
@@ -188,27 +189,27 @@ class Line extends GraphContent {
       ) {
         if (
           isSingleTargetDisplayed(
-            graph.config.shownTargets,
-            graph.content,
+            graphTempParam.config.shownTargets,
+            graphTempParam.content,
           )
         ) {
-          graph.config.shouldHideAllRegion = false;
+          graphTempParam.config.shouldHideAllRegion = false;
         } else {
-          graph.config.shouldHideAllRegion = !areRegionsIdentical(
-            graph.svg,
+          graphTempParam.config.shouldHideAllRegion = !areRegionsIdentical(
+            graphTempParam.svg,
           );
         }
       } else {
-        graph.config.shouldHideAllRegion = true;
+        graphTempParam.config.shouldHideAllRegion = true;
       }
     }
-    if (graph.config.shouldHideAllRegion) {
-      hideAllRegions(graph.svg);
+    if (graphTempParam.config.shouldHideAllRegion) {
+      hideAllRegions(graphTempParam.svg);
     }
     translateRegion(
-      graph.scale,
-      graph.config,
-      graph.svg.select(
+      graphTempParam.scale,
+      graphTempParam.config,
+      graphTempParam.svg.select(
         `.${styles.regionGroup}`,
         this.dataTarget.valueRegionSubset,
       ),
@@ -216,7 +217,7 @@ class Line extends GraphContent {
       !utils.isEmptyArray(this.dataTarget.valueRegionSubset),
       this.dataTarget.interpolationType,
     );
-    translateLineGraph(graph.scale, graph.svg, graph.config);
+    translateLineGraph(graphTempParam.scale, graphTempParam.svg, graphTempParam.config);
     return this;
   }
 

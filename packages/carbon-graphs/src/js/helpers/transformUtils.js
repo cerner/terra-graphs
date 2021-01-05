@@ -20,17 +20,19 @@ const getCurrentTransform = (context) => d3.select(context).attr('transform');
 const round2Decimals = (v) => Math.round((v + 0.00001) * 100) / 100;
 const dot = (a, b) => a[0] * b[0] + a[1] * b[1];
 const normalize = (a) => {
-  const k = Math.sqrt(dot(a, a));
+  const aTempParam = a;
+  const k = Math.sqrt(dot(aTempParam, aTempParam));
   if (k) {
-    a[0] /= k;
-    a[1] /= k;
+    aTempParam[0] /= k;
+    aTempParam[1] /= k;
   }
   return k;
 };
 const combine = (a, b, k) => {
-  a[0] += k * b[0];
-  a[1] += k * b[1];
-  return a;
+  const aTempParam = a;
+  aTempParam[0] += k * b[0];
+  aTempParam[1] += k * b[1];
+  return aTempParam;
 };
 
 /**

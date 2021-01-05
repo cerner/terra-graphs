@@ -39,8 +39,7 @@ import {
   calculateVerticalPadding,
   getXAxisXPosition,
 } from '../../helpers/axis';
-import { validatePairedResultData } from "../../helpers/constructUtils";
-
+import { validatePairedResultData } from '../../helpers/constructUtils';
 
 /**
  * @typedef {object} PairedResult
@@ -87,17 +86,15 @@ const loadInput = (inputJSON) => new PairedResultConfig()
  * @param {object} data - Data points object
  * @returns {object} filteredData - filtered data object
  */
-const filterPairedResultData = (data) => {
-  return data.map((value) => {
-    let filteredValue = {};
-    iterateOnPairType((t) => {
-      if(value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0)){
-        filteredValue[t] = value[t];
-      }
-    });
-    return filteredValue;
+const filterPairedResultData = (data) => data.map((value) => {
+  const filteredValue = {};
+  iterateOnPairType((t) => {
+    if (value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0)) {
+      filteredValue[t] = value[t];
+    }
   });
-}
+  return filteredValue;
+});
 /**
  * A Paired result graph is a graph that is represented by 2 points
  * and a line connecting them. There may be an optional 3rd datapoint
@@ -148,7 +145,7 @@ class PairedResult extends GraphContent {
       this.config.yAxis,
       constants.Y_AXIS,
     );
-    this.config.values  = filterPairedResultData(this.config.values);
+    this.config.values = filterPairedResultData(this.config.values);
     this.valuesRange = calculateValuesRange(
       this.config.values,
       this.config.yAxis,
@@ -233,15 +230,16 @@ class PairedResult extends GraphContent {
      * @inheritdoc
      */
   resize(graph) {
+    const graphTempParam = graph;
     if (utils.notEmpty(this.dataTarget.values)) {
       if (
         utils.notEmpty(this.dataTarget.regions)
                 || utils.notEmpty(this.dataTarget.valueRegionSubset)
       ) {
         const { values } = this.dataTarget;
-        if (isSinglePairedResultTargetDisplayed(graph.config, graph)) {
-          graph.config.shouldHideAllRegion = false;
-        } else if (graph.content.length > 1) {
+        if (isSinglePairedResultTargetDisplayed(graphTempParam.config, graphTempParam)) {
+          graphTempParam.config.shouldHideAllRegion = false;
+        } else if (graphTempParam.content.length > 1) {
           // If graph has more than 1 content, we compare the regions if they are identical show and hide if even atleast one of them is not.
           // check if paired Data is proper i.e - region for each key(high, mid and low) in value should be there
           const isPairedDataProper = values.every((value) => isRegionMappedToAllValues(
@@ -250,29 +248,29 @@ class PairedResult extends GraphContent {
                                 || this.dataTarget.valueRegionSubset,
           ));
 
-          graph.config.shouldHideAllRegion = !isPairedDataProper
-                        || graph.config.shouldHideAllRegion
-                        || !areRegionsIdentical(graph.svg);
+          graphTempParam.config.shouldHideAllRegion = !isPairedDataProper
+                        || graphTempParam.config.shouldHideAllRegion
+                        || !areRegionsIdentical(graphTempParam.svg);
         }
 
         translateRegion(
-          graph.scale,
-          graph.config,
-          graph.svg.select(
+          graphTempParam.scale,
+          graphTempParam.config,
+          graphTempParam.svg.select(
             `g[aria-describedby="region_${this.dataTarget.key}"]`,
           ),
           this.dataTarget.yAxis,
           utils.notEmpty(this.dataTarget.valueRegionSubset),
         );
       } else {
-        graph.config.shouldHideAllRegion = true;
+        graphTempParam.config.shouldHideAllRegion = true;
       }
-      if (graph.config.shouldHideAllRegion) {
-        hideAllRegions(graph.svg);
+      if (graphTempParam.config.shouldHideAllRegion) {
+        hideAllRegions(graphTempParam.svg);
       }
     }
 
-    translatePairedResultGraph(graph.scale, graph.svg, graph.config);
+    translatePairedResultGraph(graphTempParam.scale, graphTempParam.svg, graphTempParam.config);
     return this;
   }
 

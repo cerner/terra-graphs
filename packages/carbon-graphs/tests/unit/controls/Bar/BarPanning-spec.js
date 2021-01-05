@@ -20,7 +20,7 @@ import {
 } from './helpers';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
-import errors from "../../../../src/js/helpers/errors";
+import errors from '../../../../src/js/helpers/errors';
 
 describe('Bar - Panning', () => {
   let graphDefault = null;
@@ -77,7 +77,7 @@ describe('Bar - Panning', () => {
         ],
       };
 
-      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('throws error when undefined value is passed as y', () => {
       const panData = {
@@ -94,7 +94,7 @@ describe('Bar - Panning', () => {
         ],
       };
 
-      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('DatelineGroup translates properly when panning is enabled', (done) => {
       const datelineGroup = document.querySelector(

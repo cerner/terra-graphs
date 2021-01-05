@@ -2,7 +2,7 @@
 
 import sinon from 'sinon';
 import Graph from '../../../../../src/js/controls/Graph/Graph';
-import {BubbleMultipleDataset, BubbleSingleDataset} from '../../../../../src/js/controls/Bubble';
+import { BubbleSingleDataset } from '../../../../../src/js/controls/Bubble';
 import constants, {
   AXIS_TYPE,
   BUBBLE,

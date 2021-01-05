@@ -1,16 +1,13 @@
 'use strict';
 
-/* eslint-disable no-plusplus */
-/* eslint-disable prefer-rest-params */
-/* eslint-disable no-restricted-syntax */
-
 (function () {
   // object conversion errors
   const CANNOT_CNVT_TO_OBJ = 'Cannot convert undefined or null to object';
 
   // Shorthand for object.defineProperty
   const objectDefineProperty = function (proto, keyValuePairArray) {
-    for (let i = keyValuePairArray.length; i--;) {
+    // eslint-disable-next-line no-cond-assign
+    for (let i = keyValuePairArray.length; i -= 1;) {
       const key = keyValuePairArray[i][0];
       const val = keyValuePairArray[i][1];
       if (!proto[key]) {
@@ -45,7 +42,7 @@
           // create the new object which is to be returned from the target object
           const to = checkConvertible(target);
           // combine with each additional argument
-          for (let i = 1; i < arguments.length; i++) {
+          for (let i = 1; i < arguments.length; i += 1) {
             const nextSource = arguments[i];
             if (
               nextSource !== null
@@ -76,14 +73,15 @@
       [
         'values',
         function values(obj) {
-          obj = checkConvertible(obj);
+          let objTempParam = obj;
+          objTempParam = checkConvertible(objTempParam);
           const vals = [];
-          for (const key in obj) {
+          for (const key in objTempParam) {
             if (
-              Object.prototype.hasOwnProperty.call(obj, key)
-                            && Object.prototype.propertyIsEnumerable.call(obj, key)
+              Object.prototype.hasOwnProperty.call(objTempParam, key)
+                            && Object.prototype.propertyIsEnumerable.call(objTempParam, key)
             ) {
-              vals.push(obj[key]);
+              vals.push(objTempParam[key]);
             }
           }
           return vals;

@@ -24,7 +24,7 @@ import {
   valuesDefault,
   valuesTimeSeries,
 } from './helpers';
-import errors from "../../../../src/js/helpers/errors";
+import errors from '../../../../src/js/helpers/errors';
 
 describe('Bar - Load lifecycle', () => {
   let graphDefault = null;

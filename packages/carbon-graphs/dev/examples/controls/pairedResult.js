@@ -1,6 +1,6 @@
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 import { loadDatelinePopup, loadPopup } from '../popup';
 import { createPanningControls } from '../panHelpers';
 
@@ -604,12 +604,12 @@ export const renderPairedResultPanningWithDynamicData = (id) => {
 };
 export const renderPairedResultPanningWithDynamicEventline = (id) => {
   const axisData = utils.deepClone(
-    getDemoData(`#${id}`, "PAIRED_TIMESERIES")
+    getDemoData(`#${id}`, 'PAIRED_TIMESERIES'),
   );
   axisData.axis.x.lowerLimit = new Date(2016, 0, 1, 0).toISOString();
   axisData.axis.x.upperLimit = new Date(2016, 0, 2, 0).toISOString();
   axisData.pan = {
-    enabled: true
+    enabled: true,
   };
   axisData.axis.x.ticks = {};
   axisData.axis.y.rangeRounding = false;
@@ -617,32 +617,32 @@ export const renderPairedResultPanningWithDynamicEventline = (id) => {
     {
       color: Carbon.helpers.COLORS.GREY,
       style: {
-        strokeDashArray: "4,4"
+        strokeDashArray: '4,4',
       },
-      value: new Date(2016, 0, 1, 8).toISOString()
-    }
+      value: new Date(2016, 0, 1, 8).toISOString(),
+    },
   ];
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.pairedResult(graphData[0]));
+  axisData.axis = graph.config.axis;
 
   const createGraph = () => {
     graphData[0].eventline = [
       {
         color: Carbon.helpers.COLORS.BLACK,
         style: {
-          strokeDashArray: "2,2"
+          strokeDashArray: '2,2',
         },
-        value: new Date(2016, 0, 1, 12).toISOString()
-      }
+        value: new Date(2016, 0, 1, 12).toISOString(),
+      },
     ];
     graph.reflow(graphData[0]);
   };
 
-  const graph = Carbon.api.graph(axisData);
-  graph.loadContent(Carbon.api.pairedResult(graphData[0]));
-  axisData.axis = graph.config.axis;
-
   createPanningControls(id, {
     axisData,
-    creationHandler: createGraph
+    creationHandler: createGraph,
   });
   return graph;
 };

@@ -29,7 +29,7 @@ import {
 } from './helpers/translateHelpers';
 import TimelineConfig, { processInput } from './TimelineConfig';
 import TimelineContent from './TimelineContent';
-import {contentHandler} from '../../helpers/constructUtils';
+import { contentHandler } from '../../helpers/constructUtils';
 
 /**
  * @typedef {object} Timeline
@@ -45,7 +45,8 @@ const { BASE_CANVAS_WIDTH_PADDING } = constants;
  * @returns {undefined} - returns nothing
  */
 const setCanvasWidth = (container, config) => {
-  config.canvasWidth = parseInt(container.style('width'), 10)
+  const configTempParam = config;
+  configTempParam.canvasWidth = parseInt(container.style('width'), 10)
         - getElementBoxSizingParameters(container);
 };
 /**
@@ -56,8 +57,9 @@ const setCanvasWidth = (container, config) => {
  * @returns {undefined} - returns nothing
  */
 const setCanvasHeight = (config) => {
-  config.canvasHeight = getYAxisHeight(config)
-        + (config.padding.bottom * 2 + config.padding.top) * 2;
+  const configTempParam = config;
+  configTempParam.canvasHeight = getYAxisHeight(configTempParam)
+        + (configTempParam.padding.bottom * 2 + configTempParam.padding.top) * 2;
 };
 /**
  * Data point sets can be loaded using this function.
@@ -82,9 +84,10 @@ const loadInput = (inputJSON) => new TimelineConfig()
  * @returns {Timeline} Timeline instance
  */
 const beforeInit = (control) => {
-  control.graphContainer = d3.select(control.config.bindTo);
-  control.config.height = determineHeight(control.config);
-  return control;
+  const controlTempParam = control;
+  controlTempParam.graphContainer = d3.select(controlTempParam.config.bindTo);
+  controlTempParam.config.height = determineHeight(controlTempParam.config);
+  return controlTempParam;
 };
 /**
  * Initializes the necessary Timeline constructor objects
@@ -94,22 +97,23 @@ const beforeInit = (control) => {
  * @returns {Timeline} Timeline instance
  */
 const initConfig = (control) => {
-  control.graphContainer = null;
-  control.config = {
+  const controlTempParam = control;
+  controlTempParam.graphContainer = null;
+  controlTempParam.config = {
     axis: {
       x: {},
     },
     shownTargets: {},
     pan: {},
   };
-  control.axis = {};
-  control.scale = {};
-  control.svg = null;
-  control.legendSVG = null;
-  control.content = [];
-  control.contentConfig = [];
-  control.resizeHandler = null;
-  return control;
+  controlTempParam.axis = {};
+  controlTempParam.scale = {};
+  controlTempParam.svg = null;
+  controlTempParam.legendSVG = null;
+  controlTempParam.content = [];
+  controlTempParam.contentConfig = [];
+  controlTempParam.resizeHandler = null;
+  return controlTempParam;
 };
 /**
  * Executes the init process checklist, needs to be called by parent control.
@@ -261,7 +265,7 @@ class Timeline extends Construct {
       content.load(this);
       this.content.push(i.key);
       this.contentConfig.push(content);
-    })
+    });
 
     this.resize();
     return this;
@@ -284,7 +288,7 @@ class Timeline extends Construct {
       this.contentConfig[index].unload(this);
       this.content.splice(index, 1);
       this.contentConfig.splice(index, 1);
-    })
+    });
     this.resize();
     return this;
   }

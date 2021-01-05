@@ -22,7 +22,7 @@ import {
 } from './helpers/helpers';
 import { draw, drawBubbles } from './helpers/helpersSingleDataset';
 import Bubble from './Bubble';
-import {validateData} from "../../helpers/constructUtils";
+import { validateData } from '../../helpers/constructUtils';
 
 /**
  * A Bubble graph is a graph used to represent a collection of data
@@ -107,16 +107,17 @@ class BubbleSingleDataset extends Bubble {
      * @inheritdoc
      */
   resize(graph) {
+    const graphTempParam = graph;
     if (utils.isEmpty(this.dataTarget.regions)) {
-      hideAllRegions(graph.svg);
-      graph.config.shouldHideAllRegion = true;
+      hideAllRegions(graphTempParam.svg);
+      graphTempParam.config.shouldHideAllRegion = true;
     }
     translateRegion(
-      graph.scale,
-      graph.config,
-      graph.svg.select(`.${styles.regionGroup}`),
+      graphTempParam.scale,
+      graphTempParam.config,
+      graphTempParam.svg.select(`.${styles.regionGroup}`),
     );
-    translateBubbleGraph(graph.scale, graph.svg, graph.config);
+    translateBubbleGraph(graphTempParam.scale, graphTempParam.svg, graphTempParam.config);
     return this;
   }
 
@@ -163,7 +164,7 @@ class BubbleSingleDataset extends Bubble {
       graph.config,
       pointPath.enter(),
       this.dataTarget,
-      graph.legendSVG
+      graph.legendSVG,
     );
     pointPath
       .exit()

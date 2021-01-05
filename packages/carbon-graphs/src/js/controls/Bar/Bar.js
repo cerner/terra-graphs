@@ -70,14 +70,15 @@ const loadInput = (inputJSON) => new BarConfig().setInput(inputJSON).validateInp
  * @returns {Bar} Bar instance
  */
 const initConfig = (control) => {
-  control.config = {};
-  control.bandScale = {
+  const controlTempParam = control;
+  controlTempParam.config = {};
+  controlTempParam.bandScale = {
     x0: {},
     x1: {},
   };
-  control.dataTarget = {};
-  control.valuesRange = {};
-  return control;
+  controlTempParam.dataTarget = {};
+  controlTempParam.valuesRange = {};
+  return controlTempParam;
 };
 
 /**

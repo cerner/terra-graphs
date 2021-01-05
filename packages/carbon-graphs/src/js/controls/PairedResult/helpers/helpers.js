@@ -268,6 +268,7 @@ const drawCriticalityPoints = (
  * @returns {undefined} - returns nothing
  */
 const drawPoints = (scale, config, canvasSVG, legendSVG) => {
+  const configTempParam = config;
   const getDataPointPath = (path, type, value, index) => path.append(() => new Shape(getShapeForTarget(getValue(value, type))).getShapeElement(
     getDefaultSVGProps({
       svgClassNames: `${styles.pairedPoint} ${getValue(
@@ -280,7 +281,7 @@ const drawPoints = (scale, config, canvasSVG, legendSVG) => {
       transformFn: transformPoint(scale, type)(value),
       onClickFn() {
         dataPointActionHandler(
-          config,
+          configTempParam,
           value,
           index,
           this.parentNode.parentNode,
@@ -302,10 +303,10 @@ const drawPoints = (scale, config, canvasSVG, legendSVG) => {
           .append('g')
           .classed(styles.pointGroup, true);
         if (currentValue.isCritical) {
-          config.hasCriticality = true;
+          configTempParam.hasCriticality = true;
           drawCriticalityPoints(
             scale,
-            config,
+            configTempParam,
             pointGroup,
             type,
             value,
@@ -383,6 +384,7 @@ const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
  * @returns {object} dataTarget - Updated data target object
  */
 const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
+  const dataTargetTempParam = dataTarget;
   const { type } = graphConfig.axis.x;
   const getXDataValues = (x) => {
     if (!isValidAxisType(x, type)) {
@@ -411,7 +413,7 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
   };
     // Each value is a pair. Construct enough information so that you can
     // construct a box. Each box would need 3 icons so we need 3 (max) data sets
-  dataTarget.internalValuesSubset = dataTarget.values.map((value) => {
+  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => {
     const subset = {};
     // We are going to iterate through different pair item types: HIGH, LOW and MID
     iterateOnPairType((t) => {
@@ -422,11 +424,11 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
           y: utils.getNumber(currentValue.y),
           isCritical: currentValue.isCritical || false,
           color:
-                        getValue(dataTarget.color, t)
+                        getValue(dataTargetTempParam.color, t)
                         || constants.DEFAULT_COLOR,
-          label: getValue(dataTarget.label, t) || {},
-          shape: getValue(dataTarget.shape, t) || SHAPES.CIRCLE,
-          key: `${dataTarget.key}_${t}`,
+          label: getValue(dataTargetTempParam.label, t) || {},
+          shape: getValue(dataTargetTempParam.shape, t) || SHAPES.CIRCLE,
+          key: `${dataTargetTempParam.key}_${t}`,
         };
         if (
           !utils.hasValue(
@@ -472,9 +474,9 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
         }
       }
     });
-    subset.yAxis = dataTarget.yAxis || constants.Y_AXIS;
-    subset.onClick = dataTarget.onClick;
-    subset.key = dataTarget.key;
+    subset.yAxis = dataTargetTempParam.yAxis || constants.Y_AXIS;
+    subset.onClick = dataTargetTempParam.onClick;
+    subset.key = dataTargetTempParam.key;
     return subset;
   });
   const valueRegionSubset = {
@@ -506,11 +508,11 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
       }
     });
   });
-  dataTarget.valueRegionSubset = isValueRegionExist
+  dataTargetTempParam.valueRegionSubset = isValueRegionExist
     ? valueRegionSubset
     : undefined;
-  dataTarget.legendOptions = getDefaultLegendOptions(graphConfig, dataTarget);
-  return dataTarget;
+  dataTargetTempParam.legendOptions = getDefaultLegendOptions(graphConfig, dataTargetTempParam);
+  return dataTargetTempParam;
 };
 /**
  * Shows line between the 2 data points high and low. If either one of them is missing

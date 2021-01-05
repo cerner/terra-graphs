@@ -51,6 +51,7 @@ const serve = (options) => {
   if (!dirExistsWithContent(site)) {
     return console.warn(
             `Cannot serves content from ${site} because it does not exist or it is empty.`,
+            // eslint-disable-next-line no-undef
             { context },
     );
   }

@@ -142,7 +142,10 @@ describe('Grouped Bar', () => {
         styles.barGraphContent,
       );
       triggerEvent(legendItem[0], 'click', () => {
-        barsContainer;
+        fetchAllElementsByClass(
+          barGraphContainer,
+          styles.barGraphContent,
+        );
         expect(
           barsContainer[1]
             .querySelector(`.${styles.taskBar}`)
@@ -151,7 +154,10 @@ describe('Grouped Bar', () => {
         done();
       });
       triggerEvent(legendItem[1], 'click', () => {
-        barsContainer;
+        fetchAllElementsByClass(
+          barGraphContainer,
+          styles.barGraphContent,
+        );
         expect(barsContainer[0].getAttribute('aria-hidden')).toBe(
           'true',
         );

@@ -84,10 +84,11 @@ const translateSlices = (config, contentSVG, layout, arc) => {
       constants.d3Transition(constants.D3_TRANSITION_PROPERTIES_ENABLED),
     )
     .attrTween('d', (d) => {
-      const i = d3.interpolate(d.startAngle, d.endAngle);
+      const dTempParam = d;
+      const i = d3.interpolate(dTempParam.startAngle, dTempParam.endAngle);
       return (t) => {
-        d.endAngle = i(t);
-        return arc(d);
+        dTempParam.endAngle = i(t);
+        return arc(dTempParam);
       };
     });
 };

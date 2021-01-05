@@ -73,16 +73,17 @@ const processGoalLines = (
   const regionWidth = bandScale.x1.bandwidth()
         * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.REGION_WIDTH_RATIO;
   dataTarget.regions.forEach((region) => {
+    const regionTempParam = region;
     validateBarRegion(
-      region,
+      regionTempParam,
       targetAxis,
       config.axis.x.ticks.values,
       config.axis.x.type,
     );
-    region.x = parseTypedValue(region.x, config.axis.x.type);
-    region.group = dataTarget.group;
-    region.xRange = getXRange(scale, bandScale, region);
-    region.width = regionWidth;
+    regionTempParam.x = parseTypedValue(regionTempParam.x, config.axis.x.type);
+    regionTempParam.group = dataTarget.group;
+    regionTempParam.xRange = getXRange(scale, bandScale, regionTempParam);
+    regionTempParam.width = regionWidth;
   });
 };
 

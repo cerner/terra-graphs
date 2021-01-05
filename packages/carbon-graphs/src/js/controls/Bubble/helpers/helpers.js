@@ -271,7 +271,7 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget, legendSVG) => {
       .attr('aria-describedby', `${value.key}`)
       .attr('aria-selected', false)
       .attr(
-        'aria-hidden',legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${value.key}']`)?.attr('aria-current') === 'false' : 'false',
+        'aria-hidden', legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${value.key}']`)?.attr('aria-current') === 'false' : 'false',
       )
       .on('click', function () {
         dataPointActionHandler(value, index, this);
@@ -376,6 +376,7 @@ const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
  * @returns {object} dataTarget - Updated data target object
  */
 const processDataPoints = (graphConfig, dataTarget) => {
+  const dataTargetTempParam = dataTarget;
   const { type } = graphConfig.axis.x;
   const getXDataValues = (x) => {
     if (!isValidAxisType(x, type)) {
@@ -384,19 +385,19 @@ const processDataPoints = (graphConfig, dataTarget) => {
     return parseTypedValue(x, type);
   };
 
-  graphConfig.shownTargets.push(dataTarget.key);
-  dataTarget.internalValuesSubset = dataTarget.values.map((value) => ({
-    onClick: dataTarget.onClick,
+  graphConfig.shownTargets.push(dataTargetTempParam.key);
+  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => ({
+    onClick: dataTargetTempParam.onClick,
     isCritical: value.isCritical || false,
     x: getXDataValues(value.x),
     y: value.y,
     weight: value.weight,
-    color: dataTarget.color || constants.DEFAULT_COLOR,
-    label: dataTarget.label || {},
-    yAxis: dataTarget.yAxis || constants.Y_AXIS,
-    key: dataTarget.key,
+    color: dataTargetTempParam.color || constants.DEFAULT_COLOR,
+    label: dataTargetTempParam.label || {},
+    yAxis: dataTargetTempParam.yAxis || constants.Y_AXIS,
+    key: dataTargetTempParam.key,
   }));
-  return dataTarget;
+  return dataTargetTempParam;
 };
 
 /**

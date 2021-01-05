@@ -82,47 +82,50 @@ const hasSecondaryDisplay = (dataTarget) => dataTarget.axisInfoRow.some(
  * @returns {object} dataTarget - Updated data target object
  */
 const setDataPoints = (graphConfig, dataTarget) => {
-  const { type } = graphConfig.axis.x;
+  const graphConfigTempParam = graphConfig;
+  const dataTargetTempParam = dataTarget;
+  const { type } = graphConfigTempParam.axis.x;
   const getXDataValues = (x) => {
     if (getType(type) === AXIS_TYPE.TIME_SERIES) {
       return utils.parseDateTime(x);
     }
     return utils.getNumber(x);
   };
-  if (utils.notEmpty(dataTarget.axisInfoRow)) {
-    dataTarget.axisInfoRow.forEach(
-      (axisInfoRowValue) => { (axisInfoRowValue.group = dataTarget.group); },
+  if (utils.notEmpty(dataTargetTempParam.axisInfoRow)) {
+    dataTargetTempParam.axisInfoRow.forEach(
+      // eslint-disable-next-line no-param-reassign
+      (axisInfoRowValue) => { (axisInfoRowValue.group = dataTargetTempParam.group); },
     );
-    if (!graphConfig.axisInfoRowLabelHeight) {
-      graphConfig.axisInfoRowLabelHeight = hasSecondaryDisplay(dataTarget)
+    if (!graphConfigTempParam.axisInfoRowLabelHeight) {
+      graphConfigTempParam.axisInfoRowLabelHeight = hasSecondaryDisplay(dataTargetTempParam)
         ? getAxisLabelHeight('dummyString') * 2
         : getAxisLabelHeight('dummyString');
-      graphConfig.padding.bottom += graphConfig.axisInfoRowLabelHeight;
+      graphConfigTempParam.padding.bottom += graphConfigTempParam.axisInfoRowLabelHeight;
     }
   }
-  dataTarget.internalValuesSubset = dataTarget.values.map((value) => {
-    const isHashed = dataTarget.style ? dataTarget.style.isHashed : false;
+  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => {
+    const isHashed = dataTargetTempParam.style ? dataTargetTempParam.style.isHashed : false;
     return {
-      onClick: dataTarget.onClick,
+      onClick: dataTargetTempParam.onClick,
       x: getXDataValues(value.x),
       y: value.y,
       y0: 0,
-      color: dataTarget.color || COLORS.BLUE,
-      label: dataTarget.label,
-      yAxis: dataTarget.yAxis || constants.Y_AXIS,
-      key: dataTarget.key,
+      color: dataTargetTempParam.color || COLORS.BLUE,
+      label: dataTargetTempParam.label,
+      yAxis: dataTargetTempParam.yAxis || constants.Y_AXIS,
+      key: dataTargetTempParam.key,
       isHashed: value.style ? value.style.isHashed : isHashed,
       style: getBarStyle(
-        value.style ? value.style : dataTarget.style,
-        dataTarget,
+        value.style ? value.style : dataTargetTempParam.style,
+        dataTargetTempParam,
       ),
-      group: dataTarget.group,
+      group: dataTargetTempParam.group,
     };
   });
   // This square shape is used strictly for legend item
-  dataTarget.shape = SHAPES.SQUARE;
-  dataTarget.color = dataTarget.color || COLORS.BLUE;
-  return dataTarget;
+  dataTargetTempParam.shape = SHAPES.SQUARE;
+  dataTargetTempParam.color = dataTargetTempParam.color || COLORS.BLUE;
+  return dataTargetTempParam;
 };
 
 /**
@@ -439,12 +442,13 @@ const draw = (scale, bandScale, config, canvasSVG, dataTarget) => {
  * @returns {undefined} - returns nothing
  */
 const setGroupName = (config, content) => {
-  if (utils.isEmpty(config.group)) {
-    config.group = config.key;
+  const configTempParam = config;
+  if (utils.isEmpty(configTempParam.group)) {
+    configTempParam.group = configTempParam.key;
     return;
   }
-  if (!content.filter((c) => c.config.key === config.group).length) {
-    config.group = config.key;
+  if (!content.filter((c) => c.config.key === configTempParam.group).length) {
+    configTempParam.group = configTempParam.key;
   }
 };
 
