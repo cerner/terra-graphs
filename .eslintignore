@@ -4,3 +4,4 @@ coverage
 generated-themes
 lib
 node_modules
+dist
