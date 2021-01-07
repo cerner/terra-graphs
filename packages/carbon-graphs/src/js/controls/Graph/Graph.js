@@ -443,12 +443,12 @@ class Graph extends Construct {
             }
           }
         }
-
-        if(data.eventline) {
-          this.config.eventline=data.eventline;
-          redrawEventlineContent(this.scale, this.config, this.svg);
-        }
       });
+    }
+
+    if(graphData.eventline) {
+      this.config.eventline=graphData.eventline;
+      redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
     updateXAxisDomain(this.config);
