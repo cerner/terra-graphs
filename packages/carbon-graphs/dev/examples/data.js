@@ -196,7 +196,7 @@ const DATA = [
       },
       data: [
         {
-          key: 'uid_1',
+          key: 'uid_2',
           label: {
             display: 'Data Label 1',
           },
