@@ -196,7 +196,7 @@ const DATA = [
       },
       data: [
         {
-          key: 'uid_2',
+          key: 'uid_1',
           label: {
             display: 'Data Label 1',
           },
@@ -1858,15 +1858,15 @@ const DATA = [
           key: 'uid_1',
           values: [
             {
-              x: new Date(2016, 0, 1, 8, 15).toISOString(),
+              x: new Date(2016, 0, 1, 7, 15).toISOString(),
               content: 'This is custom value of another unit',
             },
             {
-              x: new Date(2016, 0, 1, 9, 45).toISOString(),
+              x: new Date(2016, 0, 1, 10, 45).toISOString(),
               content: 'This is custom value of another unit',
             },
             {
-              x: new Date(2016, 0, 1, 12).toISOString(),
+              x: new Date(2016, 0, 1, 11).toISOString(),
               content: 'This is custom value of another unit',
             },
           ],

@@ -427,8 +427,8 @@ class Graph extends Construct {
      */
   reflow(graphData) {
     let position;
-    if (graphData) {
-      graphData.panData && graphData.panData.forEach((data) => {
+    if (graphData && graphData.panData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
+      graphData.panData.forEach((data) => {
         if(data.values) {
           this.contentKeys.forEach((key, index) => {
             if (key === data.key) position = index;
@@ -443,10 +443,11 @@ class Graph extends Construct {
             }
           }
         }
+        position = undefined;
       });
     }
 
-    if(graphData.eventline) {
+    if(graphData && graphData.eventline) {
       this.config.eventline=graphData.eventline;
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
@@ -455,14 +456,12 @@ class Graph extends Construct {
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
 
-    if (
-      graphData
-    ) {
-      graphData.panData && graphData.panData.forEach((data) => {
-        if(data.values) {
-          this.contentKeys.forEach((key, index) => {
-            if (key === data.key) position = index;
-          });
+    if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
+      graphData.panData.forEach((data) => {
+        this.contentKeys.forEach((key, index) => {
+          if (key === data.key) position = index;
+        });
+        if(position >= 0) {
           this.content[position].reflow(this, data);
           setAxisPadding(this.config.axisPadding, this.content[position]);
           getAxesDataRange(
@@ -491,6 +490,7 @@ class Graph extends Construct {
             removeNoDataView(this.svg);
           }
         }
+        position = undefined;
       });
     }
     if (graphData && this.config.showLabel) {

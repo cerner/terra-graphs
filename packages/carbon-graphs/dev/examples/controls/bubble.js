@@ -287,27 +287,29 @@ const data6 = {
   yAxis: 'y',
 };
 
-const panData = {
-  key: 'uid_5',
-  values: [
+const graphData = {
+  panData: [
     {
-      x: new Date(2016, 0, 1, 9, 0).toISOString(),
-      y: 80,
-    },
-    {
-      x: new Date(2016, 0, 1, 10, 0).toISOString(),
-      y: 50,
-    },
-    {
-      x: new Date(2016, 0, 1, 12, 0).toISOString(),
-      y: 100,
-    },
-    {
-      x: new Date(2016, 0, 1, 15, 0).toISOString(),
-      y: 200,
-    },
-  ],
-  yAxis: 'y',
+      key: 'uid_5',
+      values: [
+        {
+          x: new Date(2016, 0, 1, 9, 0).toISOString(),
+          y: 80,
+        },
+        {
+          x: new Date(2016, 0, 1, 10, 0).toISOString(),
+          y: 50,
+        },
+        {
+          x: new Date(2016, 0, 1, 12, 0).toISOString(),
+          y: 100,
+        },
+        {
+          x: new Date(2016, 0, 1, 15, 0).toISOString(),
+          y: 200,
+        },
+      ],
+    }],
 };
 
 export const renderSimpleBubble = (id) => {
@@ -374,7 +376,6 @@ export const renderBubblePanningWithDynamicData = (id) => {
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
-    const graphData = panData;
     graph.reflow(graphData);
   };
 

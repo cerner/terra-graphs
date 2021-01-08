@@ -30,6 +30,7 @@ import {
 import TimelineConfig, { processInput } from './TimelineConfig';
 import TimelineContent from './TimelineContent';
 import {contentHandler} from '../../helpers/constructUtils';
+import utils from '../../helpers/utils';
 
 /**
  * @typedef {object} Timeline
@@ -305,14 +306,15 @@ class Timeline extends Construct {
     translateAxes(this.axis, this.scale, this.config, this.svg);
     let position;
     if (
-      graphData
-            && graphData.values
-            && this.content.includes(graphData.key)
+      graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)
     ) {
-      this.contentConfig.forEach((config, index) => {
-        if (config.config.key === graphData.key) position = index;
+      graphData.panData.forEach((data) => {
+        this.contentConfig.forEach((config, index) => {
+          if (config.config.key === data.key) position = index;
+        });
+        this.contentConfig[position].reflow(this, data);
+        position = undefined;
       });
-      this.contentConfig[position].reflow(this, graphData);
     }
     reflowLegend(
       this.legendSVG,

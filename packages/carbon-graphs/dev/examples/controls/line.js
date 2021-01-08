@@ -541,12 +541,6 @@ export const renderLineY2AxisWithPanning = (id) => {
     getDemoData(`#${id}`, 'LINE_TIMESERIES').data[1],
   );
   const graphDataY3 = {
-    panData: [
-      utils.deepClone(
-        getDemoData(`#${id}`, 'LINE_TIMESERIES').data[0]), 
-      utils.deepClone(
-        getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1]),
-    ],
     xLabel: "xLabel",
     yLabel: "yLabel",
     y2Label: "y2Label"
@@ -584,9 +578,11 @@ export const renderLinePanningWithDynamicData = (id) => {
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
-    const graphDataY = utils.deepClone(
-      getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1],
-    );
+    const graphDataY = {
+      panData: [
+        utils.deepClone(getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1])
+      ]
+    }
     graph.reflow(graphDataY);
   };
 
@@ -650,8 +646,12 @@ export const renderLinePanningWithUpdatedLegend = (id) => {
     getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[0],
   );
   const graphDataH = {
-    ...graphData,
-    values: [],
+    panData: [
+      {
+        ...graphData,
+        values: [],
+      }
+    ]
   };
   graphData.regions = [regions[0]];
 
@@ -660,15 +660,18 @@ export const renderLinePanningWithUpdatedLegend = (id) => {
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
-    const graphDataY = utils.deepClone(
-      getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1],
-    );
-    if (graphDataH.values === graphData.values) {
+    const graphDataY = {
+      panData : [
+        utils.deepClone(
+          getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1])
+      ]
+    }
+    if (graphDataH.panData[0].values === graphData.values) {
       graph.reflow(graphDataY);
-      graphData = graphDataY;
+      graphData = graphDataY.panData[0];
     } else {
       graph.reflow(graphDataH);
-      graphData = graphDataH;
+      graphData = graphDataH.panData[0];
     }
   };
 

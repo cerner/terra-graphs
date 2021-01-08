@@ -646,11 +646,15 @@ export const renderGanttPanningWithDynamicData = (id) => {
     activities: activities[3],
   };
   const graphDataY = {
-    key: 'track 0',
-    actions: panData.actions,
-    tasks: panData.tasks,
-    events: panData.events,
-    activities: panData.activities,
+    panData: [
+      {
+        key: 'track 0',
+        actions: panData.actions,
+        tasks: panData.tasks,
+        events: panData.events,
+        activities: panData.activities,
+      }
+    ]
   };
 
   const graph = Carbon.api.gantt(axisData);

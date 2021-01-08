@@ -346,17 +346,22 @@ class Gantt extends Construct {
     translateAxes(this.axis, this.scale, this.config, this.svg);
 
     let position;
-    if (graphData && this.tracks.includes(graphData.key)) {
-      this.trackConfig.forEach((track, index) => {
-        if (track.config.key === graphData.key) position = index;
+    if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
+      graphData.panData.forEach((data) => {
+        this.trackConfig.forEach((track, index) => {
+          if (track.config.key === data.key) position = index;
+        });
+        if (position > -1) {
+          this.trackConfig[position].reflow(this, data);
+          reflowLegend(
+            this.legendSVG,
+            this.config.actionLegend[position],
+            this,
+            eventHandlers,
+          );
+        }
+        position=undefined;
       });
-      this.trackConfig[position].reflow(this, graphData);
-      reflowLegend(
-        this.legendSVG,
-        this.config.actionLegend[position],
-        this,
-        eventHandlers,
-      );
     }
 
     if (graphData && graphData.eventline) {

@@ -85,17 +85,25 @@ export const renderTimelinePanningWithDynamicData = (id) => {
   axisData.pan = {
     enabled: true,
   };
-  const graphData = utils.deepClone(
+  const graphDataY = utils.deepClone(
     getDemoData(`#${id}`, 'TIMELINE').data[0],
   );
-  const panData = utils.deepClone(getDemoData(`#${id}`, 'TIMELINE').data[2]);
+  const graphDataY2 = utils.deepClone(
+    getDemoData(`#${id}`, 'TIMELINE').data[1],
+  );
+  const graphData = {
+    panData: [
+      utils.deepClone(getDemoData(`#${id}`, 'TIMELINE').data[2])
+    ],
+  }
 
   const graph = Carbon.api.timeline(axisData);
-  graph.loadContent(graphData);
+  graph.loadContent(graphDataY);
+  graph.loadContent(graphDataY2);
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
-    graph.reflow(panData);
+    graph.reflow(graphData);
   };
 
   createPanningControls(id, {

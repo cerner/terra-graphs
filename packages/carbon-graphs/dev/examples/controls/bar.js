@@ -267,6 +267,35 @@ const graphData = [
       },
     ],
   },
+  {
+    panData: [
+      {
+    
+        key: 'uid_bar_t1',
+        values: [
+          {
+            x: new Date(2016, 0, 1, 5).toISOString(),
+            y: 16,
+          },
+          {
+            x: new Date(2016, 0, 1, 7).toISOString(),
+            y: 18,
+          },
+          {
+            x: new Date(2016, 0, 1, 13).toISOString(),
+            y: 13,
+          },
+          {
+            x: new Date(2016, 0, 1, 16).toISOString(),
+            y: 16,
+          },
+          {
+            x: new Date(2016, 0, 1, 0).toISOString(),
+            y: 20,
+          },
+        ],
+      }]
+  },
 ];
 
 export const renderBarDefault = (id) => {
@@ -543,7 +572,7 @@ export const renderBarPanningWithDynamicData = (id) => {
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
-    graph.reflow(graphData[1]);
+    graph.reflow(graphData[2]);
   };
   createPanningControls(id, {
     axisData,
