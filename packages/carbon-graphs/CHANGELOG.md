@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated reflow to allow users to send multiple datasets per graph Instance.
+
 ## 2.16.0 - (December 16, 2020)
 
 * Changed
