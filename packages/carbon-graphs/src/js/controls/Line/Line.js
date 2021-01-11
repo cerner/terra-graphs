@@ -178,46 +178,45 @@ class Line extends GraphContent {
      * @inheritdoc
      */
   resize(graph) {
-    const graphTempParam = graph;
     if (
       !utils.isEmptyArray(this.dataTarget.values)
-            && graphTempParam.config.shownTargets.indexOf(this.dataTarget.key) > -1
+        && graph.config.shownTargets.indexOf(this.dataTarget.key) > -1
     ) {
       if (
         utils.notEmpty(this.dataTarget.regions)
-                || !utils.isEmptyArray(this.dataTarget.valueRegionSubset)
+          || !utils.isEmptyArray(this.dataTarget.valueRegionSubset)
       ) {
         if (
           isSingleTargetDisplayed(
-            graphTempParam.config.shownTargets,
-            graphTempParam.content,
+            graph.config.shownTargets,
+            graph.content,
           )
         ) {
-          graphTempParam.config.shouldHideAllRegion = false;
+          graph.config.shouldHideAllRegion = false;
         } else {
-          graphTempParam.config.shouldHideAllRegion = !areRegionsIdentical(
-            graphTempParam.svg,
+          graph.config.shouldHideAllRegion = !areRegionsIdentical(
+            graph.svg,
           );
         }
       } else {
-        graphTempParam.config.shouldHideAllRegion = true;
+        graph.config.shouldHideAllRegion = true;
       }
     }
-    if (graphTempParam.config.shouldHideAllRegion) {
-      hideAllRegions(graphTempParam.svg);
+    if (graph.config.shouldHideAllRegion) {
+      hideAllRegions(graph.svg);
     }
     translateRegion(
-      graphTempParam.scale,
-      graphTempParam.config,
-      graphTempParam.svg.select(
-        `.${styles.regionGroup}`,
-        this.dataTarget.valueRegionSubset,
+      graph.scale,
+      graph.config,
+      graph.svg.select(
+            `.${styles.regionGroup}`,
+            this.dataTarget.valueRegionSubset,
       ),
       this.dataTarget.yAxis,
       !utils.isEmptyArray(this.dataTarget.valueRegionSubset),
       this.dataTarget.interpolationType,
     );
-    translateLineGraph(graphTempParam.scale, graphTempParam.svg, graphTempParam.config);
+    translateLineGraph(graph.scale, graph.svg, graph.config);
     return this;
   }
 

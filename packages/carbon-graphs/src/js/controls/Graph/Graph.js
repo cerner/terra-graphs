@@ -60,9 +60,8 @@ const { BASE_CANVAS_WIDTH_PADDING } = constants;
  * @returns {undefined} - returns nothing
  */
 const setCanvasWidth = (container, config) => {
-  const configTempParam = config;
-  configTempParam.canvasWidth = parseInt(container.style('width'), 10)
-        - getElementBoxSizingParameters(container);
+  config.canvasWidth = parseInt(container.style('width'), 10)
+      - getElementBoxSizingParameters(container);
 };
 
 /**
@@ -74,20 +73,19 @@ const setCanvasWidth = (container, config) => {
  * @returns {undefined} - returns nothing
  */
 const setCanvasHeight = (config) => {
-  const configTempParam = config;
   // Increase the canvas height only when either the x-axis label is specified
   // and showLabel is set to true or x-axis show is set to true
-  if ((configTempParam.showLabel && !!configTempParam.axis.x.label) || configTempParam.axis.x.show) {
-    configTempParam.canvasHeight = getYAxisHeight(configTempParam)
-            + (configTempParam.padding.bottom
-                + configTempParam.padding.top
-                + configTempParam.axisLabelHeights.x)
+  if ((config.showLabel && !!config.axis.x.label) || config.axis.x.show) {
+    config.canvasHeight = getYAxisHeight(config)
+            + (config.padding.bottom
+                + config.padding.top
+                + config.axisLabelHeights.x)
                 * 2;
   } else {
-    configTempParam.canvasHeight = getYAxisHeight(configTempParam)
-            + configTempParam.padding.bottom
-            + configTempParam.padding.top
-            + configTempParam.axisLabelHeights.x;
+    config.canvasHeight = getYAxisHeight(config)
+            + config.padding.bottom
+            + config.padding.top
+            + config.axisLabelHeights.x;
   }
 };
 /**
@@ -122,12 +120,11 @@ const loadInput = (inputJSON) => new GraphConfig().setInput(inputJSON).validateI
  * @returns {Graph} Graph instance
  */
 const beforeInit = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = d3.select(controlTempParam.config.bindTo);
-  getAxesDataRange({}, '', controlTempParam.config);
-  updateAxesDomain(controlTempParam.config);
+  control.graphContainer = d3.select(control.config.bindTo);
+  getAxesDataRange({}, '', control.config);
+  updateAxesDomain(control.config);
   createTooltipDiv();
-  return controlTempParam;
+  return control;
 };
 
 /**
@@ -138,9 +135,8 @@ const beforeInit = (control) => {
  * @returns {Graph} Graph instance
  */
 const initConfig = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = null;
-  controlTempParam.config = {
+  control.graphContainer = null;
+  control.config = {
     axis: {
       x: {},
       y: {},
@@ -151,20 +147,20 @@ const initConfig = (control) => {
     eventline: [],
     pan: {},
   };
-  controlTempParam.axis = {
+  control.axis = {
     axisInfoRow: {
       x: {},
     },
   };
-  controlTempParam.scale = {};
-  controlTempParam.svg = null;
-  controlTempParam.legendSVG = null;
-  controlTempParam.axesLabelShapeGroup = {};
-  controlTempParam.content = [];
-  controlTempParam.contentConfig = [];
-  controlTempParam.contentKeys = [];
-  controlTempParam.resizeHandler = null;
-  return controlTempParam;
+  control.scale = {};
+  control.svg = null;
+  control.legendSVG = null;
+  control.axesLabelShapeGroup = {};
+  control.content = [];
+  control.contentConfig = [];
+  control.contentKeys = [];
+  control.resizeHandler = null;
+  return control;
 };
 
 /**
@@ -181,17 +177,16 @@ const initConfig = (control) => {
  * @returns {Graph} Graph instance
  */
 const init = (control) => {
-  const controlTempParam = control;
-  controlTempParam.config.height = determineHeight(
-    controlTempParam.config,
-    controlTempParam.config.dimension,
+  control.config.height = determineHeight(
+    control.config,
+    control.config.dimension,
   );
-  setCanvasWidth(controlTempParam.graphContainer, controlTempParam.config);
-  calculateAxesSize(controlTempParam.config);
-  calculateAxesLabelSize(controlTempParam.config);
-  setCanvasHeight(controlTempParam.config);
-  scaleGraph(controlTempParam.scale, controlTempParam.config);
-  return controlTempParam;
+  setCanvasWidth(control.graphContainer, control.config);
+  calculateAxesSize(control.config);
+  calculateAxesLabelSize(control.config);
+  setCanvasHeight(control.config);
+  scaleGraph(control.scale, control.config);
+  return control;
 };
 
 /**

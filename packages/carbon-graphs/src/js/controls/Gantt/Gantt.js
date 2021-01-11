@@ -60,7 +60,6 @@ const { BASE_CANVAS_WIDTH_PADDING } = constants;
  * @returns {undefined} - returns nothing
  */
 const setCanvasWidth = (container, config) => {
-  // eslint-disable-next-line no-param-reassign
   config.canvasWidth = parseInt(container.style('width'), 10)
         - getElementBoxSizingParameters(container);
 };
@@ -72,7 +71,7 @@ const setCanvasWidth = (container, config) => {
  * @param {object} config - config object derived from input JSON
  * @returns {undefined} - returns nothing
  */
-// eslint-disable-next-line no-return-assign,no-param-reassign
+// eslint-disable-next-line no-return-assign
 const setCanvasHeight = (config) => (config.canvasHeight = getYAxisHeight(config)
         + (config.padding.bottom * 2 + config.padding.top) * 2);
 /**
@@ -96,12 +95,11 @@ const loadInput = (inputJSON) => new GanttConfig().setInput(inputJSON).validateI
  * @returns {Gantt} Gantt instance
  */
 const beforeInit = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = d3.select(controlTempParam.config.bindTo);
-  updateAxesDomain(controlTempParam.config);
-  controlTempParam.config.height = determineHeight(controlTempParam.config);
+  control.graphContainer = d3.select(control.config.bindTo);
+  updateAxesDomain(control.config);
+  control.config.height = determineHeight(control.config);
   createTooltipDiv();
-  return controlTempParam;
+  return control;
 };
 /**
  * Initializes the necessary Gantt constructor objects
@@ -111,9 +109,8 @@ const beforeInit = (control) => {
  * @returns {Gantt} Gantt instance
  */
 const initConfig = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = null;
-  controlTempParam.config = {
+  control.graphContainer = null;
+  control.config = {
     axis: {
       x: {},
       y: {},
@@ -124,14 +121,14 @@ const initConfig = (control) => {
     eventline: [],
     pan: {},
   };
-  controlTempParam.axis = {};
-  controlTempParam.scale = {};
-  controlTempParam.svg = null;
-  controlTempParam.legendSVG = null;
-  controlTempParam.tracks = [];
-  controlTempParam.trackConfig = [];
-  controlTempParam.resizeHandler = null;
-  return controlTempParam;
+  control.axis = {};
+  control.scale = {};
+  control.svg = null;
+  control.legendSVG = null;
+  control.tracks = [];
+  control.trackConfig = [];
+  control.resizeHandler = null;
+  return control;
 };
 /**
  * Executes the init process checklist, needs to be called by parent control.

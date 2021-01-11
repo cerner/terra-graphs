@@ -56,14 +56,13 @@ const getLegendPadding = (config, inputLegendPadding) => {
  * @returns {object} - returns configuration object constructed using Input JSON
  */
 export const processInput = (input, config) => {
-  const configTempParam = config;
-  configTempParam.clipPathId = generateClipPathId();
-  configTempParam.bindTo = input.bindTo;
-  configTempParam.bindLegendTo = input.bindLegendTo;
-  configTempParam.dimension = getDefaultValue(input.dimension, {});
-  configTempParam.showLegend = getDefaultValue(input.showLegend, true);
-  configTempParam.legendPadding = getLegendPadding(configTempParam, input.legendPadding);
-  return configTempParam;
+  config.clipPathId = generateClipPathId();
+  config.bindTo = input.bindTo;
+  config.bindLegendTo = input.bindLegendTo;
+  config.dimension = getDefaultValue(input.dimension, {});
+  config.showLegend = getDefaultValue(input.showLegend, true);
+  config.legendPadding = getLegendPadding(config, input.legendPadding);
+  return config;
 };
 /**
  * API to parse consumer input for Graph

@@ -73,15 +73,14 @@
       [
         'values',
         function values(obj) {
-          let objTempParam = obj;
-          objTempParam = checkConvertible(objTempParam);
+          obj = checkConvertible(obj);
           const vals = [];
-          for (const key in objTempParam) {
+          for (const key in obj) {
             if (
-              Object.prototype.hasOwnProperty.call(objTempParam, key)
-                            && Object.prototype.propertyIsEnumerable.call(objTempParam, key)
+              Object.prototype.hasOwnProperty.call(obj, key)
+                            && Object.prototype.propertyIsEnumerable.call(obj, key)
             ) {
-              vals.push(objTempParam[key]);
+              vals.push(obj[key]);
             }
           }
           return vals;

@@ -177,32 +177,31 @@ const getPadding = (config, inputPadding) => {
  * @returns {object} - returns configuration object constructed using Input JSON
  */
 export const processInput = (input, config) => {
-  const configTempParam = config;
   const axis = utils.deepClone(input.axis);
-  configTempParam.clipPathId = generateClipPathId();
-  configTempParam.datelineClipPathId = generateDatelineClipPathId();
-  configTempParam.bindTo = input.bindTo;
-  configTempParam.bindLegendTo = input.bindLegendTo;
-  configTempParam.padding = getPadding(configTempParam, input.padding);
-  configTempParam.legendPadding = getLegendPadding(configTempParam, input.legendPadding);
-  configTempParam.axis = {
+  config.clipPathId = generateClipPathId();
+  config.datelineClipPathId = generateDatelineClipPathId();
+  config.bindTo = input.bindTo;
+  config.bindLegendTo = input.bindLegendTo;
+  config.padding = getPadding(config, input.padding);
+  config.legendPadding = getLegendPadding(config, input.legendPadding);
+  config.axis = {
     x: {},
     y: {},
   };
-  configTempParam.d3Locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
-  configTempParam.throttle = getDefaultValue(
+  config.d3Locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
+  config.throttle = getDefaultValue(
     input.throttle,
     constants.RESIZE_THROTTLE,
   );
-  configTempParam.dateline = getDefaultValue(utils.deepClone(input.dateline), []);
-  configTempParam.eventline = getDefaultValue(utils.deepClone(input.eventline), []);
-  configTempParam.actionLegend = getDefaultValue(
+  config.dateline = getDefaultValue(utils.deepClone(input.dateline), []);
+  config.eventline = getDefaultValue(utils.deepClone(input.eventline), []);
+  config.actionLegend = getDefaultValue(
     utils.deepClone(input.actionLegend),
     [],
   );
-  configTempParam.settingsDictionary = settingsDictionary(input);
-  configTempParam.showActionLegend = getDefaultValue(input.showActionLegend, false);
-  configTempParam.axis.x = Object.assign(axis.x, {
+  config.settingsDictionary = settingsDictionary(input);
+  config.showActionLegend = getDefaultValue(input.showActionLegend, false);
+  config.axis.x = Object.assign(axis.x, {
     type: AXIS_TYPE.TIME_SERIES,
     show: getDefaultValue(axis.x.show, true),
     ticks: getDefaultValue(axis.x.ticks, {}),
@@ -213,7 +212,7 @@ export const processInput = (input, config) => {
     ),
     rangeRounding: getDefaultValue(axis.x.rangeRounding, true),
   });
-  configTempParam.axis.y = {
+  config.axis.y = {
     show: axis.y ? getDefaultValue(axis.y.show, true) : true,
     trackCount: 0,
     trackList: {},
@@ -221,8 +220,8 @@ export const processInput = (input, config) => {
       ? getDefaultValue(axis.y.rangeRounding, true)
       : false,
   };
-  configTempParam.shownTargets = [];
-  return configTempParam;
+  config.shownTargets = [];
+  return config;
 };
 
 /**

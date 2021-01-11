@@ -376,7 +376,6 @@ const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
  * @returns {object} dataTarget - Updated data target object
  */
 const processDataPoints = (graphConfig, dataTarget) => {
-  const dataTargetTempParam = dataTarget;
   const { type } = graphConfig.axis.x;
   const getXDataValues = (x) => {
     if (!isValidAxisType(x, type)) {
@@ -385,19 +384,19 @@ const processDataPoints = (graphConfig, dataTarget) => {
     return parseTypedValue(x, type);
   };
 
-  graphConfig.shownTargets.push(dataTargetTempParam.key);
-  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => ({
-    onClick: dataTargetTempParam.onClick,
+  graphConfig.shownTargets.push(dataTarget.key);
+  dataTarget.internalValuesSubset = dataTarget.values.map((value) => ({
+    onClick: dataTarget.onClick,
     isCritical: value.isCritical || false,
     x: getXDataValues(value.x),
     y: value.y,
     weight: value.weight,
-    color: dataTargetTempParam.color || constants.DEFAULT_COLOR,
-    label: dataTargetTempParam.label || {},
-    yAxis: dataTargetTempParam.yAxis || constants.Y_AXIS,
-    key: dataTargetTempParam.key,
+    color: dataTarget.color || constants.DEFAULT_COLOR,
+    label: dataTarget.label || {},
+    yAxis: dataTarget.yAxis || constants.Y_AXIS,
+    key: dataTarget.key,
   }));
-  return dataTargetTempParam;
+  return dataTarget;
 };
 
 /**

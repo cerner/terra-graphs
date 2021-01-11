@@ -222,7 +222,6 @@ const drawDataLines = (scale, config, lineGroupSVG) => lineGroupSVG
  * @returns {undefined} - returns nothing
  */
 const drawDataPoints = (scale, config, pointGroupPath, legendSVG) => {
-  const configTempParam = config;
   const renderDataPointPath = (path, value, index) => path.append(() => new Shape(getShapeForTarget(value)).getShapeElement(
     getDefaultSVGProps({
       svgClassNames: styles.point,
@@ -283,7 +282,7 @@ const drawDataPoints = (scale, config, pointGroupPath, legendSVG) => {
       const dataPointSVG = d3.select(this);
       renderSelectionPath(dataPointSVG, d, i);
       if (d.isCritical) {
-        configTempParam.hasCriticality = true;
+        config.hasCriticality = true;
         renderCriticalityPath(
           dataPointSVG,
           d,
@@ -455,7 +454,6 @@ const getValueRegionSubset = (dataTarget, getXDataValues) => {
  * @returns {object} dataTarget - Updated data target object
  */
 const processDataPoints = (graphConfig, dataTarget) => {
-  const dataTargetTempParam = dataTarget;
   const { type } = graphConfig.axis.x;
   const getXDataValues = (x) => {
     if (!isValidAxisType(x, type)) {
@@ -463,37 +461,37 @@ const processDataPoints = (graphConfig, dataTarget) => {
     }
     return parseTypedValue(x, type);
   };
-    // Update the interpolation type
-  dataTargetTempParam.interpolationType = getInterpolationType(dataTargetTempParam.type);
+  // Update the interpolation type
+  dataTarget.interpolationType = getInterpolationType(dataTarget.type);
 
-  dataTargetTempParam.style = getDefaultValue(dataTargetTempParam.style, {});
-  dataTargetTempParam.style = {
-    strokeDashArray: getStrokeDashArray(dataTargetTempParam.style),
+  dataTarget.style = getDefaultValue(dataTarget.style, {});
+  dataTarget.style = {
+    strokeDashArray: getStrokeDashArray(dataTarget.style),
   };
-  dataTargetTempParam.showShapes = getDefaultValue(
-    dataTargetTempParam.showShapes,
+  dataTarget.showShapes = getDefaultValue(
+    dataTarget.showShapes,
     graphConfig.showShapes,
   );
-  dataTargetTempParam.legendOptions = getDefaultLegendOptions(graphConfig, dataTargetTempParam);
+  dataTarget.legendOptions = getDefaultLegendOptions(graphConfig, dataTarget);
 
-  graphConfig.shownTargets.push(dataTargetTempParam.key);
-  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => ({
-    onClick: dataTargetTempParam.onClick,
+  graphConfig.shownTargets.push(dataTarget.key);
+  dataTarget.internalValuesSubset = dataTarget.values.map((value) => ({
+    onClick: dataTarget.onClick,
     isCritical: value.isCritical || false,
     x: getXDataValues(value.x),
     y: value.y,
-    color: dataTargetTempParam.color || constants.DEFAULT_COLOR,
-    label: dataTargetTempParam.label || {},
-    shape: dataTargetTempParam.shape || SHAPES.CIRCLE,
-    yAxis: dataTargetTempParam.yAxis || constants.Y_AXIS,
-    key: dataTargetTempParam.key,
+    color: dataTarget.color || constants.DEFAULT_COLOR,
+    label: dataTarget.label || {},
+    shape: dataTarget.shape || SHAPES.CIRCLE,
+    yAxis: dataTarget.yAxis || constants.Y_AXIS,
+    key: dataTarget.key,
   }));
 
-  dataTargetTempParam.valueRegionSubset = getValueRegionSubset(
-    dataTargetTempParam,
+  dataTarget.valueRegionSubset = getValueRegionSubset(
+    dataTarget,
     getXDataValues,
   );
-  return dataTargetTempParam;
+  return dataTarget;
 };
 /**
  * Handler for Request animation frame, executes on resize.

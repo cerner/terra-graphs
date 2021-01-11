@@ -68,26 +68,25 @@ export const settingsDictionary = (config) => (isPanningModeEnabled(config)
  * @returns {object} - returns configuration object constructed using Input JSON
  */
 export const processInput = (input, config) => {
-  const configTempParam = config;
   const axis = utils.deepClone(input.axis);
-  configTempParam.clipPathId = generateClipPathId();
-  configTempParam.bindTo = input.bindTo;
-  configTempParam.bindLegendTo = input.bindLegendTo;
-  configTempParam.padding = getPadding(configTempParam, input.padding);
-  configTempParam.padding.hasCustomPadding = utils.isDefined(input.padding);
-  configTempParam.legendPadding = getLegendPadding(configTempParam, input.legendPadding);
-  configTempParam.axis = {
+  config.clipPathId = generateClipPathId();
+  config.bindTo = input.bindTo;
+  config.bindLegendTo = input.bindLegendTo;
+  config.padding = getPadding(config, input.padding);
+  config.padding.hasCustomPadding = utils.isDefined(input.padding);
+  config.legendPadding = getLegendPadding(config, input.legendPadding);
+  config.axis = {
     x: {},
   };
-  configTempParam.d3Locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
-  configTempParam.throttle = getDefaultValue(
+  config.d3Locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
+  config.throttle = getDefaultValue(
     input.throttle,
     constants.RESIZE_THROTTLE,
   );
-  configTempParam.settingsDictionary = settingsDictionary(input);
-  configTempParam.showLabel = getDefaultValue(input.showLabel, true);
-  configTempParam.showLegend = getDefaultValue(input.showLegend, true);
-  configTempParam.axis.x = Object.assign(axis.x, {
+  config.settingsDictionary = settingsDictionary(input);
+  config.showLabel = getDefaultValue(input.showLabel, true);
+  config.showLegend = getDefaultValue(input.showLegend, true);
+  config.axis.x = Object.assign(axis.x, {
     type: AXIS_TYPE.TIME_SERIES,
     show: true,
     ticks: getDefaultValue(axis.x.ticks, {}),
@@ -98,8 +97,8 @@ export const processInput = (input, config) => {
     ),
     rangeRounding: getDefaultValue(axis.x.rangeRounding, true),
   });
-  configTempParam.shownTargets = [];
-  return configTempParam;
+  config.shownTargets = [];
+  return config;
 };
 
 /**

@@ -58,7 +58,7 @@ const hasMissingAxisInfoRowValue = (inputAxisInfoRow) => inputAxisInfoRow.some((
  */
 const hasMissingAxisInfoRowLabelDisplay = (inputAxisInfoRow) => inputAxisInfoRow.some(
   (axisInfoRow) => utils.isUndefined(axisInfoRow.value.label)
-    || utils.isUndefined(axisInfoRow.value.label.display),
+        || utils.isUndefined(axisInfoRow.value.label.display),
 );
 
 /**
@@ -82,50 +82,47 @@ const hasSecondaryDisplay = (dataTarget) => dataTarget.axisInfoRow.some(
  * @returns {object} dataTarget - Updated data target object
  */
 const setDataPoints = (graphConfig, dataTarget) => {
-  const graphConfigTempParam = graphConfig;
-  const dataTargetTempParam = dataTarget;
-  const { type } = graphConfigTempParam.axis.x;
+  const { type } = graphConfig.axis.x;
   const getXDataValues = (x) => {
     if (getType(type) === AXIS_TYPE.TIME_SERIES) {
       return utils.parseDateTime(x);
     }
     return utils.getNumber(x);
   };
-  if (utils.notEmpty(dataTargetTempParam.axisInfoRow)) {
-    dataTargetTempParam.axisInfoRow.forEach(
-      // eslint-disable-next-line no-param-reassign
-      (axisInfoRowValue) => { (axisInfoRowValue.group = dataTargetTempParam.group); },
+  if (utils.notEmpty(dataTarget.axisInfoRow)) {
+    dataTarget.axisInfoRow.forEach(
+      (axisInfoRowValue) => { (axisInfoRowValue.group = dataTarget.group); },
     );
-    if (!graphConfigTempParam.axisInfoRowLabelHeight) {
-      graphConfigTempParam.axisInfoRowLabelHeight = hasSecondaryDisplay(dataTargetTempParam)
+    if (!graphConfig.axisInfoRowLabelHeight) {
+      graphConfig.axisInfoRowLabelHeight = hasSecondaryDisplay(dataTarget)
         ? getAxisLabelHeight('dummyString') * 2
         : getAxisLabelHeight('dummyString');
-      graphConfigTempParam.padding.bottom += graphConfigTempParam.axisInfoRowLabelHeight;
+      graphConfig.padding.bottom += graphConfig.axisInfoRowLabelHeight;
     }
   }
-  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => {
-    const isHashed = dataTargetTempParam.style ? dataTargetTempParam.style.isHashed : false;
+  dataTarget.internalValuesSubset = dataTarget.values.map((value) => {
+    const isHashed = dataTarget.style ? dataTarget.style.isHashed : false;
     return {
-      onClick: dataTargetTempParam.onClick,
+      onClick: dataTarget.onClick,
       x: getXDataValues(value.x),
       y: value.y,
       y0: 0,
-      color: dataTargetTempParam.color || COLORS.BLUE,
-      label: dataTargetTempParam.label,
-      yAxis: dataTargetTempParam.yAxis || constants.Y_AXIS,
-      key: dataTargetTempParam.key,
+      color: dataTarget.color || COLORS.BLUE,
+      label: dataTarget.label,
+      yAxis: dataTarget.yAxis || constants.Y_AXIS,
+      key: dataTarget.key,
       isHashed: value.style ? value.style.isHashed : isHashed,
       style: getBarStyle(
-        value.style ? value.style : dataTargetTempParam.style,
-        dataTargetTempParam,
+        value.style ? value.style : dataTarget.style,
+        dataTarget,
       ),
-      group: dataTargetTempParam.group,
+      group: dataTarget.group,
     };
   });
   // This square shape is used strictly for legend item
-  dataTargetTempParam.shape = SHAPES.SQUARE;
-  dataTargetTempParam.color = dataTargetTempParam.color || COLORS.BLUE;
-  return dataTargetTempParam;
+  dataTarget.shape = SHAPES.SQUARE;
+  dataTarget.color = dataTarget.color || COLORS.BLUE;
+  return dataTarget;
 };
 
 /**
@@ -144,7 +141,7 @@ const setDataPoints = (graphConfig, dataTarget) => {
 const processDataPoints = (graphConfig, dataTarget) => {
   if (
     utils.isEmpty(graphConfig.axis.x.ticks)
-        || utils.isEmpty(graphConfig.axis.x.ticks.values)
+      || utils.isEmpty(graphConfig.axis.x.ticks.values)
   ) {
     throw new Error(errors.THROW_MSG_EMPTY_X_AXIS_TICK_VALUES);
   }
@@ -211,11 +208,11 @@ const setSelectionIndicatorAttributes = (selectionPath, isSelected) => {
  */
 const toggleDataPointSelection = (value, canvasSVG, type, tickValues) => {
   const selectedPointNode = canvasSVG.select(
-    `rect[aria-describedby=bar-selector-${
-      type === AXIS_TYPE.TIME_SERIES
-        ? tickValues.indexOf(new Date(value.x).toISOString())
-        : tickValues.indexOf(value.x)
-    }]`,
+      `rect[aria-describedby=bar-selector-${
+          type === AXIS_TYPE.TIME_SERIES
+            ? tickValues.indexOf(new Date(value.x).toISOString())
+            : tickValues.indexOf(value.x)
+      }]`,
   );
   const isHidden = selectedPointNode.attr('aria-hidden') === 'true';
   setSelectionIndicatorAttributes(selectedPointNode, isHidden);
@@ -271,10 +268,10 @@ const barActionHandler = (value, index, canvasSVG, type, tickValues, datum) => {
  */
 const barAttributesHelper = (scale, bandScale) => {
   const leftShiftOffset = bandScale.x0.bandwidth()
-    * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.LEFT_SHIFT_OFFSET_RATIO; // this value is used to center bars by shifting left
+      * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.LEFT_SHIFT_OFFSET_RATIO; // this value is used to center bars by shifting left
   const leftShiftPadding = bandScale.x1.bandwidth()
-    * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES
-      .LEFT_SHIFT_OFFSET_PADDING_RATIO; // padding to be added on left side of bar
+      * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES
+        .LEFT_SHIFT_OFFSET_PADDING_RATIO; // padding to be added on left side of bar
   const getXRange = (x, groupOffset) => scale.x(x) + leftShiftPadding + groupOffset - leftShiftOffset;
 
   return {
@@ -286,7 +283,7 @@ const barAttributesHelper = (scale, bandScale) => {
     y: (d) => (d.y < 0 ? scale[d.yAxis](d.y0) : scale[d.yAxis](d.y + d.y0)),
     height: (d) => Math.abs(scale[d.yAxis](0) - scale[d.yAxis](+d.y)),
     width: () => bandScale.x1.bandwidth()
-      * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.WIDTH_RATIO,
+        * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.WIDTH_RATIO,
   };
 };
 
@@ -414,9 +411,9 @@ const draw = (scale, bandScale, config, canvasSVG, dataTarget) => {
     .classed(styles.currentBarsGroup, true)
     .attr(
       'transform',
-      `translate(${getXAxisXPosition(config)},${calculateVerticalPadding(
-        config,
-      )})`,
+          `translate(${getXAxisXPosition(config)},${calculateVerticalPadding(
+            config,
+          )})`,
     )
     .data([dataTarget]);
   const bars = barGroupSVG
@@ -442,13 +439,12 @@ const draw = (scale, bandScale, config, canvasSVG, dataTarget) => {
  * @returns {undefined} - returns nothing
  */
 const setGroupName = (config, content) => {
-  const configTempParam = config;
-  if (utils.isEmpty(configTempParam.group)) {
-    configTempParam.group = configTempParam.key;
+  if (utils.isEmpty(config.group)) {
+    config.group = config.key;
     return;
   }
-  if (!content.filter((c) => c.config.key === configTempParam.group).length) {
-    configTempParam.group = configTempParam.key;
+  if (!content.filter((c) => c.config.key === config.group).length) {
+    config.group = config.key;
   }
 };
 

@@ -54,12 +54,11 @@ const determineHeight = (config) => DEFAULT_HEIGHT + config.padding.top - config
  *  @returns {undefined} - returns nothing
  */
 const calculateAxesLabelSize = (config) => {
-  const configTempParam = config;
-  configTempParam.axisLabelHeights = {};
-  configTempParam.axisLabelHeights.x = 0;
-  if (configTempParam.showLabel) {
-    if (configTempParam.axis.x.label) {
-      configTempParam.axisLabelHeights.x = getAxisLabelHeight(configTempParam.axis.x.label);
+  config.axisLabelHeights = {};
+  config.axisLabelHeights.x = 0;
+  if (config.showLabel) {
+    if (config.axis.x.label) {
+      config.axisLabelHeights.x = getAxisLabelHeight(config.axis.x.label);
     }
   }
 };
@@ -74,9 +73,8 @@ const calculateAxesLabelSize = (config) => {
  *  @returns {undefined} - returns nothing
  */
 const calculateAxesSize = (config) => {
-  const configTempParam = config;
-  configTempParam.axisSizes = {};
-  configTempParam.axisSizes.x = getXAxisHeight(configTempParam);
+  config.axisSizes = {};
+  config.axisSizes.x = getXAxisHeight(config);
 };
 /**
  * X Axis's starting position within the canvas
@@ -131,8 +129,7 @@ const getXAxisLabelYPosition = (config) => getXAxisYPosition(config)
  * @returns {object} - Scaled axes object
  */
 const getAxesScale = (axis, scale, config) => {
-  const axisTempParam = axis;
-  axisTempParam.x = prepareXAxis(
+  axis.x = prepareXAxis(
     scale.x,
     config.axis.x.ticks.values,
     getXAxisWidth(config),
@@ -142,7 +139,7 @@ const getAxesScale = (axis, scale, config) => {
       config.axis.x.type,
     ),
   ).tickSize(constants.DEFAULT_TIMELINE_TICK_LENGTH);
-  return axisTempParam;
+  return axis;
 };
 /**
  * Creates and sets the d3 scale for the Graph. Once the scale is created
@@ -164,14 +161,13 @@ const getAxesScale = (axis, scale, config) => {
  * @returns {undefined} - returns nothing
  */
 const scaleGraph = (scale, config) => {
-  const scaleTempParam = scale;
-  scaleTempParam.x = d3
+  scale.x = d3
     .scaleTime()
     .domain(config.axis.x.domain)
     .range([0, getXAxisWidth(config)])
     .clamp(config.settingsDictionary.shouldClamp);
   if (config.axis.x.rangeRounding) {
-    scaleTempParam.x.nice();
+    scale.x.nice();
   }
 };
 /**

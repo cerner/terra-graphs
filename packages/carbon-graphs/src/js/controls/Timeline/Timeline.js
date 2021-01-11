@@ -45,9 +45,8 @@ const { BASE_CANVAS_WIDTH_PADDING } = constants;
  * @returns {undefined} - returns nothing
  */
 const setCanvasWidth = (container, config) => {
-  const configTempParam = config;
-  configTempParam.canvasWidth = parseInt(container.style('width'), 10)
-        - getElementBoxSizingParameters(container);
+  config.canvasWidth = parseInt(container.style('width'), 10)
+      - getElementBoxSizingParameters(container);
 };
 /**
  * Sets the canvas width. Canvas rests within a container.
@@ -57,9 +56,8 @@ const setCanvasWidth = (container, config) => {
  * @returns {undefined} - returns nothing
  */
 const setCanvasHeight = (config) => {
-  const configTempParam = config;
-  configTempParam.canvasHeight = getYAxisHeight(configTempParam)
-        + (configTempParam.padding.bottom * 2 + configTempParam.padding.top) * 2;
+  config.canvasHeight = getYAxisHeight(config)
+      + (config.padding.bottom * 2 + config.padding.top) * 2;
 };
 /**
  * Data point sets can be loaded using this function.
@@ -84,10 +82,9 @@ const loadInput = (inputJSON) => new TimelineConfig()
  * @returns {Timeline} Timeline instance
  */
 const beforeInit = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = d3.select(controlTempParam.config.bindTo);
-  controlTempParam.config.height = determineHeight(controlTempParam.config);
-  return controlTempParam;
+  control.graphContainer = d3.select(control.config.bindTo);
+  control.config.height = determineHeight(control.config);
+  return control;
 };
 /**
  * Initializes the necessary Timeline constructor objects
@@ -97,23 +94,22 @@ const beforeInit = (control) => {
  * @returns {Timeline} Timeline instance
  */
 const initConfig = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = null;
-  controlTempParam.config = {
+  control.graphContainer = null;
+  control.config = {
     axis: {
       x: {},
     },
     shownTargets: {},
     pan: {},
   };
-  controlTempParam.axis = {};
-  controlTempParam.scale = {};
-  controlTempParam.svg = null;
-  controlTempParam.legendSVG = null;
-  controlTempParam.content = [];
-  controlTempParam.contentConfig = [];
-  controlTempParam.resizeHandler = null;
-  return controlTempParam;
+  control.axis = {};
+  control.scale = {};
+  control.svg = null;
+  control.legendSVG = null;
+  control.content = [];
+  control.contentConfig = [];
+  control.resizeHandler = null;
+  return control;
 };
 /**
  * Executes the init process checklist, needs to be called by parent control.

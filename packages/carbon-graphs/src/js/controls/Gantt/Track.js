@@ -256,14 +256,13 @@ class Track extends GraphContent {
      * @inheritdoc
      */
   reflow(graph, graphData) {
-    const graphDataTempParam = graphData;
     if (
-      utils.notEmpty(graphDataTempParam.activities)
+      utils.notEmpty(graphData.activities)
             && utils.notEmpty(this.config.activities)
     ) {
-      graphDataTempParam.activityKeys = [];
-      graphDataTempParam.activities.forEach((activity) => {
-        graphDataTempParam.activityKeys.push(activity.key);
+      graphData.activityKeys = [];
+      graphData.activities.forEach((activity) => {
+        graphData.activityKeys.push(activity.key);
         if (this.config.activityKeys.includes(activity.key)) {
           const position = this.config.activityKeys.indexOf(
             activity.key,
@@ -273,14 +272,14 @@ class Track extends GraphContent {
         }
       });
       this.config.activityKeys.slice(0).forEach((key) => {
-        if (!graphDataTempParam.activityKeys.includes(key)) {
+        if (!graphData.activityKeys.includes(key)) {
           const position = this.config.activityKeys.indexOf(key);
           this.config.activityKeys.splice(position, 1);
           this.config.activities.splice(position, 1);
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowActivities(
         graph.svg,
@@ -291,12 +290,12 @@ class Track extends GraphContent {
       );
     }
     if (
-      utils.notEmpty(graphDataTempParam.tasks)
-            && utils.notEmpty(this.config.tasks)
+      utils.notEmpty(graphData.tasks)
+        && utils.notEmpty(this.config.tasks)
     ) {
-      graphDataTempParam.taskKeys = [];
-      graphDataTempParam.tasks.forEach((task) => {
-        graphDataTempParam.taskKeys.push(task.key);
+      graphData.taskKeys = [];
+      graphData.tasks.forEach((task) => {
+        graphData.taskKeys.push(task.key);
         if (this.config.taskKeys.includes(task.key)) {
           const position = this.config.taskKeys.indexOf(task.key);
           this.config.tasks[position].startDate = task.startDate;
@@ -304,14 +303,14 @@ class Track extends GraphContent {
         }
       });
       this.config.taskKeys.slice(0).forEach((key) => {
-        if (!graphDataTempParam.taskKeys.includes(key)) {
+        if (!graphData.taskKeys.includes(key)) {
           const position = this.config.taskKeys.indexOf(key);
           this.config.taskKeys.splice(position, 1);
           this.config.tasks.splice(position, 1);
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowTasks(
         graph.svg,
@@ -322,50 +321,50 @@ class Track extends GraphContent {
       );
     }
     if (
-      utils.notEmpty(graphDataTempParam.events)
-            && utils.notEmpty(this.config.events)
+      utils.notEmpty(graphData.events)
+        && utils.notEmpty(this.config.events)
     ) {
-      graphDataTempParam.eventKeys = [];
-      graphDataTempParam.events.forEach((event) => {
-        graphDataTempParam.eventKeys.push(event.key);
+      graphData.eventKeys = [];
+      graphData.events.forEach((event) => {
+        graphData.eventKeys.push(event.key);
         if (this.config.eventKeys.includes(event.key)) {
           const position = this.config.eventKeys.indexOf(event.key);
           this.config.events[position].values = event.values;
         }
       });
       this.config.eventKeys.slice(0).forEach((key) => {
-        if (!graphDataTempParam.eventKeys.includes(key)) {
+        if (!graphData.eventKeys.includes(key)) {
           const position = this.config.eventKeys.indexOf(key);
           this.config.eventKeys.splice(position, 1);
           this.config.events.splice(position, 1);
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowEvents(graph.config, graph.scale, this, trackGroupPath);
     }
     if (
-      utils.notEmpty(graphDataTempParam.actions)
-            && utils.notEmpty(this.config.actions)
+      utils.notEmpty(graphData.actions)
+        && utils.notEmpty(this.config.actions)
     ) {
-      graphDataTempParam.actionKeys = [];
-      graphDataTempParam.actions.forEach((action) => {
-        graphDataTempParam.actionKeys.push(action.key);
+      graphData.actionKeys = [];
+      graphData.actions.forEach((action) => {
+        graphData.actionKeys.push(action.key);
         if (this.config.actionKeys.includes(action.key)) {
           const position = this.config.actionKeys.indexOf(action.key);
           this.config.actions[position].values = action.values;
         }
       });
       this.config.actionKeys.slice(0).forEach((key) => {
-        if (!graphDataTempParam.actionKeys.includes(key)) {
+        if (!graphData.actionKeys.includes(key)) {
           const position = this.config.actionKeys.indexOf(key);
           this.config.actionKeys.splice(position, 1);
           this.config.actions.splice(position, 1);
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowActions(graph.config, graph.scale, this, trackGroupPath, graph.legendSVG);
     }

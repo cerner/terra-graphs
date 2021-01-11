@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Changed
-  * Fix linter issues.
+  * Fixed linter issues.
 
 ## 2.16.0 - (December 16, 2020)
 

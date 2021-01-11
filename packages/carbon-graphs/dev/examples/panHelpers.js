@@ -46,10 +46,9 @@ const createNavigationButton = (container, icon, action, className) => container
  * @returns {object} returns the update axis to re-create the graph
  */
 const moveLeftHandler = (graphOptions, shift) => () => {
-  const shiftTempParam = shift;
   const { axisData, creationHandler } = graphOptions;
-  const hour = shiftTempParam.initial - shiftTempParam.factor;
-  shiftTempParam.initial = hour;
+  const hour = shift.initial - shift.factor;
+  shift.initial = hour;
   axisData.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
   axisData.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
   creationHandler();
@@ -64,10 +63,9 @@ const moveLeftHandler = (graphOptions, shift) => () => {
  * @returns {object} returns the update axis to re-create the graph
  */
 const moveRightHandler = (graphOptions, shift) => () => {
-  const shiftTempParam = shift;
   const { axisData, creationHandler } = graphOptions;
-  const hour = shiftTempParam.initial + shiftTempParam.factor;
-  shiftTempParam.initial = hour;
+  const hour = shift.initial + shift.factor;
+  shift.initial = hour;
   axisData.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
   axisData.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
   creationHandler();

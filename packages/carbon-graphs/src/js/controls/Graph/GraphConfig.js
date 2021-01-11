@@ -87,98 +87,96 @@ export const settingsDictionary = (config) => (isPanningModeEnabled(config)
  * @returns {object} - returns configuration object constructed using Input JSON
  */
 export const processInput = (input, config, type) => {
-  const configTempParam = config;
   const axis = utils.deepClone(input.axis);
   const getAxisDomain = (conf, yAxis, axisObj, showAxis = false) => {
-    const confTempParam = conf;
-    confTempParam.axis[yAxis].ticks = getDefaultValue(axisObj[yAxis].ticks, {});
-    confTempParam.axis[yAxis].show = getDefaultValue(
+    conf.axis[yAxis].ticks = getDefaultValue(axisObj[yAxis].ticks, {});
+    conf.axis[yAxis].show = getDefaultValue(
       axisObj[yAxis].show,
       showAxis,
     );
-    confTempParam.axis[yAxis].domain = {
+    conf.axis[yAxis].domain = {
       lowerLimit: utils.getNumber(axisObj[yAxis].lowerLimit),
       upperLimit: utils.getNumber(axisObj[yAxis].upperLimit),
     };
-    confTempParam.axis[yAxis].rangeRounding = getDefaultValue(
+    conf.axis[yAxis].rangeRounding = getDefaultValue(
       axisObj[yAxis].rangeRounding,
       true,
     );
-    confTempParam.axis[yAxis].suppressTrailingZeros = getDefaultValue(
+    conf.axis[yAxis].suppressTrailingZeros = getDefaultValue(
       axisObj[yAxis].suppressTrailingZeros,
       false,
     );
-    return confTempParam;
+    return conf;
   };
-  configTempParam.clipPathId = generateClipPathId();
-  configTempParam.datelineClipPathId = generateDatelineClipPathId();
-  configTempParam.bindTo = input.bindTo;
-  configTempParam.bindLegendTo = input.bindLegendTo;
-  configTempParam.axis = axis;
-  configTempParam.dateline = getDefaultValue(utils.deepClone(input.dateline), []);
-  configTempParam.eventline = getDefaultValue(utils.deepClone(input.eventline), []);
-  configTempParam.padding = getPadding(configTempParam, input.padding);
-  configTempParam.locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
-  configTempParam.d3Locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
-  configTempParam.showNoDataText = getDefaultValue(input.showNoDataText, true);
-  configTempParam.throttle = getDefaultValue(
+  config.clipPathId = generateClipPathId();
+  config.datelineClipPathId = generateDatelineClipPathId();
+  config.bindTo = input.bindTo;
+  config.bindLegendTo = input.bindLegendTo;
+  config.axis = axis;
+  config.dateline = getDefaultValue(utils.deepClone(input.dateline), []);
+  config.eventline = getDefaultValue(utils.deepClone(input.eventline), []);
+  config.padding = getPadding(config, input.padding);
+  config.locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
+  config.d3Locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
+  config.showNoDataText = getDefaultValue(input.showNoDataText, true);
+  config.throttle = getDefaultValue(
     input.throttle,
     constants.RESIZE_THROTTLE,
   );
-  configTempParam.settingsDictionary = settingsDictionary(input);
-  configTempParam.showLabel = getDefaultValue(input.showLabel, true);
-  configTempParam.showLegend = getDefaultValue(input.showLegend, true);
-  configTempParam.showShapes = getDefaultValue(input.showShapes, true);
-  configTempParam.showHGrid = getDefaultValue(input.showHGrid, true);
-  configTempParam.showVGrid = getDefaultValue(input.showVGrid, true);
-  configTempParam.dimension = getDefaultValue(input.dimension, {});
-  configTempParam.allowCalibration = getDefaultValue(input.allowCalibration, true);
-  configTempParam.removeContainerPadding = getDefaultValue(
+  config.settingsDictionary = settingsDictionary(input);
+  config.showLabel = getDefaultValue(input.showLabel, true);
+  config.showLegend = getDefaultValue(input.showLegend, true);
+  config.showShapes = getDefaultValue(input.showShapes, true);
+  config.showHGrid = getDefaultValue(input.showHGrid, true);
+  config.showVGrid = getDefaultValue(input.showVGrid, true);
+  config.dimension = getDefaultValue(input.dimension, {});
+  config.allowCalibration = getDefaultValue(input.allowCalibration, true);
+  config.removeContainerPadding = getDefaultValue(
     input.removeContainerPadding,
     false,
   );
-  configTempParam.legendPadding = getLegendPadding(configTempParam, input.legendPadding);
+  config.legendPadding = getLegendPadding(config, input.legendPadding);
 
   // Additional X Axis properties defined on top of input axis
-  configTempParam.axis.x.type = getDefaultValue(axis.x.type, AXIS_TYPE.DEFAULT);
-  configTempParam.axis.x.ticks = getDefaultValue(axis.x.ticks, {});
-  configTempParam.axis.x.show = getDefaultValue(axis.x.show, true);
-  configTempParam.axis.x.orientation = getDefaultValue(
+  config.axis.x.type = getDefaultValue(axis.x.type, AXIS_TYPE.DEFAULT);
+  config.axis.x.ticks = getDefaultValue(axis.x.ticks, {});
+  config.axis.x.show = getDefaultValue(axis.x.show, true);
+  config.axis.x.orientation = getDefaultValue(
     axis.x.orientation,
     AXES_ORIENTATION.X.BOTTOM,
   );
-  configTempParam.axis.x.domain = getDomain(
+  config.axis.x.domain = getDomain(
     type,
     axis.x.lowerLimit,
     axis.x.upperLimit,
   );
-  configTempParam.axis.x.rangeRounding = getDefaultValue(axis.x.rangeRounding, true);
-  configTempParam.axis.x.suppressTrailingZeros = getDefaultValue(
+  config.axis.x.rangeRounding = getDefaultValue(axis.x.rangeRounding, true);
+  config.axis.x.suppressTrailingZeros = getDefaultValue(
     axis.x.suppressTrailingZeros,
     false,
   );
 
   // Additional Y & Y2 Axis properties defined on top of input axis
   if (input.axis.y) {
-    getAxisDomain(configTempParam, constants.Y_AXIS, axis, true);
+    getAxisDomain(config, constants.Y_AXIS, axis, true);
   } else {
-    configTempParam.axis.y = initialAxisInfo;
+    config.axis.y = initialAxisInfo;
   }
   if (input.axis.y2) {
-    getAxisDomain(configTempParam, constants.Y2_AXIS, axis);
+    getAxisDomain(config, constants.Y2_AXIS, axis);
   } else {
-    configTempParam.axis.y2 = initialAxisInfo;
+    config.axis.y2 = initialAxisInfo;
   }
-  configTempParam.shownTargets = [];
-  configTempParam.hasCriticality = false;
-  configTempParam.shouldHideAllRegion = false;
+  config.shownTargets = [];
+  config.hasCriticality = false;
+  config.shouldHideAllRegion = false;
   // axisPadding is needed for case by case basis. Example: for bar graphs, we toggle padding using this variable
-  configTempParam.axisPadding = {
+  config.axisPadding = {
     y: getDefaultValue(axis.y.padDomain, true),
     y2: getDefaultValue(axis.y2.padDomain, true),
   };
-  configTempParam.axisInfoRowLabelHeight = 0; // specific only to  Bar Graphs (when axis info row labels are used in Bar Graphs)
-  return configTempParam;
+  config.axisInfoRowLabelHeight = 0; // specific only to  Bar Graphs (when axis info row labels are used in Bar Graphs)
+  return config;
 };
 
 /**

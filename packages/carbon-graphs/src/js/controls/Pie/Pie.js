@@ -33,8 +33,7 @@ import PieContent from './PieContent';
  * @returns {undefined} - returns nothing
  */
 const setCanvasWidth = (container, config) => {
-  const configTempParam = config;
-  configTempParam.canvasWidth = configTempParam.width;
+  config.canvasWidth = config.width;
 };
 /**
  * Sets the canvas width. Canvas rests within a container.
@@ -44,8 +43,7 @@ const setCanvasWidth = (container, config) => {
  * @returns {undefined} - returns nothing
  */
 const setCanvasHeight = (config) => {
-  const configTempParam = config;
-  configTempParam.canvasHeight = configTempParam.height;
+  config.canvasHeight = config.height;
 };
 /**
  * Sets the canvas radius for pie chart.
@@ -55,8 +53,7 @@ const setCanvasHeight = (config) => {
  * @returns {undefined} - returns nothing
  */
 const setCanvasRadius = (config) => {
-  const configTempParam = config;
-  configTempParam.canvasRadius = d3.min([configTempParam.height, configTempParam.width]) / 2;
+  config.canvasRadius = d3.min([config.height, config.width]) / 2;
 };
 /**
  * Data point sets can be loaded using this function.
@@ -78,17 +75,16 @@ const loadInput = (inputJSON) => new PieConfig().setInput(inputJSON).validateInp
  * @returns {Pie} Pie instance
  */
 const beforeInit = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = d3.select(controlTempParam.config.bindTo);
-  controlTempParam.config.height = determineHeight(
-    controlTempParam.config,
-    controlTempParam.config.dimension,
+  control.graphContainer = d3.select(control.config.bindTo);
+  control.config.height = determineHeight(
+    control.config,
+    control.config.dimension,
   );
-  controlTempParam.config.width = determineHeight(
-    controlTempParam.config,
-    controlTempParam.config.dimension,
+  control.config.width = determineHeight(
+    control.config,
+    control.config.dimension,
   );
-  return controlTempParam;
+  return control;
 };
 /**
  * Initializes the necessary Pie constructor objects
@@ -98,17 +94,16 @@ const beforeInit = (control) => {
  * @returns {Pie} Pie instance
  */
 const initConfig = (control) => {
-  const controlTempParam = control;
-  controlTempParam.graphContainer = null;
-  controlTempParam.config = {};
-  controlTempParam.svg = null;
-  controlTempParam.legendSVG = null;
-  controlTempParam.content = [];
-  controlTempParam.contentConfig = [];
-  controlTempParam.resizeHandler = null;
-  controlTempParam.d3PieLayoutTransformer = null;
-  controlTempParam.d3PieArcTransformer = null;
-  return controlTempParam;
+  control.graphContainer = null;
+  control.config = {};
+  control.svg = null;
+  control.legendSVG = null;
+  control.content = [];
+  control.contentConfig = [];
+  control.resizeHandler = null;
+  control.d3PieLayoutTransformer = null;
+  control.d3PieArcTransformer = null;
+  return control;
 };
 /**
  * Executes the init process checklist, needs to be called by parent control.
@@ -123,13 +118,12 @@ const initConfig = (control) => {
  * @returns {Pie} Pie instance
  */
 const init = (control) => {
-  const controlTempParam = control;
-  setCanvasWidth(controlTempParam.graphContainer, controlTempParam.config);
-  setCanvasHeight(controlTempParam.config);
-  setCanvasRadius(controlTempParam.config);
-  controlTempParam.d3PieLayoutTransformer = createPieLayout();
-  controlTempParam.d3PieArcTransformer = createArc(controlTempParam.config.canvasRadius);
-  return controlTempParam;
+  setCanvasWidth(control.graphContainer, control.config);
+  setCanvasHeight(control.config);
+  setCanvasRadius(control.config);
+  control.d3PieLayoutTransformer = createPieLayout();
+  control.d3PieArcTransformer = createArc(control.config.canvasRadius);
+  return control;
 };
 
 /**

@@ -130,26 +130,25 @@ class Bubble extends GraphContent {
      * @inheritdoc
      */
   resize(graph) {
-    const graphTempParam = graph;
     if (utils.notEmpty(this.dataTarget.regions)) {
-      if (graphTempParam.content.length > 1 && !graphTempParam.config.shouldHideAllRegion) {
-        if (areRegionsIdentical(graphTempParam.svg)) {
-          graphTempParam.config.shouldHideAllRegion = false;
+      if (graph.content.length > 1 && !graph.config.shouldHideAllRegion) {
+        if (areRegionsIdentical(graph.svg)) {
+          graph.config.shouldHideAllRegion = false;
         } else {
-          hideAllRegions(graphTempParam.svg);
-          graphTempParam.config.shouldHideAllRegion = true;
+          hideAllRegions(graph.svg);
+          graph.config.shouldHideAllRegion = true;
         }
       }
     } else {
-      hideAllRegions(graphTempParam.svg);
-      graphTempParam.config.shouldHideAllRegion = true;
+      hideAllRegions(graph.svg);
+      graph.config.shouldHideAllRegion = true;
     }
     translateRegion(
-      graphTempParam.scale,
-      graphTempParam.config,
-      graphTempParam.svg.select(`.${styles.regionGroup}`),
+      graph.scale,
+      graph.config,
+      graph.svg.select(`.${styles.regionGroup}`),
     );
-    translateBubbleGraph(graphTempParam.scale, graphTempParam.svg, graphTempParam.config);
+    translateBubbleGraph(graph.scale, graph.svg, graph.config);
     return this;
   }
 

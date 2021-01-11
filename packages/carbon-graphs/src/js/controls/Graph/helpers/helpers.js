@@ -380,32 +380,31 @@ const padDomain = (domain, isPaddingNeeded = true) => {
  * @returns {object} config - config object derived from input JSON
  */
 const updateAxesDomain = (config, input = {}) => {
-  const configTempParam = config;
-  configTempParam.outlierStretchFactor = determineOutlierStretchFactor(configTempParam);
+  config.outlierStretchFactor = determineOutlierStretchFactor(config);
   const setDomain = (outlierStretchFactor, lowerLimit, upperLimit, yAxis) => {
     const halfDomain = (upperLimit - lowerLimit) / 2;
     const midPoint = (upperLimit + lowerLimit) / 2;
     return padDomain(
       {
         lowerLimit:
-                    midPoint - halfDomain * outlierStretchFactor.lowerLimit,
+              midPoint - halfDomain * outlierStretchFactor.lowerLimit,
         upperLimit:
-                    midPoint + halfDomain * outlierStretchFactor.upperLimit,
+              midPoint + halfDomain * outlierStretchFactor.upperLimit,
       },
-      configTempParam.axisPadding[yAxis],
+      config.axisPadding[yAxis],
     );
   };
 
   if (utils.notEmpty(input)) {
     const yAxis = input.config.yAxis || constants.Y_AXIS;
-    configTempParam.axis[yAxis].domain = setDomain(
-      configTempParam.outlierStretchFactor,
-      configTempParam.axis[yAxis].domain.lowerLimit,
-      configTempParam.axis[yAxis].domain.upperLimit,
+    config.axis[yAxis].domain = setDomain(
+      config.outlierStretchFactor,
+      config.axis[yAxis].domain.lowerLimit,
+      config.axis[yAxis].domain.upperLimit,
       yAxis,
     );
   }
-  return configTempParam;
+  return config;
 };
 /**
  * Added defs element for the canvas. This currently holds the clip paths for the entire chart.
@@ -539,7 +538,6 @@ const addLabelEventHandler = (
  * @returns {undefined} - returns nothing
  */
 const createLabel = (config, canvasSVG, control) => {
-  const controlTempParam = control;
   if (config.showLabel) {
     const axesLabelCharLimits = getAxesLabelCharacterLimits(config);
     if (config.axis.x.label) {
@@ -619,7 +617,7 @@ const createLabel = (config, canvasSVG, control) => {
       /*
              * Label shapes are only applicable when we have a Y2 Axis
              * */
-      controlTempParam.axesLabelShapeGroup = {
+      control.axesLabelShapeGroup = {
         [constants.Y_AXIS]: buildYAxisLabelShapeContainer(
           config,
           canvasSVG,
@@ -666,13 +664,12 @@ const createContentContainer = (config, canvasSVG) => canvasSVG
  * @returns {undefined} - returns nothing
  */
 const scaleGraph = (scale, config) => {
-  const scaleTempParam = scale;
-  scaleTempParam.x = getScale(config.axis.x.type)
+  scale.x = getScale(config.axis.x.type)
     .domain(config.axis.x.domain)
     .range(getXAxisRange(config))
     .clamp(config.settingsDictionary.shouldClamp);
 
-  scaleTempParam.y = d3
+  scale.y = d3
     .scaleLinear()
     .domain([
       config.axis.y.domain.lowerLimit,
@@ -681,13 +678,13 @@ const scaleGraph = (scale, config) => {
     .range(getYAxisRange(config))
     .clamp(config.allowCalibration);
   if (config.axis.x.rangeRounding) {
-    scaleTempParam.x.nice();
+    scale.x.nice();
   }
   if (config.allowCalibration && config.axis.y.rangeRounding) {
-    scaleTempParam.y.nice();
+    scale.y.nice();
   }
   if (hasY2Axis(config.axis)) {
-    scaleTempParam.y2 = d3
+    scale.y2 = d3
       .scaleLinear()
       .domain([
         config.axis.y2.domain.lowerLimit,
@@ -696,7 +693,7 @@ const scaleGraph = (scale, config) => {
       .range(getYAxisRange(config))
       .clamp(config.allowCalibration);
     if (config.allowCalibration && config.axis.y2.rangeRounding) {
-      scaleTempParam.y2.nice();
+      scale.y2.nice();
     }
   }
 };
@@ -822,17 +819,16 @@ const getColorForTarget = (dataPoint) => dataPoint.color || constants.DEFAULT_CO
  * @returns {undefined} - returns nothing
  */
 const attachEventHandlers = (control) => {
-  const controlTempParam = control;
   let resizeTimeout = 0;
-  const boundResize = controlTempParam.resize.bind(controlTempParam);
+  const boundResize = control.resize.bind(control);
   const setRequestAnimationFrame = () => window.requestAnimationFrame(boundResize);
   const getConfig = (config) => () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = d3.timeout(setRequestAnimationFrame, config.throttle);
   };
-  const resizeCallback = getConfig(controlTempParam.config);
+  const resizeCallback = getConfig(control.config);
   window.addEventListener('resize', resizeCallback, true);
-  controlTempParam.resizeHandler = resizeCallback;
+  control.resizeHandler = resizeCallback;
 };
 /**
  * Detach event handlers currently set for Line graph
@@ -874,10 +870,9 @@ const d3RemoveElement = (el, selector, isBatchSelect = false) => {
  * @returns {undefined} - returns nothing
  */
 const setAxisPadding = (axisPadding, { config }) => {
-  const axisPaddingTempParam = axisPadding;
   const yAxis = config.yAxis ? config.yAxis : constants.Y_AXIS;
   if (utils.notEmpty(config.axisPadding)) {
-    axisPaddingTempParam[yAxis] = config.axisPadding;
+    axisPadding[yAxis] = config.axisPadding;
   }
 };
 /**

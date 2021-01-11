@@ -160,7 +160,6 @@ const getDataPointValues = (target) => target.internalValuesSubset;
  * @returns {undefined} - returns nothing
  */
 const drawDataPoints = (scale, config, pointGroupPath, legendSVG) => {
-  const configTempParam = config;
   const renderDataPointPath = (path, value, index) => path.append(() => new Shape(getShapeForTarget(value)).getShapeElement(
     getDefaultSVGProps({
       svgClassNames: styles.point,
@@ -221,7 +220,7 @@ const drawDataPoints = (scale, config, pointGroupPath, legendSVG) => {
       const dataPointSVG = d3.select(this);
       renderSelectionPath(dataPointSVG, d, i);
       if (d.isCritical) {
-        configTempParam.hasCriticality = true;
+        config.hasCriticality = true;
         renderCriticalityPath(
           dataPointSVG,
           d,
@@ -300,7 +299,6 @@ const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
  * @returns {object} dataTarget - Updated data target object
  */
 const processDataPoints = (graphConfig, dataTarget) => {
-  const dataTargetTempParam = dataTarget;
   const { type } = graphConfig.axis.x;
   const getXDataValues = (x) => {
     if (!isValidAxisType(x, type)) {
@@ -308,22 +306,22 @@ const processDataPoints = (graphConfig, dataTarget) => {
     }
     return parseTypedValue(x, type);
   };
-    // Update the interpolation type
-  dataTargetTempParam.interpolationType = getInterpolationType(dataTargetTempParam.type);
-  dataTargetTempParam.showShapes = true;
-  graphConfig.shownTargets.push(dataTargetTempParam.key);
-  dataTargetTempParam.internalValuesSubset = dataTargetTempParam.values.map((value) => ({
-    onClick: dataTargetTempParam.onClick,
+  // Update the interpolation type
+  dataTarget.interpolationType = getInterpolationType(dataTarget.type);
+  dataTarget.showShapes = true;
+  graphConfig.shownTargets.push(dataTarget.key);
+  dataTarget.internalValuesSubset = dataTarget.values.map((value) => ({
+    onClick: dataTarget.onClick,
     isCritical: value.isCritical || false,
     x: getXDataValues(value.x),
     y: value.y,
-    color: dataTargetTempParam.color || constants.DEFAULT_COLOR,
-    label: dataTargetTempParam.label || {},
-    shape: dataTargetTempParam.shape || SHAPES.CIRCLE,
-    yAxis: dataTargetTempParam.yAxis || constants.Y_AXIS,
-    key: dataTargetTempParam.key,
+    color: dataTarget.color || constants.DEFAULT_COLOR,
+    label: dataTarget.label || {},
+    shape: dataTarget.shape || SHAPES.CIRCLE,
+    yAxis: dataTarget.yAxis || constants.Y_AXIS,
+    key: dataTarget.key,
   }));
-  return dataTargetTempParam;
+  return dataTarget;
 };
 /**
  * Handler for Request animation frame, executes on resize.

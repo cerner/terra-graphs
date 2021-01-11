@@ -25,7 +25,7 @@
            no-underscore-dangle: off
            no-console: off
            import/no-extraneous-dependencies: off
-
+           no-param-reassign: off
 
         - files: "**/scripts/**/*.js"
           rules:
