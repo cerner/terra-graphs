@@ -60,23 +60,46 @@ const dataSet = {
 ```
 
 ```jsx
-// panData
-const panData = {
-    key: "uid_1", // key should already be present in the graph
-    values: [
+// panningData
+const panningData = {
+    panData: [
+       {
+           key: "uid_1", // key should already be present in the graph
+            values: [
+                {
+                    x: new Date(2016, 0, 1, 10, 5).toISOString(),
+                    y: 37
+                },
+                {
+                    x: new Date(2016, 0, 1, 12, 15).toISOString(),
+                    y: 36
+                },
+                {
+                    x: new Date(2016, 0, 1, 14, 15).toISOString(),
+                    y: 35
+                }
+            ]
+       }
+    ],
+    eventline: [
         {
-            x: new Date(2016, 0, 1, 10, 5).toISOString(),
-            y: 95
+            color: COLORS.GREY,
+            style: {
+            strokeDashArray: "4,4"
+            },
+            value: new Date(2016, 9, 28).toISOString()
         },
         {
-            x: new Date(2016, 0, 1, 12, 15).toISOString(),
-            y: 92
-        },
-        {
-            x: new Date(2016, 0, 1, 14, 15).toISOString(),
-            y: 98
+            color: COLORS.GREY,
+            style: {
+            strokeDashArray: "4,4"
+            },
+            value: new Date(2016, 10, 28).toISOString()
         }
-    ]
+    ],
+    xLabel: 'updated xLabel',
+    yLabel: 'Temperature (degC)',
+    y2Label: 'updated y2Label',
 };
 ```
 
@@ -117,7 +140,7 @@ export const renderLinePanningWithDynamicData = (id) => {
     graphData.regions = [regions[0]];
 
     const createGraph = () => {
-        graph.reflow(panData);
+        graph.reflow(panningData);
     };
 
     const graph = Carbon.api.graph(axisData);
@@ -147,3 +170,15 @@ export const renderLinePanningWithDynamicData = (id) => {
 ## Constraints
 
 -   If panning is not provided then enabled will be false.
+
+### panningData
+
+#### Optional
+
+| Property Name | Expected | Default   | Description                        |
+| ------------- | -------- | --------- | ---------------------------------- |
+| panData       | array  | [] | Allows to pass multiple objects with key-value pairs  |
+| eventline       | array  | [] | Allows to pass multiple objects to update eventline. For structure refer [Eventline](../helpers/Eventline.md)  |
+| xLabel       | string  | undefined | Updates x-label value  |
+| yLabel       | string  | undefined | Updates y-label value  |
+| y2Label       | string  | undefined | Updates y2-label value  |
