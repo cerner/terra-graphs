@@ -441,9 +441,36 @@ class Graph extends Construct {
               this.config.axis.x.ticks.values = [];
               data.values.forEach((v) => this.config.axis.x.ticks.values.push(v.x));
             }
+            this.content[position].reflow(this, data);
+            setAxisPadding(this.config.axisPadding, this.content[position]);
+            getAxesDataRange(
+              this.content[position],
+              this.content[position].config.yAxis,
+              this.config,
+              this.content,
+            );
+            if (
+              this.config.allowCalibration
+                && isRangeModified(
+                  this.config,
+                  this.content[position].config.yAxis,
+                )
+            ) {
+              updateAxesDomain(this.config, this.content[position]);
+            }
+            if (
+              this.config.showNoDataText
+                && this.content.every((content) => utils.isEmpty(content.config.values))
+            ) {
+              drawNoDataView(this.config, this.svg);
+              redrawDatelineContent(this.scale, this.config, this.svg);
+            } else if (utils.notEmpty(this.content[position].config.values)) {
+            // Removes existing No Data View, when legend hold values
+              removeNoDataView(this.svg);
+            }
           }
+          position = -1;
         }
-        position = -1;
       });
     }
 
@@ -456,43 +483,6 @@ class Graph extends Construct {
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
 
-    if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
-      graphData.panData.forEach((data) => {
-        this.contentKeys.forEach((key, index) => {
-          if (key === data.key) position = index;
-        });
-        if(position > -1) {
-          this.content[position].reflow(this, data);
-          setAxisPadding(this.config.axisPadding, this.content[position]);
-          getAxesDataRange(
-            this.content[position],
-            this.content[position].config.yAxis,
-            this.config,
-            this.content,
-          );
-          if (
-            this.config.allowCalibration
-                && isRangeModified(
-                  this.config,
-                  this.content[position].config.yAxis,
-                )
-          ) {
-            updateAxesDomain(this.config, this.content[position]);
-          }
-          if (
-            this.config.showNoDataText
-                && this.content.every((content) => utils.isEmpty(content.config.values))
-          ) {
-            drawNoDataView(this.config, this.svg);
-            redrawDatelineContent(this.scale, this.config, this.svg);
-          } else if (utils.notEmpty(this.content[position].config.values)) {
-            // Removes existing No Data View, when legend hold values
-            removeNoDataView(this.svg);
-          }
-        }
-        position = -1;
-      });
-    }
     if (graphData && this.config.showLabel) {
       this.config.axis.x.label = utils.sanitize(graphData.xLabel) || this.config.axis.x.label;
       this.config.axis.y.label = utils.sanitize(graphData.yLabel) || this.config.axis.y.label;
