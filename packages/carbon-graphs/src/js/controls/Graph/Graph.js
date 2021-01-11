@@ -426,14 +426,14 @@ class Graph extends Construct {
      * @returns {Graph} - Graph instance
      */
   reflow(graphData) {
-    let position;
+    let position = -1;
     if (graphData && graphData.panData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
       graphData.panData.forEach((data) => {
         if(data.values) {
           this.contentKeys.forEach((key, index) => {
             if (key === data.key) position = index;
           });
-          if (position >= 0) {
+          if (position > -1) {
             if (
               this.content[position].type === 'Bar'
                       && data.values.length > 0
@@ -443,7 +443,7 @@ class Graph extends Construct {
             }
           }
         }
-        position = undefined;
+        position = -1;
       });
     }
 
@@ -461,7 +461,7 @@ class Graph extends Construct {
         this.contentKeys.forEach((key, index) => {
           if (key === data.key) position = index;
         });
-        if(position >= 0) {
+        if(position > -1) {
           this.content[position].reflow(this, data);
           setAxisPadding(this.config.axisPadding, this.content[position]);
           getAxesDataRange(
@@ -490,7 +490,7 @@ class Graph extends Construct {
             removeNoDataView(this.svg);
           }
         }
-        position = undefined;
+        position = -1;
       });
     }
     if (graphData && this.config.showLabel) {

@@ -102,39 +102,43 @@ describe('Panning', () => {
         eventValuesJson,
         actionValuesJson,
       );
-      const panData = {
-        key: 'track 1',
-        tasks: [
+      const graphData = {
+        panData: [
           {
-            key: 'taskNormal',
-            startDate: new Date(2018, 3, 1).toISOString(),
-            endDate: new Date(2018, 6, 10).toISOString(),
-          },
-          {
-            key: 'taskChunk',
-            startDate: new Date(2018, 3, 1).toISOString(),
-            endDate: new Date(2018, 6, 10).toISOString(),
-          },
-        ],
-        activities: [
-          {
-            key: 'activityNormal',
-            startDate: new Date(2018, 3, 1).toISOString(),
-            endDate: new Date(2018, 6, 10).toISOString(),
-          },
-        ],
-        events: [
-          {
-            key: 'uid_event_1',
-            values: [new Date(2018, 3, 5).toISOString()],
-          },
-        ],
-        actions: [
-          {
-            key: 'uid_action_1',
-            values: [new Date(2018, 2, 1, 6, 15).toISOString()],
-          },
-        ],
+            key: 'track 1',
+            tasks: [
+              {
+                key: 'taskNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+              {
+                key: 'taskChunk',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            activities: [
+              {
+                key: 'activityNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            events: [
+              {
+                key: 'uid_event_1',
+                values: [new Date(2018, 3, 5).toISOString()],
+              },
+            ],
+            actions: [
+              {
+                key: 'uid_action_1',
+                values: [new Date(2018, 2, 1, 6, 15).toISOString()],
+              },
+            ],
+          }
+        ]
       };
       gantt.loadContent(primaryContent);
       let tasksContent = fetchAllElementsByClass(
@@ -158,7 +162,7 @@ describe('Panning', () => {
       );
       expect(actionsContent.length).toEqual(2);
 
-      gantt.reflow(panData);
+      gantt.reflow(graphData);
 
       tasksContent = fetchAllElementsByClass(
         ganttChartContainer,
@@ -188,39 +192,43 @@ describe('Panning', () => {
         eventValuesJson,
         actionValuesJson,
       );
-      const panData = {
-        key: 'track 0',
-        tasks: [
+      const graphData = {
+        panData: [
           {
-            key: 'taskNormal',
-            startDate: new Date(2018, 3, 1).toISOString(),
-            endDate: new Date(2018, 6, 10).toISOString(),
-          },
-          {
-            key: 'taskChunk',
-            startDate: new Date(2018, 3, 1).toISOString(),
-            endDate: new Date(2018, 6, 10).toISOString(),
-          },
-        ],
-        activities: [
-          {
-            key: 'activityNormal',
-            startDate: new Date(2018, 3, 1).toISOString(),
-            endDate: new Date(2018, 6, 10).toISOString(),
-          },
-        ],
-        events: [
-          {
-            key: 'uid_event_1',
-            values: [new Date(2018, 3, 5).toISOString()],
-          },
-        ],
-        actions: [
-          {
-            key: 'uid_action_1',
-            values: [new Date(2018, 2, 1, 6, 15).toISOString()],
-          },
-        ],
+            key: 'track 0',
+            tasks: [
+              {
+                key: 'taskNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+              {
+                key: 'taskChunk',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            activities: [
+              {
+                key: 'activityNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            events: [
+              {
+                key: 'uid_event_1',
+                values: [new Date(2018, 3, 5).toISOString()],
+              },
+            ],
+            actions: [
+              {
+                key: 'uid_action_1',
+                values: [new Date(2018, 2, 1, 6, 15).toISOString()],
+              },
+            ],
+          }
+        ]
       };
       gantt.loadContent(primaryContent);
       let tasksContent = fetchAllElementsByClass(
@@ -244,7 +252,7 @@ describe('Panning', () => {
       );
       expect(actionsContent.length).toEqual(2);
 
-      gantt.reflow(panData);
+      gantt.reflow(graphData);
 
       tasksContent = fetchAllElementsByClass(
         ganttChartContainer,

@@ -312,8 +312,10 @@ class Timeline extends Construct {
         this.contentConfig.forEach((config, index) => {
           if (config.config.key === data.key) position = index;
         });
-        this.contentConfig[position].reflow(this, data);
-        position = undefined;
+        if (position > -1) {
+          this.contentConfig[position].reflow(this, data);
+        }
+        position = -1;
       });
     }
     reflowLegend(

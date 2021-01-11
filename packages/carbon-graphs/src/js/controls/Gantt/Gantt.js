@@ -360,7 +360,7 @@ class Gantt extends Construct {
             eventHandlers,
           );
         }
-        position=undefined;
+        position = -1;
       });
     }
 
