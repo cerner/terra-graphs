@@ -427,7 +427,7 @@ class Graph extends Construct {
      */
   reflow(graphData) {
     let position = -1;
-    if (graphData && graphData.panData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
+    if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
       graphData.panData.forEach((data) => {
         if(data.values) {
           this.contentKeys.forEach((key, index) => {
