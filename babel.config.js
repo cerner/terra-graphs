@@ -11,6 +11,7 @@ module.exports = (api) => {
     '@babel/plugin-proposal-object-rest-spread',
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
+    '@babel/plugin-proposal-class-properties',
   ];
 
   return {

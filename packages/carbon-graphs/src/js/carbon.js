@@ -57,7 +57,7 @@ const Carbon = {
   api,
   tools,
   helpers,
-  version: VERSION,
+  version: '2.4.0',
 };
 
 export default Carbon;
