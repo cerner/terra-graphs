@@ -426,13 +426,10 @@ class Graph extends Construct {
      * @returns {Graph} - Graph instance
      */
   reflow(graphData) {
-    let position = -1;
     if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
       graphData.panData.forEach((data) => {
         if(data.values) {
-          this.contentKeys.forEach((key, index) => {
-            if (key === data.key) position = index;
-          });
+          const position = this.contentKeys.findIndex((key) => key === data.key);
           if (position > -1) {
             if (
               this.content[position].type === 'Bar'
@@ -469,7 +466,6 @@ class Graph extends Construct {
               removeNoDataView(this.svg);
             }
           }
-          position = -1;
         }
       });
     }

@@ -345,12 +345,9 @@ class Gantt extends Construct {
     );
     translateAxes(this.axis, this.scale, this.config, this.svg);
 
-    let position;
     if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
       graphData.panData.forEach((data) => {
-        this.trackConfig.forEach((track, index) => {
-          if (track.config.key === data.key) position = index;
-        });
+        const position = this.tracks.findIndex((key) => key === data.key);
         if (position > -1) {
           this.trackConfig[position].reflow(this, data);
           reflowLegend(
@@ -360,7 +357,6 @@ class Gantt extends Construct {
             eventHandlers,
           );
         }
-        position = -1;
       });
     }
 

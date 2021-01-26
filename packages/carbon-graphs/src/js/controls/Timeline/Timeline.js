@@ -304,18 +304,14 @@ class Timeline extends Construct {
     updateXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
-    let position;
     if (
       graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)
     ) {
       graphData.panData.forEach((data) => {
-        this.contentConfig.forEach((config, index) => {
-          if (config.config.key === data.key) position = index;
-        });
+        const position = this.content.findIndex((key) => key === data.key);
         if (position > -1) {
           this.contentConfig[position].reflow(this, data);
         }
-        position = -1;
       });
     }
     reflowLegend(

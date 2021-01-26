@@ -108,12 +108,14 @@ class BubbleMultipleDataset extends Bubble {
       graph.config.shownTargets.splice(position, 1);
     }
     const bubble =  graph.content.filter((bubble) => bubble.config.key === graphData.key);
-    reflowLegend(
-      graph.legendSVG,
-      bubble[0].config,
-      graph,
-      eventHandlers,
-    );
+    if (!utils.isEmptyArray(bubble)) {
+      reflowLegend(
+        graph.legendSVG,
+        bubble[0].config,
+        graph,
+        eventHandlers,
+      );
+    }
     const currentPointsGroup = graph.svg
       .select(`g[aria-describedby="${graphData.key}"]`)
       .select(`.${styles.currentPointsGroup}`)
