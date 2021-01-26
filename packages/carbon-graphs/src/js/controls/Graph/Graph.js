@@ -42,7 +42,7 @@ import {
   translateGraph,
   updateAxesDomain,
   removeNoDataView,
-  drawNoDataView,
+  drawNoDataView, translateContentContainer,
 } from './helpers/helpers';
 
 /**
@@ -321,6 +321,7 @@ class Graph extends Construct {
     // Check if graphContainer is present and then resize the graph
     if (this.graphContainer) {
       setCanvasWidth(this.graphContainer, this.config);
+      calculateAxesLabelSize(this.config);
       scaleGraph(this.scale, this.config);
       translateGraph(this);
       this.content.forEach((control) => control.resize(this));
@@ -445,6 +446,7 @@ class Graph extends Construct {
     updateXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
+    translateContentContainer(this.config, this.svg);
 
     if (graphData && graphData.eventline) {
       this.config.eventline=graphData.eventline;

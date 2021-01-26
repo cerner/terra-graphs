@@ -147,11 +147,16 @@ const prepareXAxis = (
  * @param {object} config - config object derived from input JSON
  * @returns {number} X Axis width
  */
-const getXAxisWidth = (config) => config.canvasWidth
+const getXAxisWidth = (config) =>
+{
+  const x = config.canvasWidth
   - config.axisSizes.y
   - config.axisSizes.y2
   - config.axisLabelWidths.y
   - config.axisLabelWidths.y2;
+
+  return x;
+}
 
 /**
  * Ticks can be formatted by passing the format string via input JSON.

@@ -97,7 +97,8 @@ const translateDefs = (config, canvasSVG) => {
     .attr(
       constants.Y_AXIS,
       config.axis.x.orientation && calculateVerticalPadding(config),
-    );
+    )
+    .attr(constants.X_AXIS, getXAxisXPosition(config));
 
   if (
     config.settingsDictionary.shouldCreateDatelineDefs
@@ -244,7 +245,8 @@ const translateContentContainer = (config, canvasSVG) => canvasSVG
   .attr(
     constants.Y_AXIS,
     config.axis.x.orientation && calculateVerticalPadding(config),
-  );
+  ).attr(constants.X_AXIS, getXAxisXPosition(config))
+;
 /**
  * calculates the character limit of label with respect to axis length.
  *

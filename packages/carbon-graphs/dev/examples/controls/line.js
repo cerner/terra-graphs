@@ -515,6 +515,7 @@ export const renderLineWithPanning = (id) => {
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
+    graph.config.axis.y.label = "test";
     graph.reflow();
   };
 

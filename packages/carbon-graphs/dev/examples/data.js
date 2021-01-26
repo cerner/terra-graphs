@@ -548,7 +548,7 @@ const DATA = [
           orientation: Carbon.helpers.AXES_ORIENTATION.X.BOTTOM,
         },
         y: {
-          label: 'Line Set A',
+          label: '  ',
           lowerLimit: 10,
           upperLimit: 30,
         },
