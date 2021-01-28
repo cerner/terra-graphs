@@ -21,7 +21,6 @@ import {
   valuesDefault,
   valuesTimeSeries,
 } from './helpers';
-import {BubbleSingleDataset} from "../../../../src/js/controls/Bubble";
 
 describe('Scatter - Load', () => {
   let graphDefault = null;

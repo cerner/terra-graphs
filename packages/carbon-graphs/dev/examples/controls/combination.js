@@ -1,7 +1,7 @@
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
 
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 
 export const renderCombinationSimple = (id) => {
   const combGraph = Carbon.api.graph(

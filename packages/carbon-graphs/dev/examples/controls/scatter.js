@@ -1,6 +1,6 @@
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 import { createPanningControls } from '../panHelpers';
 
 const regions = [
@@ -225,45 +225,45 @@ export const renderScatterPanningWithDynamicData = (id) => {
 };
 export const renderScatterPanningWithDynamicEventline = (id) => {
   const axisData = utils.deepClone(
-    getDemoData(`#${id}`, "LINE_TIMESERIES")
+    getDemoData(`#${id}`, 'LINE_TIMESERIES'),
   );
   axisData.pan = {
-    enabled: true
+    enabled: true,
   };
   axisData.eventline = [
     {
       color: Carbon.helpers.COLORS.GREY,
       style: {
-        strokeDashArray: "4,4"
+        strokeDashArray: '4,4',
       },
-      value: new Date(2016, 0, 1, 8).toISOString()
-    }
+      value: new Date(2016, 0, 1, 8).toISOString(),
+    },
   ];
   const graphData = utils.deepClone(
-    getDemoData(`#${id}`, "LINE_TIMESERIES").data[0]
+    getDemoData(`#${id}`, 'LINE_TIMESERIES').data[0],
   );
   graphData.regions = [regions[0]];
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.scatter(graphData));
+  axisData.axis = graph.config.axis;
 
   const createGraph = () => {
     graphData.eventline = [
       {
         color: Carbon.helpers.COLORS.BLACK,
         style: {
-          strokeDashArray: "2,2"
+          strokeDashArray: '2,2',
         },
-        value: new Date(2016, 0, 1, 12).toISOString()
-      }
+        value: new Date(2016, 0, 1, 12).toISOString(),
+      },
     ];
     graph.reflow(graphData);
   };
 
-  const graph = Carbon.api.graph(axisData);
-  graph.loadContent(Carbon.api.scatter(graphData));
-  axisData.axis = graph.config.axis;
-
   createPanningControls(id, {
     axisData,
-    creationHandler: createGraph
+    creationHandler: createGraph,
   });
 };
 export const renderScatterGraphAndLegendPaddingReduced = (id) => {

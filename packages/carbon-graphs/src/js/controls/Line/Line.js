@@ -180,11 +180,11 @@ class Line extends GraphContent {
   resize(graph) {
     if (
       !utils.isEmptyArray(this.dataTarget.values)
-            && graph.config.shownTargets.indexOf(this.dataTarget.key) > -1
+        && graph.config.shownTargets.indexOf(this.dataTarget.key) > -1
     ) {
       if (
         utils.notEmpty(this.dataTarget.regions)
-                || !utils.isEmptyArray(this.dataTarget.valueRegionSubset)
+          || !utils.isEmptyArray(this.dataTarget.valueRegionSubset)
       ) {
         if (
           isSingleTargetDisplayed(
@@ -209,8 +209,8 @@ class Line extends GraphContent {
       graph.scale,
       graph.config,
       graph.svg.select(
-        `.${styles.regionGroup}`,
-        this.dataTarget.valueRegionSubset,
+            `.${styles.regionGroup}`,
+            this.dataTarget.valueRegionSubset,
       ),
       this.dataTarget.yAxis,
       !utils.isEmptyArray(this.dataTarget.valueRegionSubset),

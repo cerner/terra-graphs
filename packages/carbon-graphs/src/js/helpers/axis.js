@@ -362,8 +362,8 @@ const getAxesScale = (axis, scale, config) => {
   // to suppress ticks values's trailing zeros
   if (
     config.axis.x.suppressTrailingZeros
-    && config.axis.x.type === AXIS_TYPE.DEFAULT
-    && utils.isUndefined(config.axis.x.ticks.format)
+      && config.axis.x.type === AXIS_TYPE.DEFAULT
+      && utils.isUndefined(config.axis.x.ticks.format)
   ) {
     axis.x = isXAxisOrientationTop(config.axis.x.orientation)
       ? d3.axisTop(scale.x)
@@ -408,7 +408,7 @@ const getAxesScale = (axis, scale, config) => {
       // to suppress ticks values's trailing zeros
       if (
         config.axis.y.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y.ticks.format)
+          && utils.isUndefined(config.axis.y.ticks.format)
       ) {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
@@ -438,7 +438,7 @@ const getAxesScale = (axis, scale, config) => {
       // to suppress ticks values's trailing zeros
       if (
         config.axis.y2.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y2.ticks.format)
+          && utils.isUndefined(config.axis.y2.ticks.format)
       ) {
         axis.y2 = d3.axisRight(scale.y2);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y2);
@@ -459,7 +459,7 @@ const getAxesScale = (axis, scale, config) => {
     // Y and Y2 axes - ticksCount.
     if (
       utils.isDefined(config.ticksCount)
-      && config.ticksCount <= constants.TICKSCOUNT_MAXLIMIT
+        && config.ticksCount <= constants.TICKSCOUNT_MAXLIMIT
     ) {
       const yTickValues = generateYAxesTickValues(
         config.axis.y.domain.lowerLimit,
@@ -477,7 +477,7 @@ const getAxesScale = (axis, scale, config) => {
 
       if (
         config.axis.y.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y.ticks.format)
+          && utils.isUndefined(config.axis.y.ticks.format)
       ) {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
@@ -497,7 +497,7 @@ const getAxesScale = (axis, scale, config) => {
 
       if (
         config.axis.y2.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y2.ticks.format)
+          && utils.isUndefined(config.axis.y2.ticks.format)
       ) {
         axis.y2 = d3.axisRight(scale.y2);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y2);
@@ -521,9 +521,9 @@ const getAxesScale = (axis, scale, config) => {
     else {
       const ticksCount = getAverageTicksCount(
         config.axis.y.domain.upperLimit
-        - config.axis.y.domain.lowerLimit,
+          - config.axis.y.domain.lowerLimit,
         config.axis.y2.domain.upperLimit
-        - config.axis.y2.domain.lowerLimit,
+          - config.axis.y2.domain.lowerLimit,
       );
 
       const yTickValues = generateYAxesTickValues(
@@ -541,7 +541,7 @@ const getAxesScale = (axis, scale, config) => {
 
       if (
         config.axis.y.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y.ticks.format)
+          && utils.isUndefined(config.axis.y.ticks.format)
       ) {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
@@ -561,7 +561,7 @@ const getAxesScale = (axis, scale, config) => {
 
       if (
         config.axis.y2.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y2.ticks.format)
+          && utils.isUndefined(config.axis.y2.ticks.format)
       ) {
         axis.y2 = d3.axisRight(scale.y2);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y2);
@@ -587,7 +587,7 @@ const getAxesScale = (axis, scale, config) => {
     if (utils.isDefined(config.axis.y.ticks.values)) {
       if (
         config.axis.y.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y.ticks.format)
+          && utils.isUndefined(config.axis.y.ticks.format)
       ) {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
@@ -609,7 +609,7 @@ const getAxesScale = (axis, scale, config) => {
     // Single Y axis - ticksCount is defined
     else if (
       utils.isDefined(config.ticksCount)
-      || config.ticksCount <= constants.TICKSCOUNT_MAXLIMIT
+        || config.ticksCount <= constants.TICKSCOUNT_MAXLIMIT
     ) {
       const yTickValues = generateYAxesTickValues(
         config.axis.y.domain.lowerLimit,
@@ -620,7 +620,7 @@ const getAxesScale = (axis, scale, config) => {
 
       if (
         config.axis.y.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y.ticks.format)
+          && utils.isUndefined(config.axis.y.ticks.format)
       ) {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
@@ -644,7 +644,7 @@ const getAxesScale = (axis, scale, config) => {
     else {
       if (
         config.axis.y.suppressTrailingZeros
-        && utils.isUndefined(config.axis.y.ticks.format)
+          && utils.isUndefined(config.axis.y.ticks.format)
       ) {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
@@ -1181,7 +1181,6 @@ const calculateAxesSize = (config) => {
   config.axisSizes.y2 = getY2AxisWidth(config) + config.padding.right;
   config.axisSizes.x = getXAxisHeight(config);
 };
-
 /**
  * Calculates axes label sizes, specifically:
  *  X Axis Label: Height
@@ -1505,7 +1504,7 @@ const getAxesDataRange = (
   const prevMin = config.axis[axis].dataRange.oldMin;
   const prevMax = config.axis[axis].dataRange.oldMax;
   const isRangeModified = !(prevMin && prevMax)
-        || !(prevMin <= curRange.min || prevMax >= curRange.max);
+      || !(prevMin <= curRange.min || prevMax >= curRange.max);
   config.axis[axis].dataRange.isRangeModified = isRangeModified;
   if (isRangeModified) {
     config.axis[axis].dataRange.oldMin = config.axis[axis].dataRange.min;

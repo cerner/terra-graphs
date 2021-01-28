@@ -10,7 +10,7 @@ const findAndReplace = require('../common/findAndReplace');
 packagePaths.forEach((packagePath) => {
   const packageFile = path.resolve(packagePath, 'package.json');
   const readmeFile = path.resolve(packagePath, 'README.md');
-  const docReadmeFile = path.resolve(packagePath, 'docs','README.md');
+  const docReadmeFile = path.resolve(packagePath, 'docs', 'README.md');
 
   if (!fs.existsSync(packageFile) || !fs.existsSync(readmeFile) || !fs.existsSync(docReadmeFile)) {
     return;

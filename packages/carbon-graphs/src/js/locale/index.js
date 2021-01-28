@@ -1,14 +1,14 @@
-import { default as de } from './de-DE';
-import { default as au } from './en-AU';
-import { default as ca } from './en-CA';
-import { default as gb } from './en-GB';
-import { default as us } from './en-US';
-import { default as es } from './es-ES';
-import { default as fr } from './fr-FR';
-import { default as jp } from './ja-JP';
-import { default as br } from './pt-BR';
-import { default as nl } from './nl-NL';
-import { default as sv } from './sv-SE';
+import de from './de-DE';
+import au from './en-AU';
+import ca from './en-CA';
+import gb from './en-GB';
+import us from './en-US';
+import es from './es-ES';
+import fr from './fr-FR';
+import jp from './ja-JP';
+import br from './pt-BR';
+import nl from './nl-NL';
+import sv from './sv-SE';
 
 /**
  * Tick format is null for default d3 tick formatting

@@ -2,7 +2,7 @@
 
 import * as d3 from 'd3';
 import Construct from '../../core/Construct';
-import { contentHandler } from "../../helpers/constructUtils";
+import { contentHandler } from '../../helpers/constructUtils';
 import {
   calculateAxesLabelSize,
   calculateAxesSize,
@@ -61,7 +61,7 @@ const { BASE_CANVAS_WIDTH_PADDING } = constants;
  */
 const setCanvasWidth = (container, config) => {
   config.canvasWidth = parseInt(container.style('width'), 10)
-        - getElementBoxSizingParameters(container);
+      - getElementBoxSizingParameters(container);
 };
 
 /**
@@ -380,7 +380,7 @@ class Graph extends Construct {
   loadContent(content) {
     contentHandler(content, (i) => {
       this.processContent(i);
-    })
+    });
 
     this.resize();
     return this;
@@ -413,7 +413,7 @@ class Graph extends Construct {
       ) {
         drawNoDataView(this.config, this.svg);
       }
-    })
+    });
 
     this.resize();
     return this;
@@ -447,14 +447,14 @@ class Graph extends Construct {
     translateAxes(this.axis, this.scale, this.config, this.svg);
 
     if (graphData && graphData.eventline) {
-      this.config.eventline=graphData.eventline;
+      this.config.eventline = graphData.eventline;
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
     if (
-      graphData &&
-      graphData.values &&
-      this.contentKeys.includes(graphData.key)
+      graphData
+      && graphData.values
+      && this.contentKeys.includes(graphData.key)
     ) {
       this.content[position].reflow(this, graphData);
       setAxisPadding(this.config.axisPadding, this.content[position]);

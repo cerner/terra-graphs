@@ -20,7 +20,7 @@ import {
   fetchAllElementsByClass,
   fetchElementByClass,
 } from './helpers';
-import errors from "../../../../src/js/helpers/errors";
+import errors from '../../../../src/js/helpers/errors';
 
 describe('PairedResult', () => {
   let graphDefault = null;
@@ -89,7 +89,7 @@ describe('PairedResult', () => {
             },
           ],
         };
-        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
       it('throw an error when undefined value is provided for y', () => {
         const panData = {
@@ -103,7 +103,7 @@ describe('PairedResult', () => {
             },
           ],
         };
-        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
     });
     describe('For paired result mid', () => {
@@ -119,7 +119,7 @@ describe('PairedResult', () => {
             },
           ],
         };
-        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
       it('throw an error when undefined value is provided for y', () => {
         const panData = {
@@ -133,7 +133,7 @@ describe('PairedResult', () => {
             },
           ],
         };
-        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
     });
     describe('For paired result low', () => {
@@ -149,7 +149,7 @@ describe('PairedResult', () => {
             },
           ],
         };
-        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
       it('throw an error when undefined value is provided for y', () => {
         const panData = {
@@ -163,7 +163,7 @@ describe('PairedResult', () => {
             },
           ],
         };
-        expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
     });
     describe('when key matches', () => {

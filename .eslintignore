@@ -1,6 +1,7 @@
 **/aggregated-translations/*.*
 build
 coverage
+dist
 generated-themes
 lib
 node_modules

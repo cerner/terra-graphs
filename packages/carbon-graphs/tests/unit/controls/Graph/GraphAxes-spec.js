@@ -74,7 +74,7 @@ describe('Graph - Axes', () => {
   });
   it('Creates the y2 axis reference line markup', () => {
     graph.destroy();
-    new Graph(
+    graph = new Graph(
       getAxes({
         x: axisDefault.x,
         y: axisDefault.y,
@@ -100,7 +100,7 @@ describe('Graph - Axes', () => {
   });
   it('Does not create the y axis reference line markup when 0 to -ve', () => {
     graph.destroy();
-    new Graph(
+    graph = new Graph(
       getAxes({
         x: axisDefault.x,
         y: {
@@ -121,7 +121,7 @@ describe('Graph - Axes', () => {
   });
   it('Does not create the y axis reference line markup when -ve to -ve', () => {
     graph.destroy();
-    new Graph(
+    graph = new Graph(
       getAxes({
         x: axisDefault.x,
         y: {
@@ -142,7 +142,7 @@ describe('Graph - Axes', () => {
   });
   it('Creates the y axis reference line markup when in range +ve to -ve', () => {
     graph.destroy();
-    new Graph(
+    graph = new Graph(
       getAxes({
         x: axisDefault.x,
         y: {
@@ -163,7 +163,7 @@ describe('Graph - Axes', () => {
   });
   it('Does not create the y axis reference line markup when in range 0 to +ve', () => {
     graph.destroy();
-    new Graph(
+    graph = new Graph(
       getAxes({
         x: axisDefault.x,
         y: {
@@ -184,7 +184,7 @@ describe('Graph - Axes', () => {
   });
   it('Does not create the y axis reference line markup when in range +ve to +ve', () => {
     graph.destroy();
-    new Graph(
+    graph = new Graph(
       getAxes({
         x: axisDefault.x,
         y: {

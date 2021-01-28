@@ -9,11 +9,11 @@ const { parserOptions } = require('./fileSkeleton');
 
 const iconPath = path.join(
   __dirname,
-  '..', '..','node_modules','one-cerner-style-icons','src','icons'
+  '..', '..', 'node_modules', 'one-cerner-style-icons', 'src', 'icons',
 );
 const outputPath = path.join(
   __dirname,
-  '../','../','src','main','js','core','Shape',
+  '../', '../', 'src', 'main', 'js', 'core', 'Shape',
   'shapeDefinitions.js',
 );
 const defaultPositionOptions = {

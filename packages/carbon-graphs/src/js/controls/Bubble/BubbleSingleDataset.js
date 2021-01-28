@@ -22,7 +22,7 @@ import {
 } from './helpers/helpers';
 import { draw, drawBubbles } from './helpers/helpersSingleDataset';
 import Bubble from './Bubble';
-import {validateData} from "../../helpers/constructUtils";
+import { validateData } from '../../helpers/constructUtils';
 
 /**
  * A Bubble graph is a graph used to represent a collection of data
@@ -163,7 +163,7 @@ class BubbleSingleDataset extends Bubble {
       graph.config,
       pointPath.enter(),
       this.dataTarget,
-      graph.legendSVG
+      graph.legendSVG,
     );
     pointPath
       .exit()

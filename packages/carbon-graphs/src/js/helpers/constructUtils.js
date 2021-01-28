@@ -4,9 +4,8 @@
  */
 
 import utils from './utils';
-import errors from "./errors";
-import { iterateOnPairType } from '../controls/PairedResult/helpers/helpers.js';
-import {getValue} from "../controls/PairedResult/helpers/helpers";
+import errors from './errors';
+import { iterateOnPairType, getValue } from '../controls/PairedResult/helpers/helpers';
 
 /**
  * Simple utility that checks if the input is an array or objects or simple object.
@@ -17,7 +16,7 @@ import {getValue} from "../controls/PairedResult/helpers/helpers";
  * @returns {undefined} returns nothing
  */
 const contentHandler = (input, task) => {
-  if(utils.isArray(input)) {
+  if (utils.isArray(input)) {
     input.forEach((i) => task(i));
   } else {
     task(input);
@@ -31,12 +30,13 @@ const contentHandler = (input, task) => {
  * @returns {undefined} returns nothing
  */
 const validateData = (data) => {
+  // eslint-disable-next-line array-callback-return
   data.map((value) => {
-    if(utils.isEmpty(value.y)) {
+    if (utils.isEmpty(value.y)) {
       throw new Error(errors.THROW_MSG_INVALID_DATA);
     }
   });
-}
+};
 
 /**
  * validates paired result data passed by consumer.
@@ -45,14 +45,15 @@ const validateData = (data) => {
  * @returns {undefined} returns nothing
  */
 const validatePairedResultData = (data) => {
+  // eslint-disable-next-line array-callback-return
   data.map((value) => {
     iterateOnPairType((t) => {
       if (utils.isDefined(getValue(value, t))) {
-        if(utils.isEmpty(value[t].y)){
+        if (utils.isEmpty(value[t].y)) {
           throw new Error(errors.THROW_MSG_INVALID_DATA);
         }
       }
     });
   });
-}
+};
 export { contentHandler, validateData, validatePairedResultData };

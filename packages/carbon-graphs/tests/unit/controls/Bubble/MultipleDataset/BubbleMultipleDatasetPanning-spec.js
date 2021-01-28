@@ -20,7 +20,7 @@ import {
   fetchAllElementsByClass,
   fetchElementByClass,
 } from '../helpers';
-import errors from "../../../../../src/js/helpers/errors";
+import errors from '../../../../../src/js/helpers/errors';
 
 describe('Bubble Multiple Dataset- Panning', () => {
   let graphDefault = null;
@@ -97,7 +97,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
           },
         ],
       };
-      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('throws error when undefined value is passed as y', () => {
       const panData = {
@@ -113,7 +113,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
           },
         ],
       };
-      expect(() => {graphDefault.reflow(panData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     describe('when key matches', () => {
       describe('label is not passed', () => {

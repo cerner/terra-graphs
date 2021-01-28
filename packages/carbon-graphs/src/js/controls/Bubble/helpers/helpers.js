@@ -271,7 +271,7 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget, legendSVG) => {
       .attr('aria-describedby', `${value.key}`)
       .attr('aria-selected', false)
       .attr(
-        'aria-hidden',legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${value.key}']`)?.attr('aria-current') === 'false' : 'false',
+        'aria-hidden', legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${value.key}']`)?.attr('aria-current') === 'false' : 'false',
       )
       .on('click', function () {
         dataPointActionHandler(value, index, this);

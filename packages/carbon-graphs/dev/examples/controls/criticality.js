@@ -1,7 +1,7 @@
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
 
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 import { multiRegion, multiRegionAlt } from './pairedResult';
 
 export const renderCriticalityLineSimple = (id) => {

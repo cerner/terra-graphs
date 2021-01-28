@@ -29,7 +29,7 @@ import {
   getDataPointValues,
 } from './helpers/helpers';
 import ScatterConfig from './ScatterConfig';
-import { validateData } from "../../helpers/constructUtils";
+import { validateData } from '../../helpers/constructUtils';
 
 /**
  * @typedef {object} Scatter

@@ -29,7 +29,7 @@ import {
 } from './helpers/translateHelpers';
 import TimelineConfig, { processInput } from './TimelineConfig';
 import TimelineContent from './TimelineContent';
-import {contentHandler} from '../../helpers/constructUtils';
+import { contentHandler } from '../../helpers/constructUtils';
 
 /**
  * @typedef {object} Timeline
@@ -46,7 +46,7 @@ const { BASE_CANVAS_WIDTH_PADDING } = constants;
  */
 const setCanvasWidth = (container, config) => {
   config.canvasWidth = parseInt(container.style('width'), 10)
-        - getElementBoxSizingParameters(container);
+      - getElementBoxSizingParameters(container);
 };
 /**
  * Sets the canvas width. Canvas rests within a container.
@@ -57,7 +57,7 @@ const setCanvasWidth = (container, config) => {
  */
 const setCanvasHeight = (config) => {
   config.canvasHeight = getYAxisHeight(config)
-        + (config.padding.bottom * 2 + config.padding.top) * 2;
+      + (config.padding.bottom * 2 + config.padding.top) * 2;
 };
 /**
  * Data point sets can be loaded using this function.
@@ -261,7 +261,7 @@ class Timeline extends Construct {
       content.load(this);
       this.content.push(i.key);
       this.contentConfig.push(content);
-    })
+    });
 
     this.resize();
     return this;
@@ -284,7 +284,7 @@ class Timeline extends Construct {
       this.contentConfig[index].unload(this);
       this.content.splice(index, 1);
       this.contentConfig.splice(index, 1);
-    })
+    });
     this.resize();
     return this;
   }

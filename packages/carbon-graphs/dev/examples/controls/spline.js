@@ -1,5 +1,5 @@
 import Carbon from '../../../src/js/carbon';
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 
 export const renderSplineLine = (id) => {
   const lineDefault = Carbon.api.graph(

@@ -387,9 +387,9 @@ const updateAxesDomain = (config, input = {}) => {
     return padDomain(
       {
         lowerLimit:
-                    midPoint - halfDomain * outlierStretchFactor.lowerLimit,
+              midPoint - halfDomain * outlierStretchFactor.lowerLimit,
         upperLimit:
-                    midPoint + halfDomain * outlierStretchFactor.upperLimit,
+              midPoint + halfDomain * outlierStretchFactor.upperLimit,
       },
       config.axisPadding[yAxis],
     );

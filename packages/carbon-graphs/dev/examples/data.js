@@ -2325,7 +2325,9 @@ const DATA = [
     }),
   },
 ];
-export const getDemoData = (id, type) => {
+const getDemoData = (id, type) => {
   const res = DATA.find((t) => t[type]);
   return res ? res[type](id) : null;
 };
+
+export default getDemoData;

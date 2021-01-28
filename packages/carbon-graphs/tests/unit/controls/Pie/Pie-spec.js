@@ -40,20 +40,20 @@ describe('Pie', () => {
     describe('Throws error', () => {
       it('When no input is provided', () => {
         expect(() => {
-          new Pie();
+          pieInstance = new Pie();
         }).toThrowError(errors.THROW_MSG_INVALID_INPUT);
       });
       it('When invalid input is provided', () => {
         const _input = null;
         expect(() => {
-          new Pie(_input);
+          pieInstance = new Pie(_input);
         }).toThrowError(errors.THROW_MSG_INVALID_INPUT);
       });
       it('When no bind id is provided', () => {
         const _input = inputDefault(graphContainer.id);
         _input.bindTo = null;
         expect(() => {
-          new Pie(_input);
+          pieInstance = new Pie(_input);
         }).toThrowError(errors.THROW_MSG_NO_BIND);
       });
     });
