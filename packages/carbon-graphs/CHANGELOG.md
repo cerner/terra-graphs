@@ -4,6 +4,7 @@
 
 * Changed
   * Fixed linter issues.
+  * Y-axis range getting changed when same data passed during reflow. 
 
 ## 2.16.0 - (December 16, 2020)
 

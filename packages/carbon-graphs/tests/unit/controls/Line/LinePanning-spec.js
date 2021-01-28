@@ -174,7 +174,7 @@ describe('Line - Panning', () => {
         values: [
           {
             x: '2016-03-03T12:00:00Z',
-            y: 2,
+            y: 0,
           },
           {
             x: '2016-04-03T12:00:00Z',
@@ -422,6 +422,27 @@ describe('Line - Panning', () => {
         expect(lineContent.length).toEqual(2);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
+      });
+    });
+    describe('when same data is passed on multiple clicks of panning', () => {
+      it('Range modified should be false', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              x: '2016-03-03T12:00:00Z',
+              y: 0,
+            },
+            {
+              x: '2016-04-03T12:00:00Z',
+              y: 20,
+            },
+          ],
+        };
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });
   });
