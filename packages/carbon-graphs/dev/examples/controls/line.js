@@ -31,7 +31,9 @@ const regions = [
   },
 ];
 export const renderLine = (id) => {
-  const lineDefault = Carbon.api.graph(getDemoData(`#${id}`, 'LINE_DEFAULT'));
+  const axisData = utils.deepClone(getDemoData(`#${id}`, 'LINE_DEFAULT'));
+  // axisData.allowCalibration = false;
+  const lineDefault = Carbon.api.graph(axisData);
   lineDefault.loadContent(
     Carbon.api.line(getDemoData(`#${id}`, 'LINE_DEFAULT').data[0]),
   );
@@ -502,6 +504,7 @@ export const renderLineWithPanning = (id) => {
   const axisData = utils.deepClone(
     getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE'),
   );
+  axisData.allowcalibration = false;
   axisData.pan = {
     enabled: true,
   };
@@ -509,9 +512,20 @@ export const renderLineWithPanning = (id) => {
     getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[0],
   );
   graphDataY.regions = [regions[0]];
+  axisData.axis.y2.show = true;
+  const graphDataY2 = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_TIMESERIES').data[1],
+  );
+  const graphDataY3 = {
+    ...graphDataY2,
+    xLabel: 'xLabel',
+    yLabel: 'yLabel',
+    y2Label: 'y2Label',
+  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.line(graphDataY));
+  graph.loadContent(Carbon.api.line(graphDataY2));
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
