@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.16.1 - (February 2, 2021)
+
 * Changed
   * Fixed linter issues.
   * Fixed Y-axis range bug in reflow. 
