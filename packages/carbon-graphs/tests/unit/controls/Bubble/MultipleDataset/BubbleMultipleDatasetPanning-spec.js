@@ -350,7 +350,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('true');
       });
     });
-    describe('when same data is passed on multiple clicks of panning', () => {
+    describe('when the same data is passed on multiple clicks of panning', () => {
       it('Range modified should be false', () => {
         const panData = {
           key: 'uid_1',
