@@ -182,6 +182,22 @@ const dataPointActionHandler = (value, index, target) => {
  * @returns {undefined} - returns nothing
  */
 const translateLineGraph = (scale, canvasSVG, config) => {
+  canvasSVG
+    .select(`.${styles.currentLinesGroup}`)
+    .attr(
+      'transform',
+          `translate(${getXAxisXPosition(config)},${calculateVerticalPadding(
+            config,
+          )})`,
+    );
+  canvasSVG
+    .select(`.${styles.currentPointsGroup}`)
+    .attr(
+      'transform',
+      `translate(${getXAxisXPosition(
+        config,
+      )},${calculateVerticalPadding(config)})`,
+    );
   translateLines(scale, canvasSVG, config);
   translatePoints(scale, canvasSVG, styles.point, config);
   translatePoints(scale, canvasSVG, styles.dataPointSelection, config);

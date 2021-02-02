@@ -1197,7 +1197,6 @@ const calculateAxesLabelSize = (config) => {
   config.axisLabelHeights.x = 0;
   config.axisLabelWidths.y = 0;
   config.axisLabelWidths.y2 = 0;
-  config.axisInfoRowLabelHeight = 0;
   if (config.showLabel) {
     if (config.axis.x.label) {
       config.axisLabelHeights.x = getAxisLabelHeight(config.axis.x.label);
