@@ -1,9 +1,9 @@
-Terra.describeViewports('Graphs', ['tiny', 'medium', 'large'], () => {
-  describe('Default', () => {
-    before(() => browser.url('/raw/tests/components/terra-graphs/graphs/graph'));
+// Terra.describeViewports('Graphs', ['tiny', 'medium', 'large'], () => {
+//   describe('Default', () => {
+//     before(() => browser.url('/raw/tests/terra-graphs/graphs/default-graphs'));
 
-    it('validates the element', () => {
-      Terra.validates.element({ selector: '#root'});
-    });
-  });
-});
+//     it('validates the element', () => {
+//       Terra.validates.element('default',{ selector: '.site' });
+//     });
+//   });
+// });

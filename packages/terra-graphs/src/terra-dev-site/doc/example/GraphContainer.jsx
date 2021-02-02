@@ -1,6 +1,6 @@
 import React from 'react';
 // import Graph from '../../../components/Graph'
-import LineGraph from '../../../components/LineGraph'
+import LineGraph from '../../../LineGraph'
 import {getDemoData} from "../../../../../carbon-graphs/dev/examples/data";
 
 export default () => <LineGraph graphConfig = { getDemoData(`lineGraph`, 'LINE_DEFAULT') } contentConfig = { getDemoData(`lineGraph`, 'LINE_DEFAULT').data[0]} />

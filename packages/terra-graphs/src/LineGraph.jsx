@@ -1,29 +1,29 @@
 
 import React, {Component} from 'react';
-import Graph from '../components/Graph';
-import {contentHandler} from "../../../carbon-graphs/src/js/helpers/constructUtils";
-import {getDefaultValue} from "../../../carbon-graphs/src/js/core/BaseConfig";
-import constants, {AXIS_TYPE} from "../../../carbon-graphs/src/js/helpers/constants";
-import LineConfig from "../../../carbon-graphs/src/js/controls/Line/LineConfig";
-import {validateContent} from "../../../carbon-graphs/src/js/controls/Graph/GraphConfig";
+import Graph from '../src/Graph';
+import {contentHandler} from "../../carbon-graphs/src/js/helpers/constructUtils";
+import {getDefaultValue} from "../../carbon-graphs/src/js/core/BaseConfig";
+import constants, {AXIS_TYPE} from "../../carbon-graphs/src/js/helpers/constants";
+import LineConfig from "../../carbon-graphs/src/js/controls/Line/LineConfig";
+import {validateContent} from "../../carbon-graphs/src/js/controls/Graph/GraphConfig";
 import {
     removeNoDataView, scaleGraph,
     setAxisPadding, translateGraph,
     updateAxesDomain
-} from "../../../carbon-graphs/src/js/controls/Graph/helpers/helpers";
-import {getAxesDataRange} from "../../../carbon-graphs/src/js/helpers/axis";
-import utils from "../../../carbon-graphs/src/js/helpers/utils";
-import {redrawDatelineContent} from "../../../carbon-graphs/src/js/helpers/dateline";
-import {redrawEventlineContent} from "../../../carbon-graphs/src/js/helpers/eventline";
+} from "../../carbon-graphs/src/js/controls/Graph/helpers/helpers";
+import {getAxesDataRange} from "../../carbon-graphs/src/js/helpers/axis";
+import utils from "../../carbon-graphs/src/js/helpers/utils";
+import {redrawDatelineContent} from "../../carbon-graphs/src/js/helpers/dateline";
+import {redrawEventlineContent} from "../../carbon-graphs/src/js/helpers/eventline";
 import {
     clickHandler,
     draw, hoverHandler,
     prepareLegendItems,
     processDataPoints
-} from "../../../carbon-graphs/src/js/controls/Line/helpers/helpers";
-import {createRegion, createValueRegion} from "../../../carbon-graphs/src/js/helpers/region";
-import styles from "../../../carbon-graphs/src/js/helpers/styles";
-import {prepareLabelShapeItem} from "../../../carbon-graphs/src/js/helpers/label";
+} from "../../carbon-graphs/src/js/controls/Line/helpers/helpers";
+import {createRegion, createValueRegion} from "../../carbon-graphs/src/js/helpers/region";
+import styles from "../../carbon-graphs/src/js/helpers/styles";
+import {prepareLabelShapeItem} from "../../carbon-graphs/src/js/helpers/label";
 import { select } from 'd3-selection'
 
 class LineGraph extends React.Component {
@@ -197,7 +197,9 @@ componentDidMount(){
 render() {
     //     <div className = { styles.container } padding-top = { this.props.state.config.removeContainerPadding } padding-bottom = { this.props.state.config.removeContainerPadding }>
 
-    return <Graph input = { this.props.graphConfig } state = {this.state }/>
+    return <div id = "graphContainer">
+        <Graph input = { this.props.graphConfig } state = {this.state }/>
+        </div>
 }
 }
 

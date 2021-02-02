@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import GraphConfig, {processInput} from "../../../carbon-graphs/src/js/controls/Graph/GraphConfig";
+import GraphConfig, {processInput} from "../../carbon-graphs/src/js/controls/Graph/GraphConfig";
 import * as d3 from "d3";
-import styles from "../../../carbon-graphs/src/js/helpers/styles";
-import utils from "../../../carbon-graphs/src/js/helpers/utils";
-import {AXIS_TYPE, COLORS} from "../../../carbon-graphs/src/js/helpers/constants";
+import styles from "../../carbon-graphs/src/js/helpers/styles";
+import utils from "../../carbon-graphs/src/js/helpers/utils";
+import {AXIS_TYPE, COLORS} from "../../carbon-graphs/src/js/helpers/constants";
 import {
     attachEventHandlers,
     createContentContainer,
@@ -11,23 +11,22 @@ import {
     createGrid,
     createLabel, determineHeight,
     drawNoDataView, scaleGraph, updateAxesDomain
-} from "../../../carbon-graphs/src/js/controls/Graph/helpers/helpers";
-import {createRegionContainer} from "../../../carbon-graphs/src/js/helpers/region";
+} from "../../carbon-graphs/src/js/controls/Graph/helpers/helpers";
+import {createRegionContainer} from "../../carbon-graphs/src/js/helpers/region";
 import {
     calculateAxesLabelSize,
     calculateAxesSize,
     createAxes,
     createAxisReferenceLine,
     createXAxisInfoRow, getAxesDataRange, getYAxisHeight
-} from "../../../carbon-graphs/src/js/helpers/axis";
-import {createDateline} from "../../../carbon-graphs/src/js/helpers/dateline";
-import {createEventline} from "../../../carbon-graphs/src/js/helpers/eventline";
-import {createLegend} from "../../../carbon-graphs/src/js/helpers/legend";
-import {createTooltipDiv} from "../../../carbon-graphs/src/js/helpers/label";
-import getElementBoxSizingParameters from "../../../carbon-graphs/src/js/helpers/paddingUtils";
-import Construct from "../Construct"
+} from "../../carbon-graphs/src/js/helpers/axis";
+import {createDateline} from "../../carbon-graphs/src/js/helpers/dateline";
+import {createEventline} from "../../carbon-graphs/src/js/helpers/eventline";
+import {createLegend} from "../../carbon-graphs/src/js/helpers/legend";
+import {createTooltipDiv} from "../../carbon-graphs/src/js/helpers/label";
+import getElementBoxSizingParameters from "../../carbon-graphs/src/js/helpers/paddingUtils";
 import { select } from 'd3-selection'
-import '../css/Graph.module.scss'
+import '../src/css/Graph.module.scss'
 
 class Graph extends React.Component {
     constructor(props) {
