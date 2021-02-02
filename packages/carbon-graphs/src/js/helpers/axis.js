@@ -1503,8 +1503,13 @@ const getAxesDataRange = (
   const curRange = getCurMinMaxValueRange(input, content, axis);
   const prevMin = config.axis[axis].dataRange.oldMin;
   const prevMax = config.axis[axis].dataRange.oldMax;
-  const isRangeModified = !(prevMin && prevMax)
-      || !(prevMin <= curRange.min || prevMax >= curRange.max);
+  let isRangeModified;
+  if (prevMin === 0) {
+    isRangeModified = !(prevMin <= curRange.min || prevMax >= curRange.max);
+  } else {
+    isRangeModified = !(prevMin && prevMax)
+        || !(prevMin <= curRange.min || prevMax >= curRange.max);
+  }
   config.axis[axis].dataRange.isRangeModified = isRangeModified;
   if (isRangeModified) {
     config.axis[axis].dataRange.oldMin = config.axis[axis].dataRange.min;

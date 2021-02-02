@@ -4,6 +4,7 @@
 
 * Changed
   * Fixed linter issues.
+  * Fixed Y-axis range bug in reflow. 
 
 ## 2.16.0 - (December 16, 2020)
 
