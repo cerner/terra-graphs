@@ -37,7 +37,7 @@ assignees: ''
 Use [this](https://codesandbox.io/s/keen-thunder-nh5gk?file=/src/data.js) template to reproduce the behavior.
 
 ## Additional Context / Screenshots
-<!-- Add any other context about the p  roblem here. If applicable, add screenshots to help explain. -->
+<!-- Add any other context about the problem here. If applicable, add screenshots to help explain. -->
 
 ## Expected Behavior
 <!-- A clear and concise description of what you expected to happen. -->
