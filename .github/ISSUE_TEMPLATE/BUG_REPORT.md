@@ -2,8 +2,8 @@
 name: "\U0001F41B Bug Report"
 about: If something isn't working as expected
 title: ''
-labels: ":construction: Blocked: Accessibility Input, :construction: Blocked: Engineering
-  Input, :construction: Blocked: Functional Input, :construction: Blocked: UX Input"
+labels: ":construction: blocked: accessibility input needed, :construction: blocked: engineering input needed, 
+         :construction: blocked: functional input needed,:construction: blocked: reporter input needed, :construction: blocked: ux input needed"
 assignees: ''
 
 ---
@@ -33,8 +33,11 @@ assignees: ''
 3.
 4.
 
+## Link to CodeSandbox
+Use [this](https://codesandbox.io/s/keen-thunder-nh5gk?file=/src/data.js) template to reproduce the behavior.
+
 ## Additional Context / Screenshots
-<!-- Add any other context about the problem here. If applicable, add screenshots to help explain. -->
+<!-- Add any other context about the p  roblem here. If applicable, add screenshots to help explain. -->
 
 ## Expected Behavior
 <!-- A clear and concise description of what you expected to happen. -->
