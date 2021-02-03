@@ -1,6 +1,6 @@
 import Carbon from '../../../carbon-graphs/src/js/carbon';
 import React, {Component} from 'react';
-import styles from '../../../carbon-graphs/src/less/carbon.less';
+import '../css/Graph.module.scss'
 
 class LineGraph extends React.Component {
     render() {
