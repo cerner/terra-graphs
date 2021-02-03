@@ -82,18 +82,18 @@ describe('Timeline', () => {
       expect(() => {
         const input = getAxes(axisJSON);
         input.bindTo = '';
-        new Timeline(input);
+        timeline = new Timeline(input);
       }).toThrowError(errors.THROW_MSG_NO_BIND);
     });
     describe('Axis - throws error', () => {
       it('if no axis is present', () => {
         expect(() => {
-          new Timeline(getAxes({}));
+          timeline = new Timeline(getAxes({}));
         }).toThrowError(errors.THROW_MSG_NO_AXIS_INFO);
       });
       it('if no x axis is present', () => {
         expect(() => {
-          new Timeline(
+          timeline = new Timeline(
             getAxes({
               x: {},
             }),
@@ -102,7 +102,7 @@ describe('Timeline', () => {
       });
       it('if x axis lowerLimit is not present', () => {
         expect(() => {
-          new Timeline(
+          timeline = new Timeline(
             getAxes({
               x: {
                 upperLimit: new Date(
@@ -118,7 +118,7 @@ describe('Timeline', () => {
       });
       it('if x axis upperLimit is not present', () => {
         expect(() => {
-          new Timeline(
+          timeline = new Timeline(
             getAxes({
               x: {
                 lowerLimit: new Date(
@@ -134,7 +134,7 @@ describe('Timeline', () => {
       });
       it('if x axis lowerLimit is not valid', () => {
         expect(() => {
-          new Timeline(
+          timeline = new Timeline(
             getAxes({
               x: {
                 lowerLimit: 10,
@@ -151,7 +151,7 @@ describe('Timeline', () => {
       });
       it('if x axis upperLimit is not valid', () => {
         expect(() => {
-          new Timeline(
+          timeline = new Timeline(
             getAxes({
               x: {
                 lowerLimit: new Date(
@@ -169,7 +169,7 @@ describe('Timeline', () => {
     });
     it('Processes the default input without any error', () => {
       expect(() => {
-        new Timeline(getAxes(axisJSON));
+        timeline = new Timeline(getAxes(axisJSON));
       }).not.toThrow();
     });
     it('Loads the content correctly', () => {

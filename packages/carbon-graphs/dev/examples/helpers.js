@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 export const createElementLegendBindTo = (id) => {
   const parentContainerElem = document.querySelector(`#${id}`);
   const container = document.createElement('div');

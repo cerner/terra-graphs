@@ -58,7 +58,7 @@ const hasMissingAxisInfoRowValue = (inputAxisInfoRow) => inputAxisInfoRow.some((
  */
 const hasMissingAxisInfoRowLabelDisplay = (inputAxisInfoRow) => inputAxisInfoRow.some(
   (axisInfoRow) => utils.isUndefined(axisInfoRow.value.label)
-    || utils.isUndefined(axisInfoRow.value.label.display),
+        || utils.isUndefined(axisInfoRow.value.label.display),
 );
 
 /**
@@ -141,7 +141,7 @@ const setDataPoints = (graphConfig, dataTarget) => {
 const processDataPoints = (graphConfig, dataTarget) => {
   if (
     utils.isEmpty(graphConfig.axis.x.ticks)
-        || utils.isEmpty(graphConfig.axis.x.ticks.values)
+      || utils.isEmpty(graphConfig.axis.x.ticks.values)
   ) {
     throw new Error(errors.THROW_MSG_EMPTY_X_AXIS_TICK_VALUES);
   }
@@ -208,11 +208,11 @@ const setSelectionIndicatorAttributes = (selectionPath, isSelected) => {
  */
 const toggleDataPointSelection = (value, canvasSVG, type, tickValues) => {
   const selectedPointNode = canvasSVG.select(
-    `rect[aria-describedby=bar-selector-${
-      type === AXIS_TYPE.TIME_SERIES
-        ? tickValues.indexOf(new Date(value.x).toISOString())
-        : tickValues.indexOf(value.x)
-    }]`,
+      `rect[aria-describedby=bar-selector-${
+          type === AXIS_TYPE.TIME_SERIES
+            ? tickValues.indexOf(new Date(value.x).toISOString())
+            : tickValues.indexOf(value.x)
+      }]`,
   );
   const isHidden = selectedPointNode.attr('aria-hidden') === 'true';
   setSelectionIndicatorAttributes(selectedPointNode, isHidden);
@@ -268,10 +268,10 @@ const barActionHandler = (value, index, canvasSVG, type, tickValues, datum) => {
  */
 const barAttributesHelper = (scale, bandScale) => {
   const leftShiftOffset = bandScale.x0.bandwidth()
-    * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.LEFT_SHIFT_OFFSET_RATIO; // this value is used to center bars by shifting left
+      * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.LEFT_SHIFT_OFFSET_RATIO; // this value is used to center bars by shifting left
   const leftShiftPadding = bandScale.x1.bandwidth()
-    * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES
-      .LEFT_SHIFT_OFFSET_PADDING_RATIO; // padding to be added on left side of bar
+      * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES
+        .LEFT_SHIFT_OFFSET_PADDING_RATIO; // padding to be added on left side of bar
   const getXRange = (x, groupOffset) => scale.x(x) + leftShiftPadding + groupOffset - leftShiftOffset;
 
   return {
@@ -283,7 +283,7 @@ const barAttributesHelper = (scale, bandScale) => {
     y: (d) => (d.y < 0 ? scale[d.yAxis](d.y0) : scale[d.yAxis](d.y + d.y0)),
     height: (d) => Math.abs(scale[d.yAxis](0) - scale[d.yAxis](+d.y)),
     width: () => bandScale.x1.bandwidth()
-      * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.WIDTH_RATIO,
+        * constants.DEFAULT_BAR_GRAPH_PADDING_ATTRIBUTES.WIDTH_RATIO,
   };
 };
 
@@ -411,9 +411,9 @@ const draw = (scale, bandScale, config, canvasSVG, dataTarget) => {
     .classed(styles.currentBarsGroup, true)
     .attr(
       'transform',
-      `translate(${getXAxisXPosition(config)},${calculateVerticalPadding(
-        config,
-      )})`,
+          `translate(${getXAxisXPosition(config)},${calculateVerticalPadding(
+            config,
+          )})`,
     )
     .data([dataTarget]);
   const bars = barGroupSVG

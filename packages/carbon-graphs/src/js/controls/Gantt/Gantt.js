@@ -9,8 +9,8 @@ import { createDateline } from '../../helpers/dateline';
 import errors from '../../helpers/errors';
 import {
   createEventline,
-  redrawEventlineContent
-} from "../../helpers/eventline";
+  redrawEventlineContent,
+} from '../../helpers/eventline';
 import { createLegend, reflowLegend } from '../../helpers/legend';
 import getElementBoxSizingParameters from '../../helpers/paddingUtils';
 import styles from '../../helpers/styles';

@@ -19,7 +19,7 @@ import {
 } from './helpers';
 import {
   COLORS,
-} from "../../../../src/js/helpers/constants";
+} from '../../../../src/js/helpers/constants';
 
 describe('Graph - Panning', () => {
   let graph = null;
@@ -77,29 +77,29 @@ describe('Graph - Panning', () => {
         done();
       });
     });
-    it("EventlineGroup translates properly when panning is enabled", (done) => {
-      if(graph) {
+    it('EventlineGroup translates properly when panning is enabled', (done) => {
+      if (graph) {
         graph.destroy();
       }
       graph = new Graph(axisTimeseriesWithEventline);
       const eventlineGroup = fetchElementByClass(styles.eventlineGroup);
       delay(() => {
-        const translate = getSVGAnimatedTransformList(
-          eventlineGroup.getAttribute("transform")
-        ).translate;
+        const { translate } = getSVGAnimatedTransformList(
+          eventlineGroup.getAttribute('transform'),
+        );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
         done();
       });
     });
-    describe("should update the eventline", () => {
+    describe('should update the eventline', () => {
       beforeEach(() => {
-        if(graph) {
+        if (graph) {
           graph.destroy();
         }
         graph = new Graph(axisTimeseriesWithEventline);
       });
-      it("When eventline is passed, when creating the graph", () => {
+      it('When eventline is passed, when creating the graph', () => {
         let eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(1);
         const panData = {
@@ -107,52 +107,52 @@ describe('Graph - Panning', () => {
             {
               color: COLORS.GREY,
               style: {
-                strokeDashArray: "4,4"
+                strokeDashArray: '4,4',
               },
-              value: new Date(2016, 9, 28).toISOString()
+              value: new Date(2016, 9, 28).toISOString(),
             },
             {
               color: COLORS.GREY,
               style: {
-                strokeDashArray: "4,4"
+                strokeDashArray: '4,4',
               },
-              value: new Date(2016, 10, 28).toISOString()
-            }
-          ]
+              value: new Date(2016, 10, 28).toISOString(),
+            },
+          ],
         };
         graph.reflow(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(2);
       });
-      it("Removes the eventline when empty dataset is passed", () => {
+      it('Removes the eventline when empty dataset is passed', () => {
         let eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(1);
         const panData = {
-          eventline: []
+          eventline: [],
         };
         graph.reflow(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(0);
       });
     });
-    describe("should not update the eventline", () => {
+    describe('should not update the eventline', () => {
       beforeEach(() => {
-        if(graph) {
+        if (graph) {
           graph.destroy();
         }
       });
-      it ("When eventline attribute is not passed or passed as null to reflow data", () => {
+      it('When eventline attribute is not passed or passed as null to reflow data', () => {
         graph = new Graph(axisTimeseriesWithEventline);
         let eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(1);
         const panData = {
-          eventline: null
+          eventline: null,
         };
         graph.reflow(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(1);
       });
-      it("When eventline is not passed while creating the graph", () => {
+      it('When eventline is not passed while creating the graph', () => {
         graph = new Graph(axisTimeseriesWithDateline);
         let eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(0);
@@ -161,18 +161,18 @@ describe('Graph - Panning', () => {
             {
               color: COLORS.GREY,
               style: {
-                strokeDashArray: "4,4"
+                strokeDashArray: '4,4',
               },
-              value: new Date(2016, 9, 28).toISOString()
+              value: new Date(2016, 9, 28).toISOString(),
             },
             {
               color: COLORS.GREY,
               style: {
-                strokeDashArray: "4,4"
+                strokeDashArray: '4,4',
               },
-              value: new Date(2016, 10, 28).toISOString()
-            }
-          ]
+              value: new Date(2016, 10, 28).toISOString(),
+            },
+          ],
         };
         graph.reflow(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);

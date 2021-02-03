@@ -15,7 +15,7 @@ import {
 import { toNumber, delay, PADDING_BOTTOM } from '../../helpers/commonHelpers';
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
-import errors from "../../../../src/js/helpers/errors";
+import errors from '../../../../src/js/helpers/errors';
 
 describe('Scatter - Panning', () => {
   let graphDefault = null;
@@ -66,10 +66,10 @@ describe('Scatter - Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
-      expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('throws error when undefined value is passed as y', () => {
       const graphData = {
@@ -86,10 +86,10 @@ describe('Scatter - Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
-      expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
@@ -124,8 +124,8 @@ describe('Scatter - Panning', () => {
                     y: 20,
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           let ScatterContent = fetchAllElementsByClass(
             scatterGraphContainer,
@@ -177,7 +177,7 @@ describe('Scatter - Panning', () => {
                     y: 20,
                   },
                 ],
-              }
+              },
             ],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
@@ -223,8 +223,8 @@ describe('Scatter - Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       let ScatterContent = fetchAllElementsByClass(
         scatterGraphContainer,
@@ -245,8 +245,8 @@ describe('Scatter - Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let ScatterContent = fetchAllElementsByClass(
           scatterGraphContainer,
@@ -271,8 +271,8 @@ describe('Scatter - Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let ScatterShapeContent = fetchAllElementsByClass(
           scatterGraphContainer,
@@ -314,8 +314,8 @@ describe('Scatter - Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let ScatterShapeContent = fetchAllElementsByClass(
           scatterGraphContainer,
@@ -406,8 +406,8 @@ describe('Scatter - Panning', () => {
                   y: 20,
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
         let ScatterContent = fetchAllElementsByClass(
           scatterGraphContainer,
@@ -427,6 +427,27 @@ describe('Scatter - Panning', () => {
         expect(ScatterContent.length).toEqual(2);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
+      });
+    });
+    describe('when the same data is passed on multiple clicks of panning', () => {
+      it('Range modified should be false', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              x: '2016-03-03T12:00:00Z',
+              y: 0,
+            },
+            {
+              x: '2016-04-03T12:00:00Z',
+              y: 20,
+            },
+          ],
+        };
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });
   });

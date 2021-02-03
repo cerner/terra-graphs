@@ -279,7 +279,7 @@ class Track extends GraphContent {
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowActivities(
         graph.svg,
@@ -291,7 +291,7 @@ class Track extends GraphContent {
     }
     if (
       utils.notEmpty(graphData.tasks)
-            && utils.notEmpty(this.config.tasks)
+        && utils.notEmpty(this.config.tasks)
     ) {
       graphData.taskKeys = [];
       graphData.tasks.forEach((task) => {
@@ -310,7 +310,7 @@ class Track extends GraphContent {
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowTasks(
         graph.svg,
@@ -322,7 +322,7 @@ class Track extends GraphContent {
     }
     if (
       utils.notEmpty(graphData.events)
-            && utils.notEmpty(this.config.events)
+        && utils.notEmpty(this.config.events)
     ) {
       graphData.eventKeys = [];
       graphData.events.forEach((event) => {
@@ -340,13 +340,13 @@ class Track extends GraphContent {
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowEvents(graph.config, graph.scale, this, trackGroupPath);
     }
     if (
       utils.notEmpty(graphData.actions)
-            && utils.notEmpty(this.config.actions)
+        && utils.notEmpty(this.config.actions)
     ) {
       graphData.actionKeys = [];
       graphData.actions.forEach((action) => {
@@ -364,7 +364,7 @@ class Track extends GraphContent {
         }
       });
       const trackGroupPath = graph.svg.selectAll(
-        `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
+          `.${styles.trackGroup}[aria-describedby="${this.config.key}"]`,
       );
       reflowActions(graph.config, graph.scale, this, trackGroupPath, graph.legendSVG);
     }

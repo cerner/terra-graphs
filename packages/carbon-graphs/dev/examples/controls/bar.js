@@ -3,7 +3,7 @@
 /* eslint prefer-destructuring: ["error", {VariableDeclarator: {object: true}}] */
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 import { loadDatelinePopup, loadTextLabelPopup, loadBarPopup } from '../popup';
 import { createPanningControls } from '../panHelpers';
 
@@ -581,18 +581,18 @@ export const renderBarPanningWithDynamicData = (id) => {
   return graph;
 };
 export const renderBarPanningWithDynamicEventline = (id) => {
-  const axisData = utils.deepClone(getDemoData(`#${id}`, "BAR_TIMESERIES"));
+  const axisData = utils.deepClone(getDemoData(`#${id}`, 'BAR_TIMESERIES'));
   axisData.pan = {
-    enabled: true
+    enabled: true,
   };
   axisData.eventline = [
     {
       color: Carbon.helpers.COLORS.GREY,
       style: {
-        strokeDashArray: "4,4"
+        strokeDashArray: '4,4',
       },
-      value: new Date(2016, 0, 1, 4, 30).toISOString()
-    }
+      value: new Date(2016, 0, 1, 4, 30).toISOString(),
+    },
   ];
   axisData.axis.x.lowerLimit = new Date(2016, 0, 1, 0).toISOString();
   axisData.axis.x.upperLimit = new Date(2016, 0, 2, 0).toISOString();
@@ -602,30 +602,31 @@ export const renderBarPanningWithDynamicEventline = (id) => {
       new Date(2016, 0, 1, 6).toISOString(),
       new Date(2016, 0, 1, 9).toISOString(),
       new Date(2016, 0, 1, 12).toISOString(),
-      new Date(2016, 0, 1, 15).toISOString()
+      new Date(2016, 0, 1, 15).toISOString(),
     ],
-    format: "%H"
-  };
-  const createGraph = () => {
-    graphData[1].eventline = [
-      {
-        color: Carbon.helpers.COLORS.BLACK,
-        style: {
-          strokeDashArray: "2,2"
-        },
-        value: new Date(2016, 0, 1, 7, 30).toISOString()
-      }
-    ]
-    graph.reflow(graphData[1]);
+    format: '%H',
   };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.bar(graphData[0]));
   axisData.axis = graph.config.axis;
 
+  const createGraph = () => {
+    graphData[1].eventline = [
+      {
+        color: Carbon.helpers.COLORS.BLACK,
+        style: {
+          strokeDashArray: '2,2',
+        },
+        value: new Date(2016, 0, 1, 7, 30).toISOString(),
+      },
+    ];
+    graph.reflow(graphData[1]);
+  };
+
   createPanningControls(id, {
     axisData,
-    creationHandler: createGraph
+    creationHandler: createGraph,
   });
   return graph;
 };

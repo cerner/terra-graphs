@@ -2,7 +2,7 @@
 
 import * as d3 from 'd3';
 import Construct from '../../core/Construct';
-import { contentHandler } from "../../helpers/constructUtils";
+import { contentHandler } from '../../helpers/constructUtils';
 import {
   calculateAxesLabelSize,
   calculateAxesSize,
@@ -61,7 +61,7 @@ const { BASE_CANVAS_WIDTH_PADDING } = constants;
  */
 const setCanvasWidth = (container, config) => {
   config.canvasWidth = parseInt(container.style('width'), 10)
-        - getElementBoxSizingParameters(container);
+      - getElementBoxSizingParameters(container);
 };
 
 /**
@@ -380,7 +380,7 @@ class Graph extends Construct {
   loadContent(content) {
     contentHandler(content, (i) => {
       this.processContent(i);
-    })
+    });
 
     this.resize();
     return this;
@@ -413,7 +413,7 @@ class Graph extends Construct {
       ) {
         drawNoDataView(this.config, this.svg);
       }
-    })
+    });
 
     this.resize();
     return this;
@@ -428,7 +428,7 @@ class Graph extends Construct {
   reflow(graphData) {
     if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
       graphData.panData.forEach((data) => {
-        if(data.values) {
+        if (data.values) {
           const position = this.contentKeys.findIndex((key) => key === data.key);
           if (position > -1) {
             if (
@@ -470,8 +470,8 @@ class Graph extends Construct {
       });
     }
 
-    if(graphData && graphData.eventline) {
-      this.config.eventline=graphData.eventline;
+    if (graphData && graphData.eventline) {
+      this.config.eventline = graphData.eventline;
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
 

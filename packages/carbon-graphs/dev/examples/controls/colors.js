@@ -3,7 +3,7 @@ import Carbon from '../../../src/js/carbon';
 
 import { vector } from '../helpers';
 
-export const renderColorsExample = (id) => {
+const renderColorsExample = (id) => {
   const sect = document.createElement('section');
   sect.setAttribute('class', 'shape-container');
   const svgElement = vector.render(sect, id, '0 0 1080 150');
@@ -20,3 +20,5 @@ export const renderColorsExample = (id) => {
     .attr('cy', () => 75)
     .attr('style', (d) => `fill: ${Carbon.helpers.COLORS[d]};`);
 };
+
+export default renderColorsExample;

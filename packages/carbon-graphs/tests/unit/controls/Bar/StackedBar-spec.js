@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-expressions */
+
 'use strict';
 
 import Bar from '../../../../src/js/controls/Bar/Bar';

@@ -1,6 +1,6 @@
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 import { CUSTOM_CONTAINER_LEGEND_STYLE } from '../helpers';
 
 export const renderPieSimple = (id) => {

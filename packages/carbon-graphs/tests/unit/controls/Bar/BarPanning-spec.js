@@ -20,7 +20,7 @@ import {
 } from './helpers';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
-import errors from "../../../../src/js/helpers/errors";
+import errors from '../../../../src/js/helpers/errors';
 
 describe('Bar - Panning', () => {
   let graphDefault = null;
@@ -77,11 +77,10 @@ describe('Bar - Panning', () => {
                 y: 20,
               },
             ],
-
-          }]
+          }],
       };
 
-      expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('throws error when undefined value is passed as y', () => {
       const graphData = {
@@ -98,10 +97,10 @@ describe('Bar - Panning', () => {
                 y: 20,
               },
             ],
-          }]
+          }],
       };
 
-      expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('DatelineGroup translates properly when panning is enabled', (done) => {
       const datelineGroup = document.querySelector(
@@ -133,7 +132,7 @@ describe('Bar - Panning', () => {
                     y: 20,
                   },
                 ],
-              }]
+              }],
           };
           let barContent = fetchAllElementsByClass(
             barGraphContainer,
@@ -183,7 +182,7 @@ describe('Bar - Panning', () => {
                   x: '2016-04-03T12:00:00Z',
                   y: 20,
                 },
-              ]
+              ],
             }],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
@@ -229,7 +228,7 @@ describe('Bar - Panning', () => {
                 y: 20,
               },
             ],
-          }]
+          }],
       };
       let barContent = fetchAllElementsByClass(
         barGraphContainer,
@@ -245,8 +244,8 @@ describe('Bar - Panning', () => {
         const graphData = {
           panData: [{
             key: 'uid_1',
-            values: []
-          }]
+            values: [],
+          }],
         };
         const legendItem = document.body.querySelector(
                     `.${styles.legendItem}`,
@@ -260,7 +259,7 @@ describe('Bar - Panning', () => {
           panData: [{
             key: 'uid_1',
             values: [],
-          }]
+          }],
         };
         let barContent = fetchAllElementsByClass(
           barGraphContainer,
@@ -297,7 +296,7 @@ describe('Bar - Panning', () => {
           panData: [{
             key: 'uid_1',
             values: [],
-          }]
+          }],
         };
         let barContent = fetchAllElementsByClass(
           barGraphContainer,
@@ -383,7 +382,7 @@ describe('Bar - Panning', () => {
                 y: 20,
               },
             ],
-          }]
+          }],
         };
         let barContent = fetchAllElementsByClass(
           barGraphContainer,

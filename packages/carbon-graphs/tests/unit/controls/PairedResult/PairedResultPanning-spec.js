@@ -20,7 +20,7 @@ import {
   fetchAllElementsByClass,
   fetchElementByClass,
 } from './helpers';
-import errors from "../../../../src/js/helpers/errors";
+import errors from '../../../../src/js/helpers/errors';
 
 describe('PairedResult', () => {
   let graphDefault = null;
@@ -90,10 +90,10 @@ describe('PairedResult', () => {
                   },
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
-        expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
       it('throw an error when undefined value is provided for y', () => {
         const graphData = {
@@ -108,10 +108,10 @@ describe('PairedResult', () => {
                   },
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
-        expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
     });
     describe('For paired result mid', () => {
@@ -128,10 +128,10 @@ describe('PairedResult', () => {
                   },
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
-        expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
       it('throw an error when undefined value is provided for y', () => {
         const graphData = {
@@ -146,10 +146,10 @@ describe('PairedResult', () => {
                   },
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
-        expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
     });
     describe('For paired result low', () => {
@@ -166,10 +166,10 @@ describe('PairedResult', () => {
                   },
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
-        expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
       it('throw an error when undefined value is provided for y', () => {
         const graphData = {
@@ -184,10 +184,10 @@ describe('PairedResult', () => {
                   },
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
-        expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+        expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
       });
     });
     describe('when key matches', () => {
@@ -213,8 +213,8 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           let pairedContent = fetchAllElementsByClass(
             pairedResultGraphContainer,
@@ -272,7 +272,7 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
+              },
             ],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
@@ -324,8 +324,8 @@ describe('PairedResult', () => {
                 },
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       let pairedContent = fetchAllElementsByClass(
         pairedResultGraphContainer,
@@ -359,8 +359,8 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -390,8 +390,8 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -422,8 +422,8 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -455,8 +455,8 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -486,8 +486,8 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -517,8 +517,8 @@ describe('PairedResult', () => {
                     },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -550,8 +550,8 @@ describe('PairedResult', () => {
                     low: undefined,
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -581,8 +581,8 @@ describe('PairedResult', () => {
                     low: null,
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -612,8 +612,8 @@ describe('PairedResult', () => {
                     low: { },
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           graphDefault.reflow(graphData);
           const pair = fetchElementByClass(
@@ -634,8 +634,8 @@ describe('PairedResult', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let pairedContent = fetchAllElementsByClass(
           pairedResultGraphContainer,
@@ -660,8 +660,8 @@ describe('PairedResult', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let pairedShapeContent = fetchAllElementsByClass(
           pairedResultGraphContainer,
@@ -704,8 +704,8 @@ describe('PairedResult', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let pairedShapeContent = fetchAllElementsByClass(
           pairedResultGraphContainer,
@@ -803,8 +803,8 @@ describe('PairedResult', () => {
                   },
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
         let pairedContent = fetchAllElementsByClass(
           pairedResultGraphContainer,
@@ -824,6 +824,33 @@ describe('PairedResult', () => {
         expect(pairedContent.length).toEqual(1);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
+      });
+    });
+    describe('when the same data is passed on multiple clicks of panning', () => {
+      it('Range modified should be false', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              high: {
+                x: '2016-09-17T12:00:00Z',
+                y: 0,
+              },
+              mid: {
+                x: '2016-09-18T12:00:00Z',
+                y: 70,
+              },
+              low: {
+                x: '2016-09-19T02:00:00Z',
+                y: 30,
+              },
+            },
+          ],
+        };
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });
   });

@@ -92,8 +92,8 @@ describe('Line - Panning', () => {
                     y: 20,
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           let lineContent = fetchAllElementsByClass(
             lineGraphContainer,
@@ -145,7 +145,7 @@ describe('Line - Panning', () => {
                     y: 20,
                   },
                 ],
-              }
+              },
             ],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
@@ -191,8 +191,8 @@ describe('Line - Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       let lineContent = fetchAllElementsByClass(
         lineGraphContainer,
@@ -213,8 +213,8 @@ describe('Line - Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let lineContent = fetchAllElementsByClass(
           lineGraphContainer,
@@ -240,8 +240,8 @@ describe('Line - Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let lineShapeContent = fetchAllElementsByClass(
           lineGraphContainer,
@@ -285,8 +285,8 @@ describe('Line - Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let lineShapeContent = fetchAllElementsByClass(
           lineGraphContainer,
@@ -307,7 +307,7 @@ describe('Line - Panning', () => {
       });
     });
   });
-  describe("When values are non-contiguous", () => {
+  describe('When values are non-contiguous', () => {
     beforeEach(() => {
       const axisData = utils.deepClone(getAxes(axisTimeSeries));
       axisData.pan = { enabled: true };
@@ -315,55 +315,55 @@ describe('Line - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Line(input));
     });
-    it("should remove datapoint with y value as null", () => {
+    it('should remove datapoint with y value as null', () => {
       const graphData = {
         panData: [
           {
-            key: "uid_1",
+            key: 'uid_1',
             values: [
               {
-                x: "2016-03-03T12:00:00Z",
-                y: null
+                x: '2016-03-03T12:00:00Z',
+                y: null,
               },
               {
-                x: "2016-04-03T12:00:00Z",
-                y: 20
-              }
-            ]
-          }
-        ]
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+        ],
       };
       graphDefault.reflow(graphData);
-      let lineContent = fetchAllElementsByClass(
+      const lineContent = fetchAllElementsByClass(
         lineGraphContainer,
-        styles.pointGroup
+        styles.pointGroup,
       );
-      expect(lineContent.length).toEqual(graphData.panData[0].values.length-1);
+      expect(lineContent.length).toEqual(graphData.panData[0].values.length - 1);
     });
-    it("should remove datapoint with y value as null", () => {
+    it('should remove datapoint with y value as null', () => {
       const graphData = {
         panData: [
           {
-            key: "uid_1",
+            key: 'uid_1',
             values: [
               {
-                x: "2016-03-03T12:00:00Z",
-                y: undefined
+                x: '2016-03-03T12:00:00Z',
+                y: undefined,
               },
               {
-                x: "2016-04-03T12:00:00Z",
-                y: 20
-              }
-            ]
-          }
-        ]
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+        ],
       };
       graphDefault.reflow(graphData);
-      let lineContent = fetchAllElementsByClass(
+      const lineContent = fetchAllElementsByClass(
         lineGraphContainer,
-        styles.pointGroup
+        styles.pointGroup,
       );
-      expect(lineContent.length).toEqual(graphData.panData[0].values.length-1);
+      expect(lineContent.length).toEqual(graphData.panData[0].values.length - 1);
     });
   });
   describe('When pan is disabled', () => {
@@ -437,8 +437,8 @@ describe('Line - Panning', () => {
                   y: 20,
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
         let lineContent = fetchAllElementsByClass(
           lineGraphContainer,
@@ -458,6 +458,27 @@ describe('Line - Panning', () => {
         expect(lineContent.length).toEqual(2);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
+      });
+    });
+    describe('when the same data is passed on multiple clicks of panning', () => {
+      it('Range modified should be false', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              x: '2016-03-03T12:00:00Z',
+              y: 0,
+            },
+            {
+              x: '2016-04-03T12:00:00Z',
+              y: 20,
+            },
+          ],
+        };
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });
   });

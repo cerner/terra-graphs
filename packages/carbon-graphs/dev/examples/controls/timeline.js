@@ -1,6 +1,6 @@
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 import { CUSTOM_CONTAINER_STYLE } from '../helpers';
 import { createPanningControls } from '../panHelpers';
 
@@ -20,7 +20,7 @@ export const renderTimeline = (id) => {
   );
   const contentArray = [
     getDemoData(`#${id}`, 'TIMELINE').data[0],
-    getDemoData(`#${id}`, 'TIMELINE').data[1]
+    getDemoData(`#${id}`, 'TIMELINE').data[1],
   ];
   timelineDefault.loadContent(contentArray);
   return timelineDefault;

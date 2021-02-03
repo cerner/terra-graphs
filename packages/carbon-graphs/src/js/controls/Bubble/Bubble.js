@@ -195,7 +195,7 @@ class Bubble extends GraphContent {
       graph.config,
       pointPath.enter(),
       this.dataTarget,
-      graph.legendSVG
+      graph.legendSVG,
     );
     pointPath
       .exit()

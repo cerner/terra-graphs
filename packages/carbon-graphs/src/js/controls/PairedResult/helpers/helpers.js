@@ -409,8 +409,8 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
       values: [],
     },
   };
-    // Each value is a pair. Construct enough information so that you can
-    // construct a box. Each box would need 3 icons so we need 3 (max) data sets
+  // Each value is a pair. Construct enough information so that you can
+  // construct a box. Each box would need 3 icons so we need 3 (max) data sets
   dataTarget.internalValuesSubset = dataTarget.values.map((value) => {
     const subset = {};
     // We are going to iterate through different pair item types: HIGH, LOW and MID
@@ -422,8 +422,8 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
           y: utils.getNumber(currentValue.y),
           isCritical: currentValue.isCritical || false,
           color:
-                        getValue(dataTarget.color, t)
-                        || constants.DEFAULT_COLOR,
+              getValue(dataTarget.color, t)
+              || constants.DEFAULT_COLOR,
           label: getValue(dataTarget.label, t) || {},
           shape: getValue(dataTarget.shape, t) || SHAPES.CIRCLE,
           key: `${dataTarget.key}_${t}`,
@@ -433,7 +433,7 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
             graphConfig.shownTargets,
             subset[t].key,
           )
-                    && !reflow
+            && !reflow
         ) {
           graphConfig.shownTargets.push(subset[t].key);
         }
@@ -441,8 +441,8 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
         // Generate value regions subset, by extracting the region object from each value
         if (
           !utils.isEmpty(currentValue.region)
-                    && !utils.isEmpty(currentValue.region.start)
-                    && !utils.isEmpty(currentValue.region.end)
+            && !utils.isEmpty(currentValue.region.start)
+            && !utils.isEmpty(currentValue.region.end)
         ) {
           // If the color is different, then move to new region set.
           if (
@@ -450,7 +450,7 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
           ) {
             // eslint-disable-next-line no-unused-expressions
             regionObject[t].values.length > 0
-                            && valueRegions[t].push(regionObject[t]);
+            && valueRegions[t].push(regionObject[t]);
 
             regionObject[t] = {
               color: currentValue.region.color,

@@ -306,7 +306,7 @@ const processDataPoints = (graphConfig, dataTarget) => {
     }
     return parseTypedValue(x, type);
   };
-    // Update the interpolation type
+  // Update the interpolation type
   dataTarget.interpolationType = getInterpolationType(dataTarget.type);
   dataTarget.showShapes = true;
   graphConfig.shownTargets.push(dataTarget.key);

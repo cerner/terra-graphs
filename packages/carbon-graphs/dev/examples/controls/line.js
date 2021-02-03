@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
 
-import { getDemoData } from '../data';
+import getDemoData from '../data';
 import {
   CUSTOM_CONTAINER_STYLE,
   CUSTOM_CONTAINER_LEGEND_STYLE,
@@ -417,7 +417,7 @@ export const renderLineLegendTo = (id) => {
   const line1 = Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[0]);
   const line2 = Carbon.api.line(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[2]);
 
-  lineTime.loadContent([line1, line2])
+  lineTime.loadContent([line1, line2]);
   return lineTime;
 };
 export const renderLineDateTimeBuckets = (id) => {
@@ -594,44 +594,45 @@ export const renderLinePanningWithDynamicData = (id) => {
 };
 export const renderLinePanningWithDynamicEventline = (id) => {
   const axisData = utils.deepClone(
-    getDemoData(`#${id}`, "LINE_TIMESERIES")
+    getDemoData(`#${id}`, 'LINE_TIMESERIES'),
   );
   axisData.eventline = [
     {
       color: Carbon.helpers.COLORS.GREY,
       style: {
-        strokeDashArray: "4,4"
+        strokeDashArray: '4,4',
       },
-      value: new Date(2016, 0, 1, 8).toISOString()
-    }
+      value: new Date(2016, 0, 1, 8).toISOString(),
+    },
   ];
   axisData.pan = {
-    enabled: true
+    enabled: true,
   };
   const graphData = utils.deepClone(
-    getDemoData(`#${id}`, "LINE_TIMESERIES").data[0]
+    getDemoData(`#${id}`, 'LINE_TIMESERIES').data[0],
   );
   graphData.regions = [regions[0]];
-  const createGraph = () => {
-    graphData.eventline = [
-      {
-        color: Carbon.helpers.COLORS.BLACK,
-        style: {
-          strokeDashArray: "2,2"
-        },
-        value: new Date(2016, 0, 1, 12).toISOString()
-      }
-    ];
-    graph.reflow(graphData);
-  };
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.line(graphData));
   axisData.axis = graph.config.axis;
 
+  const createGraph = () => {
+    graphData.eventline = [
+      {
+        color: Carbon.helpers.COLORS.BLACK,
+        style: {
+          strokeDashArray: '2,2',
+        },
+        value: new Date(2016, 0, 1, 12).toISOString(),
+      },
+    ];
+    graph.reflow(graphData);
+  };
+
   createPanningControls(id, {
     axisData,
-    creationHandler: createGraph
+    creationHandler: createGraph,
   });
   return graph;
 };

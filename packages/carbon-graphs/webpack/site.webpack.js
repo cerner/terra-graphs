@@ -7,7 +7,7 @@ const webpackConfig = (env) => ({
   mode: 'development',
   entry: ['./packages/carbon-graphs/dev/app.js'],
   output: {
-    path: path.resolve(__dirname, '../','../','../', '.site'),
+    path: path.resolve(__dirname, '../', '../', '../', '.site'),
     filename: 'carbon-graphs.js',
     library: 'Carbon',
     libraryExport: 'default',
@@ -30,8 +30,8 @@ const webpackConfig = (env) => ({
         test: /\.(js|jsx)$/,
         include: [
 
-          path.join(__dirname, '../','src','js'),
-          path.join(__dirname, '../','../', 'dev'),
+          path.join(__dirname, '../', 'src', 'js'),
+          path.join(__dirname, '../', '../', 'dev'),
         ],
         use: jsOptions(env.TYPE),
       },

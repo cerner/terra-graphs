@@ -586,25 +586,25 @@ describe('Graph - Resize', () => {
       expect(graph.config.canvasHeight).toBe(250);
     });
   });
-  describe("When the graph container is present", () => {
-    it("Should resize the graph", (done) => {
+  describe('When the graph container is present', () => {
+    it('Should resize the graph', (done) => {
       expect(graph.config.canvasWidth).toBe(1024);
       const canvasElement = fetchElementByClass(styles.canvas);
-      graphContainer.setAttribute("style", "width: 800px; height: 200px");
+      graphContainer.setAttribute('style', 'width: 800px; height: 200px');
       graph.resize();
-      triggerEvent(window, "resize", () => {
+      triggerEvent(window, 'resize', () => {
         expect(graph.config.canvasWidth).toBe(800);
         expect(graph.scale.x).not.toBeNull();
         expect(graph.scale.x).toEqual(jasmine.any(Function));
         expect(graph.scale.y).not.toBeNull();
         expect(graph.scale.y).toEqual(jasmine.any(Function));
-        expect(toNumber(canvasElement.getAttribute("height"))).not.toBe(
-          0
+        expect(toNumber(canvasElement.getAttribute('height'))).not.toBe(
+          0,
         );
         expect(
-          toNumber(canvasElement.getAttribute("height"))
+          toNumber(canvasElement.getAttribute('height')),
         ).toBeGreaterThan(0);
-        expect(toNumber(canvasElement.getAttribute("width"))).toBe(790);
+        expect(toNumber(canvasElement.getAttribute('width'))).toBe(790);
         done();
       });
     });

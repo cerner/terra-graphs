@@ -39,8 +39,7 @@ import {
   calculateVerticalPadding,
   getXAxisXPosition,
 } from '../../helpers/axis';
-import { validatePairedResultData } from "../../helpers/constructUtils";
-
+import { validatePairedResultData } from '../../helpers/constructUtils';
 
 /**
  * @typedef {object} PairedResult
@@ -87,17 +86,15 @@ const loadInput = (inputJSON) => new PairedResultConfig()
  * @param {object} data - Data points object
  * @returns {object} filteredData - filtered data object
  */
-const filterPairedResultData = (data) => {
-  return data.map((value) => {
-    let filteredValue = {};
-    iterateOnPairType((t) => {
-      if(value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0)){
-        filteredValue[t] = value[t];
-      }
-    });
-    return filteredValue;
+const filterPairedResultData = (data) => data.map((value) => {
+  const filteredValue = {};
+  iterateOnPairType((t) => {
+    if (value[t] != null && !(typeof value[t] === 'object' && Object.keys(value[t]).length === 0)) {
+      filteredValue[t] = value[t];
+    }
   });
-}
+  return filteredValue;
+});
 /**
  * A Paired result graph is a graph that is represented by 2 points
  * and a line connecting them. There may be an optional 3rd datapoint
@@ -148,7 +145,7 @@ class PairedResult extends GraphContent {
       this.config.yAxis,
       constants.Y_AXIS,
     );
-    this.config.values  = filterPairedResultData(this.config.values);
+    this.config.values = filterPairedResultData(this.config.values);
     this.valuesRange = calculateValuesRange(
       this.config.values,
       this.config.yAxis,
@@ -236,7 +233,7 @@ class PairedResult extends GraphContent {
     if (utils.notEmpty(this.dataTarget.values)) {
       if (
         utils.notEmpty(this.dataTarget.regions)
-                || utils.notEmpty(this.dataTarget.valueRegionSubset)
+          || utils.notEmpty(this.dataTarget.valueRegionSubset)
       ) {
         const { values } = this.dataTarget;
         if (isSinglePairedResultTargetDisplayed(graph.config, graph)) {
@@ -247,19 +244,19 @@ class PairedResult extends GraphContent {
           const isPairedDataProper = values.every((value) => isRegionMappedToAllValues(
             value,
             this.dataTarget.regions
-                                || this.dataTarget.valueRegionSubset,
+              || this.dataTarget.valueRegionSubset,
           ));
 
           graph.config.shouldHideAllRegion = !isPairedDataProper
-                        || graph.config.shouldHideAllRegion
-                        || !areRegionsIdentical(graph.svg);
+              || graph.config.shouldHideAllRegion
+              || !areRegionsIdentical(graph.svg);
         }
 
         translateRegion(
           graph.scale,
           graph.config,
           graph.svg.select(
-            `g[aria-describedby="region_${this.dataTarget.key}"]`,
+                `g[aria-describedby="region_${this.dataTarget.key}"]`,
           ),
           this.dataTarget.yAxis,
           utils.notEmpty(this.dataTarget.valueRegionSubset),

@@ -461,7 +461,7 @@ const processDataPoints = (graphConfig, dataTarget) => {
     }
     return parseTypedValue(x, type);
   };
-    // Update the interpolation type
+  // Update the interpolation type
   dataTarget.interpolationType = getInterpolationType(dataTarget.type);
 
   dataTarget.style = getDefaultValue(dataTarget.style, {});

@@ -5,6 +5,12 @@
 * Changed
   * Updated reflow to allow users to send multiple datasets per graph instance.
 
+## 2.16.1 - (February 2, 2021)
+
+* Changed
+  * Fixed linter issues.
+  * Fixed Y-axis range bug in reflow. 
+
 ## 2.16.0 - (December 16, 2020)
 
 * Changed

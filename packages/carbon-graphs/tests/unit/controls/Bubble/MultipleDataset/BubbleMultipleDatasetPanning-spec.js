@@ -20,7 +20,7 @@ import {
   fetchAllElementsByClass,
   fetchElementByClass,
 } from '../helpers';
-import errors from "../../../../../src/js/helpers/errors";
+import errors from '../../../../../src/js/helpers/errors';
 
 describe('Bubble Multiple Dataset- Panning', () => {
   let graphDefault = null;
@@ -98,10 +98,10 @@ describe('Bubble Multiple Dataset- Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
-      expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('throws error when undefined value is passed as y', () => {
       const graphData = {
@@ -118,10 +118,10 @@ describe('Bubble Multiple Dataset- Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
-      expect(() => {graphDefault.reflow(graphData)}).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     describe('when key matches', () => {
       describe('label is not passed', () => {
@@ -140,8 +140,8 @@ describe('Bubble Multiple Dataset- Panning', () => {
                     y: 20,
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           let bubbleContent = fetchAllElementsByClass(
             bubbleGraphContainer,
@@ -193,7 +193,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
                     y: 20,
                   },
                 ],
-              }
+              },
             ],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
@@ -239,8 +239,8 @@ describe('Bubble Multiple Dataset- Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       let bubbleContent = fetchAllElementsByClass(
         bubbleGraphContainer,
@@ -261,8 +261,8 @@ describe('Bubble Multiple Dataset- Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let bubbleContent = fetchAllElementsByClass(
           bubbleGraphContainer,
@@ -355,8 +355,8 @@ describe('Bubble Multiple Dataset- Panning', () => {
                   y: 20,
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
         let bubbleContent = fetchAllElementsByClass(
           bubbleGraphContainer,
@@ -376,6 +376,27 @@ describe('Bubble Multiple Dataset- Panning', () => {
         expect(bubbleContent.length).toEqual(2);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
+      });
+    });
+    describe('when the same data is passed on multiple clicks of panning', () => {
+      it('Range modified should be false', () => {
+        const panData = {
+          key: 'uid_1',
+          values: [
+            {
+              x: '2016-03-03T12:00:00Z',
+              y: 0,
+            },
+            {
+              x: '2016-04-03T12:00:00Z',
+              y: 20,
+            },
+          ],
+        };
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });
   });
