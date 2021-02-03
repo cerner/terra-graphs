@@ -1,13 +1,18 @@
-Terra.describeViewports('Graph', ['medium'], () => {
-    it('displays default Line Graph', () => {
-      browser.url('/raw/tests/terra-graphs/graph/graph-container');
-  
-      Terra.validates.element('default', { selector: '#graphContainer' });
+Terra.describeViewports('Graph', ['tiny', 'medium', 'large'], () => {
+describe('Default', () => {
+    beforeEach(() => browser.url('/raw/tests/terra-graphs/graph/graph-container'));
+    it('displays default Line Graph', () => {  
+      Terra.validates.screenshot('default', { selector: '#graphContainer' });
     });
   
-    // it('displays Divider with custom text', () => {
-    //   browser.url('/raw/tests/terra-divider/divider/divider-with-text');
+    it('displays Divider with custom text', () => {
   
-    //   Terra.validates.element('custom text');
-    // });
+      Terra.validates.screenshot('axis', { selector: '.carbon-axis.carbon-axis-x' });
+    });
+
+    it('displays Divider with custom text', () => {
+  
+        Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
+      });
   });
+});
