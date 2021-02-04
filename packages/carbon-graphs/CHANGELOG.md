@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Regions by value support for Scatter graphs
+
 ## 2.16.1 - (February 2, 2021)
 
 * Changed
