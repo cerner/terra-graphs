@@ -10,6 +10,7 @@
 - Matt Henkes [@mjhenkes]
 - Pranav Agarwal [@pranav300]
 - Prashant Kamboj [@prashant-kamboj]
+- Pui Lam Cheng[@pc592]
 - Saad Adnan [@sdadn]
 - Sharath M H [@SharathAlur]
 - Swati Kode [@swatikode]
