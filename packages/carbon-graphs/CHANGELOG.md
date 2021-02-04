@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Fixed axis label bug occuring with reflow.
+
 ## 2.16.1 - (February 2, 2021)
 
 * Changed
