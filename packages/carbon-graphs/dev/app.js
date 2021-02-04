@@ -159,6 +159,9 @@ import {
 } from './examples/controls/timeline';
 import { createElementLegendBindTo } from './examples/helpers';
 import {
+  renderMultiScatterRegion,
+  renderMultiScatterNoValuesRegion,
+  renderMultiScatterIdenticalDatasetRegion,
   renderScatter,
   renderScatterY2Axis,
   renderScatterTimeSeries,
@@ -171,6 +174,7 @@ import {
   renderScatterPanningWithDynamicData,
   renderScatterPanningWithDynamicEventline,
   renderScatterGraphAndLegendPaddingReduced,
+  renderScatterValueRegion,
 } from './examples/controls/scatter';
 import {
   renderSimpleBubble,
@@ -1010,6 +1014,36 @@ renderSiteApp(
               pathname: '/regions/multi-line/identical',
               content: renderMultiLineIdenticalDatasetRegion,
               title: 'Dataset Region Identical',
+            },
+          ],
+        },
+        {
+          pathname: '/regions/scatter',
+          children: [
+            {
+              pathname: '/regions/scatter/multiple-scatter',
+              content: renderMultiScatterRegion,
+              title: 'Multiple scatter',
+            },
+            {
+              pathname: '/regions/scatter/value-level-region',
+              content: renderScatterValueRegion,
+              title: 'Value Region',
+            },
+          ],
+        },
+        {
+          pathname: '/regions/multi-scatter',
+          children: [
+            {
+              pathname: '/regions/multi-scatter/identical',
+              content: renderMultiScatterIdenticalDatasetRegion,
+              title: 'Dataset Region Identical',
+            },
+            {
+              pathname: '/regions/multi-scatter/no-values',
+              content: renderMultiScatterNoValuesRegion,
+              title: 'Dataset No Values',
             },
           ],
         },

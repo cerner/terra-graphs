@@ -99,7 +99,12 @@ var data = {
         {
             x: "2016-05-01T12:00:00Z",
             y: 15,
-            isCritical: true
+            isCritical: true,
+            region: {
+                start: 120,
+                end: 170,
+                color: "#c8cacb"
+            }
         },
         {
             x: "2016-10-01T12:00:00Z",
@@ -111,16 +116,17 @@ var scatterDefault = Carbon.api.graph(root);
 scatterDefault.loadContent(Carbon.api.scatter(data));
 ```
 
-#### Multi scatter
+#### Multi Scatter
 
-For loading multiple data-sets, you can load as additional content:
-
+For loading multiple data-sets, you can load additional content as an array:
 ```javascript
 var scatterDefault = Carbon.api.graph(/* Input JSON */);
-scatterDefault.loadContent(Carbon.api.scatter(/* Data array A */));
-scatterDefault.loadContent(Carbon.api.scatter(/* Data array B */));
-scatterDefault.loadContent(Carbon.api.scatter(/* Data array C */));
-scatterDefault.loadContent(Carbon.api.scatter(/* Data array D */));
+var scatterA = Carbon.api.scatter(/* Data array A */);
+var scatterB = Carbon.api.scatter(/* Data array B */);
+var scatterC = Carbon.api.scatter(/* Data array C */);
+var scatterD = Carbon.api.scatter(/* Data array D */);
+
+lineDefault.loadContent([lineA, lineB, lineC, lineD ]);
 ```
 
 ## JSON Properties
@@ -166,6 +172,7 @@ Refer [Graph](../core/Graph.md) `Root` for more details.
 | Property Name | Expected | Default | Description                                                |
 | ------------- | -------- | ------- | ---------------------------------------------------------- |
 | isCritical    | boolean  | `false` | Shows an indicator surrounding the data point when enabled |
+| region        | object   | {}      | Refer [Regions](#regions)                                  |
 
 ### LegendOptions
 
@@ -179,7 +186,10 @@ Each scatter can have a legendOptions object in [Values](#values) level.
 
 ### Regions
 
-Each data-set can have 1 or more regions. `start` and `end` is necessary for rendering a horizontal area.
+-   Each data-set can have 1 or more regions.
+-   Each value can have a region object.
+-   `start` and `end` is necessary for rendering an area.
+-   If at least one region is defined for a value in the element, it will take precedence over the element's region and the element's region will not be displayed.
 
 #### Required
 

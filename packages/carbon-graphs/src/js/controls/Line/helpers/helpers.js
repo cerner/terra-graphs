@@ -444,6 +444,7 @@ const getValueRegionSubset = (dataTarget, getXDataValues) => {
   });
   return valueRegions;
 };
+
 /**
  * Processes the input JSON and adds the shapes, colors, labels etc. to each data points so that we
  * can use them when rendering the data point.

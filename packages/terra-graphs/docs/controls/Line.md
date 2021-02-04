@@ -102,7 +102,12 @@ var data = {
         {
             x: "2016-05-01T12:00:00Z",
             y: 15,
-            isCritical: true
+            isCritical: true,
+            region: {
+                start: 120,
+                end: 170,
+                color: "#c8cacb"
+            }
         },
         {
             x: "2016-10-01T12:00:00Z",

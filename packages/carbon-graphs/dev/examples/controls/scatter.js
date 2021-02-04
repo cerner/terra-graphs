@@ -104,11 +104,40 @@ export const renderScatterTimeSeries = (id) => {
   );
   return scatterTime;
 };
+export const renderMultiScatterRegion = (id) => {
+  const scatterDefault = Carbon.api.graph(getDemoData(`#${id}`, 'LINE_DEFAULT'));
+  const data = utils.deepClone(getDemoData(`#${id}`, 'LINE_DEFAULT').data[0]);
+  const dataAlt = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_DEFAULT').data[2],
+  );
+  const dataPlain = utils.deepClone(getDemoData(`#${id}`, 'LINE_DEFAULT').data[4]);
+  data.regions = [
+    {
+      start: 2,
+    },
+  ];
+  dataAlt.regions = [
+    {
+      start: 2,
+      end: 14,
+    },
+  ];
+  dataPlain.legendOptions = undefined;
+  scatterDefault.loadContent(Carbon.api.scatter(data));
+  scatterDefault.loadContent(Carbon.api.scatter(dataAlt));
+  scatterDefault.loadContent(Carbon.api.scatter(dataPlain));
+  scatterDefault.loadContent(
+    Carbon.api.scatter(getDemoData(`#${id}`, 'LINE_DEFAULT').data[3]),
+  );
+  return scatterDefault;
+};
 export const renderMultiScatterIdenticalDatasetRegion = (id) => {
   const scatterDefault = Carbon.api.graph(
     getDemoData(`#${id}`, 'LINE_DEFAULT'),
   );
-  const data = utils.deepClone(getDemoData(`#${id}`, 'LINE_DEFAULT').data[0]);
+  const data = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_DEFAULT').data[0],
+  );
   const dataAlt = utils.deepClone(
     getDemoData(`#${id}`, 'LINE_DEFAULT').data[2],
   );
@@ -126,6 +155,35 @@ export const renderMultiScatterIdenticalDatasetRegion = (id) => {
   ];
   scatterDefault.loadContent(Carbon.api.scatter(data));
   scatterDefault.loadContent(Carbon.api.scatter(dataAlt));
+  return scatterDefault;
+};
+export const renderMultiScatterNoValuesRegion = (id) => {
+  const scatterDefault = Carbon.api.graph(
+    getDemoData(`#${id}`, 'LINE_DEFAULT'),
+  );
+  const data = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_DEFAULT').data[0],
+  );
+  const dataAlt = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_DEFAULT').data[2],
+  );
+  data.regions = [
+    {
+      start: 2,
+    },
+  ];
+  dataAlt.values = [];
+  scatterDefault.loadContent(Carbon.api.scatter(data));
+  scatterDefault.loadContent(Carbon.api.scatter(dataAlt));
+  return scatterDefault;
+};
+export const renderScatterValueRegion = (id) => {
+  const scatterDefault = Carbon.api.graph(
+    getDemoData(`#${id}`, 'LINE_TIMESERIES'),
+  );
+  scatterDefault.loadContent(
+    Carbon.api.scatter(getDemoData(`#${id}`, 'LINE_TIMESERIES').data[4]),
+  );
   return scatterDefault;
 };
 export const renderScatterBlankDataPoint = (id) => {

@@ -14,6 +14,8 @@ import {
   removeRegion,
   translateRegion,
   areRegionsIdentical,
+  createValueRegion,
+  isSingleTargetDisplayed,
 } from '../../helpers/region';
 import styles from '../../helpers/styles';
 import utils from '../../helpers/utils';
@@ -108,16 +110,29 @@ class Scatter extends GraphContent {
     validateData(this.config.values);
     this.dataTarget = processDataPoints(graph.config, this.config);
     draw(graph.scale, graph.config, graph.svg, this.dataTarget);
-    if (utils.notEmpty(this.dataTarget.regions)) {
-      createRegion(
-        graph.scale,
-        graph.config,
-        graph.svg.select(`.${styles.regionGroup}`),
-        this.dataTarget.regions,
-        `region_${this.dataTarget.key}`,
-        this.config.yAxis,
-      );
+    if (!utils.isEmptyArray(this.dataTarget.values)) {
+      if (!utils.isEmptyArray(this.dataTarget.valueRegionSubset)) {
+        createValueRegion(
+          graph.scale,
+          graph.config,
+          graph.svg.select(`.${styles.regionGroup}`),
+          this.dataTarget.valueRegionSubset,
+          `region_${this.dataTarget.key}`,
+          this.config.yAxis,
+          this.dataTarget.interpolationType,
+        );
+      } else if (utils.notEmpty(this.dataTarget.regions)) {
+        createRegion(
+          graph.scale,
+          graph.config,
+          graph.svg.select(`.${styles.regionGroup}`),
+          this.dataTarget.regions,
+          `region_${this.dataTarget.key}`,
+          this.config.yAxis,
+        );
+      }
     }
+
     prepareLegendItems(
       graph.config,
       {
@@ -164,23 +179,43 @@ class Scatter extends GraphContent {
      * @inheritdoc
      */
   resize(graph) {
-    if (utils.notEmpty(this.dataTarget.regions)) {
-      if (graph.content.length > 1 && !graph.config.shouldHideAllRegion) {
-        if (areRegionsIdentical(graph.svg)) {
+    if (
+      !utils.isEmptyArray(this.dataTarget.values)
+        && graph.config.shownTargets.indexOf(this.dataTarget.key) > -1
+    ) {
+      if (
+        utils.notEmpty(this.dataTarget.regions)
+          || !utils.isEmptyArray(this.dataTarget.valueRegionSubset)
+      ) {
+        if (
+          isSingleTargetDisplayed(
+            graph.config.shownTargets,
+            graph.content,
+          )
+        ) {
           graph.config.shouldHideAllRegion = false;
         } else {
-          hideAllRegions(graph.svg);
-          graph.config.shouldHideAllRegion = true;
+          graph.config.shouldHideAllRegion = !areRegionsIdentical(
+            graph.svg,
+          );
         }
+      } else {
+        graph.config.shouldHideAllRegion = true;
       }
-    } else {
+    }
+    if (graph.config.shouldHideAllRegion) {
       hideAllRegions(graph.svg);
-      graph.config.shouldHideAllRegion = true;
     }
     translateRegion(
       graph.scale,
       graph.config,
-      graph.svg.select(`.${styles.regionGroup}`),
+      graph.svg.select(
+            `.${styles.regionGroup}`,
+            this.dataTarget.valueRegionSubset,
+      ),
+      this.dataTarget.yAxis,
+      !utils.isEmptyArray(this.dataTarget.valueRegionSubset),
+      this.dataTarget.interpolationType,
     );
     translateScatterGraph(graph.scale, graph.svg, graph.config);
     return this;

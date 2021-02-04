@@ -88,6 +88,96 @@ describe('Scatter - Region', () => {
         );
       });
     });
+    describe('Value region', () => {
+      let values;
+      beforeEach(() => {
+        values = utils.deepClone(valuesDefault);
+        values[0].region = {
+          start: 0,
+          end: 10,
+          color: '#f4f4f4',
+        };
+      });
+      it('Creates value region, when the values contain region object', () => {
+        values[1].region = {
+          start: 0,
+          end: 10,
+          color: '#f4f4f4',
+        };
+        scatter = new Scatter(getInput(values, false, false));
+        graphDefault.loadContent(scatter);
+        const regionGroupElement = fetchElementByClass(
+          scatterGraphContainer,
+          styles.regionGroup,
+        );
+        const regionElement = fetchElementByClass(
+          regionGroupElement,
+          styles.region,
+        );
+        expect(regionGroupElement.childNodes.length).toBe(3);
+        expect(regionElement.nodeName).toBe('path');
+        expect(regionElement.getAttribute('class')).toContain(
+          styles.region,
+        );
+        expect(regionElement.getAttribute('aria-hidden')).toBe('false');
+      });
+      it('Precedence over legend level regions', () => {
+        let regionGroupElement = null;
+        data = utils.deepClone(getInput(values, false, false));
+        data.regions = [
+          {
+            axis: constants.Y_AXIS,
+            start: 5,
+            end: 15,
+            color: '#f4f4f4',
+          },
+        ];
+        scatter = new Scatter(data);
+        graphDefault.loadContent(scatter);
+        regionGroupElement = fetchElementByClass(
+          scatterGraphContainer,
+          styles.regionGroup,
+        );
+        const regionElement = fetchElementByClass(
+          regionGroupElement,
+          styles.region,
+        );
+        expect(regionGroupElement.childNodes.length).toBe(1);
+        expect(regionElement.nodeName).toBe('path');
+        expect(regionElement.getAttribute('class')).toContain(
+          styles.region,
+        );
+        it('Splits to multiple area if there is a value without region in between', () => {
+          values[1].region = undefined;
+          values[2].region = {
+            start: 0,
+            end: 10,
+            color: '#f4f4f4',
+          };
+          scatter = new Scatter(getInput(values, false, false));
+          graphDefault.loadContent(scatter);
+          regionGroupElement = fetchElementByClass(
+            scatterGraphContainer,
+            styles.regionGroup,
+          );
+          expect(regionGroupElement.childNodes.length).toBe(2);
+        });
+        it('Splits to multiple area if there is a region with different color', () => {
+          values[1].region = {
+            start: 0,
+            end: 10,
+            color: '#a7aaab',
+          };
+          scatter = new Scatter(getInput(values, false, false));
+          graphDefault.loadContent(scatter);
+          regionGroupElement = fetchElementByClass(
+            scatterGraphContainer,
+            styles.regionGroup,
+          );
+          expect(regionGroupElement.childNodes.length).toBe(2);
+        });
+      });
+    });
     it('Creates region only if present', () => {
       data = utils.deepClone(getInput(valuesDefault, false, false));
       data.regions = null;
@@ -389,6 +479,94 @@ describe('Scatter - Region', () => {
         regionGroupElement.childNodes[1].getAttribute('aria-hidden'),
       ).toBe('true');
       graphDefault.unloadContent(scatterContent);
+    });
+    it('Hides all the regions if graph has 1 or more value level and legend level region', () => {
+      const values = utils.deepClone(valuesDefault);
+      values[0].region = {
+        start: 0,
+        end: 10,
+        color: '#f4f4f4',
+      };
+      const secondaryInput = {
+        key: 'uid_2',
+        label: {
+          display: 'Data Label B',
+        },
+        values,
+      };
+      data = utils.deepClone(getInput(valuesDefault));
+      data.regions = [
+        {
+          start: 1,
+          end: 5,
+        },
+      ];
+      scatter = new Scatter(data);
+      const scatterContent = new Scatter(secondaryInput);
+      graphDefault.loadContent(scatterContent);
+      graphDefault.loadContent(scatter);
+      const regionGroupElement = fetchElementByClass(
+        scatterGraphContainer,
+        styles.regionGroup,
+      );
+      const firstRegion = fetchElementByClass(
+        regionGroupElement,
+        styles.valueRegion,
+      );
+      expect(regionGroupElement.childNodes.length).toBe(2);
+      expect(firstRegion.getAttribute('aria-describedby')).toBe(
+                `region_${secondaryInput.key}`,
+      );
+      expect(
+        regionGroupElement.childNodes[1].getAttribute(
+          'aria-describedby',
+        ),
+      ).toBe(`region_${data.key}`);
+      expect(firstRegion.getAttribute('aria-hidden')).toBe('true');
+      expect(
+        regionGroupElement.childNodes[1].getAttribute('aria-hidden'),
+      ).toBe('true');
+      graphDefault.unloadContent(scatterContent);
+    });
+    it('Shows region if only one line shows face-up', () => {
+      const secondaryInput = {
+        key: 'uid_2',
+        label: {
+          display: 'Data Label B',
+        },
+        regions: [
+          {
+            start: 1,
+            end: 5,
+          },
+        ],
+        values: [],
+      };
+      data = utils.deepClone(getInput(valuesDefault));
+      data.regions = [
+        {
+          start: 1,
+          end: 5,
+        },
+        {
+          start: 10,
+          end: 15,
+        },
+      ];
+      scatter = new Scatter(data);
+      const scatterContent = new Scatter(secondaryInput);
+      graphDefault.loadContent(scatter);
+      graphDefault.loadContent(scatterContent);
+      const regionsElement = document.querySelectorAll(
+                `.${styles.region}`,
+      );
+      expect(regionsElement.length).toBe(2);
+      regionsElement.forEach((element) => {
+        expect(element.getAttribute('aria-hidden')).toBe('false');
+      });
+      expect(regionsElement[0].getAttribute('aria-describedby')).toBe(
+                `region_${data.key}`,
+      );
     });
     it('Sets the width correctly', () => {
       data = utils.deepClone(getInput(valuesDefault));
