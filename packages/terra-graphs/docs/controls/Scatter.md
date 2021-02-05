@@ -126,7 +126,7 @@ var scatterB = Carbon.api.scatter(/* Data array B */);
 var scatterC = Carbon.api.scatter(/* Data array C */);
 var scatterD = Carbon.api.scatter(/* Data array D */);
 
-lineDefault.loadContent([lineA, lineB, lineC, lineD ]);
+scatterDefault.loadContent([scatterA, scatterB, scatterC, scatterD ]);
 ```
 
 ## JSON Properties
