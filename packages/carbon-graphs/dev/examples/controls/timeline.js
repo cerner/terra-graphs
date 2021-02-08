@@ -91,9 +91,9 @@ export const renderTimelinePanningWithDynamicData = (id) => {
 
   const graphData = {
     panData: [
-      utils.deepClone(getDemoData(`#${id}`, 'TIMELINE').data[2])
+      utils.deepClone(getDemoData(`#${id}`, 'TIMELINE').data[2]),
     ],
-  }
+  };
 
   const graph = Carbon.api.timeline(axisData);
   graph.loadContent(graphDataY);

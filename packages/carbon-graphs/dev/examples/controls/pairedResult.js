@@ -228,7 +228,7 @@ const graphData = [
             },
           },
         ],
-      }]
+      }],
   },
 ];
 export const renderPairedResult = (id) => {

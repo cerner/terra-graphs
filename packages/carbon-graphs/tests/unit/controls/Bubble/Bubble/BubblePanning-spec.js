@@ -99,8 +99,8 @@ describe('Bubble - Panning', () => {
                     y: 20,
                   },
                 ],
-              }
-            ]
+              },
+            ],
           };
           let bubbleContent = fetchAllElementsByClass(
             bubbleGraphContainer,
@@ -152,7 +152,7 @@ describe('Bubble - Panning', () => {
                     y: 20,
                   },
                 ],
-              }
+              },
             ],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
@@ -198,8 +198,8 @@ describe('Bubble - Panning', () => {
                 y: 20,
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       let bubbleContent = fetchAllElementsByClass(
         bubbleGraphContainer,
@@ -220,8 +220,8 @@ describe('Bubble - Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let bubbleContent = fetchAllElementsByClass(
           bubbleGraphContainer,
@@ -313,8 +313,8 @@ describe('Bubble - Panning', () => {
                   y: 20,
                 },
               ],
-            }
-          ]
+            },
+          ],
         };
         let bubbleContent = fetchAllElementsByClass(
           bubbleGraphContainer,

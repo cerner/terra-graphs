@@ -67,8 +67,8 @@ describe('Panning', () => {
                 content: 'This is custom value of another unit',
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       let timelineContent = fetchAllElementsByClass(styles.pointGroup);
       expect(timelineContent.length).toEqual(2);
@@ -87,8 +87,8 @@ describe('Panning', () => {
                 content: 'This is custom value of another unit',
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       let timelineContent = fetchAllElementsByClass(styles.pointGroup);
       expect(timelineContent.length).toEqual(2);
@@ -103,8 +103,8 @@ describe('Panning', () => {
             {
               key: 'uid_1',
               values: [],
-            }
-          ]
+            },
+          ],
         };
         let timelineContent = fetchAllElementsByClass(
           styles.pointGroup,

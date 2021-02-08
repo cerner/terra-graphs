@@ -305,11 +305,11 @@ class PairedResult extends GraphContent {
     types.forEach((type) => {
       const label = getValue(graph.contentConfig[0].label, type);
       if (label && label.display) {
-        const pairedResult = graph.contentConfig.filter((pairedResult) => pairedResult.key === graphData.key)
-        if(!utils.isEmptyArray(pairedResult)) {
+        const pairedResultGraph = graph.contentConfig.filter((pairedResult) => pairedResult.key === graphData.key);
+        if (!utils.isEmptyArray(pairedResultGraph)) {
           reflowLegend(
             graph.legendSVG,
-            constructLegendLabels(pairedResult[0], type),
+            constructLegendLabels(pairedResultGraph[0], type),
             graph,
             eventHandlers,
           );

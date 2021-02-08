@@ -239,11 +239,11 @@ class Bar extends GraphContent {
     if (position > -1) {
       graph.config.shownTargets.splice(position, 1);
     }
-    const bar = graph.content.filter((bar) => bar.config.key === graphData.key)
-    if (!utils.isEmptyArray(bar)) {
+    const barGraph = graph.content.filter((bar) => bar.config.key === graphData.key);
+    if (!utils.isEmptyArray(barGraph)) {
       reflowLegend(
         graph.legendSVG,
-        bar[0].config,
+        barGraph[0].config,
         graph,
         eventHandlers,
       );

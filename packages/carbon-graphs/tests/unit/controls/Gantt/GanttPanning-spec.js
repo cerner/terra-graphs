@@ -137,8 +137,8 @@ describe('Panning', () => {
                 values: [new Date(2018, 2, 1, 6, 15).toISOString()],
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       gantt.loadContent(primaryContent);
       let tasksContent = fetchAllElementsByClass(
@@ -227,8 +227,8 @@ describe('Panning', () => {
                 values: [new Date(2018, 2, 1, 6, 15).toISOString()],
               },
             ],
-          }
-        ]
+          },
+        ],
       };
       gantt.loadContent(primaryContent);
       let tasksContent = fetchAllElementsByClass(

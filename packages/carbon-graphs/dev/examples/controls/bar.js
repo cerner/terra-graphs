@@ -270,7 +270,6 @@ const graphData = [
   {
     panData: [
       {
-    
         key: 'uid_bar_t1',
         values: [
           {
@@ -294,7 +293,7 @@ const graphData = [
             y: 20,
           },
         ],
-      }]
+      }],
   },
 ];
 

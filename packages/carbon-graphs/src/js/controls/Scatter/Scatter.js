@@ -202,11 +202,11 @@ class Scatter extends GraphContent {
       graph.config.shownTargets.splice(position, 1);
     }
 
-    const scatter = graph.content.filter((scatter) => scatter.config.key === graphData.key)
-    if(!utils.isEmptyArray(scatter)) {
+    const scatterGraph = graph.content.filter((scatter) => scatter.config.key === graphData.key);
+    if (!utils.isEmptyArray(scatterGraph)) {
       reflowLegend(
         graph.legendSVG,
-        scatter[0].config,
+        scatterGraph[0].config,
         graph,
         eventHandlers,
       );

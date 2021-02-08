@@ -234,14 +234,15 @@ class Line extends GraphContent {
     if (position > -1) {
       graph.config.shownTargets.splice(position, 1);
     }
-    const line = graph.content.filter((line) => line.config.key === graphData.key);
-    if (!utils.isEmptyArray(line))
+    const lineGraph = graph.content.filter((line) => line.config.key === graphData.key);
+    if (!utils.isEmptyArray(lineGraph)) {
       reflowLegend(
         graph.legendSVG,
-        line[0].config,
+        lineGraph[0].config,
         graph,
         eventHandlers,
       );
+    }
     const lineSVG = graph.svg
       .select(`g[aria-describedby="${graphData.key}"]`)
       .selectAll(`.${styles.line}`)

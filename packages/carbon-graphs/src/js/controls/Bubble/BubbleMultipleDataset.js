@@ -107,11 +107,11 @@ class BubbleMultipleDataset extends Bubble {
     if (position > -1) {
       graph.config.shownTargets.splice(position, 1);
     }
-    const bubble =  graph.content.filter((bubble) => bubble.config.key === graphData.key);
-    if (!utils.isEmptyArray(bubble)) {
+    const bubbleGraph = graph.content.filter((bubble) => bubble.config.key === graphData.key);
+    if (!utils.isEmptyArray(bubbleGraph)) {
       reflowLegend(
         graph.legendSVG,
-        bubble[0].config,
+        bubbleGraph[0].config,
         graph,
         eventHandlers,
       );

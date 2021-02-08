@@ -828,28 +828,32 @@ describe('PairedResult', () => {
     });
     describe('when the same data is passed on multiple clicks of panning', () => {
       it('Range modified should be false', () => {
-        const panData = {
-          key: 'uid_1',
-          values: [
+        const graphData = {
+          panData: [
             {
-              high: {
-                x: '2016-09-17T12:00:00Z',
-                y: 0,
-              },
-              mid: {
-                x: '2016-09-18T12:00:00Z',
-                y: 70,
-              },
-              low: {
-                x: '2016-09-19T02:00:00Z',
-                y: 30,
-              },
+              key: 'uid_1',
+              values: [
+                {
+                  high: {
+                    x: '2016-09-17T12:00:00Z',
+                    y: 0,
+                  },
+                  mid: {
+                    x: '2016-09-18T12:00:00Z',
+                    y: 70,
+                  },
+                  low: {
+                    x: '2016-09-19T02:00:00Z',
+                    y: 30,
+                  },
+                },
+              ],
             },
           ],
         };
-        graphDefault.reflow(panData);
-        graphDefault.reflow(panData);
-        graphDefault.reflow(panData);
+        graphDefault.reflow(graphData);
+        graphDefault.reflow(graphData);
+        graphDefault.reflow(graphData);
         expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });

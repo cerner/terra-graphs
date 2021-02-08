@@ -541,9 +541,9 @@ export const renderLineY2AxisWithPanning = (id) => {
     getDemoData(`#${id}`, 'LINE_TIMESERIES').data[1],
   );
   const graphDataY3 = {
-    xLabel: "xLabel",
-    yLabel: "yLabel",
-    y2Label: "y2Label"
+    xLabel: 'xLabel',
+    yLabel: 'yLabel',
+    y2Label: 'y2Label',
   };
 
   const graph = Carbon.api.graph(axisData);
@@ -580,9 +580,9 @@ export const renderLinePanningWithDynamicData = (id) => {
   const createGraph = () => {
     const graphDataY = {
       panData: [
-        utils.deepClone(getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1])
-      ]
-    }
+        utils.deepClone(getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1]),
+      ],
+    };
     graph.reflow(graphDataY);
   };
 
@@ -651,8 +651,8 @@ export const renderLinePanningWithUpdatedLegend = (id) => {
       {
         ...graphData,
         values: [],
-      }
-    ]
+      },
+    ],
   };
   graphData.regions = [regions[0]];
 
@@ -662,17 +662,18 @@ export const renderLinePanningWithUpdatedLegend = (id) => {
 
   const createGraph = () => {
     const graphDataY = {
-      panData : [
+      panData: [
         utils.deepClone(
-          getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1])
-      ]
-    }
+          getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1],
+        ),
+      ],
+    };
     if (graphDataH.panData[0].values === graphData.values) {
       graph.reflow(graphDataY);
-      graphData = graphDataY.panData[0];
+      graphData = [...graphDataY.panData];
     } else {
       graph.reflow(graphDataH);
-      graphData = graphDataH.panData[0];
+      graphData = [...graphDataH.panData];
     }
   };
 
