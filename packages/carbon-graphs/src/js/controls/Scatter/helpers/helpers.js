@@ -32,7 +32,7 @@ import {
   d3RemoveElement,
   getColorForTarget,
   getShapeForTarget,
-  translateSVGElement
+  translateSVGElement,
 } from '../../Graph/helpers/helpers';
 
 /**

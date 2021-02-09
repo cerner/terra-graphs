@@ -934,7 +934,7 @@ const drawNoDataView = (config, svg) => {
  * @param {d3.selection} canvasSVG - d3 selection node of canvas svg
  * @param {object} style - element to translate
  * @param {object} config - config object derived from input JSON
- * @returns {undefined} 
+ * @returns {undefined}
  */
 const translateSVGElement = (canvasSVG, style, config) => {
   canvasSVG
@@ -945,7 +945,7 @@ const translateSVGElement = (canvasSVG, style, config) => {
             config,
           )})`,
     );
-}
+};
 
 export {
   translateSVGElement,

@@ -34,7 +34,7 @@ import {
   d3RemoveElement,
   getColorForTarget,
   getShapeForTarget,
-  translateSVGElement
+  translateSVGElement,
 } from '../../Graph/helpers/helpers';
 import { getStrokeDashArray } from '../../../core/BaseConfig/helper';
 
@@ -183,7 +183,6 @@ const dataPointActionHandler = (value, index, target) => {
  * @returns {undefined} - returns nothing
  */
 const translateLineGraph = (scale, canvasSVG, config) => {
-  
   translateSVGElement(canvasSVG, styles.currentLinesGroup, config);
   translateSVGElement(canvasSVG, styles.currentPointsGroup, config);
   translateLines(scale, canvasSVG, config);
