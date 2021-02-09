@@ -927,7 +927,28 @@ const drawNoDataView = (config, svg) => {
   return svg;
 };
 
+/**
+ * Translate a SVG element so it's within the canvas
+ *
+ * @private
+ * @param {d3.selection} canvasSVG - d3 selection node of canvas svg
+ * @param {object} style - element to translate
+ * @param {object} config - config object derived from input JSON
+ * @returns {undefined} 
+ */
+const translateSVGElement = (canvasSVG, style, config) => {
+  canvasSVG
+    .select(`.${style}`)
+    .attr(
+      'transform',
+          `translate(${getXAxisXPosition(config)},${calculateVerticalPadding(
+            config,
+          )})`,
+    );
+}
+
 export {
+  translateSVGElement,
   translateAxes,
   translateVerticalGrid,
   translateContentContainer,

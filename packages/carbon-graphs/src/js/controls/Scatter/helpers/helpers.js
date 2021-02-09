@@ -32,6 +32,7 @@ import {
   d3RemoveElement,
   getColorForTarget,
   getShapeForTarget,
+  translateSVGElement
 } from '../../Graph/helpers/helpers';
 
 /**
@@ -134,14 +135,7 @@ const dataPointActionHandler = (value, index, target) => {
  * @returns {undefined} - returns nothing
  */
 const translateScatterGraph = (scale, canvasSVG, config) => {
-  canvasSVG
-    .select(`.${styles.currentPointsGroup}`)
-    .attr(
-      'transform',
-      `translate(${getXAxisXPosition(
-        config,
-      )},${calculateVerticalPadding(config)})`,
-    );
+  translateSVGElement(canvasSVG, styles.currentPointsGroup, config);
   translatePoints(scale, canvasSVG, styles.point, config);
   translatePoints(scale, canvasSVG, styles.dataPointSelection, config);
 };
