@@ -120,7 +120,7 @@ describe('Graph - Panning', () => {
             },
           ],
         };
-        graph.reflow(panData);
+        graph.reflowMultipleDatasets(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(2);
       });
@@ -130,7 +130,7 @@ describe('Graph - Panning', () => {
         const panData = {
           eventline: [],
         };
-        graph.reflow(panData);
+        graph.reflowMultipleDatasets(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(0);
       });
@@ -148,7 +148,7 @@ describe('Graph - Panning', () => {
         const panData = {
           eventline: null,
         };
-        graph.reflow(panData);
+        graph.reflowMultipleDatasets(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(1);
       });
@@ -174,7 +174,7 @@ describe('Graph - Panning', () => {
             },
           ],
         };
-        graph.reflow(panData);
+        graph.reflowMultipleDatasets(panData);
         eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(0);
       });
