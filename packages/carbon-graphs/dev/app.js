@@ -20,6 +20,7 @@ import {
   renderBarWithPanning,
   renderBarPanningWithDynamicData,
   renderBarPanningWithDynamicEventline,
+  renderBarPanningWithMultipleDataSets,
   renderBarGraphAndLegendPaddingReduced,
 } from './examples/controls/bar';
 import renderColorsExample from './examples/controls/colors';
@@ -52,6 +53,7 @@ import {
   renderGanttPanning,
   renderGanttPanningWithDynamicData,
   renderGanttPanningWithDynamicEventline,
+  renderGanttPanningWithMultipleDatasets,
   renderGanttEventline,
   renderGanttGraphAndLegendPaddingReduced,
 } from './examples/controls/gantt';
@@ -91,6 +93,8 @@ import {
   renderLineY2AxisWithPanning,
   renderLinePanningWithDynamicData,
   renderLinePanningWithDynamicEventline,
+  renderLinePanningWithUpdatedLegend,
+  renderLinePanningWithMultipleDatasets,
   renderLineWithEventline,
   renderDashedLine,
   renderLineWithLegendOptions,
@@ -102,7 +106,6 @@ import {
   renderLineLabelTruncation,
   renderBackgroundColor,
   renderLineValueRegion,
-  renderLinePanningWithUpdatedLegend,
 } from './examples/controls/line';
 import {
   renderMultiPairedResultRegion,
@@ -127,6 +130,7 @@ import {
   renderPairedResultY2AxisWithPanning,
   renderPairedResultPanningWithDynamicData,
   renderPairedResultPanningWithDynamicEventline,
+  renderPairedResultPanningWithMultipleDatasets,
   renderPairedResultTimeseriesEventline,
   renderPairedResultWithLegendOptions,
   renderPairedResultGraphAndLegendPaddingReduced,
@@ -154,6 +158,7 @@ import {
   renderTimelineCustomContentPadding,
   renderTimelinePanning,
   renderTimelinePanningWithDynamicData,
+  renderTimelinePanningWithMultipleDatasets,
   renderTimelineNoXAxisTickLabel,
   renderTimelineGraphAndLegendPaddingReduced,
 } from './examples/controls/timeline';
@@ -170,6 +175,7 @@ import {
   renderScatterWithEventline,
   renderScatterPanningWithDynamicData,
   renderScatterPanningWithDynamicEventline,
+  renderScatterPanningWithMultipleDatasets,
   renderScatterGraphAndLegendPaddingReduced,
 } from './examples/controls/scatter';
 import {
@@ -180,6 +186,7 @@ import {
   renderCustomBubbleSize,
   renderBubbleWithPanning,
   renderBubblePanningWithDynamicData,
+  renderBubblePanningWithMultipleDatasets,
   renderBubbleGraphAndLegendPaddingReduced,
   renderGraphBubbleSingleDataset,
   renderGraphBubbleMultipleDataset,
@@ -660,6 +667,11 @@ renderSiteApp(
               content: renderLinePanningWithUpdatedLegend,
               title: 'Legend Updated',
             },
+            {
+              pathname: '/panning/line/dynamic-data/multiple-datasets',
+              content: renderLinePanningWithMultipleDatasets,
+              title: 'Multiple Datasets',
+            },
           ],
         },
         {
@@ -680,6 +692,11 @@ renderSiteApp(
               content: renderGanttPanningWithDynamicEventline,
               title: 'Dynamic Eventline',
             },
+            {
+              pathname: '/panning/gantt/multiple-datasets',
+              content: renderGanttPanningWithMultipleDatasets,
+              title: 'Multiple Datasets',
+            },
           ],
         },
         {
@@ -694,6 +711,11 @@ renderSiteApp(
               pathname: '/panning/timeline/dynamic-data',
               content: renderTimelinePanningWithDynamicData,
               title: 'Dynamic Data',
+            },
+            {
+              pathname: '/panning/timeline/multiple-datasets',
+              content: renderTimelinePanningWithMultipleDatasets,
+              title: 'Multiple Datasets',
             },
           ],
         },
@@ -714,6 +736,11 @@ renderSiteApp(
               pathname: '/panning/bar/dynamic-eventline',
               content: renderBarPanningWithDynamicEventline,
               title: 'Dynamic Eventline',
+            },
+            {
+              pathname: '/panning/bar/multiple-datasets',
+              content: renderBarPanningWithMultipleDataSets,
+              title: 'Multiple Datasets',
             },
           ],
         },
@@ -740,6 +767,11 @@ renderSiteApp(
               content: renderPairedResultPanningWithDynamicEventline,
               title: 'Dynamic Eventline',
             },
+            {
+              pathname: '/panning/paired-result/multiple-datasets',
+              content: renderPairedResultPanningWithMultipleDatasets,
+              title: 'Multiple Datasets',
+            },
           ],
         },
         {
@@ -765,6 +797,11 @@ renderSiteApp(
               content: renderScatterPanningWithDynamicEventline,
               title: 'Dynamic Eventline',
             },
+            {
+              pathname: '/panning/scatter/multiple-datasets',
+              content: renderScatterPanningWithMultipleDatasets,
+              title: 'Multiple Datasets',
+            },
           ],
         },
         {
@@ -779,6 +816,11 @@ renderSiteApp(
               pathname: '/panning/bubble/dynamic-data',
               content: renderBubblePanningWithDynamicData,
               title: 'Dynamic Data',
+            },
+            {
+              pathname: '/panning/bubble/multiple-datasets',
+              content: renderBubblePanningWithMultipleDatasets,
+              title: 'Multiple Datasets',
             },
           ],
         },
@@ -806,14 +848,12 @@ renderSiteApp(
           pathname: '/grid/paired-result',
           children: [
             {
-              pathname:
-                                '/grid/paired-result/horizontal-grid-hidden',
+              pathname: '/grid/paired-result/horizontal-grid-hidden',
               content: renderPairedResultGridHHidden,
               title: 'Horizontal Grid Hidden',
             },
             {
-              pathname:
-                                '/grid/paired-result/vertical-grid-hidden',
+              pathname: '/grid/paired-result/vertical-grid-hidden',
               content: renderPairedResultGridVHidden,
               title: 'Vertical Grid Hidden',
             },
@@ -900,8 +940,7 @@ renderSiteApp(
               title: 'Datetime Buckets',
             },
             {
-              pathname:
-                                '/axes/paired-result/x-axis-orientation-top',
+              pathname: '/axes/paired-result/x-axis-orientation-top',
               content: renderPairedResultXOrientationTop,
               title: 'X Axis Orientation Top',
             },
@@ -931,8 +970,7 @@ renderSiteApp(
           pathname: '/axes/timeline',
           children: [
             {
-              pathname:
-                                '/axes/timeline/x-axis-without-tick-label',
+              pathname: '/axes/timeline/x-axis-without-tick-label',
               content: renderTimelineNoXAxisTickLabel,
               title: 'X Axis Without Tick Label',
             },

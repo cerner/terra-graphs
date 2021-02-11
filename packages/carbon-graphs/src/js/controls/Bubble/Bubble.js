@@ -167,14 +167,15 @@ class Bubble extends GraphContent {
     if (position > -1) {
       graph.config.shownTargets.splice(position, 1);
     }
-    reflowLegend(
-      graph.legendSVG,
-      graph.content.filter(
-        (bubble) => bubble.config.key === graphData.key,
-      )[0].config,
-      graph,
-      eventHandlers,
-    );
+    const bubbleGraph = graph.content.filter((bubble) => bubble.config.key === graphData.key);
+    if (!utils.isEmptyArray(bubbleGraph)) {
+      reflowLegend(
+        graph.legendSVG,
+        bubbleGraph[0].config,
+        graph,
+        eventHandlers,
+      );
+    }
     const currentPointsGroup = graph.svg
       .select(`g[aria-describedby="${graphData.key}"]`)
       .select(`.${styles.currentPointsGroup}`)

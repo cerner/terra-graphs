@@ -267,6 +267,34 @@ const graphData = [
       },
     ],
   },
+  {
+    panData: [
+      {
+        key: 'uid_bar_t1',
+        values: [
+          {
+            x: new Date(2016, 0, 1, 5).toISOString(),
+            y: 16,
+          },
+          {
+            x: new Date(2016, 0, 1, 7).toISOString(),
+            y: 18,
+          },
+          {
+            x: new Date(2016, 0, 1, 13).toISOString(),
+            y: 13,
+          },
+          {
+            x: new Date(2016, 0, 1, 16).toISOString(),
+            y: 16,
+          },
+          {
+            x: new Date(2016, 0, 1, 0).toISOString(),
+            y: 20,
+          },
+        ],
+      }],
+  },
 ];
 
 export const renderBarDefault = (id) => {
@@ -595,6 +623,37 @@ export const renderBarPanningWithDynamicEventline = (id) => {
     graph.reflow(graphData[1]);
   };
 
+  createPanningControls(id, {
+    axisData,
+    creationHandler: createGraph,
+  });
+  return graph;
+};
+export const renderBarPanningWithMultipleDataSets = (id) => {
+  const axisData = utils.deepClone(getDemoData(`#${id}`, 'BAR_TIMESERIES'));
+  axisData.pan = {
+    enabled: true,
+  };
+  axisData.axis.x.lowerLimit = new Date(2016, 0, 1, 0).toISOString();
+  axisData.axis.x.upperLimit = new Date(2016, 0, 2, 0).toISOString();
+  axisData.axis.x.ticks = {
+    values: [
+      new Date(2016, 0, 1, 3).toISOString(),
+      new Date(2016, 0, 1, 6).toISOString(),
+      new Date(2016, 0, 1, 9).toISOString(),
+      new Date(2016, 0, 1, 12).toISOString(),
+      new Date(2016, 0, 1, 15).toISOString(),
+    ],
+    format: '%H',
+  };
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.bar(graphData[0]));
+  axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflowMultipleDatasets(graphData[2]);
+  };
   createPanningControls(id, {
     axisData,
     creationHandler: createGraph,

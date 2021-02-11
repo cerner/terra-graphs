@@ -205,7 +205,8 @@ const tasks = [
       label: {
         display: 'Story Donny',
       },
-      startDate: new Date(2018, 3, 1).toISOString(),
+      startDate: new Date(2016, 0, 1, 1).toISOString(),
+      endDate: new Date(2016, 0, 1, 6).toISOString(),
       duration: () => daysToMilliseconds(14),
     },
     {
@@ -214,17 +215,18 @@ const tasks = [
       label: {
         display: 'Story Fargo',
       },
-      endDate: new Date(2018, 7, 1).toISOString(),
+      startDate: new Date(2016, 0, 1, 8).toISOString(),
+      endDate: new Date(2016, 0, 1, 11).toISOString(),
       duration: () => daysToMilliseconds(10),
     },
     {
-      key: 'Task 9',
+      key: 'task9',
       onClick: loadTaskPopup,
       label: {
         display: 'Story Broccoli Task hash',
       },
-      startDate: new Date(2018, 8, 1).toISOString(),
-      endDate: new Date(2018, 9, 10).toISOString(),
+      startDate: new Date(2016, 0, 1, 12).toISOString(),
+      endDate: new Date(2016, 0, 1, 16).toISOString(),
       style: {
         isHashed: true,
       },
@@ -329,8 +331,8 @@ const activities = [
       label: {
         display: 'Story Charming Activity',
       },
-      startDate: new Date(2018, 5, 1).toISOString(),
-      endDate: new Date(2018, 5, 31).toISOString(),
+      startDate: new Date(2016, 0, 1, 10, 30).toISOString(),
+      endDate: new Date(2016, 0, 1, 12, 30).toISOString(),
       style: {
         isDotted: false,
         isHollow: false,
@@ -396,6 +398,18 @@ const events = [
       values: [new Date(2016, 0, 1, 5, 15).toISOString()],
     },
   ],
+  [
+    {
+      key: 'uid_event_4',
+      label: {
+        display: 'Defect B',
+      },
+      onClick: loadPopup,
+      shape: dueSoon,
+      color: Carbon.helpers.COLORS.BLACK,
+      values: [new Date(2016, 0, 1, 7, 30).toISOString()],
+    },
+  ],
 ];
 const actions = [
   [
@@ -415,8 +429,8 @@ const actions = [
       key: 'uid_action_1',
       onClick: loadPopup,
       values: [
-        new Date(2018, 2, 1, 6, 15).toISOString(),
-        new Date(2018, 4, 1, 6, 15).toISOString(),
+        new Date(2016, 0, 1, 6, 15).toISOString(),
+        new Date(2016, 0, 1, 7, 15).toISOString(),
       ],
     },
     {
@@ -440,43 +454,96 @@ const actions = [
 ];
 const panData = {
   actions: [
-    {
-      key: 'uid_action_1',
-      values: [
-        new Date(2016, 0, 1, 7, 15).toISOString(),
-        new Date(2016, 0, 1, 8, 15).toISOString(),
-      ],
-    },
-    {
-      key: 'uid_action_2',
-      values: [new Date(2016, 0, 1, 9, 15).toISOString()],
-    },
+    [
+      {
+        key: 'uid_action_1',
+        values: [
+          new Date(2016, 0, 1, 7, 15).toISOString(),
+          new Date(2016, 0, 1, 8, 15).toISOString(),
+        ],
+      },
+      {
+        key: 'uid_action_2',
+        values: [new Date(2016, 0, 1, 9, 15).toISOString()],
+      },
+    ],
+    [
+      {
+        key: 'uid_action_1',
+        values: [
+          new Date(2016, 0, 1, 8, 15).toISOString(),
+          new Date(2016, 0, 1, 10, 15).toISOString(),
+        ],
+      },
+      {
+        key: 'uid_action_2',
+        values: [new Date(2016, 0, 1, 5, 15).toISOString()],
+      },
+    ],
   ],
   tasks: [
-    {
-      key: 'task10',
-      startDate: new Date(2016, 0, 1, 9).toISOString(),
-      endDate: new Date(2016, 0, 1, 12).toISOString(),
-    },
-    {
-      key: 'task11',
-      startDate: new Date(2016, 0, 1, 15).toISOString(),
-      endDate: new Date(2016, 0, 1, 20).toISOString(),
-    },
+    [
+      {
+        key: 'task10',
+        startDate: new Date(2016, 0, 1, 9).toISOString(),
+        endDate: new Date(2016, 0, 1, 12).toISOString(),
+      },
+      {
+        key: 'task11',
+        startDate: new Date(2016, 0, 1, 15).toISOString(),
+        endDate: new Date(2016, 0, 1, 20).toISOString(),
+      },
+    ],
+    [
+      {
+        key: 'task7',
+        startDate: new Date(2016, 0, 1, 4).toISOString(),
+        endDate: new Date(2016, 0, 1, 6).toISOString(),
+      },
+      {
+        key: 'task8',
+        startDate: new Date(2016, 0, 1, 7).toISOString(),
+        endDate: new Date(2016, 0, 1, 10).toISOString(),
+      },
+      {
+        key: 'task9',
+        startDate: new Date(2016, 0, 1, 12).toISOString(),
+        endDate: new Date(2016, 0, 1, 14).toISOString(),
+      },
+    ],
   ],
   events: [
-    {
-      key: 'uid_event_4',
-      shape: scheduled,
-      values: [new Date(2016, 0, 1, 2, 15).toISOString()],
-    },
+    [
+      {
+        key: 'uid_event_4',
+        shape: scheduled,
+        values: [new Date(2016, 0, 1, 2, 15).toISOString()],
+      },
+    ],
+    [
+      {
+        key: 'uid_event_4',
+        shape: dueSoon,
+        color: Carbon.helpers.COLORS.BLACK,
+        values: [new Date(2016, 0, 1, 5, 30).toISOString()],
+      },
+    ],
   ],
   activities: [
-    {
-      key: 'activity5',
-      startDate: new Date(2016, 0, 1, 3).toISOString(),
-      endDate: new Date(2016, 0, 1, 6).toISOString(),
-    },
+    [
+      {
+        key: 'activity5',
+        startDate: new Date(2016, 0, 1, 3).toISOString(),
+        endDate: new Date(2016, 0, 1, 6).toISOString(),
+      },
+    ],
+    [
+      {
+        key: 'activity4',
+        startDate: new Date(2016, 0, 1, 4, 30).toISOString(),
+        endDate: new Date(2016, 0, 1, 6, 30).toISOString(),
+      },
+    ],
   ],
 };
 const lowerStepTickValues = [
@@ -711,6 +778,70 @@ export const renderGanttPanningWithDynamicEventline = (id) => {
       },
     ];
     graph.reflow(graphData);
+  };
+
+  createPanningControls(id, {
+    axisData,
+    creationHandler: createGraph,
+  });
+  return graph;
+};
+export const renderGanttPanningWithMultipleDatasets = (id) => {
+  const axisData = utils.deepClone(getDemoData(`#${id}`, 'GANTT'));
+  axisData.showActionLegend = true;
+  axisData.axis.x.lowerLimit = new Date(2016, 0, 1, 0).toISOString();
+  axisData.axis.x.upperLimit = new Date(2016, 0, 2, 0).toISOString();
+  axisData.pan = {
+    enabled: true,
+  };
+  const data1 = {
+    key: 'track 0',
+    trackLabel: {
+      display: 'Project A',
+      onClick: loadXAndYAxisLabelPopup,
+    },
+    tasks: tasks[5],
+    actions: actions[2],
+    events: events[1],
+    activities: activities[3],
+  };
+  const data2 = {
+    key: 'track 1',
+    trackLabel: {
+      display: 'Project B',
+      onClick: loadXAndYAxisLabelPopup,
+    },
+    tasks: tasks[4],
+    actions: actions[1],
+    events: events[2],
+    activities: activities[2],
+  };
+  const graphDataY = {
+    panData: [
+      {
+        key: 'track 0',
+        actions: panData.actions[0],
+        tasks: panData.tasks[0],
+        events: panData.events[0],
+        activities: panData.activities[0],
+      },
+      {
+        key: 'track 1',
+        actions: panData.actions[1],
+        tasks: panData.tasks[1],
+        events: panData.events[1],
+        activities: panData.activities[1],
+      },
+    ],
+  };
+
+  const graph = Carbon.api.gantt(axisData);
+  graph.loadContent(data1);
+  graph.loadContent(data2);
+  axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflowMultipleDatasets(graphDataY);
   };
 
   createPanningControls(id, {

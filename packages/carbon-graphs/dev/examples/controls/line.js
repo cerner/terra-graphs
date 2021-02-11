@@ -674,6 +674,47 @@ export const renderLinePanningWithUpdatedLegend = (id) => {
   });
   return graph;
 };
+export const renderLinePanningWithMultipleDatasets = (id) => {
+  const axisData = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE'),
+  );
+  axisData.pan = {
+    enabled: true,
+  };
+  axisData.axis.y2.show = true;
+  const data1 = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[0],
+  );
+  data1.regions = [regions[0]];
+  const data2 = utils.deepClone(
+    getDemoData(`#${id}`, 'LINE_TIMESERIES').data[1],
+  );
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.line(data1));
+  graph.loadContent(Carbon.api.line(data2));
+  axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    const graphDataY = {
+      panData: [
+        utils.deepClone(
+          getDemoData(`#${id}`, 'LINE_TIMESERIES_DATELINE').data[1],
+        ),
+        utils.deepClone(
+          getDemoData(`#${id}`, 'LINE_TIMESERIES').data[3],
+        ),
+      ],
+    };
+    graph.reflowMultipleDatasets(graphDataY);
+  };
+
+  createPanningControls(id, {
+    axisData,
+    creationHandler: createGraph,
+  });
+  return graph;
+};
 export const renderDashedLine = (id) => {
   const axisData = utils.deepClone(getDemoData(`#${id}`, 'LINE_DEFAULT'));
   const lineDefault = Carbon.api.graph(axisData);

@@ -201,14 +201,15 @@ class Scatter extends GraphContent {
     if (position > -1) {
       graph.config.shownTargets.splice(position, 1);
     }
-    reflowLegend(
-      graph.legendSVG,
-      graph.content.filter(
-        (scatter) => scatter.config.key === graphData.key,
-      )[0].config,
-      graph,
-      eventHandlers,
-    );
+    const scatterGraph = graph.content.filter((scatter) => scatter.config.key === graphData.key);
+    if (!utils.isEmptyArray(scatterGraph)) {
+      reflowLegend(
+        graph.legendSVG,
+        scatterGraph[0].config,
+        graph,
+        eventHandlers,
+      );
+    }
     const currentPointsPath = graph.svg
       .select(`g[aria-describedby="${graphData.key}"]`)
       .selectAll(`.${styles.pointGroup}`)
