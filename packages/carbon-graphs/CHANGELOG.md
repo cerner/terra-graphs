@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+* Changed
+  * Added deprecation warning for `reflow`
+
+* Added
+  * Added `reflowMultipleDatasets` to allow users to send in multiple datasets per graph instance.
+
 ## 2.16.1 - (February 2, 2021)
 
 * Changed
