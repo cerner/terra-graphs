@@ -1,7 +1,7 @@
 'use strict';
 
-import { BubbleMultipleDataset } from '../../../../../src/js/controls/Bubble';
 import Graph from '../../../../../src/js/controls/Graph/Graph';
+import { BubbleSingleDataset } from '../../../../../src/js/controls/Bubble';
 import { COLORS, SHAPES } from '../../../../../src/js/helpers/constants';
 import styles from '../../../../../src/js/helpers/styles';
 import { getSVGAnimatedTransformList } from '../../../../../src/js/helpers/transformUtils';
@@ -22,7 +22,7 @@ import {
 } from '../helpers';
 import errors from '../../../../../src/js/helpers/errors';
 
-describe('Bubble Multiple Dataset- Panning', () => {
+describe('Bubble Single Dataset - Panning', () => {
   let graphDefault = null;
   let bubbleGraphContainer;
   let consolewarn;
@@ -65,7 +65,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
       axisData.pan = { enabled: true };
       const input = getInput(valuesTimeSeries, false, false);
       graphDefault = new Graph(axisData);
-      graphDefault.loadContent(new BubbleMultipleDataset(input));
+      graphDefault.loadContent(new BubbleSingleDataset(input));
     });
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
@@ -84,62 +84,50 @@ describe('Bubble Multiple Dataset- Panning', () => {
       });
     });
     it('throws error when null value is passed as y', () => {
-      const graphData = {
-        panData: [
+      const panData = {
+        key: 'uid_1',
+        values: [
           {
-            key: 'uid_1',
-            values: [
-              {
-                x: '2016-03-03T12:00:00Z',
-                y: null,
-              },
-              {
-                x: '2016-04-03T12:00:00Z',
-                y: 20,
-              },
-            ],
+            x: '2016-03-03T12:00:00Z',
+            y: null,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
           },
         ],
       };
-      expect(() => { graphDefault.reflowMultipleDatasets(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('throws error when undefined value is passed as y', () => {
-      const graphData = {
-        panData: [
+      const panData = {
+        key: 'uid_1',
+        values: [
           {
-            key: 'uid_1',
-            values: [
-              {
-                x: '2016-03-03T12:00:00Z',
-                y: undefined,
-              },
-              {
-                x: '2016-04-03T12:00:00Z',
-                y: 20,
-              },
-            ],
+            x: '2016-03-03T12:00:00Z',
+            y: undefined,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
           },
         ],
       };
-      expect(() => { graphDefault.reflowMultipleDatasets(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+      expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     describe('when key matches', () => {
       describe('label is not passed', () => {
         it('should update dynamic data and retain label', () => {
-          const graphData = {
-            panData: [
+          const panData = {
+            key: 'uid_1',
+            values: [
               {
-                key: 'uid_1',
-                values: [
-                  {
-                    x: '2016-03-03T12:00:00Z',
-                    y: 2,
-                  },
-                  {
-                    x: '2016-04-03T12:00:00Z',
-                    y: 20,
-                  },
-                ],
+                x: '2016-03-03T12:00:00Z',
+                y: 2,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
               },
             ],
           };
@@ -148,7 +136,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
             styles.pointGroup,
           );
           expect(bubbleContent.length).toEqual(3);
-          graphDefault.reflowMultipleDatasets(graphData);
+          graphDefault.reflow(panData);
           bubbleContent = fetchAllElementsByClass(
             bubbleGraphContainer,
             styles.pointGroup,
@@ -179,27 +167,23 @@ describe('Bubble Multiple Dataset- Panning', () => {
       });
       describe('when label is passed', () => {
         it('should update the label during reflow', () => {
-          const graphData = {
-            panData: [
+          const panData = {
+            key: 'uid_1',
+            values: [
               {
-                key: 'uid_1',
-                values: [
-                  {
-                    x: '2016-03-03T12:00:00Z',
-                    y: 2,
-                  },
-                  {
-                    x: '2016-04-03T12:00:00Z',
-                    y: 20,
-                  },
-                ],
+                x: '2016-03-03T12:00:00Z',
+                y: 2,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
               },
             ],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
             y2Label: 'updated y2Label',
           };
-          graphDefault.reflowMultipleDatasets(graphData);
+          graphDefault.reflow(panData);
           const axisLabelX = fetchElementByClass(
             bubbleGraphContainer,
             styles.axisLabelX,
@@ -225,20 +209,16 @@ describe('Bubble Multiple Dataset- Panning', () => {
       });
     });
     it('Dynamic Data is not updated when key does not match', () => {
-      const graphData = {
-        panData: [
+      const panData = {
+        key: 'uid_2',
+        values: [
           {
-            key: 'uid_2',
-            values: [
-              {
-                x: '2016-03-03T12:00:00Z',
-                y: 2,
-              },
-              {
-                x: '2016-04-03T12:00:00Z',
-                y: 20,
-              },
-            ],
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
           },
         ],
       };
@@ -247,7 +227,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
         styles.pointGroup,
       );
       expect(bubbleContent.length).toEqual(3);
-      graphDefault.reflowMultipleDatasets(graphData);
+      graphDefault.reflow(panData);
       bubbleContent = fetchAllElementsByClass(
         bubbleGraphContainer,
         styles.pointGroup,
@@ -256,13 +236,9 @@ describe('Bubble Multiple Dataset- Panning', () => {
     });
     describe('when there is no data', () => {
       it('should update the dynamic data and disable the legend', () => {
-        const graphData = {
-          panData: [
-            {
-              key: 'uid_1',
-              values: [],
-            },
-          ],
+        const panData = {
+          key: 'uid_1',
+          values: [],
         };
         let bubbleContent = fetchAllElementsByClass(
           bubbleGraphContainer,
@@ -272,7 +248,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
                     `.${styles.legendItem}`,
         );
         expect(bubbleContent.length).toEqual(3);
-        graphDefault.reflowMultipleDatasets(graphData);
+        graphDefault.reflow(panData);
         bubbleContent = fetchAllElementsByClass(
           bubbleGraphContainer,
           styles.pointGroup,
@@ -300,7 +276,7 @@ describe('Bubble Multiple Dataset- Panning', () => {
       axisData.pan = { enabled: false };
       const input = getInput(valuesTimeSeries, false, false);
       graphDefault = new Graph(axisData);
-      graphDefault.loadContent(new BubbleMultipleDataset(input));
+      graphDefault.loadContent(new BubbleSingleDataset(input));
     });
     it('Check if clamp is true if pan is disabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(true);
@@ -335,26 +311,22 @@ describe('Bubble Multiple Dataset- Panning', () => {
       ];
       axisData.pan = { enabled: true };
       const input = getInput([], false, false);
-      // graphDefault.destroy();
+      graphDefault = null;
       graphDefault = new Graph(axisData);
-      graphDefault.loadContent(new BubbleMultipleDataset(input));
+      graphDefault.loadContent(new BubbleSingleDataset(input));
     });
     describe('when legend hold values', () => {
       it('should remove the No Data Views', () => {
-        const graphData = {
-          panData: [
+        const panData = {
+          key: 'uid_1',
+          values: [
             {
-              key: 'uid_1',
-              values: [
-                {
-                  x: '2016-03-03T12:00:00Z',
-                  y: 2,
-                },
-                {
-                  x: '2016-04-03T12:00:00Z',
-                  y: 20,
-                },
-              ],
+              x: '2016-03-03T12:00:00Z',
+              y: 2,
+            },
+            {
+              x: '2016-04-03T12:00:00Z',
+              y: 20,
             },
           ],
         };
@@ -365,10 +337,11 @@ describe('Bubble Multiple Dataset- Panning', () => {
         const legendItem = document.body.querySelector(
                     `.${styles.legendItem}`,
         );
+
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
         expect(bubbleContent.length).toEqual(0);
-        graphDefault.reflowMultipleDatasets(graphData);
+        graphDefault.reflow(panData);
         bubbleContent = fetchAllElementsByClass(
           bubbleGraphContainer,
           styles.pointGroup,
@@ -380,26 +353,22 @@ describe('Bubble Multiple Dataset- Panning', () => {
     });
     describe('when the same data is passed on multiple clicks of panning', () => {
       it('Range modified should be false', () => {
-        const graphData = {
-          panData: [
+        const panData = {
+          key: 'uid_1',
+          values: [
             {
-              key: 'uid_1',
-              values: [
-                {
-                  x: '2016-03-03T12:00:00Z',
-                  y: 0,
-                },
-                {
-                  x: '2016-04-03T12:00:00Z',
-                  y: 20,
-                },
-              ],
+              x: '2016-03-03T12:00:00Z',
+              y: 0,
+            },
+            {
+              x: '2016-04-03T12:00:00Z',
+              y: 20,
             },
           ],
         };
-        graphDefault.reflowMultipleDatasets(graphData);
-        graphDefault.reflowMultipleDatasets(graphData);
-        graphDefault.reflowMultipleDatasets(graphData);
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
+        graphDefault.reflow(panData);
         expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });

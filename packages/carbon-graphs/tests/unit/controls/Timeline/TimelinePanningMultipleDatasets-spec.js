@@ -57,42 +57,54 @@ describe('Panning', () => {
       ).not.toBeNull();
     });
     it('Dynamic Data is updated correctly when key matches', () => {
-      const panData = {
-        key: 'uid_1',
-        values: [
+      const graphData = {
+        panData: [
           {
-            x: new Date(2018, 2, 1).toISOString(),
-            content: 'This is custom value of another unit',
+            key: 'uid_1',
+            values: [
+              {
+                x: new Date(2018, 2, 1).toISOString(),
+                content: 'This is custom value of another unit',
+              },
+            ],
           },
         ],
       };
       let timelineContent = fetchAllElementsByClass(styles.pointGroup);
       expect(timelineContent.length).toEqual(2);
-      timeline.reflow(panData);
+      timeline.reflowMultipleDatasets(graphData);
       timelineContent = fetchAllElementsByClass(styles.pointGroup);
       expect(timelineContent.length).toEqual(1);
     });
     it('Dynamic Data is not updated when key does not match', () => {
-      const panData = {
-        key: 'uid_2',
-        values: [
+      const graphData = {
+        panData: [
           {
-            x: new Date(2018, 2, 1).toISOString(),
-            content: 'This is custom value of another unit',
+            key: 'uid_2',
+            values: [
+              {
+                x: new Date(2018, 2, 1).toISOString(),
+                content: 'This is custom value of another unit',
+              },
+            ],
           },
         ],
       };
       let timelineContent = fetchAllElementsByClass(styles.pointGroup);
       expect(timelineContent.length).toEqual(2);
-      timeline.reflow(panData);
+      timeline.reflowMultipleDatasets(graphData);
       timelineContent = fetchAllElementsByClass(styles.pointGroup);
       expect(timelineContent.length).toEqual(2);
     });
     describe('when there is no data', () => {
       it('should update the dynamic data and disable the legend', () => {
-        const panData = {
-          key: 'uid_1',
-          values: [],
+        const graphData = {
+          panData: [
+            {
+              key: 'uid_1',
+              values: [],
+            },
+          ],
         };
         let timelineContent = fetchAllElementsByClass(
           styles.pointGroup,
@@ -101,7 +113,7 @@ describe('Panning', () => {
         const legendItem = document.body.querySelector(
                     `.${styles.legendItem}`,
         );
-        timeline.reflow(panData);
+        timeline.reflowMultipleDatasets(graphData);
         timelineContent = fetchAllElementsByClass(styles.pointGroup);
         expect(timelineContent.length).toEqual(0);
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');

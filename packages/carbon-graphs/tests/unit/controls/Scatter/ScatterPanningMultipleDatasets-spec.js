@@ -1,17 +1,9 @@
 'use strict';
 
 import Graph from '../../../../src/js/controls/Graph/Graph';
-import Line from '../../../../src/js/controls/Line';
-import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
+import Scatter from '../../../../src/js/controls/Scatter';
 import styles from '../../../../src/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import utils from '../../../../src/js/helpers/utils';
-import {
-  delay,
-  loadCustomJasmineMatcher,
-  PADDING_BOTTOM,
-  toNumber,
-} from '../../helpers/commonHelpers';
 import {
   axisTimeSeries,
   getAxes,
@@ -20,21 +12,22 @@ import {
   fetchAllElementsByClass,
   fetchElementByClass,
 } from './helpers';
+import { toNumber, delay, PADDING_BOTTOM } from '../../helpers/commonHelpers';
+import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import errors from '../../../../src/js/helpers/errors';
 
-describe('Line - Panning', () => {
+describe('Scatter - Panning', () => {
   let graphDefault = null;
-  let lineGraphContainer;
-  beforeAll(() => {
-    loadCustomJasmineMatcher();
-  });
+  let scatterGraphContainer;
   beforeEach(() => {
-    lineGraphContainer = document.createElement('div');
-    lineGraphContainer.id = 'testLine_carbon';
-    lineGraphContainer.setAttribute(
+    scatterGraphContainer = document.createElement('div');
+    scatterGraphContainer.id = 'testScatter_carbon';
+    scatterGraphContainer.setAttribute(
       'style',
       'width: 1024px; height: 400px;',
     );
-    document.body.appendChild(lineGraphContainer);
+    document.body.appendChild(scatterGraphContainer);
   });
   afterEach(() => {
     document.body.innerHTML = '';
@@ -54,10 +47,49 @@ describe('Line - Panning', () => {
         },
       ];
       axisData.pan = { enabled: true };
-      axisData.showLabel = true;
       const input = getInput(valuesTimeSeries, false, false);
       graphDefault = new Graph(axisData);
-      graphDefault.loadContent(new Line(input));
+      graphDefault.loadContent(new Scatter(input));
+    });
+    it('throws error when null value is passed as y', () => {
+      const graphData = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [
+              {
+                x: '2016-03-03T12:00:00Z',
+                y: null,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+        ],
+      };
+      expect(() => { graphDefault.reflowMultipleDatasets(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+    });
+    it('throws error when undefined value is passed as y', () => {
+      const graphData = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [
+              {
+                x: '2016-03-03T12:00:00Z',
+                y: undefined,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+        ],
+      };
+      expect(() => { graphDefault.reflowMultipleDatasets(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
@@ -78,40 +110,44 @@ describe('Line - Panning', () => {
     describe('when key matches', () => {
       describe('label is not passed', () => {
         it('should update dynamic data and retain label', () => {
-          const panData = {
-            key: 'uid_1',
-            values: [
+          const graphData = {
+            panData: [
               {
-                x: '2016-03-03T12:00:00Z',
-                y: 2,
-              },
-              {
-                x: '2016-04-03T12:00:00Z',
-                y: 20,
+                key: 'uid_1',
+                values: [
+                  {
+                    x: '2016-03-03T12:00:00Z',
+                    y: 2,
+                  },
+                  {
+                    x: '2016-04-03T12:00:00Z',
+                    y: 20,
+                  },
+                ],
               },
             ],
           };
-          let lineContent = fetchAllElementsByClass(
-            lineGraphContainer,
+          let ScatterContent = fetchAllElementsByClass(
+            scatterGraphContainer,
             styles.pointGroup,
           );
-          expect(lineContent.length).toEqual(3);
-          graphDefault.reflow(panData);
-          lineContent = fetchAllElementsByClass(
-            lineGraphContainer,
+          expect(ScatterContent.length).toEqual(3);
+          graphDefault.reflowMultipleDatasets(graphData);
+          ScatterContent = fetchAllElementsByClass(
+            scatterGraphContainer,
             styles.pointGroup,
           );
-          expect(lineContent.length).toEqual(2);
+          expect(ScatterContent.length).toEqual(2);
           const axisLabelX = fetchElementByClass(
-            lineGraphContainer,
+            scatterGraphContainer,
             styles.axisLabelX,
           );
           const axisLabelY = fetchElementByClass(
-            lineGraphContainer,
+            scatterGraphContainer,
             styles.axisLabelY,
           );
           const axisLabelY2 = fetchElementByClass(
-            lineGraphContainer,
+            scatterGraphContainer,
             styles.axisLabelY2,
           );
           expect(axisLabelX.querySelector('text').textContent).toBe(
@@ -127,33 +163,37 @@ describe('Line - Panning', () => {
       });
       describe('when label is passed', () => {
         it('should update the label during reflow', () => {
-          const panData = {
-            key: 'uid_1',
-            values: [
+          const graphData = {
+            panData: [
               {
-                x: '2016-03-03T12:00:00Z',
-                y: 2,
-              },
-              {
-                x: '2016-04-03T12:00:00Z',
-                y: 20,
+                key: 'uid_1',
+                values: [
+                  {
+                    x: '2016-03-03T12:00:00Z',
+                    y: 2,
+                  },
+                  {
+                    x: '2016-04-03T12:00:00Z',
+                    y: 20,
+                  },
+                ],
               },
             ],
             xLabel: 'updated xLabel',
             yLabel: 'updated yLabel',
             y2Label: 'updated y2Label',
           };
-          graphDefault.reflow(panData);
+          graphDefault.reflowMultipleDatasets(graphData);
           const axisLabelX = fetchElementByClass(
-            lineGraphContainer,
+            scatterGraphContainer,
             styles.axisLabelX,
           );
           const axisLabelY = fetchElementByClass(
-            lineGraphContainer,
+            scatterGraphContainer,
             styles.axisLabelY,
           );
           const axisLabelY2 = fetchElementByClass(
-            lineGraphContainer,
+            scatterGraphContainer,
             styles.axisLabelY2,
           );
           expect(axisLabelX.querySelector('text').textContent).toBe(
@@ -169,78 +209,88 @@ describe('Line - Panning', () => {
       });
     });
     it('Dynamic Data is not updated when key does not match', () => {
-      const panData = {
-        key: 'uid_2',
-        values: [
+      const graphData = {
+        panData: [
           {
-            x: '2016-03-03T12:00:00Z',
-            y: 2,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
+            key: 'uid_2',
+            values: [
+              {
+                x: '2016-03-03T12:00:00Z',
+                y: 2,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
           },
         ],
       };
-      let lineContent = fetchAllElementsByClass(
-        lineGraphContainer,
+      let ScatterContent = fetchAllElementsByClass(
+        scatterGraphContainer,
         styles.pointGroup,
       );
-      expect(lineContent.length).toEqual(3);
-      graphDefault.reflow(panData);
-      lineContent = fetchAllElementsByClass(
-        lineGraphContainer,
+      expect(ScatterContent.length).toEqual(3);
+      graphDefault.reflowMultipleDatasets(graphData);
+      ScatterContent = fetchAllElementsByClass(
+        scatterGraphContainer,
         styles.pointGroup,
       );
-      expect(lineContent.length).toEqual(3);
+      expect(ScatterContent.length).toEqual(3);
     });
     describe('when there is no data', () => {
       it('should update the dynamic data and disable the legend', () => {
-        const panData = {
-          key: 'uid_1',
-          values: [],
+        const graphData = {
+          panData: [
+            {
+              key: 'uid_1',
+              values: [],
+            },
+          ],
         };
-        let lineContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        let ScatterContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.pointGroup,
         );
+        expect(ScatterContent.length).toEqual(3);
         const legendItem = document.body.querySelector(
                     `.${styles.legendItem}`,
         );
-        expect(lineContent.length).toEqual(3);
-
-        graphDefault.reflow(panData);
-        lineContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        graphDefault.reflowMultipleDatasets(graphData);
+        ScatterContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.pointGroup,
         );
-        expect(lineContent.length).toEqual(0);
+        expect(ScatterContent.length).toEqual(0);
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
       });
-      it('should update the dynamic data and remove  shape in y-axis', () => {
-        const panData = {
-          key: 'uid_1',
-          values: [],
+      it('should update the dynamic data and remove shape in y-axis', () => {
+        const graphData = {
+          panData: [
+            {
+              key: 'uid_1',
+              values: [],
+            },
+          ],
         };
-        let lineShapeContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        let ScatterShapeContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.axisLabelYShapeContainer,
         );
         expect(
-          lineShapeContent[0].querySelectorAll('svg').length,
+          ScatterShapeContent[0].querySelectorAll('svg').length,
         ).toEqual(1);
-
-        graphDefault.reflow(panData);
-        lineShapeContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        graphDefault.reflowMultipleDatasets(graphData);
+        ScatterShapeContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.axisLabelYShapeContainer,
         );
         expect(
-          lineShapeContent[0].querySelectorAll('svg').length,
+          ScatterShapeContent[0].querySelectorAll('svg').length,
         ).toEqual(0);
       });
-      it('should update the dynamic data and remove the shape in y2-axis', () => {
+      it('should update the dynamic data and remove shape in y2-axis', () => {
         graphDefault.destroy();
         const axisData = utils.deepClone(getAxes(axisTimeSeries));
         axisData.dateline = [
@@ -255,83 +305,34 @@ describe('Line - Panning', () => {
           },
         ];
         axisData.pan = { enabled: true };
-        axisData.showLabel = true;
         const input = getInput(valuesTimeSeries, false, false);
         input.yAxis = 'y2';
         graphDefault = new Graph(axisData);
-        graphDefault.loadContent(new Line(input));
-        const panData = {
-          key: 'uid_1',
-          values: [],
+        graphDefault.loadContent(new Scatter(input));
+        const graphData = {
+          panData: [
+            {
+              key: 'uid_1',
+              values: [],
+            },
+          ],
         };
-        let lineShapeContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        let ScatterShapeContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.axisLabelY2ShapeContainer,
         );
         expect(
-          lineShapeContent[0].querySelectorAll('svg').length,
+          ScatterShapeContent[0].querySelectorAll('svg').length,
         ).toEqual(1);
-
-        graphDefault.reflow(panData);
-        lineShapeContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        graphDefault.reflowMultipleDatasets(graphData);
+        ScatterShapeContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.axisLabelY2ShapeContainer,
         );
         expect(
-          lineShapeContent[0].querySelectorAll('svg').length,
+          ScatterShapeContent[0].querySelectorAll('svg').length,
         ).toEqual(0);
       });
-    });
-  });
-  describe('When values are non-contiguous', () => {
-    beforeEach(() => {
-      const axisData = utils.deepClone(getAxes(axisTimeSeries));
-      axisData.pan = { enabled: true };
-      const input = getInput([], false, false);
-      graphDefault = new Graph(axisData);
-      graphDefault.loadContent(new Line(input));
-    });
-    it('should remove datapoint with y value as null', () => {
-      const panData = {
-        key: 'uid_1',
-        values: [
-          {
-            x: '2016-03-03T12:00:00Z',
-            y: null,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
-          },
-        ],
-      };
-      graphDefault.reflow(panData);
-      const lineContent = fetchAllElementsByClass(
-        lineGraphContainer,
-        styles.pointGroup,
-      );
-      expect(lineContent.length).toEqual(panData.values.length - 1);
-    });
-    it('should remove datapoint with y value as null', () => {
-      const panData = {
-        key: 'uid_1',
-        values: [
-          {
-            x: '2016-03-03T12:00:00Z',
-            y: undefined,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
-          },
-        ],
-      };
-      graphDefault.reflow(panData);
-      const lineContent = fetchAllElementsByClass(
-        lineGraphContainer,
-        styles.pointGroup,
-      );
-      expect(lineContent.length).toEqual(panData.values.length - 1);
     });
   });
   describe('When pan is disabled', () => {
@@ -351,7 +352,7 @@ describe('Line - Panning', () => {
       axisData.pan = { enabled: false };
       const input = getInput(valuesTimeSeries, false, false);
       graphDefault = new Graph(axisData);
-      graphDefault.loadContent(new Line(input));
+      graphDefault.loadContent(new Scatter(input));
     });
     it('Check if clamp is true if pan is disabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(true);
@@ -364,8 +365,8 @@ describe('Line - Panning', () => {
         const { translate } = getSVGAnimatedTransformList(
           datelineGroup.getAttribute('transform'),
         );
-        expect(toNumber(translate[0], 10)).toBeCloserTo(67);
-        expect(toNumber(translate[1], 10)).toBeCloserTo(PADDING_BOTTOM);
+        expect(toNumber(translate[0], 10)).toBeGreaterThanOrEqual(67);
+        expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
         done();
       });
     });
@@ -387,61 +388,69 @@ describe('Line - Panning', () => {
       axisData.pan = { enabled: true };
       const input = getInput([], false, false);
       graphDefault = new Graph(axisData);
-      graphDefault.loadContent(new Line(input));
+      graphDefault.loadContent(new Scatter(input));
     });
     describe('when legend hold values', () => {
       it('should remove the No Data Views', () => {
-        const panData = {
-          key: 'uid_1',
-          values: [
+        const graphData = {
+          panData: [
             {
-              x: '2016-03-03T12:00:00Z',
-              y: 2,
-            },
-            {
-              x: '2016-04-03T12:00:00Z',
-              y: 20,
+              key: 'uid_1',
+              values: [
+                {
+                  x: '2016-03-03T12:00:00Z',
+                  y: 2,
+                },
+                {
+                  x: '2016-04-03T12:00:00Z',
+                  y: 20,
+                },
+              ],
             },
           ],
         };
-        let lineContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        let ScatterContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.pointGroup,
         );
         const legendItem = document.body.querySelector(
                     `.${styles.legendItem}`,
         );
-        expect(lineContent.length).toEqual(0);
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
-        graphDefault.reflow(panData);
-        lineContent = fetchAllElementsByClass(
-          lineGraphContainer,
+        expect(ScatterContent.length).toEqual(0);
+        graphDefault.reflowMultipleDatasets(graphData);
+        ScatterContent = fetchAllElementsByClass(
+          scatterGraphContainer,
           styles.pointGroup,
         );
-        expect(lineContent.length).toEqual(2);
+        expect(ScatterContent.length).toEqual(2);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
       });
     });
     describe('when the same data is passed on multiple clicks of panning', () => {
       it('Range modified should be false', () => {
-        const panData = {
-          key: 'uid_1',
-          values: [
+        const graphData = {
+          panData: [
             {
-              x: '2016-03-03T12:00:00Z',
-              y: 0,
-            },
-            {
-              x: '2016-04-03T12:00:00Z',
-              y: 20,
+              key: 'uid_1',
+              values: [
+                {
+                  x: '2016-03-03T12:00:00Z',
+                  y: 0,
+                },
+                {
+                  x: '2016-04-03T12:00:00Z',
+                  y: 20,
+                },
+              ],
             },
           ],
         };
-        graphDefault.reflow(panData);
-        graphDefault.reflow(panData);
-        graphDefault.reflow(panData);
+        graphDefault.reflowMultipleDatasets(graphData);
+        graphDefault.reflowMultipleDatasets(graphData);
+        graphDefault.reflowMultipleDatasets(graphData);
         expect(graphDefault.config.axis.y.dataRange.isRangeModified).toEqual(false);
       });
     });
