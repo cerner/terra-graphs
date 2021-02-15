@@ -1,0 +1,30 @@
+@import "Variables.module.scss";
+
+:root {
+    --line-transition-duration: 0.3s;
+}
+
+.carbon-line path {
+    fill: none;
+    stroke-width: 1px;
+
+    /* To counteract the opacity change when blur is used on a line */
+    @include basic-transition(
+        opacity,
+        var(--line-transition-duration),
+        var(--default-transition-timing)
+    );
+
+    &.carbon-highlight {
+        stroke-width: 2px;
+        @include transform-transition(
+            stroke,
+            var(--default-transition-duration),
+            var(--default-transition-timing)
+        );
+    }
+
+    &[aria-hidden="true"] {
+        @include opacity-hide();
+    }
+}
