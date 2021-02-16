@@ -29,4 +29,12 @@ const data = utils.deepClone(
   );
 data.bindLegendTo = '#legendContainer';
 
-export default () => <LineGraph graphID = "graphContainer" graphConfig={ data } dataset={ [ data.data[0], data.data[2]] }/>
+export default () => <div>
+        <div className = 'bindto-container'>
+            <div id = 'legendContainer' className = 'legend-bindto-container'>
+            </div>
+            <div id = 'graphContainer' className = 'legend-bindto-graph-container'>
+            </div>
+            </div>
+            <LineGraph graphID = "graphContainer" graphConfig={ data } dataset={ [ data.data[0], data.data[2]] }/> 
+    </div>

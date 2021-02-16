@@ -10,7 +10,11 @@ colorData.opaqueBackground = true;
 
 export default () => {
     return <div>
-<LineGraph graphID="backgroundColor" graphConfig={ colorData } dataset={ colorData.data[0] }/>, 
-<LineGraph graphID="backgroundColor1" graphConfig={ getDemoData('#backgroundColor1', 'LINE_DEFAULT') } dataset={ getDemoData('#backgroundColor1', 'LINE_DEFAULT').data[0]} backgroundColor = { '#176ba0' }/>
+    <div>
+<LineGraph graphID="backgroundColor" graphConfig={ colorData } dataset={ colorData.data[0] }/>
+</div>
+<div style={{ backgroundColor: "#176ba0" }}>
+<LineGraph graphID="backgroundColor1"  graphConfig={ getDemoData('#backgroundColor1', 'LINE_DEFAULT') } dataset={ getDemoData('#backgroundColor1', 'LINE_DEFAULT').data[0]} />
+</div>
 </div>
 };
