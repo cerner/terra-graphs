@@ -145,7 +145,7 @@ export const renderLineWithPanning = (id) => {
     };
 
     const graph = Carbon.api.graph(axisData);
-    graph.loadContent(Carbon.api.line(graphData));
+    graph.loadContent(Carbon.api.line(graphData1));
     // Additional data-sets to be loaded here only, like:
     graph.loadContent(Carbon.api.line(/* Data array */));
     axisData.axis = graph.config.axis;
