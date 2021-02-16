@@ -4,11 +4,12 @@ import '../../css/Graph.module.scss';
 import '../../css/LineGraph.module.scss';
 import utils from'../../../../carbon-graphs/src/js/helpers/utils'
 import { createElementLegendBindTo } from '../../../../../../carbon-graphs/dev/examples/helpers';
+import BackgroundColor from '../../terra-dev-site/doc/example/Misc/BackgroundColor';
 
 class LineGraph extends React.Component {
     render() {
       debugger;
-      return <div id = "canvasContainer">
+      return <div id = "canvasContainer" >
                 <div id="tooltip" className="tooltip" style= { { display: "none" } }></div>
                 <div id={this.props.graphID}></div>
             </div>
