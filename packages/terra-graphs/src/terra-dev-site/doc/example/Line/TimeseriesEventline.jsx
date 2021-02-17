@@ -1,8 +1,7 @@
-
 import React from 'react';
-import  getDemoData  from '../../../../../../carbon-graphs/dev/examples/data'
+import getDemoData from '../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '../../../../components/Line/LineGraph.jsx';
-import utils from '../../../../../../carbon-graphs/src/js/helpers/utils'
+import utils from '../../../../../../carbon-graphs/src/js/helpers/utils';
 import Carbon from '../../../../../../carbon-graphs/src/js/carbon';
 
 const data = utils.deepClone(getDemoData('#timeseriesEventLine', 'LINE_TIMESERIES'));
@@ -23,4 +22,4 @@ data.eventline = [
   },
 ];
 
-export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={ data } dataset={ getDemoData('#timeseriesEventline', 'LINE_TIMESERIES_DATELINE').data[0]  }/>
+export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={data} dataset={getDemoData('#timeseriesEventline', 'LINE_TIMESERIES_DATELINE').data[0]} />;
