@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Carbon from '../../../../carbon-graphs/src/js/carbon';
 import '../../css/Graph.module.scss';
 import '../../css/LineGraph.module.scss';
 import utils from '../../../../carbon-graphs/src/js/helpers/utils';
 
-class LineGraph extends React.Component {
-  render() {
-    debugger;
-    return (
-      <div id="canvasContainer">
-        <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
-        <div id={this.props.graphID} />
-      </div>
-    );
-  }
+const propTypes = {
+  graphConfig: PropTypes.object,
+  dataset: PropTypes.object,
+  graphID: PropTypes.string,
+};
 
-  componentDidMount() {
-    debugger;
-    const graph = Carbon.api.graph(this.props.graphConfig);
-    (utils.isArray(this.props.dataset)) ? (this.props.dataset.forEach((data) => {
-      graph.loadContent(Carbon.api.line(data));
-    })) : graph.loadContent(Carbon.api.line(this.props.dataset));
-  }
-}
+const LineGraph = ({ graphConfig, dataset, graphID }) => {
+  React.useEffect(() => {
+    const graph = Carbon.api.graph(graphConfig);
+    if (utils.isArray(dataset)) {
+      dataset.forEach((data) => {
+        graph.loadContent(Carbon.api.line(data));
+      });
+    } else {
+      graph.loadContent(Carbon.api.line(dataset));
+    }
+  }, [graphConfig, dataset]);
+
+  return (
+    <div id="canvasContainer">
+      <div id="tooltip" className="tooltip" />
+      <div id={graphID} />
+    </div>
+  );
+};
+
+LineGraph.propTypes = propTypes;
 
 export default LineGraph;
