@@ -5,31 +5,12 @@ import LineGraph from '../../../../components/Line/LineGraph.jsx';
 import utils from '../../../../../../carbon-graphs/src/js/helpers/utils'
 import '../../../../css/Dev.module.scss';
 
-const createElementLegendBindTo = (id) => {
-    const parentContainerElem = document.querySelector(`.${id}`);
-    const container = document.createElement('div');
-    container.setAttribute('class', 'bindto-container');
-    // Prepare legend container
-    const legendContainer = document.createElement('div');
-    const graphContainer = document.createElement('div');
-    legendContainer.setAttribute('id', 'legendContainer');
-    legendContainer.setAttribute('class', 'legend-bindto-container');
-    // Prepare graph container
-    graphContainer.setAttribute('id', 'graphContainer');
-    graphContainer.setAttribute('class', 'legend-bindto-graph-container');
-    container.appendChild(legendContainer);
-    container.appendChild(graphContainer);
-  
-    parentContainerElem.appendChild(container);
-  };
-
-createElementLegendBindTo('MarkdownWrapper-module__markdown___1A-1-');
 const data = utils.deepClone(
     getDemoData('#graphContainer', 'LINE_TIMESERIES'),
   );
 data.bindLegendTo = '#legendContainer';
 
-export default () => <div>
+export default () => <div id = 'customLegendPlacement'>
         <div className = 'bindto-container'>
             <div id = 'legendContainer' className = 'legend-bindto-container'>
             </div>
