@@ -24,7 +24,7 @@ const webpackConfig = (env, folder = '') => ({
     rules: [
       {
         test: /\.(less|css)$/,
-        loader: "less-loader"
+        loader: 'less-loader',
         // use: [MiniCssExtractPlugin.loader, ...cssOptions(env.TYPE)],
       },
       {
