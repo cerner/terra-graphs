@@ -186,6 +186,7 @@ describe('Eventline', () => {
           },
         });
         axisObj.eventline = utils.deepClone(eventlineJSON);
+        // eslint-disable-next-line no-unused-vars
         gantt = new Gantt(axisObj);
       });
       it('set pointer-events correctly', () => {

@@ -3,13 +3,15 @@
 ## Unreleased
 
 * Changed
+
   * Fixed axis label bug occuring with reflow.
+  * Fixed linter issues.
 
 ## 2.16.1 - (February 2, 2021)
 
 * Changed
   * Fixed linter issues.
-  * Fixed Y-axis range bug in reflow. 
+  * Fixed Y-axis range bug in reflow.
 
 ## 2.16.0 - (December 16, 2020)
 
