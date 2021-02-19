@@ -5,21 +5,25 @@ import Graph from '../../../../src/js/controls/Graph/index';
 import styles from '../../../../src/js/helpers/styles';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import {
+  delay,
   loadCustomJasmineMatcher,
   PADDING_BOTTOM,
   toNumber,
-  delay,
+  triggerEvent,
 } from '../../helpers/commonHelpers';
 import {
-  fetchElementByClass,
+  axisDefault,
   axisTimeseriesWithDateline,
   axisDefaultWithPanning,
   axisDefaultWithoutPanning,
   axisTimeseriesWithEventline,
+  fetchElementByClass,
+  getAxes,
 } from './helpers';
 import {
   COLORS,
 } from '../../../../src/js/helpers/constants';
+import utils from '../../../../src/js/helpers/utils';
 
 describe('Graph - Panning', () => {
   let graph = null;
@@ -89,6 +93,128 @@ describe('Graph - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
+        done();
+      });
+    });
+    it('should transform x-axis to the appropriate position', (done) => {
+      graph.destroy();
+      const axisObj = utils.deepClone(axisDefault);
+      axisObj.x.label = ' ';
+      graph = new Graph({ ...getAxes(axisObj) });
+      expect(
+        getSVGAnimatedTransformList(
+          fetchElementByClass(styles.axisX).getAttribute(
+            'transform',
+          ),
+        ).translate[0],
+      ).toBeCloserTo(60);
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+        xLabel: 'updated xLabel',
+      };
+      graph.reflow(panData);
+      graph.resize();
+      triggerEvent(window, 'resize', () => {
+        expect(
+          getSVGAnimatedTransformList(
+            fetchElementByClass(styles.axisX).getAttribute(
+              'transform',
+            ),
+          ).translate[0],
+        ).toBeCloserTo(60);
+        done();
+      });
+    });
+    it('should transform y-axis to the appropriate position', (done) => {
+      graph.destroy();
+      const axisObj = utils.deepClone(axisDefault);
+      axisObj.y.label = ' ';
+      graph = new Graph({ ...getAxes(axisObj) });
+      expect(
+        getSVGAnimatedTransformList(
+          fetchElementByClass(styles.axisY).getAttribute(
+            'transform',
+          ),
+        ).translate[0],
+      ).toBeCloserTo(50);
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+        yLabel: 'updated yLabel',
+      };
+      graph.reflow(panData);
+      graph.resize();
+      triggerEvent(window, 'resize', () => {
+        expect(
+          getSVGAnimatedTransformList(
+            fetchElementByClass(styles.axisY).getAttribute(
+              'transform',
+            ),
+          ).translate[0],
+        ).toBeCloserTo(68);
+        done();
+      });
+    });
+    it('should transform y2-axis to the appropriate position', (done) => {
+      graph.destroy();
+      const axisObj = utils.deepClone(axisDefault);
+      axisObj.y2 = {
+        show: true,
+        label: ' ',
+        lowerLimit: 11,
+        upperLimit: 25,
+      };
+      graph = new Graph({ ...getAxes(axisObj) });
+      expect(
+        getSVGAnimatedTransformList(
+          fetchElementByClass(styles.axisY2).getAttribute(
+            'transform',
+          ),
+        ).translate[0],
+      ).toBeCloserTo(930);
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+        y2Label: 'updated y2Label',
+      };
+      graph.reflow(panData);
+      graph.resize();
+      triggerEvent(window, 'resize', () => {
+        expect(
+          getSVGAnimatedTransformList(
+            fetchElementByClass(styles.axisY2).getAttribute(
+              'transform',
+            ),
+          ).translate[0],
+        ).toBeCloserTo(930);
         done();
       });
     });
