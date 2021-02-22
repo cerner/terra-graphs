@@ -74,11 +74,11 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget) => {
       .attr('aria-selected', false)
       .attr(
         'aria-hidden',
-            document
-              .querySelector(
-                `.${styles.legendItem}[aria-describedby="${value.key}"]`,
-              )
-              ?.getAttribute('aria-current') === 'false',
+        document
+          .querySelector(
+            `.${styles.legendItem}[aria-describedby="${value.key}"]`,
+          )
+          ?.getAttribute('aria-current') === 'false',
       )
       .on('click', function () {
         dataPointActionHandler(value, index, this);
