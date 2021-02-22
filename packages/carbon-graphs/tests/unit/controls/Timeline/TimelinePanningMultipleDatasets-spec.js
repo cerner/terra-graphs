@@ -42,10 +42,10 @@ describe('Panning', () => {
       timeline = new Timeline(axisData);
       timeline.loadContent(input);
     });
-    it('Check if clamp is false if pan is enabled', () => {
+    it('Checks if clamp is false when pan is enabled', () => {
       expect(timeline.scale.x.clamp()).toEqual(false);
     });
-    it('check if data point are getting translated properly', () => {
+    it('check if dataPoints are getting translated properly', () => {
       const dataPoint = fetchElementByClass(styles.point).firstChild;
       expect(
         getSVGAnimatedTransformList(getCurrentTransform(dataPoint))
@@ -76,7 +76,7 @@ describe('Panning', () => {
       timelineContent = fetchAllElementsByClass(styles.pointGroup);
       expect(timelineContent.length).toEqual(1);
     });
-    it('Dynamic Data is not updated when key does not match', () => {
+    it('does not update dynamic data when key does not match', () => {
       const graphData = {
         panData: [
           {
@@ -130,7 +130,7 @@ describe('Panning', () => {
       timeline = new Timeline(axisData);
       timeline.loadContent(input);
     });
-    it('Check if clamp is true if pan is disabled', () => {
+    it('Checks if clamp is true when pan is disabled', () => {
       expect(timeline.scale.x.clamp()).toEqual(true);
     });
     it('check if data point are getting translated properly', () => {

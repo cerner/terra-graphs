@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Changed
-  * Added deprecation warning for `reflow`
+  * Added deprecation warning for `reflow`.
 
 * Added
   * Added `reflowMultipleDatasets` to allow users to send in multiple datasets per graph instance.

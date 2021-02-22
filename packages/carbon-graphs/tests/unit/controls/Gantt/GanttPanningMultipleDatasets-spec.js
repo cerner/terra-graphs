@@ -52,7 +52,7 @@ describe('Panning', () => {
       axisData.pan = { enabled: true };
       gantt = new Gantt(axisData);
     });
-    it('Check if clamp is false if pan is enabled', () => {
+    it('Checks if clamp is false when pan is enabled', () => {
       expect(gantt.scale.x.clamp()).toEqual(false);
     });
     it('Check if different clipPath for dateline is created', () => {
@@ -185,7 +185,7 @@ describe('Panning', () => {
       );
       expect(actionsContent.length).toEqual(1);
     });
-    it('Dynamic Data is not updated when key does not match', () => {
+    it('does not update dynamic data when key does not match', () => {
       const primaryContent = getData(
         taskValuesJSON,
         activityValuesJSON,
@@ -391,7 +391,7 @@ describe('Panning', () => {
       axisData.pan = { enabled: false };
       gantt = new Gantt(axisData);
     });
-    it('Check if clamp is false if pan is enabled', () => {
+    it('Checks if clamp is true when pan is disabled', () => {
       expect(gantt.scale.x.clamp()).toEqual(true);
     });
     it('Check if different clipPath for dateline is not created', () => {

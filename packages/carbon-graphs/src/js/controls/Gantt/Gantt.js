@@ -335,7 +335,7 @@ class Gantt extends Construct {
      *  @returns {Gantt} - Gantt instance
      */
   reflow(graphData) {
-    console.warn('reflow is now deprecated and will be removed in future Major Version Bump. Please use reflowMultipleDatasets');
+    console.warn('reflow is deprecated and will be removed a future major release. Please use reflowMultipleDatasets instead.');
     updateXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     const eventHandlers = prepareLegendEventHandlers(

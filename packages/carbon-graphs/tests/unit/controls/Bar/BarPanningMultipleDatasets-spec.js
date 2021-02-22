@@ -59,7 +59,7 @@ describe('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
-    it('Check if clamp is false if pan is enabled', () => {
+    it('Checks if clamp is false when pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
     it('throws error when null value is passed as y', () => {
@@ -102,7 +102,7 @@ describe('Bar - Panning', () => {
 
       expect(() => { graphDefault.reflowMultipleDatasets(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
-    it('DatelineGroup translates properly when panning is enabled', (done) => {
+    it('translates DatelineGroup properly when panning is enabled', (done) => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -213,7 +213,7 @@ describe('Bar - Panning', () => {
         });
       });
     });
-    it('Dynamic Data is not updated when key does not match', () => {
+    it('does not update dynamic data when key does not match', () => {
       const graphData = {
         panData: [
           {
@@ -331,10 +331,10 @@ describe('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
-    it('Check if clamp is true if pan is disabled', () => {
+    it('Checks if clamp is true when pan is disabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(true);
     });
-    it('DatelineGroup translates properly after some delay when panning is disabled', (done) => {
+    it('translates DatelineGroup properly after some delay when panning is disabled', (done) => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -367,7 +367,7 @@ describe('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
-    describe('when legend hold values', () => {
+    describe('when legend holds values', () => {
       it('should remove the No Data Views', () => {
         const graphData = {
           panData: [{

@@ -42,7 +42,7 @@ describe('Graph - Panning', () => {
     beforeEach(() => {
       graph = new Graph(axisDefaultWithPanning);
     });
-    it('Check if clamp is false if pan is enabled', () => {
+    it('Checks if clamp is false when pan is enabled', () => {
       expect(graph.scale.x.clamp()).toEqual(false);
     });
     it('Check if different clipPath for dateline is created', () => {
@@ -66,7 +66,7 @@ describe('Graph - Panning', () => {
         defsElement.lastChild.firstChild.getAttribute('height'),
       ).toBe(datelineDefsHeight.toString());
     });
-    it('DatelineGroup translates properly when panning is enabled', (done) => {
+    it('translates DatelineGroup properly when panning is enabled', (done) => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -184,7 +184,7 @@ describe('Graph - Panning', () => {
     beforeEach(() => {
       graph = new Graph(axisDefaultWithoutPanning);
     });
-    it('Check if clamp is true if pan is disabled', () => {
+    it('Checks if clamp is true when pan is disabled', () => {
       expect(graph.scale.x.clamp()).toEqual(true);
     });
     it('Check if different clipPath for dateline is not created', () => {

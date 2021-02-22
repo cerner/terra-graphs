@@ -426,7 +426,7 @@ class Graph extends Construct {
      * @returns {Graph} - Graph instance
      */
   reflow(graphData) {
-    console.warn('reflow is now deprecated and will be removed in future Major Version Bump. Please use reflowMultipleDatasets');
+    console.warn('reflow is deprecated and will be removed a future major release. Please use reflowMultipleDatasets instead.');
     if (graphData && graphData.values) {
       const position = this.contentKeys.findIndex((key) => key === graphData.key);
       if (position > -1) {
