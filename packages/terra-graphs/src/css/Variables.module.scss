@@ -19,20 +19,20 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
 }
 
 @mixin basic-transition($property, $duration, $timing) {
-    $-moz-transition: $property $duration $timing;
-    $-webkit-transition: $property $duration $timing;
-    $-ms-transition: $property $duration $timing;
-    $-o-transition: $property $duration $timing;
-    $transition: $property $duration $timing;
+    -moz-transition: $property $duration $timing;
+    -webkit-transition: $property $duration $timing;
+    -ms-transition: $property $duration $timing;
+    -o-transition: $property $duration $timing;
+    transition: $property $duration $timing;
 }
 
 // prettier-ignore
 @mixin transform-transition($property, $duration, $timing) {
-    $-moz-transition: $property $duration $timing, -moz-transform $duration $timing;
-    $-webkit-transition: $property $duration $timing, -webkit-transform $duration $timing;
-    $-ms-transition: $property $duration $timing, -ms-transform $duration $timing;
-    $-o-transition: $property $duration $timing, -o-transform $duration $timing;
-    $transition: $property $duration $timing, transform $duration $timing;
+    -moz-transition: $property $duration $timing, -moz-transform $duration $timing;
+    -webkit-transition: $property $duration $timing, -webkit-transform $duration $timing;
+    -ms-transition: $property $duration $timing, -ms-transform $duration $timing;
+    -o-transition: $property $duration $timing, -o-transform $duration $timing;
+    transition: $property $duration $timing, transform $duration $timing;
 }
 
 @mixin opacity-hide() {
@@ -46,25 +46,25 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
 }
 
 @mixin opacity-show() {
-    $opacity: 1;
-    $visibility: visible;
-    $transform-transition : (
-        $opacity,
+    opacity: 1;
+    visibility: visible;
+    transform-transition : (
+        opacity,
         var(--default-transition-duration),
         var(--default-transition-timing)
     );
 }
 
 @mixin selected-indicator-styles() {
-    $stroke-width: 1px;
-    $stroke: var(--blue30);
-    $fill: var(--blue10);
-    $fill-opacity: 0.25;
+    stroke-width: 1px;
+    stroke: var(--blue30);
+    fill: var(--blue10);
+    fill-opacity: 0.25;
 }
 
 /*
 User agent gives `geometric precision` more importance than `speed` and `crisp edges`
 */
 @mixin carbon-shape-rendering() {
-    $shape-rendering: auto;
+    shape-rendering: auto;
 }

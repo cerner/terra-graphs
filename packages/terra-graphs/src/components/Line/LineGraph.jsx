@@ -25,7 +25,7 @@ const LineGraph = ({ graphConfig, dataset, graphID }) => {
 
   return (
     <div id="canvasContainer">
-      <div id="tooltip" className="tooltip" />
+      <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
       <div id={graphID} />
     </div>
   );

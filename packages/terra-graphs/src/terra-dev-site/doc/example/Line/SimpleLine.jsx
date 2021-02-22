@@ -1,5 +1,14 @@
 import React from 'react';
 import getDemoData from '../../../../../../carbon-graphs/dev/examples/data';
-import LineGraph from '../../../../components/Line/LineGraph.jsx';
+import LineGraph from '../../../../components/Line/LineGraph';
+import utils from '../../../../../../carbon-graphs/src/js/helpers/utils';
+import {
+    loadPopup
+  } from '../../../helpers/popup';
+  import '../../../../css/Dev.module.scss';
 
-export default () => <LineGraph graphID="simpleLinegraph" graphConfig={getDemoData('#simpleLinegraph', 'LINE_DEFAULT')} dataset={getDemoData('#simpleLinegraph', 'LINE_DEFAULT').data[0]} />;
+const axisData = utils.deepClone(getDemoData('#simpleLinegraph', 'LINE_DEFAULT'));
+const data = axisData.data[0];
+data.onClick = loadPopup;
+
+export default () => <LineGraph graphID="simpleLinegraph" graphConfig={axisData} dataset={data} />;
