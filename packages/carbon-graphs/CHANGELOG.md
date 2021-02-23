@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.16.2 - (February 23, 2021)
+
 * Added
   * Added `reflowMultipleDatasets` to allow users to send in multiple datasets per graph instance.
   
