@@ -239,13 +239,15 @@ class Bar extends GraphContent {
     if (position > -1) {
       graph.config.shownTargets.splice(position, 1);
     }
-    reflowLegend(
-      graph.legendSVG,
-      graph.content.filter((bar) => bar.config.key === graphData.key)[0]
-        .config,
-      graph,
-      eventHandlers,
-    );
+    const barGraph = graph.content.filter((bar) => bar.config.key === graphData.key);
+    if (!utils.isEmptyArray(barGraph)) {
+      reflowLegend(
+        graph.legendSVG,
+        barGraph[0].config,
+        graph,
+        eventHandlers,
+      );
+    }
     const tickValues = graph.config.axis.x.ticks.values.map((d) => ({
       x: d,
       valueSubsetArray: [],

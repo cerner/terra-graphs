@@ -13,8 +13,6 @@ Panning is applied with timeline/custom button
 
 Panning can only be used with graphs having the construct as Graph, Gantt and Timeline.
 
-**Note:** Panning with `reflow` is now deprecated and will be removed in future Major Version Bump. Please use `reflowMultipleDatasets`.
-
 ```jsx
 // axisData
 const graphConfiguration = {
@@ -36,8 +34,8 @@ const graphConfiguration = {
 ```
 
 ```jsx
-// graphData
-const dataSet = {
+// graphData1
+const dataSet1 = {
     key: "uid_1",
     label: {
         display: "Oral Temperature"
@@ -62,23 +60,74 @@ const dataSet = {
 ```
 
 ```jsx
-// panData
-const panData = {
-    key: "uid_1", // key should already be present in the graph
+// graphData2
+const dataSet2 = {
+    key: "uid_2",
+    label: {
+        display: "Blood Pressure"
+    },
+    shape: Carbon.helpers.SHAPES.SQUARE,
+    color: Carbon.helpers.COLORS.GREEN,
     values: [
         {
             x: new Date(2016, 0, 1, 10, 5).toISOString(),
-            y: 95
+            y: 105
         },
         {
             x: new Date(2016, 0, 1, 12, 15).toISOString(),
-            y: 92
+            y: 117
         },
         {
             x: new Date(2016, 0, 1, 14, 15).toISOString(),
-            y: 98
+            y: 125
         }
     ]
+};
+```
+
+```jsx
+// panningData
+const panningData = {
+  panData: [
+        {
+            key: "uid_1", // key should already be present in the graph
+            values: [
+                {
+                    x: new Date(2016, 0, 1, 10, 5).toISOString(),
+                    y: 95
+                },
+                {
+                    x: new Date(2016, 0, 1, 12, 15).toISOString(),
+                    y: 92
+                },
+                {
+                    x: new Date(2016, 0, 1, 14, 15).toISOString(),
+                    y: 98
+                }
+            ]
+        },
+        {
+            key: "uid_2", // key should already be present in the graph
+            values: [
+                {
+                    x: new Date(2016, 0, 1, 10, 5).toISOString(),
+                    y: 109
+                },
+                {
+                    x: new Date(2016, 0, 1, 12, 15).toISOString(),
+                    y: 113
+                },
+                {
+                    x: new Date(2016, 0, 1, 14, 15).toISOString(),
+                    y: 130
+                }
+            ],
+        },
+    ],
+    // These variables can be used to update label value for x,y and y2 axes respectively.
+    xLabel: 'xLabel',
+    yLabel: 'yLabel',
+    y2Label: 'y2Label',
 };
 ```
 
@@ -92,11 +141,11 @@ export const renderLineWithPanning = (id) => {
     graphData.regions = [regions[0]];
 
     const createGraph = () => {
-        graph.reflow();
+        graph.reflowWithMultipleDatasets();
     };
 
     const graph = Carbon.api.graph(axisData);
-    graph.loadContent(Carbon.api.line(graphData));
+    graph.loadContent(Carbon.api.line(graphData1));
     // Additional data-sets to be loaded here only, like:
     graph.loadContent(Carbon.api.line(/* Data array */));
     axisData.axis = graph.config.axis;
@@ -110,7 +159,7 @@ export const renderLineWithPanning = (id) => {
 ```
 
 ```javascript
-export const renderLinePanningWithDynamicData = (id) => {
+export const renderLinePanningMultipleDatasets = (id) => {
     const axisData = graphConfiguration;
     axisData.pan = {
         enabled: true
@@ -119,11 +168,12 @@ export const renderLinePanningWithDynamicData = (id) => {
     graphData.regions = [regions[0]];
 
     const createGraph = () => {
-        graph.reflow(panData);
+        graph.reflowWithMultipleDatasets(panningData);
     };
 
     const graph = Carbon.api.graph(axisData);
-    graph.loadContent(Carbon.api.line(graphData));
+    graph.loadContent(Carbon.api.line(graphData1));
+    graph.loadContent(Carbon.api.line(graphData2));
     // Additional data-sets to be loaded here only, like:
     graph.loadContent(Carbon.api.line(/* Data array */));
     axisData.axis = graph.config.axis;

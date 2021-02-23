@@ -2,9 +2,12 @@
 
 ## Unreleased
 
+* Added
+  * Added `reflowMultipleDatasets` to allow users to send in multiple datasets per graph instance.
+  
 * Changed
-
   * Fixed axis label bug occuring with reflow.
+  * Added deprecation warning for `reflow`.
   * Fixed linter issues.
 
 ## 2.16.1 - (February 2, 2021)

@@ -310,6 +310,53 @@ const panData = {
   yAxis: 'y',
 };
 
+const graphData = {
+  panData: [
+    {
+      key: 'uid_5',
+      values: [
+        {
+          x: new Date(2016, 0, 1, 9, 0).toISOString(),
+          y: 70,
+        },
+        {
+          x: new Date(2016, 0, 1, 10, 0).toISOString(),
+          y: 40,
+        },
+        {
+          x: new Date(2016, 0, 1, 12, 0).toISOString(),
+          y: 70,
+        },
+        {
+          x: new Date(2016, 0, 1, 15, 0).toISOString(),
+          y: 150,
+        },
+      ],
+    },
+    {
+      key: 'uid_6',
+      values: [
+        {
+          x: new Date(2016, 0, 1, 12, 0).toISOString(),
+          y: 20,
+        },
+        {
+          x: new Date(2016, 0, 1, 15, 45).toISOString(),
+          y: 100,
+        },
+        {
+          x: new Date(2016, 0, 1, 10, 30).toISOString(),
+          y: 150,
+        },
+        {
+          x: new Date(2016, 0, 1, 18, 0).toISOString(),
+          y: 130,
+        },
+      ],
+    },
+  ],
+};
+
 export const renderSimpleBubble = (id) => {
   const bubbleGraph = Carbon.api.graph(simpleAxisData(`#${id}`));
   bubbleGraph.loadContent(Carbon.api.bubble(data));
@@ -374,8 +421,29 @@ export const renderBubblePanningWithDynamicData = (id) => {
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {
-    const graphData = panData;
-    graph.reflow(graphData);
+    graph.reflow(panData);
+  };
+
+  createPanningControls(id, {
+    axisData,
+    creationHandler: createGraph,
+  });
+  return graph;
+};
+
+export const renderBubblePanningWithMultipleDatasets = (id) => {
+  const axisData = simpleAxisData(`#${id}`);
+  axisData.pan = {
+    enabled: true,
+  };
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.bubble(data5));
+  graph.loadContent(Carbon.api.bubble(data6));
+  axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflowMultipleDatasets(graphData);
   };
 
   createPanningControls(id, {

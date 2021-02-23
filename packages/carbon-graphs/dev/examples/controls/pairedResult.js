@@ -227,6 +227,90 @@ const graphData = [
       },
     ],
   },
+  {
+    panData: [
+      {
+        key: 'uid_1',
+        values: [
+          {
+            high: {
+              x: '2015-12-31T20:30:00.000Z',
+              y: 160,
+            },
+            mid: {
+              x: '2015-12-31T20:30:00.000Z',
+              y: 40,
+            },
+            low: {
+              x: '2015-12-31T20:30:00.000Z',
+              y: 10,
+            },
+          },
+          {
+            high: {
+              x: '2015-12-31T22:30:00.000Z',
+              y: 100,
+            },
+            mid: {
+              x: '2015-12-31T22:30:00.000Z',
+              y: 30,
+            },
+            low: {
+              x: '2015-12-31T22:30:00.000Z',
+              y: 10,
+            },
+          },
+          {
+            high: {
+              x: '2015-12-31T23:30:00.000Z',
+              y: 100,
+            },
+            mid: {
+              x: '2015-12-31T23:30:00.000Z',
+              y: 70,
+            },
+            low: {
+              x: '2015-12-31T23:30:00.000Z',
+              y: 30,
+            },
+          },
+        ],
+      },
+      {
+        key: 'uid_2',
+        values: [
+          {
+            high: {
+              x: '2015-12-31T21:30:00.000Z',
+              y: 200,
+            },
+            mid: {
+              x: '2015-12-31T21:30:00.000Z',
+              y: 160,
+            },
+            low: {
+              x: '2015-12-31T21:30:00.000Z',
+              y: 100,
+            },
+          },
+          {
+            high: {
+              x: '2015-12-31T19:30:00.000Z',
+              y: 190,
+            },
+            mid: {
+              x: '2015-12-31T19:30:00.000Z',
+              y: 140,
+            },
+            low: {
+              x: '2015-12-31T19:30:00.000Z',
+              y: 110,
+            },
+          },
+        ],
+      },
+    ],
+  },
 ];
 export const renderPairedResult = (id) => {
   const pairedDefault = Carbon.api.graph(
@@ -638,6 +722,33 @@ export const renderPairedResultPanningWithDynamicEventline = (id) => {
       },
     ];
     graph.reflow(graphData[0]);
+  };
+
+  createPanningControls(id, {
+    axisData,
+    creationHandler: createGraph,
+  });
+  return graph;
+};
+export const renderPairedResultPanningWithMultipleDatasets = (id) => {
+  const axisData = utils.deepClone(
+    getDemoData(`#${id}`, 'PAIRED_TIMESERIES'),
+  );
+  axisData.axis.x.lowerLimit = new Date(2016, 0, 1, 0).toISOString();
+  axisData.axis.x.upperLimit = new Date(2016, 0, 2, 0).toISOString();
+  axisData.pan = {
+    enabled: true,
+  };
+  axisData.axis.x.ticks = {};
+  axisData.axis.y2.show = true;
+
+  const graph = Carbon.api.graph(axisData);
+  graph.loadContent(Carbon.api.pairedResult(graphData[0]));
+  graph.loadContent(Carbon.api.pairedResult(graphData[1]));
+  axisData.axis = graph.config.axis;
+
+  const createGraph = () => {
+    graph.reflowMultipleDatasets(graphData[3]);
   };
 
   createPanningControls(id, {

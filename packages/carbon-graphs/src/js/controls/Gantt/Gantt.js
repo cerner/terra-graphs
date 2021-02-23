@@ -331,10 +331,11 @@ class Gantt extends Construct {
   /**
      * Updates the graph axisData and content.
      *
-     * @param {object} graphData - Input array that holds updated values and key
+     * @param {Object} graphData - Input object that holds updated values and key
      *  @returns {Gantt} - Gantt instance
      */
   reflow(graphData) {
+    console.warn('reflow is deprecated and will be removed a future major release. Please use reflowMultipleDatasets instead.');
     updateXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     const eventHandlers = prepareLegendEventHandlers(
@@ -345,11 +346,8 @@ class Gantt extends Construct {
     );
     translateAxes(this.axis, this.scale, this.config, this.svg);
 
-    let position;
     if (graphData && this.tracks.includes(graphData.key)) {
-      this.trackConfig.forEach((track, index) => {
-        if (track.config.key === graphData.key) position = index;
-      });
+      const position = this.tracks.findIndex((key) => key === graphData.key);
       this.trackConfig[position].reflow(this, graphData);
       reflowLegend(
         this.legendSVG,
@@ -357,6 +355,49 @@ class Gantt extends Construct {
         this,
         eventHandlers,
       );
+    }
+
+    if (graphData && graphData.eventline) {
+      this.config.eventline = graphData.eventline;
+      redrawEventlineContent(this.scale, this.config, this.svg);
+    }
+    this.config.height = determineHeight(this.config);
+    setCanvasHeight(this.config);
+    this.resize();
+    this.trackConfig.forEach((control) => control.redraw(this));
+    return this;
+  }
+
+  /**
+     * Updates the graph axisData and content.
+     *
+     * @param {object} graphData - Input object that holds updated values and key pairs
+     *  @returns {Gantt} - Gantt instance
+     */
+  reflowMultipleDatasets(graphData) {
+    updateXAxisDomain(this.config);
+    scaleGraph(this.scale, this.config);
+    const eventHandlers = prepareLegendEventHandlers(
+      this,
+      this.config,
+      this.svg,
+      this.config.shownTargets,
+    );
+    translateAxes(this.axis, this.scale, this.config, this.svg);
+
+    if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
+      graphData.panData.forEach((data) => {
+        const position = this.tracks.findIndex((key) => key === data.key);
+        if (position > -1) {
+          this.trackConfig[position].reflow(this, data);
+          reflowLegend(
+            this.legendSVG,
+            this.config.actionLegend[position],
+            this,
+            eventHandlers,
+          );
+        }
+      });
     }
 
     if (graphData && graphData.eventline) {

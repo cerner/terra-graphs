@@ -425,24 +425,54 @@ class Graph extends Construct {
   /**
      * Updates the graph axisData and content.
      *
-     * @param {Array} graphData - Input array that holds updated values, key and labels
+     * @param {Object} graphData - Input object that holds updated values and key pair and labels
      * @returns {Graph} - Graph instance
      */
   reflow(graphData) {
-    let position;
+    console.warn('reflow is deprecated and will be removed a future major release. Please use reflowMultipleDatasets instead.');
     if (graphData && graphData.values) {
-      this.contentKeys.forEach((key, index) => {
-        if (key === graphData.key) position = index;
-      });
-      if (position >= 0) {
+      const position = this.contentKeys.findIndex((key) => key === graphData.key);
+      if (position > -1) {
         if (
           this.content[position].type === 'Bar'
-                    && graphData.values.length > 0
+                  && graphData.values.length > 0
         ) {
           this.config.axis.x.ticks.values = [];
           graphData.values.forEach((v) => this.config.axis.x.ticks.values.push(v.x));
         }
+        this.content[position].reflow(this, graphData);
+        setAxisPadding(this.config.axisPadding, this.content[position]);
+        getAxesDataRange(
+          this.content[position],
+          this.content[position].config.yAxis,
+          this.config,
+          this.content,
+        );
+        if (
+          this.config.allowCalibration
+                && isRangeModified(
+                  this.config,
+                  this.content[position].config.yAxis,
+                )
+        ) {
+          updateAxesDomain(this.config, this.content[position]);
+        }
+        if (
+          this.config.showNoDataText
+                && this.content.every((content) => utils.isEmpty(content.config.values))
+        ) {
+          drawNoDataView(this.config, this.svg);
+          redrawDatelineContent(this.scale, this.config, this.svg);
+        } else if (utils.notEmpty(this.content[position].config.values)) {
+        // Removes existing No Data View, when legend hold values
+          removeNoDataView(this.svg);
+        }
       }
+    }
+
+    if (graphData && graphData.eventline) {
+      this.config.eventline = graphData.eventline;
+      redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
     updateXAxisDomain(this.config);
@@ -450,44 +480,75 @@ class Graph extends Construct {
     translateAxes(this.axis, this.scale, this.config, this.svg);
     translateContentContainer(this.config, this.svg);
 
+    if (graphData && this.config.showLabel) {
+      this.config.axis.x.label = utils.sanitize(graphData.xLabel) || this.config.axis.x.label;
+      this.config.axis.y.label = utils.sanitize(graphData.yLabel) || this.config.axis.y.label;
+      this.config.axis.y2.label = utils.sanitize(graphData.y2Label) || this.config.axis.y2.label;
+    }
+    this.resize();
+    return this;
+  }
+
+  /**
+     * Updates the graph axisData and content.
+     *
+     * @param {Object} graphData - Input object that holds updated values and key pairs and labels
+     * @returns {Graph} - Graph instance
+     */
+  reflowMultipleDatasets(graphData) {
+    if (graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)) {
+      graphData.panData.forEach((data) => {
+        if (data.values) {
+          const position = this.contentKeys.findIndex((key) => key === data.key);
+          if (position > -1) {
+            if (
+              this.content[position].type === 'Bar'
+                        && data.values.length > 0
+            ) {
+              this.config.axis.x.ticks.values = [];
+              data.values.forEach((v) => this.config.axis.x.ticks.values.push(v.x));
+            }
+            this.content[position].reflow(this, data);
+            setAxisPadding(this.config.axisPadding, this.content[position]);
+            getAxesDataRange(
+              this.content[position],
+              this.content[position].config.yAxis,
+              this.config,
+              this.content,
+            );
+            if (
+              this.config.allowCalibration
+                  && isRangeModified(
+                    this.config,
+                    this.content[position].config.yAxis,
+                  )
+            ) {
+              updateAxesDomain(this.config, this.content[position]);
+            }
+            if (
+              this.config.showNoDataText
+                  && this.content.every((content) => utils.isEmpty(content.config.values))
+            ) {
+              drawNoDataView(this.config, this.svg);
+              redrawDatelineContent(this.scale, this.config, this.svg);
+            } else if (utils.notEmpty(this.content[position].config.values)) {
+              // Removes existing No Data View, when legend hold values
+              removeNoDataView(this.svg);
+            }
+          }
+        }
+      });
+    }
+
     if (graphData && graphData.eventline) {
       this.config.eventline = graphData.eventline;
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
-    if (
-      graphData
-      && graphData.values
-      && this.contentKeys.includes(graphData.key)
-    ) {
-      this.content[position].reflow(this, graphData);
-      setAxisPadding(this.config.axisPadding, this.content[position]);
-      getAxesDataRange(
-        this.content[position],
-        this.content[position].config.yAxis,
-        this.config,
-        this.content,
-      );
-      if (
-        this.config.allowCalibration
-                && isRangeModified(
-                  this.config,
-                  this.content[position].config.yAxis,
-                )
-      ) {
-        updateAxesDomain(this.config, this.content[position]);
-      }
-      if (
-        this.config.showNoDataText
-                && this.content.every((content) => utils.isEmpty(content.config.values))
-      ) {
-        drawNoDataView(this.config, this.svg);
-        redrawDatelineContent(this.scale, this.config, this.svg);
-      } else if (utils.notEmpty(this.content[position].config.values)) {
-        // Removes existing No Data View, when legend hold values
-        removeNoDataView(this.svg);
-      }
-    }
+    updateXAxisDomain(this.config);
+    scaleGraph(this.scale, this.config);
+    translateAxes(this.axis, this.scale, this.config, this.svg);
+
     if (graphData && this.config.showLabel) {
       this.config.axis.x.label = utils.sanitize(graphData.xLabel) || this.config.axis.x.label;
       this.config.axis.y.label = utils.sanitize(graphData.yLabel) || this.config.axis.y.label;
