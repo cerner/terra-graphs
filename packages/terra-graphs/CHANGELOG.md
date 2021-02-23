@@ -3,6 +3,6 @@
 ## Unreleased
 
 * Added
-  * Added documentation for `reflowMultipleDatasets` 
+  * Added documentation for `reflowMultipleDatasets`.
 
 * Initial stable release
