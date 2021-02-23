@@ -30,6 +30,7 @@ import {
 import TimelineConfig, { processInput } from './TimelineConfig';
 import TimelineContent from './TimelineContent';
 import { contentHandler } from '../../helpers/constructUtils';
+import utils from '../../helpers/utils';
 
 /**
  * @typedef {object} Timeline
@@ -292,10 +293,11 @@ class Timeline extends Construct {
   /**
      * Updates the graph axisData and content.
      *
-     *  @returns {Timeline} - Timeline instance
-     * @param {Array} graphData - Input array that holds updated values and key
+     * @param {Object} graphData - Input object that holds updated values and key pair
+     * @returns {Timeline} - Timeline instance
      */
   reflow(graphData) {
+    console.warn('reflow is deprecated and will be removed a future major release. Please use reflowMultipleDatasets instead.');
     const eventHandlers = {
       clickHandler: clickHandler(this, this, this.config, this.svg),
       hoverHandler: hoverHandler(this.config.shownTargets, this.svg),
@@ -303,16 +305,47 @@ class Timeline extends Construct {
     updateXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
-    let position;
     if (
       graphData
             && graphData.values
             && this.content.includes(graphData.key)
     ) {
-      this.contentConfig.forEach((config, index) => {
-        if (config.config.key === graphData.key) position = index;
-      });
+      const position = this.content.findIndex((key) => key === graphData.key);
       this.contentConfig[position].reflow(this, graphData);
+    }
+    reflowLegend(
+      this.legendSVG,
+      this.contentConfig[0].config,
+      this,
+      eventHandlers,
+    );
+    this.resize();
+    return this;
+  }
+
+  /**
+     * Updates the graph axisData and content.
+     *
+     * @param {Object} graphData - Input object that holds updated values and key pairs.
+     * @returns {Timeline} - Timeline instance
+     */
+  reflowMultipleDatasets(graphData) {
+    const eventHandlers = {
+      clickHandler: clickHandler(this, this, this.config, this.svg),
+      hoverHandler: hoverHandler(this.config.shownTargets, this.svg),
+    };
+    updateXAxisDomain(this.config);
+    scaleGraph(this.scale, this.config);
+    translateAxes(this.axis, this.scale, this.config, this.svg);
+    if (
+      graphData && graphData.panData && !utils.isEmptyArray(graphData.panData)
+    ) {
+      graphData.panData.forEach((data) => {
+        const position = this.content.findIndex((key) => key === data.key);
+        if (position > -1) {
+          this.contentConfig[position].reflow(this, data);
+        }
+      });
     }
     reflowLegend(
       this.legendSVG,

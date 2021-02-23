@@ -305,17 +305,15 @@ class PairedResult extends GraphContent {
     types.forEach((type) => {
       const label = getValue(graph.contentConfig[0].label, type);
       if (label && label.display) {
-        reflowLegend(
-          graph.legendSVG,
-          constructLegendLabels(
-            graph.contentConfig.filter(
-              (pairedResult) => pairedResult.key === graphData.key,
-            )[0],
-            type,
-          ),
-          graph,
-          eventHandlers,
-        );
+        const pairedResultGraph = graph.contentConfig.filter((pairedResult) => pairedResult.key === graphData.key);
+        if (!utils.isEmptyArray(pairedResultGraph)) {
+          reflowLegend(
+            graph.legendSVG,
+            constructLegendLabels(pairedResultGraph[0], type),
+            graph,
+            eventHandlers,
+          );
+        }
       }
     });
     if (utils.isEmpty(graphData.values)) {
