@@ -34,15 +34,16 @@ import {
   createDefs,
   createGrid,
   createLabel,
+  drawNoDataView,
   d3RemoveElement,
   detachEventHandlers,
   determineHeight,
+  removeNoDataView,
   scaleGraph,
   setAxisPadding,
   translateGraph,
+  translateContentContainer,
   updateAxesDomain,
-  removeNoDataView,
-  drawNoDataView,
 } from './helpers/helpers';
 
 /**
@@ -320,7 +321,9 @@ class Graph extends Construct {
   resize() {
     // Check if graphContainer is present and then resize the graph
     if (this.graphContainer) {
+      calculateAxesLabelSize(this.config);
       setCanvasWidth(this.graphContainer, this.config);
+      setCanvasHeight(this.config);
       scaleGraph(this.scale, this.config);
       translateGraph(this);
       this.content.forEach((control) => control.resize(this));
@@ -475,6 +478,7 @@ class Graph extends Construct {
     updateXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
+    translateContentContainer(this.config, this.svg);
 
     if (graphData && this.config.showLabel) {
       this.config.axis.x.label = utils.sanitize(graphData.xLabel) || this.config.axis.x.label;
