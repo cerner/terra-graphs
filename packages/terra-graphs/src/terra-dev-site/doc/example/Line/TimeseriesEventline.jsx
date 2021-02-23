@@ -4,13 +4,13 @@ import LineGraph from '../../../../components/Line/LineGraph';
 import utils from '../../../../../../carbon-graphs/src/js/helpers/utils';
 import Carbon from '../../../../../../carbon-graphs/src/js/carbon';
 import {
-  loadPopup
+  loadPopup,
 } from '../../../helpers/popup';
 import '../../../../css/Dev.module.scss';
 
 const axisData = utils.deepClone(getDemoData('#timeseriesEventLine', 'LINE_TIMESERIES'));
 axisData.eventline = [
-  { 
+  {
     color: Carbon.helpers.COLORS.GREY,
     style: {
       strokeDashArray: '4,4',
@@ -29,4 +29,4 @@ axisData.eventline = [
 const data = axisData.data[0];
 data.onClick = loadPopup;
 
-export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={axisData} dataset={data} />;
+export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={axisData} dataset={[data]} />;

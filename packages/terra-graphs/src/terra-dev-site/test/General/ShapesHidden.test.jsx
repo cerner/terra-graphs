@@ -7,4 +7,4 @@ import '../../../css/Dev.module.scss';
 const axisData = utils.deepClone(getDemoData('#shapesHidden', 'LINE_DEFAULT'));
 axisData.showShapes = false;
 
-export default () => <LineGraph graphID="shapesHidden" graphConfig={axisData} dataset={axisData.data[0]} />;
+export default () => <LineGraph graphID="shapesHidden" graphConfig={axisData} dataset={[axisData.data[0]]} />;

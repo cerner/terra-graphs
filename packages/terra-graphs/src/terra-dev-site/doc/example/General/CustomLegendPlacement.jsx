@@ -3,7 +3,7 @@ import getDemoData from '../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '../../../../components/Line/LineGraph';
 import utils from '../../../../../../carbon-graphs/src/js/helpers/utils';
 import {
-  loadPopup
+  loadPopup,
 } from '../../../helpers/popup';
 import '../../../../css/Dev.module.scss';
 
