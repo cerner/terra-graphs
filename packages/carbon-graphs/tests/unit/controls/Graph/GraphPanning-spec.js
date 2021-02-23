@@ -122,6 +122,7 @@ describe('Graph - Panning', () => {
         ],
         xLabel: 'updated xLabel',
       };
+      axisObj.x.label = ' ';
       graph.reflow(panData);
       graph.resize();
       triggerEvent(window, 'resize', () => {
@@ -215,6 +216,66 @@ describe('Graph - Panning', () => {
             ),
           ).translate[0],
         ).toBeCloserTo(930);
+        done();
+      });
+    });
+    fit('should update height after x label is added', (done) => {
+      graph.destroy();
+      const axisObj = utils.deepClone(axisDefault);
+      axisObj.x.label = ' ';
+      graph = new Graph({ ...getAxes(axisObj) });
+      const regionElementBeforePanning = fetchElementByClass(styles.canvas);
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+        xLabel: 'updated xLabel',
+      };
+      graph.reflow(panData);
+      graph.resize();
+      const regionElementAfterPanning = fetchElementByClass(styles.canvas);
+      // expect(+regionElementAfterPanning.getAttribute('height'))
+      //     .toBeGreaterThan(+regionElementBeforePanning.getAttribute('height'));
+      triggerEvent(window, 'resize', () => {
+        expect(+regionElementAfterPanning.getAttribute('height'))
+          .toBeGreaterThan(+regionElementBeforePanning.getAttribute('height'));
+        done();
+      });
+    });
+    fit('should update contentContainer after y label is added', (done) => {
+      graph.destroy();
+      const axisObj = utils.deepClone(axisDefault);
+      axisObj.y.label = ' ';
+      graph = new Graph({ ...getAxes(axisObj) });
+      const regionElementBeforePanning = fetchElementByClass(styles.contentContainer);
+      const panData = {
+        key: 'uid_1',
+        values: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+        ],
+        yLabel: 'updated yLabel',
+      };
+      graph.reflow(panData);
+      graph.resize();
+      const regionElementAfterPanning = fetchElementByClass(styles.contentContainer);
+      triggerEvent(window, 'resize', () => {
+        expect(+regionElementAfterPanning.getAttribute('x'))
+          .toBeGreaterThan(+regionElementBeforePanning.getAttribute('x'));
         done();
       });
     });
