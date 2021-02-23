@@ -3,7 +3,9 @@
 import * as d3 from 'd3';
 import Graph from '../../../../src/js/controls/Graph/index';
 import styles from '../../../../src/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import {
+  getSVGAnimatedTransformList,
+} from '../../../../src/js/helpers/transformUtils';
 import {
   delay,
   loadCustomJasmineMatcher,
@@ -73,7 +75,9 @@ describe('Graph - Panning', () => {
     it('DatelineGroup translates properly when panning is enabled', (done) => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
-        const { translate } = getSVGAnimatedTransformList(
+        const {
+          translate,
+        } = getSVGAnimatedTransformList(
           datelineGroup.getAttribute('transform'),
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
@@ -88,7 +92,9 @@ describe('Graph - Panning', () => {
       graph = new Graph(axisTimeseriesWithEventline);
       const eventlineGroup = fetchElementByClass(styles.eventlineGroup);
       delay(() => {
-        const { translate } = getSVGAnimatedTransformList(
+        const {
+          translate,
+        } = getSVGAnimatedTransformList(
           eventlineGroup.getAttribute('transform'),
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
@@ -100,7 +106,9 @@ describe('Graph - Panning', () => {
       graph.destroy();
       const axisObj = utils.deepClone(axisDefault);
       axisObj.x.label = ' ';
-      graph = new Graph({ ...getAxes(axisObj) });
+      graph = new Graph({
+        ...getAxes(axisObj),
+      });
       expect(
         getSVGAnimatedTransformList(
           fetchElementByClass(styles.axisX).getAttribute(
@@ -110,15 +118,14 @@ describe('Graph - Panning', () => {
       ).toBeCloserTo(60);
       const panData = {
         key: 'uid_1',
-        values: [
-          {
-            x: '2016-03-03T12:00:00Z',
-            y: 2,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
-          },
+        values: [{
+          x: '2016-03-03T12:00:00Z',
+          y: 2,
+        },
+        {
+          x: '2016-04-03T12:00:00Z',
+          y: 20,
+        },
         ],
         xLabel: 'updated xLabel',
       };
@@ -140,7 +147,9 @@ describe('Graph - Panning', () => {
       graph.destroy();
       const axisObj = utils.deepClone(axisDefault);
       axisObj.y.label = ' ';
-      graph = new Graph({ ...getAxes(axisObj) });
+      graph = new Graph({
+        ...getAxes(axisObj),
+      });
       expect(
         getSVGAnimatedTransformList(
           fetchElementByClass(styles.axisY).getAttribute(
@@ -150,15 +159,14 @@ describe('Graph - Panning', () => {
       ).toBeCloserTo(50);
       const panData = {
         key: 'uid_1',
-        values: [
-          {
-            x: '2016-03-03T12:00:00Z',
-            y: 2,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
-          },
+        values: [{
+          x: '2016-03-03T12:00:00Z',
+          y: 2,
+        },
+        {
+          x: '2016-04-03T12:00:00Z',
+          y: 20,
+        },
         ],
         yLabel: 'updated yLabel',
       };
@@ -184,7 +192,9 @@ describe('Graph - Panning', () => {
         lowerLimit: 11,
         upperLimit: 25,
       };
-      graph = new Graph({ ...getAxes(axisObj) });
+      graph = new Graph({
+        ...getAxes(axisObj),
+      });
       expect(
         getSVGAnimatedTransformList(
           fetchElementByClass(styles.axisY2).getAttribute(
@@ -194,15 +204,14 @@ describe('Graph - Panning', () => {
       ).toBeCloserTo(930);
       const panData = {
         key: 'uid_1',
-        values: [
-          {
-            x: '2016-03-03T12:00:00Z',
-            y: 2,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
-          },
+        values: [{
+          x: '2016-03-03T12:00:00Z',
+          y: 2,
+        },
+        {
+          x: '2016-04-03T12:00:00Z',
+          y: 20,
+        },
         ],
         y2Label: 'updated y2Label',
       };
@@ -219,63 +228,67 @@ describe('Graph - Panning', () => {
         done();
       });
     });
-    fit('should update height after x label is added', (done) => {
+    it('should update height after x label is added', (done) => {
       graph.destroy();
       const axisObj = utils.deepClone(axisDefault);
       axisObj.x.label = ' ';
-      graph = new Graph({ ...getAxes(axisObj) });
-      const regionElementBeforePanning = fetchElementByClass(styles.canvas);
+      graph = new Graph({
+        ...getAxes(axisObj),
+      });
+      const initialHeight = +fetchElementByClass(styles.canvas).getAttribute('height');
+      expect(initialHeight).toEqual(
+        parseInt(graph.config.canvasHeight, 10),
+      );
       const panData = {
         key: 'uid_1',
-        values: [
-          {
-            x: '2016-03-03T12:00:00Z',
-            y: 2,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
-          },
+        values: [{
+          x: '2016-03-03T12:00:00Z',
+          y: 2,
+        },
+        {
+          x: '2016-04-03T12:00:00Z',
+          y: 20,
+        },
         ],
         xLabel: 'updated xLabel',
       };
       graph.reflow(panData);
       graph.resize();
-      const regionElementAfterPanning = fetchElementByClass(styles.canvas);
-      // expect(+regionElementAfterPanning.getAttribute('height'))
-      //     .toBeGreaterThan(+regionElementBeforePanning.getAttribute('height'));
+      const newHeight = +fetchElementByClass(styles.canvas).getAttribute('height');
       triggerEvent(window, 'resize', () => {
-        expect(+regionElementAfterPanning.getAttribute('height'))
-          .toBeGreaterThan(+regionElementBeforePanning.getAttribute('height'));
+        expect(newHeight)
+          .toBeGreaterThan(initialHeight);
         done();
       });
     });
-    fit('should update contentContainer after y label is added', (done) => {
+    it('should update contentContainer after y label is added', (done) => {
       graph.destroy();
       const axisObj = utils.deepClone(axisDefault);
       axisObj.y.label = ' ';
-      graph = new Graph({ ...getAxes(axisObj) });
-      const regionElementBeforePanning = fetchElementByClass(styles.contentContainer);
+      graph = new Graph({
+        ...getAxes(axisObj),
+      });
+      const containerX = fetchElementByClass(styles.contentContainer).getAttribute('x');
+      expect(parseInt(containerX, 10))
+        .toBeCloserTo(graph.config.axisSizes.y + graph.config.axisLabelWidths.y);
       const panData = {
         key: 'uid_1',
-        values: [
-          {
-            x: '2016-03-03T12:00:00Z',
-            y: 2,
-          },
-          {
-            x: '2016-04-03T12:00:00Z',
-            y: 20,
-          },
+        values: [{
+          x: '2016-03-03T12:00:00Z',
+          y: 2,
+        },
+        {
+          x: '2016-04-03T12:00:00Z',
+          y: 20,
+        },
         ],
         yLabel: 'updated yLabel',
       };
       graph.reflow(panData);
-      graph.resize();
       const regionElementAfterPanning = fetchElementByClass(styles.contentContainer);
       triggerEvent(window, 'resize', () => {
-        expect(+regionElementAfterPanning.getAttribute('x'))
-          .toBeGreaterThan(+regionElementBeforePanning.getAttribute('x'));
+        expect(regionElementAfterPanning.getAttribute('x'))
+          .toBeGreaterThan(containerX);
         done();
       });
     });
@@ -290,21 +303,20 @@ describe('Graph - Panning', () => {
         let eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(1);
         const panData = {
-          eventline: [
-            {
-              color: COLORS.GREY,
-              style: {
-                strokeDashArray: '4,4',
-              },
-              value: new Date(2016, 9, 28).toISOString(),
+          eventline: [{
+            color: COLORS.GREY,
+            style: {
+              strokeDashArray: '4,4',
             },
-            {
-              color: COLORS.GREY,
-              style: {
-                strokeDashArray: '4,4',
-              },
-              value: new Date(2016, 10, 28).toISOString(),
+            value: new Date(2016, 9, 28).toISOString(),
+          },
+          {
+            color: COLORS.GREY,
+            style: {
+              strokeDashArray: '4,4',
             },
+            value: new Date(2016, 10, 28).toISOString(),
+          },
           ],
         };
         graph.reflow(panData);
@@ -344,21 +356,20 @@ describe('Graph - Panning', () => {
         let eventlines = document.querySelectorAll(`.${styles.eventline}`);
         expect(eventlines.length).toBe(0);
         const panData = {
-          eventline: [
-            {
-              color: COLORS.GREY,
-              style: {
-                strokeDashArray: '4,4',
-              },
-              value: new Date(2016, 9, 28).toISOString(),
+          eventline: [{
+            color: COLORS.GREY,
+            style: {
+              strokeDashArray: '4,4',
             },
-            {
-              color: COLORS.GREY,
-              style: {
-                strokeDashArray: '4,4',
-              },
-              value: new Date(2016, 10, 28).toISOString(),
+            value: new Date(2016, 9, 28).toISOString(),
+          },
+          {
+            color: COLORS.GREY,
+            style: {
+              strokeDashArray: '4,4',
             },
+            value: new Date(2016, 10, 28).toISOString(),
+          },
           ],
         };
         graph.reflow(panData);
@@ -384,7 +395,9 @@ describe('Graph - Panning', () => {
     it('Dateline group translates properly when pan is disabled', (done) => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
-        const { translate } = getSVGAnimatedTransformList(
+        const {
+          translate,
+        } = getSVGAnimatedTransformList(
           datelineGroup.getAttribute('transform'),
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
@@ -410,7 +423,9 @@ describe('Graph - Panning', () => {
     it('Dateline group translates properly when pan is undefined', (done) => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
-        const { translate } = getSVGAnimatedTransformList(
+        const {
+          translate,
+        } = getSVGAnimatedTransformList(
           datelineGroup.getAttribute('transform'),
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
