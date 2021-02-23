@@ -6,5 +6,5 @@ import '../../../css/Dev.module.scss';
 
 const axisData = utils.deepClone(getDemoData('#dashedLine', 'LINE_DEFAULT'));
 
-export default () => <LineGraph graphID="dashedLine" graphConfig={axisData} dataset={axisData.data[1]} />;
+export default () => <LineGraph graphID="dashedLine" graphConfig={axisData} dataset={[axisData.data[1]]} />;
 
