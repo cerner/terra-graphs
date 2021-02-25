@@ -1,0 +1,39 @@
+import PairedResultGraph from '../../../example/Graphs/PairedResultGraph/Regions/MultiplePairedResult?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph?dev-site-props-table';
+import GraphConfig from '@cerner/carbon-graphs/dev/data/graphConfigObjects/PairedResult/pairedResultTimeseries.js?dev-site-codeblock';
+import DataObject from '@cerner/carbon-graphs/dev/data/dataObjects/PairedResult/pairedResultY2AxisData.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Simple Paired Result Graph
+
+This is a Multiple paired result graph associated with multiple regions.
+NOTE: Hover onto legend to see the region associated with each legend.
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+
+```jsx
+import React from 'react';
+import PairedResultGraph from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph';
+```
+
+## Examples
+<PairedResultGraph />
+
+## Props
+<PropsTable />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>

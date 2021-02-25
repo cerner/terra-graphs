@@ -1,0 +1,72 @@
+/*
+Animations should be fast and nimble, never keeping the user waiting longer than is necessary.
+The aim is to prioritize user-perceived performance over technical benchmarks.
+Animations should last 150ms–250ms and should feel quick and responsive.
+Using cubic-bezier with ->
+Incoming Velocity: 70%
+Outgoing Velocity: 0%
+We quickly accelerate at the beginning of the animation and slowly decelerate by the end.
+*/
+
+:root {
+  --default-transition-timing: cubic-bezier(0.07, 0.95, 0, 1);
+  --default-transition-duration: 1s;
+}
+
+@mixin terra-graph-font-smooth() {
+  $webkit-font-smoothing: antialiased;
+  $moz-osx-font-smoothing: grayscale;
+}
+
+@mixin terra-graph-basic-transition($property, $duration, $timing) {
+  -moz-transition: $property $duration $timing;
+  -webkit-transition: $property $duration $timing;
+  -ms-transition: $property $duration $timing;
+  -o-transition: $property $duration $timing;
+  transition: $property $duration $timing;
+}
+
+// prettier-ignore
+@mixin terra-graph-transform-transition($property, $duration, $timing) {
+  -moz-transition: $property $duration $timing, -moz-transform $duration $timing;
+  -webkit-transition: $property $duration $timing, -webkit-transform $duration $timing;
+  -ms-transition: $property $duration $timing, -ms-transform $duration $timing;
+  -o-transition: $property $duration $timing, -o-transform $duration $timing;
+  transition: $property $duration $timing, transform $duration $timing;
+}
+
+@mixin terra-graph-opacity-hide() {
+  @include terra-graph-transform-transition(
+    opacity,
+    var(--default-transition-duration),
+    var(--default-transition-timing)
+  );
+  opacity: 0;
+  visibility: hidden;
+
+}
+
+@mixin terra-graph-opacity-show() {
+  @include terra-graph-transform-transition(
+    opacity,
+    var(--default-transition-duration),
+    var(--default-transition-timing)
+  );
+  opacity: 1;
+  visibility: visible;
+
+}
+
+@mixin terra-graph-selected-indicator-styles() {
+  fill: var(--blue10);
+  fill-opacity: 0.25;
+  stroke: var(--blue30);
+  stroke-width: 1px;
+}
+
+/*
+User agent gives `geometric precision` more importance than `speed` and `crisp edges`
+*/
+@mixin terra-graph-carbon-shape-rendering() {
+  shape-rendering: auto;
+}

@@ -9,14 +9,14 @@ import {
 } from '../helpers';
 import { createPanningControls } from '../panHelpers';
 
-const tickValues = [
+export const tickValues = [
   new Date(2016, 0, 1, 1, 0).toISOString(),
   new Date(2016, 0, 1, 5, 0).toISOString(),
   new Date(2016, 0, 1, 10, 0).toISOString(),
   new Date(2016, 0, 1, 15, 0).toISOString(),
   new Date(2016, 0, 1, 20, 0).toISOString(),
 ];
-const regions = [
+export const regions = [
   {
     axis: 'y',
     start: 2,

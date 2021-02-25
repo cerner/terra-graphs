@@ -1,0 +1,39 @@
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import {
+  loadBarPopup,
+} from '../../../examples/popup';
+
+const data = [
+  {
+    key: 'uid_bar_1',
+    label: {
+      display: 'Data Label 1',
+    },
+    color: Carbon.helpers.COLORS.GREEN,
+    onClick: loadBarPopup,
+    values: [
+      {
+        x: 1,
+        y: 30,
+      },
+      {
+        x: 2,
+        y: 10,
+      },
+      {
+        x: 3,
+        y: 13,
+      },
+      {
+        x: 4,
+        y: 15,
+      },
+      {
+        x: 5,
+        y: 18,
+      },
+    ],
+  },
+];
+
+export default data;
