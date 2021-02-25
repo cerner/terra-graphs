@@ -2,7 +2,6 @@ const terraDevSiteWebpackConfig = require('terra-dev-site/config/webpack/webpack
 const path = require('path');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { jsOptions, cssOptions } = require('./packages/carbon-graphs/webpack/helpers/rules');
 
 const webpackConfig = (env) => ({
     mode: 'development',

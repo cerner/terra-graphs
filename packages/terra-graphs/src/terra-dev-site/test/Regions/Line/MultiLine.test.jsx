@@ -31,5 +31,8 @@ data1.onClick = loadPopup;
 const data2 = axisData.data[3];
 data2.onClick = loadPopup;
 
-export default () => <LineGraph graphID="multipleline" graphConfig={axisData} dataset={[data, dataAlt, data1, data2]} />;
+const dataArray = [data, dataAlt, data1, data2];
+
+
+export default () => <LineGraph graphID="multipleline" graphConfig={axisData} dataset={dataArray} />;
 

@@ -12,5 +12,6 @@ const axisData = utils.deepClone(getDemoData('#simpleRegionLine', 'LINE_DEFAULT'
 const data = axisData.data[0];
 data.regions = [regions[0]];
 data.onClick = loadPopup;
+const dataArray = [data]
 
-export default () => <LineGraph graphID="simpleRegionLine" graphConfig={axisData} dataset={data} />;
+export default () => <LineGraph graphID="simpleRegionLine" graphConfig={axisData} dataset={dataArray} />;

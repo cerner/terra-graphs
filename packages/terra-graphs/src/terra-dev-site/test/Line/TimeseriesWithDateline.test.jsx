@@ -13,5 +13,6 @@ axisData.dateline[0].onClick = loadDatelinePopup;
 
 const data = axisData.data[0];
 data.onClick = loadPopup;
+const dataArray = [data]
 
-export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={axisData} dataset={[data]} />;
+export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={axisData} dataset={dataArray} />;

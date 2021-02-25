@@ -6,11 +6,14 @@ import {
   loadPopup,
 } from '../../helpers/popup';
 import '../../../css/Dev.module.scss';
+import { array } from 'prop-types';
 
 const axisData = utils.deepClone(getDemoData('#labelTruncation', 'LABEL_TRUNCATION'));
 
 const data = axisData.data[0];
 data.onClick = loadPopup;
 
-export default () => <LineGraph graphID="labelTruncation" graphConfig={axisData} dataset={[data]} />;
+const dataArray = [data];
+
+export default () => <LineGraph graphID="labelTruncation" graphConfig={axisData} dataset={dataArray} />;
 

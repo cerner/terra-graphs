@@ -10,11 +10,12 @@ import {
 const colorData = utils.deepClone(getDemoData('#backgroundColor', 'LINE_DEFAULT'));
 const data = colorData.data[0];
 data.onClick = loadPopup;
+const dataArray = [data];
 
 export default () => (
   <div>
     <div style={{ backgroundColor: '#176ba0' }}>
-      <LineGraph graphID="backgroundColor" graphConfig={colorData} dataset={[data]} />
+      <LineGraph graphID="backgroundColor" graphConfig={colorData} dataset= {dataArray} />
     </div>
   </div>
 );

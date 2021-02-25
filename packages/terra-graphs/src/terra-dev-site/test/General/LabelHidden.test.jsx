@@ -13,5 +13,7 @@ axisData.showLabel = false;
 const data = axisData.data[0];
 data.onClick = loadPopup;
 
-export default () => <LineGraph graphID="labelHidden" graphConfig={axisData} dataset={[data]} />;
+const dataArray = [data];
+
+export default () => <LineGraph graphID="labelHidden" graphConfig={axisData} dataset={dataArray} />;
 

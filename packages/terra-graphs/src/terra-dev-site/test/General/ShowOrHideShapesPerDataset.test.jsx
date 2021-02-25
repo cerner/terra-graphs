@@ -15,4 +15,6 @@ data1.onClick = loadPopup;
 const data2 = axisData.data[4];
 data2.onClick = loadPopup;
 
-export default () => <LineGraph graphID="showOrHideShapesPerDataset" graphConfig={axisData} dataset={[axisData.data[1], data1, data2]} />;
+const dataArray = [axisData.data[1], data1, data2];
+
+export default () => <LineGraph graphID="showOrHideShapesPerDataset" graphConfig={axisData} dataset={dataArray} />;

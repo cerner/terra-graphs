@@ -15,5 +15,8 @@ data.onClick = loadPopup;
 const data1 = axisData.data[4];
 data1.onClick = loadPopup;
 
-export default () => <LineGraph graphID="lineWithLegendOption" graphConfig={axisData} dataset={[axisData.data[1], data, data1]} />;
+const dataArray = [axisData.data[1], data, data1];
+
+
+export default () => <LineGraph graphID="lineWithLegendOption" graphConfig={axisData} dataset={dataArray} />;
 

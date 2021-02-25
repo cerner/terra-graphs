@@ -21,6 +21,8 @@ dataValueObject.onClick = loadPopup;
 
 const dataAlt = axisData.data[0];
 dataAlt.onClick = loadPopup;
+const dataArray = [dataValueObject, dataAlt];
 
-export default () => <LineGraph graphID="y2Region" graphConfig={axisData} dataset={[dataValueObject, dataAlt]} />;
+export default () => <LineGraph graphID="y2Region" graphConfig={axisData} dataset={dataArray} />;
+
 

@@ -28,5 +28,6 @@ axisData.eventline = [
 
 const data = axisData.data[0];
 data.onClick = loadPopup;
+const dataArray = [data]
 
-export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={axisData} dataset={[data]} />;
+export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={axisData} dataset={dataArray} />;

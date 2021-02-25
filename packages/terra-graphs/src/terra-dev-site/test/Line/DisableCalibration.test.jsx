@@ -11,6 +11,7 @@ const axisData = utils.deepClone(getDemoData('#disableCalibration', 'LINE_DEFAUL
 axisData.allowCalibration = false;
 const data = axisData.data[6];
 data.onClick = loadPopup;
+const dataArray = [data];
 
-export default () => <LineGraph graphID="disableCalibration" graphConfig={axisData} dataset={[data]} />;
+export default () => <LineGraph graphID="disableCalibration" graphConfig={axisData} dataset={dataArray} />;
 

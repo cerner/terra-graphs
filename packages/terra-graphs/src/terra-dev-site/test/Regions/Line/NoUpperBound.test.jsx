@@ -15,6 +15,7 @@ data.regions = [
   },
 ];
 data.onClick = loadPopup;
+const dataArray = [data]
 
-export default () => <LineGraph graphID="noUpperBound" graphConfig={axisData} dataset={data} />;
+export default () => <LineGraph graphID="noUpperBound" graphConfig={axisData} dataset={dataArray} />;
 
