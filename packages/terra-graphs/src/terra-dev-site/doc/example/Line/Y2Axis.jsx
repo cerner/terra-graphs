@@ -14,6 +14,5 @@ const data = axisData.data[0];
 data.onClick = loadPopup;
 const data1 = axisData.data[1];
 data1.onClick = loadPopup;
-const timeArray = [0, 1500]; 
 
-export default () => <LineGraph graphID="lineY2Axis" graphConfig={axisData} dataset={[data, data1]} time={timeArray} />;
+export default () => <LineGraph graphID="lineY2Axis" graphConfig={axisData} dataset={[data, data1]} />;

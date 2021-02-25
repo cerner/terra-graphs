@@ -25,4 +25,3 @@ const dataArray = [dataValueObject, dataAlt];
 
 export default () => <LineGraph graphID="y2Region" graphConfig={axisData} dataset={dataArray} />;
 
-

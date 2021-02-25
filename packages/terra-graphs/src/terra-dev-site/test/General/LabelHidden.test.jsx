@@ -16,4 +16,3 @@ data.onClick = loadPopup;
 const dataArray = [data];
 
 export default () => <LineGraph graphID="labelHidden" graphConfig={axisData} dataset={dataArray} />;
-

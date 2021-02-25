@@ -15,7 +15,7 @@ const dataArray = [data];
 export default () => (
   <div>
     <div style={{ backgroundColor: '#176ba0' }}>
-      <LineGraph graphID="backgroundColor" graphConfig={colorData} dataset= {dataArray} />
+      <LineGraph graphID="backgroundColor" graphConfig={colorData} dataset={dataArray} />
     </div>
   </div>
 );

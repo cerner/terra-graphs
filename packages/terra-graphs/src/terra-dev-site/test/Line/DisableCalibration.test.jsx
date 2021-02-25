@@ -15,3 +15,4 @@ const dataArray = [data];
 
 export default () => <LineGraph graphID="disableCalibration" graphConfig={axisData} dataset={dataArray} />;
 
+

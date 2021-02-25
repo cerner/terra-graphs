@@ -9,11 +9,12 @@ const propTypes = {
   graphConfig: PropTypes.object,
   dataset: PropTypes.array,
   graphID: PropTypes.string,
-  timeOut: PropTypes.array
+  timeOut: PropTypes.array,
 };
 
-const LineGraph = ({ graphConfig, dataset, graphID, timeOut}) => {
-  debugger;
+const LineGraph = ({
+  graphConfig, dataset, graphID, timeOut,
+}) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     if (!(utils.isUndefined(dataset))) {
@@ -28,13 +29,13 @@ const LineGraph = ({ graphConfig, dataset, graphID, timeOut}) => {
           );
           count += 1;
         });
-      }else {
+      } else {
         dataset.forEach((data) => {
-        graph.loadContent(Carbon.api.line(data));
-      });
+          graph.loadContent(Carbon.api.line(data));
+        });
+      }
     }
-  }
-}, [graphConfig, dataset, timeOut]);
+  }, [graphConfig, dataset, timeOut]);
 
   return (
     <div id="canvasContainer">

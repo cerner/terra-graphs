@@ -13,3 +13,4 @@ data.onClick = loadPopup;
 const dataArray = [data]
 
 export default () => <LineGraph graphID="simpleLinegraph" graphConfig={axisData} dataset={dataArray} />;
+

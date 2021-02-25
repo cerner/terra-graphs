@@ -6,7 +6,6 @@ import {
   loadPopup,
 } from '../../helpers/popup';
 import '../../../css/Dev.module.scss';
-import { array } from 'prop-types';
 
 const axisData = utils.deepClone(getDemoData('#labelTruncation', 'LABEL_TRUNCATION'));
 

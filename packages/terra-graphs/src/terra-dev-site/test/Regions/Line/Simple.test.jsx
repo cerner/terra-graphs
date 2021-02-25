@@ -15,3 +15,4 @@ data.onClick = loadPopup;
 const dataArray = [data]
 
 export default () => <LineGraph graphID="simpleRegionLine" graphConfig={axisData} dataset={dataArray} />;
+
