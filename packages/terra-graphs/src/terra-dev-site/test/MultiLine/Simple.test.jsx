@@ -1,6 +1,6 @@
 import React from 'react';
 import getDemoData from '../../../../../carbon-graphs/dev/examples/data';
-import LineGraph from '../../../components/Line/LineGraph';
+import LineGraph from '../../../components/LineGraph';
 import utils from '../../../../../carbon-graphs/src/js/helpers/utils';
 import {
   loadPopup,
@@ -34,4 +34,4 @@ data6.onClick = loadPopup;
 const dataArray = [data, data1, data2, data3, data4, data5, data6];
 const timeArray = [0, 750, 750*2, 750*3, 750*4, 750*5, 750*6]
 
-export default () => <LineGraph graphID="multiLine" graphConfig={axisData} dataset={dataArray} timeOut={timeArray} />;
+export default () => <LineGraph graphID="multiLine" graphConfig={axisData} dataset={dataArray} timeout={timeArray} />;
