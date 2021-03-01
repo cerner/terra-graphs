@@ -1,31 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carbon from '../../../../carbon-graphs/src/js/carbon';
-import '../../css/Graph.module.scss';
-import '../../css/LineGraph.module.scss';
-import utils from '../../../../carbon-graphs/src/js/helpers/utils';
+import Carbon from '../../../carbon-graphs/src/js/carbon';
+import '../css/Graph.module.scss';
+import '../css/LineGraph.module.scss';
+import utils from '../../../carbon-graphs/src/js/helpers/utils';
 
 const propTypes = {
+  /**
+   * Graph configration object
+   */
   graphConfig: PropTypes.object,
+  /**
+   * data to be displayed in graph
+   */
   dataset: PropTypes.array,
+  /**
+   * ID for graph created.
+   */
   graphID: PropTypes.string,
-  timeOut: PropTypes.array,
+  /**
+   * timeout to display multiple contents in specific time interval.
+   */
+  timeout: PropTypes.array,
 };
 
 const LineGraph = ({
-  graphConfig, dataset, graphID, timeOut,
+  graphConfig, dataset, graphID, timeout,
 }) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     if (!(utils.isUndefined(dataset))) {
-      if (!(utils.isUndefined(timeOut))) {
+      if (!(utils.isUndefined(timeout))) {
         let count = 0;
         dataset.forEach((data) => {
           setTimeout(
             () => (graph.graphContainer
               ? graph.loadContent(Carbon.api.line(data))
               : ''),
-            timeOut[count],
+            timeout[count],
           );
           count += 1;
         });
@@ -35,7 +47,7 @@ const LineGraph = ({
         });
       }
     }
-  }, [graphConfig, dataset, timeOut]);
+  }, [graphConfig, dataset, timeout]);
 
   return (
     <div id="canvasContainer">
