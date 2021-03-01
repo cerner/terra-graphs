@@ -11,4 +11,4 @@ Terra.describeViewports('Simple multi line', ['tiny', 'medium', 'large'], () => 
         Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
         });
     });
-  });x
+  });
