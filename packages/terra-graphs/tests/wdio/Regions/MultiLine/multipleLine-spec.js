@@ -1,6 +1,6 @@
 Terra.describeViewports('Multiple Line', ['tiny', 'medium', 'large'], () => {
   describe('Validates', () => {
-    beforeEach(() => browser.url('/raw/tests/terra-graphs/regions/line/multi-line'));
+    beforeEach(() => browser.url('/raw/tests/terra-graphs/regions/multi-line/multi-line'));
 
     it('canvas element', () => {
       Terra.validates.screenshot('canvas', { selector: '.carbon-graph-canvas' });
@@ -13,7 +13,7 @@ Terra.describeViewports('Multiple Line', ['tiny', 'medium', 'large'], () => {
     describe('When hovered on', () => {
       let element = null;
       beforeEach(() => {
-        browser.url('/raw/tests/terra-graphs/regions/line/multi-line');
+        browser.url('/raw/tests/terra-graphs/regions/multi-line/multi-line');
         element = $('.carbon-legend').$$('li');
       });
       it(' data label 1 ', () => {

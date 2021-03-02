@@ -7,7 +7,7 @@ import utils from '../../../carbon-graphs/src/js/helpers/utils';
 
 const propTypes = {
   /**
-   * Graph configration object
+   * Graph configuration object
    */
   graphConfig: PropTypes.object,
   /**
