@@ -51,6 +51,7 @@ const LineGraph = ({
 
   return (
     <div id="canvasContainer">
+      {/* eslint-disable-next-line react/forbid-dom-props */}
       <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
       <div id={graphID} />
     </div>
