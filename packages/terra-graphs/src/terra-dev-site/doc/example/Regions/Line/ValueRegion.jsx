@@ -10,7 +10,7 @@ import '../../../../../css/Dev.module.scss';
 
 const axisData = utils.deepClone(getDemoData('#valueRegion', 'LINE_TIMESERIES'));
 const data = axisData.data[4];
-data.onClick = loadPopup;
+const dataArray = [data];
 
-export default () => <LineGraph graphID="valueRegion" graphConfig={axisData} dataset={[data]} />;
+export default () => <LineGraph graphID="valueRegion" graphConfig={axisData} dataset={dataArray} />;
 
