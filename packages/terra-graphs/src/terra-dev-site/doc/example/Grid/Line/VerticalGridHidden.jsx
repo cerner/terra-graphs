@@ -8,11 +8,11 @@ import {
 } from '../../../../helpers/popup';
 import '../../../../../css/Dev.module.scss';
 
-const axisData = utils.deepClone(getDemoData('#horizontalGridHidden', 'LINE_DEFAULT'));
+const axisData = utils.deepClone(getDemoData('#verticalGridHidden', 'LINE_DEFAULT'));
 axisData.showVGrid = false;
 const data = axisData.data[0];
 data.onClick = loadPopup;
 const dataArray = [data];
 
-export default () => <LineGraph graphID="horizontalGridHidden" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="verticalGridHidden" graphConfig={axisData} dataset={dataArray} />;
 
