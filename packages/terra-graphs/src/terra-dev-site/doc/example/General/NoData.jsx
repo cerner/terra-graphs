@@ -8,4 +8,3 @@ const dataArray = [axisData.data[0]];
 
 export default () => <LineGraph graphID="nodata" graphConfig={axisData} dataset={dataArray} />;
 
-

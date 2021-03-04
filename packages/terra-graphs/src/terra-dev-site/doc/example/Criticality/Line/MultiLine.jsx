@@ -1,4 +1,3 @@
-
 import React from 'react';
 import getDemoData from '../../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '../../../../../components/LineGraph';

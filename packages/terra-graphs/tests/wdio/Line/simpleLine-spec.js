@@ -7,7 +7,7 @@ Terra.describeViewports('Simple Line', ['tiny', 'medium', 'large'], () => {
     });
 
     it('legend element', () => {
-        Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
-      });
+      Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
+    });
   });
 });
