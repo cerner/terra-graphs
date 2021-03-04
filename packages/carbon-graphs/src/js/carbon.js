@@ -10,14 +10,14 @@ import {
   SHAPES_LIGHT,
 } from './helpers/constants';
 import LOCALE from './locale';
-import utils from './helpers/utils';
 
 const { version } = require('../../package.json');
-var carbonVersion;
 
-if(typeof VERSION === 'undefined'){
+let carbonVersion;
+
+if (typeof VERSION === 'undefined') {
   carbonVersion = version;
-}else{
+} else {
   carbonVersion = VERSION;
 }
 /**
