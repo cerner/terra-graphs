@@ -3,9 +3,6 @@ import getDemoData from '../../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '../../../../../components/LineGraph';
 import utils from '../../../../../../../carbon-graphs/src/js/helpers/utils';
 import { regions } from '../../../../../../../carbon-graphs/dev/examples/controls/line';
-import {
-  loadPopup,
-} from '../../../../helpers/popup';
 import '../../../../../css/Dev.module.scss';
 
 const axisData = utils.deepClone(getDemoData('#regionLine', 'LINE_DEFAULT'));
@@ -17,7 +14,7 @@ data.regions = [
     color: '#bcbfc0',
   },
 ];
-data.onClick = loadPopup;
+const dataArray = [data];
 
-export default () => <LineGraph graphID="regionLine" graphConfig={axisData} dataset={[data]} />;
+export default () => <LineGraph graphID="regionLine" graphConfig={axisData} dataset={dataArray} />;
 
