@@ -544,7 +544,7 @@ describe('Graph - Axes', () => {
               'transform',
             ),
           ).translate[0],
-        ).toBe(50.625);
+        ).toBe(67.125);
       });
     });
   });

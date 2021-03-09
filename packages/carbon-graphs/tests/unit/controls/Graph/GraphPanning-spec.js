@@ -30,8 +30,16 @@ import utils from '../../../../src/js/helpers/utils';
 describe('Graph - Panning', () => {
   let graph = null;
   let graphContainer;
+  let consolewarn;
+
   beforeAll(() => {
     loadCustomJasmineMatcher();
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
   });
   beforeEach(() => {
     graphContainer = document.createElement('div');
@@ -156,7 +164,7 @@ describe('Graph - Panning', () => {
             'transform',
           ),
         ).translate[0],
-      ).toBeCloserTo(50);
+      ).toBeCloserTo(68);
       const panData = {
         key: 'uid_1',
         values: [{
@@ -288,7 +296,7 @@ describe('Graph - Panning', () => {
       const regionElementAfterPanning = fetchElementByClass(styles.contentContainer);
       triggerEvent(window, 'resize', () => {
         expect(regionElementAfterPanning.getAttribute('x'))
-          .toBeGreaterThan(containerX);
+          .toEqual(containerX);
         done();
       });
     });
