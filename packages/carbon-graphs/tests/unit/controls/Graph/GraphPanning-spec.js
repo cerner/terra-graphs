@@ -30,8 +30,16 @@ import utils from '../../../../src/js/helpers/utils';
 describe('Graph - Panning', () => {
   let graph = null;
   let graphContainer;
+  let consolewarn;
+
   beforeAll(() => {
     loadCustomJasmineMatcher();
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
   });
   beforeEach(() => {
     graphContainer = document.createElement('div');
