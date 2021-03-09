@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated Y-axis label container width to be static instead of dynamic.
+
 ## 2.16.2 - (February 23, 2021)
 
 * Added
