@@ -25,8 +25,16 @@ import errors from '../../../../src/js/helpers/errors';
 describe('Bar - Panning', () => {
   let graphDefault = null;
   let barGraphContainer;
+  let consolewarn;
+
   beforeAll(() => {
     loadCustomJasmineMatcher();
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
   });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');

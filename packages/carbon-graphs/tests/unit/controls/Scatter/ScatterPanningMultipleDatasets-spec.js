@@ -20,6 +20,16 @@ import errors from '../../../../src/js/helpers/errors';
 describe('Scatter - Panning', () => {
   let graphDefault = null;
   let scatterGraphContainer;
+  let consolewarn;
+
+  beforeAll(() => {
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
+  });
   beforeEach(() => {
     scatterGraphContainer = document.createElement('div');
     scatterGraphContainer.id = 'testScatter_carbon';
