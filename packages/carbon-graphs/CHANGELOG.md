@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated panning unit tests to supress warnings.
+
 ## 2.16.2 - (February 23, 2021)
 
 * Added
