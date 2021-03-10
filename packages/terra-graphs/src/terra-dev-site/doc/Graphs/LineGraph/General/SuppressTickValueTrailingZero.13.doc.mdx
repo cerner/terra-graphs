@@ -1,0 +1,27 @@
+import LineGraph from '../../../example/General/SuppressTickValueTrailingZero?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Linegraph?dev-site-props-table';
+import DisplayData from '@cerner/terra-graphs/lib/components/helpers/DisplayData';
+
+# Supress trailing zeros
+
+This is simple line graph supressing trailing zeros in ticks for all the axis.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+
+```jsx
+import React from 'react';
+import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
+```
+## Examples
+<LineGraph />
+
+## Data Used
+<DisplayData graphID = { "#supressTickValue"} dataArrayNumber = {[0,1]} graphConfig = { 'LINE_DECIMAL_AXES_VALUES' } />
+
+## Props
+<PropsTable />

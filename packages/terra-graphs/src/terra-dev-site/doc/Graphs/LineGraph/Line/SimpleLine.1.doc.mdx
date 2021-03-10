@@ -1,0 +1,31 @@
+import LineGraph from '../../../example/Line/SimpleLine?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Linegraph?dev-site-props-table';
+import DisplayData from '@cerner/terra-graphs/lib/components/helpers/DisplayData';
+import Js from '@cerner/terra-graphs/lib/components/helpers/hello.js?dev-site-codeblock'
+
+<Js />
+
+# Simple Line Graph
+
+This is a Simple graph with continuous line and default x-axis ticks.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+
+```jsx
+import React from 'react';
+import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
+```
+
+## Examples
+<LineGraph />
+
+## Data Used
+<DisplayData graphID = { "#simpleLine"} dataArrayNumber = {[0]} graphConfig = { 'LINE_DEFAULT' } />
+
+## Props
+<PropsTable />

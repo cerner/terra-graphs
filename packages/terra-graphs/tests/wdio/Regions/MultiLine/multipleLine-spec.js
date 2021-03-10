@@ -17,15 +17,15 @@ Terra.describeViewports('Multiple Line', ['tiny', 'medium', 'large'], () => {
         element = $('.carbon-legend').$$('li');
       });
       it(' data label 1 ', () => {
-        element[0].moveToObject();
+        element[0].moveTo();
         Terra.validates.screenshot('Graph container 1', { selector: '.carbon-graph-container' });
       });
       it('data label 3', () => {
-        element[1].moveToObject();
+        element[1].moveTo();
         Terra.validates.screenshot('Graph container 2', { selector: '.carbon-graph-container' });
       });
       it('data label 4', () => {
-        element[3].moveToObject();
+        element[3].moveTo();
         Terra.validates.screenshot('Graph container 3', { selector: '.carbon-graph-container' });
       });
     });
