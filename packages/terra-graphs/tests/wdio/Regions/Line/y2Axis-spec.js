@@ -11,7 +11,7 @@ Terra.describeViewports('Y2 Axis', ['tiny', 'medium', 'large'], () => {
     });
     it(' when hovered on Data Label 2 legend', () => {
       const element = $('.carbon-legend').$('li');
-      element.moveToObject();
+      element.moveTo();
       Terra.validates.screenshot('Graph container', { selector: '.carbon-graph-container' });
     });
   });

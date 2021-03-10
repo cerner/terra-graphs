@@ -1,0 +1,27 @@
+import LineGraph from '../../../example/General/LabelTruncation?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Linegraph?dev-site-props-table';
+import DisplayData from '@cerner/terra-graphs/lib/components/helpers/DisplayData';
+
+# Label truncation
+
+This is simple line graph with long labels in x, y and y2 axis which will be truncated and revealed completely on label click.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+
+```jsx
+import React from 'react';
+import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
+```
+## Examples
+<LineGraph />
+
+## Data Used
+<DisplayData graphID = { "#labelTruncation"} dataArrayNumber = {[0]} graphConfig = { 'LABEL_TRUNCATION' } />
+
+## Props
+<PropsTable />
