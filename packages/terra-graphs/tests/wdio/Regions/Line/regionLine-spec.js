@@ -1,6 +1,6 @@
 Terra.describeViewports('Region Line', ['tiny', 'medium', 'large'], () => {
   describe('Validates', () => {
-    before(() => browser.url('/raw/tests/terra-graphs/regions/line/region-line'));
+    before(() => browser.url('/raw/tests/terra-graphs/regions/line/regions-line'));
 
     it('canvas element', () => {
       Terra.validates.screenshot('canvas', { selector: '.carbon-graph-canvas' });
