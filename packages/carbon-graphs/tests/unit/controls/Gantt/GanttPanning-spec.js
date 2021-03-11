@@ -28,6 +28,8 @@ import {
 describe('Panning', () => {
   let gantt = null;
   let ganttChartContainer;
+  let consolewarn;
+
   beforeEach(() => {
     ganttChartContainer = document.createElement('div');
     ganttChartContainer.id = 'testCarbonGantt';
@@ -37,6 +39,14 @@ describe('Panning', () => {
     );
     ganttChartContainer.setAttribute('class', 'carbon-test-class');
     document.body.appendChild(ganttChartContainer);
+  });
+  beforeAll(() => {
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
   });
   afterEach(() => {
     document.body.innerHTML = '';

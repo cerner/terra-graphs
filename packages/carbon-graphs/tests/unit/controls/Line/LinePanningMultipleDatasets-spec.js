@@ -24,8 +24,16 @@ import {
 describe('Line - Panning', () => {
   let graphDefault = null;
   let lineGraphContainer;
+  let consolewarn;
+
   beforeAll(() => {
     loadCustomJasmineMatcher();
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
   });
   beforeEach(() => {
     lineGraphContainer = document.createElement('div');

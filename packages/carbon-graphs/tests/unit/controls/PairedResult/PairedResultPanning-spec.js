@@ -25,6 +25,16 @@ import errors from '../../../../src/js/helpers/errors';
 describe('PairedResult', () => {
   let graphDefault = null;
   let pairedResultGraphContainer;
+  let consolewarn;
+
+  beforeAll(() => {
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
+  });
   beforeAll(() => {
     loadCustomJasmineMatcher();
   });

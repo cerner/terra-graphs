@@ -19,6 +19,16 @@ import {
 describe('Panning', () => {
   let timeline = null;
   let TimelineGraphContainer;
+  let consolewarn;
+
+  beforeAll(() => {
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
+  });
   beforeEach(() => {
     TimelineGraphContainer = document.createElement('div');
     TimelineGraphContainer.id = 'testCarbonTimeline';
