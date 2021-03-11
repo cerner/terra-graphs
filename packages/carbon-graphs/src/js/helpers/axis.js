@@ -1202,11 +1202,7 @@ const calculateAxesLabelSize = (config) => {
       config.axisLabelHeights.x = getAxisLabelHeight(config.axis.x.label);
     }
     if (config.axis.y.label) {
-      config.axisLabelWidths.y = getAxisLabelWidth(
-        config.axis.y.label,
-        constants.Y_AXIS,
-        config,
-      );
+      config.axisLabelWidths.y = constants.DEFAULT_CHARACTER_SVG_ELEMENT_WIDTH;
     }
     if (hasY2Axis(config.axis) && config.axis.y2.label) {
       config.axisLabelWidths.y2 = hasY2Axis(config.axis)

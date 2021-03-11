@@ -3,7 +3,8 @@
 ## Unreleased
 
 * Changed
-  * Updated panning unit tests to supress warnings.
+  * Updated panning unit tests to suppress console warnings from code items pending deprecation.
+  * Updated Y-axis label container width to be static instead of dynamic.
 
 ## 2.16.2 - (February 23, 2021)
 
