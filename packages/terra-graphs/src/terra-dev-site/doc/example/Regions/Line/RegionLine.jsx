@@ -1,19 +1,23 @@
 import React from 'react';
-import getDemoData from '../../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '../../../../../css/Dev.module.scss';
+import lineDefault from '../../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineDefault';
+import data from '../../../../../../../carbon-graphs/dev/data/line/dataObjects/multiRegionData';
 
-const axisData = utils.deepClone(getDemoData('#regionLine', 'LINE_DEFAULT'));
-const data = axisData.data[5];
-data.regions = [
+/*
+Please refer documentation below to see graphConfig and data objects.
+*/
+const graphConfig = utils.deepClone(lineDefault('#regionLine'));
+const contentData = utils.deepClone(data);
+
+contentData.regions = [
   {
-    start: 15,
-    end: 15,
+    start: 10,
+    end: 10,
     color: '#bcbfc0',
   },
 ];
-const dataArray = [data];
 
-export default () => <LineGraph graphID="regionLine" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="regionLine" graphConfig={graphConfig} dataset={[contentData]} />;
 
