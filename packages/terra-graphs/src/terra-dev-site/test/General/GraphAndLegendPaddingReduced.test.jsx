@@ -1,24 +1,19 @@
 import React from 'react';
-import getDemoData from '../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '../../../css/Dev.module.scss';
+import lineTimesries from '../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineTimeseries'
+import data from '../../../../../carbon-graphs/dev/data/line/dataObjects/multiTimeseriesData'
 
-const axisData = utils.deepClone(
-  getDemoData('#graphContainer', 'LINE_TIMESERIES'),
-);
-axisData.bindLegendTo = '#legendContainer';
-axisData.removeContainerPadding = true;
-axisData.legendPadding = {
+const graphConfig = utils.deepClone(lineTimesries('#graphContainer'));
+graphConfig.bindLegendTo = '#legendContainer';
+graphConfig.removeContainerPadding = true;
+graphConfig.legendPadding = {
   left: 2.5,
   right: 2.5,
   top: 2.5,
   bottom: 2.5,
 };
-
-const data = axisData.data[0];
-const data1 = axisData.data[2];
-const dataArray = [data, data1];
 
 export default () => (
   <div id="graphAndLegendPaddingReduced" className="custom-container-legend-style">
@@ -26,6 +21,6 @@ export default () => (
       <div id="legendContainer" className="legend-bindto-container" />
       <div id="graphContainer" className="legend-bindto-graph-container" />
     </div>
-    <LineGraph graphID="graphContainer" graphConfig={axisData} dataset={dataArray} />
+    <LineGraph graphID="graphContainer" graphConfig={graphConfig} dataset={data} />
   </div>
 );

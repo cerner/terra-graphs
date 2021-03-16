@@ -1,29 +1,27 @@
 import React from 'react';
-import getDemoData from '../../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '../../../../../css/Dev.module.scss';
+import lineDefault from '../../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineDefault';
+import data from '../../../../../../../carbon-graphs/dev/data/line/dataObjects/defaultMultiLineData';
 
-const axisData = utils.deepClone(getDemoData('#multipleline', 'LINE_DEFAULT'));
-const data = axisData.data[0];
-data.regions = [
+/*
+Please refer documentation below to see graphConfig and data objects.
+*/
+const graphConfig = utils.deepClone(lineDefault('#multipleline'));
+const contentData = utils.deepClone(data);
+contentData[0].regions = [
   {
     start: 2,
   },
 ];
 
-const dataAlt = axisData.data[2];
-dataAlt.regions = [
+contentData[2].regions = [
   {
     start: 2,
     end: 14,
   },
 ];
 
-const data1 = axisData.data[4];
-const data2 = axisData.data[3];
-
-const dataArray = [data, dataAlt, data1, data2];
-
-export default () => <LineGraph graphID="multipleline" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="multipleline" graphConfig={graphConfig} dataset={contentData} />;
 

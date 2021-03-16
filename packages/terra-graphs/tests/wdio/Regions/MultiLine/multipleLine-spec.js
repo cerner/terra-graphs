@@ -15,6 +15,7 @@ Terra.describeViewports('Multiple Line', ['tiny', 'medium', 'large'], () => {
       beforeEach(() => {
         browser.url('/raw/tests/terra-graphs/regions/multi-line/multi-line');
         element = $('.carbon-legend').$$('li');
+        console.log(element.length);
       });
       it(' data label 1 ', () => {
         element[0].moveTo();
@@ -24,8 +25,8 @@ Terra.describeViewports('Multiple Line', ['tiny', 'medium', 'large'], () => {
         element[1].moveTo();
         Terra.validates.screenshot('Graph container 2', { selector: '.carbon-graph-container' });
       });
-      it('data label 4', () => {
-        element[3].moveTo();
+      it('data label 5', () => {
+        element[2].moveTo();
         Terra.validates.screenshot('Graph container 3', { selector: '.carbon-graph-container' });
       });
     });

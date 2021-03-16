@@ -1,13 +1,31 @@
 import React from 'react';
-import getDemoData from '../../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import { regions } from '../../../../../../../carbon-graphs/dev/examples/controls/line';
 import '../../../../../css/Dev.module.scss';
+import lineDefault from '../../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineDefault';
+import data from '../../../../../../../carbon-graphs/dev/data/line/dataObjects/multiRegionData';
 
-const axisData = utils.deepClone(getDemoData('#multipleRegions', 'LINE_DEFAULT'));
-const data = axisData.data[4];
-data.regions = regions;
-const dataArray = [data];
+const regions = [
+  {
+    axis: 'y',
+    start: 2,
+    end: 10,
+    color: '#f4f4f4',
+  },
+  {
+    axis: 'y',
+    start: 12,
+    end: 18,
+    color: '#c8cacb',
+  },
+];
 
-export default () => <LineGraph graphID="multipleRegions" graphConfig={axisData} dataset={dataArray} />;
+/*
+Please refer documentation below to see graphConfig and data objects.
+*/
+const graphConfig = utils.deepClone(lineDefault('#multipleRegions'));
+const contentData = utils.deepClone(data);
+
+contentData.regions = regions;
+
+export default () => <LineGraph graphID="multipleRegions" graphConfig={graphConfig} dataset={[contentData]} />;

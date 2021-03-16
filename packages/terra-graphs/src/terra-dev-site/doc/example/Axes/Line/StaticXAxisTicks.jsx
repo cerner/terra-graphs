@@ -1,16 +1,18 @@
 import React from 'react';
-import getDemoData from '../../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import { tickValues } from '../../../../../../../carbon-graphs/dev/examples/controls/line';
 import '../../../../../css/Dev.module.scss';
+import lineTimeseries from '../../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineTimeseries';
+import data from '../../../../../../../carbon-graphs/dev/data/line/dataObjects/timeseriesData';
 
-const axisData = utils.deepClone(getDemoData('#staticXAxisTicks', 'LINE_TIMESERIES'));
-axisData.axis.x.ticks = {
+/*
+Please refer documentation below to see graphConfig and data objects.
+*/
+const graphConfig = utils.deepClone(lineTimeseries('#staticXAxisTicks'));
+graphConfig.axis.x.ticks = {
   values: tickValues,
   format: '%H:%M:%S',
 };
-const data = axisData.data[0];
-const dataArray = [data];
 
-export default () => <LineGraph graphID="staticXAxisTicks" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="staticXAxisTicks" graphConfig={graphConfig} dataset={[data]} />;
