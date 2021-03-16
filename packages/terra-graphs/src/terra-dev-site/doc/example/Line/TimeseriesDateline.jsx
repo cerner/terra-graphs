@@ -1,11 +1,29 @@
 import React from 'react';
-import getDemoData from '../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '../../../../css/Dev.module.scss';
+import lineTimesries from '../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineTimeseries'
+import data from '../../../../../../carbon-graphs/dev/data/line/dataObjects/timeseriesData';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import {
+    loadDatelinePopup,
+ } from '../../../../../../carbon-graphs/dev/examples/popup';
 
-const axisData = utils.deepClone(getDemoData('#timeseriesDateLine', 'LINE_TIMESERIES_DATELINE'));
-const data = axisData.data[0];
-const dataArray = [data];
+ /*
+Please refer documentation below to see graphConfig and data objects.
+*/
+const graphConfig = utils.deepClone(lineTimesries('#timeseriesDateLine'));
+graphConfig.dateline = [
+    {
+      showDatelineIndicator: true,
+      label: {
+        display: 'Current Date',
+      },
+      color: '#C97318',
+      shape: Carbon.helpers.SHAPES.DARK.SQUARE,
+      onClick: loadDatelinePopup,
+      value: new Date(2016, 0, 1, 6).toISOString(),
+    },
+  ];
 
-export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={graphConfig} dataset={[data]} />;
