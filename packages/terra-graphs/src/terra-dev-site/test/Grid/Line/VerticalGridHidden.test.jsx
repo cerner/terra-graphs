@@ -1,13 +1,13 @@
 import React from 'react';
-import getDemoData from '../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '../../../../css/Dev.module.scss';
+import lineDefault from '../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineDefault.js'
+import data from '../../../../../../carbon-graphs/dev/data/line/dataObjects/simpleLineData'
 
-const axisData = utils.deepClone(getDemoData('#horizontalGridHidden', 'LINE_DEFAULT'));
-axisData.showVGrid = false;
-const data = axisData.data[0];
+const graphConfig = utils.deepClone(lineDefault('#verticalGridHidden'));
+graphConfig.showVGrid = false;
 const dataArray = [data];
 
-export default () => <LineGraph graphID="horizontalGridHidden" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="verticalGridHidden" graphConfig={graphConfig} dataset={dataArray} />;
 

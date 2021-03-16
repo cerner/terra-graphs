@@ -1,13 +1,18 @@
 import React from 'react';
-import getDemoData from '../../../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '../../../../../css/Dev.module.scss';
+import lineTimesries from '../../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineTimeseries'
+import data from '../../../../../../../carbon-graphs/dev/data/line/dataObjects/y2AxisData';
 
-const axisData = utils.deepClone(getDemoData('#y2Region', 'LINE_TIMESERIES'));
-axisData.axis.y2.show = true;
-const dataValueObject = axisData.data[1];
-dataValueObject.regions = [
+/*
+Please refer documentation below to see graphConfig and data objects.
+*/
+const graphConfig = utils.deepClone(lineTimesries('#y2Region'));
+graphConfig.axis.y2.show = true;
+
+const contentData = utils.deepClone(data);
+  contentData[1].regions = [
   {
     axis: 'y2',
     start: 50,
@@ -15,8 +20,5 @@ dataValueObject.regions = [
   },
 ];
 
-const dataAlt = axisData.data[0];
-const dataArray = [dataValueObject, dataAlt];
-
-export default () => <LineGraph graphID="y2Region" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="y2Region" graphConfig={graphConfig} dataset={contentData} />;
 

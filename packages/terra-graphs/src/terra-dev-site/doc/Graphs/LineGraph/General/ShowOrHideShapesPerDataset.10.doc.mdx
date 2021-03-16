@@ -1,6 +1,7 @@
 import LineGraph from '../../../example/General/ShowOrHideShapesPerDataset?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Linegraph?dev-site-props-table';
-import DisplayData from '@cerner/terra-graphs/lib/components/helpers/DisplayData';
+import PropsTable from '@cerner/terra-graphs/lib/components/LineGraph?dev-site-props-table';
+import GraphConfig from '../../../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineDefault.js?dev-site-codeblock';
+import DataObject from '../../../../../../../carbon-graphs/dev/data/line/dataObjects/defaultMultiLineData.js?dev-site-codeblock';
 
 # Show or hide shpes per dataset
 
@@ -20,8 +21,17 @@ import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 ## Examples
 <LineGraph />
 
-## Data Used
-<DisplayData graphID = { "#showOrHideShapesPerDataset"} dataArrayNumber = {[1,3,4]} graphConfig = { 'LINE_DEFAULT' } />
-
 ## Props
 <PropsTable />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>

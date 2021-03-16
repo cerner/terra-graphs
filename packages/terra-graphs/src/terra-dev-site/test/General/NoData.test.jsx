@@ -1,10 +1,12 @@
 import React from 'react';
-import getDemoData from '../../../../../carbon-graphs/dev/examples/data';
 import LineGraph from '@cerner/terra-graphs/lib/components/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import '../../../css/Dev.module.scss';
+import lineDefault from '../../../../../carbon-graphs/dev/data/line/graphConfigObjects/lineDefault.js'
+import data from '../../../../../carbon-graphs/dev/data/line/dataObjects/noDataView'
 
-const axisData = utils.deepClone(getDemoData('#nodata', 'NO_DATA_VIEW'));
-const dataArray = [axisData.data[0]];
+const graphConfig = utils.deepClone(lineDefault('#nodata'));
+const dataArray = [data];
 
-export default () => <LineGraph graphID="nodata" graphConfig={axisData} dataset={dataArray} />;
+export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} dataset={dataArray} />;
 

@@ -9,7 +9,7 @@ const propTypes = {
   /**
    * Graph configuration object
    */
-  graphConfig: PropTypes.object,
+  graphConfig: PropTypes.object.isRequired,
   /**
    * data to be displayed in graph
    */
