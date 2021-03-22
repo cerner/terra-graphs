@@ -27,7 +27,8 @@
   "stylelint": {
     "extends": "@cerner/stylelint-config-terra",
     "rules": {
-      "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
+      "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+      "selector-no-qualifying-type": null
     }
   },
   "dependencies": {
