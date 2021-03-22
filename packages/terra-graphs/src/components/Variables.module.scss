@@ -13,12 +13,20 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
   --default-transition-duration: 1s;
 }
 
+<<<<<<< HEAD
 @mixin terra-graph-font-smooth() {
+=======
+@mixin font-smooth() {
+>>>>>>> 3b63910... Made changes to folder structure
   $webkit-font-smoothing: antialiased;
   $moz-osx-font-smoothing: grayscale;
 }
 
+<<<<<<< HEAD
 @mixin terra-graph-basic-transition($property, $duration, $timing) {
+=======
+@mixin basic-transition($property, $duration, $timing) {
+>>>>>>> 3b63910... Made changes to folder structure
   -moz-transition: $property $duration $timing;
   -webkit-transition: $property $duration $timing;
   -ms-transition: $property $duration $timing;
@@ -27,7 +35,11 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
 }
 
 // prettier-ignore
+<<<<<<< HEAD
 @mixin terra-graph-transform-transition($property, $duration, $timing) {
+=======
+@mixin transform-transition($property, $duration, $timing) {
+>>>>>>> 3b63910... Made changes to folder structure
   -moz-transition: $property $duration $timing, -moz-transform $duration $timing;
   -webkit-transition: $property $duration $timing, -webkit-transform $duration $timing;
   -ms-transition: $property $duration $timing, -ms-transform $duration $timing;
@@ -35,12 +47,20 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
   transition: $property $duration $timing, transform $duration $timing;
 }
 
+<<<<<<< HEAD
 @mixin terra-graph-opacity-hide() {
   @include terra-graph-transform-transition(
+=======
+@mixin opacity-hide() {
+  opacity: 0;
+  visibility: hidden;
+  transform-transition :(
+>>>>>>> 3b63910... Made changes to folder structure
     opacity,
     var(--default-transition-duration),
     var(--default-transition-timing)
   );
+<<<<<<< HEAD
   opacity: 0;
   visibility: hidden;
 
@@ -62,11 +82,34 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
   fill-opacity: 0.25;
   stroke: var(--blue30);
   stroke-width: 1px;
+=======
+}
+
+@mixin opacity-show() {
+  opacity: 1;
+  visibility: visible;
+  transform-transition : (
+    opacity,
+    var(--default-transition-duration),
+    var(--default-transition-timing)
+    );
+}
+
+@mixin selected-indicator-styles() {
+  fill: var(--blue10);
+  fill-opacity: 0.25;
+  stroke-width: 1px;
+  stroke: var(--blue30);
+>>>>>>> 3b63910... Made changes to folder structure
 }
 
 /*
 User agent gives `geometric precision` more importance than `speed` and `crisp edges`
 */
+<<<<<<< HEAD
 @mixin terra-graph-carbon-shape-rendering() {
+=======
+@mixin carbon-shape-rendering() {
+>>>>>>> 3b63910... Made changes to folder structure
   shape-rendering: auto;
 }

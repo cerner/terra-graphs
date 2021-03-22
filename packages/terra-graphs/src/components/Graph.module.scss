@@ -6,7 +6,11 @@ svg:not(:root) {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+<<<<<<< HEAD
 .carbon-svg-icon {
+=======
+.carbon-svgIcon {
+>>>>>>> 3b63910... Made changes to folder structure
   display: inline-block;
   height: 0.625rem;
   width: 0.625rem;
@@ -21,11 +25,18 @@ svg:not(:root) {
 }
 
 .carbon-graph-canvas {
+<<<<<<< HEAD
   @include terra-graph-font-smooth();
+=======
+>>>>>>> 3b63910... Made changes to folder structure
   box-sizing: border-box;
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
+<<<<<<< HEAD
+=======
+  @include font-smooth();
+>>>>>>> 3b63910... Made changes to folder structure
 }
 
 .carbon-axis path.domain,
@@ -36,7 +47,11 @@ svg:not(:root) {
 
 .carbon-grid line,
 .carbon-content-container {
+<<<<<<< HEAD
   @include terra-graph-carbon-shape-rendering();
+=======
+  @include carbon-shape-rendering();
+>>>>>>> 3b63910... Made changes to folder structure
 }
 
 .carbon-axis-x,
@@ -50,8 +65,13 @@ svg:not(:root) {
 
 .carbon-axis {
   &.carbon-axis-reference-line {
+<<<<<<< HEAD
     stroke: var(--grey30);
     stroke-width: 2px;
+=======
+    stroke-width: 2px;
+    stroke: var(--grey30);
+>>>>>>> 3b63910... Made changes to folder structure
   }
 }
 
@@ -59,8 +79,12 @@ svg:not(:root) {
   > * .domain[stroke] {
     stroke: var(--grey10);
   }
+<<<<<<< HEAD
 
   line {
+=======
+  & line {
+>>>>>>> 3b63910... Made changes to folder structure
     stroke: var(--grey10);
   }
 }
@@ -85,6 +109,7 @@ svg:not(:root) {
 }
 
 .carbon-legend {
+<<<<<<< HEAD
   align-content: center;
   display: flex;
   flex: 1 1 100%;
@@ -97,10 +122,25 @@ svg:not(:root) {
   .carbon-legend-item {
     align-items: center;
     display: flex;
+=======
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  align-content: center;
+  flex-flow: row wrap;
+  flex: 1 1 100%;
+  margin: 0;
+  padding: 0;
+
+  & .carbon-legend-item {
+    display: flex;
+    align-items: center;
+>>>>>>> 3b63910... Made changes to folder structure
     margin: 0.5rem;
     outline: 0;
     user-select: none;
 
+<<<<<<< HEAD
     .carbon-legend-item-btn {
       align-content: center;
       align-self: flex-start;
@@ -128,10 +168,38 @@ svg:not(:root) {
 
       .carbon-legend-item-btn,
       .carbon-legend-item-text {
+=======
+    & .carbon-legend-item-btn {
+      font-size: inherit;
+      align-self: flex-start;
+      align-content: center;
+      margin-right: 0.5rem;
+      padding: 0;
+      height: 1.875rem;
+      width: 2.1875rem;
+      border-radius: 0.25rem;
+      border: 0;
+      background-color: var(--grey15);
+      flex-shrink: 0;
+    }
+
+    & .carbon-legend-item-text {
+      word-wrap: break-word;
+    }
+
+    &[aria-disabled="false"] {
+      cursor: pointer;
+      &:hover {
+        background-color: var(--blue10);
+      }
+      & .carbon-legend-item-btn,
+      & .carbon-legend-item-text {
+>>>>>>> 3b63910... Made changes to folder structure
         cursor: pointer;
       }
     }
 
+<<<<<<< HEAD
     &[aria-disabled='true'] {
       .carbon-legend-item-btn,
       .carbon-legend-item-text {
@@ -148,18 +216,40 @@ svg:not(:root) {
     }
 
     .carbon-legend-item-icon {
+=======
+    &[aria-disabled="true"] {
+      & .carbon-legend-item-btn,
+      & .carbon-legend-item-text {
+        outline: none;
+      }
+
+        .carbon-legend-item-btn {
+          opacity: 0.35;
+        }
+        .carbon-legend-item-text {
+          color: var(--grey30);
+        }
+    }
+
+    & .carbon-legend-item-icon {
+>>>>>>> 3b63910... Made changes to folder structure
       display: block;
       stroke: var(--white);
       stroke-width: 5px;
     }
 
+<<<<<<< HEAD
     .carbon-legend-item-span {
+=======
+    & .carbon-legend-item-span {
+>>>>>>> 3b63910... Made changes to folder structure
       align-items: center;
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
     }
 
+<<<<<<< HEAD
     .carbon-legend-item-line {
       height: 5px;
       padding-top: 1px;
@@ -173,31 +263,61 @@ svg:not(:root) {
     }
 
     .carbon-legend-white-line {
+=======
+    & .carbon-legend-item-line {
+      height: 5px;
+      width: 28px;
+      padding-top: 1px;
+    }
+
+    & .carbon-legend-item-line-with-icon {
+      height: 5px;
+      width: 18px;
+      padding-top: 1px;
+    }
+
+    & .carbon-legend-white-line {
+>>>>>>> 3b63910... Made changes to folder structure
       stroke: var(--white);
       stroke-width: 6px;
     }
   }
 
+<<<<<<< HEAD
   .carbon-legend-item[aria-current='false'] {
     .carbon-legend-item-btn {
+=======
+  & .carbon-legend-item[aria-current="false"] {
+    & .carbon-legend-item-btn {
+>>>>>>> 3b63910... Made changes to folder structure
       background-color: var(--white);
       border-color: var(--grey15);
       border-style: solid;
       border-width: 1px;
     }
 
+<<<<<<< HEAD
     .carbon-legend-item-text {
+=======
+    & .carbon-legend-item-text {
+>>>>>>> 3b63910... Made changes to folder structure
       color: var(--grey65);
     }
   }
 }
 
 .carbon-blur {
+<<<<<<< HEAD
   @include terra-graph-basic-transition(
+=======
+  opacity: 0.2;
+  @include basic-transition(
+>>>>>>> 3b63910... Made changes to folder structure
     opacity,
     var(--default-transition-duration),
     var(--default-transition-timing)
   );
+<<<<<<< HEAD
   opacity: 0.2;
 }
 
@@ -208,17 +328,37 @@ svg:not(:root) {
 
   &[aria-hidden='true'] {
     @include terra-graph-opacity-hide();
+=======
+}
+
+.carbon-point {
+  &[aria-disabled="false"] {
+    cursor: pointer;
+  }
+
+  &[aria-hidden="true"] {
+    @include opacity-hide();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 }
 
 .carbon-selected-data-point {
   display: block;
+<<<<<<< HEAD
   fill: var(--blue10);
   fill-opacity: 0.25;
   stroke: var(--blue30);
 
   &[aria-hidden='true'] {
     @include terra-graph-opacity-hide();
+=======
+  stroke: var(--blue30);
+  fill: var(--blue10);
+  fill-opacity: 0.25;
+
+  &[aria-hidden="true"] {
+    @include opacity-hide();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 
   path {
@@ -228,8 +368,13 @@ svg:not(:root) {
 
 .carbon-criticality-outer,
 .carbon-criticality-inner {
+<<<<<<< HEAD
   &[aria-hidden='true'] {
     @include terra-graph-opacity-hide();
+=======
+  &[aria-hidden="true"] {
+    @include opacity-hide();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 }
 
@@ -248,9 +393,15 @@ svg:not(:root) {
 .carbon-region {
   fill: var(--grey5);
 
+<<<<<<< HEAD
   &[aria-hidden='true'],
   &.carbon-region-blur {
     @include terra-graph-opacity-hide();
+=======
+  &[aria-hidden="true"],
+  &.carbon-region-blur {
+    @include opacity-hide();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 
   &.carbon-value-region {
@@ -259,7 +410,11 @@ svg:not(:root) {
   }
 
   &.carbon-region-highlight {
+<<<<<<< HEAD
     @include terra-graph-opacity-show();
+=======
+    @include opacity-show();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 }
 
@@ -270,22 +425,37 @@ svg:not(:root) {
 
 .carbon-data-completion-bar,
 .carbon-data-bar {
+<<<<<<< HEAD
   @include terra-graph-carbon-shape-rendering();
   stroke-width: 0;
   user-select: none;
+=======
+  user-select: none;
+  @include carbon-shape-rendering();
+
+  stroke-width: 0;
+>>>>>>> 3b63910... Made changes to folder structure
 
   &[aria-disabled='false'] {
     cursor: pointer;
   }
 
   &[aria-hidden='true'] {
+<<<<<<< HEAD
     @include terra-graph-opacity-hide();
+=======
+    @include opacity-hide();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 }
 
 .carbon-axis-info-row-item {
   &[aria-hidden='true'] {
+<<<<<<< HEAD
     @include terra-graph-opacity-hide();
+=======
+    @include opacity-hide();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 
   &[aria-disabled='false'] {
@@ -295,9 +465,15 @@ svg:not(:root) {
 
 .carbon-dateline-group {
   .carbon-dateline {
+<<<<<<< HEAD
     @include terra-graph-carbon-shape-rendering();
     opacity: 0.3;
     stroke-width: 3px;
+=======
+    opacity: 0.3;
+    stroke-width: 3px;
+    @include carbon-shape-rendering();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 
   .carbon-dateline-point {
@@ -306,16 +482,26 @@ svg:not(:root) {
     }
 
     &[aria-hidden='true'] {
+<<<<<<< HEAD
       @include terra-graph-opacity-hide();
+=======
+      @include opacity-hide();
+>>>>>>> 3b63910... Made changes to folder structure
     }
   }
 }
 
 .carbon-eventline-group {
   .carbon-eventline {
+<<<<<<< HEAD
     @include terra-graph-carbon-shape-rendering();
     opacity: 1;
     stroke-width: 2px;
+=======
+    stroke-width: 2px;
+    opacity: 1;
+    @include carbon-shape-rendering();
+>>>>>>> 3b63910... Made changes to folder structure
   }
 }
 
@@ -331,12 +517,28 @@ svg:not(:root) {
 }
 
 .carbon-label-popup-tooltip {
+<<<<<<< HEAD
   background-color: #fff;
   border-radius: 4px;
+=======
+  position: absolute;
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.866rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01071em;
+  background-color: #fff;
+  z-index: 20;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+>>>>>>> 3b63910... Made changes to folder structure
   -moz-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+<<<<<<< HEAD
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   font-family: 'Segoe UI', sans-serif;
@@ -347,6 +549,8 @@ svg:not(:root) {
   padding: 1rem;
   position: absolute;
   z-index: 20;
+=======
+>>>>>>> 3b63910... Made changes to folder structure
 
   &.popup-item {
     display: block;
@@ -369,13 +573,21 @@ svg:not(:root) {
     }
   }
 
+<<<<<<< HEAD
   g {
+=======
+  & g {
+>>>>>>> 3b63910... Made changes to folder structure
     display: inline-block;
 
     &.popup-label {
       color: #01579b;
 
+<<<<<<< HEAD
       &::after {
+=======
+      &:after {
+>>>>>>> 3b63910... Made changes to folder structure
         content: ': ';
       }
     }
