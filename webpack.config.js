@@ -1,4 +1,3 @@
-const terraDevSiteWebpackConfig = require('@cerner/webpack-config-terra');
 /* eslint-disable import/no-extraneous-dependencies */
 const { merge } = require('webpack-merge');
 const path = require('path');
@@ -9,7 +8,6 @@ const {
   LocalPackageAliasPlugin,
 } = require('terra-dev-site');
 
-module.exports = terraDevSiteWebpackConfig;
 const WebpackConfigTerra = require('@cerner/webpack-config-terra');
 /**
  * Generates the file representing app name configuration.
