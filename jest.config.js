@@ -1,30 +1,11 @@
+const jestConfig = require('@cerner/jest-config-terra');
+
 module.exports = {
-  collectCoverageFrom: [
-    'packages/**/src/*.js',
-    'packages/**/src/*.jsx',
-  ],
-  globalSetup: './jestGlobalSetup.js',
+  ...jestConfig,
   setupFiles: [
-    'raf/polyfill',
-    './jestsetup.js',
+    './jest.enzymeSetup.js',
   ],
-  testMatch: [
-    '**/jest/**/*.test.js?(x)',
-  ],
-  roots: [process.cwd()],
   snapshotSerializers: [
-    './node_modules/enzyme-to-json/serializer',
+    'enzyme-to-json/serializer',
   ],
-  moduleDirectories: [
-    'aggregated-translations',
-    'packages',
-    'node_modules',
-  ],
-  moduleNameMapper: {
-    '\\.(css|scss|svg)$': 'identity-obj-proxy',
-  },
-  testURL: 'http://localhost',
-  transform: {
-    '^.+\\.(js|jsx)$': './jestBabelTransform',
-  },
 };
