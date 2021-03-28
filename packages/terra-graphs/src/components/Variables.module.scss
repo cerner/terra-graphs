@@ -13,12 +13,12 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
   --default-transition-duration: 1s;
 }
 
-@mixin font-smooth() {
+@mixin terra-graph-font-smooth() {
   $webkit-font-smoothing: antialiased;
   $moz-osx-font-smoothing: grayscale;
 }
 
-@mixin basic-transition($property, $duration, $timing) {
+@mixin terra-graph-basic-transition($property, $duration, $timing) {
   -moz-transition: $property $duration $timing;
   -webkit-transition: $property $duration $timing;
   -ms-transition: $property $duration $timing;
@@ -27,7 +27,7 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
 }
 
 // prettier-ignore
-@mixin transform-transition($property, $duration, $timing) {
+@mixin terra-graph-transform-transition($property, $duration, $timing) {
   -moz-transition: $property $duration $timing, -moz-transform $duration $timing;
   -webkit-transition: $property $duration $timing, -webkit-transform $duration $timing;
   -ms-transition: $property $duration $timing, -ms-transform $duration $timing;
@@ -35,36 +35,38 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
   transition: $property $duration $timing, transform $duration $timing;
 }
 
-@mixin opacity-hide() {
-  opacity: 0;
-  visibility: hidden;
-  transform-transition :(
+@mixin terra-graph-opacity-hide() {
+  @include terra-graph-transform-transition(
     opacity,
     var(--default-transition-duration),
     var(--default-transition-timing)
   );
+  opacity: 0;
+  visibility: hidden;
+
 }
 
-@mixin opacity-show() {
-  opacity: 1;
-  visibility: visible;
-  transform-transition : (
+@mixin terra-graph-opacity-show() {
+  @include terra-graph-transform-transition(
     opacity,
     var(--default-transition-duration),
     var(--default-transition-timing)
-    );
+  );
+  opacity: 1;
+  visibility: visible;
+
 }
 
-@mixin selected-indicator-styles() {
+@mixin terra-graph-selected-indicator-styles() {
   fill: var(--blue10);
   fill-opacity: 0.25;
-  stroke-width: 1px;
   stroke: var(--blue30);
+  stroke-width: 1px;
 }
 
 /*
 User agent gives `geometric precision` more importance than `speed` and `crisp edges`
 */
-@mixin carbon-shape-rendering() {
+@mixin terra-graph-carbon-shape-rendering() {
   shape-rendering: auto;
 }

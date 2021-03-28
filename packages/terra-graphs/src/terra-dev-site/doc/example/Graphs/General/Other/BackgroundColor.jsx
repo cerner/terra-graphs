@@ -10,7 +10,7 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#backgroundColor'));
 export default () => (
-  <div className="backgroundColorClass">
+  <div className="background-color-class">
     <LineGraph graphID="backgroundColor" graphConfig={graphConfig} dataset={[data]} />
   </div>
 );

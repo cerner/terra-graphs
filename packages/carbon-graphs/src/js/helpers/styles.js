@@ -26,7 +26,7 @@ export default {
   highlight: 'carbon-highlight',
   blur: 'carbon-blur',
   bubbleBlur: 'carbon-bubble-blur',
-  svgIcon: 'carbon-svgIcon',
+  svgIcon: 'carbon-svg-icon',
   axisLabelX: 'carbon-x-axis-label',
   axisLabelY: 'carbon-y-axis-label',
   axisLabelY2: 'carbon-y2-axis-label',

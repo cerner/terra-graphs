@@ -42,16 +42,16 @@ body {
   position: fixed;
   z-index: 20;
 
-  & .popup-item {
+  .popup-item {
     display: block;
   }
 
-  & .section {
+  .section {
     display: block;
     padding-left: 1rem;
   }
 
-  & .content {
+  .content {
     display: block;
 
     &:last-child {
@@ -62,18 +62,18 @@ body {
       padding-bottom: 0.5rem;}
   }
 
-  & g {
+  g {
     display: inline-block;
 
-    & .popup-label {
+    .popup-label {
       color: #01579b;
 
-      &:after {
-        content: ": ";
+      &::after {
+        content: ': ';
       }
     }
 
-    & .popup-text {
+    .popup-text {
       color: #000;
     }
 
@@ -101,9 +101,9 @@ body {
   display: flex;
   padding: 1rem;
 
-  & .nav-left,
-  & .nav-right {
-    background-color: #dedfe0;
+  .nav-left,
+  .nav-right {
+    background-color: #176ba0;
     border: 0.1rem solid #dedfe0;
     border-radius: 0.25rem;
     cursor: pointer;
@@ -135,6 +135,6 @@ body {
   }
 }
 
-.backgroundColorClass {
+.background-color-class {
   background-color: #176ba0;
 }

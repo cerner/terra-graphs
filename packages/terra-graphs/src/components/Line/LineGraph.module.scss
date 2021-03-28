@@ -5,26 +5,26 @@
 }
 
 .carbon-line path {
-  fill: none;
-  stroke-width: 1px;
-
   /* To counteract the opacity change when blur is used on a line */
-  @include basic-transition(
+  @include terra-graph-basic-transition(
     opacity,
     var(--line-transition-duration),
     var(--default-transition-timing)
   );
 
+  fill: none;
+  stroke-width: 1px;
+
   &.carbon-highlight {
-    stroke-width: 2px;
-    @include transform-transition(
+    @include terra-graph-transform-transition(
       stroke,
       var(--default-transition-duration),
       var(--default-transition-timing)
     );
+    stroke-width: 2px;
   }
 
   &[aria-hidden='true'] {
-    @include opacity-hide();
+    @include terra-graph-opacity-hide();
   }
 }
