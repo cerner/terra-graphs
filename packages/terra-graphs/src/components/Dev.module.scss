@@ -28,11 +28,11 @@ body {
   background-color: #fff;
   border-radius: 4px;
   -webkit-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   -moz-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
   font-family: 'Segoe UI', sans-serif;
   font-size: 0.866rem;
   font-weight: 400;
@@ -42,28 +42,16 @@ body {
   position: fixed;
   z-index: 20;
 
-<<<<<<< HEAD
   .popup-item {
     display: block;
   }
 
   .section {
-=======
-  & .popup-item {
-    display: block;
-  }
-
-  & .section {
->>>>>>> 3b63910... Made changes to folder structure
     display: block;
     padding-left: 1rem;
   }
 
-<<<<<<< HEAD
   .content {
-=======
-  & .content {
->>>>>>> 3b63910... Made changes to folder structure
     display: block;
 
     &:last-child {
@@ -74,7 +62,6 @@ body {
       padding-bottom: 0.5rem;}
   }
 
-<<<<<<< HEAD
   g {
     display: inline-block;
 
@@ -87,20 +74,6 @@ body {
     }
 
     .popup-text {
-=======
-  & g {
-    display: inline-block;
-
-    & .popup-label {
-      color: #01579b;
-
-      &:after {
-        content: ": ";
-      }
-    }
-
-    & .popup-text {
->>>>>>> 3b63910... Made changes to folder structure
       color: #000;
     }
 
@@ -128,15 +101,9 @@ body {
   display: flex;
   padding: 1rem;
 
-<<<<<<< HEAD
   .nav-left,
   .nav-right {
     background-color: #176ba0;
-=======
-  & .nav-left,
-  & .nav-right {
-    background-color: #dedfe0;
->>>>>>> 3b63910... Made changes to folder structure
     border: 0.1rem solid #dedfe0;
     border-radius: 0.25rem;
     cursor: pointer;
@@ -168,10 +135,6 @@ body {
   }
 }
 
-<<<<<<< HEAD
 .background-color-class {
-=======
-.backgroundColorClass {
->>>>>>> 3b63910... Made changes to folder structure
   background-color: #176ba0;
 }

@@ -1,16 +1,10 @@
+/* eslint import/no-unresolved: off */
 import React from 'react';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD:packages/terra-graphs/src/components/LineGraph.jsx
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './LineGraph.module.scss';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-=======
-import Carbon from '../../../../carbon-graphs/lib/js/carbon';
-import '../Graph.module.scss';
-import './LineGraph.module.scss';
-import utils from '../../../../carbon-graphs/lib/js/helpers/utils';
->>>>>>> 3b63910... Made changes to folder structure:packages/terra-graphs/src/components/Line/LineGraph.jsx
 
 const propTypes = {
   /**
