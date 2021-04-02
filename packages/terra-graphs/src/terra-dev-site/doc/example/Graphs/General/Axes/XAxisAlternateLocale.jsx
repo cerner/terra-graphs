@@ -2,9 +2,9 @@ import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs/lib//components/Dev.module.scss';
-import lineTimeseries from '@cerner/carbon-graphs/dev/data/line/graphConfigObjects/lineTimeseries';
-import data from '@cerner/carbon-graphs/dev/data/line/dataObjects/timeseriesData';
+import '@cerner/terra-graphs/lib/components/Dev.module.scss';
+import lineTimeseries from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Line/lineTimeseries';
+import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/timeseriesData';
 
 const tickValues = [
   new Date(2016, 0, 1, 1, 0).toISOString(),
@@ -24,4 +24,4 @@ graphConfig.axis.x.ticks = {
   format: '%A %e %B %Y, %X',
 };
 
-export default () => <LineGraph graphID="xAxisAlternateLocale" graphConfig={graphConfig} dataset={[data]} />;
+export default () => <LineGraph graphID="xAxisAlternateLocale" graphConfig={graphConfig} dataset={data} />;
