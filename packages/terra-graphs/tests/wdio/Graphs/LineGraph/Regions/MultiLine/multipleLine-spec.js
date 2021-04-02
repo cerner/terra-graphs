@@ -15,7 +15,6 @@ Terra.describeViewports('Multiple Line', ['tiny', 'medium', 'large'], () => {
       beforeEach(() => {
         browser.url('/raw/tests/terra-graphs/graphs/line-graph/regions/multi-line/multi-line');
         element = $('.carbon-legend').$$('li');
-        console.log(element.length);
       });
       it(' data label 1 ', () => {
         element[0].moveTo();

@@ -8,5 +8,4 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 const graphConfig = utils.deepClone(lineDefault('#labelHidden'));
 graphConfig.showLabel = false;
 
-export default () => <LineGraph graphID="labelHidden" graphConfig={graphConfig} dataset={data} />;
-
+export default () => <LineGraph graphID="labelHidden" graphConfig={graphConfig} />;

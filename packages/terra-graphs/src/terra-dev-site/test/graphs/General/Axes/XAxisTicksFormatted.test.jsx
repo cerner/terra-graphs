@@ -18,4 +18,4 @@ graphConfig.axis.x.ticks = {
   format: '%a %b %e %X %Y',
 };
 
-export default () => <LineGraph graphID="xAxisTicksFormatted" graphConfig={graphConfig} />;
+export default () => <LineGraph graphID="xAxisTicksFormatted" graphConfig={graphConfig}/>;
