@@ -41,7 +41,7 @@
 =======
       "selector-no-qualifying-type": null,
       "property-no-vendor-prefix": null,
-      "terra/custom-property-name" : null,
+      "terra/custom-property-name": null,
       "terra/custom-property-namespace": null,
       "terra/custom-property-pseudo-selectors": null
 >>>>>>> c87ada0... Fixed linter errors
