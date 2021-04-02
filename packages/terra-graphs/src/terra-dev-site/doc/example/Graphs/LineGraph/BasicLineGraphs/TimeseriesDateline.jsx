@@ -3,8 +3,8 @@ import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib//components/Dev.module.scss';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import lineTimesries from '@cerner/carbon-graphs/dev/data/line/graphConfigObjects/lineTimeseries';
-import data from '@cerner/carbon-graphs/dev/data/line/dataObjects/timeseriesData';
+import lineTimesries from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Line/lineTimeseries';
+import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/timeseriesData';
 import {
   loadDatelinePopup,
 } from '@cerner/carbon-graphs/dev/examples/popup';
@@ -26,4 +26,4 @@ graphConfig.dateline = [
   },
 ];
 
-export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={graphConfig} dataset={[data]} />;
+export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={graphConfig} dataset={data} />;
