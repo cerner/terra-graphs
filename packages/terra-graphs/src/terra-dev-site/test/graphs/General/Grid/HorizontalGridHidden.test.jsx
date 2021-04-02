@@ -9,5 +9,5 @@ const graphConfig = utils.deepClone(lineDefault('#horizontalGridHidden'));
 graphConfig.showHGrid = false;
 const dataArray = [data];
 
-export default () => <LineGraph graphID="horizontalGridHidden" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="horizontalGridHidden" graphConfig={graphConfig} />;
 

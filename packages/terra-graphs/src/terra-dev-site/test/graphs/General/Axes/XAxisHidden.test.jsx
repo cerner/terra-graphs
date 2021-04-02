@@ -8,4 +8,4 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 const graphConfig = utils.deepClone(lineDefault('#xAxisHidden'));
 graphConfig.axis.x.show = false;
 
-export default () => <LineGraph graphID="xAxisHidden" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="xAxisHidden" graphConfig={graphConfig} />;

@@ -9,6 +9,6 @@ const graphConfig = utils.deepClone(lineDefault('#backgroundColor'));
 
 export default () => (
   <div className="background-color-class">
-    <LineGraph graphID="backgroundColor" graphConfig={graphConfig} dataset={data} />
+    <LineGraph graphID="backgroundColor" graphConfig={graphConfig}/>
   </div>
 );

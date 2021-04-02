@@ -7,5 +7,5 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 
 const graphConfig = utils.deepClone(lineDefault('#labelTruncation'));
 
-export default () => <LineGraph graphID="labelTruncation" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="labelTruncation" graphConfig={graphConfig} />;
 

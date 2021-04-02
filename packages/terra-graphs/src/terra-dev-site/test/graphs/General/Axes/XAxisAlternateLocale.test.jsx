@@ -21,4 +21,4 @@ graphConfig.axis.x.ticks = {
   format: '%A %e %B %Y, %X',
 };
 
-export default () => <LineGraph graphID="xAxisAlternateLocale" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="xAxisAlternateLocale" graphConfig={graphConfig} />;

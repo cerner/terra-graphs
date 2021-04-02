@@ -7,4 +7,4 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/General/lineDecimal
 
 const graphConfig = utils.deepClone(lineDecimalAxes('#supressTickValue'));
 
-export default () => <LineGraph graphID="supressTickValue" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="supressTickValue" graphConfig={graphConfig} />;

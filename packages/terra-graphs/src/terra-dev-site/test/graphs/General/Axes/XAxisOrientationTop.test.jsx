@@ -9,4 +9,4 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 const graphConfig = utils.deepClone(lineDefault('#xAxisOrientationTop'));
 graphConfig.axis.x.orientation = Carbon.helpers.AXES_ORIENTATION.X.TOP;
 
-export default () => <LineGraph graphID="xAxisOrientationTop" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="xAxisOrientationTop" graphConfig={graphConfig} />;
