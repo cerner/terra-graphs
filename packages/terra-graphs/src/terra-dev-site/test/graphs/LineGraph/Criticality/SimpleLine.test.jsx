@@ -2,14 +2,14 @@ import React from 'react';
 import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib/components/Dev.module.scss';
-import lineDefault from '@cerner/carbon-graphs/dev/data/line/graphConfigObjects/lineDefault';
-import data from '@cerner/carbon-graphs/dev/data/line/dataObjects/simpleLineData';
+import lineDefault from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Line/lineDefault';
+import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData';
 
 const graphConfig = utils.deepClone(lineDefault('#criticalitySimpleLine', 'LINE_TIMESERIES'));
 
-data.values[0].isCritical = true;
-data.values[10].isCritical = true;
-const dataArray = [data];
+const contentData = utils.deepClone(data);
+contentData[0].values[0].isCritical = true;
+contentData[0].values[10].isCritical = true;
 
-export default () => <LineGraph graphID="criticalitySimpleLine" graphConfig={graphConfig} dataset={dataArray} />;
+export default () => <LineGraph graphID="criticalitySimpleLine" graphConfig={graphConfig} dataset={contentData} />;
 

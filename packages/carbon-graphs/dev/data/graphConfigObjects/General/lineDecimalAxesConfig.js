@@ -5,6 +5,7 @@ const lineDecimalAxes = (id) => ({
       label: 'Data',
       lowerLimit: 20.7,
       upperLimit: 22.7,
+      suppressTrailingZeros: true,
     },
     y: {
       label: 'Line Set A',

@@ -2,8 +2,8 @@ import React from 'react';
 import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib/components/Dev.module.scss';
-import lineDefault from '@cerner/carbon-graphs/dev/data/line/graphConfigObjects/lineDefault';
-import data from '@cerner/carbon-graphs/dev/data/line/dataObjects/multiRegionData';
+import lineDefault from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Line/lineDefault';
+import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/multiRegionData';
 
 const regions = [
   {
@@ -21,7 +21,6 @@ const regions = [
 ];
 const graphConfig = utils.deepClone(lineDefault('#multipleRegions'));
 const contentData = utils.deepClone(data);
-contentData.regions = regions;
-const dataArray = [contentData];
+contentData[0].regions = regions;
 
-export default () => <LineGraph graphID="multipleRegions" graphConfig={graphConfig} dataset={dataArray} />;
+export default () => <LineGraph graphID="multipleRegions" graphConfig={graphConfig} dataset={contentData} />;
