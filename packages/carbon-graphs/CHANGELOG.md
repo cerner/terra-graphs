@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+*Changed 
+ * Fixed Timeline graph issue when it is generated as second graph in page.
+ 
 ## 2.16.3 - (March 16, 2021)
 
 * Changed
