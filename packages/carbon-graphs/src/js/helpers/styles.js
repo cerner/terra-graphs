@@ -9,6 +9,7 @@
  */
 export default {
   container: 'carbon-graph-container',
+  timelineContainer: 'carbon-timeline-container',
   canvas: 'carbon-graph-canvas',
   canvasXAxis: 'carbon-x-axis-canvas',
   axis: 'carbon-axis',

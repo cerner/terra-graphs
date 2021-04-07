@@ -28,6 +28,13 @@ import {
   secondaryValuesJSON,
   valuesJSON,
 } from './helpers';
+import utils from '../../../../src/js/helpers/utils';
+import Gantt from '../../../../src/js/controls/Gantt';
+import {
+  axisJSON as ganttAxisJSON,
+  getData as ganttGetData,
+} from '../Gantt/helpers';
+import { getCurrentTransform, getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 
 describe('Timeline - Load', () => {
   let input;
@@ -754,6 +761,35 @@ describe('Timeline - Load', () => {
           .querySelector(`.${styles.timelineContentGroup}`)
           .getAttribute('aria-describedby'),
       ).toEqual(inputPrimary.key);
+    });
+  });
+  describe('When timeline is created as second graph in page', () => {
+    it('should render graph from right point', () => {
+      timeline.destroy();
+      let gantt = null;
+      let ganttChartContainer = null;
+      const primaryContent = ganttGetData();
+      ganttChartContainer = document.createElement('div');
+      ganttChartContainer.id = 'testCarbonGantt';
+      ganttChartContainer.setAttribute(
+        'style',
+        'width: 1024px; height: 400px;',
+      );
+      ganttChartContainer.setAttribute('class', 'carbon-test-class');
+      document.body.appendChild(ganttChartContainer);
+      gantt = new Gantt(getAxes(ganttAxisJSON));
+      gantt.loadContent(primaryContent);
+
+      timeline = new Timeline(getAxes(axisJSON));
+      const inputPrimary = getData(valuesJSON, false, false);
+      timeline.loadContent(inputPrimary);
+
+      const axisPath = document.querySelector(`.${styles.timelineContainer}`).querySelector(`.${styles.axis}.${styles.axisX}`);
+      expect(
+        getSVGAnimatedTransformList(
+          getCurrentTransform(axisPath),
+        ).translate[0],
+      ).toBe(30);
     });
   });
 });

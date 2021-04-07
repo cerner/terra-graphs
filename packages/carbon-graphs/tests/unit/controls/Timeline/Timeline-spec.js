@@ -536,14 +536,14 @@ describe('Timeline', () => {
       expect(graphElem).not.toBeNull();
       expect(graphElem.children[0].nodeName).toBe('DIV');
       expect(graphElem.children[0].getAttribute('class')).toBe(
-        styles.container,
+        styles.timelineContainer,
       );
     });
     it('Creates elements in order - with showLegend', () => {
       timeline.destroy();
       timeline = new Timeline(getAxes(axisJSON));
-      const canvas = fetchElementByClass(styles.container).childNodes[0];
-      const legend = fetchElementByClass(styles.container).childNodes[1];
+      const canvas = fetchElementByClass(styles.timelineContainer).childNodes[0];
+      const legend = fetchElementByClass(styles.timelineContainer).childNodes[1];
       expect(canvas).not.toBeNull();
       expect(canvas.getAttribute('class')).toBe(styles.canvas);
       expect(canvas.nodeName).toBe('svg');
@@ -560,8 +560,8 @@ describe('Timeline', () => {
           ...getAxes(axisJSON),
         }),
       );
-      const canvas = fetchElementByClass(styles.container).childNodes[0];
-      const legend = fetchElementByClass(styles.container).childNodes[1];
+      const canvas = fetchElementByClass(styles.timelineContainer).childNodes[0];
+      const legend = fetchElementByClass(styles.timelineContainer).childNodes[1];
       expect(canvas).not.toBeNull();
       expect(canvas.getAttribute('class')).toBe(styles.canvas);
       expect(canvas.nodeName).toBe('svg');
@@ -595,7 +595,7 @@ describe('Timeline', () => {
       expect(labelElement.classList).toContain(styles.axisLabelX);
     });
     it('Creates the canvas svg', () => {
-      const canvas = fetchElementByClass(styles.container).firstChild;
+      const canvas = fetchElementByClass(styles.timelineContainer).firstChild;
       expect(canvas).not.toBeNull();
       expect(canvas.nodeName).toBe('svg');
       expect(canvas.getAttribute('class')).toBe(styles.canvas);
@@ -810,7 +810,7 @@ describe('Timeline', () => {
         const input = utils.deepClone(getAxes(axisJSON));
         input.bindLegendTo = '#timelineLegendContainer';
         timeline = new Timeline(input);
-        const container = fetchElementByClass(styles.container);
+        const container = fetchElementByClass(styles.timelineContainer);
         const parentContainer = fetchElementByClass(
           'carbon-test-class',
         );
@@ -827,7 +827,7 @@ describe('Timeline', () => {
         ).toEqual('legend-container');
         expect(
           parentContainer.childNodes[1].getAttribute('class'),
-        ).toEqual(styles.container);
+        ).toEqual(styles.timelineContainer);
       });
       it('Shows legend when enabled', () => {
         timeline.destroy();
@@ -903,7 +903,7 @@ describe('Timeline', () => {
       expect(fetchElementByClass(styles.legend)).toBeNull();
     });
     it('Removes the container content', () => {
-      expect(fetchElementByClass(styles.container)).toBeNull();
+      expect(fetchElementByClass(styles.timelineContainer)).toBeNull();
     });
     it('Resets the API objects', () => {
       expect(timeline.config).toEqual({
