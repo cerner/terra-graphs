@@ -111,11 +111,11 @@ var axis = {
 
 ## Tick Values
 
-The tick values are set one of 3 methods, in the following priority:
+The tick values are set using one of 3 methods in the following priority:
 
 -   **Consumer provided values**:
 
-    Consumer provided values in `axis.y.ticks.values` and `axis.y2.ticks.values` will take priority if provided.
+    Consumer provided values in `axis.y.ticks.values` and `axis.y2.ticks.values` will take highest priority if it is set.
 
 -   **ticksCount property**
 
@@ -127,6 +127,8 @@ The tick values are set one of 3 methods, in the following priority:
 
 -   **Default**
 
-    If the Y2 Axis is visible, then the default behavior will calculate and use a ticksCount value based on the ranges of Y and Y2.
+    If neither `ticksCount` or custom tick values are prvided, then the default behavior is as follows:
+    
+    - If the Y2 Axis is visible, then the default behavior will calculate and use a ticksCount value based on the ranges of Y and Y2.
 
-    If there is no Y2 axis, the Carbon will use D3.js to automatically find the tick values.
+    - If there is no Y2 axis and `ticksCount = undefined`, the Carbon will use D3.js to automatically find the tick values.
