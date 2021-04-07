@@ -28,7 +28,6 @@ import {
   secondaryValuesJSON,
   valuesJSON,
 } from './helpers';
-import utils from '../../../../src/js/helpers/utils';
 import Gantt from '../../../../src/js/controls/Gantt';
 import {
   axisJSON as ganttAxisJSON,
