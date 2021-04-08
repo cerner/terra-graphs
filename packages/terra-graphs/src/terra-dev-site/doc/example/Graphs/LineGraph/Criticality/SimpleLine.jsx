@@ -10,8 +10,9 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#criticalitySimpleLine', 'LINE_TIMESERIES'));
 
-data[0].values[0].isCritical = true;
-data[0].values[10].isCritical = true;
+const contentData = utils.deepClone(data);
+contentData[0].values[0].isCritical = true;
+contentData[0].values[10].isCritical = true;
 
 export default () => <LineGraph graphID="criticalitySimpleLine" graphConfig={graphConfig} dataset={data} />;
 

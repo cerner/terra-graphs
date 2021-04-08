@@ -3,8 +3,8 @@ import PairedResultGraph from '@cerner/terra-graphs/lib/components/pairedResult/
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib/components/Dev.module.scss';
-import pairedResultTimeseries from '@cerner/carbon-graphs/dev/data/line/graphConfigObjects/pairedResult/pairedResultTimeseries';
-import data from '@cerner/carbon-graphs/dev/data/line/dataObjects/pairedResult/pairedResultTimeseriesData';
+import pairedResultTimeseries from '@cerner/carbon-graphs/dev/data/graphConfigObjects/pairedResult/pairedResultTimeseries';
+import data from '@cerner/carbon-graphs/dev/data/dataObjects/pairedResult/pairedResultTimeseriesData';
 
 /*
 Please refer documentation below to see graphConfig and data objects.

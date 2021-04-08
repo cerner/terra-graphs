@@ -1,7 +1,7 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import {
   loadPopup,
-} from '../../../../examples/popup';
+} from '../../../examples/popup';
 
 const data =  [{
     key: 'uid_3',
