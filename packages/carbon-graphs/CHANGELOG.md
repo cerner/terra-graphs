@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Fixed Y-axis and y2-axis icons not updating during reflow.
+  
 ## 2.16.3 - (March 16, 2021)
 
 * Changed

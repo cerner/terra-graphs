@@ -344,6 +344,120 @@ describe('Scatter - Panning', () => {
         ).toEqual(0);
       });
     });
+    describe('when data values updates during reflow', () => {
+      const graphData = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [],
+          },
+          {
+            key: 'uid_2',
+            values: [],
+          },
+
+        ],
+      };
+      const graphData1 = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [
+              {
+                x: '2016-03-03T12:00:00Z',
+                y: 2,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+          {
+            key: 'uid_2',
+            values: [
+              {
+                x: '2016-03-03T12:00:00Z',
+                y: 2,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+        ],
+      };
+      beforeEach(() => {
+        graphDefault.destroy();
+        const axisData = utils.deepClone(getAxes(axisTimeSeries));
+
+        axisData.pan = { enabled: true };
+        axisData.showLabel = true;
+        const input = getInput(valuesTimeSeries, false, false);
+        const input1 = getInput(valuesTimeSeries, false, true, true);
+        input1.key = 'uid_2';
+        graphDefault = new Graph(axisData);
+        graphDefault.loadContent(new Scatter(input));
+        graphDefault.loadContent(new Scatter(input1));
+      });
+      it('should add shapes in both y and y2 axis when there is noData in previous state', () => {
+        const scatterShapeContentY = fetchAllElementsByClass(
+          scatterGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        const scatterShapeContentY2 = fetchAllElementsByClass(
+          scatterGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        expect(
+          scatterShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+        expect(
+          scatterShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+
+        graphDefault.reflowMultipleDatasets(graphData);
+        expect(
+          scatterShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(0);
+        expect(
+          scatterShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(0);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          scatterShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+        expect(
+          scatterShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+      });
+      it('should keep shapes as is in both y and y2 axis when there is no noData in previous state', () => {
+        const scatterShapeContentY = fetchAllElementsByClass(
+          scatterGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        const scatterShapeContentY2 = fetchAllElementsByClass(
+          scatterGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        expect(
+          scatterShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+        expect(
+          scatterShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          scatterShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+        expect(
+          scatterShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+      });
+    });
   });
   describe('When pan is disabled', () => {
     beforeEach(() => {

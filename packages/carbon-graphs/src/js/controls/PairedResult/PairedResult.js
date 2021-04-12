@@ -327,6 +327,38 @@ class PairedResult extends GraphContent {
           graph.config,
         );
       });
+    } else if (graph.config.axis.y2.show) {
+      /* If data belongs to yAxis and shapes present in yAxis is null then prepareLabelShapeItem method gets executed to add shapes in yAxis
+       else if data belongs to y2Axis and shapes present in yAxis is null then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
+      if (this.config.yAxis === 'y' && (document.querySelector('.carbon-y-axis-label-shape-container svg') == null)) {
+        iterateOnPairType((type) => {
+          prepareLabelShapeItem(
+            graph.config,
+            {
+              key: `${this.dataTarget.key}_${type}`,
+              label: getValue(this.dataTarget.label, type),
+              color: getValue(this.dataTarget.color, type),
+              shape: getValue(this.dataTarget.shape, type),
+              values: this.dataTarget.values,
+            },
+            graph.axesLabelShapeGroup[this.config.yAxis],
+          );
+        });
+      } else if (this.config.yAxis === 'y2' && (document.querySelector('.carbon-y2-axis-label-shape-container svg') == null)) {
+        iterateOnPairType((type) => {
+          prepareLabelShapeItem(
+            graph.config,
+            {
+              key: `${this.dataTarget.key}_${type}`,
+              label: getValue(this.dataTarget.label, type),
+              color: getValue(this.dataTarget.color, type),
+              shape: getValue(this.dataTarget.shape, type),
+              values: this.dataTarget.values,
+            },
+            graph.axesLabelShapeGroup[this.config.yAxis],
+          );
+        });
+      }
     }
     const internalValuesSubset = getDataPointValues(this.dataTarget);
     graph.svg
