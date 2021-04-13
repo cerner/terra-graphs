@@ -378,7 +378,7 @@ describe('Line - Panning', () => {
         );
         const lineShapeContentY2 = fetchAllElementsByClass(
           lineGraphContainer,
-          styles.axisLabelYShapeContainer,
+          styles.axisLabelY2ShapeContainer,
         );
         expect(
           lineShapeContentY[0].querySelectorAll('svg').length,
@@ -410,7 +410,7 @@ describe('Line - Panning', () => {
         );
         const lineShapeContentY2 = fetchAllElementsByClass(
           lineGraphContainer,
-          styles.axisLabelYShapeContainer,
+          styles.axisLabelY2ShapeContainer,
         );
         expect(
           lineShapeContentY[0].querySelectorAll('svg').length,
@@ -426,6 +426,123 @@ describe('Line - Panning', () => {
         expect(
           lineShapeContentY2[0].querySelectorAll('svg').length,
         ).toEqual(1);
+      });
+    });
+    describe('when there is more than one data set in single axis', () => {
+      const graphData = {
+        panData: [
+          {
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            key: 'uid_2',
+            values: [],
+          },
+
+        ],
+      };
+      const graphData1 = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [
+              {
+                x: '2016-03-03T12:00:00Z',
+                y: 2,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+          {
+            key: 'uid_2',
+            values: [
+              {
+                x: '2016-03-03T12:00:00Z',
+                y: 2,
+              },
+              {
+                x: '2016-04-03T12:00:00Z',
+                y: 20,
+              },
+            ],
+          },
+        ],
+      };
+      it('should add and remove one shape in y-axis successfully during reflow', () => {
+        graphDefault.destroy();
+        const axisData = utils.deepClone(getAxes(axisTimeSeries));
+
+        axisData.pan = { enabled: true };
+        axisData.showLabel = true;
+        const input = getInput(valuesTimeSeries, false, false);
+        const input1 = getInput(valuesTimeSeries, false, true);
+        input1.key = 'uid_2';
+        graphDefault = new Graph(axisData);
+        graphDefault.loadContent(new Line(input));
+        graphDefault.loadContent(new Line(input1));
+        const lineShapeContentY = fetchAllElementsByClass(
+          lineGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        expect(
+          lineShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(2);
+
+        graphDefault.reflowMultipleDatasets(graphData);
+        expect(
+          lineShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+        expect(
+          lineShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0],
+        ).toEqual(undefined);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          lineShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(2);
+        expect(
+          lineShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0],
+        ).not.toBeNull();
+      });
+      it('should add and remove one shape in y2-axis successfully during reflow', () => {
+        graphDefault.destroy();
+        const axisData = utils.deepClone(getAxes(axisTimeSeries));
+
+        axisData.pan = { enabled: true };
+        axisData.showLabel = true;
+        const input = getInput(valuesTimeSeries, false, false, true);
+        const input1 = getInput(valuesTimeSeries, false, true, true);
+        input1.key = 'uid_2';
+        graphDefault = new Graph(axisData);
+        graphDefault.loadContent(new Line(input));
+        graphDefault.loadContent(new Line(input1));
+        const lineShapeContentY2 = fetchAllElementsByClass(
+          lineGraphContainer,
+          styles.axisLabelY2ShapeContainer,
+        );
+        expect(
+          lineShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(2);
+
+        graphDefault.reflowMultipleDatasets(graphData);
+        expect(
+          lineShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(1);
+        expect(
+          lineShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0],
+        ).toEqual(undefined);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          lineShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(2);
+        expect(
+          lineShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0],
+        ).not.toBeNull();
       });
     });
   });

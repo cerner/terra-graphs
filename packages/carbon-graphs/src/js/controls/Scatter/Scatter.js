@@ -237,15 +237,15 @@ class Scatter extends GraphContent {
         graph.config,
       );
     } else if (graph.config.axis.y2.show) {
-      /* If data belongs to yAxis and shapes present in yAxis is null then prepareLabelShapeItem method gets executed to add shapes in yAxis
-       else if data belongs to y2Axis and shapes present in yAxis is null then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
-      if (this.config.yAxis === 'y' && (document.querySelector('.carbon-y-axis-label-shape-container svg') == null)) {
+      /* If data belongs to yAxis and shape associated with data id in yAxis is null then prepareLabelShapeItem method gets executed to add shape in yAxis
+       else if data belongs to y2Axis and shape associated with data id in y2Axis is null then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
+      if (this.config.yAxis === 'y' && (document.querySelector('.carbon-y-axis-label-shape-container').querySelector(`svg[aria-describedby="${graphData.key}"]`) == null)) {
         prepareLabelShapeItem(
           graph.config,
           this.dataTarget,
           graph.axesLabelShapeGroup[this.config.yAxis],
         );
-      } else if (this.config.yAxis === 'y2' && (document.querySelector('.carbon-y2-axis-label-shape-container svg') == null)) {
+      } else if (this.config.yAxis === 'y2' && (document.querySelector('.carbon-y2-axis-label-shape-container').querySelector(`svg[aria-describedby="${graphData.key}"]`) == null)) {
         prepareLabelShapeItem(
           graph.config,
           this.dataTarget,
