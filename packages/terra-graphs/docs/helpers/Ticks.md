@@ -127,8 +127,8 @@ The tick values are set using one of 3 methods in the following priority:
 
 -   **Default**
 
-    If neither `ticksCount` or custom tick values are prvided, then the default behavior is as follows:
+     If neither `ticksCount` nor custom tick values are provided, then the default behavior is as follows:
     
-    - If the Y2 Axis is visible, then the default behavior will calculate and use a ticksCount value based on the ranges of Y and Y2.
+    - If the Y2 Axis is visible, then Carbon will calculate and use a ticksCount value, based on the ranges of Y and Y2.
 
-    - If there is no Y2 axis and `ticksCount = undefined`, the Carbon will use D3.js to automatically find the tick values.
+    - Else if there is no Y2 axis and `ticksCount = undefined`, Carbon will use D3.js to automatically find the tick values.
