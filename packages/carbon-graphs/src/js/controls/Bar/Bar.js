@@ -4,6 +4,7 @@ import { GraphContent } from '../../core';
 import { getDefaultValue } from '../../core/BaseConfig';
 import constants from '../../helpers/constants';
 import {
+  addShapesDuringFlow,
   prepareLabelShapeItem,
   removeLabelShapeItem,
 } from '../../helpers/label';
@@ -259,21 +260,7 @@ class Bar extends GraphContent {
         graph.config,
       );
     } else if (graph.config.axis.y2.show) {
-      /* If data belongs to yAxis and shape associated with data id in yAxis is null then prepareLabelShapeItem method gets executed to add shape in yAxis
-       else if data belongs to y2Axis and shape associated with data id in y2Axis is null then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
-      if (this.config.yAxis === 'y' && (graph.svg.select(`.${styles.axisLabelYShapeContainer} svg[aria-describedby="${graphData.key}"]`).empty())) {
-        prepareLabelShapeItem(
-          graph.config,
-          this.dataTarget,
-          graph.axesLabelShapeGroup[this.config.yAxis],
-        );
-      } else if (this.config.yAxis === 'y2' && (graph.svg.select(`.${styles.axisLabelY2ShapeContainer} svg[aria-describedby="${graphData.key}"]`).empty())) {
-        prepareLabelShapeItem(
-          graph.config,
-          this.dataTarget,
-          graph.axesLabelShapeGroup[this.config.yAxis],
-        );
-      }
+      addShapesDuringFlow(graph, graphData, this);
     }
     scaleBandAxis(this.bandScale, graph.config, graph.content);
     const barSelectionGroup = graph.svg
