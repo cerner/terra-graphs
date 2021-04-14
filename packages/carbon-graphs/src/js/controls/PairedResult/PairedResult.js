@@ -332,7 +332,7 @@ class PairedResult extends GraphContent {
        else if data belongs to y2Axis and shape associated with data id in y2Axis is null then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
       if (this.config.yAxis === 'y') {
         iterateOnPairType((type) => {
-          if (document.querySelector('.carbon-y-axis-label-shape-container').querySelector(`svg[aria-describedby="${graphData.key}_${type}"]`) == null) {
+          if ((graph.svg.select(`.${styles.axisLabelYShapeContainer} svg[aria-describedby="${graphData.key}_${type}"]`).empty())) {
             prepareLabelShapeItem(
               graph.config,
               {
@@ -346,9 +346,9 @@ class PairedResult extends GraphContent {
             );
           }
         });
-      } else if (this.config.yAxis === 'y2' && (document.querySelector('.carbon-y2-axis-label-shape-container').querySelector(`svg[aria-describedby="${graphData.key}"]`) == null)) {
+      } else if (this.config.yAxis === 'y2') {
         iterateOnPairType((type) => {
-          if (document.querySelector('.carbon-y2-axis-label-shape-container').querySelector(`svg[aria-describedby="${graphData.key}_${type}"]`) == null) {
+          if ((graph.svg.select(`.${styles.axisLabelY2ShapeContainer} svg[aria-describedby="${graphData.key}_${type}"]`).empty())) {
             prepareLabelShapeItem(
               graph.config,
               {

@@ -21,7 +21,6 @@ import {
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
 import errors from '../../../../src/js/helpers/errors';
-import Scatter from '../../../../src/js/controls/Scatter';
 
 describe('Bar - Panning', () => {
   let graphDefault = null;

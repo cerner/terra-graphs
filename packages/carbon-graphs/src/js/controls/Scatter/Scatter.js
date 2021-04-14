@@ -239,13 +239,13 @@ class Scatter extends GraphContent {
     } else if (graph.config.axis.y2.show) {
       /* If data belongs to yAxis and shape associated with data id in yAxis is null then prepareLabelShapeItem method gets executed to add shape in yAxis
        else if data belongs to y2Axis and shape associated with data id in y2Axis is null then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
-      if (this.config.yAxis === 'y' && (document.querySelector('.carbon-y-axis-label-shape-container').querySelector(`svg[aria-describedby="${graphData.key}"]`) == null)) {
+      if (this.config.yAxis === 'y' && (graph.svg.select(`.${styles.axisLabelYShapeContainer} svg[aria-describedby="${graphData.key}"]`).empty())) {
         prepareLabelShapeItem(
           graph.config,
           this.dataTarget,
           graph.axesLabelShapeGroup[this.config.yAxis],
         );
-      } else if (this.config.yAxis === 'y2' && (document.querySelector('.carbon-y2-axis-label-shape-container').querySelector(`svg[aria-describedby="${graphData.key}"]`) == null)) {
+      } else if (this.config.yAxis === 'y2' && (graph.svg.select(`.${styles.axisLabelY2ShapeContainer} svg[aria-describedby="${graphData.key}"]`).empty())) {
         prepareLabelShapeItem(
           graph.config,
           this.dataTarget,
