@@ -316,53 +316,30 @@ class PairedResult extends GraphContent {
         }
       }
     });
-    if (utils.isEmpty(graphData.values)) {
+    iterateOnPairType((type) => {
+      const key = `${this.dataTarget.key}_${type}`;
+      removeLabelShapeItem(
+        graph.axesLabelShapeGroup[this.config.yAxis],
+        {
+          key,
+        },
+        graph.config,
+      );
+    });
+    if (!utils.isEmpty(graphData.values)) {
       iterateOnPairType((type) => {
-        const key = `${this.dataTarget.key}_${type}`;
-        removeLabelShapeItem(
-          graph.axesLabelShapeGroup[this.config.yAxis],
-          {
-            key,
-          },
+        prepareLabelShapeItem(
           graph.config,
+          {
+            key: `${this.dataTarget.key}_${type}`,
+            label: getValue(this.dataTarget.label, type),
+            color: getValue(this.dataTarget.color, type),
+            shape: getValue(this.dataTarget.shape, type),
+            values: this.dataTarget.values,
+          },
+          graph.axesLabelShapeGroup[this.config.yAxis],
         );
       });
-    } else if (graph.config.axis.y2.show) {
-      /* If data belongs to yAxis and shape associated with data id in yAxis is null then prepareLabelShapeItem method gets executed to add shape in yAxis
-       else if data belongs to y2Axis and shape associated with data id in y2Axis is null then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
-      if (this.config.yAxis === 'y') {
-        iterateOnPairType((type) => {
-          if ((graph.svg.select(`.${styles.axisLabelYShapeContainer} svg[aria-describedby="${graphData.key}_${type}"]`).empty())) {
-            prepareLabelShapeItem(
-              graph.config,
-              {
-                key: `${this.dataTarget.key}_${type}`,
-                label: getValue(this.dataTarget.label, type),
-                color: getValue(this.dataTarget.color, type),
-                shape: getValue(this.dataTarget.shape, type),
-                values: this.dataTarget.values,
-              },
-              graph.axesLabelShapeGroup[this.config.yAxis],
-            );
-          }
-        });
-      } else if (this.config.yAxis === 'y2') {
-        iterateOnPairType((type) => {
-          if ((graph.svg.select(`.${styles.axisLabelY2ShapeContainer} svg[aria-describedby="${graphData.key}_${type}"]`).empty())) {
-            prepareLabelShapeItem(
-              graph.config,
-              {
-                key: `${this.dataTarget.key}_${type}`,
-                label: getValue(this.dataTarget.label, type),
-                color: getValue(this.dataTarget.color, type),
-                shape: getValue(this.dataTarget.shape, type),
-                values: this.dataTarget.values,
-              },
-              graph.axesLabelShapeGroup[this.config.yAxis],
-            );
-          }
-        });
-      }
     }
     const internalValuesSubset = getDataPointValues(this.dataTarget);
     graph.svg

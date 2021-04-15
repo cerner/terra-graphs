@@ -337,23 +337,20 @@ const destroyTooltipDiv = () => {
 };
 
 /**
- * Add shapes to y and y2 axes during reflow.
+ * Update shapes in y and y2 axes during reflow.
  *
  * @private
  * @param {object} graph - Graph instance
  * @param {object} graphData - Graph data
  * @param {Line} control - Line instance
  */
-const addShapesDuringFlow = (graph, graphData, control) => {
-  /* If data belongs to yAxis and shape associated with data id in yAxis is empty then prepareLabelShapeItem method gets executed to add shape in yAxis
-   else if data belongs to y2Axis and shape associated with data id in y2Axis is empty then prepareLabelShapeItem method gets executed to add shapes in y2Axes. */
-  if (control.config.yAxis === 'y' && (graph.svg.select(`.${styles.axisLabelYShapeContainer} svg[aria-describedby="${graphData.key}"]`).empty())) {
-    prepareLabelShapeItem(
-      graph.config,
-      control.dataTarget,
-      graph.axesLabelShapeGroup[control.config.yAxis],
-    );
-  } else if (control.config.yAxis === 'y2' && (graph.svg.select(`.${styles.axisLabelY2ShapeContainer} svg[aria-describedby="${graphData.key}"]`).empty())) {
+const updateShapesDuringReflow = (graph, graphData, control) => {
+  removeLabelShapeItem(
+    graph.axesLabelShapeGroup[control.config.yAxis],
+    control.dataTarget,
+    graph.config,
+  );
+  if (!utils.isEmpty(graphData.values)) {
     prepareLabelShapeItem(
       graph.config,
       control.dataTarget,
@@ -375,5 +372,5 @@ export {
   truncateLabel,
   createTooltipDiv,
   destroyTooltipDiv,
-  addShapesDuringFlow,
+  updateShapesDuringReflow,
 };
