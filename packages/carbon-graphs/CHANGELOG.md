@@ -3,7 +3,7 @@
 ## Unreleased
 
 *Changed 
- * Fixed Timeline graph issue when it is generated as second graph in page.
+ * Fixed rendering of timeline graph when it is rendered below another graph.
  
 ## 2.16.3 - (March 16, 2021)
 

@@ -763,7 +763,7 @@ describe('Timeline - Load', () => {
     });
   });
   describe('When timeline is created as second graph in page', () => {
-    it('should render graph from right point', () => {
+    it('should render graph from correct point', () => {
       timeline.destroy();
       let gantt = null;
       let ganttChartContainer = null;
