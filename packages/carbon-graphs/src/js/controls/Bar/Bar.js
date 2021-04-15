@@ -4,9 +4,9 @@ import { GraphContent } from '../../core';
 import { getDefaultValue } from '../../core/BaseConfig';
 import constants from '../../helpers/constants';
 import {
-  addShapesDuringFlow,
   prepareLabelShapeItem,
-  removeLabelShapeItem, updateShapesDuringReflow,
+  removeLabelShapeItem,
+  updateShapesDuringReflow,
 } from '../../helpers/label';
 import { removeLegendItem, reflowLegend } from '../../helpers/legend';
 import styles from '../../helpers/styles';
