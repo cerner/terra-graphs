@@ -342,7 +342,7 @@ const destroyTooltipDiv = () => {
  * @private
  * @param {object} graph - Graph instance
  * @param {object} graphData - Graph data
- * @param {Line} control - Line instance
+ * @param {object} control - data instance
  */
 const updateShapesDuringReflow = (graph, graphData, control) => {
   removeLabelShapeItem(
