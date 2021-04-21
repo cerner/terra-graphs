@@ -1,6 +1,6 @@
 # ---
     parser: babel-eslint
-    extends: "@cerner/eslint-config-terra"
+    extends: "@cerner/terra"
     settings:
         polyfills:
             - Promise
