@@ -1,10 +1,10 @@
 /* eslint import/no-unresolved: off */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carbon from '../../../../carbon-graphs/src/js/carbon';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './LineGraph.module.scss';
-import utils from '../../../../carbon-graphs/src/js/helpers/utils';
+import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
