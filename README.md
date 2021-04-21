@@ -112,8 +112,8 @@ npm i @cerner/carbon-graphs --save-dev
 
 ### Getting Started
 
--   [Getting Started](./packages/terra-graphs/docs/getting-started/GettingStarted.md)
--   [API Reference](./packages/terra-graphs/docs/README.md)
+-   [Getting Started](./packages/terra-docs/docs/getting-started/GettingStarted.md)
+-   [API Reference](./packages/terra-docs/docs/README.md)
 
 <hr>
 <!--  -->
@@ -127,18 +127,18 @@ npm i @cerner/carbon-graphs --save-dev
 
 ### Graph types
 
--   [Line](./packages/terra-graphs/docs/controls/Line.md#usage)
--   [Multi Line](./packages/terra-graphs/docs/controls/Line.md#multi-line)
--   [Spline Line](./packages/terra-graphs/docs/controls/Line.md#spline-line)
--   [Paired Result](./packages/terra-graphs/docs/controls/PairedResult.md#usage)
--   [Bar](./packages/terra-graphs/docs/controls/Bar.md#usage)
--   [Timeline](./packages/terra-graphs/docs/controls/Timeline.md#usage)
--   [Pie](./packages/terra-graphs/docs/controls/Pie.md#usage)
--   [Gantt](./packages/terra-graphs/docs/controls/Gantt.md#usage)
--   [Scatter](./packages/terra-graphs/docs/controls/Scatter.md#usage)
--   [Bubble](./packages/terra-graphs/docs/controls/Bubble.md#usage)
-    -   [Bubble Single Dataset](./packages/terra-graphs/docs/controls/BubbleSingleDataset.md)
-    -   [Bubble Multiple Dataset](./packages/terra-graphs/docs/controls/BubbleMultipleDataset.md)
+-   [Line](./packages/terra-docs/docs/controls/Line.md#usage)
+-   [Multi Line](./packages/terra-docs/docs/controls/Line.md#multi-line)
+-   [Spline Line](./packages/terra-docs/docs/controls/Line.md#spline-line)
+-   [Paired Result](./packages/terra-docs/docs/controls/PairedResult.md#usage)
+-   [Bar](./packages/terra-docs/docs/controls/Bar.md#usage)
+-   [Timeline](./packages/terra-docs/docs/controls/Timeline.md#usage)
+-   [Pie](./packages/terra-docs/docs/controls/Pie.md#usage)
+-   [Gantt](./packages/terra-docs/docs/controls/Gantt.md#usage)
+-   [Scatter](./packages/terra-docs/docs/controls/Scatter.md#usage)
+-   [Bubble](./packages/terra-docs/docs/controls/Bubble.md#usage)
+    -   [Bubble Single Dataset](./packages/terra-docs/docs/controls/BubbleSingleDataset.md)
+    -   [Bubble Multiple Dataset](./packages/terra-docs/docs/controls/BubbleMultipleDataset.md)
 
 
 ### Graph Settings and Toggles
