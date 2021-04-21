@@ -25,16 +25,12 @@ const PaiedResultGraph = ({
 }) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    debugger;
     if (!(utils.isUndefined(dataset))) {
-      debugger;
       dataset.forEach((data) => {
         graph.loadContent(Carbon.api.pairedResult(data));
       });
-    }else {
-      return;
-  }
-}, [graphConfig, dataset]);
+    }
+  }, [graphConfig, dataset]);
 
   return (
     <div id="canvasContainer">
