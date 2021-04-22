@@ -3,7 +3,6 @@ import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib//components/Dev.module.scss';
 import lineTimeseries from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Line/lineTimeseries';
-import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/timeseriesData';
 
 const tickValues = [
   new Date(2016, 0, 1, 1, 0).toISOString(),
@@ -22,4 +21,4 @@ graphConfig.axis.x.ticks = {
   format: '%H:%M:%S',
 };
 
-export default () => <LineGraph graphID="staticXAxisTicks" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="staticXAxisTicks" graphConfig={graphConfig} />;

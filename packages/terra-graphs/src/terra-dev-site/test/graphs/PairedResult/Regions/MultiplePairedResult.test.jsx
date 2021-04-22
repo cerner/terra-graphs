@@ -6,39 +6,39 @@ import pairedResultTimeseries from '@cerner/carbon-graphs/dev/data/graphConfigOb
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/pairedResult/pairedResultY2AxisData';
 
 export const multiRegion = {
-    high: [
-      {
-        axis: 'y',
-        start: 120,
-        end: 170,
-        color: '#c8cacb',
-      },
-    ],
-    low: [
-      {
-        axis: 'y',
-        start: 20,
-        end: 100,
-      },
-    ],
-  };
-  export const multiRegionAlt = {
-    high: [
-      {
-        axis: 'y2',
-        start: 210,
-        end: 280,
-        color: '#c8cacb',
-      },
-    ],
-    low: [
-      {
-        axis: 'y2',
-        start: 175,
-        end: 200,
-      },
-    ],
-  };
+  high: [
+    {
+      axis: 'y',
+      start: 120,
+      end: 170,
+      color: '#c8cacb',
+    },
+  ],
+  low: [
+    {
+      axis: 'y',
+      start: 20,
+      end: 100,
+    },
+  ],
+};
+export const multiRegionAlt = {
+  high: [
+    {
+      axis: 'y2',
+      start: 210,
+      end: 280,
+      color: '#c8cacb',
+    },
+  ],
+  low: [
+    {
+      axis: 'y2',
+      start: 175,
+      end: 200,
+    },
+  ],
+};
 
 /*
 Please refer documentation below to see graphConfig and data objects.

@@ -12,24 +12,24 @@ Please refer documentation below to see graphConfig and data objects.
 const graphConfig = utils.deepClone(barTimeseries('#timeseriesBarWithEventline'));
 
 graphConfig.eventline = [
-    {
-      color: Carbon.helpers.COLORS.GREY,
-      style: {
-        strokeDashArray: '4,4',
-      },
-      value: new Date(2017, 12, 2).toISOString(),
+  {
+    color: Carbon.helpers.COLORS.GREY,
+    style: {
+      strokeDashArray: '4,4',
     },
-    {
-      color: Carbon.helpers.COLORS.BLACK,
-      style: {
-        strokeDashArray: '2,2',
-      },
-      value: new Date(2017, 12, 3).toISOString(),
-    },
-  ],
-  graphConfig.clickPassThrough = {
-    dateline: false,
+    value: new Date(2017, 12, 2).toISOString(),
   },
-  graphConfig.showVGrid = false;
+  {
+    color: Carbon.helpers.COLORS.BLACK,
+    style: {
+      strokeDashArray: '2,2',
+    },
+    value: new Date(2017, 12, 3).toISOString(),
+  },
+];
+graphConfig.clickPassThrough = {
+  dateline: false,
+};
+graphConfig.showVGrid = false;
 
 export default () => <BarGraph graphID="timeseriesBarWithEventline" graphConfig={graphConfig} dataset={data} />;

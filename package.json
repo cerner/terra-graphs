@@ -82,6 +82,7 @@
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "danger": "^9.1.0",
+    "details-polyfill": "^1.2.0",
     "docdash": "^1.2.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",

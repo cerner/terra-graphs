@@ -1,11 +1,11 @@
 @import '../Variables.module';
 
 .carbon-data-selected-bar {
-    display: block;
-    @include terra-graph-selected-indicator-styles();
-    @include terra-graph-carbon-shape-rendering();
+  @include terra-graph-selected-indicator-styles();
+  @include terra-graph-carbon-shape-rendering();
+  display: block;
 
-    &[aria-hidden="true"] {
-        @include terra-graph-opacity-hide();
-    }
+  &[aria-hidden='true'] {
+    @include terra-graph-opacity-hide();
+  }
 }

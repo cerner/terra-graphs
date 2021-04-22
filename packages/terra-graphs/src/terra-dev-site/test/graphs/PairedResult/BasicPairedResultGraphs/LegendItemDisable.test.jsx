@@ -9,9 +9,7 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/pairedResult/paired
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(pairedResultDefault('#simplePairedResultGraph'));
-console.log(data);
 const contentData = utils.deepClone(data);
-console.log(contentData);
 contentData[0].label.high.isDisabled = true;
 contentData[0].label.low.isDisabled = true;
 

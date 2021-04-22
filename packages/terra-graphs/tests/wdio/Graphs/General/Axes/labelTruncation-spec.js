@@ -5,9 +5,6 @@ Terra.describeViewports('Label Truncation', ['tiny', 'medium', 'large'], () => {
     it('canvaselement', () => {
       Terra.validates.screenshot('canvas', { selector: '.carbon-graph-canvas' });
     });
-    it('legend element', () => {
-      Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
-    });
     it('x-axis', () => {
       $('.carbon-x-axis-label').click();
       Terra.validates.screenshot('x-axis click', { selector: '.carbon-graph-container' });

@@ -5,9 +5,5 @@ Terra.describeViewports('X Axis Ticks Formatted', ['tiny', 'medium', 'large'], (
     it('canvas element', () => {
       Terra.validates.screenshot('canvas', { selector: '.carbon-graph-canvas' });
     });
-
-    it('legend element', () => {
-      Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
-    });
   });
 });

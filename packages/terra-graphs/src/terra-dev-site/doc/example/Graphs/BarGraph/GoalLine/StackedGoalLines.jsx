@@ -42,5 +42,4 @@ contentData[0].regions = region;
 contentData[1].regions = region;
 contentData[2].regions = region;
 
-
 export default () => <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={contentData} />;

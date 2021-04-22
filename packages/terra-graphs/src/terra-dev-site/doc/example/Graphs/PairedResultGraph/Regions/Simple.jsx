@@ -6,22 +6,22 @@ import pairedResultDefault from '@cerner/carbon-graphs/dev/data/graphConfigObjec
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/pairedResult/pairedResultSimpleData';
 
 const regions = {
-    high: [
-      {
-        axis: 'y',
-        start: 140,
-        end: 220,
-        color: '#c8cacb',
-      },
-    ],
-    low: [
-      {
-        axis: 'y',
-        start: 20,
-        end: 70,
-      },
-    ],
-  };
+  high: [
+    {
+      axis: 'y',
+      start: 140,
+      end: 220,
+      color: '#c8cacb',
+    },
+  ],
+  low: [
+    {
+      axis: 'y',
+      start: 20,
+      end: 70,
+    },
+  ],
+};
 /*
 Please refer documentation below to see graphConfig and data objects.
 */

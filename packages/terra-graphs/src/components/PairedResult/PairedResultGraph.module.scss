@@ -1,5 +1,5 @@
-@import '../Variables.module.scss';
-@import '../colors.module.scss';
+@import '../Variables.module';
+@import '../colors.module';
 
 /*
 We are forcing display of the hidden item for data points,
@@ -7,29 +7,29 @@ this is only applicable when legend toggle is applied
 and one of the data point is selected.
 */
 .carbon-data-pair--selected {
-    @include terra-graph-opacity-show(); //!important;
+  @include terra-graph-opacity-show(); //!important;
 }
 
 .carbon-paired-point {
-    &[aria-disabled='false'] {
-        cursor: pointer;
-    }
+  &[aria-disabled='false'] {
+    cursor: pointer;
+  }
 
-    &[aria-hidden='true'] {
-        @include terra-graph-opacity-hide();
-    }
+  &[aria-hidden='true'] {
+    @include terra-graph-opacity-hide();
+  }
 }
 
 .carbon-paired-line {
-    fill: none;
-    stroke-width: 1px;
-    stroke: var(--dark);
+  fill: none;
+  stroke: var(--dark);
+  stroke-width: 1px;
 
-    &[aria-disabled="false"] {
-        cursor: pointer;
-    }
+  &[aria-disabled='false'] {
+    cursor: pointer;
+  }
 
-    &[aria-hidden='true'] {
-        @include terra-graph-opacity-hide();
-    }
+  &[aria-hidden='true'] {
+    @include terra-graph-opacity-hide();
+  }
 }

@@ -11,21 +11,21 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(pairedResultTimeseries('#pairedResultWithEventline'));
 graphConfig.eventline = [
-    {
-      color: Carbon.helpers.COLORS.GREY,
-      style: {
-        strokeDashArray: '4,4',
-      },
-      value: new Date(2016, 8, 1, 8).toISOString(),
+  {
+    color: Carbon.helpers.COLORS.GREY,
+    style: {
+      strokeDashArray: '4,4',
     },
-    {
-      color: Carbon.helpers.COLORS.BLACK,
-      style: {
-        strokeDashArray: '2,2',
-      },
-      value: new Date(2017, 5, 1, 12).toISOString(),
+    value: new Date(2016, 8, 1, 8).toISOString(),
+  },
+  {
+    color: Carbon.helpers.COLORS.BLACK,
+    style: {
+      strokeDashArray: '2,2',
     },
-  ];
+    value: new Date(2017, 5, 1, 12).toISOString(),
+  },
+];
 graphConfig.clickPassThrough = {
   dateline: false,
 };

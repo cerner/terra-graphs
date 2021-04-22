@@ -5,9 +5,5 @@ Terra.describeViewports('suppress tick value trailing zero', ['tiny', 'medium', 
     it('canvas element', () => {
       Terra.validates.screenshot('canvas', { selector: '.carbon-graph-canvas' });
     });
-
-    it('legend element', () => {
-      Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
-    });
   });
 });

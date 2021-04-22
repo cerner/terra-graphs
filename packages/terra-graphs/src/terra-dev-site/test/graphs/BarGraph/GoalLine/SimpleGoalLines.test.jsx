@@ -6,30 +6,30 @@ import barDefault from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Bar/ba
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/Bar/simpleBarData';
 
 const regions = [
-      {
-        axis: 'y',
-        x: 1,
-        start: 7,
-        end: 7,
-      },
-      {
-        axis: 'y',
-        x: 2,
-        start: 13,
-        end: 13,
-      },
-      {
-        axis: 'y',
-        x: 3,
-        start: 17,
-        end: 17,
-      },
-      {
-        axis: 'y',
-        x: 4,
-        start: 4,
-        end: 4,
-      },
+  {
+    axis: 'y',
+    x: 1,
+    start: 7,
+    end: 7,
+  },
+  {
+    axis: 'y',
+    x: 2,
+    start: 13,
+    end: 13,
+  },
+  {
+    axis: 'y',
+    x: 3,
+    start: 17,
+    end: 17,
+  },
+  {
+    axis: 'y',
+    x: 4,
+    start: 4,
+    end: 4,
+  },
 ];
 
 /*
