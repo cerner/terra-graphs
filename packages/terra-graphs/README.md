@@ -6,7 +6,7 @@
 A react graphing library built using d3 based on Cerner design standards.
 
 - [Getting Started](#getting-started)
-- [Documentation](https://github.com/cerner/terra-core/tree/main/packages/terra-graphs/docs)
+- [Documentation](https://github.com/cerner/terra-core/tree/main/packages/terra-docs/docs)
 - [LICENSE](#license)
 
 ## Getting Started
