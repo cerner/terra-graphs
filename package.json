@@ -103,7 +103,6 @@
     "regenerator-runtime": "^0.13.2",
     "style-loader": "^2.0.0",
     "stylelint": "^13.0.0",
-    "terra-dev-site": "^6.5.0",
     "terra-disclosure-manager": "^4.9.0",
     "terra-enzyme-intl": "^3.0.0",
     "url-loader": "^4.1.1",
