@@ -6,6 +6,7 @@ import constants from '../../helpers/constants';
 import {
   prepareLabelShapeItem,
   removeLabelShapeItem,
+  updateShapesDuringReflow,
 } from '../../helpers/label';
 import { removeLegendItem, reflowLegend } from '../../helpers/legend';
 import styles from '../../helpers/styles';
@@ -252,13 +253,8 @@ class Bar extends GraphContent {
       x: d,
       valueSubsetArray: [],
     }));
-    if (utils.isEmpty(graphData.values)) {
-      removeLabelShapeItem(
-        graph.axesLabelShapeGroup[this.config.yAxis],
-        this.dataTarget,
-        graph.config,
-      );
-    }
+
+    updateShapesDuringReflow(graph, graphData, this);
     scaleBandAxis(this.bandScale, graph.config, graph.content);
     const barSelectionGroup = graph.svg
       .select(`.${styles.barSelectionGroup}`)

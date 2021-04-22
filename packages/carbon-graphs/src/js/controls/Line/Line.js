@@ -6,6 +6,7 @@ import constants from '../../helpers/constants';
 import {
   prepareLabelShapeItem,
   removeLabelShapeItem,
+  updateShapesDuringReflow,
 } from '../../helpers/label';
 import { removeLegendItem, reflowLegend } from '../../helpers/legend';
 import {
@@ -250,14 +251,7 @@ class Line extends GraphContent {
     drawDataLines(graph.scale, graph.config, lineSVG.enter());
     lineSVG.exit().remove();
 
-    if (utils.isEmpty(graphData.values)) {
-      removeLabelShapeItem(
-        graph.axesLabelShapeGroup[this.config.yAxis],
-        this.dataTarget,
-        graph.config,
-      );
-    }
-
+    updateShapesDuringReflow(graph, graphData, this);
     if (graph.config.showShapes) {
       const currentPointsPath = graph.svg
         .select(`g[aria-describedby="${graphData.key}"]`)

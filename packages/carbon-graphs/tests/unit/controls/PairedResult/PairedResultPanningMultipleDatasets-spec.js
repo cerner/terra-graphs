@@ -733,6 +733,300 @@ describe('PairedResult', () => {
         ).toEqual(0);
       });
     });
+    describe('when data values updates during reflow', () => {
+      const graphData = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [],
+          },
+          {
+            key: 'uid_2',
+            values: [],
+          },
+
+        ],
+      };
+      const graphData1 = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 10,
+                },
+              },
+            ],
+          },
+          {
+            key: 'uid_2',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 10,
+                },
+              },
+            ],
+          },
+        ],
+      };
+      beforeEach(() => {
+        graphDefault.destroy();
+        const axisData = utils.deepClone(getAxes(axisTimeSeries));
+
+        axisData.pan = { enabled: true };
+        axisData.showLabel = true;
+        const input = getInput(valuesTimeSeries, false, false);
+        const input1 = getInput(valuesTimeSeries, false, true, true);
+        input1.key = 'uid_2';
+        graphDefault = new Graph(axisData);
+        graphDefault.loadContent(new PairedResult(input));
+        graphDefault.loadContent(new PairedResult(input1));
+      });
+      it('should add shapes in both y and y2 axis when there is noData in previous state', () => {
+        const pairedResultShapeContentY = fetchAllElementsByClass(
+          pairedResultGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        const pairedResultShapeContentY2 = fetchAllElementsByClass(
+          pairedResultGraphContainer,
+          styles.axisLabelY2ShapeContainer,
+        );
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+
+        graphDefault.reflowMultipleDatasets(graphData);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(0);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(0);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+      });
+      it('should keep shapes as is in both y and y2 axis when there is no noData in previous state', () => {
+        const pairedResultShapeContentY = fetchAllElementsByClass(
+          pairedResultGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        const pairedResultShapeContentY2 = fetchAllElementsByClass(
+          pairedResultGraphContainer,
+          styles.axisLabelY2ShapeContainer,
+        );
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+      });
+    });
+    describe('when there is more than one data set in single axis', () => {
+      const graphData = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 10,
+                },
+              },
+            ],
+          },
+          {
+            key: 'uid_2',
+            values: [],
+          },
+
+        ],
+      };
+      const graphData1 = {
+        panData: [
+          {
+            key: 'uid_1',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 10,
+                },
+              },
+            ],
+          },
+          {
+            key: 'uid_2',
+            values: [
+              {
+                high: {
+                  x: '2016-09-18T12:00:00Z',
+                  y: 70,
+                },
+                mid: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 30,
+                },
+                low: {
+                  x: '2016-09-19T02:00:00Z',
+                  y: 10,
+                },
+              },
+            ],
+          },
+        ],
+      };
+      it('should add and remove one shape in y-axis successfully during reflow', () => {
+        graphDefault.destroy();
+        const axisData = utils.deepClone(getAxes(axisTimeSeries));
+
+        axisData.pan = { enabled: true };
+        axisData.showLabel = true;
+        const input = getInput(valuesTimeSeries, false, false);
+        const input1 = getInput(valuesTimeSeries, false, true);
+        input1.key = 'uid_2';
+        graphDefault = new Graph(axisData);
+        graphDefault.loadContent(new PairedResult(input));
+        graphDefault.loadContent(new PairedResult(input1));
+        const pairedResultShapeContentY = fetchAllElementsByClass(
+          pairedResultGraphContainer,
+          styles.axisLabelYShapeContainer,
+        );
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(6);
+
+        graphDefault.reflowMultipleDatasets(graphData);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2_high"]')[0],
+        ).toEqual(undefined);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2_mid"]')[0],
+        ).toEqual(undefined);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2_low"]')[0],
+        ).toEqual(undefined);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg').length,
+        ).toEqual(6);
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2_high"]')[0],
+        ).not.toBeNull();
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2_mid"]')[0],
+        ).not.toBeNull();
+        expect(
+          pairedResultShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2_low"]')[0],
+        ).not.toBeNull();
+      });
+      it('should add and remove one shape in y2-axis successfully during reflow', () => {
+        graphDefault.destroy();
+        const axisData = utils.deepClone(getAxes(axisTimeSeries));
+
+        axisData.pan = { enabled: true };
+        axisData.showLabel = true;
+        const input = getInput(valuesTimeSeries, false, false, true);
+        const input1 = getInput(valuesTimeSeries, false, true, true);
+        input1.key = 'uid_2';
+        graphDefault = new Graph(axisData);
+        graphDefault.loadContent(new PairedResult(input));
+        graphDefault.loadContent(new PairedResult(input1));
+        const pairedResultShapeContentY2 = fetchAllElementsByClass(
+          pairedResultGraphContainer,
+          styles.axisLabelY2ShapeContainer,
+        );
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(6);
+
+        graphDefault.reflowMultipleDatasets(graphData);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(3);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2_high"]')[0],
+        ).toEqual(undefined);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2_mid"]')[0],
+        ).toEqual(undefined);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2_low"]')[0],
+        ).toEqual(undefined);
+
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg').length,
+        ).toEqual(6);
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2_high"]')[0],
+        ).not.toBeNull();
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2_mid"]')[0],
+        ).not.toBeNull();
+        expect(
+          pairedResultShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2_low"]')[0],
+        ).not.toBeNull();
+      });
+    });
   });
   describe('When pan is disabled', () => {
     beforeEach(() => {

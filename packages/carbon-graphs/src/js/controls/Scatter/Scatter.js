@@ -4,6 +4,7 @@ import { GraphContent } from '../../core';
 import { getDefaultValue } from '../../core/BaseConfig';
 import constants from '../../helpers/constants';
 import {
+  updateShapesDuringReflow,
   prepareLabelShapeItem,
   removeLabelShapeItem,
 } from '../../helpers/label';
@@ -230,13 +231,8 @@ class Scatter extends GraphContent {
         ),
       )
       .remove();
-    if (utils.isEmpty(graphData.values)) {
-      removeLabelShapeItem(
-        graph.axesLabelShapeGroup[this.config.yAxis],
-        this.dataTarget,
-        graph.config,
-      );
-    }
+
+    updateShapesDuringReflow(graph, graphData, this);
     this.valuesRange = calculateValuesRange(
       this.config.values,
       this.config.yAxis,

@@ -337,6 +337,29 @@ const destroyTooltipDiv = () => {
 };
 
 /**
+ * Update shapes in y and y2 axes during reflow.
+ *
+ * @private
+ * @param {object} graph - Graph instance
+ * @param {object} graphData - Graph data
+ * @param {object} control - data instance
+ */
+const updateShapesDuringReflow = (graph, graphData, control) => {
+  removeLabelShapeItem(
+    graph.axesLabelShapeGroup[control.config.yAxis],
+    control.dataTarget,
+    graph.config,
+  );
+  if (!utils.isEmpty(graphData.values)) {
+    prepareLabelShapeItem(
+      graph.config,
+      control.dataTarget,
+      graph.axesLabelShapeGroup[control.config.yAxis],
+    );
+  }
+};
+
+/**
  * @enum {Function}
  */
 export {
@@ -349,4 +372,5 @@ export {
   truncateLabel,
   createTooltipDiv,
   destroyTooltipDiv,
+  updateShapesDuringReflow,
 };
