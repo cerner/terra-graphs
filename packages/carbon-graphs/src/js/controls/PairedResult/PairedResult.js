@@ -316,15 +316,28 @@ class PairedResult extends GraphContent {
         }
       }
     });
-    if (utils.isEmpty(graphData.values)) {
+    iterateOnPairType((type) => {
+      const key = `${this.dataTarget.key}_${type}`;
+      removeLabelShapeItem(
+        graph.axesLabelShapeGroup[this.config.yAxis],
+        {
+          key,
+        },
+        graph.config,
+      );
+    });
+    if (!utils.isEmpty(graphData.values)) {
       iterateOnPairType((type) => {
-        const key = `${this.dataTarget.key}_${type}`;
-        removeLabelShapeItem(
-          graph.axesLabelShapeGroup[this.config.yAxis],
-          {
-            key,
-          },
+        prepareLabelShapeItem(
           graph.config,
+          {
+            key: `${this.dataTarget.key}_${type}`,
+            label: getValue(this.dataTarget.label, type),
+            color: getValue(this.dataTarget.color, type),
+            shape: getValue(this.dataTarget.shape, type),
+            values: this.dataTarget.values,
+          },
+          graph.axesLabelShapeGroup[this.config.yAxis],
         );
       });
     }
