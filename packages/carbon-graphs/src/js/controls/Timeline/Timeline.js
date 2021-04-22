@@ -188,7 +188,7 @@ class Timeline extends Construct {
     const containerSVG = d3
       .select(this.config.bindTo)
       .append('div')
-      .classed(styles.container, true)
+      .classed(styles.timelineContainer, true)
       .style('padding-top', this.config.removeContainerPadding && 0)
       .style('padding-bottom', this.config.removeContainerPadding && 0);
     this.svg = containerSVG
@@ -204,15 +204,14 @@ class Timeline extends Construct {
       );
     createDefs(this.config, this.svg);
     createAxes(this.axis, this.scale, this.config, this.svg);
-    const ticks = document.getElementsByClassName('tick');
+    const ticks = document.querySelector(`.${ styles.timelineContainer }`).querySelectorAll('.tick');
     const firstTick = ticks[0].getBoundingClientRect().width;
     const lastTick = ticks[ticks.length - 1].getBoundingClientRect().width;
     const xAxis = document
-      .getElementsByClassName('carbon-axis carbon-axis-x')[0]
-      .getBoundingClientRect().width;
+      .querySelector(`.${ styles.timelineContainer }`).querySelector('.carbon-axis.carbon-axis-x').getBoundingClientRect().width;
     if (xAxis + firstTick / 2 + lastTick / 2 > this.config.canvasWidth) {
-      d3RemoveElement(this.graphContainer, 'defs');
-      d3RemoveElement(this.graphContainer, `.${styles.axisX}`);
+      d3.select(`.${ styles.timelineContainer }`).select('defs').remove();
+      d3.select(`.${ styles.timelineContainer }`).select(`.${styles.axisX}`).remove();
       this.config.padding.left = firstTick / 2;
       this.config.padding.right = lastTick / 2;
       createDefs(this.config, this.svg);
@@ -365,7 +364,7 @@ class Timeline extends Construct {
   destroy() {
     detachEventHandlers(this);
     d3RemoveElement(this.graphContainer, `.${styles.canvas}`);
-    d3RemoveElement(this.graphContainer, `.${styles.container}`);
+    d3RemoveElement(this.graphContainer, `.${styles.timelineContainer}`);
     initConfig(this);
     return this;
   }

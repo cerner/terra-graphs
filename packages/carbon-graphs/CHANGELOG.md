@@ -2,9 +2,10 @@
 
 ## Unreleased
 
-* Changed
+* Changed 
+  * Fixed rendering of timeline graph when it is rendered below another graph.
   * Fixed Y-axis and y2-axis icons not updating during reflow.
-  
+
 ## 2.16.3 - (March 16, 2021)
 
 * Changed
