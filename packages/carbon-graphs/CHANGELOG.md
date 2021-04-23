@@ -6,6 +6,11 @@
   * Fixed rendering of timeline graph when it is rendered below another graph.
   * Fixed Y-axis and y2-axis icons not updating during reflow.
 
+* Added
+  * Added datasets for building graphs in terra-graphs package.
+  
+>>>>>>> 7fd67d7... Added change log for carbon graphs
+
 ## 2.16.3 - (March 16, 2021)
 
 * Changed
