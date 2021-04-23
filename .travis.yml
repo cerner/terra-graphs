@@ -8,9 +8,13 @@ branches:
 cache:
   directories:
     - travis-build
+    - docker_images
 before_install:
   # Clean install on any new build
   - npm run clean
+before_script:
+  # Load Docker Cache
+  - docker load -i docker_images/images.tar || true
 jobs:
   include:
     - stage: danger lint jest and compile
@@ -25,6 +29,10 @@ jobs:
         - npm run build:dist
         # These can't be built in parallel because the cache is a single object and you can't add to it in parallel
         - npm run compile:prod -- --env.disableAggregateThemes --output-path $TRAVIS_BUILD_DIR/travis-build/default
+        # Prime the docker cache
+        - docker-compose --file ./node_modules/@cerner/terra-functional-testing/lib/docker/docker-compose.yml pull
+        # Save docker cache
+        - docker save -o docker_images/images.tar $(docker images -a -q)
     # Split out all the sizes to not eat up all the travis executors at once.
 
     - stage: tiny & small
@@ -34,15 +42,12 @@ jobs:
       # Rely on the cache for node_modules.. this won't work for any node modules in the packages dir but works for running wdio
       install: skip
       script:
-        # we start up our own standalone chrome instance because the Selenium Docker Service doesn't seem to work here.
-        - docker-compose up -d standalone-chrome-travis
         # using the travis env section to set env variables seems to break cache
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=tiny npm run wdio-default
-    - name: small default-theme
+   - name: small default-theme
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=small npm run wdio-default
 
     - stage: medium & large
@@ -50,13 +55,11 @@ jobs:
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=medium npm run wdio-default
     - name: large default-theme
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=large npm run wdio-default
 
     - stage: huge & enormous
@@ -64,13 +67,11 @@ jobs:
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=huge npm run wdio-default
     - name: enormous default-theme
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=enormous npm run wdio-default
 
     - stage: publish & deploy
