@@ -25,8 +25,8 @@
 *.rbc
 *.seed
 
-**/__snapshots__/diff
-**/__snapshots__/latest
+**/__snapshots__/*
+!**/__snapshots__/reference/
 **/aggregated-translations/*.*
 **/dist
 
