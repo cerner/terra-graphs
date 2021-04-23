@@ -37,9 +37,9 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
 
 @mixin terra-graph-opacity-hide() {
   @include terra-graph-transform-transition(
-                  opacity,
-                  var(--default-transition-duration),
-                  var(--default-transition-timing)
+    opacity,
+    var(--default-transition-duration),
+    var(--default-transition-timing)
   );
   opacity: 0;
   visibility: hidden;
@@ -48,9 +48,9 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
 
 @mixin terra-graph-opacity-show() {
   @include terra-graph-transform-transition(
-                  opacity,
-                  var(--default-transition-duration),
-                  var(--default-transition-timing)
+    opacity,
+    var(--default-transition-duration),
+    var(--default-transition-timing)
   );
   opacity: 1;
   visibility: visible;

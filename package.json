@@ -28,23 +28,11 @@
     "extends": "@cerner/stylelint-config-terra",
     "rules": {
       "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
-<<<<<<< HEAD
-<<<<<<< HEAD
       "selector-no-qualifying-type": null,
       "property-no-vendor-prefix": null,
       "terra/custom-property-name": null,
       "terra/custom-property-namespace": null,
       "terra/custom-property-pseudo-selectors": null
-=======
-      "selector-no-qualifying-type": null
->>>>>>> 3b63910... Made changes to folder structure
-=======
-      "selector-no-qualifying-type": null,
-      "property-no-vendor-prefix": null,
-      "terra/custom-property-name": null,
-      "terra/custom-property-namespace": null,
-      "terra/custom-property-pseudo-selectors": null
->>>>>>> c87ada0... Fixed linter errors
     }
   },
   "dependencies": {
