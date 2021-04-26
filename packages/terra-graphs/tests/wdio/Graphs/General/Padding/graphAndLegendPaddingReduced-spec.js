@@ -7,7 +7,7 @@ Terra.describeViewports('Graph and legend padding reduced', ['tiny', 'medium', '
     });
 
     it('legend element', () => {
-      Terra.validates.screenshot('legend', { selector: '.legend-bindto-container' });
+      Terra.validates.screenshot('legend', { selector: '.carbon-legend' });
     });
   });
 });
