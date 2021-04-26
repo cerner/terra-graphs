@@ -41,4 +41,3 @@ import {
   };
   
   export default bubbleDataColorWeightBased;
-  
