@@ -6,7 +6,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-graphs.git",
-    "directory": "packages/terra-docs"
+    "directory": "packages/terra-graphs-docs"
   },
   "keywords": [
     "Cerner",

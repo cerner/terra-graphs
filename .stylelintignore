@@ -5,5 +5,5 @@ dist
 generated-themes
 lib
 node_modules
-packages/terra-docs
+packages/terra-graphs-docs
 packages/terra-graphs
