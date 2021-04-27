@@ -1,0 +1,9 @@
+**/aggregated-translations/*.*
+build
+coverage
+dist
+generated-themes
+lib
+node_modules
+packages/terra-docs
+packages/terra-graphs
