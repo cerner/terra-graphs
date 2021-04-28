@@ -147,7 +147,7 @@
     "karma": "karma start ./packages/carbon-graphs/karma.config.js --single-run --no-auto-watch",
     "wdio-default": "terra wdio",
     "wdio-lowlight": "NODE_OPTIONS=--max-old-space-size=2048 THEME=clinical-lowlight-theme wdio",
-    "wdio-fusion": "THEME=orion-fusion-theme wdio",
+    "wdio-fusion": "terra wdio --themes orion-fusion-theme",
     "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
   }
 }
