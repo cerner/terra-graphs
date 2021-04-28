@@ -50,7 +50,6 @@ jobs:
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=small npm run wdio-default
 
     - stage: medium & large
@@ -58,13 +57,11 @@ jobs:
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=medium npm run wdio-default
     - name: large default-theme
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=large npm run wdio-default
 
     - stage: huge & enormous
@@ -72,13 +69,11 @@ jobs:
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=huge npm run wdio-default
     - name: enormous default-theme
       before_install: skip
       install: skip
       script:
-        - docker-compose up -d standalone-chrome-travis
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=enormous npm run wdio-default
 
     - stage: publish & deploy
