@@ -43,10 +43,9 @@ jobs:
       # Rely on the cache for node_modules.. this won't work for any node modules in the packages dir but works for running wdio
       install: skip
       script:
-        # we start up our own standalone chrome instance because the Selenium Docker Service doesn't seem to work here.
-        - docker-compose up -d standalone-chrome-travis
         # using the travis env section to set env variables seems to break cache
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=tiny npm run wdio-default
+        
     - name: small default-theme
       before_install: skip
       install: skip
