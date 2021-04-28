@@ -291,11 +291,10 @@ class PairedResult extends GraphContent {
       legendOptions: d.legendOptions,
       type,
     });
-    const reflow = !!this.config.values.length;
     this.config.values = utils.deepClone(graphData.values);
     this.config.values = filterPairedResultData(this.config.values);
     validatePairedResultData(this.config.values);
-    this.dataTarget = processDataPoints(graph.config, this.config, reflow);
+    this.dataTarget = processDataPoints(graph.config, this.config, true);
     const drawBox = (boxPath) => {
       drawSelectionIndicator(graph.scale, graph.config, boxPath);
       drawLine(graph.scale, graph.config, boxPath);

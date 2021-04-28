@@ -409,6 +409,23 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
       values: [],
     },
   };
+
+  if (!reflow && dataTarget.values.length < 1) {
+    const types = ['high', 'mid', 'low'];
+    types.forEach((t) => {
+      const label = getValue(dataTarget.label, t);
+      if (label && label.display) {
+        if (
+          !utils.hasValue(
+            graphConfig.shownTargets,
+            `${dataTarget.key}_${t}`,
+          )
+        ) {
+          graphConfig.shownTargets.push(`${dataTarget.key}_${t}`);
+        }
+      }
+    });
+  }
   // Each value is a pair. Construct enough information so that you can
   // construct a box. Each box would need 3 icons so we need 3 (max) data sets
   dataTarget.internalValuesSubset = dataTarget.values.map((value) => {
