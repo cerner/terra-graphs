@@ -140,7 +140,7 @@
     "pretest": "npm run lint",
     "postinstall": "link-parent-bin && npm run compile && npm run bootstrap:hoist && npm run build && npm run build:dist",
     "start": "webpack-dev-server",
-    "terra express-server --port $PORT --site build",
+    "terra": "express-server --port $PORT --site build",
     "start-prod": "webpack-dev-server --env.disableHotReloading -p",
     "start-static": "npm run compile:prod && terra express-server --site ./build",
     "test": "npm run lint && npm run jest && npm run karma && npm run wdio",
