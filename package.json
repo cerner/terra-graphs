@@ -24,17 +24,6 @@
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
   ],
-  "stylelint": {
-    "extends": "@cerner/stylelint-config-terra",
-    "rules": {
-      "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
-      "selector-no-qualifying-type": null,
-      "property-no-vendor-prefix": null,
-      "terra/custom-property-name": null,
-      "terra/custom-property-namespace": null,
-      "terra/custom-property-pseudo-selectors": null
-    }
-  },
   "dependencies": {
     "d3": "^5.16.0"
   },
@@ -119,7 +108,9 @@
     "clean:install": "npm run clean && npm install",
     "clean:obsolete-snapshots": "npm test -- -u",
     "compile": "npm run compile:clean && npm run compile:build",
-    "compile:build": "lerna ls -all | sed 's/@cerner\\///g' | cut -d ' ' -f1 | xargs -I {} babel packages/carbon-graphs/src --out-dir packages/{}/lib --copy-files",
+    "compile:build": "npm run compile:carbon-graphs && npm run compile:terra-graphs",
+    "compile:carbon-graphs": "babel packages/carbon-graphs/src --config-file babel.config.js --out-dir packages/carbon-graphs/lib --copy-files",
+    "compile:terra-graphs": "babel packages/terra-graphs/src --config-file babel.config.js --out-dir packages/terra-graphs/lib --copy-files",
     "compile:clean": "rm -rf packages/**/lib",
     "compile:src": "lerna run compile",
     "compile:prod": "rm -rf ./build; NODE_ENV=production webpack -p",
