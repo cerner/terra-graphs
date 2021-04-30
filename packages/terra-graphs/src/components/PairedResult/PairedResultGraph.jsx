@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './PairedResultGraph.module.scss';
-import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -34,7 +33,7 @@ const PaiedResultGraph = ({
   }, [graphConfig, dataset]);
 
   return (
-    <div id= { `${graphID}-canvasContainer` }>
+    <div id={`${graphID}-canvasContainer`}>
       {/* eslint-disable-next-line react/forbid-dom-props */}
       <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
       <div id={graphID} />

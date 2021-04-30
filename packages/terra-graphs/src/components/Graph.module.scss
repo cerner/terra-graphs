@@ -8,15 +8,16 @@
 }
 
 .carbon-graph-container {
-  svg:not(:root) {
-  overflow: hidden;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
   color: var(--dark);
   display: block;
   padding-bottom: 0.8333rem;
   padding-top: 0.8333rem;
   width: 100%;
+
+  svg:not(:root) {
+    overflow: hidden;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
 }
 
 .carbon-graph-canvas {

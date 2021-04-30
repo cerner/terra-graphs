@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './LineGraph.module.scss';
-import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -29,12 +28,10 @@ const LineGraph = ({
   graphConfig, dataset, graphID, timeout,
 }) => {
   React.useEffect(() => {
-    debugger;
     const graph = Carbon.api.graph(graphConfig);
     if (dataset) {
       if (timeout) {
         dataset.forEach((data, index) => {
-          console.log(index);
           setTimeout(
             () => (graph.graphContainer
               ? graph.loadContent(Carbon.api.line(data))
@@ -51,7 +48,7 @@ const LineGraph = ({
   }, [graphConfig, dataset, timeout]);
 
   return (
-    <div id= { `${graphID}-canvasContainer` }>
+    <div id={`${graphID}-canvasContainer`}>
       {/* eslint-disable-next-line react/forbid-dom-props */}
       <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
       <div id={graphID} />
