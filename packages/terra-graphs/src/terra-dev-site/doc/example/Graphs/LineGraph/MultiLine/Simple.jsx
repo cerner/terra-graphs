@@ -9,5 +9,7 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/multiLineData'
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#multiLine'));
+const dataset = utils.deepClone(data);
+const timeout = [0, 750, 750 * 2, 750 * 3, 750 * 4, 750 * 5, 750 * 6];
 
-export default () => <LineGraph graphID="multiLine" graphConfig={graphConfig} dataset={data} timeout={[0, 750, 750 * 2, 750 * 3, 750 * 4, 750 * 5, 750 * 6]} />;
+export default () => <LineGraph graphID="multiLine" graphConfig={graphConfig} dataset={dataset} timeout={timeout} />;

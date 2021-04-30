@@ -6,5 +6,6 @@ import dateTimeBucket from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Ge
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/timeseriesData';
 
 const graphConfig = utils.deepClone(dateTimeBucket('#datetimeBucket'));
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="datetimeBucket" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="datetimeBucket" graphConfig={graphConfig} dataset={dataset} />;

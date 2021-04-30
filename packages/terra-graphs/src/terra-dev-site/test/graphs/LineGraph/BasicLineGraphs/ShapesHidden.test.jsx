@@ -7,5 +7,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 
 const graphConfig = utils.deepClone(lineDefault('#shapesHidden'));
 graphConfig.showShapes = false;
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="shapesHidden" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="shapesHidden" graphConfig={graphConfig} dataset={dataset} />;

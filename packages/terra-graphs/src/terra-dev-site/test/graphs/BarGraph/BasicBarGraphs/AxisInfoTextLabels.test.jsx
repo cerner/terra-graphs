@@ -9,5 +9,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Bar/axisInfoTextLab
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(barDefault('#axisInfoTextLabelsBargraph'));
+const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="axisInfoTextLabelsBargraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <BarGraph graphID="axisInfoTextLabelsBargraph" graphConfig={graphConfig} dataset={dataset} />;

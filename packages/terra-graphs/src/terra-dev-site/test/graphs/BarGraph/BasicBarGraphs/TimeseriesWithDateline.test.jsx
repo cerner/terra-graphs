@@ -29,5 +29,6 @@ graphConfig.clickPassThrough = {
   dateline: false,
 };
 graphConfig.showVGrid = false;
+const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="timeseriesBarWithDateline" graphConfig={graphConfig} dataset={data} />;
+export default () => <BarGraph graphID="timeseriesBarWithDateline" graphConfig={graphConfig} dataset={dataset} />;

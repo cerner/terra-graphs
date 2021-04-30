@@ -11,5 +11,6 @@ Please refer documentation below to see graphConfig and data objects.
 const graphConfig = utils.deepClone(barDefault('#negativeBargraph'));
 graphConfig.axis.y.lowerLimit = -15;
 graphConfig.axis.y.upperLimit = 0;
+const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="negativeBargraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <BarGraph graphID="negativeBargraph" graphConfig={graphConfig} dataset={dataset} />;

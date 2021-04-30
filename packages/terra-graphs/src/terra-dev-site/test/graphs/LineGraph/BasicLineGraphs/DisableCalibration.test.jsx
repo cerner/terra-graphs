@@ -7,5 +7,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/disableCalibra
 
 const graphConfig = utils.deepClone(lineDefault('#disableCalibration'));
 graphConfig.allowCalibration = false;
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="disableCalibration" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="disableCalibration" graphConfig={graphConfig} dataset={dataset} />;

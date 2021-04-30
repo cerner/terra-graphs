@@ -6,5 +6,6 @@ import lineTimesries from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Lin
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/nonContiguousLineData';
 
 const graphConfig = utils.deepClone(lineTimesries('#simpleLinegraph'));
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={dataset} />;

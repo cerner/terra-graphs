@@ -10,6 +10,7 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#disableCalibration'));
 graphConfig.allowCalibration = false;
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="disableCalibration" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="disableCalibration" graphConfig={graphConfig} dataset={dataset} />;
 

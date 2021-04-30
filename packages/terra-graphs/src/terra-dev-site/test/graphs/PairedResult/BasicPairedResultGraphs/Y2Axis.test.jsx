@@ -10,5 +10,6 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(pairedResultTimeseries('#timeseriesPairedResultGraph'));
 graphConfig.axis.y2.show = true;
+const dataset = utils.deepClone(data);
 
-export default () => <PairedResultGraph graphID="timeseriesPairedResultGraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <PairedResultGraph graphID="timeseriesPairedResultGraph" graphConfig={graphConfig} dataset={dataset} />;

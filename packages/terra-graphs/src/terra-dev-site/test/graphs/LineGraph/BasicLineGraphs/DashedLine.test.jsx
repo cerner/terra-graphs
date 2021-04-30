@@ -6,5 +6,6 @@ import lineDefault from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Line/
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/dashedLineData';
 
 const graphConfig = utils.deepClone(lineDefault('#dashedLine'));
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="dashedLine" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="dashedLine" graphConfig={graphConfig} dataset={dataset} />;

@@ -7,6 +7,7 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/multiTimeserie
 
 const graphConfig = utils.deepClone(lineTimesries('#graphContainer'));
 graphConfig.bindLegendTo = '#legendContainer';
+const dataset = utils.deepClone(data);
 
 export default () => (
   <div id="customLegendPlacement">
@@ -14,6 +15,6 @@ export default () => (
       <div id="legendContainer" className="legend-bindto-container" />
       <div id="graphContainer" className="legend-bindto-graph-container" />
     </div>
-    <LineGraph graphID="graphContainer" graphConfig={graphConfig} dataset={data} />
+    <LineGraph graphID="graphContainer" graphConfig={graphConfig} dataset={dataset} />
   </div>
 );

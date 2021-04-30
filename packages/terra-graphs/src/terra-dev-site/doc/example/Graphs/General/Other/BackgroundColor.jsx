@@ -9,8 +9,10 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#backgroundColor'));
+const dataset = utils.deepClone(data);
+
 export default () => (
   <div className="background-color-class">
-    <LineGraph graphID="backgroundColor" graphConfig={graphConfig} dataset={data} />
+    <LineGraph graphID="backgroundColor" graphConfig={graphConfig} dataset={dataset} />
   </div>
 );

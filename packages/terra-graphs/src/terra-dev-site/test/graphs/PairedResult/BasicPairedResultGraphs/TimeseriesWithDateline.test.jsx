@@ -24,5 +24,6 @@ graphConfig.dateline = [
     value: new Date(2017, 10, 1).toISOString(),
   },
 ];
+const dataset = utils.deepClone(data);
 
-export default () => <PairedResultGraph graphID="pairedResultWithDateLine" graphConfig={graphConfig} dataset={data} />;
+export default () => <PairedResultGraph graphID="pairedResultWithDateLine" graphConfig={graphConfig} dataset={dataset} />;

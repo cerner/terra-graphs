@@ -10,6 +10,7 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#legendHidden'));
 graphConfig.showLegend = false;
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="legendHidden" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="legendHidden" graphConfig={graphConfig} dataset={dataset} />;
 

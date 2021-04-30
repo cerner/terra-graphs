@@ -29,5 +29,6 @@ graphConfig.eventline = [
 graphConfig.clickPassThrough = {
   dateline: false,
 };
+const dataset = utils.deepClone(data);
 
-export default () => <PairedResultGraph graphID="pairedResultWithEventline" graphConfig={graphConfig} dataset={data} />;
+export default () => <PairedResultGraph graphID="pairedResultWithEventline" graphConfig={graphConfig} dataset={dataset} />;

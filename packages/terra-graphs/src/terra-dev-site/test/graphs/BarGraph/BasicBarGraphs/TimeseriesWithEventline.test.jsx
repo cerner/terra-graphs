@@ -31,5 +31,6 @@ graphConfig.clickPassThrough = {
   dateline: false,
 };
 graphConfig.showVGrid = false;
+const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="timeseriesBarWithEventline" graphConfig={graphConfig} dataset={data} />;
+export default () => <BarGraph graphID="timeseriesBarWithEventline" graphConfig={graphConfig} dataset={dataset} />;

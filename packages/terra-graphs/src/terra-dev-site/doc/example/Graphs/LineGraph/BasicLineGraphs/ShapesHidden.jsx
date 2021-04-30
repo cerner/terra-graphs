@@ -10,5 +10,6 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#shapesHidden'));
 graphConfig.showShapes = false;
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="shapesHidden" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="shapesHidden" graphConfig={graphConfig} dataset={dataset} />;

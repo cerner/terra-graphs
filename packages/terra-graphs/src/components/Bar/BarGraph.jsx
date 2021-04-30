@@ -18,7 +18,7 @@ const propTypes = {
   /**
    * data to be displayed in graph
    */
-  dataset: PropTypes.array,
+  dataset: PropTypes.arrayOf(PropTypes.object),
 };
 
 const BarGraph = ({
@@ -26,7 +26,7 @@ const BarGraph = ({
 }) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    if (!(utils.isUndefined(dataset))) {
+    if (dataset) {
       dataset.forEach((data) => {
         graph.loadContent(Carbon.api.bar(data));
       });
@@ -34,7 +34,7 @@ const BarGraph = ({
   }, [graphConfig, dataset]);
 
   return (
-    <div id="canvasContainer">
+    <div id= { `${graphID}-canvasContainer` }>
       {/* eslint-disable-next-line react/forbid-dom-props */}
       <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
       <div id={graphID} />

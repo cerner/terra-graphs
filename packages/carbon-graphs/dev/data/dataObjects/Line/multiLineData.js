@@ -2,6 +2,7 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import {
   loadPopup,
 } from '../../../examples/popup';
+import { createGraphValuesWithSin, createGraphValuesWithCos } from './helper';
 
 const data = [
   {
@@ -11,10 +12,7 @@ const data = [
     },
     color: Carbon.helpers.COLORS.BLACK,
     onClick: loadPopup,
-    values: new Array(20).fill('').map((_, i) => ({
-      y: Math.sin(i) * Math.PI,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithSin(20, 85, 10, Math.PI),
   },
   {
     key: 'uid_2',
@@ -25,10 +23,7 @@ const data = [
     color: Carbon.helpers.COLORS.BLUE,
     style: { strokeDashArray: '2,2' },
     onClick: loadPopup,
-    values: new Array(18).fill('').map((_, i) => ({
-      y: Math.sin(i) * Math.PI * 2,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithSin(18, 85, 10, Math.PI * 2),
     legendOptions: {
       showLine: true,
       showShape: false,
@@ -44,10 +39,7 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.X,
     color: Carbon.helpers.COLORS.GREEN,
     onClick: loadPopup,
-    values: new Array(12).fill('').map((_, i) => ({
-      y: Math.sin(i) * Math.PI * 3,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithSin(12, 85, 10, Math.PI * 3),
   },
   {
     key: 'uid_4',
@@ -74,10 +66,7 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.SQUARE,
     color: Carbon.helpers.COLORS.ORANGE,
     onClick: loadPopup,
-    values: new Array(20).fill('').map((_, i) => ({
-      y: Math.cos(i) * Math.PI * 5,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithCos(20, 85, 10, Math.PI * 5),
     legendOptions: {
       showLine: true,
       showShape: true,
@@ -91,10 +80,7 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.CIRCLE,
     color: Carbon.helpers.COLORS.LIGHT_BLUE,
     onClick: loadPopup,
-    values: new Array(14).fill('').map((_, i) => ({
-      y: Math.cos(i) * Math.PI * 6,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithCos(14, 85, 10, Math.PI * 6),
   },
   {
     key: 'uid_7',
@@ -104,10 +90,7 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.TRIANGLE_DOWN,
     color: Carbon.helpers.COLORS.GREY,
     onClick: loadPopup,
-    values: new Array(18).fill('').map((_, i) => ({
-      y: Math.cos(i) * Math.PI * 7,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithCos(18, 85, 10, Math.PI * 7),
   },
   {
     key: 'uid_8',

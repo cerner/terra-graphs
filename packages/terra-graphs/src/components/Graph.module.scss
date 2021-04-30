@@ -1,11 +1,6 @@
 @import 'Variables.module';
 @import 'colors.module';
 
-svg:not(:root) {
-  overflow: hidden;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
 .carbon-svg-icon {
   display: inline-block;
   height: 0.625rem;
@@ -13,6 +8,10 @@ svg:not(:root) {
 }
 
 .carbon-graph-container {
+  svg:not(:root) {
+  overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
   color: var(--dark);
   display: block;
   padding-bottom: 0.8333rem;

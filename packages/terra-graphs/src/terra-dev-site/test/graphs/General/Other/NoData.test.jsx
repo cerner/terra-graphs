@@ -6,5 +6,6 @@ import lineDefault from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Line/
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/General/noDataView';
 
 const graphConfig = utils.deepClone(lineDefault('#nodata'));
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} dataset={dataset} />;

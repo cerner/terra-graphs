@@ -6,5 +6,6 @@ import lineTimesries from '@cerner/carbon-graphs/dev/data/graphConfigObjects/Lin
 import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/timeseriesData';
 
 const graphConfig = utils.deepClone(lineTimesries('#lineTimeseries'));
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="lineTimeseries" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="lineTimeseries" graphConfig={graphConfig} dataset={dataset} />;

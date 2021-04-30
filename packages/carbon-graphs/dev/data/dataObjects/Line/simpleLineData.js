@@ -2,6 +2,7 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import {
   loadPopup,
 } from '../../../examples/popup';
+import { createGraphValuesWithSin } from './helper';
 
 const data = [
   {
@@ -11,10 +12,7 @@ const data = [
     },
     color: Carbon.helpers.COLORS.BLACK,
     onClick: loadPopup,
-    values: new Array(20).fill('').map((_, i) => ({
-      y: Math.sin(i) * Math.PI,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithSin(20, 85, 10, Math.PI),
   },
 ];
 

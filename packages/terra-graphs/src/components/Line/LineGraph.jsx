@@ -18,29 +18,29 @@ const propTypes = {
   /**
    * data to be displayed in graph
    */
-  dataset: PropTypes.array,
+  dataset: PropTypes.arrayOf(PropTypes.object),
   /**
    * timeout to display multiple data contents in specific time interval.
    */
-  timeout: PropTypes.array,
+  timeout: PropTypes.arrayOf(PropTypes.number),
 };
 
 const LineGraph = ({
   graphConfig, dataset, graphID, timeout,
 }) => {
   React.useEffect(() => {
+    debugger;
     const graph = Carbon.api.graph(graphConfig);
-    if (!(utils.isUndefined(dataset))) {
-      if (!(utils.isUndefined(timeout))) {
-        let count = 0;
-        dataset.forEach((data) => {
+    if (dataset) {
+      if (timeout) {
+        dataset.forEach((data, index) => {
+          console.log(index);
           setTimeout(
             () => (graph.graphContainer
               ? graph.loadContent(Carbon.api.line(data))
               : ''),
-            timeout[count],
+            timeout[index],
           );
-          count += 1;
         });
       } else {
         dataset.forEach((data) => {
@@ -51,7 +51,7 @@ const LineGraph = ({
   }, [graphConfig, dataset, timeout]);
 
   return (
-    <div id="canvasContainer">
+    <div id= { `${graphID}-canvasContainer` }>
       {/* eslint-disable-next-line react/forbid-dom-props */}
       <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
       <div id={graphID} />

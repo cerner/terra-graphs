@@ -9,5 +9,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/PairedResult/paired
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(pairedResultTimeseries('#timeseriesPairedResultGraph'));
+const dataset = utils.deepClone(data);
 
-export default () => <PairedResultGraph graphID="timeseriesPairedResultGraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <PairedResultGraph graphID="timeseriesPairedResultGraph" graphConfig={graphConfig} dataset={dataset} />;

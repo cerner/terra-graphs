@@ -2,6 +2,7 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import {
   loadPopup,
 } from '../../../examples/popup';
+import { createGraphValuesWithCos } from './helper';
 
 const data = [
   {
@@ -12,10 +13,7 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.TRIANGLE_DOWN,
     color: Carbon.helpers.COLORS.GREY,
     onClick: loadPopup,
-    values: new Array(18).fill('').map((_, i) => ({
-      y: Math.cos(i) * Math.PI * 7,
-      x: 85 + i * 10,
-    })),
+    values: createGraphValuesWithCos(18, 85, 10, Math.PI * 7),
   },
 ];
 

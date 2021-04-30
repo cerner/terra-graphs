@@ -9,5 +9,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/timeseriesData
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(dateTimeBucket('#datetimeBucket'));
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="datetimeBucket" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="datetimeBucket" graphConfig={graphConfig} dataset={dataset} />;

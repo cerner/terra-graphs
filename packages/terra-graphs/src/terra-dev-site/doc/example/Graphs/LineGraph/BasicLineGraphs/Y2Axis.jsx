@@ -10,5 +10,6 @@ Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineTimesries('#lineY2Axis'));
 graphConfig.axis.y2.show = true;
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="lineY2Axis" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="lineY2Axis" graphConfig={graphConfig} dataset={dataset} />;

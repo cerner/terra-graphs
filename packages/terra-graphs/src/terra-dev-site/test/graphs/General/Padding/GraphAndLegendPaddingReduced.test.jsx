@@ -14,6 +14,7 @@ graphConfig.legendPadding = {
   top: 2.5,
   bottom: 2.5,
 };
+const dataset = utils.deepClone(data);
 
 export default () => (
   <div id="graphAndLegendPaddingReduced" className="custom-container-legend-style">
@@ -21,6 +22,6 @@ export default () => (
       <div id="legendContainer" className="legend-bindto-container" />
       <div id="graphContainer" className="legend-bindto-graph-container" />
     </div>
-    <LineGraph graphID="graphContainer" graphConfig={graphConfig} dataset={data} />
+    <LineGraph graphID="graphContainer" graphConfig={graphConfig} dataset={dataset} />
   </div>
 );

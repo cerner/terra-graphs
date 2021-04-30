@@ -9,5 +9,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#simpleLinegraph'));
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={dataset} />;

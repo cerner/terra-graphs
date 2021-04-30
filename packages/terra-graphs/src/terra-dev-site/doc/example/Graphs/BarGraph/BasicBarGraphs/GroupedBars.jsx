@@ -9,5 +9,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Bar/groupedBarData'
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(barDefault('#groupedBarGraph'));
+const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="groupedBarGraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <BarGraph graphID="groupedBarGraph" graphConfig={graphConfig} dataset={dataset} />;

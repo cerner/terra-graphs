@@ -9,5 +9,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Bar/stackedBarData'
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(barDefault('#stackedBargraph'));
+const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="stackedBargraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <BarGraph graphID="stackedBargraph" graphConfig={graphConfig} dataset={dataset} />;

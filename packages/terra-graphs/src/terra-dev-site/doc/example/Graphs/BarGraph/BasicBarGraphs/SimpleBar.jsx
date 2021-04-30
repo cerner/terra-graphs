@@ -9,5 +9,6 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Bar/simpleBarData';
 Please refer documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(barDefault('#simpleBargraph'));
+const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={data} />;
+export default () => <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={dataset} />;

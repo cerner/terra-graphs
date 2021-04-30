@@ -1,9 +1,0 @@
-Terra.describeViewports('Vertical Grid Hidden', ['tiny', 'medium', 'large'], () => {
-  describe('Validates', () => {
-    before(() => browser.url('/raw/tests/terra-graphs/graphs/general/grid/vertical-grid-hidden'));
-
-    it('canvas element', () => {
-      Terra.validates.screenshot('canvas', { selector: '.carbon-graph-canvas' });
-    });
-  });
-});

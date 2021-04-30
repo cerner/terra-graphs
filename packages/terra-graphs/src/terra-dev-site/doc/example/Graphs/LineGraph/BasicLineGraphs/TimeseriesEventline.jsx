@@ -26,5 +26,6 @@ graphConfig.eventline = [
     value: new Date(2016, 0, 1, 12).toISOString(),
   },
 ];
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={graphConfig} dataset={dataset} />;

@@ -25,5 +25,6 @@ graphConfig.dateline = [
     value: new Date(2016, 0, 1, 6).toISOString(),
   },
 ];
+const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={graphConfig} dataset={data} />;
+export default () => <LineGraph graphID="timeseriesDateLine" graphConfig={graphConfig} dataset={dataset} />;
