@@ -34,8 +34,7 @@ const PaiedResultGraph = ({
 
   return (
     <div id={`${graphID}-canvasContainer`}>
-      {/* eslint-disable-next-line react/forbid-dom-props */}
-      <div id="tooltip" className="tooltip" style={{ display: 'none' }} />
+      <div id="initial_tooltip" className="tooltip" />
       <div id={graphID} />
     </div>
   );

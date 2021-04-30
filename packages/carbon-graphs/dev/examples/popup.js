@@ -81,6 +81,9 @@ const renderY2Popup = (fn) => {
 const removeOldPopup = () => {
     // Remove old popup
     d3.select("#overlay").remove();
+    if(document.getElementById("initial_tooltip")) {
+        document.getElementById('initial_tooltip').id = 'tooltip';
+    }
     d3.select("#tooltip").attr("style", "").selectAll("g").remove();
 };
 export const loadPopup = (onCloseCB, key, index, value) => {
