@@ -12,7 +12,9 @@ const data = [
     },
     color: Carbon.helpers.COLORS.BLACK,
     onClick: loadPopup,
-    values: createGraphValuesWithSin(20, 85, 10, Math.PI),
+    values: createGraphValuesWithSin({
+      length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI,
+    }),
   },
   {
     key: 'uid_3',
@@ -22,7 +24,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.X,
     color: Carbon.helpers.COLORS.GREEN,
     onClick: loadPopup,
-    values: createGraphValuesWithSin(12, 85, 10, Math.PI * 3),
+    values: createGraphValuesWithSin({
+      length: 12, initialX: 85, xModifier: 10, yModifier: Math.PI * 3,
+    }),
   },
   {
     key: 'uid_5',
@@ -32,7 +36,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.SQUARE,
     color: Carbon.helpers.COLORS.ORANGE,
     onClick: loadPopup,
-    values: createGraphValuesWithCos(20, 85, 10, Math.PI * 5),
+    values: createGraphValuesWithCos({
+      length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI * 5,
+    }),
     legendOptions: {
       showLine: true,
       showShape: true,

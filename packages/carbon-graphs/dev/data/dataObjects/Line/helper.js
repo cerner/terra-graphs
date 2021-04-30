@@ -1,5 +1,7 @@
 const createGraphValuesWithSin = (
-  length, initialX, xModifier, yModifier,
+  {
+    length, initialX, xModifier, yModifier,
+  },
 ) => {
   const values = new Array(length).fill('').map((_, i) => ({
     y: Math.sin(i) * yModifier,
@@ -10,7 +12,9 @@ const createGraphValuesWithSin = (
 };
 
 const createGraphValuesWithCos = (
-  length, initialX, xModifier, yModifier,
+  {
+    length, initialX, xModifier, yModifier,
+  },
 ) => {
   const values = new Array(length).fill('').map((_, i) => ({
     y: Math.cos(i) * yModifier,

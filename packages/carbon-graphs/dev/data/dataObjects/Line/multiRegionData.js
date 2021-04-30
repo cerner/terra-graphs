@@ -13,7 +13,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.SQUARE,
     color: Carbon.helpers.COLORS.ORANGE,
     onClick: loadPopup,
-    values: createGraphValuesWithCos(20, 85, 10, Math.PI * 5),
+    values: createGraphValuesWithCos({
+      length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI * 5,
+    }),
     legendOptions: {
       showLine: true,
       showShape: true,

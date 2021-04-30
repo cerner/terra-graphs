@@ -12,7 +12,9 @@ const data = [
     },
     color: Carbon.helpers.COLORS.BLACK,
     onClick: loadPopup,
-    values: createGraphValuesWithSin(20, 85, 10, Math.PI),
+    values: createGraphValuesWithSin({
+      length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI,
+    }),
   },
 ];
 

@@ -14,7 +14,9 @@ const data = [
     color: Carbon.helpers.COLORS.BLUE,
     style: { strokeDashArray: '2,2' },
     onClick: loadPopup,
-    values: createGraphValuesWithSin(18, 85, 10, Math.PI * 2),
+    values: createGraphValuesWithSin({
+      length: 18, initialX: 85, xModifier: 10, yModifier: Math.PI * 2,
+    }),
     legendOptions: {
       showLine: true,
       showShape: false,

@@ -13,7 +13,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.TRIANGLE_DOWN,
     color: Carbon.helpers.COLORS.GREY,
     onClick: loadPopup,
-    values: createGraphValuesWithCos(18, 85, 10, Math.PI * 7),
+    values: createGraphValuesWithCos({
+      length: 18, initialX: 85, xModifier: 10, yModifier: Math.PI * 7,
+    }),
   },
 ];
 

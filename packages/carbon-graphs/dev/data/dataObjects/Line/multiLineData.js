@@ -12,7 +12,9 @@ const data = [
     },
     color: Carbon.helpers.COLORS.BLACK,
     onClick: loadPopup,
-    values: createGraphValuesWithSin(20, 85, 10, Math.PI),
+    values: createGraphValuesWithSin({
+      length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI,
+    }),
   },
   {
     key: 'uid_2',
@@ -23,7 +25,9 @@ const data = [
     color: Carbon.helpers.COLORS.BLUE,
     style: { strokeDashArray: '2,2' },
     onClick: loadPopup,
-    values: createGraphValuesWithSin(18, 85, 10, Math.PI * 2),
+    values: createGraphValuesWithSin({
+      length: 18, initialX: 85, xModifier: 10, yModifier: Math.PI * 2,
+    }),
     legendOptions: {
       showLine: true,
       showShape: false,
@@ -39,7 +43,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.X,
     color: Carbon.helpers.COLORS.GREEN,
     onClick: loadPopup,
-    values: createGraphValuesWithSin(12, 85, 10, Math.PI * 3),
+    values: createGraphValuesWithSin({
+      length: 12, initialX: 85, xModifier: 10, yModifier: Math.PI * 3,
+    }),
   },
   {
     key: 'uid_4',
@@ -66,7 +72,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.SQUARE,
     color: Carbon.helpers.COLORS.ORANGE,
     onClick: loadPopup,
-    values: createGraphValuesWithCos(20, 85, 10, Math.PI * 5),
+    values: createGraphValuesWithCos({
+      length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI * 5,
+    }),
     legendOptions: {
       showLine: true,
       showShape: true,
@@ -80,7 +88,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.CIRCLE,
     color: Carbon.helpers.COLORS.LIGHT_BLUE,
     onClick: loadPopup,
-    values: createGraphValuesWithCos(14, 85, 10, Math.PI * 6),
+    values: createGraphValuesWithCos({
+      length: 14, initialX: 85, xModifier: 10, yModifier: Math.PI * 6,
+    }),
   },
   {
     key: 'uid_7',
@@ -90,7 +100,9 @@ const data = [
     shape: Carbon.helpers.SHAPES.DARK.TRIANGLE_DOWN,
     color: Carbon.helpers.COLORS.GREY,
     onClick: loadPopup,
-    values: createGraphValuesWithCos(18, 85, 10, Math.PI * 7),
+    values: createGraphValuesWithCos({
+      length: 18, initialX: 85, xModifier: 10, yModifier: Math.PI * 7,
+    }),
   },
   {
     key: 'uid_8',
