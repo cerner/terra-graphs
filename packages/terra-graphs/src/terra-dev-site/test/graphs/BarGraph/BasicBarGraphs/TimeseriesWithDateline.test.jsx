@@ -31,4 +31,9 @@ graphConfig.clickPassThrough = {
 graphConfig.showVGrid = false;
 const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="timeseriesBarWithDateline" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <BarGraph graphID="timeseriesBarWithDateline" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

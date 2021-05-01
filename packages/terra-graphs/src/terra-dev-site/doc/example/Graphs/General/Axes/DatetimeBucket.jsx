@@ -11,4 +11,9 @@ Please refer documentation below to see graphConfig and data objects.
 const graphConfig = utils.deepClone(dateTimeBucket('#datetimeBucket'));
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="datetimeBucket" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="datetimeBucket" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

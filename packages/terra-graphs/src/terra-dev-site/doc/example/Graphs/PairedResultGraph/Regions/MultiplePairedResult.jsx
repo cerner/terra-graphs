@@ -49,4 +49,9 @@ const contentData = utils.deepClone(data);
 contentData[0].regions = multiRegion;
 contentData[1].regions = multiRegionAlt;
 
-export default () => <PairedResultGraph graphID="timeseriesPairedResultGraph" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <PairedResultGraph graphID="timeseriesPairedResultGraph" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

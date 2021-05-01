@@ -11,4 +11,9 @@ Please refer documentation below to see graphConfig and data objects.
 const graphConfig = utils.deepClone(barDefault('#stackedBargraph'));
 const dataset = utils.deepClone(data);
 
-export default () => <BarGraph graphID="stackedBargraph" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <BarGraph graphID="stackedBargraph" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

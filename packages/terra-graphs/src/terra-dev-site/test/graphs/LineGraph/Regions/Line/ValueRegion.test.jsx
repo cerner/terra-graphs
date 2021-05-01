@@ -8,4 +8,9 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/valueRegionDat
 const graphConfig = utils.deepClone(lineTimesries('#valueRegion'));
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="valueRegion" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="valueRegion" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

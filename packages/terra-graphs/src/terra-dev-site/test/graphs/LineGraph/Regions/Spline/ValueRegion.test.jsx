@@ -10,4 +10,9 @@ const graphConfig = utils.deepClone(lineTimesries('#simpleSpline'));
 const contentData = utils.deepClone(data);
 contentData.type = Carbon.helpers.LINE_TYPE.SPLINE;
 
-export default () => <LineGraph graphID="simpleSpline" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="simpleSpline" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

@@ -14,5 +14,10 @@ const contentData = utils.deepClone(data);
 contentData[0].values[0].isCritical = true;
 contentData[0].values[10].isCritical = true;
 
-export default () => <LineGraph graphID="criticalitySimpleLine" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="criticalitySimpleLine" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);
 

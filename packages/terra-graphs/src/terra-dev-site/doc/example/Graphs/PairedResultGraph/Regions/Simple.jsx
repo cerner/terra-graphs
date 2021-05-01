@@ -33,4 +33,9 @@ contentData[0].regions = {
   low: regions.low,
 };
 
-export default () => <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

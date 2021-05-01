@@ -18,23 +18,37 @@ const propTypes = {
    * data to be displayed in graph
    */
   dataset: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * timeout to display multiple data contents in specific time interval.
+   */
+  timeout: PropTypes.arrayOf(PropTypes.number),
 };
 
 const BarGraph = ({
-  graphConfig, dataset, graphID,
+  graphConfig, dataset, graphID, timeout,
 }) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     if (dataset) {
-      dataset.forEach((data) => {
-        graph.loadContent(Carbon.api.bar(data));
-      });
+      if (timeout) {
+        dataset.forEach((data, index) => {
+          setTimeout(
+            () => (graph.graphContainer
+              ? graph.loadContent(Carbon.api.bar(data))
+              : ''),
+            timeout[index],
+          );
+        });
+      } else {
+        dataset.forEach((data) => {
+          graph.loadContent(Carbon.api.bar(data));
+        });
+      }
     }
-  }, [graphConfig, dataset]);
+  }, [graphConfig, dataset, timeout]);
 
   return (
     <div id={`${graphID}-canvasContainer`}>
-      <div id="initial_tooltip" className="tooltip" />
       <div id={graphID} />
     </div>
   );

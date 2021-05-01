@@ -15,5 +15,9 @@ contentData[0].values[10].isCritical = true;
 contentData[1].values[6].isCritical = true;
 contentData[1].values[11].isCritical = true;
 
-export default () => <LineGraph graphID="criticalityMultiLine" graphConfig={graphConfig} dataset={contentData} />;
-
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="criticalityMultiLine" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

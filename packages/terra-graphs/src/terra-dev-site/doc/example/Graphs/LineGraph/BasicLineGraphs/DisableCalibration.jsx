@@ -12,5 +12,10 @@ const graphConfig = utils.deepClone(lineDefault('#disableCalibration'));
 graphConfig.allowCalibration = false;
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="disableCalibration" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="disableCalibration" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);
 

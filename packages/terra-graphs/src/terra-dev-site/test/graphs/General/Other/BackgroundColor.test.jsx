@@ -10,6 +10,7 @@ const dataset = utils.deepClone(data);
 
 export default () => (
   <div className="background-color-class">
+    <div id="tooltip" className="initial-tooltip" />
     <LineGraph graphID="backgroundColor" graphConfig={graphConfig} dataset={dataset} />
   </div>
 );

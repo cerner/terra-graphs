@@ -2,7 +2,7 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import {
   loadPopup,
 } from '../../../examples/popup';
-import { createGraphValuesWithSin } from './helper';
+import { createGraphValuesWithSin } from './createGraphValues';
 
 const data = [
   {

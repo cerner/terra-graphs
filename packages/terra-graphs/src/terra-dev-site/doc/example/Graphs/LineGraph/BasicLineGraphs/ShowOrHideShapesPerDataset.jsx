@@ -16,4 +16,9 @@ contentData[0].showShapes = false;
 contentData[0].color = Carbon.helpers.COLORS.BLUE;
 contentData[0].style = { strokeDashArray: '2,2' };
 
-export default () => <LineGraph graphID="showOrHideShapesPerDataset" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="showOrHideShapesPerDataset" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

@@ -12,4 +12,9 @@ const graphConfig = utils.deepClone(lineDefault('#multiLine'));
 const dataset = utils.deepClone(data);
 const timeout = [0, 750, 750 * 2, 750 * 3, 750 * 4, 750 * 5, 750 * 6];
 
-export default () => <LineGraph graphID="multiLine" graphConfig={graphConfig} dataset={dataset} timeout={timeout} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="multiLine" graphConfig={graphConfig} dataset={dataset} timeout={timeout} />
+  </React.Fragment>
+);

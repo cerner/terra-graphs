@@ -42,4 +42,9 @@ contentData[0].regions = region;
 contentData[1].regions = region;
 contentData[2].regions = region;
 
-export default () => <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

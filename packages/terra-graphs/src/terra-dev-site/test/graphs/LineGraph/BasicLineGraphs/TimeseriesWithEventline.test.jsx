@@ -25,4 +25,9 @@ graphConfig.eventline = [
 ];
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="timeseriesEventLine" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="timeseriesEventLine" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

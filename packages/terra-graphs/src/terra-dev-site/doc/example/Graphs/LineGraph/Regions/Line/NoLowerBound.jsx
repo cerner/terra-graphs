@@ -16,5 +16,10 @@ contentData[0].regions = [
   },
 ];
 
-export default () => <LineGraph graphID="noLowerBound" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="noLowerBound" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);
 

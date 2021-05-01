@@ -11,4 +11,9 @@ Please refer documentation below to see graphConfig and data objects.
 const graphConfig = utils.deepClone(pairedResultDefault('#simplePairedResultGraph'));
 const dataset = utils.deepClone(data);
 
-export default () => <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

@@ -9,4 +9,9 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/simpleLineData
 const graphConfig = utils.deepClone(lineDefault('#simpleLinegraph'));
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

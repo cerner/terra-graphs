@@ -21,6 +21,7 @@ const dataset = utils.deepClone(data);
 
 export default () => (
   <div id="graphAndLegendPaddingReduced" className="custom-container-legend-style">
+    <div id="tooltip" className="initial-tooltip" />
     <div className="bindto-container">
       <div id="legendContainer" className="legend-bindto-container" />
       <div id="graphContainer" className="legend-bindto-graph-container" />

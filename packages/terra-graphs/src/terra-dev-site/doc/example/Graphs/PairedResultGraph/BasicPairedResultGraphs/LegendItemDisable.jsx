@@ -13,4 +13,9 @@ const contentData = utils.deepClone(data);
 contentData[0].label.high.isDisabled = true;
 contentData[0].label.low.isDisabled = true;
 
-export default () => <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

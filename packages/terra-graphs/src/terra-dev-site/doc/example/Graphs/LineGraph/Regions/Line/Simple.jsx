@@ -21,4 +21,9 @@ const graphConfig = utils.deepClone(lineDefault('#simpleRegionLine'));
 const contentData = utils.deepClone(data);
 contentData[0].regions = [regions[0]];
 
-export default () => <LineGraph graphID="simpleRegionLine" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="simpleRegionLine" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

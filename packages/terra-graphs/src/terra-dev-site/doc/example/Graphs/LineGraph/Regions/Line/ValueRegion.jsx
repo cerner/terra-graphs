@@ -11,5 +11,10 @@ Please refer documentation below to see graphConfig and data objects.
 const graphConfig = utils.deepClone(lineTimesries('#valueRegion'));
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="valueRegion" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="valueRegion" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);
 

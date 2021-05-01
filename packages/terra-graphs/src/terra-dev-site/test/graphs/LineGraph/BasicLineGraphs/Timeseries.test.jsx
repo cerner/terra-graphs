@@ -8,4 +8,9 @@ import data from '@cerner/carbon-graphs/dev/data/dataObjects/Line/timeseriesData
 const graphConfig = utils.deepClone(lineTimesries('#lineTimeseries'));
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="lineTimeseries" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="lineTimeseries" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

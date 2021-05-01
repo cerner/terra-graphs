@@ -15,4 +15,9 @@ contentData[0].values[3].high.isCritical = true;
 contentData[0].values[2].mid.isCritical = true;
 contentData[0].values[1].low.isCritical = true;
 
-export default () => <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);

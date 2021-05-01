@@ -12,4 +12,9 @@ const graphConfig = utils.deepClone(lineTimesries('#lineY2Axis'));
 graphConfig.axis.y2.show = true;
 const dataset = utils.deepClone(data);
 
-export default () => <LineGraph graphID="lineY2Axis" graphConfig={graphConfig} dataset={dataset} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="lineY2Axis" graphConfig={graphConfig} dataset={dataset} />
+  </React.Fragment>
+);

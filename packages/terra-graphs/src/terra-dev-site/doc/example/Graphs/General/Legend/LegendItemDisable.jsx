@@ -13,4 +13,9 @@ const graphConfig = utils.deepClone(lineTimeseries('#legendItemDisable'));
 const contentData = utils.deepClone(data);
 contentData[0].label.isDisabled = true;
 
-export default () => <LineGraph graphID="legendItemDisable" graphConfig={graphConfig} dataset={contentData} />;
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <LineGraph graphID="legendItemDisable" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);
