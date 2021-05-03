@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
   "dependencies": {
-    "@cerner/carbon-graphs":"^2.16.0"
+    "@cerner/carbon-graphs":"^2.16.0",
+    "@cerner/terra-graphs":"^0.0.0"
   },
   "devDependencies": {
     "terra-dev-site": "^6.5.0"
