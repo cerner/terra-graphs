@@ -7,11 +7,6 @@ import errors from '../../helpers/errors';
 import utils from '../../helpers/utils';
 
 /**
- * Creates random ID
- */
-const idRef = () => uuidv4();
-
-/**
  * Validates and verifies the input JSON object
  * Checks following properties:
  * Tests if Input is present
@@ -63,7 +58,7 @@ export const getType = (type) => getDefaultValue(type, AXIS_TYPE.DEFAULT);
  * @private
  * @returns {string} Clip path ID
  */
-export const generateClipPathId = () => `carbon-${idRef()}-clip`;
+export const generateClipPathId = () => `carbon-${uuidv4()}-clip`;
 
 /**
  * Generates a clip path ID for Dateline with uuidv4()
@@ -71,7 +66,7 @@ export const generateClipPathId = () => `carbon-${idRef()}-clip`;
  * @private
  * @returns {string} Clip path Dateline ID
  */
-export const generateDatelineClipPathId = () => `carbon-${idRef()}-dateline-clip`;
+export const generateDatelineClipPathId = () => `carbon-${uuidv4()}-dateline-clip`;
 /**
  * Interpolation type can be:
  * * Linear (default)
