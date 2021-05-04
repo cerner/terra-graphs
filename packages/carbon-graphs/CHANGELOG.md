@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Changed 
-  * Fixed different graphs isolation of different instances in same page.
+  * Fixed isolation of different graph instances in same page.
   
 ## 2.17.0 - (April 27, 2021)
 
