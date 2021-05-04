@@ -58,20 +58,20 @@ export const getDefaultValue = (value, defaultVal) => (utils.isUndefined(value) 
  */
 export const getType = (type) => getDefaultValue(type, AXIS_TYPE.DEFAULT);
 /**
- * Generates a clip path ID based on current date
+ * Generates a unique clip path ID with uuidv4().
  *
  * @private
  * @returns {string} Clip path ID
  */
-export const generateClipPathId = () => `carbon-${+new Date()}-${idRef()}-clip`;
+export const generateClipPathId = () => `carbon-${idRef()}-clip`;
 
 /**
- * Generates a clip path ID for Dateline based on current date
+ * Generates a clip path ID for Dateline with uuidv4()
  *
  * @private
  * @returns {string} Clip path Dateline ID
  */
-export const generateDatelineClipPathId = () => `carbon-${+new Date()}-${idRef()}-dateline-clip`;
+export const generateDatelineClipPathId = () => `carbon-${idRef()}-dateline-clip`;
 /**
  * Interpolation type can be:
  * * Linear (default)
