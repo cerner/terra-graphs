@@ -13,8 +13,7 @@
 [![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/cerner/terra-graphs)
-[![carbon-graphs bugs](https://img.shields.io/github/issues/cerner/terra-graphs/carbon-graphs%20bug?label=carbon-graphs%20bug)](https://github.com/cerner/terra-graphs/labels/carbon-graphs%20bug)
-[![terra-graphs bugs](https://img.shields.io/github/issues/cerner/terra-graphs/terra-graphs%20bug?label=terra-graphs%20bug)](https://github.com/cerner/terra-graphs/labels/terra-graphs%20bug)
+[![bugs](https://img.shields.io/github/issues/cerner/terra-graphs/bug?label=bugs)](https://github.com/cerner/terra-graphs/labels/bug)
 
 Terra Graphs is a graphing library built using D3 visualization library. It provides an API for generating native graphs such as Line and Paired Result graphs based on design standards.
 
@@ -112,8 +111,8 @@ npm i @cerner/carbon-graphs --save-dev
 
 ### Getting Started
 
--   [Getting Started](./packages/terra-graphs/docs/getting-started/GettingStarted.md)
--   [API Reference](./packages/terra-graphs/docs/README.md)
+-   [Getting Started](./packages/terra-graphs-docs/docs/getting-started/GettingStarted.md)
+-   [API Reference](./packages/terra-graphs-docs/docs/README.md)
 
 <hr>
 <!--  -->
@@ -127,18 +126,18 @@ npm i @cerner/carbon-graphs --save-dev
 
 ### Graph types
 
--   [Line](./packages/terra-graphs/docs/controls/Line.md#usage)
--   [Multi Line](./packages/terra-graphs/docs/controls/Line.md#multi-line)
--   [Spline Line](./packages/terra-graphs/docs/controls/Line.md#spline-line)
--   [Paired Result](./packages/terra-graphs/docs/controls/PairedResult.md#usage)
--   [Bar](./packages/terra-graphs/docs/controls/Bar.md#usage)
--   [Timeline](./packages/terra-graphs/docs/controls/Timeline.md#usage)
--   [Pie](./packages/terra-graphs/docs/controls/Pie.md#usage)
--   [Gantt](./packages/terra-graphs/docs/controls/Gantt.md#usage)
--   [Scatter](./packages/terra-graphs/docs/controls/Scatter.md#usage)
--   [Bubble](./packages/terra-graphs/docs/controls/Bubble.md#usage)
-    -   [Bubble Single Dataset](./packages/terra-graphs/docs/controls/BubbleSingleDataset.md)
-    -   [Bubble Multiple Dataset](./packages/terra-graphs/docs/controls/BubbleMultipleDataset.md)
+-   [Line](./packages/terra-graphs-docs/docs/controls/Line.md#usage)
+-   [Multi Line](./packages/terra-graphs-docs/docs/controls/Line.md#multi-line)
+-   [Spline Line](./packages/terra-graphs-docs/docs/controls/Line.md#spline-line)
+-   [Paired Result](./packages/terra-graphs-docs/docs/controls/PairedResult.md#usage)
+-   [Bar](./packages/terra-graphs-docs/docs/controls/Bar.md#usage)
+-   [Timeline](./packages/terra-graphs-docs/docs/controls/Timeline.md#usage)
+-   [Pie](./packages/terra-graphs-docs/docs/controls/Pie.md#usage)
+-   [Gantt](./packages/terra-graphs-docs/docs/controls/Gantt.md#usage)
+-   [Scatter](./packages/terra-graphs-docs/docs/controls/Scatter.md#usage)
+-   [Bubble](./packages/terra-graphs-docs/docs/controls/Bubble.md#usage)
+    -   [Bubble Single Dataset](./packages/terra-graphs-docs/docs/controls/BubbleSingleDataset.md)
+    -   [Bubble Multiple Dataset](./packages/terra-graphs-docs/docs/controls/BubbleMultipleDataset.md)
 
 
 ### Graph Settings and Toggles
@@ -207,7 +206,7 @@ npm run dev
   LICENSE
 </h2>
 
-Copyright 2020 Cerner Innovation, Inc.
+Copyright 2020 - present Cerner Innovation, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
