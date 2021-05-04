@@ -1,9 +1,15 @@
 'use strict';
 
 import * as d3 from 'd3';
+import uuidv4 from 'uuid/v4';
 import { AXIS_TYPE, LINE_TYPE } from '../../helpers/constants';
 import errors from '../../helpers/errors';
 import utils from '../../helpers/utils';
+
+/**
+ * Creates random ID
+ */
+const idRef = () => uuidv4();
 
 /**
  * Validates and verifies the input JSON object
@@ -57,7 +63,7 @@ export const getType = (type) => getDefaultValue(type, AXIS_TYPE.DEFAULT);
  * @private
  * @returns {string} Clip path ID
  */
-export const generateClipPathId = () => `carbon-${+new Date()}-clip`;
+export const generateClipPathId = () => `carbon-${+new Date()}-${idRef()}-clip`;
 
 /**
  * Generates a clip path ID for Dateline based on current date
@@ -65,7 +71,7 @@ export const generateClipPathId = () => `carbon-${+new Date()}-clip`;
  * @private
  * @returns {string} Clip path Dateline ID
  */
-export const generateDatelineClipPathId = () => `carbon-${+new Date()}-dateline-clip`;
+export const generateDatelineClipPathId = () => `carbon-${+new Date()}-${idRef()}-dateline-clip`;
 /**
  * Interpolation type can be:
  * * Linear (default)
