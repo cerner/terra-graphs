@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+ * Fixed reflow bug in timeline triggered by `showLegend=false`.
+
 ## 2.17.0 - (April 27, 2021)
 
 * Changed 
