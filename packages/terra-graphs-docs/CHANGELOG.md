@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Added 
+  * Added documentation for bubble components.
   * Created this separate package for terra-dev-site and documentation.
   * Added data objects and examples for Line, Bar and Paired result graphs.
 

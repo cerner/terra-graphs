@@ -1,7 +1,12 @@
 /* eslint-disable */
 import * as d3 from "d3";
+<<<<<<< HEAD
 import constants from '@cerner/carbon-graphs/lib/js/helpers/constants';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+=======
+import constants from "@cerner/carbon-graphs/src/js/helpers/constants";
+import utils from "@cerner/carbon-graphs/src/js/helpers/utils";
+>>>>>>> added bubble components
 
 const getDate = (d) => new Date(d).toLocaleString();
 const getPairData = (value) =>
@@ -81,8 +86,13 @@ const renderY2Popup = (fn) => {
 const removeOldPopup = () => {
     // Remove old popup
     d3.select("#overlay").remove();
+<<<<<<< HEAD
     if(document.getElementsByClassName('initial-tooltip')[0]) {
         document.getElementsByClassName('initial-tooltip')[0].className = 'tooltip';
+=======
+    if(document.getElementById("initial_tooltip")) {
+        document.getElementById('initial_tooltip').id = 'tooltip';
+>>>>>>> added bubble components
     }
     d3.select("#tooltip").attr("style", "").selectAll("g").remove();
 };

@@ -4,6 +4,7 @@ import { Shape } from './core';
 import {
   AXES_ORIENTATION,
   AXIS_TYPE,
+  BUBBLE,
   COLORS,
   LINE_TYPE,
   SHAPES,
@@ -36,6 +37,7 @@ const tools = {
  */
 const helpers = {
   AXIS_TYPE,
+  BUBBLE,
   COLORS,
   LINE_TYPE,
   LOCALE,
