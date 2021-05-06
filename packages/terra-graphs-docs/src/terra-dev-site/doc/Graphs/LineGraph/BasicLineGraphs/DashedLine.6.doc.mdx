@@ -1,0 +1,36 @@
+import LineGraph from '../../../example/Graphs/LineGraph/BasicLineGraphs/DashedLine?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Line/LineGraph?dev-site-props-table';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dashedLineData.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Dashed Line
+This is a Simple graph with dashed line in it.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+```jsx
+import React from 'react';
+import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
+```
+## Examples
+<LineGraph />
+
+## Props
+<PropsTable />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>
