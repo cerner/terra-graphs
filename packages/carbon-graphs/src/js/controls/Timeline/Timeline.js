@@ -349,7 +349,7 @@ class Timeline extends Construct {
         }
       });
     }
-    
+
     if (this.config.showLegend) {
       reflowLegend(
         this.legendSVG,

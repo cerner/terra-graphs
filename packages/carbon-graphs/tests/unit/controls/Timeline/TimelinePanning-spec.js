@@ -119,7 +119,7 @@ describe('Panning', () => {
       });
     });
   });
-  describe('When showLegend is false', ()=>{
+  describe('When showLegend is false', () => {
     it('successfully updates the dynamic data', () => {
       const values = utils.deepClone(valuesJSON);
       const input = getData(values, false, false);
@@ -131,7 +131,7 @@ describe('Panning', () => {
 
       const panData = {
         key: 'uid_1',
-        values: [{x: new Date(2018, 1, 1).toISOString()}],
+        values: [{ x: new Date(2018, 1, 1).toISOString() }],
       };
       let timelineContent = fetchAllElementsByClass(
         styles.pointGroup,
