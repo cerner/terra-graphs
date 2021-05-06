@@ -1,6 +1,6 @@
-import { loadPopup } from '@cerner/terra-graphs-docs/src/example-datasets/popup.js';
+import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup.js';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-  
+
 const bubbleDataCustomRadius = {
   key: 'uid_5',
   label: {
@@ -12,21 +12,21 @@ const bubbleDataCustomRadius = {
     fixedRadius: 12,
   },
   values: [{
-      x: new Date(2016, 0, 1, 6, 0).toISOString(),
-      y: 100,
-    },
-    {
-      x: new Date(2016, 0, 1, 10, 0).toISOString(),
-      y: 120,
-    },
-    {
-      x: new Date(2016, 0, 1, 12, 0).toISOString(),
-      y: 180,
-    },
-    {
-      x: new Date(2016, 0, 1, 18, 0).toISOString(),
-      y: 220,
-    },
+    x: new Date(2016, 0, 1, 6, 0).toISOString(),
+    y: 100,
+  },
+  {
+    x: new Date(2016, 0, 1, 10, 0).toISOString(),
+    y: 120,
+  },
+  {
+    x: new Date(2016, 0, 1, 12, 0).toISOString(),
+    y: 180,
+  },
+  {
+    x: new Date(2016, 0, 1, 18, 0).toISOString(),
+    y: 220,
+  },
   ],
   yAxis: 'y',
 };

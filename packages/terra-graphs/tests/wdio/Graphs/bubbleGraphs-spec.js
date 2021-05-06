@@ -1,6 +1,5 @@
 Terra.describeViewports('Bubble graphs', ['tiny', 'medium', 'large'], () => {
   describe('Validates', () => {
-
     it('Single Dataset graph container', () => {
       browser.url('/raw/tests/terra-graphs-docs/graphs/bubble-graph/single-dataset');
       Terra.validates.screenshot('single-dataset', { selector: '.carbon-graph-container' });
@@ -30,6 +29,5 @@ Terra.describeViewports('Bubble graphs', ['tiny', 'medium', 'large'], () => {
       browser.url('/raw/tests/terra-graphs-docs/graphs/bubble-graph/multiple-dataset');
       Terra.validates.screenshot('multiple-dataset', { selector: '.carbon-graph-container' });
     });
-
   });
 });
