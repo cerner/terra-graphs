@@ -29,8 +29,8 @@ const BubbleSingleDataset = ({
 }) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    if (!(utils.isUndefined(dataset))) {
-      if (!(utils.isUndefined(timeout))) {
+    if (dataset) {
+      if (timeout) {
         dataset.forEach((data, index) => {
           setTimeout(
             () => (graph.graphContainer
