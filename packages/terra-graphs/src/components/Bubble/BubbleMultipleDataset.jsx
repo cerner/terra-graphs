@@ -29,21 +29,27 @@ const BubbleMultipleDataset = ({
 }) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
+    const timeoutIds = [];
+
     if (dataset) {
       if (timeout) {
         dataset.forEach((data, index) => {
-          setTimeout(
+          const timeoutId = setTimeout(
             () => (graph.graphContainer
               ? graph.loadContent(Carbon.api.bubbleMultipleDataset(data))
               : ''),
             timeout[index],
           );
+          timeoutIds.push(timeoutId);
         });
       } else {
         dataset.forEach((data) => {
           graph.loadContent(Carbon.api.bubbleMultipleDataset(data));
         });
       }
+    }
+    return () => {
+      timeoutIds.forEach((id) => { clearTimeout(id); });
     }
   }, [graphConfig, dataset, timeout]);
 
