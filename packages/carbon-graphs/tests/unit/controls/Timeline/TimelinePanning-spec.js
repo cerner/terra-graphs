@@ -119,6 +119,32 @@ describe('Panning', () => {
       });
     });
   });
+  describe('When showLegend is false', () => {
+    it('successfully updates the dynamic data', () => {
+      const values = utils.deepClone(valuesJSON);
+      const input = getData(values, false, false);
+      const axisData = utils.deepClone(getAxes(axisJSON));
+      axisData.showLegend = false;
+
+      timeline = new Timeline(axisData);
+      timeline.loadContent(input);
+
+      const panData = {
+        key: 'uid_1',
+        values: [{ x: new Date(2018, 1, 1).toISOString() }],
+      };
+      let timelineContent = fetchAllElementsByClass(
+        styles.pointGroup,
+      );
+
+      expect(timelineContent.length).toEqual(2);
+
+      timeline.reflow(panData);
+      timelineContent = fetchAllElementsByClass(styles.pointGroup);
+
+      expect(timelineContent.length).toEqual(1);
+    });
+  });
   describe('When disabled', () => {
     beforeEach(() => {
       const values = utils.deepClone(valuesJSON);

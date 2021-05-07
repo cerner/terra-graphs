@@ -312,12 +312,15 @@ class Timeline extends Construct {
       const position = this.content.findIndex((key) => key === graphData.key);
       this.contentConfig[position].reflow(this, graphData);
     }
-    reflowLegend(
-      this.legendSVG,
-      this.contentConfig[0].config,
-      this,
-      eventHandlers,
-    );
+
+    if (this.config.showLegend) {
+      reflowLegend(
+        this.legendSVG,
+        this.contentConfig[0].config,
+        this,
+        eventHandlers,
+      );
+    }
     this.resize();
     return this;
   }
@@ -346,12 +349,15 @@ class Timeline extends Construct {
         }
       });
     }
-    reflowLegend(
-      this.legendSVG,
-      this.contentConfig[0].config,
-      this,
-      eventHandlers,
-    );
+
+    if (this.config.showLegend) {
+      reflowLegend(
+        this.legendSVG,
+        this.contentConfig[0].config,
+        this,
+        eventHandlers,
+      );
+    }
     this.resize();
     return this;
   }

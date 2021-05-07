@@ -2,10 +2,11 @@
 
 ## Unreleased
 
-* Changed 
+* Changed
+  * Fixed reflow bug in timeline triggered by `showLegend=false`.
   * Fixed retaining legend state in paired result graph during reflow.
   * Fixed isolation of different graph instances in same page.
-  
+
 ## 2.17.0 - (April 27, 2021)
 
 * Changed 
