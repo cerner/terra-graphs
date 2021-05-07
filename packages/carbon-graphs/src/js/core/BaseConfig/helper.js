@@ -1,6 +1,7 @@
 'use strict';
 
 import * as d3 from 'd3';
+import uuidv4 from 'uuid/v4';
 import { AXIS_TYPE, LINE_TYPE } from '../../helpers/constants';
 import errors from '../../helpers/errors';
 import utils from '../../helpers/utils';
@@ -52,20 +53,20 @@ export const getDefaultValue = (value, defaultVal) => (utils.isUndefined(value) 
  */
 export const getType = (type) => getDefaultValue(type, AXIS_TYPE.DEFAULT);
 /**
- * Generates a clip path ID based on current date
+ * Generates a unique clip path ID with uuidv4().
  *
  * @private
  * @returns {string} Clip path ID
  */
-export const generateClipPathId = () => `carbon-${+new Date()}-clip`;
+export const generateClipPathId = () => `carbon-${uuidv4()}-clip`;
 
 /**
- * Generates a clip path ID for Dateline based on current date
+ * Generates a clip path ID for Dateline with uuidv4()
  *
  * @private
  * @returns {string} Clip path Dateline ID
  */
-export const generateDatelineClipPathId = () => `carbon-${+new Date()}-dateline-clip`;
+export const generateDatelineClipPathId = () => `carbon-${uuidv4()}-dateline-clip`;
 /**
  * Interpolation type can be:
  * * Linear (default)
