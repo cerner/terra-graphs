@@ -10,7 +10,7 @@ import {
   delay,
   loadCustomJasmineMatcher,
   PADDING_BOTTOM,
-  toNumber,
+  toNumber, triggerEvent,
 } from '../../helpers/commonHelpers';
 import {
   axisTimeSeries,
@@ -1025,6 +1025,94 @@ describe('PairedResult', () => {
         expect(
           pairedResultShapeContentY2[0].querySelectorAll('svg[aria-describedby="uid_2_low"]')[0],
         ).not.toBeNull();
+      });
+    });
+    describe('when there is no data state with reflow', () => {
+      it('should carry legend state on click of panning button', (done) => {
+        graphDefault.destroy();
+        const axisData = utils.deepClone(getAxes(axisTimeSeries));
+
+        axisData.pan = { enabled: true };
+        axisData.showLabel = true;
+        const input = getInput(valuesTimeSeries, false, false, true);
+        graphDefault = new Graph(axisData);
+        graphDefault.loadContent(new PairedResult(input));
+        const graphData = {
+          panData: [
+            {
+              key: 'uid_1',
+              values: [
+              ],
+            },
+          ],
+        };
+        const graphData1 = {
+          panData: [
+            {
+              key: 'uid_1',
+              values: [
+                {
+                  high: {
+                    x: '2016-09-18T12:00:00Z',
+                    y: 70,
+                  },
+                  mid: {
+                    x: '2016-09-19T02:00:00Z',
+                    y: 30,
+                  },
+                  low: {
+                    x: '2016-09-19T02:00:00Z',
+                    y: 10,
+                  },
+                },
+              ],
+            },
+          ],
+        };
+        const legendItemHigh = pairedResultGraphContainer.querySelector(
+          `.${styles.legendItem}[aria-describedby="${input.key}_high"]`,
+        );
+        const legendItemLow = pairedResultGraphContainer.querySelector(
+          `.${styles.legendItem}[aria-describedby="${input.key}_low"]`,
+        );
+        const legendItemMid = pairedResultGraphContainer.querySelector(
+          `.${styles.legendItem}[aria-describedby="${input.key}_mid"]`,
+        );
+        triggerEvent(legendItemHigh, 'click', () => {
+          expect(legendItemHigh.getAttribute('aria-current')).toBe(
+            'false',
+          );
+          done();
+        });
+        triggerEvent(legendItemLow, 'click', () => {
+          expect(legendItemLow.getAttribute('aria-current')).toBe(
+            'false',
+          );
+          done();
+        });
+
+        graphDefault.reflowMultipleDatasets(graphData);
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(legendItemHigh.getAttribute('aria-current')).toBe(
+          'false',
+        );
+        expect(legendItemLow.getAttribute('aria-current')).toBe(
+          'false',
+        );
+        expect(legendItemMid.getAttribute('aria-current')).toBe(
+          'true',
+        );
+        graphDefault.reflowMultipleDatasets(graphData);
+        graphDefault.reflowMultipleDatasets(graphData1);
+        expect(legendItemHigh.getAttribute('aria-current')).toBe(
+          'false',
+        );
+        expect(legendItemLow.getAttribute('aria-current')).toBe(
+          'false',
+        );
+        expect(legendItemMid.getAttribute('aria-current')).toBe(
+          'true',
+        );
       });
     });
   });
