@@ -7,5 +7,6 @@
   
 * Added
   * Added documentation for `reflowMultipleDatasets`.
+  * Created Component and WDIO test cases for Scatter graph types.
 
 * Initial stable release

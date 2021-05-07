@@ -1,0 +1,58 @@
+/* eslint import/no-unresolved: off */
+import React from 'react';
+import PropTypes from 'prop-types';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import '../Graph.module.scss';
+
+const propTypes = {
+  /**
+   * ID for graph created.
+   */
+  graphID: PropTypes.string.isRequired,
+  /**
+   * Graph configuration object
+   */
+  graphConfig: PropTypes.object.isRequired,
+  /**
+   * data to be displayed in graph
+   */
+  dataset: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * timeout to display multiple data contents in specific time interval.
+   */
+  timeout: PropTypes.arrayOf(PropTypes.number),
+};
+
+const ScatterGraph = ({
+  graphConfig, dataset, graphID, timeout,
+}) => {
+  React.useEffect(() => {
+    const graph = Carbon.api.graph(graphConfig);
+    if (dataset) {
+      if (timeout) {
+        dataset.forEach((data, index) => {
+          setTimeout(
+            () => (graph.graphContainer
+              ? graph.loadContent(Carbon.api.scatter(data))
+              : ''),
+            timeout[index],
+          );
+        });
+      } else {
+        dataset.forEach((data) => {
+          graph.loadContent(Carbon.api.scatter(data));
+        });
+      }
+    }
+  }, [graphConfig, dataset, timeout]);
+
+  return (
+    <div id={`${graphID}-canvasContainer`}>
+      <div id={graphID} />
+    </div>
+  );
+};
+
+ScatterGraph.propTypes = propTypes;
+
+export default ScatterGraph;

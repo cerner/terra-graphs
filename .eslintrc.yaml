@@ -89,7 +89,6 @@
            import/no-unresolved: off
            import/extensions: off
 
-
         - files: "*.conf.js"
           rules:
             import/no-extraneous-dependencies: off
