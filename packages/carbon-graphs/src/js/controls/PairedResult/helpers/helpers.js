@@ -373,6 +373,30 @@ const draw = (scale, config, canvasSVG, dataTarget, legendSVG) => {
     .remove();
 };
 /**
+ * Set shown targets for the data present
+ *
+ * @private
+ * @param {object} graphConfig - config object of Graph API
+ * @param {object} dataTarget - Data points object
+ * @returns {undefined} - returns nothing
+ */
+const setShownTargets = (graphConfig, dataTarget) => {
+  const types = ['high', 'mid', 'low'];
+  types.forEach((t) => {
+    const label = getValue(dataTarget.label, t);
+    if (label && label.display) {
+      if (
+        !utils.hasValue(
+          graphConfig.shownTargets,
+          `${dataTarget.key}_${t}`,
+        )
+      ) {
+        graphConfig.shownTargets.push(`${dataTarget.key}_${t}`);
+      }
+    }
+  });
+};
+/**
  * Processes the input JSON and adds the shapes, colors, labels etc. to each data points so that we
  * can use them when rendering the data point.
  *
@@ -411,20 +435,7 @@ const processDataPoints = (graphConfig, dataTarget, reflow = false) => {
   };
 
   if (!reflow && dataTarget.values.length < 1) {
-    const types = ['high', 'mid', 'low'];
-    types.forEach((t) => {
-      const label = getValue(dataTarget.label, t);
-      if (label && label.display) {
-        if (
-          !utils.hasValue(
-            graphConfig.shownTargets,
-            `${dataTarget.key}_${t}`,
-          )
-        ) {
-          graphConfig.shownTargets.push(`${dataTarget.key}_${t}`);
-        }
-      }
-    });
+    setShownTargets(graphConfig, dataTarget);
   }
   // Each value is a pair. Construct enough information so that you can
   // construct a box. Each box would need 3 icons so we need 3 (max) data sets
