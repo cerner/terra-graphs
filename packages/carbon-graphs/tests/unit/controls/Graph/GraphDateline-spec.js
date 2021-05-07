@@ -396,4 +396,20 @@ describe('Graph - Dateline', () => {
       });
     });
   });
+  describe('Generate different clip-path id', () => {
+    it('When two graph instances are created in same page', () => {
+      const input = utils.deepClone(getAxes(axisTimeSeries));
+      graph = new Graph(input);
+      graph.loadContent(new Line(getData(valuesTimeSeries)));
+      const input1 = utils.deepClone(getAxes(axisTimeSeries));
+      input1.key = 'uid_1';
+      graph = new Graph(input1);
+      graph.loadContent(new Line(getData(valuesTimeSeries)));
+
+      const clipPathID = document.querySelectorAll('clipPath');
+      expect(
+        clipPathID[0] === clipPathID[1],
+      ).toBe(false);
+    });
+  });
 });

@@ -1,12 +1,11 @@
 # Terra Graphs
 
-[![NPM version](https://badgen.net/npm/v/terra-graphs)](https://www.npmjs.com/package/terra-graphs)
+<!-- [![NPM version](https://badgen.net/npm/v/terra-graphs)](https://www.npmjs.com/package/terra-graphs) -->
 [![Build Status](https://badgen.net/travis/cerner/terra-core)](https://travis-ci.com/cerner/terra-graphs)
 
 A react graphing library built using d3 based on Cerner design standards.
 
 - [Getting Started](#getting-started)
-- [Documentation](https://github.com/cerner/terra-core/tree/main/packages/terra-graphs/docs)
 - [LICENSE](#license)
 
 ## Getting Started
@@ -15,7 +14,7 @@ A react graphing library built using d3 based on Cerner design standards.
 
 ## LICENSE
 
-Copyright 2020 Cerner Innovation, Inc.
+Copyright 2020 - present Cerner Innovation, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

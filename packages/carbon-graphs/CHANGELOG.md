@@ -3,13 +3,15 @@
 ## Unreleased
 
 * Changed
- * Fixed reflow bug in timeline triggered by `showLegend=false`.
+  * Fixed reflow bug in timeline triggered by `showLegend=false`.
+  * Fixed isolation of different graph instances in same page.
 
 ## 2.17.0 - (April 27, 2021)
 
 * Changed 
   * Fixed rendering of timeline graph when it is rendered below another graph.
   * Fixed Y-axis and y2-axis icons not updating during reflow.
+  * Updated `packages/carbon-graphs/README.md` so that links point to updated documentation path.
 
 ## 2.16.3 - (March 16, 2021)
 
