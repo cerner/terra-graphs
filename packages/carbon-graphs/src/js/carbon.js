@@ -11,6 +11,10 @@ import {
 } from './helpers/constants';
 import LOCALE from './locale';
 
+const { version } = require('../../package.json');
+
+const carbonVersion = typeof VERSION === 'undefined' ? version : VERSION;
+
 /**
  * Carbon tools for generating reusable items like different shapes
  *
@@ -57,7 +61,7 @@ const Carbon = {
   api,
   tools,
   helpers,
-  version: VERSION,
+  version: carbonVersion,
 };
 
 export default Carbon;

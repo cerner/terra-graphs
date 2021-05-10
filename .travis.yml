@@ -13,6 +13,7 @@ before_install:
   # Clean install on any new build
   - npm run clean
 before_script:
+  # Load Docker Cache
   - docker load -i docker_images/images.tar || true
 jobs:
   include:
@@ -45,7 +46,7 @@ jobs:
       script:
         # using the travis env section to set env variables seems to break cache
         - SITE=$TRAVIS_BUILD_DIR/travis-build/default FORM_FACTOR=tiny npm run wdio-default
-        
+
     - name: small default-theme
       before_install: skip
       install: skip

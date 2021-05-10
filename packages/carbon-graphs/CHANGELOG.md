@@ -14,6 +14,9 @@
   * Fixed Y-axis and y2-axis icons not updating during reflow.
   * Updated `packages/carbon-graphs/README.md` so that links point to updated documentation path.
 
+* Added
+  * Added datasets for building graphs in terra-graphs package.
+  
 ## 2.16.3 - (March 16, 2021)
 
 * Changed
