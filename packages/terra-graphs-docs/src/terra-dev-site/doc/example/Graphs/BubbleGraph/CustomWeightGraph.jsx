@@ -9,7 +9,12 @@ import bubbleDataCustomRadius from '@cerner/terra-graphs-docs/src/example-datase
 /*
 Please refer to the documentation below to see graphConfig and data objects.
 */
-const graphConfig = utils.deepClone(getSimpleAxisData('#colorBasedBubbleGraph'));
+const graphConfig = utils.deepClone(getSimpleAxisData('#customWeightGraph'));
 const dataset = utils.deepClone(bubbleDataCustomRadius);
 
-export default () => <BubbleSingleDataset graphID="colorBasedBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />;
+export default () => (
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <BubbleSingleDataset graphID="customWeightGraph" graphConfig={graphConfig} dataset={[dataset]} />;
+    </React.Fragment>
+);

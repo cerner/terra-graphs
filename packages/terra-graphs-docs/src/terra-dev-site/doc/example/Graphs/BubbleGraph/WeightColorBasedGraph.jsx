@@ -9,7 +9,12 @@ import bubbleDataColorWeightBased from '@cerner/terra-graphs-docs/src/example-da
 /*
 Please refer to the documentation below to see graphConfig and data objects.
 */
-const graphConfig = utils.deepClone(getSimpleAxisData('#colorBasedBubbleGraph'));
+const graphConfig = utils.deepClone(getSimpleAxisData('#weightColorBasedBubbleGraph'));
 const dataset = utils.deepClone(bubbleDataColorWeightBased);
 
-export default () => <BubbleSingleDataset graphID="colorBasedBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />;
+export default () => (
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <BubbleSingleDataset graphID="weightColorBasedBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />;
+    </React.Fragment>
+);

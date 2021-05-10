@@ -54,7 +54,6 @@ const BubbleMultipleDataset = ({
 
   return (
     <div id={`${graphID}-canvasContainer`}>
-      <div id="initial_tooltip" className="tooltip" />
       <div id={graphID} />
     </div>
   );

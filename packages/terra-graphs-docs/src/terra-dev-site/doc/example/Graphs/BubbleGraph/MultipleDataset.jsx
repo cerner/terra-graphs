@@ -10,8 +10,13 @@ import bubbleDataCustomRadius from '@cerner/terra-graphs-docs/src/example-datase
 /*
 Please refer to the documentation below to see graphConfig and data objects.
 */
-const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubbleGraph'));
+const graphConfig = utils.deepClone(getSimpleAxisData('#multipleDatasetBubbleGraph'));
 const dataset1 = utils.deepClone(bubbleDataBasic);
 const dataset2 = utils.deepClone(bubbleDataCustomRadius);
 
-export default () => <BubbleMultipleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset1, dataset2]} />;
+export default () => (
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <BubbleMultipleDataset graphID="multipleDatasetBubbleGraph" graphConfig={graphConfig} dataset={[dataset1, dataset2]} />;
+    </React.Fragment>
+);

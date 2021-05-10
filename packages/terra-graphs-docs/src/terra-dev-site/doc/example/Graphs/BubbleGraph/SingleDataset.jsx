@@ -12,4 +12,9 @@ Please refer to the documentation below to see graphConfig and data objects.
 const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubbleGraph'));
 const dataset = utils.deepClone(bubbleDataBasic);
 
-export default () => <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />;
+export default () => (
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />;
+    </React.Fragment>
+);
