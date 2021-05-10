@@ -41,7 +41,7 @@ export const multiRegionAlt = {
 };
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(pairedResultTimeseries('#timeseriesPairedResultGraph'));
 graphConfig.axis.y2.show = true;

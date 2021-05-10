@@ -13,13 +13,8 @@ import LOCALE from './locale';
 
 const { version } = require('../../package.json');
 
-let carbonVersion;
+const carbonVersion = typeof VERSION === 'undefined' ? version : VERSION;
 
-if (typeof VERSION === 'undefined') {
-  carbonVersion = version;
-} else {
-  carbonVersion = VERSION;
-}
 /**
  * Carbon tools for generating reusable items like different shapes
  *

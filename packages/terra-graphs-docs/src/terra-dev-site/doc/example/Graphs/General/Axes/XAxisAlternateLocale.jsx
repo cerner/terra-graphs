@@ -14,7 +14,7 @@ const tickValues = [
 ];
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineTimeseries('#xAxisAlternateLocale'));
 graphConfig.locale = Carbon.helpers.LOCALE.de_DE;

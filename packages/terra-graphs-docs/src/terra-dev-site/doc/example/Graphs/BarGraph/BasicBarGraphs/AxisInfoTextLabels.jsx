@@ -6,7 +6,7 @@ import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConf
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/axisInfoTextLabelsData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(barDefault('#axisInfoTextLabelsBargraph'));
 const dataset = utils.deepClone(data);

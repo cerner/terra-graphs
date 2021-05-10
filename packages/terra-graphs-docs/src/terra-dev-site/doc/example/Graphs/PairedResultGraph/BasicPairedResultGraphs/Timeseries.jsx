@@ -6,7 +6,7 @@ import pairedResultTimeseries from '@cerner/terra-graphs-docs/lib/example-datase
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultTimeseriesData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(pairedResultTimeseries('#timeseriesPairedResultGraph'));
 const dataset = utils.deepClone(data);

@@ -6,7 +6,7 @@ import pairedResultDefault from '@cerner/terra-graphs-docs/lib/example-datasets/
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultSimpleData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(pairedResultDefault('#simplePairedResultGraph'));
 const contentData = utils.deepClone(data);

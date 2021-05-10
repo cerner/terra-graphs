@@ -6,7 +6,7 @@ import '@cerner/terra-graphs/lib//components/Dev.module.scss';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineDefault('#xAxisOrientationTop'));
 graphConfig.axis.x.orientation = Carbon.helpers.AXES_ORIENTATION.X.TOP;

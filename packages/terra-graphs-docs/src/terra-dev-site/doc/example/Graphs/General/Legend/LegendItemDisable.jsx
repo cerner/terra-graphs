@@ -6,7 +6,7 @@ import lineTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graph
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multiTimeseriesData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineTimeseries('#legendItemDisable'));
 

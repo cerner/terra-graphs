@@ -7,7 +7,7 @@ import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConf
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedAxisInfoTextLabelsData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(barDefault('#stackedAxisInfoTextLabelsBargraph'));
 graphConfig.axis.x.orientation = Carbon.helpers.AXES_ORIENTATION.X.TOP;

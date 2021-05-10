@@ -6,7 +6,7 @@ import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphC
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineTimesries('#lineY2Axis'));
 graphConfig.axis.y2.show = true;

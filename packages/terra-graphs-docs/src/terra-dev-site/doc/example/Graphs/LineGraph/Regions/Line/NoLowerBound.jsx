@@ -6,7 +6,7 @@ import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphCon
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/simpleLineData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineDefault('#noLowerBound'));
 const contentData = utils.deepClone(data);

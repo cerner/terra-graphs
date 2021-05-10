@@ -6,7 +6,7 @@ import dateTimeBucket from '@cerner/terra-graphs-docs/lib/example-datasets/graph
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(dateTimeBucket('#datetimeBucket'));
 const dataset = utils.deepClone(data);
