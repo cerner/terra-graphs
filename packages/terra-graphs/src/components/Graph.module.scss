@@ -8,11 +8,7 @@
 }
 
 .carbon-graph-container {
-<<<<<<< HEAD
   color: var(--terra-graphs-dark);
-=======
-  color: var(--dark);
->>>>>>> added bubble components
   display: block;
   padding-bottom: 0.8333rem;
   padding-top: 0.8333rem;
@@ -35,11 +31,7 @@
 .carbon-axis path.domain,
 .carbon-axis line {
   fill: none;
-<<<<<<< HEAD
   stroke: var(--terra-graphs-grey30);
-=======
-  stroke: var(--grey30);
->>>>>>> added bubble components
 }
 
 .carbon-grid line,
@@ -58,30 +50,18 @@
 
 .carbon-axis {
   &.carbon-axis-reference-line {
-<<<<<<< HEAD
     stroke: var(--terra-graphs-grey30);
-=======
-    stroke: var(--grey30);
->>>>>>> added bubble components
     stroke-width: 2px;
   }
 }
 
 .carbon-grid {
   > * .domain[stroke] {
-<<<<<<< HEAD
     stroke: var(--terra-graphs-grey10);
   }
 
   line {
     stroke: var(--terra-graphs-grey10);
-=======
-    stroke: var(--grey10);
-  }
-
-  line {
-    stroke: var(--grey10);
->>>>>>> added bubble components
   }
 }
 
@@ -91,29 +71,17 @@
 }
 
 .carbon-midpoint-grid line {
-<<<<<<< HEAD
   stroke: var(--terra-graphs-grey10);
-=======
-  stroke: var(--grey10);
->>>>>>> added bubble components
   stroke-width: 1px;
 }
 
 .carbon-upper-step-grid line {
-<<<<<<< HEAD
   stroke: var(--terra-graphs-grey30);
-=======
-  stroke: var(--grey30);
->>>>>>> added bubble components
   stroke-width: 3px;
 }
 
 .carbon-no-data-text {
-<<<<<<< HEAD
   fill: var(--terra-graphs-dark);
-=======
-  fill: var(--dark);
->>>>>>> added bubble components
 }
 
 .carbon-legend {
@@ -136,11 +104,7 @@
     .carbon-legend-item-btn {
       align-content: center;
       align-self: flex-start;
-<<<<<<< HEAD
       background-color: var(--terra-graphs-grey15);
-=======
-      background-color: var(--grey15);
->>>>>>> added bubble components
       border: 0;
       border-radius: 0.25rem;
       flex-shrink: 0;
@@ -159,11 +123,7 @@
       cursor: pointer;
 
       &:hover {
-<<<<<<< HEAD
         background-color: var(--terra-graphs-blue10);
-=======
-        background-color: var(--blue10);
->>>>>>> added bubble components
       }
 
       .carbon-legend-item-btn,
@@ -183,21 +143,13 @@
       }
 
       .carbon-legend-item-text {
-<<<<<<< HEAD
         color: var(--terra-graphs-grey30);
-=======
-        color: var(--grey30);
->>>>>>> added bubble components
       }
     }
 
     .carbon-legend-item-icon {
       display: block;
-<<<<<<< HEAD
       stroke: var(--terra-graphs-white);
-=======
-      stroke: var(--white);
->>>>>>> added bubble components
       stroke-width: 5px;
     }
 
@@ -221,34 +173,21 @@
     }
 
     .carbon-legend-white-line {
-<<<<<<< HEAD
       stroke: var(--terra-graphs-white);
-=======
-      stroke: var(--white);
->>>>>>> added bubble components
       stroke-width: 6px;
     }
   }
 
   .carbon-legend-item[aria-current='false'] {
     .carbon-legend-item-btn {
-<<<<<<< HEAD
       background-color: var(--terra-graphs-white);
       border-color: var(--terra-graphs-grey15);
-=======
-      background-color: var(--white);
-      border-color: var(--grey15);
->>>>>>> added bubble components
       border-style: solid;
       border-width: 1px;
     }
 
     .carbon-legend-item-text {
-<<<<<<< HEAD
       color: var(--terra-graphs-grey65);
-=======
-      color: var(--grey65);
->>>>>>> added bubble components
     }
   }
 }
@@ -274,15 +213,9 @@
 
 .carbon-selected-data-point {
   display: block;
-<<<<<<< HEAD
   fill: var(--terra-graphs-blue10);
   fill-opacity: 0.25;
   stroke: var(--terra-graphs-blue30);
-=======
-  fill: var(--blue10);
-  fill-opacity: 0.25;
-  stroke: var(--blue30);
->>>>>>> added bubble components
 
   &[aria-hidden='true'] {
     @include terra-graph-opacity-hide();
@@ -301,33 +234,19 @@
 }
 
 .carbon-criticality-outer {
-<<<<<<< HEAD
   fill: var(--terra-graphs-red85);
   stroke: var(--terra-graphs-red85);
-=======
-  fill: var(--red85);
-  stroke: var(--red85);
->>>>>>> added bubble components
   stroke-width: 24px;
 }
 
 .carbon-criticality-inner {
-<<<<<<< HEAD
   fill: var(--terra-graphs-white);
   stroke: var(--terra-graphs-white);
-=======
-  fill: var(--white);
-  stroke: var(--white);
->>>>>>> added bubble components
   stroke-width: 8px;
 }
 
 .carbon-region {
-<<<<<<< HEAD
   fill: var(--terra-graphs-grey5);
-=======
-  fill: var(--grey5);
->>>>>>> added bubble components
 
   &[aria-hidden='true'],
   &.carbon-region-blur {
@@ -335,11 +254,7 @@
   }
 
   &.carbon-value-region {
-<<<<<<< HEAD
     stroke: var(--terra-graphs-grey5);
-=======
-    stroke: var(--grey5);
->>>>>>> added bubble components
     stroke-width: 0.625rem;
   }
 
@@ -350,11 +265,7 @@
 
 .carbon-content-container {
   fill: none;
-<<<<<<< HEAD
   stroke: var(--terra-graphs-grey10);
-=======
-  stroke: var(--grey10);
->>>>>>> added bubble components
 }
 
 .carbon-data-completion-bar,
@@ -409,21 +320,13 @@
 }
 
 .carbon-no-data-label {
-<<<<<<< HEAD
   fill: var(--terra-graphs-grey65);
-=======
-  fill: var(--grey65);
->>>>>>> added bubble components
   font-size: 1.25rem;
   text-anchor: middle;
 }
 
 .carbon-no-data-overlay {
-<<<<<<< HEAD
   fill: var(--terra-graphs-white);
-=======
-  fill: var(--white);
->>>>>>> added bubble components
   opacity: 0.6;
 }
 
@@ -496,13 +399,4 @@
   width: 100vw;
   z-index: 1200;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
-#initial_tooltip {
-  display :none;
-}
->>>>>>> added bubble components
-=======
->>>>>>> minor updates
