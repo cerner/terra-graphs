@@ -87,7 +87,7 @@
             import/no-unresolved: off
             import/extensions: off
       
-        - files: "packages/terra-graphs-docs/src/*.js"
+        - files: "packages/terra-graphs-docs/src/**/*.js"
           rules:
             import/no-unresolved: off
             import/extensions: off
