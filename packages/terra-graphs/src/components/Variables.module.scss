@@ -58,15 +58,9 @@ We quickly accelerate at the beginning of the animation and slowly decelerate by
 }
 
 @mixin terra-graph-selected-indicator-styles() {
-<<<<<<< HEAD
   fill: var(--terra-graphs-blue10);
   fill-opacity: 0.25;
   stroke: var(--terra-graphs-blue30);
-=======
-  fill: var(--blue10);
-  fill-opacity: 0.25;
-  stroke: var(--blue30);
->>>>>>> added bubble components
   stroke-width: 1px;
 }
 
