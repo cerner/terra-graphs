@@ -29,15 +29,19 @@ const PaiedResultGraph = ({
 }) => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
+    const timeoutIds = [];
+
     if (dataset) {
       if (timeout) {
         dataset.forEach((data, index) => {
-          setTimeout(
+          const timeoutId = setTimeout(
             () => (graph.graphContainer
               ? graph.loadContent(Carbon.api.pairedResult(data))
               : ''),
             timeout[index],
           );
+
+          timeoutIds.push(timeoutId);
         });
       } else {
         dataset.forEach((data) => {
@@ -45,6 +49,10 @@ const PaiedResultGraph = ({
         });
       }
     }
+
+    return () => {
+      timeoutIds.forEach((id) => { clearTimeout(id); });
+    };
   }, [graphConfig, dataset, timeout]);
 
   return (
