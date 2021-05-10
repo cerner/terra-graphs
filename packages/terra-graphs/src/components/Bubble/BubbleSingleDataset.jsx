@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './BubbleSingleDataset.module.scss';
-import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -23,7 +22,6 @@ const propTypes = {
    */
   timeout: PropTypes.array,
 };
-bubbleSingleDataset
 
 const BubbleSingleDataset = ({
   graphConfig, dataset, graphID, timeout,
@@ -51,7 +49,7 @@ const BubbleSingleDataset = ({
     }
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
-    }
+    };
   }, [graphConfig, dataset, timeout]);
 
   return (

@@ -14,16 +14,7 @@ import LOCALE from './locale';
 
 const { version } = require('../../package.json');
 
-<<<<<<< HEAD
 const carbonVersion = typeof VERSION === 'undefined' ? version : VERSION;
-=======
-let carbonVersion;
-if (typeof VERSION === 'undefined') {
-  carbonVersion = version;
-} else {
-  carbonVersion = VERSION;
-}
->>>>>>> linter changes
 
 /**
  * Carbon tools for generating reusable items like different shapes
