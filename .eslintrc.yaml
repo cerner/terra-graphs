@@ -83,19 +83,14 @@
             import/no-unresolved: off
             import/extensions: off
 
-        - files: "packages/terra-graphs/src/**/*.jsx"
-          rules:
-            import/no-unresolved: off
+        # - files: "packages/terra-graphs/src/**/*.jsx"
+        #   rules:
+        #     import/no-unresolved: off
       
-        - files: "packages/terra-graphs-docs/src/**/*.js"
-          rules:
-            import/no-unresolved: off
-            import/extensions: off
-
-        - files: "packages/terra-graphs-docs/src/**/*js"
-          rules:
-           import/no-unresolved: off
-           import/extensions: off
+        # - files: "packages/terra-graphs-docs/src/**/*.js"
+        #   rules:
+        #     import/no-unresolved: off
+        #     import/extensions: off
 
         - files: "*.conf.js"
           rules:
