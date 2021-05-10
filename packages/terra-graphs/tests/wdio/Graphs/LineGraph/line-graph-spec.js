@@ -46,7 +46,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
     });
   });
 
-  describe('Criticaliy', () => {
+  describe('Criticality', () => {
     it('validates criticality multi line graph container', () => {
       browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/criticality/multi-line');
       Terra.validates.screenshot('criticality_multi_line', { selector: '.carbon-graph-container' });
