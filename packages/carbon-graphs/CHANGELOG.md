@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.17.1 - (May 11, 2021)
+
 * Changed
   * Fixed reflow bug in timeline triggered by `showLegend=false`.
   * Fixed retaining legend state in paired result graph during reflow.
