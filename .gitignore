@@ -27,6 +27,7 @@
 
 **/__snapshots__/*
 !**/__snapshots__/reference/
+!**/__snapshots__/*.jsx.*
 **/aggregated-translations/*.*
 **/dist
 
