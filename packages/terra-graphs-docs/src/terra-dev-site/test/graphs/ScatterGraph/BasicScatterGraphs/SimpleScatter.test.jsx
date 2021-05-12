@@ -1,12 +1,12 @@
 import React from 'react';
 import ScatterGraph from '@cerner/terra-graphs/src/components/Scatter/ScatterGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs/lib/components/Dev.module.scss';
+import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/simpleLineData';
 
 /*
-Please refer documentation below to see graphConfig and data objects.
+Please refer to the documentation below to see the graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(lineDefault('#simpleScattergraph'));
 const dataset = utils.deepClone(data);
