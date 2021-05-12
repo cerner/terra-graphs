@@ -2,7 +2,7 @@ import React from 'react';
 import PairedResultGraph from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs/lib/components/Dev.module.scss';
+import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import pairedResultTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseries';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultTimeseriesData';
 
