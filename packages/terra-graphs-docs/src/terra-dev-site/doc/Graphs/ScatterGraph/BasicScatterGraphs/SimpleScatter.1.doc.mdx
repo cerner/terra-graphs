@@ -1,10 +1,11 @@
-import ScatterGraph from '../../../example/Graphs/ScatterGraph/BasicScatterGraphs/SimpleScatter?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph?dev-site-props-table';
+import BarGraph from '../../../example/Graphs/BarGraph/BasicBarGraphs/AxisInfoTextLabels?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Bar/BarGraph?dev-site-props-table';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/axisInfoTextLabelsData.js?dev-site-codeblock';
+require('details-polyfill')
 
-
-# Simple Scatter Graph
-
-This is a Simple scatter graph with default x-axis ticks.
+# Bar Graph With Axis Info Labels
+This is a Simple bar graph with axis info labels on top of the axis.
 
 ## Getting Started
 
@@ -12,14 +13,12 @@ This is a Simple scatter graph with default x-axis ticks.
   - `npm install terra-graphs`
 
 ## Usage
-
 ```jsx
 import React from 'react';
-import ScatterGraph from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph';
+import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 ```
-
 ## Examples
-<ScatterGraph />
+<BarGraph />
 
 ## Props
 <PropsTable />
