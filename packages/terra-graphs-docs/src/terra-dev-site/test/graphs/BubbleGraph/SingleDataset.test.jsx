@@ -8,4 +8,10 @@ import bubbleDataBasic from '@cerner/terra-graphs-docs/src/example-datasets/data
 const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubbleGraph'));
 const dataset = utils.deepClone(bubbleDataBasic);
 
-export default () => <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />;
+export default () => (
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
+    </React.Fragment>
+  );
+  

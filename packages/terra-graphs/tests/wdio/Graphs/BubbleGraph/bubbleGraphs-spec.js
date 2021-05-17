@@ -1,6 +1,6 @@
 Terra.describeViewports('Bubble graphs', ['tiny', 'medium', 'large'], () => {
   describe('Validates', () => {
-    it('Single dataset graph container', () => {
+    it('single dataset graph container', () => {
       browser.url('/raw/tests/terra-graphs-docs/graphs/bubble-graph/single-dataset');
       Terra.validates.screenshot('single-dataset', { selector: '.carbon-graph-container' });
     });
