@@ -9,9 +9,9 @@ const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubbleGraph'));
 const dataset = utils.deepClone(bubbleDataBasic);
 
 export default () => (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
-    </React.Fragment>
-  );
-  
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
+  </React.Fragment>
+);
+

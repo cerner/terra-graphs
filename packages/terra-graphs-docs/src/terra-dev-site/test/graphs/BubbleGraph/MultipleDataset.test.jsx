@@ -11,8 +11,8 @@ const dataset1 = utils.deepClone(bubbleDataBasic);
 const dataset2 = utils.deepClone(bubbleDataCustomRadius);
 
 export default () => (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <BubbleMultipleDataset graphID="multipleDatasetBubbleGraph" graphConfig={graphConfig} dataset={[dataset1, dataset2]} />
-    </React.Fragment>
-  );
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <BubbleMultipleDataset graphID="multipleDatasetBubbleGraph" graphConfig={graphConfig} dataset={[dataset1, dataset2]} />
+  </React.Fragment>
+);

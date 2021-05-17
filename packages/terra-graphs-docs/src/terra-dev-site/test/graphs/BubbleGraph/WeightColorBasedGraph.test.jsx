@@ -9,8 +9,8 @@ const graphConfig = utils.deepClone(getSimpleAxisData('#multipleDatasetBubbleGra
 const dataset = utils.deepClone(bubbleDataColorWeightBased);
 
 export default () => (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <BubbleSingleDataset graphID="multipleDatasetBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
-    </React.Fragment>
-  );
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <BubbleSingleDataset graphID="multipleDatasetBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
+  </React.Fragment>
+);
