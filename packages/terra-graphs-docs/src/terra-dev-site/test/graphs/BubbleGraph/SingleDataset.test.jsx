@@ -14,4 +14,3 @@ export default () => (
     <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
   </React.Fragment>
 );
-
