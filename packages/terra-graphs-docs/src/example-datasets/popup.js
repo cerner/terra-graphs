@@ -90,37 +90,38 @@ export const loadPopup = (onCloseCB, key, index, value) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
-    if (value.x) {
+    const { x, y, label, high, mid, low } = value;
+    if (x) {
         // Line
         createItem(
             pair,
             "X axis",
-            `${checkDate(value.x) ? getDate(value.x) : value.x}`
+            `${checkDate(x) ? getDate(x) : x}`
         );
-        createItem(pair, `${value.label.display}`, value.y);
+        createItem(pair, `${label.display}`, y);
     } else {
         // Paired Result
         createItem(
             pair,
             "X axis",
             `${
-                value.high
-                    ? getPairData(value.high.x)
-                    : value.mid
-                    ? getPairData(value.mid.x)
-                    : value.low
-                    ? getPairData(value.low.x)
+                high
+                    ? getPairData(high.x)
+                    : mid
+                    ? getPairData(mid.x)
+                    : low
+                    ? getPairData(low.x)
                     : "N/A"
             }`
         );
-        if (value.high) {
-            createItem(pair, "High", getPairData(value.high.y));
+        if (high) {
+            createItem(pair, "High", getPairData(high.y));
         }
-        if (value.mid) {
-            createItem(pair, "Mid", getPairData(value.mid.y));
+        if (mid) {
+            createItem(pair, "Mid", getPairData(mid.y));
         }
-        if (value.low) {
-            createItem(pair, "Low", getPairData(value.low.y));
+        if (low) {
+            createItem(pair, "Low", getPairData(low.y));
         }
     }
 };
@@ -128,17 +129,18 @@ export const loadBubblePopup = (onCloseCB, key, index, value) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
-    if (value.x) {
+    const { x, y, label, weight} = value;
+    if (x) {
         // Line
         createItem(
             pair,
             "X axis",
-            `${checkDate(value.x) ? getDate(value.x) : value.x}`
+            `${checkDate(x) ? getDate(x) : x}`
         );
-        createItem(pair, `year`, value.y);
+        createItem(pair, `year`, y);
     }
-    if (value.weight) {
-        createItem(pair, `${value.label.display}`, `${value.weight}`);
+    if (weight) {
+        createItem(pair, `${label.display}`, `${weight}`);
     }
 };
 export const loadBarPopup = (onCloseCB, key, index, values) => {
@@ -157,29 +159,30 @@ export const loadTextLabelPopup = (onCloseCB, value, index) => {
         .classed("popup-item", true)
         .append("g")
         .attr("style", `display: inline-block;`);
-    if (utils.notEmpty(value.shape)) {
+    const { shape, label, color } = value;
+    if (utils.notEmpty(shape)) {
         pair.append("svg")
             .attr("width", "15")
             .attr("height", "12")
             .append("path")
             .attr(
                 "transform",
-                `translate(${0}, ${0}) scale(${value.shape.options.scale})`
+                `translate(${0}, ${0}) scale(${shape.options.scale})`
             )
-            .attr("d", value.shape.path.d)
-            .attr("fill", value.shape.path.fill || constants.DEFAULT_COLOR)
-            .attr("id", value.shape.path.id);
+            .attr("d", shape.path.d)
+            .attr("fill", shape.path.fill || constants.DEFAULT_COLOR)
+            .attr("id", shape.path.id);
     }
-    if (value.label.display) {
+    if (label.display) {
         pair.append("text")
             .classed("popup-text", true)
-            .attr("style", `color: ${value.color};`)
-            .text(`${value.label.display}`);
+            .attr("style", `color: ${color};`)
+            .text(`${label.display}`);
     }
-    if (value.label.secondaryDisplay) {
+    if (label.secondaryDisplay) {
         pair.append("tspan")
             .attr("style", `color: ${constants.DEFAULT_COLOR};`)
-            .text(` ${value.label.secondaryDisplay}`);
+            .text(` ${label.secondaryDisplay}`);
     }
 };
 export const loadXAndYAxisLabelPopup = (d) => {
@@ -206,9 +209,10 @@ export const loadTrackPopup = (onCloseCB, key, value) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
-    if (value.tasks && value.tasks.length > 0) {
+    const { tasks, activities, events, actions } = value;
+    if (tasks && tasks.length > 0) {
         const tasks = [];
-        value.tasks.forEach((task) => {
+        tasks.forEach((task) => {
             tasks.push({
                 name: task.key,
                 startDate: task.startDate,
@@ -217,75 +221,81 @@ export const loadTrackPopup = (onCloseCB, key, value) => {
         });
         createTrackItem(pair, "Tasks", tasks);
     }
-    if (value.activities && value.activities.length > 0) {
-        const activities = [];
-        value.activities.forEach((activity) => {
-            activities.push({
+    if (activities && activities.length > 0) {
+        const valueActivities = [];
+        activities.forEach((activity) => {
+            valueActivities.push({
                 name: activity.key,
                 startDate: activity.startDate,
                 endDate: activity.endDate
             });
         });
-        createTrackItem(pair, "Activities", activities);
+        createTrackItem(pair, "Activities", valueActivities);
     }
-    if (value.events && value.events.length > 0) {
-        const events = [];
-        value.events.forEach((event) => {
-            events.push({
+    if (events && events.length > 0) {
+        const valueEvents = [];
+        events.forEach((event) => {
+            valueEvents.push({
                 name: event.key,
                 values: event.values.join(", ")
             });
         });
-        createTrackItem(pair, "Events", events);
+        createTrackItem(pair, "Events", valueEvents);
     }
-    if (value.actions && value.actions.length > 0) {
-        const actions = [];
-        value.actions.forEach((action) => {
-            actions.push({
+    if (actions && actions.length > 0) {
+        const valueActions = [];
+        actions.forEach((action) => {
+            valueActions.push({
                 name: action.key,
                 values: action.values.join(", ")
             });
         });
-        createTrackItem(pair, "Actions", actions);
+        createTrackItem(pair, "Actions", valueActions);
     }
 };
 export const loadTaskPopup = (onCloseCB, key, index, value) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
-    if (value.label) {
-        createItem(pair, "Task Name", value.label.display);
+    const { label, display, y, startDate, endDate, percentage} = value;
+
+    if (label) {
+        createItem(pair, "Task Name", display);
     }
-    createItem(pair, "Track", value.y);
-    createItem(pair, "Start Date", getDate(value.startDate));
-    createItem(pair, "End Date", getDate(value.endDate));
-    if (value.percentage) {
-        createItem(pair, "Percentage", value.percentage);
+    createItem(pair, "Track", y);
+    createItem(pair, "Start Date", getDate(startDate));
+    createItem(pair, "End Date", getDate(endDate));
+    if (percentage) {
+        createItem(pair, "Percentage", percentage);
     }
 };
 export const loadDatelinePopup = (onCloseCB, payload) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
-    if (payload.label) {
-        createItem(pair, "Milestone", payload.label.display);
+    const { label, value } = payload;
+
+    if (label) {
+        createItem(pair, "Milestone", label.display);
     }
-    createItem(pair, "Date", getDate(payload.value));
+    createItem(pair, "Date", getDate(value));
 };
 export const loadTimelinePopup = (onCloseCB, key, index, value) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
+    const { x, y, label} = value;
     createItem(
         pair,
         "X axis",
-        `${checkDate(value.x) ? getDate(value.x) : value.x}`
+        `${checkDate(x) ? getDate(x) : x}`
     );
-    createItem(pair, `${value.label.display}`, value.content);
+    createItem(pair, `${label.display}`, content);
 };
 export const loadPiePopup = (onCloseCB, key, index, val) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
-    createItem(pair, val.label.display, val.value);
+    const { label, value } = val;
+    createItem(pair, label.display, value);
 };
