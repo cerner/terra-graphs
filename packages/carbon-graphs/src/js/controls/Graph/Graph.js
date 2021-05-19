@@ -243,9 +243,13 @@ class Graph extends Construct {
     const containerSVG = d3
       .select(this.config.bindTo)
       .append('div')
+      .classed('buttonClick', true)
+      .style('display', 'block')
+      .append('div')
       .classed(styles.container, true)
       .style('padding-top', this.config.removeContainerPadding && 0)
       .style('padding-bottom', this.config.removeContainerPadding && 0);
+    console.log(document.querySelector('.buttonClick'));
     this.svg = containerSVG
       .insert('svg', ':first-child')
       .classed(styles.canvas, true)

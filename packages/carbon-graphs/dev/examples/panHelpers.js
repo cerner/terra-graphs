@@ -98,6 +98,18 @@ const createPanningControls = (id, graphOptions) => {
     moveRightHandler(graphOptions, shift),
     'nav-right',
   );
+  panningContainerElement
+    .append('button')
+    .text('button')
+    .on('click', () => {
+      // Determine if current line is visible
+      console.log(document.getElementsByClassName('buttonClick'));
+      if (document.getElementsByClassName('buttonClick')) {
+        const style = getComputedStyle(document.getElementsByClassName('buttonClick')[0]);
+        console.log(style);
+        style.display === 'none' ? d3.select('.buttonClick').style('display', 'block') : d3.select('.buttonClick').style('display', 'none');
+      }
+    });
 };
 
 export { createPanningControls, moveRightHandler, moveLeftHandler };
