@@ -8,11 +8,12 @@ const data = {
     },
     shape: Carbon.helpers.SHAPES.DARK.RHOMBUS,
     color: Carbon.helpers.COLORS.GREEN,
-    // onClick: loadTimelinePopup,
+    onClick: loadTimelinePopup,
     values: [
       {
         x: new Date(2016, 0, 1, 8, 15).toISOString(),
         content: 'This is custom value of another unit',
+        isCritical: true
       },
       {
         x: new Date(2016, 0, 1, 9, 45).toISOString(),
