@@ -1,0 +1,36 @@
+import GanttChart from '../../../example/Graphs/Gantt/BasicGanttCharts/BarTypes?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Gantt/GanttChart?dev-site-props-table';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gnatt/ganttDefault.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/barTypesData.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Simple Gantt
+This is a Gantt chart with different bar types.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+```jsx
+import React from 'react';
+import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
+```
+## Examples
+<GanttChart />
+
+## Props
+<PropsTable />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>
