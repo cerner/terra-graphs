@@ -14,6 +14,6 @@ const dataset = utils.deepClone(data);
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <Timeline graphID="simpleLinegraph" graphConfig={graphConfig} dataset={dataset} />
+    <Timeline graphID="simpleLinegraph" graphConfig={graphConfig} dataset={[dataset]} />
   </React.Fragment>
 );

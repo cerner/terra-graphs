@@ -1,4 +1,4 @@
-getTimelineConfig = (id) => ({
+const getTimelineConfig = (id) => ({
     bindTo: id,
     bindLegendTo: null,
     axis: {
