@@ -78,23 +78,26 @@
             import/first: off
             import/no-duplicates: off
 
+        - files: "packages/terra-graphs/src/**/*.jsx"
+          rules:
+            import/no-unresolved: off
+
         - files: "packages/terra-graphs-docs/*.jsx"
           rules:
-            import/no-extraneous-dependencies: off
             import/no-unresolved: off
             import/extensions: off
-
+      
         - files: "packages/terra-graphs-docs/src/**/*.js"
           rules:
-           import/no-unresolved: off
-           import/extensions: off
+            import/no-unresolved: off
+            import/extensions: off
 
         - files: "*.conf.js"
           rules:
             import/no-extraneous-dependencies: off
             import/no-unresolved: off
             import/extensions: off
-
+ 
         - files: "*.config.js"
           rules:
             import/no-extraneous-dependencies: off

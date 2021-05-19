@@ -7,11 +7,3 @@ exports[`Graphs should render a default component 1`] = `
   default
 </div>
 `;
-
-exports[`Graphs should render a default component 1`] = `
-<div
-  className="graphs"
->
-  default
-</div>
-`;
