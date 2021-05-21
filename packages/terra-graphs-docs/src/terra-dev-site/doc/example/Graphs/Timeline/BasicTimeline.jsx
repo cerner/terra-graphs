@@ -3,7 +3,7 @@ import Timeline from '@cerner/terra-graphs/lib/components/Timeline/Timeline';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getTimelineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelineConfigObject';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultObject.js';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset.js';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
