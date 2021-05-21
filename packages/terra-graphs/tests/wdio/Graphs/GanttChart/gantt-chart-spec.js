@@ -36,7 +36,7 @@ Terra.describeViewports(' GanttCharts', ['tiny', 'medium', 'large'], () => {
       });
 
       it('validates label truncation graph container when clicked on label', () => {
-        $('.carbon-y-axis-track-label').click();
+        $('.carbon-y-axis-track-label').$('.tick').$('text').click();
         Terra.validates.screenshot('gantt_label_truncation_when_clicked_on_label', { selector: '.carbon-graph-container' });
       });
     });
