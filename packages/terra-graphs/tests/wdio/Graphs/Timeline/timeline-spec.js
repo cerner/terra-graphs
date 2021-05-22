@@ -6,4 +6,3 @@ Terra.describeViewports('Timeline graphs', ['tiny', 'medium', 'large'], () => {
       });
     });
   });
-  
