@@ -8,3 +8,4 @@
   * Added data objects and examples for Line, Bar and Paired result graphs.
   * Added data objects and examples for Scatter graph.
   * Added data objects and examples for Gantt chart.
+  * Added data objects and examples for Timeline graph.
