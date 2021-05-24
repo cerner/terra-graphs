@@ -4,7 +4,7 @@ import {
 } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const daysToMilliseconds = (d) => 24 * 60 * 60 * 1000 * d;
-const lineDefault = (id) => ({
+const getGanttDefaultConfig = (id) => ({
   bindTo: id,
   axis: {
     x: {
@@ -164,5 +164,5 @@ const lineDefault = (id) => ({
   ],
 });
 
-export default lineDefault;
+export default getGanttDefaultConfig;
 
