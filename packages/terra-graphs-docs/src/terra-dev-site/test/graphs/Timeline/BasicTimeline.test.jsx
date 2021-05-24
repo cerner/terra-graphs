@@ -8,12 +8,12 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Tim
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getTimelineConfig('#simpleLinegraph'));
+const graphConfig = utils.deepClone(getTimelineConfig('#simpleTimelineGraph'));
 const dataset = utils.deepClone(data);
 
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <Timeline graphID="simpleLinegraph" graphConfig={graphConfig} dataset={[dataset]} />
+    <Timeline graphID="simpleTimelineGraph" graphConfig={graphConfig} dataset={[dataset]} />
   </React.Fragment>
 );
