@@ -1,7 +1,7 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import { loadTimelinePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
-const data = {
+const data = [{
   key: 'uid_2',
   label: {
     display: 'Timeline B',
@@ -24,6 +24,6 @@ const data = {
       content: 'This is custom value of another unit',
     },
   ],
-};
+}];
 
 export default data;

@@ -9,7 +9,7 @@ const bobRossIpsum = "Just use the old one inch brush. It's so important to do s
     + 'Absolutely no pressure. You are just a whisper floating across a mountain. There are no limits in this world. '
     + 'A thin paint will stick to a thick paint.\n';
 
-const data = {
+const data = [{
   key: 'uid_1',
   label: {
     display: 'Timeline A',
@@ -38,6 +38,6 @@ const data = {
       content: bobRossIpsum,
     },
   ],
-};
+}];
 
 export default data;
