@@ -7,5 +7,6 @@
   * Added bubble components, wdio tests and corresponding examples.
   * Added documentation for `reflowMultipleDatasets`.
   * Created Component and WDIO test cases for Scatter graph types.
+  * Created Components and WDIO test cases for Gantt chart.
 
 * Initial stable release
