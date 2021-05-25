@@ -98,16 +98,19 @@ const createPanningControls = (id, graphOptions) => {
     moveRightHandler(graphOptions, shift),
     'nav-right',
   );
-  panningContainerElement
-    .append('button')
+  const createPanningContainer1 = (container) => container.insert('nav', ':first-child').classed('buttonClick', true);
+
+  const panningContainerElement1 = createPanningContainer1(d3.select('.jss5'));
+
+  panningContainerElement1.append('button')
     .text('button')
     .on('click', () => {
       // Determine if current line is visible
-      console.log(document.getElementsByClassName('buttonClick'));
-      if (document.getElementsByClassName('buttonClick')) {
-        const style = getComputedStyle(document.getElementsByClassName('buttonClick')[0]);
+      console.log(document.getElementsByClassName('extraDiv'));
+      if (document.getElementsByClassName('extraDiv')) {
+        const style = getComputedStyle(document.getElementsByClassName('extraDiv')[0]);
         console.log(style);
-        style.display === 'none' ? d3.select('.buttonClick').style('display', 'block') : d3.select('.buttonClick').style('display', 'none');
+        style.display === 'none' ? d3.select('.extraDiv').style('display', 'block') : d3.select('.extraDiv').style('display', 'none');
       }
     });
 };

@@ -243,7 +243,7 @@ class Graph extends Construct {
     const containerSVG = d3
       .select(this.config.bindTo)
       .append('div')
-      .classed('buttonClick', true)
+      .classed('extraDiv', true)
       .style('display', 'block')
       .append('div')
       .classed(styles.container, true)
