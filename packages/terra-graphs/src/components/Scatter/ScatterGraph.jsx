@@ -1,4 +1,3 @@
-/* eslint import/no-unresolved: off */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';

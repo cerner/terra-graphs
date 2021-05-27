@@ -1,4 +1,4 @@
-Terra.describeViewports(' PieCharts', ['tiny', 'medium', 'large'], () => {
+Terra.describeViewports('PieCharts', ['tiny', 'medium', 'large'], () => {
   it('validates simple Pie graph container', () => {
     browser.url('/raw/tests/terra-graphs-docs/graphs/pie-chart/simple-pie');
     Terra.validates.screenshot('simple_pie', { selector: '.carbon-graph-container' });
