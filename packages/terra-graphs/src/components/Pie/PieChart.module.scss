@@ -12,9 +12,9 @@
 }
 
 .carbon-legend {
-  & .carbon-pie-legend-item {
-    display: flex;
+  &.carbon-pie-legend-item {
     align-items: center;
+    display: flex;
     margin: 0.5rem;
     outline: 0;
     user-select: none;
@@ -23,7 +23,7 @@
       background-color: var(--terra-graphs-blue10);
     }
 
-    & .carbon-pie-legend-item-icon {
+    &.carbon-pie-legend-item-icon {
       margin-right: 0.5rem;
     }
   }
