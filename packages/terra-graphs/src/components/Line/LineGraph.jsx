@@ -27,8 +27,27 @@ const propTypes = {
 const LineGraph = ({
   graphConfig, dataset, graphID, timeout,
 }) => {
+
+  var [graph, setGraph] = React.useState();
+  const graphLoadedRef = React.useRef();
+
+  // React.useEffect(() => {
+  //   if (!graph) {
+  //     setGraph(Carbon.api.graph(graphConfig));
+  //   }
+  // }, [graph, graphConfig]);
+
+// Initial load
   React.useEffect(() => {
+
+    // if (!graph || !dataset || graphLoadedRef.current) {
+    //   return undefined;
+    // }
+
+    graphLoadedRef.current = true;
+
     const graph = Carbon.api.graph(graphConfig);
+    setGraph(graph);
     const timeoutIds = [];
 
     if (dataset) {
@@ -53,7 +72,16 @@ const LineGraph = ({
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
-  }, [graphConfig, dataset, timeout]);
+  }, []);
+
+  React.useEffect(() => {
+    if (!graph || !graphLoadedRef.current) {
+      return;
+    }
+
+    graph.config = graphConfig;
+    graph.reflow(dataset);
+  }, [graphConfig, dataset]);
 
   return (
     <div id={`${graphID}-canvasContainer`}>
