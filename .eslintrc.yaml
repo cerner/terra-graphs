@@ -82,6 +82,8 @@
           rules:
             import/no-unresolved: off
             default-case: off
+            consistent-return: off
+            react-hooks/exhaustive-deps: off
 
         - files: "packages/terra-graphs-docs/*.jsx"
           rules:

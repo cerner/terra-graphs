@@ -15,4 +15,48 @@ Terra.describeViewports('Timeline graphs', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('timeline_criticality', { selector: '.carbon-timeline-container' });
     });
   });
+
+  describe('Reflow', () => {
+    describe('simple panning', () => {
+      let panningBtn = null;
+
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/timeline/reflow/simple-panning');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('simple_panning_left_1', { selector: '.carbon-timeline-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('simple_panning_left_2', { selector: '.carbon-timeline-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('simple_panning_left_3', { selector: '.carbon-timeline-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('simple_panning_right_1', { selector: '.carbon-timeline-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('simple_panning_right_2', { selector: '.carbon-timeline-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('simple_panning_right_3', { selector: '.carbon-timeline-container' });
+      });
+    });
+
+    describe('dynamic data', () => {
+      let panningBtn = null;
+
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/timeline/reflow/dynamic-data');
+      });
+      it('validates dynaimcally updating of a dataset', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('dynamic_data_1', { selector: '.carbon-timeline-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('dynamic_data_2', { selector: '.carbon-timeline-container' });
+      });
+    });
+ 
+  });
 });
