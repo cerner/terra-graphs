@@ -75,9 +75,12 @@ const LineGraph = ({
   }, []);
 
   React.useEffect(() => {
+    console.log(graphLoadedRef.current);
     if (!graph || !graphLoadedRef.current) {
       return;
     }
+    console.log("reflow called");
+
 
     graph.config = graphConfig;
     graph.reflow(dataset);
