@@ -5,19 +5,19 @@ import '../Graph.module.scss';
 
 const propTypes = {
   /**
-   * ID for graph created.
+   * The unique identifier for the graph and prefix for the canvas.
    */
   graphID: PropTypes.string.isRequired,
   /**
-   * Graph configuration object
+   * Graph configuration object.
    */
   graphConfig: PropTypes.object.isRequired,
   /**
-   * data to be displayed in graph
+   * Data to be displayed in graph.
    */
   dataset: PropTypes.arrayOf(PropTypes.object),
   /**
-   * timeout to display multiple data contents in specific time interval.
+   * Timeout to display multiple data contents in specific time interval.
    */
   timeout: PropTypes.arrayOf(PropTypes.number),
 };
