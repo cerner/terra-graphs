@@ -28,27 +28,32 @@ const LineGraph = ({
   graphConfig, dataset, graphID, timeout,
 }) => {
 
-  var [graph, setGraph] = React.useState();
+  const [graph, setGraph] = React.useState();
   const graphLoadedRef = React.useRef();
 
-  // React.useEffect(() => {
-  //   if (!graph) {
-  //     setGraph(Carbon.api.graph(graphConfig));
-  //   }
-  // }, [graph, graphConfig]);
+  React.useEffect(() => {
+    if (!graph) {
+      setGraph(Carbon.api.graph(graphConfig));
+    }
+  }, []);
 
 // Initial load
   React.useEffect(() => {
 
-    // if (!graph || !dataset || graphLoadedRef.current) {
-    //   return undefined;
-    // }
+    console.log("1");
+    console.log(graph);
 
-    graphLoadedRef.current = true;
+    if (!graph) {
+      return;
+    }
+    // graphLoadedRef.current = true;
 
-    const graph = Carbon.api.graph(graphConfig);
-    setGraph(graph);
+    // const graph = Carbon.api.graph(graphConfig);
+    // setGraph(Carbon.api.graph(graphConfig));
+    // return;
     const timeoutIds = [];
+
+    // console.log(graph);
 
     if (dataset) {
       if (timeout) {
@@ -72,19 +77,24 @@ const LineGraph = ({
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
-  }, []);
+  }, [graph]);
 
   React.useEffect(() => {
-    console.log(graphLoadedRef.current);
-    if (!graph || !graphLoadedRef.current) {
+    console.log("2");
+    if (!graph) {
       return;
     }
     console.log("reflow called");
 
+    console.log(dataset);
 
-    graph.config = graphConfig;
+    // console.log(graph.config);
+
+    // console.log(graphConfig);
+
+    // graph.config = graphConfig;
     graph.reflow(dataset);
-  }, [graphConfig, dataset]);
+  }, [graph, graphConfig, dataset]);
 
   return (
     <div id={`${graphID}-canvasContainer`}>

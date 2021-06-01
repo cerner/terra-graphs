@@ -18,7 +18,7 @@ const LinePanningExample = () => {
   React.useEffect(()=>{
   setPanDataset(dataset);
   console.log(panDataset);
-  // dataset[0].label.display = "updated label";
+  dataset[0].label.display = "updated label";
 },[]);
 
 return (
