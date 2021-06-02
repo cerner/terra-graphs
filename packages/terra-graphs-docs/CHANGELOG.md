@@ -9,3 +9,4 @@
   * Added data objects and examples for Scatter graph.
   * Added data objects and examples for Gantt chart.
   * Added data objects and examples for Timeline graph.
+  * Added data objects and examples for Pie chart.

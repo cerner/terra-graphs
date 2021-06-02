@@ -9,5 +9,6 @@
   * Created component and WDIO test cases for Scatter graph types.
   * Created components and WDIO test cases for Gantt chart.
   * Created component and wdio test cases for the Timeline graph.
+  * Created component and wdio test cases for the Pie chart.
 
 * Initial stable release

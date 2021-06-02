@@ -1,0 +1,36 @@
+import PieChart from '../../example/Graphs/PieChart/CustomLegendPlacement?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Pie/PieChart?dev-site-props-table';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/pieDefault.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieData.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Simple Pie
+This is a simple Pie chart with custom legend placement.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+```jsx
+import React from 'react';
+import PieChart from '@cerner/terra-graphs/lib/components/Pie/PieChart';
+```
+## Examples
+<PieChart />
+
+## Props
+<PropsTable />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>
