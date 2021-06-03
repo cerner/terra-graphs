@@ -10,5 +10,6 @@
   * Created components and WDIO test cases for Gantt chart.
   * Created component and wdio test cases for the Timeline graph.
   * Created component and wdio test cases for the Pie chart.
+  * Created component and wdio test cases for the Combination graph.
 
 * Initial stable release

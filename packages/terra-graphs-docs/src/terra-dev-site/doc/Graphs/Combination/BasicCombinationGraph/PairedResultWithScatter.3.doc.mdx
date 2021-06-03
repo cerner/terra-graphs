@@ -1,0 +1,38 @@
+import CombinationGraph from '../../../example/Graphs/CombinationGraph/BasicCombinationGraphs/pairedResultWithScatter?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/Combination/CombinationGraph?dev-site-props-table';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Combination/lineAndPairedResultConfig.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/PairedResultWithScatterData.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Paired result With Scatter
+This is a Simple Paired result Graph Combined with Scatter.
+
+#### Note: "graphType" should be added for each dataset in combination graph.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+```jsx
+import React from 'react';
+import CombinationGraph from '@cerner/terra-graphs/lib/components/Combination/CombinationGraph';
+```
+## Examples
+<CombinationGraph />
+
+## Props
+<PropsTable />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>

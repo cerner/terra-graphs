@@ -1,4 +1,4 @@
-Terra.describeViewports('BarGrpah', ['tiny', 'medium', 'large'], () => {
+Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
   describe('Basic bar graphs', () => {
     it('validates Axis info text labels graph container', () => {
       browser.url('/raw/tests/terra-graphs-docs/graphs/bar-graph/basic-bar-graphs/axis-info-text-labels');
