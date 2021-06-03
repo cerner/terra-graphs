@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './LineGraph.module.scss';
+import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -79,21 +80,18 @@ const LineGraph = ({
     };
   }, [graph]);
 
+  // panning
   React.useEffect(() => {
     console.log("2");
     if (!graph) {
       return;
     }
-    console.log("reflow called");
+    console.log("reflow effect called");
 
-    console.log(dataset);
+    graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
+    graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
 
-    // console.log(graph.config);
-
-    // console.log(graphConfig);
-
-    // graph.config = graphConfig;
-    graph.reflow(dataset);
+    graph.reflowMultipleDatasets(dataset);
   }, [graph, graphConfig, dataset]);
 
   return (
