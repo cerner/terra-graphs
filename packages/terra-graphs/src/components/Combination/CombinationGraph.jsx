@@ -25,32 +25,33 @@ const propTypes = {
   timeout: PropTypes.arrayOf(PropTypes.number),
 };
 
-// eslint-disable-next-line consistent-return
-const datasetLoader = (graphConfig, dataset) => {
+const datasetLoader = (dataset) => {
   let graphType = dataset.graphType.toUpperCase();
   graphType = graphType.replaceAll(' ', '');
+  let apiData;
   switch (graphType) {
     case 'LINE':
-      graphConfig.loadContent(Carbon.api.line(dataset));
+      apiData = Carbon.api.line(dataset);
       break;
     case 'SCATTER':
-      graphConfig.loadContent(Carbon.api.scatter(dataset));
+      apiData = Carbon.api.scatter(dataset);
       break;
     case 'PAIREDRESULT':
-      graphConfig.loadContent(Carbon.api.pairedResult(dataset));
+      apiData = Carbon.api.pairedResult(dataset);
       break;
     case 'BAR':
-      graphConfig.loadContent(Carbon.api.bar(dataset));
+      apiData = Carbon.api.bar(dataset);
       break;
     case 'BUBBLESINGLEDATASET':
-      graphConfig.loadContent(Carbon.api.bubbleSingleDataset(dataset));
+      apiData = Carbon.api.bubbleSingleDataset(dataset);
       break;
     case 'BUBBLEMULTIPLEDATASET':
-      graphConfig.loadContent(Carbon.api.bubbleMultipleDataset(dataset));
+      apiData = Carbon.api.bubbleMultipleDataset(dataset);
       break;
     default:
-      return '';
+      apiData = 'undefined';
   }
+  return apiData;
 };
 const CombinationGraph = ({
   graphConfig, dataset, graphID, timeout,
@@ -64,7 +65,7 @@ const CombinationGraph = ({
         dataset.forEach((data, index) => {
           const timeoutId = setTimeout(
             () => (graph.graphContainer
-              ? datasetLoader(graph, data)
+              ? graph.loadContent(datasetLoader(data))
               : ''),
             timeout[index],
           );
@@ -73,7 +74,7 @@ const CombinationGraph = ({
         });
       } else {
         dataset.forEach((data) => {
-          datasetLoader(graph, data);
+          graph.loadContent(datasetLoader(data));
         });
       }
     }
