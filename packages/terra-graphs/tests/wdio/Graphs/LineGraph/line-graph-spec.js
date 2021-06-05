@@ -166,4 +166,11 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('simple_spline', { selector: '.carbon-graph-container' });
     });
   });
+
+  describe('Reflow', () => {
+    it('validates panning', () => {
+      browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/spline/simple-spline');
+      Terra.validates.screenshot('simple_spline', { selector: '.carbon-graph-container' });
+    });
+  });
 });
