@@ -168,9 +168,27 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
   });
 
   describe('Reflow', () => {
-    it('validates panning', () => {
-      browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/spline/simple-spline');
-      Terra.validates.screenshot('simple_spline', { selector: '.carbon-graph-container' });
+    let panningBtn = null;
+    beforeEach(() => {
+      browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/panning');
+    });
+    it('validates panning left', () => {
+      panningBtn = $('#buttonPanLeft');
+      panningBtn.click();
+      Terra.validates.screenshot('panning_left_1', { selector: '.carbon-graph-container' });
+      panningBtn.click();
+      Terra.validates.screenshot('panning_left_2', { selector: '.carbon-graph-container' });
+      panningBtn.click();
+      Terra.validates.screenshot('panning_left_3', { selector: '.carbon-graph-container' });
+    });
+    it('validates panning right', () => {
+      panningBtn = $('#buttonPanRight');
+      panningBtn.click();
+      Terra.validates.screenshot('panning_right_1', { selector: '.carbon-graph-container' });
+      panningBtn.click();
+      Terra.validates.screenshot('panning_right_2', { selector: '.carbon-graph-container' });
+      panningBtn.click();
+      Terra.validates.screenshot('panning_right_3', { selector: '.carbon-graph-container' });
     });
   });
 });
