@@ -236,15 +236,11 @@ class Graph extends Construct {
      * @returns {d3.selection} d3 selection node of svg.
      */
   generate(input) {
-    this.config = loadInput(input);
     processInput(input, this.config, this.config.axis.x.type);
     beforeInit(this);
     init(this);
     const containerSVG = d3
       .select(this.config.bindTo)
-      .append('div')
-      .classed('extraDiv', true)
-      .style('display', 'block')
       .append('div')
       .classed(styles.container, true)
       .style('padding-top', this.config.removeContainerPadding && 0)

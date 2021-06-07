@@ -513,21 +513,6 @@ export const renderLineWithPanning = (id) => {
 
   const graph = Carbon.api.graph(axisData);
   graph.loadContent(Carbon.api.line(graphDataY));
-  const svg = d3.select(id).append('svg').attr('width', 200).attr('height', 200);
-
-  svg.append('circle')
-    .attr('x', 0)
-    .attr('y', 100)
-    .attr('width', 100)
-    .attr('height', 100)
-    .attr('fill', 'red')
-    .on('click', () => {
-      // Determine if current line is visible
-      console.log(document.querySelector('.buttonClick'));
-      if (document.querySelector('.buttonClick')) {
-        document.querySelector('.buttonClick') === 'none' ? d3.select('.buttonClick').style('display', 'block') : d3.select('.buttonClick').style('display', 'none');
-      }
-    });
   axisData.axis = graph.config.axis;
 
   const createGraph = () => {

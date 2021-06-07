@@ -85,7 +85,7 @@ const createPanningControls = (id, graphOptions) => {
     factor: 3,
   };
 
-  const panningContainerElement = createPanningContainer(d3.select(`#${id}`));
+  const panningContainerElement = createPanningContainer(d3.select('.jss5'));
   createNavigationButton(
     panningContainerElement,
     LEFT_CHEVRON,
