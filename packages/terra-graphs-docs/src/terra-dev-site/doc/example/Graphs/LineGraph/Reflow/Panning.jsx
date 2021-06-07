@@ -3,13 +3,13 @@ import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import lineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
+import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-var graphConfig = utils.deepClone(lineTimeseriesPanning('#simpleLinegraph'));
+var graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
 const dataset = utils.deepClone(data);
 const shift = {
   initial: 0,
@@ -69,7 +69,7 @@ return (
     <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
     <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
     <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={dataset} />
+    <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} />
   </React.Fragment>
 );
 
