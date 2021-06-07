@@ -49,7 +49,7 @@ const datasetLoader = (dataset) => {
       apiData = Carbon.api.bubbleMultipleDataset(dataset);
       break;
     default:
-      apiData = 'undefined';
+      apiData = undefined;
   }
   return apiData;
 };
