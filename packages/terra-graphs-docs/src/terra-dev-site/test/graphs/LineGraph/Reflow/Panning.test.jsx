@@ -16,7 +16,7 @@ const shift = {
   factor: 3,
 };
 
-const LinePanningExample = () => {
+const LinePanningTest = () => {
 
   const [panLeftClicked, setPanLeftClicked] = useState(false);
   const [panRightClicked, setPanRightClicked] = useState(false);
@@ -75,4 +75,4 @@ return (
 
 };
 
-export default LinePanningExample;
+export default LinePanningTest;

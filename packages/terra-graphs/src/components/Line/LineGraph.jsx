@@ -30,7 +30,6 @@ const LineGraph = ({
 }) => {
 
   const [graph, setGraph] = React.useState();
-  const graphLoadedRef = React.useRef();
 
   React.useEffect(() => {
     if (!graph) {
@@ -41,20 +40,11 @@ const LineGraph = ({
 // Initial load
   React.useEffect(() => {
 
-    console.log("1");
-    console.log(graph);
-
     if (!graph) {
       return;
     }
-    // graphLoadedRef.current = true;
-
-    // const graph = Carbon.api.graph(graphConfig);
-    // setGraph(Carbon.api.graph(graphConfig));
-    // return;
     const timeoutIds = [];
 
-    // console.log(graph);
 
     if (dataset) {
       if (timeout) {
@@ -82,11 +72,9 @@ const LineGraph = ({
 
   // panning
   React.useEffect(() => {
-    console.log("2");
     if (!graph) {
       return;
     }
-    console.log("reflow effect called");
 
     graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
     graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
