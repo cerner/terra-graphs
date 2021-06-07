@@ -31,13 +31,14 @@ const LineGraph = ({
 
   const [graph, setGraph] = React.useState();
 
+  // creation of canvas
   React.useEffect(() => {
     if (!graph) {
       setGraph(Carbon.api.graph(graphConfig));
     }
   }, []);
 
-// Initial load
+  // initial dataset load
   React.useEffect(() => {
 
     if (!graph) {
