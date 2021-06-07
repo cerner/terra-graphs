@@ -23,6 +23,7 @@ const getCombinationGraphConfig = (id) => ({
       label: 'Combination Set B',
       lowerLimit: 0,
       upperLimit: 30,
+      padDomain: false,
     },
   },
   showLabel: true,

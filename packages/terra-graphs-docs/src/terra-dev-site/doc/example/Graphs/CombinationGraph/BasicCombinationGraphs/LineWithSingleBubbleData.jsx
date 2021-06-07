@@ -8,20 +8,12 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Com
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithPairedResult'));
-graphConfig.axis.x.ticks = {
-  values: [1, 2, 3, 4, 5, 6, 7],
-  format: '.0f',
-};
-graphConfig.showVGrid = false;
-graphConfig.axis.y2.show = true;
-graphConfig.axis.y2.padDomain = false;
-
+const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithSingleBubbleData'));
 const dataset = utils.deepClone(data);
 
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <CombinationGraph graphID="lineWithPairedResult" graphConfig={graphConfig} dataset={dataset} />
+    <CombinationGraph graphID="lineWithSingleBubbleData" graphConfig={graphConfig} dataset={dataset} />
   </React.Fragment>
 );
