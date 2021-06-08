@@ -1,10 +1,12 @@
 /* eslint import/no-unresolved: off */
+/* eslint react-hooks/exhaustive-deps: off */
+/* eslint consistent-return: off */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './LineGraph.module.scss';
-import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -28,7 +30,6 @@ const propTypes = {
 const LineGraph = ({
   graphConfig, dataset, graphID, timeout,
 }) => {
-
   const [graph, setGraph] = React.useState();
 
   // creation of canvas
@@ -40,12 +41,10 @@ const LineGraph = ({
 
   // initial dataset load
   React.useEffect(() => {
-
     if (!graph) {
       return;
     }
     const timeoutIds = [];
-
 
     if (dataset) {
       if (timeout) {
@@ -69,7 +68,7 @@ const LineGraph = ({
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
-  }, [graph]);
+  }, [graph, dataset, timeout]);
 
   // panning
   React.useEffect(() => {

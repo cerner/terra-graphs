@@ -21,8 +21,8 @@ const getConfigLineTimeseriesPanning = (id) => ({
       upperLimit: 250,
     },
   },
-  pan:{
-    enabled: true
+  pan: {
+    enabled: true,
   },
   showLabel: true,
   showLegend: true,

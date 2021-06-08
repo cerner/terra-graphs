@@ -9,7 +9,7 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Lin
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-var graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
+let graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
 const dataset = utils.deepClone(data);
 const shift = {
   initial: 0,
@@ -17,16 +17,15 @@ const shift = {
 };
 
 const LinePanningTest = () => {
-
   const [panLeftClicked, setPanLeftClicked] = useState(false);
   const [panRightClicked, setPanRightClicked] = useState(false);
 
   // Pan left effect
-  React.useLayoutEffect(()=>{
-    if(!panLeftClicked || panRightClicked){
+  React.useLayoutEffect(() => {
+    if (!panLeftClicked || panRightClicked) {
       return;
     }
-    
+
     const newGraphConfig = utils.deepClone(graphConfig);
     const hour = shift.initial - shift.factor;
     shift.initial = hour;
@@ -36,11 +35,11 @@ const LinePanningTest = () => {
     graphConfig = utils.deepClone(newGraphConfig);
 
     setPanLeftClicked(false);
-  },[panLeftClicked]);
+  }, [panLeftClicked, panRightClicked]);
 
   // Pan right effect
-  React.useLayoutEffect(()=>{
-    if(panLeftClicked || !panRightClicked){
+  React.useLayoutEffect(() => {
+    if (panLeftClicked || !panRightClicked) {
       return;
     }
 
@@ -53,26 +52,24 @@ const LinePanningTest = () => {
     graphConfig = utils.deepClone(newGraphConfig);
 
     setPanRightClicked(false);
-  },[panRightClicked]);
+  }, [panLeftClicked, panRightClicked]);
 
+  const panLeftFunction = () => {
+    setPanLeftClicked(true);
+  };
 
-const panLeftFunction = () => {
-  setPanLeftClicked(true);
-}
+  const panRightFunction = () => {
+    setPanRightClicked(true);
+  };
 
-const panRightFunction = () => {
-  setPanRightClicked(true);
-}
-
-return (
-  <React.Fragment>
-    <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
-    <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
-    <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
-);
-
+  return (
+    <React.Fragment>
+      <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
+      <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
+      <div id="tooltip" className="initial-tooltip" />
+      <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} />
+    </React.Fragment>
+  );
 };
 
 export default LinePanningTest;
