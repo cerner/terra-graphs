@@ -3,7 +3,8 @@
 ## Unreleased
 
 * Changed
-  * Fixed the goal line element in bar graph overlays the ability to click on the bar data.
+  * Fixed bug causing the goal line element to prevent clicking on the bar graph underneath.
+
   
 ## 2.17.1 - (May 11, 2021)
 

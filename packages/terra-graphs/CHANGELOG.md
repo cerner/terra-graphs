@@ -13,6 +13,6 @@
   * Created component and wdio test cases for the Combination graph.
 
 * Changed
-  * Fixed the goal line element in bar graph overlays the ability to click on the bar data.
-  
+  * Fixed, bug causing the goal line element to prevent clicking on the bar graph underneath.
+
 * Initial stable release
