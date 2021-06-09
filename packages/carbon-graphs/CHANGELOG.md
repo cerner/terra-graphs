@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Fixed the goal line element in bar graph overlays the ability to click on the bar data.
+  
 ## 2.17.1 - (May 11, 2021)
 
 * Changed

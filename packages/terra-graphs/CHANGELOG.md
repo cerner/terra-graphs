@@ -12,4 +12,7 @@
   * Created component and wdio test cases for the Pie chart.
   * Created component and wdio test cases for the Combination graph.
 
+* Changed
+  * Fixed the goal line element in bar graph overlays the ability to click on the bar data.
+  
 * Initial stable release
