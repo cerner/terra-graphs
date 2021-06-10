@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
+import './Timeline.module.scss';
 
 const propTypes = {
   /**
