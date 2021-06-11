@@ -24,7 +24,7 @@ const propTypes = {
     /**
    * dynamic data to update the initial data
    */
-     panData: PropTypes.arrayOf(PropTypes.object),
+     panData: PropTypes.object,
   /**
    * Timeout to display multiple data contents in specific time interval.
    */

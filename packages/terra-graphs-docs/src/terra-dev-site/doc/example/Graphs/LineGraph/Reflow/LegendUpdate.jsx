@@ -4,13 +4,14 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-legend';
 // import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData';
 
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+data[1].values = [];
 let graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
 const dataset = [utils.deepClone(data[0])];
 let newDataset = {}

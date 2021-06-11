@@ -4,7 +4,7 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-eventline';
 // import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData';
 
 
