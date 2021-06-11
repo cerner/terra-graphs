@@ -21,6 +21,10 @@ const propTypes = {
    * data to be displayed in graph
    */
   dataset: PropTypes.arrayOf(PropTypes.object),
+    /**
+   * dynamic data to update the initial data
+   */
+     panData: PropTypes.arrayOf(PropTypes.object),
   /**
    * timeout to display multiple data contents in specific time interval.
    */
@@ -28,9 +32,10 @@ const propTypes = {
 };
 
 const LineGraph = ({
-  graphConfig, dataset, graphID, timeout,
+  graphConfig, dataset, panData, graphID, timeout,
 }) => {
   const [graph, setGraph] = React.useState();
+  const graphLoadedRef = React.useRef();
 
   // creation of canvas
   React.useEffect(() => {
@@ -41,7 +46,7 @@ const LineGraph = ({
 
   // initial dataset load
   React.useEffect(() => {
-    if (!graph) {
+    if (!graph || graphLoadedRef.current) {
       return;
     }
     const timeoutIds = [];
@@ -64,7 +69,7 @@ const LineGraph = ({
         });
       }
     }
-
+    graphLoadedRef.current = true;
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
@@ -79,8 +84,8 @@ const LineGraph = ({
     graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
     graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
 
-    graph.reflowMultipleDatasets(dataset);
-  }, [graph, graphConfig, dataset]);
+    graph.reflowMultipleDatasets(panData);
+  }, [graph, graphConfig, panData]);
 
   return (
     <div id={`${graphID}-canvasContainer`}>
