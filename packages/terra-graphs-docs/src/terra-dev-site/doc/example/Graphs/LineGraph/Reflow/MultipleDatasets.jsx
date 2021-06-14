@@ -7,8 +7,6 @@ import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/exampl
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
 import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData2';
 
-
-
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
