@@ -168,8 +168,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
   });
 
   describe('Reflow', () => {
-
-    describe('simple panning', ()=>{
+    describe('simple panning', () => {
       let panningBtn = null;
 
       beforeEach(() => {
@@ -195,9 +194,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       });
     });
 
-
-
-    describe('dynamic data', ()=>{
+    describe('dynamic data', () => {
       let panningBtn = null;
 
       beforeEach(() => {
@@ -212,7 +209,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       });
     });
 
-    describe('multiple datasets', ()=>{
+    describe('multiple datasets', () => {
       let panningBtn = null;
 
       beforeEach(() => {
@@ -227,7 +224,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       });
     });
 
-    describe('dynamic eventline', ()=>{
+    describe('dynamic eventline', () => {
       let panningBtn = null;
 
       beforeEach(() => {
@@ -242,7 +239,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       });
     });
 
-    describe('legend update', ()=>{
+    describe('legend update', () => {
       let panningBtn = null;
 
       beforeEach(() => {
@@ -257,7 +254,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       });
     });
 
-    describe('y2 panning', ()=>{
+    describe('y2 panning', () => {
       let panningBtn = null;
 
       beforeEach(() => {
@@ -282,6 +279,5 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         Terra.validates.screenshot('y2_panning_right_3', { selector: '.carbon-graph-container' });
       });
     });
-
   });
 });

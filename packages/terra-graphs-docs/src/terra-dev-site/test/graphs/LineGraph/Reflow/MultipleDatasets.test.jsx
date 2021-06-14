@@ -7,9 +7,9 @@ import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/exampl
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
 import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData2';
 
-let graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
+const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
 const dataset = [utils.deepClone(data[0]), utils.deepClone(data2[0])];
-let newDataset = {};
+const newDataset = {};
 
 const LinePanningExample = () => {
   const [panLeftClicked, setPanLeftClicked] = useState(false);
@@ -28,7 +28,7 @@ const LinePanningExample = () => {
   // Pan right Effect
   React.useLayoutEffect(() => {
     if (panLeftClicked || !panRightClicked) {
-      return
+      return;
     }
 
     newDataset.panData = [utils.deepClone(data[1]), utils.deepClone(data2[1])];
@@ -49,7 +49,7 @@ const LinePanningExample = () => {
       <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
       <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} panData={newDataset}/>
+      <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} panData={newDataset} />
     </React.Fragment>
   );
 };

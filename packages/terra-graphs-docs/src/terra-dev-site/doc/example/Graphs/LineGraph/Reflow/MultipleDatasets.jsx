@@ -10,14 +10,9 @@ import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Li
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-let graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
+const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
 const dataset = [utils.deepClone(data[0]), utils.deepClone(data2[0])];
-let newDataset = {};
-// let dataset = utils.deepClone(data);
-const shift = {
-  initial: 0,
-  factor: 3,
-};
+const newDataset = {};
 
 const LinePanningExample = () => {
   const [panLeftClicked, setPanLeftClicked] = useState(false);
@@ -28,15 +23,6 @@ const LinePanningExample = () => {
     if (!panLeftClicked || panRightClicked) {
       return;
     }
-
-    // const newGraphConfig = utils.deepClone(graphConfig);
-    // const hour = shift.initial - shift.factor;
-    // shift.initial = hour;
-
-    // newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    // newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-    // graphConfig = utils.deepClone(newGraphConfig);
-
     newDataset.panData = [utils.deepClone(data[0])];
 
     setPanLeftClicked(false);
@@ -45,17 +31,8 @@ const LinePanningExample = () => {
   // Pan right Effect
   React.useLayoutEffect(() => {
     if (panLeftClicked || !panRightClicked) {
-      return
+      return;
     }
-
-    // const newGraphConfig = utils.deepClone(graphConfig);
-    // const hour = shift.initial + shift.factor;
-    // shift.initial = hour;
-
-    // newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    // newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-    // graphConfig = utils.deepClone(newGraphConfig);
-
     newDataset.panData = [utils.deepClone(data[1]), utils.deepClone(data2[1])];
 
     setPanRightClicked(false);
@@ -74,7 +51,7 @@ const LinePanningExample = () => {
       <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
       <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} panData={newDataset}/>
+      <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} panData={newDataset} />
     </React.Fragment>
   );
 };

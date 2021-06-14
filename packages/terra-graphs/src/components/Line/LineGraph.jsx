@@ -21,10 +21,10 @@ const propTypes = {
    * Data to be displayed in graph.
    */
   dataset: PropTypes.arrayOf(PropTypes.object),
-    /**
+  /**
    * dynamic data to update the initial data
    */
-     panData: PropTypes.object,
+  panData: PropTypes.object,
   /**
    * Timeout to display multiple data contents in specific time interval.
    */
