@@ -10,7 +10,6 @@ data[1].values = [];
 let graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
 const dataset = [utils.deepClone(data[0])];
 const newDataset = {};
-// let dataset = utils.deepClone(data);
 const shift = {
   initial: 0,
   factor: 3,
