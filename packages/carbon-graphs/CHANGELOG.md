@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.17.2 - (June 15, 2021)
+
 * Changed
   * Fixed bug causing the goal line element to prevent clicking on the bar graph underneath.
 
