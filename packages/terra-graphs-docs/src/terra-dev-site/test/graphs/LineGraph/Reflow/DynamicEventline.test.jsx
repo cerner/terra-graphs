@@ -9,7 +9,6 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Lin
 let graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
 const dataset = [utils.deepClone(data[0])];
 const newDataset = {};
-// let dataset = utils.deepClone(data);
 const shift = {
   initial: 0,
   factor: 3,
