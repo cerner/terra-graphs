@@ -159,7 +159,7 @@ const createRegion = (scale, config, regionGroupSVG, regionList, uniqueKey) => {
     .attr('aria-describedby', `region_${uniqueKey}`)
     .attr(
       'style',
-      (d) => `fill: ${d.color || constants.DEFAULT_BAR_REGION_COLOR};`,
+      (d) => `fill: ${d.color || constants.DEFAULT_BAR_REGION_COLOR}; pointer-events: none`,
     )
     .attr(constants.X_AXIS, (d) => d.xRange || 0)
     .attr(constants.Y_AXIS, getYAxisRangePosition(scale, config))

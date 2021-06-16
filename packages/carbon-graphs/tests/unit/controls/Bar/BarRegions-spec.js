@@ -478,7 +478,7 @@ describe('Bar - Region', () => {
         barGraphContainer,
         styles.region,
       );
-      expect(regionElement.getAttribute('style')).toBe('fill: #f44444;');
+      expect(regionElement.getAttribute('style')).toBe('fill: #f44444; pointer-events: none');
     });
     it('sets width correctly', () => {
       data = utils.deepClone(getInput(valuesDefault));
@@ -649,6 +649,28 @@ describe('Bar - Region', () => {
           });
         });
       });
+    });
+  });
+  describe('On clicking bar element under region', () => {
+    beforeEach(() => {
+      data = utils.deepClone(getInput(valuesDefault, false, false));
+      data.regions = regionsDefault;
+      bar = new Bar(data);
+      graphDefault.loadContent(bar);
+    });
+    afterEach(() => {
+      graphDefault.destroy();
+    });
+    it('Should display tooltip of bar', () => {
+      const regionElement = fetchAllElementsByClass(
+        barGraphContainer,
+        styles.region,
+      );
+      const pointerEventsValue = regionElement[0].style.getPropertyValue('pointer-events');
+      expect(pointerEventsValue)
+        .toBe(
+          'none',
+        );
     });
   });
 });
