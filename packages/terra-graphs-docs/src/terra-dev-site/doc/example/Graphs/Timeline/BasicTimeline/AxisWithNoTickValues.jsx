@@ -9,8 +9,10 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Tim
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getTimelineConfig('#simpleTimelineGraph'));
-const dataset = utils.deepClone(data[0]);
-
+const dataset = utils.deepClone(data);
+graphConfig.axis.x.ticks = {
+  format: '',
+};
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
