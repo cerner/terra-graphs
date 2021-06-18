@@ -7,49 +7,51 @@ import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/exampl
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
 import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData2';
 
-const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'));
-const dataset = [utils.deepClone(data[0]), utils.deepClone(data2[0])];
-const newDataset = {};
+/*
+Please refer to the documentation below to see the graphConfig and data objects
+*/
+
+const initialState =  {
+  initial: 0,
+  factor: 3,
+  dataset: [utils.deepClone(data[0]), utils.deepClone(data2[0])],
+  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#multipleDatasetsExample'))
+};
 
 const LinePanningExample = () => {
-  const [panLeftClicked, setPanLeftClicked] = useState(false);
-  const [panRightClicked, setPanRightClicked] = useState(false);
 
-  // Pan left Effect
-  React.useLayoutEffect(() => {
-    if (!panLeftClicked || panRightClicked) {
-      return;
-    }
-    newDataset.panData = [utils.deepClone(data[0])];
+  const reducer = (panState, action) => {
 
-    setPanLeftClicked(false);
-  }, [panLeftClicked, panRightClicked]);
+    const newGraphConfig = utils.deepClone(panState.graphConfig);
+    let hour;
+    let newDataset;
 
-  // Pan right Effect
-  React.useLayoutEffect(() => {
-    if (panLeftClicked || !panRightClicked) {
-      return;
+    switch(action.type){
+      case "panLeft":
+        newDataset = [utils.deepClone(data[0])]
+        break;
+      case "panRight":
+        newDataset = [utils.deepClone(data[1])]
+        break;
     }
 
-    newDataset.panData = [utils.deepClone(data[1]), utils.deepClone(data2[1])];
+    return {
+      initial: hour,
+      factor: panState.factor,
+      dataset: newDataset,
+      graphConfig: utils.deepClone(newGraphConfig)
+    };
 
-    setPanRightClicked(false);
-  }, [panLeftClicked, panRightClicked]);
-
-  const panLeftFunction = () => {
-    setPanLeftClicked(true);
   };
 
-  const panRightFunction = () => {
-    setPanRightClicked(true);
-  };
+  const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>
-      <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
-      <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
+      <Button id="buttonPanLeft" text="<"  onClick={() => dispatch({type: "panLeft"})} />
+      <Button id="buttonPanRight" text=">" onClick={() => dispatch({type: "panRight"})} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="linePanningExample" graphConfig={graphConfig} dataset={dataset} panData={newDataset} />
+      <LineGraph graphID="multipleDatasetsExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>
   );
 };
