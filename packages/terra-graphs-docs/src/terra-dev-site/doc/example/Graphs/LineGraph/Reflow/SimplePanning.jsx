@@ -33,22 +33,20 @@ const LinePanningTest = () => {
     switch(action.type){
       case "panLeft":
         hour = panState.initial - panState.factor;
-        panState.initial = hour;
         break;
       case "panRight":
         hour = panState.initial + panState.factor;
-        panState.initial = hour;
         break;
-
     }
-
-    console.log(panState);
 
     newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
     newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-    panState.graphConfig = utils.deepClone(newGraphConfig); 
 
-    return panState;
+    return {
+      initial: hour,
+      factor: panState.factor,
+      graphConfig: utils.deepClone(newGraphConfig)
+    };
 
   };
   
