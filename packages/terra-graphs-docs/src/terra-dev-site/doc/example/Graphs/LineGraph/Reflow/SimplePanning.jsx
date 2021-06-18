@@ -18,7 +18,7 @@ const initialState =  {
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'))
 };
 
-const LinePanningTest = () => {
+const LinePanningExample = () => {
  
   const reducer = (panState, action) => {
 
@@ -57,4 +57,4 @@ const LinePanningTest = () => {
   );
 };
 
-export default LinePanningTest;
+export default LinePanningExample;
