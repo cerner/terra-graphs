@@ -18,16 +18,33 @@ const propTypes = {
    */
   dataset: PropTypes.arrayOf(PropTypes.object),
   /**
+   * dynamic data to update the initial data
+   */
+  panData: PropTypes.object,
+  /**
    * Timeout to display multiple data contents in specific time interval.
    */
   timeout: PropTypes.arrayOf(PropTypes.number),
 };
 
 const BarGraph = ({
-  graphConfig, dataset, graphID, timeout,
+  graphConfig, dataset, panData, graphID, timeout,
 }) => {
+  const [graph, setGraph] = React.useState();
+  const graphLoadedRef = React.useRef();
+
+  // creation of canvas
   React.useEffect(() => {
-    const graph = Carbon.api.graph(graphConfig);
+    if (!graph) {
+      setGraph(Carbon.api.graph(graphConfig));
+    }
+  }, [graph, graphConfig]);
+
+  // initial dataset load
+  React.useEffect(() => {
+    if (!graph || graphLoadedRef.current) {
+      return;
+    }
     const timeoutIds = [];
 
     if (dataset) {
@@ -49,10 +66,24 @@ const BarGraph = ({
       }
     }
 
+    graphLoadedRef.current = true;
+
+    // eslint-disable-next-line consistent-return
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
-  }, [graphConfig, dataset, timeout]);
+  }, [graph, dataset, timeout]);
+
+  // panning
+  React.useEffect(() => {
+    if (!graph) {
+      return;
+    }
+
+    graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
+    graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
+    graph.reflowMultipleDatasets(panData);
+  }, [graph, graphConfig, panData]);
 
   return (
     <div id={`${graphID}-canvasContainer`}>
