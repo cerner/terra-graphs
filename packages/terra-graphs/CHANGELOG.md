@@ -14,6 +14,7 @@
   * Added reflow to the Line component.
   * Added CSS and new example tests for timeline graph.
   * Added reflow to the Paired result component.
+  * Added reflow to the Bar component.
 
 * Changed
   * Made changes to WDIO test url's according to terra rules.
