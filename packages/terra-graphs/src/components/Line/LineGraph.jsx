@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './LineGraph.module.scss';
+import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -80,7 +81,7 @@ const LineGraph = ({
     graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
     graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
 
-    const newDataset = {panData: dataset};
+    const newDataset = {panData: utils.deepClone(dataset)};
 
     graph.reflowMultipleDatasets(newDataset);
   }, [graph, dataset, graphConfig]);
