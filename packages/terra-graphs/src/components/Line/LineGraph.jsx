@@ -33,6 +33,7 @@ const LineGraph = ({
 }) => {
   const [graph, setGraph] = React.useState();
   const graphLoadedRef = React.useRef();
+  const skipreflowRef = React.useRef();
 
   // creation of canvas
   React.useEffect(() => {
@@ -77,6 +78,11 @@ const LineGraph = ({
     if (!graph) {
       return;
     }
+    if(!skipreflowRef.current){
+      skipreflowRef.current = true;
+      return;
+    }
+
 
     graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
     graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
