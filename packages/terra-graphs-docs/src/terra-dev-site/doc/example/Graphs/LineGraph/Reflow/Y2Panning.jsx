@@ -27,12 +27,16 @@ const LinePanningExample = () => {
 
     switch(action.type){
       case "panLeft":
-        newDataset = [utils.deepClone(data[0])]
+        hour = panState.initial - panState.factor;
         break;
       case "panRight":
-        newDataset = [utils.deepClone(data[1])]
+        hour = panState.initial + panState.factor;
         break;
     }
+
+
+    newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
+    newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
     return {
       initial: hour,

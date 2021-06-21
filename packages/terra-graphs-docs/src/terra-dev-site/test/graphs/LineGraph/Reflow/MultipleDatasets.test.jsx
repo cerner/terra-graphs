@@ -4,17 +4,12 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
-import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData2';
-
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multipleDatasets';
 
 const initialState =  {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0]), utils.deepClone(data2[0])],
+  dataset: utils.deepClone(data.initialData),
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#multipleDatasetsExample'))
 };
 
@@ -28,10 +23,10 @@ const LinePanningExample = () => {
 
     switch(action.type){
       case "panLeft":
-        newDataset = [utils.deepClone(data[0])]
+        newDataset = utils.deepClone(data.initialData)
         break;
       case "panRight":
-        newDataset = [utils.deepClone(data[1])]
+        newDataset = utils.deepClone(data.panData)
         break;
     }
 
