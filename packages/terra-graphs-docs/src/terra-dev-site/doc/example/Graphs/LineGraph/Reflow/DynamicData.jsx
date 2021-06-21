@@ -47,8 +47,8 @@ const LinePanningExample = () => {
 
   return (
     <React.Fragment>
-      <Button id="buttonPanLeft" text="<"  onClick={() => dispatch({type: "panLeft"})} />
-      <Button id="buttonPanRight" text=">" onClick={() => dispatch({type: "panRight"})} />
+      <Button id="buttonPanLeft" className="buttonPanLeft"  text="<"  onClick={() => dispatch({type: "panLeft"})} />
+      <Button id="buttonPanRight" className="buttonPanRight"  text=">" onClick={() => dispatch({type: "panRight"})} />
       <div id="tooltip" className="initial-tooltip" />
       <LineGraph graphID="dynamicLineData" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>
