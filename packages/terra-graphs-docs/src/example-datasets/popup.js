@@ -284,7 +284,7 @@ export const loadTimelinePopup = (onCloseCB, key, index, value) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
-    const { x, y, label} = value;
+    const { x, y, label, content} = value;
     createItem(
         pair,
         "X axis",
