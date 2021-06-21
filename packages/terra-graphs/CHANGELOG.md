@@ -12,5 +12,6 @@
   * Created component and wdio test cases for the Pie chart.
   * Created component and wdio test cases for the Combination graph.
   * Added reflow to the Line component.
+  * Added CSS and new example tests for timeline graph.
 
 * Initial stable release
