@@ -11,7 +11,7 @@ const initialState =  {
   initial: 0,
   factor: 3,
   dataset: [utils.deepClone(data[0])],
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#legendUpdateExample'))
+  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#DynamicLegendExample'))
 };
 
 const LinePanningExample = () => {
@@ -47,7 +47,7 @@ const LinePanningExample = () => {
       <Button id="buttonPanLeft" className="buttonPanLeft"  text="<"  onClick={() => dispatch({type: "panLeft"})} />
       <Button id="buttonPanRight" className="buttonPanRight"  text=">" onClick={() => dispatch({type: "panRight"})} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="legendUpdateExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
+      <LineGraph graphID="DynamicLegendExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>
   );
 };

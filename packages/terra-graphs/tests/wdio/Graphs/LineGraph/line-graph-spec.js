@@ -243,7 +243,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       let panningBtn = null;
 
       beforeEach(() => {
-        browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/legend-update');
+        browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/dynamic-legend');
       });
       it('validates eventline dynaimcally updating', () => {
         panningBtn = $('#buttonPanRight');
