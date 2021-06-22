@@ -10,10 +10,11 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Lin
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
+const dataset = utils.deepClone(data);
+
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: utils.deepClone(data),
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample')),
 };
 
@@ -48,7 +49,7 @@ const LinePanningExample = () => {
       <Button className="buttonPanLeft" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="buttonPanRight" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="linePanningExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
+      <LineGraph graphID="linePanningExample" graphConfig={panState.graphConfig} dataset={dataset} />
     </React.Fragment>
   );
 };
