@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
@@ -9,6 +9,7 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Lin
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const initialState = {
   initial: 0,
   factor: 3,
@@ -37,7 +38,7 @@ const LinePanningExample = () => {
     return {
       initial: hour,
       factor: panState.factor,
-      dataset: {panData: newDataset},
+      dataset: { panData: newDataset },
       graphConfig: utils.deepClone(newGraphState),
     };
   };

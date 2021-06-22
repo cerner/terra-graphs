@@ -81,6 +81,7 @@
         - files: "packages/terra-graphs/src/**/*.jsx"
           rules:
             import/no-unresolved: off
+            default-case: off
 
         - files: "packages/terra-graphs-docs/*.jsx"
           rules:
@@ -91,6 +92,10 @@
           rules:
             import/no-unresolved: off
             import/extensions: off
+
+        - files: "packages/terra-graphs-docs/src/**/*.jsx"
+          rules:
+            default-case: off
 
         - files: "*.conf.js"
           rules:

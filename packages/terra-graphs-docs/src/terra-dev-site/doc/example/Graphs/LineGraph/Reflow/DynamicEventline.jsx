@@ -35,7 +35,7 @@ const LinePanningExample = () => {
     newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
     newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
-    let newEventline = [
+    const newEventline = [
       {
         color: Carbon.helpers.COLORS.GREEN,
         style: {
@@ -50,7 +50,7 @@ const LinePanningExample = () => {
       factor: panState.factor,
       dataset: {
         panData: newDataset,
-        eventline: newEventline
+        eventline: newEventline,
       },
       graphConfig: utils.deepClone(newGraphState),
     };

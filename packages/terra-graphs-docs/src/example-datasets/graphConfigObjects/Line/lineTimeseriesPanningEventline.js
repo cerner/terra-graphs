@@ -30,13 +30,13 @@ const getConfigLineTimeseriesPanning = (id) => ({
   showVGrid: true,
   showHGrid: true,
   eventline: [{
-      color: Carbon.helpers.COLORS.BLUE,
-      style: {
-        strokeDashArray: '2,2',
-      },
-      value: new Date(2016, 0, 1, 4, 15).toISOString(),
-    }
-  ]
+    color: Carbon.helpers.COLORS.BLUE,
+    style: {
+      strokeDashArray: '2,2',
+    },
+    value: new Date(2016, 0, 1, 4, 15).toISOString(),
+  },
+  ],
 });
 
 export default getConfigLineTimeseriesPanning;

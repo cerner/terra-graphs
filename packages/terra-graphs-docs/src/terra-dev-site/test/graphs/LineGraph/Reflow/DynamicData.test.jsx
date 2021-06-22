@@ -17,7 +17,7 @@ const LinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
     const newDataset = [utils.deepClone(data[1])];
-    
+
     let hour;
 
     switch (action.type) {
@@ -32,11 +32,10 @@ const LinePanningExample = () => {
     newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
     newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
-
     return {
       initial: hour,
       factor: panState.factor,
-      dataset: {panData: newDataset},
+      dataset: { panData: newDataset },
       graphConfig: utils.deepClone(newGraphState),
     };
   };

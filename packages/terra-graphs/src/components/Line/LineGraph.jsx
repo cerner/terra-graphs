@@ -86,10 +86,10 @@ const LineGraph = ({
     graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
     graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
 
-    const newDataset =  { 
+    const newDataset = {
       panData: utils.deepClone(dataset.panData),
-      eventline: utils.deepClone(dataset.eventline)
-     };
+      eventline: utils.deepClone(dataset.eventline),
+    };
 
     graph.reflowMultipleDatasets(newDataset);
   }, [graph, dataset, graphConfig]);
