@@ -7,6 +7,7 @@ import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/exampl
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-legend';
 
 data[1].values = [];
+
 const initialState = {
   initial: 0,
   factor: 3,
@@ -17,22 +18,25 @@ const initialState = {
 const LinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
+    const newDataset = [utils.deepClone(data[1])];;
     let hour;
-    let newDataset;
 
     switch (action.type) {
       case 'panLeft':
-        newDataset = [utils.deepClone(data[0])];
+        hour = panState.initial - panState.factor;
         break;
       case 'panRight':
-        newDataset = [utils.deepClone(data[1])];
+        hour = panState.initial + panState.factor;
         break;
     }
+
+    newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
+    newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
     return {
       initial: hour,
       factor: panState.factor,
-      dataset: newDataset,
+      dataset: {panData: newDataset},
       graphConfig: utils.deepClone(newGraphState),
     };
   };

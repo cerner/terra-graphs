@@ -14,7 +14,7 @@ const initialState = {
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample')),
 };
 
-const LinePanningTest = () => {
+const LinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
     let hour;
@@ -50,4 +50,4 @@ const LinePanningTest = () => {
   );
 };
 
-export default LinePanningTest;
+export default LinePanningExample;

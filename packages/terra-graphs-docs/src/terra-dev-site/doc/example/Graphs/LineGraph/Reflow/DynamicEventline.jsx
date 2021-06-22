@@ -5,7 +5,6 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningEventline';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-eventline';
-import eventlineData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesEventline';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 /*
@@ -17,8 +16,6 @@ const initialState = {
   dataset: [utils.deepClone(data[0])],
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#dynamicEventlineExample')),
 };
-
-// initialState.graphConfig.eventline = [utils.deepClone(eventlineData[1])];//
 
 const LinePanningExample = () => {
   const reducer = (panState, action) => {

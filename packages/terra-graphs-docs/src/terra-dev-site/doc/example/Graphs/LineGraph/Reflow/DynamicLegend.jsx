@@ -11,6 +11,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 
 data[1].values = [];
+
 const initialState = {
   initial: 0,
   factor: 3,
