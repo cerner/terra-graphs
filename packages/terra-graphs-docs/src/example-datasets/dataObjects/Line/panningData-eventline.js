@@ -63,7 +63,6 @@ const data = [{
   ],
   yAxis: 'y',
 },
-
 {
   key: 'uid_1',
   label: {

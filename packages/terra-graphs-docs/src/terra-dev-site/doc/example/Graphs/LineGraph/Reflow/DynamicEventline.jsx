@@ -3,8 +3,10 @@ import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
+import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningEventline';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-eventline';
+import eventlineData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesEventline';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
@@ -16,25 +18,43 @@ const initialState = {
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#dynamicEventlineExample')),
 };
 
+// initialState.graphConfig.eventline = [utils.deepClone(eventlineData[1])];//
+
 const LinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
+    const newDataset = [utils.deepClone(data[1])];
     let hour;
-    let newDataset;
 
     switch (action.type) {
       case 'panLeft':
-        newDataset = [utils.deepClone(data[0])];
+        hour = panState.initial - panState.factor;
         break;
       case 'panRight':
-        newDataset = [utils.deepClone(data[1])];
+        hour = panState.initial + panState.factor;
         break;
     }
+
+    newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
+    newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
+
+    let newEventline = [
+      {
+        color: Carbon.helpers.COLORS.GREEN,
+        style: {
+          strokeDashArray: '4,4',
+        },
+        value: new Date(2016, 0, 1, 9, 45).toISOString(),
+      },
+    ];
 
     return {
       initial: hour,
       factor: panState.factor,
-      dataset: newDataset,
+      dataset: {
+        panData: newDataset,
+        eventline: newEventline
+      },
       graphConfig: utils.deepClone(newGraphState),
     };
   };
