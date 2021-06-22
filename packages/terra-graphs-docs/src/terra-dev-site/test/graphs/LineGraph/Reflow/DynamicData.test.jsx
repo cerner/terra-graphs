@@ -6,27 +6,25 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
 
-const initialState =  {
+const initialState = {
   initial: 0,
   factor: 3,
   dataset: [utils.deepClone(data[0])],
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#dynamicLineData'))
+  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#dynamicLineData')),
 };
 
 const LinePanningExample = () => {
-
   const reducer = (panState, action) => {
-
     const newGraphState = utils.deepClone(panState.graphConfig);
     let hour;
     let newDataset;
 
-    switch(action.type){
-      case "panLeft":
-        newDataset = [utils.deepClone(data[0])]
+    switch (action.type) {
+      case 'panLeft':
+        newDataset = [utils.deepClone(data[0])];
         break;
-      case "panRight":
-        newDataset = [utils.deepClone(data[1])]
+      case 'panRight':
+        newDataset = [utils.deepClone(data[1])];
         break;
     }
 
@@ -34,17 +32,16 @@ const LinePanningExample = () => {
       initial: hour,
       factor: panState.factor,
       dataset: newDataset,
-      graphConfig: utils.deepClone(newGraphState)
+      graphConfig: utils.deepClone(newGraphState),
     };
-
   };
 
   const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>
-      <Button id="buttonPanLeft" className="buttonPanLeft"  text="<"  onClick={() => dispatch({type: "panLeft"})} />
-      <Button id="buttonPanRight" className="buttonPanRight"  text=">" onClick={() => dispatch({type: "panRight"})} />
+      <Button className="buttonPanLeft" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="buttonPanRight" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
       <LineGraph graphID="dynamicLineData" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>

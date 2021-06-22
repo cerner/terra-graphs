@@ -78,16 +78,15 @@ const LineGraph = ({
     if (!graph) {
       return;
     }
-    if(!skipreflowRef.current){
+    if (!skipreflowRef.current) {
       skipreflowRef.current = true;
       return;
     }
 
-
     graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
     graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
 
-    const newDataset = {panData: utils.deepClone(dataset)};
+    const newDataset = { panData: utils.deepClone(dataset) };
 
     graph.reflowMultipleDatasets(newDataset);
   }, [graph, dataset, graphConfig]);

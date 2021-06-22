@@ -12,24 +12,22 @@ Please refer to the documentation below to see the graphConfig and data objects
 
 const dataset = utils.deepClone(data);
 
-const initialState =  {
+const initialState = {
   initial: 0,
   factor: 3,
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample'))
+  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample')),
 };
 
 const LinePanningExample = () => {
- 
   const reducer = (panState, action) => {
-
     const newGraphState = utils.deepClone(panState.graphConfig);
     let hour;
 
-    switch(action.type){
-      case "panLeft":
+    switch (action.type) {
+      case 'panLeft':
         hour = panState.initial - panState.factor;
         break;
-      case "panRight":
+      case 'panRight':
         hour = panState.initial + panState.factor;
         break;
     }
@@ -40,17 +38,16 @@ const LinePanningExample = () => {
     return {
       initial: hour,
       factor: panState.factor,
-      graphConfig: utils.deepClone(newGraphState)
+      graphConfig: utils.deepClone(newGraphState),
     };
-
   };
-  
+
   const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>
-      <Button id="buttonPanLeft" className="buttonPanLeft"  text="<"  onClick={() => dispatch({type: "panLeft"})} />
-      <Button id="buttonPanRight" className="buttonPanRight"  text=">" onClick={() => dispatch({type: "panRight"})} />
+      <Button className="buttonPanLeft" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="buttonPanRight" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
       <LineGraph graphID="linePanningExample" graphConfig={panState.graphConfig} dataset={dataset} />
     </React.Fragment>

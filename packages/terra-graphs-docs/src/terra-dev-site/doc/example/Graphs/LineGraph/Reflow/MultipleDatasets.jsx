@@ -10,27 +10,25 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Lin
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const initialState =  {
+const initialState = {
   initial: 0,
   factor: 3,
   dataset: utils.deepClone(data.initialData),
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#multipleDatasetsExample'))
+  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#multipleDatasetsExample')),
 };
 
 const LinePanningExample = () => {
-
   const reducer = (panState, action) => {
-
     const newGraphState = utils.deepClone(panState.graphConfig);
     let hour;
     let newDataset;
 
-    switch(action.type){
-      case "panLeft":
-        newDataset = utils.deepClone(data.initialData)
+    switch (action.type) {
+      case 'panLeft':
+        newDataset = utils.deepClone(data.initialData);
         break;
-      case "panRight":
-        newDataset = utils.deepClone(data.panData)
+      case 'panRight':
+        newDataset = utils.deepClone(data.panData);
         break;
     }
 
@@ -38,17 +36,16 @@ const LinePanningExample = () => {
       initial: hour,
       factor: panState.factor,
       dataset: newDataset,
-      graphConfig: utils.deepClone(newGraphState)
+      graphConfig: utils.deepClone(newGraphState),
     };
-
   };
 
   const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>
-      <Button id="buttonPanLeft" className="buttonPanLeft"  text="<"  onClick={() => dispatch({type: "panLeft"})} />
-      <Button id="buttonPanRight" className="buttonPanRight"  text=">" onClick={() => dispatch({type: "panRight"})} />
+      <Button className="buttonPanLeft" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="buttonPanRight" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
       <LineGraph graphID="multipleDatasetsExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>
