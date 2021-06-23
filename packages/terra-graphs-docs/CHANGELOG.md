@@ -11,4 +11,5 @@
   * Added data objects and examples for Timeline graph.
   * Added data objects and examples for Pie chart.
   * Added data objects and examples for Combination graph.
+  * Added reflow examples for Line Graph.
   * Added critical and basic example for timeline graph.
