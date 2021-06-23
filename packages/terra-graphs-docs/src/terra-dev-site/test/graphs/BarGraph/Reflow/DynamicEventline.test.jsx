@@ -34,7 +34,6 @@ const BarPanningExample = () => {
     let hour;
     const newDataset = [utils.deepClone(data[0])];
 
-
     switch (action.type) {
       case 'panLeft':
 
