@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './PairedResultGraph.module.scss';
+import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -18,20 +19,17 @@ const propTypes = {
    */
   dataset: PropTypes.arrayOf(PropTypes.object),
   /**
-   * dynamic data to update the initial data
-   */
-  panData: PropTypes.object,
-  /**
    * Timeout to display multiple data contents in specific time interval.
    */
   timeout: PropTypes.arrayOf(PropTypes.number),
 };
 
 const PaiedResultGraph = ({
-  graphConfig, dataset, panData, graphID, timeout,
+  graphConfig, dataset, graphID, timeout,
 }) => {
   const [graph, setGraph] = React.useState();
   const graphLoadedRef = React.useRef();
+  const skipreflowRef = React.useRef();
 
   // creation of canvas
   React.useEffect(() => {
@@ -46,7 +44,6 @@ const PaiedResultGraph = ({
       return;
     }
     const timeoutIds = [];
-
     if (dataset) {
       if (timeout) {
         dataset.forEach((data, index) => {
@@ -78,11 +75,22 @@ const PaiedResultGraph = ({
     if (!graph) {
       return;
     }
+    if (!skipreflowRef.current) {
+      skipreflowRef.current = true;
+      return;
+    }
 
     graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
     graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
-    graph.reflowMultipleDatasets(panData);
-  }, [graph, graphConfig, panData]);
+
+    const newDataset = {
+      panData: utils.deepClone(dataset.panData),
+      eventline: utils.deepClone(dataset.eventline),
+    };
+
+    graph.reflowMultipleDatasets(newDataset);
+  }, [graph, dataset, graphConfig]);
+
   return (
     <div id={`${graphID}-canvasContainer`}>
       <div id={graphID} />

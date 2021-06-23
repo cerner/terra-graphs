@@ -91,7 +91,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/dynamic-data');
         });
         it('validates panning left', () => {
-          panningBtn = $('#buttonPanLeft');
+          panningBtn = $('.buttonPanLeft');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_dynamic_data_panning_left_1', { selector: '.carbon-graph-container' });
           panningBtn.click();
@@ -100,7 +100,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           Terra.validates.screenshot('paired_result_dynamic_data_panning_left_3', { selector: '.carbon-graph-container' });
         });
         it('validates panning right', () => {
-          panningBtn = $('#buttonPanRight');
+          panningBtn = $('.buttonPanRight');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_dynamic_data_panning_right_1', { selector: '.carbon-graph-container' });
           panningBtn.click();
@@ -114,7 +114,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/dynamic-eventline');
         });
         it('validates panning left', () => {
-          panningBtn = $('#buttonPanLeft');
+          panningBtn = $('.buttonPanLeft');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_dynamic_eventline_panning_left_1', { selector: '.carbon-graph-container' });
           panningBtn.click();
@@ -123,7 +123,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           Terra.validates.screenshot('paired_result_dynamic_eventline_panning_left_3', { selector: '.carbon-graph-container' });
         });
         it('validates panning right', () => {
-          panningBtn = $('#buttonPanRight');
+          panningBtn = $('.buttonPanRight');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_dynamic_eventline_panning_right_1', { selector: '.carbon-graph-container' });
           panningBtn.click();
@@ -137,7 +137,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/multiple-datasets-with-y-2-axis');
         });
         it('validates panning left', () => {
-          panningBtn = $('#buttonPanLeft');
+          panningBtn = $('.buttonPanLeft');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_multiple_datasets_panning_left_1', { selector: '.carbon-graph-container' });
           panningBtn.click();
@@ -146,7 +146,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           Terra.validates.screenshot('paired_result_multiple_datasets_panning_left_3', { selector: '.carbon-graph-container' });
         });
         it('validates panning right', () => {
-          panningBtn = $('#buttonPanRight');
+          panningBtn = $('.buttonPanRight');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_multiple_datasets_panning_right_1', { selector: '.carbon-graph-container' });
           panningBtn.click();
@@ -160,7 +160,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/simple-panning');
         });
         it('validates panning left', () => {
-          panningBtn = $('#buttonPanLeft');
+          panningBtn = $('.buttonPanLeft');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_simple_panning_left_1', { selector: '.carbon-graph-container' });
           panningBtn.click();
@@ -169,7 +169,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
           Terra.validates.screenshot('paired_result_simple_panning_left_3', { selector: '.carbon-graph-container' });
         });
         it('validates panning right', () => {
-          panningBtn = $('#buttonPanRight');
+          panningBtn = $('.buttonPanRight');
           panningBtn.click();
           Terra.validates.screenshot('paired_result_simple_panning_right_1', { selector: '.carbon-graph-container' });
           panningBtn.click();

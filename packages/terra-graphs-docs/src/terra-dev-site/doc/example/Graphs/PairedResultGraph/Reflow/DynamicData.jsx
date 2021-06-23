@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PairedResultGraph from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
@@ -9,67 +9,49 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pai
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-let graphConfig = utils.deepClone(getPairedResultTimeseriesPanningConfig('#PairedResultDynamicData'));
-const dataset = utils.deepClone(data[0]);
-const newDataset = {};
-const shift = {
+const initialState = {
   initial: 0,
   factor: 3,
+  dataset: [utils.deepClone(data[0])],
+  graphConfig: utils.deepClone(getPairedResultTimeseriesPanningConfig('#PairedResultDynamicData')),
 };
+
 const PairedResultPanningExample = () => {
-  const [panLeftClicked, setPanLeftClicked] = useState(false);
-  const [panRightClicked, setPanRightClicked] = useState(false);
+  const reducer = (panState, action) => {
+    const newGraphState = utils.deepClone(panState.graphConfig);
+    let hour;
+    const newDataset = [utils.deepClone(data[1])];
 
-  // Pan left Effect
-  React.useLayoutEffect(() => {
-    if (!panLeftClicked || panRightClicked) {
-      return;
+    switch (action.type) {
+      case 'panLeft':
+        hour = panState.initial - panState.factor;
+        break;
+      case 'panRight':
+        hour = panState.initial + panState.factor;
+        break;
+      default:
+        return '';
     }
 
-    const newGraphConfig = utils.deepClone(graphConfig);
-    const hour = shift.initial - shift.factor;
-    shift.initial = hour;
-    newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-    graphConfig = utils.deepClone(newGraphConfig);
-    newDataset.panData = [utils.deepClone(data[1])];
+    newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
+    newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
-    setPanLeftClicked(false);
-  }, [panLeftClicked, panRightClicked]);
-
-  // Pan right Effect
-  React.useLayoutEffect(() => {
-    if (panLeftClicked || !panRightClicked) {
-      return;
-    }
-
-    const newGraphConfig = utils.deepClone(graphConfig);
-    const hour = shift.initial + shift.factor;
-    shift.initial = hour;
-    newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    graphConfig = utils.deepClone(newGraphConfig);
-    newDataset.panData = [utils.deepClone(data[1])];
-
-    setPanRightClicked(false);
-  }, [panLeftClicked, panRightClicked]);
-
-  const panLeftFunction = () => {
-    setPanLeftClicked(true);
+    return {
+      initial: hour,
+      factor: panState.factor,
+      dataset: { panData: newDataset },
+      graphConfig: utils.deepClone(newGraphState),
+    };
   };
 
-  const panRightFunction = () => {
-    setPanRightClicked(true);
-  };
+  const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>
-      <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
-      {'\n'}
-      <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
+      <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <PairedResultGraph graphID="PairedResultDynamicData" graphConfig={graphConfig} dataset={[dataset]} panData={newDataset} />
+      <PairedResultGraph graphID="PairedResultDynamicData" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>
   );
 };
