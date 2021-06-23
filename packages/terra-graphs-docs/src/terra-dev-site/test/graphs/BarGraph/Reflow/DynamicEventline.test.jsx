@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 import Button from 'terra-button/lib/Button';
@@ -7,7 +7,10 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simplePanningData';
 
-let graphConfig = utils.deepClone(getBarPanningConfig('#barPanningDynamicEventline'));
+/*
+Please refer to the documentation below to see the graphConfig and data objects
+*/
+const graphConfig = utils.deepClone(getBarPanningConfig('#barPanningDynamicEventline'));
 graphConfig.eventline = [
   {
     color: Carbon.helpers.COLORS.GREY,
@@ -17,30 +20,34 @@ graphConfig.eventline = [
     value: new Date(2016, 0, 1, 4, 30).toISOString(),
   },
 ];
-const newDataset = {};
-const dataset = utils.deepClone(data);
-const shift = {
+
+const initialState = {
   initial: 0,
   factor: 3,
+  dataset: utils.deepClone(data),
+  graphConfig,
 };
+
 const BarPanningExample = () => {
-  const [panLeftClicked, setPanLeftClicked] = useState(false);
-  const [panRightClicked, setPanRightClicked] = useState(false);
+  const reducer = (panState, action) => {
+    const newGraphConfig = utils.deepClone(panState.graphConfig);
+    let hour;
+    const newDataset = [utils.deepClone(data[0])];
 
-  // Pan left Effect
-  React.useLayoutEffect(() => {
-    if (!panLeftClicked || panRightClicked) {
-      return;
+
+    switch (action.type) {
+      case 'panLeft':
+
+        hour = panState.initial - panState.factor;
+        break;
+      case 'panRight':
+        hour = panState.initial + panState.factor;
+        break;
+      default:
+        return '';
     }
 
-    const newGraphConfig = utils.deepClone(graphConfig);
-    const hour = shift.initial - shift.factor;
-    shift.initial = hour;
-    newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-    graphConfig = utils.deepClone(newGraphConfig);
-    newDataset.panData = [utils.deepClone(data[0])];
-    newDataset.eventline = [
+    const newEventline = [
       {
         color: Carbon.helpers.COLORS.BLACK,
         style: {
@@ -49,50 +56,29 @@ const BarPanningExample = () => {
         value: new Date(2016, 0, 1, 7, 30).toISOString(),
       },
     ];
-    setPanLeftClicked(false);
-  }, [panLeftClicked, panRightClicked]);
 
-  // Pan right Effect
-  React.useLayoutEffect(() => {
-    if (panLeftClicked || !panRightClicked) {
-      return;
-    }
-
-    const newGraphConfig = utils.deepClone(graphConfig);
-    const hour = shift.initial + shift.factor;
-    shift.initial = hour;
     newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
     newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
-    graphConfig = utils.deepClone(newGraphConfig);
-    newDataset.panData = [utils.deepClone(data[0])];
-    newDataset.eventline = [
-      {
-        color: Carbon.helpers.COLORS.BLACK,
-        style: {
-          strokeDashArray: '2,2',
-        },
-        value: new Date(2016, 0, 1, 7, 30).toISOString(),
+    return {
+      initial: hour,
+      factor: panState.factor,
+      dataset: {
+        panData: newDataset,
+        eventline: newEventline,
       },
-    ];
-    setPanRightClicked(false);
-  }, [panLeftClicked, panRightClicked]);
-
-  const panLeftFunction = () => {
-    setPanLeftClicked(true);
+      graphConfig: utils.deepClone(newGraphConfig),
+    };
   };
 
-  const panRightFunction = () => {
-    setPanRightClicked(true);
-  };
+  const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>
-      <Button id="buttonPanLeft" text="<" onClick={panLeftFunction} />
-      {'\n'}
-      <Button id="buttonPanRight" text=">" onClick={panRightFunction} />
+      <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <BarGraph graphID="barPanningDynamicEventline" graphConfig={graphConfig} dataset={dataset} panData={newDataset} />
+      <BarGraph graphID="barPanningDynamicEventline" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>
   );
 };

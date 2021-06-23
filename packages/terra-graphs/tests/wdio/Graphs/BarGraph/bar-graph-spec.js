@@ -70,7 +70,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/bar-graph/reflow/dynamic-data');
       });
       it('validates panning left', () => {
-        panningBtn = $('#buttonPanLeft');
+        panningBtn = $('.button-pan-left');
         panningBtn.click();
         Terra.validates.screenshot('bar_dynamic_data_panning_left_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -79,7 +79,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
         Terra.validates.screenshot('bar_dynamic_data_panning_left_3', { selector: '.carbon-graph-container' });
       });
       it('validates panning right', () => {
-        panningBtn = $('#buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('bar_dynamic_data_panning_right_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -93,7 +93,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/bar-graph/reflow/dynamic-eventline');
       });
       it('validates panning left', () => {
-        panningBtn = $('#buttonPanLeft');
+        panningBtn = $('.button-pan-left');
         panningBtn.click();
         Terra.validates.screenshot('bar_dynamic_eventline_panning_left_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -102,7 +102,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
         Terra.validates.screenshot('bar_dynamic_eventline_panning_left_3', { selector: '.carbon-graph-container' });
       });
       it('validates panning right', () => {
-        panningBtn = $('#buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('bar_dynamic_eventline_panning_right_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -116,7 +116,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/bar-graph/reflow/simple-panning');
       });
       it('validates panning left', () => {
-        panningBtn = $('#buttonPanLeft');
+        panningBtn = $('.button-pan-left');
         panningBtn.click();
         Terra.validates.screenshot('bar_simple_panning_left_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -125,7 +125,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
         Terra.validates.screenshot('bar_simple_panning_left_3', { selector: '.carbon-graph-container' });
       });
       it('validates panning right', () => {
-        panningBtn = $('#buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('bar_simple_panning_right_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
