@@ -43,8 +43,8 @@ const LinePanningExample = () => {
 
   return (
     <React.Fragment>
-      <Button className="buttonPanLeft" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
-      <Button className="buttonPanRight" text=">" onClick={() => dispatch({ type: 'panRight' })} />
+      <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
       <LineGraph graphID="multipleDatasetsExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </React.Fragment>

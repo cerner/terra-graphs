@@ -175,7 +175,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/simple-panning');
       });
       it('validates panning left', () => {
-        panningBtn = $('.buttonPanLeft');
+        panningBtn = $('.button-pan-left');
         panningBtn.click();
         Terra.validates.screenshot('simple_panning_left_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -184,7 +184,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         Terra.validates.screenshot('simple_panning_left_3', { selector: '.carbon-graph-container' });
       });
       it('validates panning right', () => {
-        panningBtn = $('.buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('simple_panning_right_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -201,7 +201,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/dynamic-data');
       });
       it('validates dynaimcally updating of a dataset', () => {
-        panningBtn = $('.buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('dynamic_data_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -216,7 +216,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/multiple-datasets');
       });
       it('validates dynaimcally updating of multiple datasets', () => {
-        panningBtn = $('.buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('multiple_dataset_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -231,7 +231,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/dynamic-eventline');
       });
       it('validates eventline dynaimcally updating', () => {
-        panningBtn = $('.buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('dynamic_eventline_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -246,7 +246,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/dynamic-legend');
       });
       it('validates eventline dynaimcally updating', () => {
-        panningBtn = $('.buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('legend_update_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -261,7 +261,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/terra-graphs-docs/graphs/line-graph/reflow/y-2-panning');
       });
       it('validates panning left with y2 axis', () => {
-        panningBtn = $('.buttonPanLeft');
+        panningBtn = $('.button-pan-left');
         panningBtn.click();
         Terra.validates.screenshot('y2_panning_left_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
@@ -270,7 +270,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         Terra.validates.screenshot('y2_panning_left_3', { selector: '.carbon-graph-container' });
       });
       it('validates panning right with y2 axis', () => {
-        panningBtn = $('.buttonPanRight');
+        panningBtn = $('.button-pan-right');
         panningBtn.click();
         Terra.validates.screenshot('y2_panning_right_1', { selector: '.carbon-graph-container' });
         panningBtn.click();
