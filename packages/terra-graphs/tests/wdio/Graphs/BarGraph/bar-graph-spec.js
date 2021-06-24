@@ -67,7 +67,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
     let panningBtn = null;
     describe('Dynamic data', () => {
       beforeEach(() => {
-        browser.url('/raw/tests/terra-graphs-docs/graphs/bar-graph/reflow/dynamic-data');
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/bar-graph/reflow/dynamic-data');
       });
       it('validates panning left', () => {
         panningBtn = $('.button-pan-left');
@@ -90,7 +90,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
     });
     describe('Dynamic eventline', () => {
       beforeEach(() => {
-        browser.url('/raw/tests/terra-graphs-docs/graphs/bar-graph/reflow/dynamic-eventline');
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/bar-graph/reflow/dynamic-eventline');
       });
       it('validates panning left', () => {
         panningBtn = $('.button-pan-left');
@@ -113,7 +113,7 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
     });
     describe('Simple', () => {
       beforeEach(() => {
-        browser.url('/raw/tests/terra-graphs-docs/graphs/bar-graph/reflow/simple-panning');
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/bar-graph/reflow/simple-panning');
       });
       it('validates panning left', () => {
         panningBtn = $('.button-pan-left');
