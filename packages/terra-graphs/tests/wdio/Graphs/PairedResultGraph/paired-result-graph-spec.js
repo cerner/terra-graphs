@@ -88,7 +88,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
       let panningBtn = null;
       describe('Dynamic data', () => {
         beforeEach(() => {
-          browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/dynamic-data');
+          browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/paired-result/reflow/dynamic-data');
         });
         it('validates panning left', () => {
           panningBtn = $('.button-pan-left');
@@ -111,7 +111,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
       });
       describe('Dynamic eventline', () => {
         beforeEach(() => {
-          browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/dynamic-eventline');
+          browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/paired-result/reflow/dynamic-eventline');
         });
         it('validates panning left', () => {
           panningBtn = $('.button-pan-left');
@@ -134,7 +134,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
       });
       describe('Multiple Datasets', () => {
         beforeEach(() => {
-          browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/multiple-datasets-with-y-2-axis');
+          browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/paired-result/reflow/multiple-datasets-with-y-2-axis');
         });
         it('validates panning left', () => {
           panningBtn = $('.button-pan-left');
@@ -157,7 +157,7 @@ Terra.describeViewports('PairedResultGraph ', ['tiny', 'medium', 'large'], () =>
       });
       describe('Simple', () => {
         beforeEach(() => {
-          browser.url('/raw/tests/terra-graphs-docs/graphs/paired-result/reflow/simple-panning');
+          browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/paired-result/reflow/simple-panning');
         });
         it('validates panning left', () => {
           panningBtn = $('.button-pan-left');
