@@ -1,0 +1,39 @@
+import PairedResultGraphPanning from '../../../example/Graphs/PairedResultGraph/Reflow/MultipleDatasetsWithY2Axis?dev-site-example';
+import PropsTable from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph?dev-site-props-table';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/multipleDatasetWithY2PanningData.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Paired Result graph panning - Multiple dataset with y2 axis
+
+This is a paired result graph example that implements panning with multiple datasets.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+
+```jsx
+import React from 'react';
+import PairedResultGraph from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph';
+```
+
+## Examples
+<PairedResultGraphPanning />
+
+## Props
+<PropsTable />
+
+<details>
+<summary style={{ fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>
