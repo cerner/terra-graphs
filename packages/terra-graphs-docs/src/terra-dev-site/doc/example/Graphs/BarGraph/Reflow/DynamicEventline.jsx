@@ -43,7 +43,7 @@ const BarPanningExample = () => {
         hour = panState.initial + panState.factor;
         break;
       default:
-        return '';
+        return panState;
     }
 
     const newEventline = [

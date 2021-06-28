@@ -30,7 +30,7 @@ const BarPanningExample = () => {
         hour = panState.initial + panState.factor;
         break;
       default:
-        return '';
+        return panState;
     }
 
     newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
