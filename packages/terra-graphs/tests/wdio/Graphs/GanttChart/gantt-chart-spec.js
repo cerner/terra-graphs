@@ -61,4 +61,100 @@ Terra.describeViewports(' GanttCharts', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('gantt_track_selection', { selector: '.carbon-graph-container' });
     });
   });
+
+  describe('Reflow', () => {
+    let panningBtn = null;
+    describe('Dynamic data', () => {
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/gantt-chart/reflow/dynamic-data');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_data_panning_left_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_data_panning_left_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_data_panning_left_3', { selector: '.carbon-graph-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_data_panning_right_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_data_panning_right_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_data_panning_right_3', { selector: '.carbon-graph-container' });
+      });
+    });
+    describe('Dynamic eventline', () => {
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/gantt-chart/reflow/dynamic-eventline');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_eventline_panning_left_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_eventline_panning_left_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_eventline_panning_left_3', { selector: '.carbon-graph-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_eventline_panning_right_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_eventline_panning_right_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_dynamic_eventline_panning_right_3', { selector: '.carbon-graph-container' });
+      });
+    });
+    describe('Multiple Datasets', () => {
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/gantt-chart/reflow/multiple-datasets');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_multiple_datasets_panning_left_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_multiple_datasets_panning_left_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_multiple_datasets_panning_left_3', { selector: '.carbon-graph-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_multiple_datasets_panning_right_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_multiple_datasets_panning_right_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_multiple_datasets_panning_right_3', { selector: '.carbon-graph-container' });
+      });
+    });
+    describe('Simple', () => {
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/gantt-chart/reflow/simple-panning');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_simple_panning_left_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_simple_panning_left_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_simple_panning_left_3', { selector: '.carbon-graph-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_simple_panning_right_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_simple_panning_right_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('gantt_simple_panning_right_3', { selector: '.carbon-graph-container' });
+      });
+    });
+  });
 });
