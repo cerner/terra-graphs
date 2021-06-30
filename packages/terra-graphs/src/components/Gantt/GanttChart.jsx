@@ -47,7 +47,6 @@ const GanttChart = ({
     if (dataset) {
       if (timeout) {
         dataset.forEach((data, index) => {
-          console.log(data);
           const timeoutId = setTimeout(
             () => (graph.graphContainer
               ? graph.loadContent(data)
