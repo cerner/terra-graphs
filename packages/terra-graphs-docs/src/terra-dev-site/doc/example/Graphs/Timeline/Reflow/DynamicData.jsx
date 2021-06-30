@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Timeline from '@cerner/terra-graphs/lib/components/Timeline/Timeline';
 import Button from 'terra-button/lib/Button';
@@ -20,7 +19,6 @@ const initialState = {
 };
 
 const TimelinePanningExample = () => {
-
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
     const newDataset = utils.deepClone(data2);

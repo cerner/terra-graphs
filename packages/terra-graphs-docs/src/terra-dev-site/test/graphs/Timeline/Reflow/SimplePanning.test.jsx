@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import Timeline from '@cerner/terra-graphs/lib/components/Timeline/Timeline';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
@@ -16,7 +15,6 @@ const initialState = {
 };
 
 const TimelinePanningExample = () => {
-
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
 
@@ -42,7 +40,6 @@ const TimelinePanningExample = () => {
       graphConfig: utils.deepClone(newGraphState),
     };
   };
-
 
   const [panState, dispatch] = React.useReducer(reducer, initialState);
 

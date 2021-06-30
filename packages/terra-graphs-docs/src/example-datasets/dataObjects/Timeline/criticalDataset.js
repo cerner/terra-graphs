@@ -20,12 +20,12 @@ const data = [{
     {
       x: new Date(2016, 0, 1, 1, 30).toISOString(),
       content: bobRossIpsum,
-      isCritical: true
+      isCritical: true,
     },
     {
       x: new Date(2016, 0, 1, 2, 15).toISOString(),
       content: bobRossIpsum,
-      isCritical: true
+      isCritical: true,
     },
     {
       x: new Date(2016, 0, 1, 3, 15).toISOString(),
@@ -34,7 +34,7 @@ const data = [{
     {
       x: new Date(2016, 0, 1, 4, 15).toISOString(),
       content: bobRossIpsum,
-      isCritical: true
+      isCritical: true,
     },
     {
       x: new Date(2016, 0, 1, 8, 15).toISOString(),
@@ -54,7 +54,7 @@ const data = [{
     {
       x: new Date(2016, 0, 1, 7, 15).toISOString(),
       content: 'This is custom value of another unit',
-      isCritical: true
+      isCritical: true,
     },
     {
       x: new Date(2016, 0, 1, 9, 45).toISOString(),

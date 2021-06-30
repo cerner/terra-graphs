@@ -57,6 +57,5 @@ Terra.describeViewports('Timeline graphs', ['tiny', 'medium', 'large'], () => {
         Terra.validates.screenshot('dynamic_data_2', { selector: '.carbon-timeline-container' });
       });
     });
- 
   });
 });

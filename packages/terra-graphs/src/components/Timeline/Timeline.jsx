@@ -31,7 +31,6 @@ const Timeline = ({
   const graphLoadedRef = React.useRef();
   const skipreflowRef = React.useRef();
 
-
   // creation of canvas
   React.useEffect(() => {
     if (!graph) {

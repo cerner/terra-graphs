@@ -11,8 +11,8 @@ const getTimelinePanningConfig = (id) => ({
   showLabel: true,
   showLegend: true,
   pan: {
-    enabled: true
-  }
+    enabled: true,
+  },
 });
 
 export default getTimelinePanningConfig;
