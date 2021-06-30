@@ -65,7 +65,7 @@ const ScatterGraph = ({
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
-  }, [graphConfig, dataset, timeout]);
+  }, [graph, dataset, timeout]);
 
   // panning
   React.useEffect(() => {
