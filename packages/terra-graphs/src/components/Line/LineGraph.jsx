@@ -71,7 +71,7 @@ const LineGraph = ({
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
-  }, [graph, dataset, timeout]); 
+  }, [graph, dataset, timeout]);
 
   // panning
   React.useEffect(() => {
