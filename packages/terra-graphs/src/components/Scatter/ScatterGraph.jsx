@@ -1,3 +1,6 @@
+/* eslint consistent-return: off */
+/* eslint react-hooks/exhaustive-deps: off */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
@@ -87,7 +90,7 @@ const ScatterGraph = ({
 
     graph.reflowMultipleDatasets(newDataset);
   }, [graph, dataset, graphConfig]);
-  
+
   return (
     <div id={`${graphID}-canvasContainer`}>
       <div id={graphID} />
