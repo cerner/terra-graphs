@@ -49,12 +49,19 @@ Terra.describeViewports('Timeline graphs', ['tiny', 'medium', 'large'], () => {
       beforeEach(() => {
         browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/timeline/reflow/dynamic-data');
       });
-      it('validates dynaimcally updating of a dataset', () => {
+      it('validates dynaimcally updating of a dataset on left click', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('dynamic_data_L1', { selector: '.carbon-timeline-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('dynamic_data_L2', { selector: '.carbon-timeline-container' });
+      });
+      it('validates dynaimcally updating of a dataset on right click', () => {
         panningBtn = $('.button-pan-right');
         panningBtn.click();
-        Terra.validates.screenshot('dynamic_data_1', { selector: '.carbon-timeline-container' });
+        Terra.validates.screenshot('dynamic_data_R1', { selector: '.carbon-timeline-container' });
         panningBtn.click();
-        Terra.validates.screenshot('dynamic_data_2', { selector: '.carbon-timeline-container' });
+        Terra.validates.screenshot('dynamic_data_R2', { selector: '.carbon-timeline-container' });
       });
     });
   });
