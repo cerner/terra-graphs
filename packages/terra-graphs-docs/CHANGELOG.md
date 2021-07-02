@@ -19,4 +19,4 @@
   * Added reflow examples for Gantt chart.
 
 * Changed 
-  * Moved core dcumentation to terra-dev-site.
+  * Moved core documentation to terra-dev-site.
