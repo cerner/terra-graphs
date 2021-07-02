@@ -62,4 +62,77 @@ Terra.describeViewports('BarGraph', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('stacked_goal_lines', { selector: '.carbon-graph-container' });
     });
   });
+
+  describe('Reflow', () => {
+    let panningBtn = null;
+    describe('Dynamic data', () => {
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/bar-graph/reflow/dynamic-data');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_data_panning_left_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_data_panning_left_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_data_panning_left_3', { selector: '.carbon-graph-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_data_panning_right_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_data_panning_right_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_data_panning_right_3', { selector: '.carbon-graph-container' });
+      });
+    });
+    describe('Dynamic eventline', () => {
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/bar-graph/reflow/dynamic-eventline');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_eventline_panning_left_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_eventline_panning_left_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_eventline_panning_left_3', { selector: '.carbon-graph-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_eventline_panning_right_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_eventline_panning_right_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_dynamic_eventline_panning_right_3', { selector: '.carbon-graph-container' });
+      });
+    });
+    describe('Simple', () => {
+      beforeEach(() => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/bar-graph/reflow/simple-panning');
+      });
+      it('validates panning left', () => {
+        panningBtn = $('.button-pan-left');
+        panningBtn.click();
+        Terra.validates.screenshot('bar_simple_panning_left_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_simple_panning_left_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_simple_panning_left_3', { selector: '.carbon-graph-container' });
+      });
+      it('validates panning right', () => {
+        panningBtn = $('.button-pan-right');
+        panningBtn.click();
+        Terra.validates.screenshot('bar_simple_panning_right_1', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_simple_panning_right_2', { selector: '.carbon-graph-container' });
+        panningBtn.click();
+        Terra.validates.screenshot('bar_simple_panning_right_3', { selector: '.carbon-graph-container' });
+      });
+    });
+  });
 });

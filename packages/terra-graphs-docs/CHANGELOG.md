@@ -13,5 +13,8 @@
   * Added data objects and examples for Combination graph.
   * Added reflow examples for Line Graph.
   * Added critical and basic example for timeline graph.
-  * Added reflow examples for Paired result graph.
+  * Added reflow examples for Paired Result graph.
   * Added reflow examples for Scatter graph. 
+  * Added reflow examples for Bar graph.
+  * Added reflow examples for Bubble Graph.
+  * Added reflow examples for Gantt chart.
