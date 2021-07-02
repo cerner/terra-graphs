@@ -17,3 +17,6 @@
   * Added reflow examples for Bar graph.
   * Added reflow examples for Bubble Graph.
   * Added reflow examples for Gantt chart.
+
+* Changed 
+  * Moved core documentation to terra-dev-site.
