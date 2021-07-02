@@ -18,3 +18,6 @@
   * Added reflow examples for Bubble Graph.
   * Added reflow examples for Gantt chart.
   * Added reflow examples for Timeline graph.
+
+* Changed 
+  * Moved core documentation to terra-dev-site.
