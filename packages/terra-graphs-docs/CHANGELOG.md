@@ -16,3 +16,4 @@
   * Added reflow examples for Paired result graph.
   * Added reflow examples for Bar graph.
   * Added reflow examples for Bubble Graph.
+  * Added reflow examples for Gantt chart.

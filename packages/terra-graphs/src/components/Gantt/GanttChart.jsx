@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '../Graph.module.scss';
 import './GanttChart.module.scss';
+import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 
 const propTypes = {
   /**
@@ -26,8 +27,22 @@ const propTypes = {
 const GanttChart = ({
   graphConfig, dataset, graphID, timeout,
 }) => {
+  const [graph, setGraph] = React.useState();
+  const graphLoadedRef = React.useRef();
+  const skipreflowRef = React.useRef();
+
+  // creation of canvas
   React.useEffect(() => {
-    const graph = Carbon.api.gantt(graphConfig);
+    if (!graph) {
+      setGraph(Carbon.api.gantt(graphConfig));
+    }
+  }, [graph, graphConfig]);
+
+  // initial dataset load
+  React.useEffect(() => {
+    if (!graph || graphLoadedRef.current) {
+      return;
+    }
     const timeoutIds = [];
     if (dataset) {
       if (timeout) {
@@ -47,11 +62,34 @@ const GanttChart = ({
         });
       }
     }
+    graphLoadedRef.current = true;
 
+    // eslint-disable-next-line consistent-return
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
-  }, [graphConfig, dataset, timeout]);
+  }, [graph, dataset, timeout]);
+
+  // panning
+  React.useEffect(() => {
+    if (!graph) {
+      return;
+    }
+    if (!skipreflowRef.current) {
+      skipreflowRef.current = true;
+      return;
+    }
+
+    graph.config.axis.x.upperLimit = graphConfig.axis.x.upperLimit;
+    graph.config.axis.x.lowerLimit = graphConfig.axis.x.lowerLimit;
+
+    const newDataset = {
+      panData: utils.deepClone(dataset.panData),
+      eventline: utils.deepClone(dataset.eventline),
+    };
+
+    graph.reflowMultipleDatasets(newDataset);
+  }, [graph, dataset, graphConfig]);
 
   return (
     <div id={`${graphID}-canvasContainer`}>
