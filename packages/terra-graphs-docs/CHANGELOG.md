@@ -14,5 +14,6 @@
   * Added critical and basic example for Timeline graph.
   * Added reflow examples for Line Graph.
   * Added reflow examples for Paired result graph.
+  * Added reflow examples for Bar graph.
+  * Added reflow examples for Bubble Graph.
   * Added reflow examples for Timeline graph.
-
