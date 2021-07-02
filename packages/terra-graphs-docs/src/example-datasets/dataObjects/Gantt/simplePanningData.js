@@ -1,7 +1,7 @@
 import { loadTaskPopup, loadXAndYAxisLabelPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 import { loadPopup } from '@cerner/carbon-graphs/dev/examples/popup';
 
-const tasks2 = [
+const tasksData = [
   {
     key: 'task1',
     onClick: loadTaskPopup,
@@ -41,7 +41,7 @@ const simplePanningData = [{
     display: 'Default',
     onClick: loadXAndYAxisLabelPopup,
   },
-  tasks: tasks2,
+  tasks: tasksData,
   actions: actionsData,
 },
 ];

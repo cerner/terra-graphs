@@ -92,7 +92,7 @@ const activitiesData = [
   },
 ];
 
-const panData = {
+const dyanmicData = {
   actions: [
     {
       key: 'uid_action_1',
@@ -147,10 +147,10 @@ const panningData = [{
 },
 {
   key: 'track 0',
-  actions: panData.actions,
-  tasks: panData.tasks,
-  events: panData.events,
-  activities: panData.activities,
+  actions: dyanmicData.actions,
+  tasks: dyanmicData.tasks,
+  events: dyanmicData.events,
+  activities: dyanmicData.activities,
 },
 ];
 

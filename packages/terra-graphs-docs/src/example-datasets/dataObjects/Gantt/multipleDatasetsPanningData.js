@@ -92,7 +92,7 @@ const activitiesData = [
   },
 ];
 
-const panData = {
+const secondDataset = {
   actions: [
     {
       key: 'uid_action_1',
@@ -144,10 +144,10 @@ const panningData = [{
     display: 'Project B',
     onClick: loadXAndYAxisLabelPopup,
   },
-  actions: panData.actions,
-  tasks: panData.tasks,
-  events: panData.events,
-  activities: panData.activities,
+  actions: secondDataset.actions,
+  tasks: secondDataset.tasks,
+  events: secondDataset.events,
+  activities: secondDataset.activities,
 },
 ];
 
