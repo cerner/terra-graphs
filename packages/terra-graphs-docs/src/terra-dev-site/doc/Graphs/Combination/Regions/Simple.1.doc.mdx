@@ -1,5 +1,4 @@
 import CombinationGraph from '../../../example/Graphs/CombinationGraph/Regions/Simple?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Combination/CombinationGraph?dev-site-props-table';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Combination/lineAndPairedResultConfig.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/lineAndPairedResultData.js?dev-site-codeblock';
 require('details-polyfill')
@@ -7,23 +6,19 @@ require('details-polyfill')
 # Line With Paired Result
 This is a combination graph associated with simple region.
 
-#### Note: "graphType" should be added for each dataset in combination graph.
-
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-```jsx
-import React from 'react';
-import CombinationGraph from '@cerner/terra-graphs/lib/components/Combination/CombinationGraph';
+```js
+import Carbon from "@cerner/carbon-graphs/dist/js/carbon-graphs.js";
+import "@cerner/carbon-graphs/dist/css/carbon-graphs.css";
 ```
+
 ## Examples
 <CombinationGraph />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{fontSize: 24 }}>
