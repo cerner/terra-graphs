@@ -1,18 +1,29 @@
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/valueRegionData';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/valueRegionData';
+import '@cerner/terra-graphs/lib/components/Graph.module.scss';
+import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
 
 const graphConfig = utils.deepClone(lineTimesries('#simpleSpline'));
-const contentData = utils.deepClone(data);
-contentData.type = Carbon.helpers.LINE_TYPE.SPLINE;
+const contentData = utils.deepClone(exampleData);
+contentData[0].type = Carbon.helpers.LINE_TYPE.SPLINE;
 
-export default () => (
-  <React.Fragment>
-    <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="simpleSpline" graphConfig={graphConfig} dataset={contentData} />
-  </React.Fragment>
-);
+const LineExample = () => {
+  React.useEffect(() => {
+    const graph = Carbon.api.graph(graphConfig);
+    contentData.forEach((data) => {
+      graph.loadContent(Carbon.api.line(data));
+    });
+  }, []);
+  return (
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <div id="simpleSpline" />
+    </React.Fragment>
+  );
+};
+
+export default LineExample;

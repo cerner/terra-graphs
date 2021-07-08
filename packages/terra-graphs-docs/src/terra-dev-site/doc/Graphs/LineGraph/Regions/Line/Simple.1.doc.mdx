@@ -1,5 +1,4 @@
 import LineGraph from '../../../../example/Graphs/LineGraph/Regions/Line/Simple?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Line/LineGraph?dev-site-props-table';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/simpleLineData.js?dev-site-codeblock';
 require('details-polyfill')
@@ -11,19 +10,15 @@ This is simple line graph associated with region.
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-
-```jsx
-import React from 'react';
-import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
+```js
+import Carbon from "@cerner/carbon-graphs/dist/js/carbon-graphs.js";
+import "@cerner/carbon-graphs/dist/css/carbon-graphs.css";
 ```
 ## Examples
 <LineGraph />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{fontSize: 24 }}>

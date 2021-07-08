@@ -1,23 +1,31 @@
 import React from 'react';
-import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningEventline';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-eventline';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-eventline';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import '@cerner/terra-graphs/lib/components/Graph.module.scss';
+import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
+
+const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#dynamicEventlineExample'));
+const dataset = [utils.deepClone(exampleData[0])];
 
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0])],
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#dynamicEventlineExample')),
 };
+let graph;
 
 const LinePanningExample = () => {
+  React.useEffect(() => {
+    graph = Carbon.api.graph(graphConfig);
+    dataset.forEach((data) => {
+      graph.loadContent(Carbon.api.line(data));
+    });
+  }, []);
+
   const reducer = (panState, action) => {
-    const newGraphState = utils.deepClone(panState.graphConfig);
-    const newDataset = [utils.deepClone(data[1])];
     let hour;
 
     switch (action.type) {
@@ -27,10 +35,12 @@ const LinePanningExample = () => {
       case 'panRight':
         hour = panState.initial + panState.factor;
         break;
+      default:
+        return panState;
     }
 
-    newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
     const newEventline = [
       {
@@ -42,25 +52,27 @@ const LinePanningExample = () => {
       },
     ];
 
+    const newDataset = {
+      panData: [utils.deepClone(exampleData[1])],
+      eventline: newEventline,
+    };
+
+    graph.reflowMultipleDatasets(newDataset);
+
     return {
       initial: hour,
       factor: panState.factor,
-      dataset: {
-        panData: newDataset,
-        eventline: newEventline,
-      },
-      graphConfig: utils.deepClone(newGraphState),
     };
   };
 
-  const [panState, dispatch] = React.useReducer(reducer, initialState);
+  const [, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="dynamicEventlineExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
+      <div id="dynamicEventlineExample" />
     </React.Fragment>
   );
 };

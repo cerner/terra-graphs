@@ -19,6 +19,6 @@
   * Added reflow to the Gantt component.
 
 * Changed
-  * Made changes to WDIO test url's according to terra rules.
+  * Made changes to WDIO test url's according to terra rules. 
 
 * Initial stable release

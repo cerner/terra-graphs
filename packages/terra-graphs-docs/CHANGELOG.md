@@ -20,3 +20,4 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
+  * Changed example implementation and documentation for Line graph to be carbon-centric.
