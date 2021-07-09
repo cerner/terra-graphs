@@ -1,5 +1,4 @@
 import GanttChart from '../../../example/Graphs/Gantt/BasicGanttCharts/GraphAndLegendPaddingReduced?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Gantt/GanttChart?dev-site-props-table';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefault.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/actionsData.js?dev-site-codeblock';
 import LoadTracks from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/loadTracks.js?dev-site-codeblock';
@@ -11,18 +10,16 @@ This is a simple Gantt chart with reduced padding around graph and legend.
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-```jsx
-import React from 'react';
-import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
+```js
+import Carbon from "@cerner/carbon-graphs/dist/js/carbon-graphs.js";
+import "@cerner/carbon-graphs/dist/css/carbon-graphs.css";
 ```
+
 ## Examples
 <GanttChart />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{fontSize: 24 }}>

@@ -20,3 +20,5 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
+  * Changed example implementation and documentation for Gantt chart to be carbon centric.
+
