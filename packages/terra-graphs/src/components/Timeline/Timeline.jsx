@@ -36,12 +36,12 @@ const Timeline = ({
     if (!graph) {
       setGraph(Carbon.api.timeline(graphConfig));
     }
-  }, []);
+  }, [graph, graphConfig]);
 
   // initial dataset load
   React.useEffect(() => {
     if (!graph || graphLoadedRef.current) {
-      return;
+      return undefined;
     }
     const timeoutIds = [];
 
