@@ -4,13 +4,11 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/noDataView';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineDefault('#nodata'));
-const dataset = utils.deepClone(data);
 
 const GeneralExample = () => {
   React.useEffect(() => {
