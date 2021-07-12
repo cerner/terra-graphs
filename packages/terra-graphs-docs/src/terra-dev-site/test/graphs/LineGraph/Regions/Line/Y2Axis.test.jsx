@@ -5,9 +5,6 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
 const graphConfig = utils.deepClone(lineTimesries('#y2Region'));
 graphConfig.axis.y2.show = true;
 
@@ -26,4 +23,3 @@ export default () => (
     <LineGraph graphID="y2Region" graphConfig={graphConfig} dataset={contentData} />
   </React.Fragment>
 );
-

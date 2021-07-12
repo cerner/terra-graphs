@@ -9,9 +9,6 @@ import {
   loadDatelinePopup,
 } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
 const graphConfig = utils.deepClone(lineTimesries('#timeseriesDateLine'));
 graphConfig.dateline = [
   {

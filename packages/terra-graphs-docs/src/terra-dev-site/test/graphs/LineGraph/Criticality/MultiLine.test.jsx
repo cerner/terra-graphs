@@ -5,36 +5,19 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/defaultMultiLineData';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
-const graphConfig = utils.deepClone(lineDefault('#datasetRegionIdentical'));
+const graphConfig = utils.deepClone(lineDefault('#criticalityMultiLine'));
+
 const contentData = utils.deepClone(data);
-contentData[0].regions = [
-  {
-    start: 2,
-    end: 14,
-  },
-];
+contentData[0].values[0].isCritical = true;
+contentData[0].values[5].isCritical = true;
+contentData[0].values[10].isCritical = true;
 
-contentData[1].regions = [
-  {
-    start: 2,
-    end: 14,
-  },
-];
-
-contentData[2].regions = [
-  {
-    start: 2,
-    end: 14,
-  },
-];
+contentData[1].values[6].isCritical = true;
+contentData[1].values[11].isCritical = true;
 
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="datasetRegionIdentical" graphConfig={graphConfig} dataset={contentData} />
+    <LineGraph graphID="criticalityMultiLine" graphConfig={graphConfig} dataset={contentData} />
   </React.Fragment>
 );
-

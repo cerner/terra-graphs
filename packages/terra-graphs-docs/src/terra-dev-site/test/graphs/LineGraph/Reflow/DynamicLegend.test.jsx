@@ -6,10 +6,6 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-legend';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
-
 data[1].values = [];
 
 const initialState = {

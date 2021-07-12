@@ -14,9 +14,6 @@ const regions = [
   },
 ];
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
 const graphConfig = utils.deepClone(lineDefault('#simpleRegionLine'));
 const contentData = utils.deepClone(data);
 contentData[0].regions = [regions[0]];

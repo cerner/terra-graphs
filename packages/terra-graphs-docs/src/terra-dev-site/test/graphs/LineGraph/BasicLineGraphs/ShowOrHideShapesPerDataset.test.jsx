@@ -6,9 +6,6 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/defaultMultiLineData';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
 const graphConfig = utils.deepClone(lineDefault('#showOrHideShapesPerDataset'));
 
 const contentData = utils.deepClone(data);

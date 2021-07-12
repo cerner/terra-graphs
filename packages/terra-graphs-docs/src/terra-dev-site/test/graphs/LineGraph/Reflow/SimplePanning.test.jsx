@@ -4,24 +4,19 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
+const dataset = utils.deepClone(data);
 
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0])],
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#dynamicLineData')),
+  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#linePanningExample')),
 };
 
 const LinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
-    const newDataset = [utils.deepClone(data[1])];
-
     let hour;
 
     switch (action.type) {
@@ -39,7 +34,6 @@ const LinePanningExample = () => {
     return {
       initial: hour,
       factor: panState.factor,
-      dataset: { panData: newDataset },
       graphConfig: utils.deepClone(newGraphState),
     };
   };
@@ -51,7 +45,7 @@ const LinePanningExample = () => {
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="dynamicLineData" graphConfig={panState.graphConfig} dataset={panState.dataset} />
+      <LineGraph graphID="linePanningExample" graphConfig={panState.graphConfig} dataset={dataset} />
     </React.Fragment>
   );
 };

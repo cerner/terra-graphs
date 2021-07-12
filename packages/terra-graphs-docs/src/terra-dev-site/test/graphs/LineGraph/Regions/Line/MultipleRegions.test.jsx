@@ -3,23 +3,29 @@ import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/simpleLineData';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multiRegionData';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
-const graphConfig = utils.deepClone(lineDefault('#noUpperBound'));
-const contentData = utils.deepClone(data);
-contentData[0].regions = [
+const regions = [
   {
+    axis: 'y',
     start: 2,
+    end: 10,
+    color: '#f4f4f4',
+  },
+  {
+    axis: 'y',
+    start: 12,
+    end: 18,
+    color: '#c8cacb',
   },
 ];
+const graphConfig = utils.deepClone(lineDefault('#multipleRegions'));
+const contentData = utils.deepClone(data);
+contentData[0].regions = regions;
 
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="noUpperBound" graphConfig={graphConfig} dataset={contentData} />
+    <LineGraph graphID="multipleRegions" graphConfig={graphConfig} dataset={contentData} />
   </React.Fragment>
 );
-
