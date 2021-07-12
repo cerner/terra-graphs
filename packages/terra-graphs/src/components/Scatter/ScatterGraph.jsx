@@ -1,6 +1,3 @@
-/* eslint consistent-return: off */
-/* eslint react-hooks/exhaustive-deps: off */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
@@ -38,11 +35,11 @@ const ScatterGraph = ({
     if (!graph) {
       setGraph(Carbon.api.graph(graphConfig));
     }
-  }, []);
+  }, [graph, graphConfig]);
 
   React.useEffect(() => {
     if (!graph || graphLoadedRef.current) {
-      return;
+      return undefined;
     }
     const timeoutIds = [];
 
