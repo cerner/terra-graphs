@@ -1,5 +1,4 @@
-import PairedResultGraphPanning from '../../../example/Graphs/PairedResultGraph/Reflow/MultipleDatasetsWithY2Axis?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph?dev-site-props-table';
+import PairedResultGraphPanning from '../../../example/Graphs-Carbon/PairedResultGraph/Reflow/MultipleDatasetsWithY2Axis?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/multipleDatasetWithY2PanningData.js?dev-site-codeblock';
 require('details-polyfill')
@@ -11,20 +10,16 @@ This is a paired result graph example that implements panning with multiple data
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-
-```jsx
-import React from 'react';
-import PairedResultGraph from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph';
+```js
+import Carbon from "@cerner/carbon-graphs/dist/js/carbon-graphs.js";
+import "@cerner/carbon-graphs/dist/css/carbon-graphs.css";
 ```
 
 ## Examples
 <PairedResultGraphPanning />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{ fontSize: 24 }}>
