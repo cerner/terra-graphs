@@ -17,8 +17,8 @@
   * Added reflow to the Bar component.
   * Added reflow to the Bubble component.
   * Added reflow to the Gantt component.
+  * Added reflow to the Timeline component.
   * Added reflow to the Scatter graph component.
-  
 
 * Changed
   * Made changes to WDIO test url's according to terra rules.
