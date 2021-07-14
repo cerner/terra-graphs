@@ -16,7 +16,7 @@ graphConfig.showActionLegend = true;
 const actions = utils.deepClone(actionsData);
 const dataset = loadTracks([], [], [], actions, 2);
 
-const GanttExample = () => {
+const GanttActionsExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -31,4 +31,4 @@ const GanttExample = () => {
     </React.Fragment>
   );
 };
-export default GanttExample;
+export default GanttActionsExample;

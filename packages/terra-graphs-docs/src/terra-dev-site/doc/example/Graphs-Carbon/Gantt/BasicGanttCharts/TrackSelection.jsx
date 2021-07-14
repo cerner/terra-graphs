@@ -52,7 +52,7 @@ const dataset = loadTracks(
   true,
 );
 
-const GanttExample = () => {
+const GanttTrackSelectionExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -68,4 +68,4 @@ const GanttExample = () => {
   );
 };
 
-export default GanttExample;
+export default GanttTrackSelectionExample;

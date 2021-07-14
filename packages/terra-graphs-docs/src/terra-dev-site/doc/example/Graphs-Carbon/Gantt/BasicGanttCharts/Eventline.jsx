@@ -31,7 +31,7 @@ graphConfig.eventline = [
 graphConfig.showActionLegend = false;
 const dataset = loadTracks(tasksData, [], [], [], 4);
 
-const GanttExample = () => {
+const GanttEventlineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -47,4 +47,4 @@ const GanttExample = () => {
   );
 };
 
-export default GanttExample;
+export default GanttEventlineExample;

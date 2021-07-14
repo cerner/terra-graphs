@@ -16,7 +16,7 @@ graphConfig.dateline = [];
 
 const dataset = utils.deepClone(contentArray);
 
-const GanttExample = () => {
+const GanttBarTypeExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -32,4 +32,4 @@ const GanttExample = () => {
   );
 };
 
-export default GanttExample;
+export default GanttBarTypeExample;

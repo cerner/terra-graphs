@@ -23,7 +23,7 @@ graphConfig.legendPadding = {
 const actions = utils.deepClone(actionsData);
 const dataset = loadTracks([], [], [], actions, 2);
 
-const GanttExample = () => {
+const GanttGraphAndLegendPaddingReducedExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -39,4 +39,4 @@ const GanttExample = () => {
   );
 };
 
-export default GanttExample;
+export default GanttGraphAndLegendPaddingReducedExample;

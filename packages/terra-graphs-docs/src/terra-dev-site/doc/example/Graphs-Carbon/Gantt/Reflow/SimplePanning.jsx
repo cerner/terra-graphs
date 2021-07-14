@@ -22,7 +22,7 @@ const initialState = {
   factor: 3,
 };
 
-const GanttPanningExample = () => {
+const SimpleGanttPanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -67,4 +67,4 @@ const GanttPanningExample = () => {
   );
 };
 
-export default GanttPanningExample;
+export default SimpleGanttPanningExample;

@@ -15,7 +15,7 @@ graphConfig.showActionLegend = false;
 graphConfig.dateline = [];
 const dataset = utils.deepClone(percentageData);
 
-const GanttExample = () => {
+const GanttPercentageExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -31,4 +31,4 @@ const GanttExample = () => {
   );
 };
 
-export default GanttExample;
+export default GanttPercentageExample;

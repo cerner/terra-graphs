@@ -16,7 +16,7 @@ const graphConfig = utils.deepClone(getGanttDefaultConfig('#ganttTasksAndActivit
 graphConfig.showActionLegend = false;
 const dataset = loadTracks(tasksData, activitiesData, [], [], 4);
 
-const GanttExample = () => {
+const GanttTasksAndActivitiesExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -32,4 +32,4 @@ const GanttExample = () => {
   );
 };
 
-export default GanttExample;
+export default GanttTasksAndActivitiesExample;

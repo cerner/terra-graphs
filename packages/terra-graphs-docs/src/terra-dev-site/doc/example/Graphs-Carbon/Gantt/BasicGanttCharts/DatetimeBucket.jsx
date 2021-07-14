@@ -12,7 +12,7 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getGanttDefaultConfig('#ganttBarType'));
+const graphConfig = utils.deepClone(getGanttDefaultConfig('#ganttDatetimeBucket'));
 graphConfig.axis.x.lowerLimit = new Date(2018, 1, 1, 23).toISOString();
 graphConfig.axis.x.upperLimit = new Date(2018, 1, 3, 1).toISOString();
 graphConfig.axis.x.ticks = {
@@ -26,7 +26,7 @@ graphConfig.dateline = [];
 
 const dataset = utils.deepClone(dateTimeBucketData);
 
-const GanttExample = () => {
+const GanttDatetimeBucketExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.gantt(graphConfig);
     dataset.forEach((data) => {
@@ -37,9 +37,9 @@ const GanttExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttBarType" />
+      <div id="ganttDatetimeBucket" />
     </React.Fragment>
   );
 };
 
-export default GanttExample;
+export default GanttDatetimeBucketExample;
