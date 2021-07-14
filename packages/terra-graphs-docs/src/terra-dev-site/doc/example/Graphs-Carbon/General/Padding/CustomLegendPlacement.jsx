@@ -14,7 +14,7 @@ const graphConfig = utils.deepClone(lineTimesries('#graphContainer'));
 graphConfig.bindLegendTo = '#legendContainer';
 const dataset = utils.deepClone(exampleData);
 
-const GeneralExample = () => {
+const CustomLegendPlacementGeneralExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -33,5 +33,5 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default CustomLegendPlacementGeneralExample;
 

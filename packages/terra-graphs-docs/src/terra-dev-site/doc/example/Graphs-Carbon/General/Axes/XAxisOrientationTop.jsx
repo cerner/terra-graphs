@@ -11,7 +11,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineDefault('#xAxisOrientationTop'));
 graphConfig.axis.x.orientation = Carbon.helpers.AXES_ORIENTATION.X.TOP;
 
-const GeneralExample = () => {
+const XAxisOrientationTopGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
   }, []);
@@ -23,4 +23,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default XAxisOrientationTopGeneralExample;

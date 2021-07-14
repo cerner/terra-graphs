@@ -12,7 +12,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineDefault('#verticalGridHidden'));
 graphConfig.showVGrid = false;
 
-const GeneralExample = () => {
+const VerticalGridHiddenGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
   }, []);
@@ -24,4 +24,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default VerticalGridHiddenGeneralExample;

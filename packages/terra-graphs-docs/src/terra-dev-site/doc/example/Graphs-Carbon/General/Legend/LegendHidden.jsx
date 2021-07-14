@@ -14,7 +14,7 @@ const graphConfig = utils.deepClone(lineDefault('#legendHidden'));
 graphConfig.showLegend = false;
 const dataset = utils.deepClone(exampleData);
 
-const GeneralExample = () => {
+const LegendHiddenGeneralExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -29,5 +29,5 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default LegendHiddenGeneralExample;
 

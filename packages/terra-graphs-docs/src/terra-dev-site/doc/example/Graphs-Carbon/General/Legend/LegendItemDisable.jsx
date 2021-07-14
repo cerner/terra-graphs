@@ -15,7 +15,7 @@ const graphConfig = utils.deepClone(lineTimeseries('#legendItemDisable'));
 const contentData = utils.deepClone(exampleData);
 contentData[0].label.isDisabled = true;
 
-const GeneralExample = () => {
+const LegendItemDisableGeneralExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -30,4 +30,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default LegendItemDisableGeneralExample;

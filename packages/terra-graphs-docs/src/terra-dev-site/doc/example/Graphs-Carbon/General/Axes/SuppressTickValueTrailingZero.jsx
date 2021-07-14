@@ -10,7 +10,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineDecimalAxes('#supressTickValue'));
 
-const GeneralExample = () => {
+const SupressTickValueGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
   }, []);
@@ -22,4 +22,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default SupressTickValueGeneralExample;

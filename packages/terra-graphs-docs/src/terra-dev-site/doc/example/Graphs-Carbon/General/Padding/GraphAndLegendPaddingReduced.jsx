@@ -21,7 +21,7 @@ graphConfig.legendPadding = {
 };
 const dataset = utils.deepClone(exampleData);
 
-const GeneralExample = () => {
+const GraphAndLegendPaddingReducedGeneralExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -40,4 +40,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default GraphAndLegendPaddingReducedGeneralExample;

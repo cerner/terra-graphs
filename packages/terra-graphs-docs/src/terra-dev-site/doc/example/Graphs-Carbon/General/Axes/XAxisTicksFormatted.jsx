@@ -22,7 +22,7 @@ graphConfig.axis.x.ticks = {
   format: '%a %b %e %X %Y',
 };
 
-const GeneralExample = () => {
+const XAxisTicksFormattedGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
   }, []);
@@ -34,4 +34,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default XAxisTicksFormattedGeneralExample;

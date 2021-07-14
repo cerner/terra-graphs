@@ -13,7 +13,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineDefault('#backgroundColor'));
 const dataset = utils.deepClone(exampleData);
 
-const GeneralExample = () => {
+const BackgroundColorGeneralExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -28,4 +28,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default BackgroundColorGeneralExample;

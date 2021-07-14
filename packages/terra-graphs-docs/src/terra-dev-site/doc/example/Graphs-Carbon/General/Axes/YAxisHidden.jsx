@@ -11,7 +11,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineDefault('#yAxisHidden'));
 graphConfig.axis.y.show = false;
 
-const GeneralExample = () => {
+const YAxisHiddenGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
   }, []);
@@ -23,4 +23,4 @@ const GeneralExample = () => {
   );
 };
 
-export default GeneralExample;
+export default YAxisHiddenGeneralExample;
