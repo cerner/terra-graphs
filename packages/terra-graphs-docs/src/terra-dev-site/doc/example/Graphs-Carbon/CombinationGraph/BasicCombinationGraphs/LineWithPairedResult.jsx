@@ -14,7 +14,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineAndPairedResultConfig('#lineWithPairedResult'));
 const dataset = utils.deepClone(data);
 
-const CombinationExample = () => {
+const LineWithPairedResultCombinationExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset[0]));
@@ -28,4 +28,4 @@ const CombinationExample = () => {
   );
 };
 
-export default CombinationExample;
+export default LineWithPairedResultCombinationExample;

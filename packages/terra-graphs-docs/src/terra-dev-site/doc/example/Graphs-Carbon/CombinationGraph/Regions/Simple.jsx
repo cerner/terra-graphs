@@ -39,7 +39,7 @@ dataset[1].regions = {
   ],
 };
 
-const CombinationExample = () => {
+const LineWithPairedResultRegionCombinationExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset[0]));
@@ -53,4 +53,4 @@ const CombinationExample = () => {
   );
 };
 
-export default CombinationExample;
+export default LineWithPairedResultRegionCombinationExample;

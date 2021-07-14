@@ -13,7 +13,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithSingleBubbleData'));
 const dataset = utils.deepClone(data);
 
-const CombinationExample = () => {
+const LineWithSingleBubbleDataCombinationExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.bubbleSingleDataset(dataset[0]));
@@ -27,5 +27,5 @@ const CombinationExample = () => {
   );
 };
 
-export default CombinationExample;
+export default LineWithSingleBubbleDataCombinationExample;
 

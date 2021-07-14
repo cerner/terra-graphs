@@ -13,7 +13,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineAndPairedResultConfig('#pairedResultWithScatter'));
 const dataset = utils.deepClone(data);
 
-const CombinationExample = () => {
+const PairedResultWithScatterCombinationExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.scatter(dataset[0]));
@@ -27,4 +27,4 @@ const CombinationExample = () => {
   );
 };
 
-export default CombinationExample;
+export default PairedResultWithScatterCombinationExample;
