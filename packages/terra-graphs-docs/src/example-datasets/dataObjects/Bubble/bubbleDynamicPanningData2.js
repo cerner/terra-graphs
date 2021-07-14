@@ -2,54 +2,53 @@ import { loadBubblePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const bubbleDynamicPanningData = [{
-  key: 'uid_1',
+  key: 'uid_2',
   label: {
-    display: 'Bubble set A',
+    display: 'Bubble set B',
   },
   onClick: loadBubblePopup,
-  color: Carbon.helpers.COLORS.PINK,
+  color: Carbon.helpers.COLORS.ORANGE,
   values: [{
-    x: new Date(2016, 0, 1, 12, 0).toISOString(),
-    y: 70,
+    x: new Date(2016, 0, 1, 11, 0).toISOString(),
+    y: 60,
   },
   {
-    x: new Date(2016, 0, 1, 15, 45).toISOString(),
+    x: new Date(2016, 0, 1, 9, 0).toISOString(),
+    y: 75,
+  },
+  {
+    x: new Date(2016, 0, 1, 19, 30).toISOString(),
+    y: 165,
+  },
+  {
+    x: new Date(2016, 0, 1, 15, 0).toISOString(),
     y: 120,
-  },
-  {
-    x: new Date(2016, 0, 1, 10, 30).toISOString(),
-    y: 160,
-  },
-  {
-    x: new Date(2016, 0, 1, 18, 0).toISOString(),
-    y: 180,
   },
   ],
   yAxis: 'y',
   showShapes: false,
 },
 {
-  key: 'uid_1',
+  key: 'uid_2',
   label: {
-    display: 'Bubble set A',
+    display: 'Bubble set B',
   },
   onClick: loadBubblePopup,
-  color: Carbon.helpers.COLORS.PINK,
   values: [{
     x: new Date(2016, 0, 1, 12, 0).toISOString(),
-    y: 20,
+    y: 10,
   },
   {
     x: new Date(2016, 0, 1, 15, 45).toISOString(),
-    y: 40,
+    y: 75,
   },
   {
     x: new Date(2016, 0, 1, 10, 30).toISOString(),
-    y: 50,
+    y: 42,
   },
   {
     x: new Date(2016, 0, 1, 18, 0).toISOString(),
-    y: 60,
+    y: 38,
   },
   ],
   yAxis: 'y',

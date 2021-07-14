@@ -5,14 +5,14 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import Button from 'terra-button/lib/Button';
 import getSimpleAxisData from '@cerner/terra-graphs-docs/src/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
-import bubbleDataBasic from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDataBasic.js';
-import bubbleDataCustomRadius from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDataCustomRadius.js';
+import bubbleDynamicPanningData from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData.js';
+import bubbleDynamicPanningData2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData2.js';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const basicDataset = utils.deepClone(bubbleDataBasic);
-const customRadiusDataset = utils.deepClone(bubbleDataCustomRadius);
+const dataset1 = utils.deepClone(bubbleDynamicPanningData[0]);
+const dataset2 = utils.deepClone(bubbleDynamicPanningData2[0]);
 
 const initialState = {
   initial: 0,
@@ -22,16 +22,15 @@ const initialState = {
 
 let graph;
 
-
 const BubblePanningExample = () => {
-
   React.useEffect(() => {
     graph = Carbon.api.graph(initialState.graphConfig);
-    graph.loadContent(Carbon.api.bubbleMultipleDataset(basicDataset));
+    graph.loadContent(Carbon.api.bubbleMultipleDataset(dataset1));
+    graph.loadContent(Carbon.api.bubbleMultipleDataset(dataset2));
   }, []);
 
   const reducer = (panState, action) => {
-    const newDataset = utils.deepClone(customRadiusDataset);
+    const newDatasets = { panData: [utils.deepClone(bubbleDynamicPanningData[1]), utils.deepClone(bubbleDynamicPanningData2[1])] };
     let hour;
 
     switch (action.type) {
@@ -48,7 +47,7 @@ const BubblePanningExample = () => {
     graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
     graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
-    graph.reflowMultipleDatasets(newDataset);
+    graph.reflowMultipleDatasets(newDatasets);
 
     return {
       initial: hour,
@@ -59,11 +58,11 @@ const BubblePanningExample = () => {
   const [, dispatch] = React.useReducer(reducer, initialState);
 
   return (
-      <React.Fragment >
-        <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
-        <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-        <div id = "BubbleMultipleDatasetsPanning" > </div> 
-      </React.Fragment>
+    <React.Fragment>
+      <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
+      <div id="BubbleMultipleDatasetsPanning"> </div>
+    </React.Fragment>
   );
 };
 

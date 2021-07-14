@@ -21,7 +21,6 @@ const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubblePanning'));
 let graph;
 
 const BubblePanningExample = () => {
-
   React.useEffect(() => {
     if (!graph) {
       graph = Carbon.api.graph(graphConfig);
@@ -57,11 +56,11 @@ const BubblePanningExample = () => {
   const [, dispatch] = React.useReducer(reducer, initialState);
 
   return (
-      <React.Fragment >
-        <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
-        <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-        <div id = "simpleBubblePanning" > </div> 
-      </React.Fragment>
+    <React.Fragment>
+      <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
+      <div id="simpleBubblePanning"> </div>
+    </React.Fragment>
   );
 };
 

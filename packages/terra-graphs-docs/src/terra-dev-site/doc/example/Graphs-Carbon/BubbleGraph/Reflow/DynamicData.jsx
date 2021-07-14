@@ -20,7 +20,6 @@ const graphConfig = utils.deepClone(getSimpleAxisData('#BubbleDynamicDataPanning
 let graph;
 
 const BubblePanningExample = () => {
-  
   const reducer = (panState, action) => {
     let hour;
     const newDataset = { panData: [utils.deepClone(bubbleDynamicPanningData[1])] };
@@ -50,18 +49,17 @@ const BubblePanningExample = () => {
   const [, dispatch] = React.useReducer(reducer, initialState);
 
   React.useEffect(() => {
-      graph = Carbon.api.graph(graphConfig);
-      graph.loadContent(Carbon.api.bubbleSingleDataset(dataset));
+    graph = Carbon.api.graph(graphConfig);
+    graph.loadContent(Carbon.api.bubbleSingleDataset(dataset));
   }, []);
 
   return (
-      <React.Fragment >
-        <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
-        <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-        <div id = "BubbleDynamicDataPanning" > </div> 
-      </React.Fragment>
+    <React.Fragment>
+      <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
+      <div id="BubbleDynamicDataPanning"> </div>
+    </React.Fragment>
   );
-
 };
 
 export default BubblePanningExample;
