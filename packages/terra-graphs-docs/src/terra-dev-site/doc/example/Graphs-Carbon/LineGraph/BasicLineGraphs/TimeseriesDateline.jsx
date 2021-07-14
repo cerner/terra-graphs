@@ -28,7 +28,7 @@ graphConfig.dateline = [
 ];
 const dataset = utils.deepClone(exampleData);
 
-const LineExample = () => {
+const TimeseriesDatelineLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -43,5 +43,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default TimeseriesDatelineLineExample;
 

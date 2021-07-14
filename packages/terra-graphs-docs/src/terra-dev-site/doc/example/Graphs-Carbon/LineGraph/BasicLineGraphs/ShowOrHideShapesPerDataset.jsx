@@ -17,7 +17,7 @@ contentData[0].showShapes = false;
 contentData[0].color = Carbon.helpers.COLORS.BLUE;
 contentData[0].style = { strokeDashArray: '2,2' };
 
-const LineExample = () => {
+const ShowOrHideShapesPerDatasetLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -32,5 +32,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default ShowOrHideShapesPerDatasetLineExample;
 

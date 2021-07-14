@@ -13,7 +13,7 @@ const graphConfig = utils.deepClone(lineTimeseries('#simpleSpline'));
 const contentData = utils.deepClone(exampleData);
 contentData[0].type = Carbon.helpers.LINE_TYPE.SPLINE;
 
-const LineExample = () => {
+const SimpleSlineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -28,4 +28,4 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default SimpleSlineExample;

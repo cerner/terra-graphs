@@ -14,7 +14,7 @@ const graphConfig = utils.deepClone(lineDefault('#shapesHidden'));
 graphConfig.showShapes = false;
 const dataset = utils.deepClone(exampleData);
 
-const LineExample = () => {
+const ShapesHiddenLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -29,4 +29,4 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default ShapesHiddenLineExample;

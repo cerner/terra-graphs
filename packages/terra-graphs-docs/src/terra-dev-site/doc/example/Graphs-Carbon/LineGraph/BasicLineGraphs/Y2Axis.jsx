@@ -14,7 +14,7 @@ const graphConfig = utils.deepClone(lineTimesries('#lineY2Axis'));
 graphConfig.axis.y2.show = true;
 const dataset = utils.deepClone(exampleData);
 
-const LineExample = () => {
+const Y2AxisLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -29,5 +29,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default Y2AxisLineExample;
 

@@ -9,11 +9,11 @@ import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(lineTimesries('#simpleSpline'));
+const graphConfig = utils.deepClone(lineTimesries('#simpleSplineRegion'));
 const contentData = utils.deepClone(exampleData);
 contentData[0].type = Carbon.helpers.LINE_TYPE.SPLINE;
 
-const LineExample = () => {
+const SimpleSplineRegionExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -23,9 +23,9 @@ const LineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleSpline" />
+      <div id="simpleSplineRegion" />
     </React.Fragment>
   );
 };
 
-export default LineExample;
+export default SimpleSplineRegionExample;

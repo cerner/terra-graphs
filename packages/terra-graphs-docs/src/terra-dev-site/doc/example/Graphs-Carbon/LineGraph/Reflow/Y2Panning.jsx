@@ -20,7 +20,7 @@ const state = {
 };
 let graph;
 
-const LinePanningExample = () => {
+const Y2AxisLinePanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -63,4 +63,4 @@ const LinePanningExample = () => {
   );
 };
 
-export default LinePanningExample;
+export default Y2AxisLinePanningExample;

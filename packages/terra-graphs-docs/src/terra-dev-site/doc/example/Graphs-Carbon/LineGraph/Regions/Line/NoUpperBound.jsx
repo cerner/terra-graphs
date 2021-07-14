@@ -17,7 +17,7 @@ contentData[0].regions = [
   },
 ];
 
-const LineExample = () => {
+const NoUpperBoundLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -32,5 +32,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default NoUpperBoundLineExample;
 

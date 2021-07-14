@@ -32,7 +32,7 @@ contentData[2].regions = [
   },
 ];
 
-const LineExample = () => {
+const DatasetRegionIdenticalLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -47,5 +47,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default DatasetRegionIdenticalLineExample;
 

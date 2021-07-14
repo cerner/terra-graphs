@@ -12,7 +12,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineTimesries('#valueRegion'));
 const dataset = utils.deepClone(exampleData);
 
-const LineExample = () => {
+const ValueRegionLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -27,5 +27,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default ValueRegionLineExample;
 

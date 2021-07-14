@@ -12,7 +12,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineTimesries('#simpleLinegraph'));
 const dataset = utils.deepClone(exampleData);
 
-const LineExample = () => {
+const NonContiguousLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -27,4 +27,4 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default NonContiguousLineExample;

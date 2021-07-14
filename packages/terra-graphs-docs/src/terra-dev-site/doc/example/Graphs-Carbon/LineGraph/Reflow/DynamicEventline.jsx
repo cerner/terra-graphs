@@ -20,7 +20,7 @@ const initialState = {
 };
 let graph;
 
-const LinePanningExample = () => {
+const DynamicEventlinePanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -80,4 +80,4 @@ const LinePanningExample = () => {
   );
 };
 
-export default LinePanningExample;
+export default DynamicEventlinePanningExample;

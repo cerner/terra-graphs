@@ -15,7 +15,7 @@ const contentData = utils.deepClone(exampleData);
 contentData[0].values[0].isCritical = true;
 contentData[0].values[10].isCritical = true;
 
-const LineExample = () => {
+const CriticalitySimpleLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -30,5 +30,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default CriticalitySimpleLineExample;
 

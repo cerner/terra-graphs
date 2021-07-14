@@ -19,7 +19,7 @@ contentData[0].values[10].isCritical = true;
 contentData[1].values[6].isCritical = true;
 contentData[1].values[11].isCritical = true;
 
-const LineExample = () => {
+const CriticalityMultiLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -34,5 +34,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default CriticalityMultiLineExample;
 

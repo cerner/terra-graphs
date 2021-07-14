@@ -13,7 +13,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(lineTimesries('#lineTimeseries'));
 const dataset = utils.deepClone(exampleData);
 
-const LineExample = () => {
+const LineTimeseriesExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -28,5 +28,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default LineTimeseriesExample;
 

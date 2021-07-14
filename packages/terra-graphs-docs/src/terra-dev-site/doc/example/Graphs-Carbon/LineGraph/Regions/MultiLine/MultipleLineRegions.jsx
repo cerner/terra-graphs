@@ -24,7 +24,7 @@ contentData[2].regions = [
   },
 ];
 
-const LineExample = () => {
+const MultipleLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -39,5 +39,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default MultipleLineExample;
 

@@ -13,7 +13,7 @@ const graphConfig = utils.deepClone(lineDefault('#disableCalibration'));
 graphConfig.allowCalibration = false;
 const dataset = utils.deepClone(exampleData);
 
-const LineExample = () => {
+const DisableCalibrationLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -28,5 +28,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default DisableCalibrationLineExample;
 

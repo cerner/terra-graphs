@@ -30,7 +30,7 @@ const contentData = utils.deepClone(exampleData);
 
 contentData[0].regions = regions;
 
-const LineExample = () => {
+const MultipleRegionsLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -45,4 +45,4 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default MultipleRegionsLineExample;

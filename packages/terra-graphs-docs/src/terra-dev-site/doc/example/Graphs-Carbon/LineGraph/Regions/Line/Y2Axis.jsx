@@ -21,7 +21,7 @@ contentData[1].regions = [
   },
 ];
 
-const LineExample = () => {
+const Y2RegionLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -36,5 +36,5 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default Y2RegionLineExample;
 

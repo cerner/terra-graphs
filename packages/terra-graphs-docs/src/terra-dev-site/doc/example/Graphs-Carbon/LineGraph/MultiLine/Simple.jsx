@@ -13,7 +13,7 @@ const graphConfig = utils.deepClone(lineDefault('#multiLine'));
 const dataset = utils.deepClone(exampleData);
 const timeout = [0, 750, 750 * 2, 750 * 3, 750 * 4, 750 * 5, 750 * 6];
 
-const LineExample = () => {
+const MultiLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data, index) => {
@@ -33,4 +33,4 @@ const LineExample = () => {
   );
 };
 
-export default LineExample;
+export default MultiLineExample;
