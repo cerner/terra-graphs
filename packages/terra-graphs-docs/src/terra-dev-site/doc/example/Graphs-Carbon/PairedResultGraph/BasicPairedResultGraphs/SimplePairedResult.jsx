@@ -12,7 +12,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(pairedResultDefault('#simplePairedResultGraph'));
 const dataset = utils.deepClone(exampleData);
 
-const PiaredResultExample = () => {
+const SimplePiaredResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -27,4 +27,4 @@ const PiaredResultExample = () => {
   );
 };
 
-export default PiaredResultExample;
+export default SimplePiaredResultExample;

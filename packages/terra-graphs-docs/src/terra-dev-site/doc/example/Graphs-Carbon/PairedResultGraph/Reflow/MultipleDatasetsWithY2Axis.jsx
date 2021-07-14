@@ -22,7 +22,7 @@ const state = {
 };
 let graph;
 
-const PairedResultPanningExample = () => {
+const MultipleDatasetWithY2AxisPairedResultPanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -65,4 +65,4 @@ const PairedResultPanningExample = () => {
   );
 };
 
-export default PairedResultPanningExample;
+export default MultipleDatasetWithY2AxisPairedResultPanningExample;

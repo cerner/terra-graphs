@@ -29,7 +29,7 @@ const state = {
 };
 let graph;
 
-const PairedResultPanningExample = () => {
+const PairedResultDynamicEventlinePanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -87,4 +87,4 @@ const PairedResultPanningExample = () => {
   );
 };
 
-export default PairedResultPanningExample;
+export default PairedResultDynamicEventlinePanningExample;

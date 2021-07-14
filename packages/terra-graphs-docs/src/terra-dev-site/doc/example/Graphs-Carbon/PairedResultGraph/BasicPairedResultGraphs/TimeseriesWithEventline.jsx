@@ -31,7 +31,7 @@ graphConfig.clickPassThrough = {
 };
 const dataset = utils.deepClone(exampleData);
 
-const PiaredResultExample = () => {
+const PiaredResultWithEventlineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -46,4 +46,4 @@ const PiaredResultExample = () => {
   );
 };
 
-export default PiaredResultExample;
+export default PiaredResultWithEventlineExample;

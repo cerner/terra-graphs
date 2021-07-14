@@ -35,7 +35,7 @@ contentData[0].regions = {
   low: regions.low,
 };
 
-const PiaredResultExample = () => {
+const SimpleRegionPairedResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -50,4 +50,4 @@ const PiaredResultExample = () => {
   );
 };
 
-export default PiaredResultExample;
+export default SimpleRegionPairedResultExample;

@@ -17,7 +17,7 @@ contentData[0].values[3].high.isCritical = true;
 contentData[0].values[2].mid.isCritical = true;
 contentData[0].values[1].low.isCritical = true;
 
-const PiaredResultExample = () => {
+const SimpleCriticalPiaredResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -32,4 +32,4 @@ const PiaredResultExample = () => {
   );
 };
 
-export default PiaredResultExample;
+export default SimpleCriticalPiaredResultExample;

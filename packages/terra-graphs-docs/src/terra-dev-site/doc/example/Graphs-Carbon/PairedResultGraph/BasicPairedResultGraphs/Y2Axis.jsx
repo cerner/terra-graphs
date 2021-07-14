@@ -10,11 +10,11 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(pairedResultTimeseries('#timeseriesPairedResultGraph'));
+const graphConfig = utils.deepClone(pairedResultTimeseries('#y2AxisPairedResultGraph'));
 graphConfig.axis.y2.show = true;
 const dataset = utils.deepClone(exampleData);
 
-const PiaredResultExample = () => {
+const Y2AxisPiaredResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -24,9 +24,9 @@ const PiaredResultExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesPairedResultGraph" />
+      <div id="y2AxisPairedResultGraph" />
     </React.Fragment>
   );
 };
 
-export default PiaredResultExample;
+export default Y2AxisPiaredResultExample;

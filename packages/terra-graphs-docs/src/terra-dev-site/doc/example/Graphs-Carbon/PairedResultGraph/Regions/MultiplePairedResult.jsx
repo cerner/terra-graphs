@@ -51,7 +51,7 @@ const contentData = utils.deepClone(exampleData);
 contentData[0].regions = multiRegion;
 contentData[1].regions = multiRegionAlt;
 
-const PiaredResultExample = () => {
+const MultipleRegionPiaredResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -66,4 +66,4 @@ const PiaredResultExample = () => {
   );
 };
 
-export default PiaredResultExample;
+export default MultipleRegionPiaredResultExample;

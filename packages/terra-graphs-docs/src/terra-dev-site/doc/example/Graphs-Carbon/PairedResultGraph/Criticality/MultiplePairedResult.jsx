@@ -10,7 +10,7 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(pairedResultTimeseries('#timeseriesPairedResultGraph'));
+const graphConfig = utils.deepClone(pairedResultTimeseries('#multipleCriticalPairedResultGraph'));
 graphConfig.axis.y2.show = true;
 const contentData = utils.deepClone(exampleData);
 
@@ -22,7 +22,7 @@ contentData[1].values[1].high.isCritical = true;
 contentData[1].values[1].mid.isCritical = true;
 contentData[1].values[1].low.isCritical = true;
 
-const PiaredResultExample = () => {
+const MultipleCriticalPiaredResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -32,9 +32,9 @@ const PiaredResultExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesPairedResultGraph" />
+      <div id="multipleCriticalPairedResultGraph" />
     </React.Fragment>
   );
 };
 
-export default PiaredResultExample;
+export default MultipleCriticalPiaredResultExample;

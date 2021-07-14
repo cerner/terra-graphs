@@ -15,7 +15,7 @@ const contentData = utils.deepClone(exampleData);
 contentData[0].label.high.isDisabled = true;
 contentData[0].label.low.isDisabled = true;
 
-const PiaredResultExample = () => {
+const LegendItemDisablePiaredResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     contentData.forEach((data) => {
@@ -30,4 +30,4 @@ const PiaredResultExample = () => {
   );
 };
 
-export default PiaredResultExample;
+export default LegendItemDisablePiaredResultExample;
