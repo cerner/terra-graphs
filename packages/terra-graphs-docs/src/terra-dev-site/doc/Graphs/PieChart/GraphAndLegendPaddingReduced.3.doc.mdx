@@ -1,5 +1,4 @@
-import PieChart from '../../example/Graphs/PieChart/GraphAndLegendPaddingReduced?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Pie/PieChart?dev-site-props-table';
+import PieChart from '../../example/Graphs-Carbon/PieChart/GraphAndLegendPaddingReduced?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/pieDefault.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieData.js?dev-site-codeblock';
 require('details-polyfill')
@@ -10,18 +9,16 @@ This is a simple Pie chart with reduced padding.
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-```jsx
-import React from 'react';
-import PieChart from '@cerner/terra-graphs/lib/components/Pie/PieChart';
+```js
+import Carbon from "@cerner/carbon-graphs/dist/js/carbon-graphs.js";
+import "@cerner/carbon-graphs/dist/css/carbon-graphs.css";
 ```
+
 ## Examples
 <PieChart />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{fontSize: 24 }}>

@@ -21,3 +21,4 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
+  * Updated documentation for pie chart to be carbon-centric.
