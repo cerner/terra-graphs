@@ -3,7 +3,8 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs/lib/components/Pie/PieChart.module.scss';import getPieConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/pieDefault';
+import '@cerner/terra-graphs/lib/components/Pie/PieChart.module.scss';
+import getPieConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/pieDefault';
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieData';
 
 const graphConfig = utils.deepClone(getPieConfig('#graphContainer'));
