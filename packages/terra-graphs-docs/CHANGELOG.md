@@ -21,5 +21,5 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
-  * Updated documentation for Piared result graph to be carbon-centric.
+  * Updated Paired Result documentation and examples to be carbon-centric.
 
