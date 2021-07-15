@@ -20,4 +20,4 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
-  * Changed example implementation and documentation for Combination graph to be carbon centric.
+  * Updated Combination graph documentation and examples to be carbon-centric.
