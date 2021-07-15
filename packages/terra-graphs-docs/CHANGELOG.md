@@ -20,3 +20,4 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
+  * Updated documentation and examples for Bubble graphs to be carbon-centric.
