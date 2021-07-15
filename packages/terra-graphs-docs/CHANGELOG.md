@@ -20,4 +20,4 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
-  * Changed documentation for General graph to be carbon-centric.
+  * Updated general graph documentation and examples to be carbon-centric.
