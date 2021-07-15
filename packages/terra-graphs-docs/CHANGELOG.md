@@ -22,3 +22,5 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
+  * Moved Getting started documentation to terra-dev-site.
+
