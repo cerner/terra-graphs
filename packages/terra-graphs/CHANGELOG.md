@@ -13,10 +13,12 @@
   * Created component and wdio test cases for the Combination graph.
   * Added reflow to the Line component.
   * Added CSS and new example tests for timeline graph.
-  * Added reflow to the Paired result component.
+  * Added reflow to the Paired Result component.
   * Added reflow to the Bar component.
   * Added reflow to the Bubble component.
   * Added reflow to the Gantt component.
+  * Added reflow to the Timeline component.
+  * Added reflow to the Scatter graph component.
 
 * Changed
   * Made changes to WDIO test url's according to terra rules. 
