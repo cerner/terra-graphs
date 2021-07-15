@@ -1,4 +1,4 @@
-import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup.js';
+import { loadBubblePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup.js';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const bubbleDataBasic = {
@@ -6,7 +6,7 @@ const bubbleDataBasic = {
   label: {
     display: 'Bubble set A',
   },
-  onClick: loadPopup,
+  onClick: loadBubblePopup,
   color: Carbon.helpers.COLORS.PINK,
   values: [{
     x: new Date(2016, 0, 1, 12, 0).toISOString(),
