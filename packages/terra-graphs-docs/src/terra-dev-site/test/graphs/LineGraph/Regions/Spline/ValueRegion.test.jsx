@@ -8,7 +8,7 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Lin
 
 const graphConfig = utils.deepClone(lineTimesries('#simpleSpline'));
 const contentData = utils.deepClone(data);
-contentData.type = Carbon.helpers.LINE_TYPE.SPLINE;
+contentData[0].type = Carbon.helpers.LINE_TYPE.SPLINE;
 
 export default () => (
   <React.Fragment>
@@ -16,3 +16,4 @@ export default () => (
     <LineGraph graphID="simpleSpline" graphConfig={graphConfig} dataset={contentData} />
   </React.Fragment>
 );
+

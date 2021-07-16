@@ -155,7 +155,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
     describe('Spline', () => {
       it('validates spline region graph container', () => {
         browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/spline/value-region');
-        Terra.validates.screenshot('value_region', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('spline_value_region', { selector: '.carbon-graph-container' });
       });
     });
   });
