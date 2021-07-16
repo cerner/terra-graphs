@@ -28,3 +28,4 @@
   * Updated Gantt chart documentation and examples to be carbon-centric.
   * Updated general graph documentation and examples to be carbon-centric.
   * Updated Paired Result documentation and examples to be carbon-centric.
+  * Updated Pie chart documentation and examples to be carbon-centric..
