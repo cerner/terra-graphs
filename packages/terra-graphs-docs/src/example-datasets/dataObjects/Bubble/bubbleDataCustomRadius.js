@@ -1,4 +1,4 @@
-import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup.js';
+import { loadBubblePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup.js';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const bubbleDataCustomRadius = {
@@ -7,7 +7,7 @@ const bubbleDataCustomRadius = {
     display: 'Bubble set B',
   },
   color: Carbon.helpers.COLORS.LIGHT_BLUE,
-  onClick: loadPopup,
+  onClick: loadBubblePopup,
   weight: {
     fixedRadius: 12,
   },
