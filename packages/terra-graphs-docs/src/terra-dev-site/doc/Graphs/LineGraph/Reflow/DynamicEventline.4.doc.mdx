@@ -1,30 +1,25 @@
-import LineGraphPanning from '../../../example/Graphs/LineGraph/Reflow/DynamicEventline?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Line/LineGraph?dev-site-props-table';
+import LineGraphPanning from '../../../example/Graphs-Carbon/LineGraph/Reflow/DynamicEventline?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningEventline.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-eventline.js?dev-site-codeblock';
 require('details-polyfill')
 
 # Line Graph - panning
 
-This is a line graph example with a dynamically updating eventline. 
+This is a line graph example with a dynamically updating eventline.
 
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-
-```jsx
-import React from 'react';
-import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 
 ## Examples
 <LineGraphPanning />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{ fontSize: 24 }}>
