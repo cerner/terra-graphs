@@ -1,5 +1,4 @@
 import GanttChart from '../../../example/Graphs/Gantt/BasicGanttCharts/DatetimeBucket?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Gantt/GanttChart?dev-site-props-table';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefault.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/dateTimeBucketData.js?dev-site-codeblock';
 require('details-polyfill')
@@ -10,18 +9,15 @@ This is a simple Gantt chart with datetime formatted bucket.
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-```jsx
-import React from 'react';
-import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 ## Examples
 <GanttChart />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{fontSize: 24 }}>

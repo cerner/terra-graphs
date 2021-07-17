@@ -16,3 +16,4 @@ export default () => (
     <LineGraph graphID="simpleSpline" graphConfig={graphConfig} dataset={contentData} />
   </React.Fragment>
 );
+
