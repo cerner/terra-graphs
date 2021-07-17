@@ -1,8 +1,10 @@
 import React from 'react';
-import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 import Button from 'terra-button/lib/Button';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import '@cerner/terra-graphs/lib/components/Graph.module.scss';
+import '@cerner/terra-graphs/src/components/Bar/BarGraph.module.scss';
 import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simplePanningData';
 
@@ -10,17 +12,25 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const dataset = utils.deepClone(data);
 
 const initialState = {
   initial: 0,
   factor: 3,
-  graphConfig: utils.deepClone(getBarPanningConfig('#simpleBarPanning')),
 };
 
+const graphConfig = utils.deepClone(getBarPanningConfig('#simpleBarPanning'));
+const dataset = utils.deepClone(data[0]);
+
+let graph;
+
 const BarPanningExample = () => {
+
+  React.useEffect(() => {
+    graph = Carbon.api.graph(graphConfig);
+    graph.loadContent(Carbon.api.bar(dataset));
+  }, []);
+  
   const reducer = (panState, action) => {
-    const newGraphConfig = utils.deepClone(panState.graphConfig);
     let hour;
 
     switch (action.type) {
@@ -34,13 +44,14 @@ const BarPanningExample = () => {
         return panState;
     }
 
-    newGraphConfig.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    newGraphConfig.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
+
+    graph.reflowMultipleDatasets();
 
     return {
       initial: hour,
       factor: panState.factor,
-      graphConfig: utils.deepClone(newGraphConfig),
     };
   };
 
@@ -51,7 +62,7 @@ const BarPanningExample = () => {
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <BarGraph graphID="simpleBarPanning" graphConfig={panState.graphConfig} dataset={dataset} />
+      <div id="simpleBarPanning"> </div>
     </React.Fragment>
   );
 };

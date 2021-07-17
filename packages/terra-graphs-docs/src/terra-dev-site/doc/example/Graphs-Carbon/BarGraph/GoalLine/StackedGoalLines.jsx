@@ -40,19 +40,23 @@ Please refer to the documentation below to see the graphConfig and data objects
 
 const graphConfig = utils.deepClone(barDefault('#stackedGoalLineBargraph'));
 
-const contentData = utils.deepClone(data);
-contentData[0].regions = region;
-contentData[1].regions = region;
-contentData[2].regions = region;
+const dataset = utils.deepClone(data);
+dataset[0].regions = region;
+dataset[1].regions = region;
+dataset[2].regions = region;
 
-React.useEffect(() => {
-  const graph = Carbon.api.graph(graphConfig);
-  graph.loadContent(Carbon.api.bar(dataset));
-}, []);
+export default () => {
+  React.useEffect(() => {
+    const graph = Carbon.api.graph(graphConfig);
+    dataset.forEach((data) => {
+      graph.loadContent(Carbon.api.bar(data));
+    });
+  }, []);
 
-return (
-  <React.Fragment>
-    <div id="tooltip" className="initial-tooltip" />
-    <div id="stackedGoalLineBargraph"> </div>
-  </React.Fragment>
-);
+  return (
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <div id="stackedGoalLineBargraph"> </div>
+    </React.Fragment>
+  );
+};

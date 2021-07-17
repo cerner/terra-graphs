@@ -68,13 +68,15 @@ Please refer to the documentation below to see the graphConfig and data objects
 
 const graphConfig = utils.deepClone(barDefault('#groupedGoalLineBargraph'));
 
-const contentData = utils.deepClone(data);
-[contentData[1].regions, contentData[2].regions] = [regions[1], regions[0]];
+const dataset = utils.deepClone(data);
+[dataset[1].regions, dataset[2].regions] = [regions[1], regions[0]];
 
 export default () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    graph.loadContent(Carbon.api.bar(dataset));
+    dataset.forEach((data) => {
+      graph.loadContent(Carbon.api.bar(data));
+    });
   }, []);
 
   return (
