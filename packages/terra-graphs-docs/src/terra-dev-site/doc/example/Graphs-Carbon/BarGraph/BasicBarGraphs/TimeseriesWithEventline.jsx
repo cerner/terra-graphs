@@ -38,7 +38,9 @@ const dataset = utils.deepClone(data);
 export default () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    graph.loadContent(Carbon.api.bar(dataset));
+    dataset.forEach((data) => {
+      graph.loadContent(Carbon.api.bar(data));
+    });
   }, []);
 
   return (

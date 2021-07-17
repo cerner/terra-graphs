@@ -40,13 +40,15 @@ Please refer to the documentation below to see the graphConfig and data objects
 
 const graphConfig = utils.deepClone(barDefault('#simpleGoalLineBargraph'));
 
-const contentData = utils.deepClone(data);
-contentData[0].regions = regions;
+const dataset = utils.deepClone(data);
+dataset[0].regions = regions;
 
 export default () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    graph.loadContent(Carbon.api.bar(dataset));
+    dataset.forEach((data) => {
+      graph.loadContent(Carbon.api.bar(data));
+    });
   }, []);
 
   return (
