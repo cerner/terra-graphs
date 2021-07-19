@@ -22,6 +22,7 @@
 
 * Changed 
   * Moved core documentation to terra-dev-site.
+  * Moved Getting started documentation to terra-dev-site.
   * Updated Bubble graph documentation and examples to be carbon centric.
   * Updated Line graph documentation and examples to be carbon-centric.
   * Updated Combination graph documentation and examples to be carbon-centric.
