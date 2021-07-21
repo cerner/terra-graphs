@@ -22,7 +22,6 @@ const dataset = utils.deepClone(data[0]);
 let graph;
 
 const BarPanningExample = () => {
-
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.bar(dataset));
@@ -45,7 +44,7 @@ const BarPanningExample = () => {
     graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
     graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
 
-    const newDataset ={ panData: [ utils.deepClone(data[1])]};
+    const newDataset = { panData: [utils.deepClone(data[1])] };
     graph.reflowMultipleDatasets(newDataset);
 
     return {
@@ -64,7 +63,6 @@ const BarPanningExample = () => {
       <div id="BarPanningDynamicData"> </div>
     </React.Fragment>
   );
-  
 };
 
 export default BarPanningExample;

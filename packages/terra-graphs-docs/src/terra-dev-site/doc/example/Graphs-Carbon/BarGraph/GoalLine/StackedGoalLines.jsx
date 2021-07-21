@@ -5,7 +5,7 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/src/components/Bar/BarGraph.module.scss';
 import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData';
 
 const region = [
   {
@@ -40,7 +40,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 
 const graphConfig = utils.deepClone(barDefault('#stackedGoalLineBargraph'));
 
-const dataset = utils.deepClone(data);
+const dataset = utils.deepClone(exampleData);
 dataset[0].regions = region;
 dataset[1].regions = region;
 dataset[2].regions = region;

@@ -12,7 +12,6 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-
 const initialState = {
   initial: 0,
   factor: 3,
@@ -24,12 +23,11 @@ const dataset = utils.deepClone(data[0]);
 let graph;
 
 const BarPanningExample = () => {
-
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.bar(dataset));
   }, []);
-  
+
   const reducer = (panState, action) => {
     let hour;
 
@@ -55,7 +53,7 @@ const BarPanningExample = () => {
     };
   };
 
-  const [panState, dispatch] = React.useReducer(reducer, initialState);
+  const [, dispatch] = React.useReducer(reducer, initialState);
 
   return (
     <React.Fragment>

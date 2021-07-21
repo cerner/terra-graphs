@@ -5,7 +5,7 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/src/components/Bar/BarGraph.module.scss';
 import barTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barTimeseries';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/timeseriesData';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/timeseriesData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
@@ -33,7 +33,7 @@ graphConfig.clickPassThrough = {
   dateline: false,
 };
 graphConfig.showVGrid = false;
-const dataset = utils.deepClone(data);
+const dataset = utils.deepClone(exampleData);
 
 export default () => {
   React.useEffect(() => {
