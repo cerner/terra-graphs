@@ -1,5 +1,4 @@
-import ScatterGraph from '../../../example/Graphs/ScatterGraph/Criticality/Simple?dev-site-example';
-import PropsTable from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph?dev-site-props-table';
+import ScatterGraph from '../../../example/Graphs-Carbon/ScatterGraph/Criticality/Simple?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/simpleLineData.js?dev-site-codeblock';
 require('details-polyfill')
@@ -11,20 +10,16 @@ This is Simple Scatter graph with critical points(highlighted with red circle) i
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
-
-```jsx
-import React from 'react';
-import ScatterGraph from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph';
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 
 ## Examples
 <ScatterGraph />
-
-## Props
-<PropsTable />
 
 <details>
 <summary style={{fontSize: 24 }}>
