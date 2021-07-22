@@ -43,7 +43,7 @@ const data = [
       },
       {
         x: new Date(2016, 0, 1, 6).toISOString(),
-        y: 9,
+        y: 11,
       },
       {
         x: new Date(2016, 0, 1, 9).toISOString(),
@@ -51,11 +51,11 @@ const data = [
       },
       {
         x: new Date(2016, 0, 1, 12).toISOString(),
-        y: 13,
+        y: 20,
       },
       {
         x: new Date(2016, 0, 1, 15).toISOString(),
-        y: 15,
+        y: 6,
       },
     ],
   },
