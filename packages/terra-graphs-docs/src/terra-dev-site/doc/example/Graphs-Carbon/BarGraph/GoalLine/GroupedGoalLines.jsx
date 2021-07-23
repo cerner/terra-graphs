@@ -1,11 +1,9 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs/src/components/Bar/BarGraph.module.scss';
 import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData';
 
 const regions = [
   [
@@ -61,28 +59,17 @@ const regions = [
     },
   ],
 ];
-
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-
 const graphConfig = utils.deepClone(barDefault('#groupedGoalLineBargraph'));
 
-const dataset = utils.deepClone(exampleData);
-[dataset[1].regions, dataset[2].regions] = [regions[1], regions[0]];
+const contentData = utils.deepClone(data);
+[contentData[1].regions, contentData[2].regions] = [regions[1], regions[0]];
 
-export default () => {
-  React.useEffect(() => {
-    const graph = Carbon.api.graph(graphConfig);
-    dataset.forEach((data) => {
-      graph.loadContent(Carbon.api.bar(data));
-    });
-  }, []);
-
-  return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="groupedGoalLineBargraph"> </div>
-    </React.Fragment>
-  );
-};
+export default () => (
+  <React.Fragment>
+    <div id="tooltip" className="initial-tooltip" />
+    <BarGraph graphID="groupedGoalLineBargraph" graphConfig={graphConfig} dataset={contentData} />
+  </React.Fragment>
+);
