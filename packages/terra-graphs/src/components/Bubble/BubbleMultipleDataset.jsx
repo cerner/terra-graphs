@@ -40,7 +40,7 @@ const BubbleMultipleDataset = ({
   // initial dataset load
   React.useEffect(() => {
     if (!graph || graphLoadedRef.current) {
-      return;
+      return undefined;
     }
     const timeoutIds = [];
 
@@ -64,7 +64,6 @@ const BubbleMultipleDataset = ({
     }
     graphLoadedRef.current = true;
 
-    // eslint-disable-next-line consistent-return
     return () => {
       timeoutIds.forEach((id) => { clearTimeout(id); });
     };
