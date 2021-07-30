@@ -8,7 +8,7 @@ import constants, {
   AXES_ORIENTATION,
 } from '../../../../src/js/helpers/constants';
 import styles from '../../../../src/js/helpers/styles';
-import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import { getCurrentTransform, getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import utils from '../../../../src/js/helpers/utils';
 import LOCALE from '../../../../src/js/locale/index';
 import {
@@ -2017,6 +2017,43 @@ describe('Graph - Axes', () => {
       expect(
         fetchElementByClass(styles.labelPopupTooltip),
       ).not.toBeNull();
+    });
+    describe('when y2Axis is true', () => {
+      beforeEach(() => {
+        graph.destroy();
+        const axisObj = utils.deepClone(axisDefault);
+        axisObj.y2 = {
+          show: true,
+          label: 'y2 axis',
+          lowerLimit: 11,
+          upperLimit: 25,
+        };
+        graph = new Graph({ ...getAxes(axisObj) });
+      });
+      it('should add correct transform point to y-axis label shape container', () => {
+        expect(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(fetchElementByClass(styles.axisLabelYShapeContainer)),
+          ).translate[0],
+        ).toBe(25.5);
+        expect(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(fetchElementByClass(styles.axisLabelYShapeContainer)),
+          ).translate[1],
+        ).toBe(117.5);
+      });
+      it('should add correct transform point to y2-axis label shape container', () => {
+        expect(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),
+          ).translate[0],
+        ).toBe(991.375);
+        expect(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),
+          ).translate[1],
+        ).toBe(117.5);
+      });
     });
   });
   describe('when graph is destroyed', () => {

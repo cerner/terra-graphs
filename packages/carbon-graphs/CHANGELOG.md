@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Fixed a bug causing the UI glitch while rendering graphs having Y2 axis.
+
 ## 2.17.2 - (June 15, 2021)
 
 * Changed
