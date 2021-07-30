@@ -39,9 +39,6 @@ const SimplePanningExample = () => {
         break;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
     return {
       initial: hour,
       factor: panState.factor,
