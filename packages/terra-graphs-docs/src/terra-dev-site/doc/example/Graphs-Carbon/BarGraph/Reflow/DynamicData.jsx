@@ -19,6 +19,7 @@ const initialState = {
 
 const graphConfig = utils.deepClone(getBarPanningConfig('#BarPanningDynamicData'));
 const dataset = utils.deepClone(data[0]);
+
 let graph;
 
 const BarPanningExample = () => {
@@ -41,19 +42,24 @@ const BarPanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    const newDataset = { panData: [utils.deepClone(data[1])] };
-    graph.reflowMultipleDatasets(newDataset);
-
     return {
       initial: hour,
       factor: panState.factor,
     };
   };
 
-  const [, dispatch] = React.useReducer(reducer, initialState);
+  const [panState, dispatch] = React.useReducer(reducer, initialState);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    const newDataset = { panData: [utils.deepClone(data[1])] };
+
+    graph.reflowMultipleDatasets(newDataset);
+  }, [panState.initial]);
 
   return (
     <React.Fragment>
