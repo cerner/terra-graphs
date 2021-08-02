@@ -37,6 +37,8 @@ const SimplePanningExample = () => {
       case 'panRight':
         hour = panState.initial + panState.factor;
         break;
+      default:
+          return panState;
     }
 
     return {
