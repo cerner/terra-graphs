@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated hyperlinks in `README.md` to reflect the updated package name from `terra-docs` to `terra-graphs-docs`.
+
 ## 2.17.2 - (June 15, 2021)
 
 * Changed
