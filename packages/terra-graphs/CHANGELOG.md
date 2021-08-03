@@ -22,5 +22,6 @@
 
 * Changed
   * Made changes to WDIO test url's according to terra rules. 
+  * Updated components to maintain consistent design.
 
 * Initial stable release

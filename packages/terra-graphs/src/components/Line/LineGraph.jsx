@@ -1,7 +1,3 @@
-/* eslint import/no-unresolved: off */
-/* eslint react-hooks/exhaustive-deps: off */
-/* eslint consistent-return: off */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
@@ -40,12 +36,12 @@ const LineGraph = ({
     if (!graph) {
       setGraph(Carbon.api.graph(graphConfig));
     }
-  }, []);
+  }, [graph, graphConfig]);
 
   // initial dataset load
   React.useEffect(() => {
     if (!graph || graphLoadedRef.current) {
-      return;
+      return undefined;
     }
     const timeoutIds = [];
 
