@@ -1,23 +1,33 @@
 import React from 'react';
-import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
+
+/*
+Please refer to the documentation below to see the graphConfig and data objects
+*/
+const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#dynamicLineData'));
+const dataset = [utils.deepClone(exampleData[0])];
 
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0])],
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#dynamicLineData')),
 };
+let graph;
 
-const LinePanningExample = () => {
+const DynamicLinePanningExample = () => {
+  React.useEffect(() => {
+    graph = Carbon.api.graph(graphConfig);
+    dataset.forEach((data) => {
+      graph.loadContent(Carbon.api.scatter(data));
+    });
+  }, []);
+
   const reducer = (panState, action) => {
-    const newGraphState = utils.deepClone(panState.graphConfig);
-    const newDataset = [utils.deepClone(data[1])];
-
     let hour;
 
     switch (action.type) {
@@ -31,27 +41,35 @@ const LinePanningExample = () => {
         return panState;
     }
 
-    newGraphState.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    newGraphState.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
     return {
       initial: hour,
       factor: panState.factor,
-      dataset: { panData: newDataset },
-      graphConfig: utils.deepClone(newGraphState),
     };
   };
 
   const [panState, dispatch] = React.useReducer(reducer, initialState);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    const newDataset = {
+      panData: [utils.deepClone(utils.deepClone(exampleData[1]))],
+    };
+
+    graph.reflowMultipleDatasets(newDataset);
+  }, [panState.initial]);
 
   return (
     <React.Fragment>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <LineGraph graphID="dynamicLineData" graphConfig={panState.graphConfig} dataset={panState.dataset} />
+      <div id="dynamicLineData" />
     </React.Fragment>
   );
 };
 
-export default LinePanningExample;
+export default DynamicLinePanningExample;
