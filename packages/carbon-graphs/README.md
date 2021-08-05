@@ -93,16 +93,16 @@ This results in the following graph:
 
 The following graph types can be plotted using Carbon:
 
--   [Line](../terra-graphs-docs/docs/controls/Line.md#usage)
+-   [Line](../terra-graphs-docs/docs/controls/Line.md)
 -   [Multi Line](../terra-graphs-docs/docs/controls/Line.md#multi-line)
 -   [Spline Line](../terra-graphs-docs/docs/controls/Line.md#spline-line)
--   [Paired Result](../terra-graphs-docs/docs/controls/PairedResult.md#usage)
--   [Bar](../terra-graphs-docs/docs/controls/Bar.md#usage)
--   [Timeline](../terra-graphs-docs/docs/controls/Timeline.md#usage)
--   [Pie](../terra-graphs-docs/docs/controls/Pie.md#usage)
--   [Gantt](../terra-graphs-docs/docs/controls/Gantt.md#usage)
--   [Scatter](../terra-graphs-docs/docs/controls/Scatter.md#usage)
--   [Bubble](../terra-graphs-docs/docs/controls/Bubble.md#usage)
+-   [Paired Result](../terra-graphs-docs/docs/controls/PairedResult.md)
+-   [Bar](../terra-graphs-docs/docs/controls/Bar.md)
+-   [Timeline](../terra-graphs-docs/docs/controls/Timeline.md)
+-   [Pie](../terra-graphs-docs/docs/controls/Pie.md)
+-   [Gantt](../terra-graphs-docs/docs/controls/Gantt.md)
+-   [Scatter](../terra-graphs-docs/docs/controls/Scatter.md)
+-   [Bubble](../terra-graphs-docs/docs/controls/Bubble.md)
     -   [Bubble Single Dataset](../terra-graphs-docs/docs/controls/BubbleSingleDataset.md)
     -   [Bubble Multiple Dataset](../terra-graphs-docs/docs/controls/BubbleMultipleDataset.md)
 
