@@ -1,0 +1,83 @@
+# Locale
+
+-   [Languages](#languages)
+-   [Format](#format)
+-   [Resources](#resources)
+
+## Languages
+
+| Language |
+| -------- |
+| de_DE    |
+| en_AU    |
+| en_CA    |
+| en_GB    |
+| en_US    |
+| es_ES    |
+| fr_FR    |
+| ja_JP    |
+| pt_BR    |
+| nl_NL    |
+| sv_SE    |
+
+## Format
+
+Consumers can provide a JSON for any locale, the format needs to be:
+
+```javascript
+const locale_custom = {
+    decimal: ",",
+    thousands: ".",
+    grouping: [3],
+    currency: ["", " €"],
+    dateTime: "%A, der %e. %B %Y, %X",
+    date: "%d.%m.%Y",
+    time: "%H:%M:%S",
+    days: [
+        "Sonntag",
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag"
+    ],
+    shortDays: ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+    months: [
+        "Januar",
+        "Februar",
+        "März",
+        "April",
+        "Mai",
+        "Juni",
+        "Juli",
+        "August",
+        "September",
+        "Oktober",
+        "November",
+        "Dezember"
+    ],
+    shortMonths: [
+        "Jan",
+        "Feb",
+        "Mrz",
+        "Apr",
+        "Mai",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Okt",
+        "Nov",
+        "Dez"
+    ],
+    noData: "No Data"
+};
+```
+
+## Resources
+
+Resources on locale based tick formatting:
+
+-   [Number formatting](https://github.com/d3/d3-time-format/blob/master/README.md#locale_format)
+-   [Datetime formatting](https://github.com/d3/d3-time-format/blob/master/README.md#timeFormatLocale)
