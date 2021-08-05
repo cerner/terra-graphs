@@ -4,27 +4,14 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simplePanningData';
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanningEventline';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simpleBarDataPanning';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
-const graphConfig = utils.deepClone(getBarPanningConfig('#barPanningDynamicEventline'));
-graphConfig.eventline = [
-  {
-    color: Carbon.helpers.COLORS.GREY,
-    style: {
-      strokeDashArray: '4,4',
-    },
-    value: new Date(2016, 0, 1, 4, 30).toISOString(),
-  },
-];
-
+const graphConfig = utils.deepClone(getBarConfig('#barPanningDynamicEventline'));
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: utils.deepClone(data),
+  dataset: [utils.deepClone(data)],
   graphConfig,
 };
 
@@ -32,7 +19,6 @@ const BarPanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphConfig = utils.deepClone(panState.graphConfig);
     let hour;
-    const newDataset = [utils.deepClone(data[0])];
 
     switch (action.type) {
       case 'panLeft':
@@ -63,7 +49,6 @@ const BarPanningExample = () => {
       initial: hour,
       factor: panState.factor,
       dataset: {
-        panData: newDataset,
         eventline: newEventline,
       },
       graphConfig: utils.deepClone(newGraphConfig),

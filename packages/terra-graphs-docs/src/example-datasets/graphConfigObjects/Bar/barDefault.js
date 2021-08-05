@@ -1,4 +1,4 @@
-const barDefault = (id) => ({
+const getbarConfig = (id) => ({
   bindTo: id,
   bindLegendTo: null,
   axis: {
@@ -32,5 +32,5 @@ const barDefault = (id) => ({
   showHGrid: true,
 });
 
-export default barDefault;
+export default getbarConfig;
 

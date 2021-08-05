@@ -1,6 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
-const getBarPanningConfig = (id) => ({
+const getbarConfig = (id) => ({
   bindTo: id,
   bindLegendTo: null,
   axis: {
@@ -44,5 +44,5 @@ const getBarPanningConfig = (id) => ({
   showHGrid: true,
 });
 
-export default getBarPanningConfig;
+export default getbarConfig;
 

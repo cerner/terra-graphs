@@ -4,46 +4,21 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData';
-
-const region = [
-  {
-    axis: 'y',
-    x: 1,
-    start: 10,
-    end: 10,
-  },
-  {
-    axis: 'y',
-    x: 2,
-    start: 40,
-    end: 40,
-  },
-  {
-    axis: 'y',
-    x: 3,
-    start: 55,
-    end: 55,
-  },
-  {
-    axis: 'y',
-    x: 4,
-    start: 30,
-    end: 30,
-  },
-];
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
+import data1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData1';
+import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData2';
+import data3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData3';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(barDefault('#stackedGoalLineBargraph'));
-
-const dataset = utils.deepClone(exampleData);
-dataset[0].regions = region;
-dataset[1].regions = region;
-dataset[2].regions = region;
+const graphConfig = utils.deepClone(getBarConfig('#stackedGoalLineBargraph'));
+const dataset = [
+  utils.deepClone(data1),
+  utils.deepClone(data2),
+  utils.deepClone(data3),
+];
 
 export default () => {
   React.useEffect(() => {

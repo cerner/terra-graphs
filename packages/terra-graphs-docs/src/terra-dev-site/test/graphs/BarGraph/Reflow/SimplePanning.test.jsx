@@ -3,19 +3,18 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simplePanningData';
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
+import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simpleBarDataPanning';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const dataset = utils.deepClone(data);
-
+const dataset = [utils.deepClone(data)];
 const initialState = {
   initial: 0,
   factor: 3,
-  graphConfig: utils.deepClone(getBarPanningConfig('#simpleBarPanning')),
+  graphConfig: utils.deepClone(getBarConfig('#simpleBarPanning')),
 };
 
 const BarPanningExample = () => {

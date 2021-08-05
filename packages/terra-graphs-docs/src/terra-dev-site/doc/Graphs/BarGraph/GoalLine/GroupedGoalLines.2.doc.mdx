@@ -1,20 +1,22 @@
 import BarGraph from '../../../example/Graphs-Carbon/BarGraph/GoalLine/GroupedGoalLines?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData2Regions.js?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData3Regions.js?dev-site-codeblock';
 require('details-polyfill')
 
 # Grouped Bar Graph with Goal Lines
-This is Grouped bar graph associates with goal lines.
+This is a grouped bar graph with goal lines.
 
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
 ```jsx
-import React from 'react';
-import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 ## Examples
 <BarGraph />
@@ -28,5 +30,15 @@ import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 <GraphConfig />
 
 ### Data object
-<DataObject />
+
+#### Dataset 1
+<DataObject1 />
+
+#### Dataset 4
+<DataObject2 />
+
+#### Dataset 5
+<DataObject3 />
+
+
 </details>

@@ -3,24 +3,26 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dynamicPanningData';
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
+import data1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dynamicPanningData1';
+import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dynamicPanningData2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0])],
-  graphConfig: utils.deepClone(getBarPanningConfig('#BarPanningDynamicData')),
+  dataset: [utils.deepClone(data1)],
+  graphConfig: utils.deepClone(getBarConfig('#BarPanningDynamicData')),
 };
 
 const BarPanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
+    const newDataset = [utils.deepClone(data2)];
     let hour;
-    const newDataset = [utils.deepClone(data[1])];
 
     switch (action.type) {
       case 'panLeft':

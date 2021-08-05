@@ -4,72 +4,22 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData';
-
-const regions = [
-  [
-    {
-      axis: 'y',
-      x: 1,
-      start: 7,
-      end: 7,
-    },
-    {
-      axis: 'y',
-      x: 2,
-      start: 13,
-      end: 13,
-    },
-    {
-      axis: 'y',
-      x: 3,
-      start: 17,
-      end: 17,
-    },
-    {
-      axis: 'y',
-      x: 4,
-      start: 4,
-      end: 4,
-    },
-  ],
-  [
-    {
-      axis: 'y2',
-      x: 1,
-      start: 7,
-      end: 7,
-    },
-    {
-      axis: 'y2',
-      x: 2,
-      start: 13,
-      end: 13,
-    },
-    {
-      axis: 'y2',
-      x: 3,
-      start: 17,
-      end: 17,
-    },
-    {
-      axis: 'y2',
-      x: 4,
-      start: 4,
-      end: 4,
-    },
-  ],
-];
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
+import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData1';
+import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData2Regions';
+import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData3Regions';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(barDefault('#groupedGoalLineBargraph'));
+const graphConfig = utils.deepClone(getBarConfig('#groupedGoalLineBargraph'));
 
-const dataset = utils.deepClone(exampleData);
-[dataset[1].regions, dataset[2].regions] = [regions[1], regions[0]];
+const dataset = [
+  utils.deepClone(exampleData1),
+  utils.deepClone(exampleData2),
+  utils.deepClone(exampleData3),
+];
 
 export default () => {
   React.useEffect(() => {

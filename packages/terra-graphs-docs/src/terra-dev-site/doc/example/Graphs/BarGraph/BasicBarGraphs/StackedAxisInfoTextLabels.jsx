@@ -3,19 +3,22 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedAxisInfoTextLabelsData';
+import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
+import data1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData1AxisInfo';
+import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData2.js';
+import data3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData3.js';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(barDefault('#stackedAxisInfoTextLabelsBargraph'));
-graphConfig.axis.x.orientation = Carbon.helpers.AXES_ORIENTATION.X.TOP;
 
-const contentData = utils.deepClone(data);
-contentData[0].label.isDisabled = true;
-contentData[1].label.isDisabled = true;
-contentData[2].label.isDisabled = true;
+const graphConfig = utils.deepClone(getBarConfig('#stackedAxisInfoTextLabelsBargraph'));
+const dataset = [
+  utils.deepClone(data1),
+  utils.deepClone(data2),
+  utils.deepClone(data3),
+];
 
 export default () => (
   <>

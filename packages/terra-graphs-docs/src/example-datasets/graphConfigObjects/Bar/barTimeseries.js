@@ -1,6 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
-const barTimeseries = (id) => ({
+const getbarConfig = (id) => ({
   bindTo: id,
   bindLegendTo: null,
   axis: {
@@ -43,5 +43,5 @@ const barTimeseries = (id) => ({
   showHGrid: true,
 });
 
-export default barTimeseries;
+export default getbarConfig;
 
