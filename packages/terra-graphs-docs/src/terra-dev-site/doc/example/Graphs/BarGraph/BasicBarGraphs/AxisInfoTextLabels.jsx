@@ -10,7 +10,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 
 const graphConfig = utils.deepClone(getBarConfig('#axisInfoTextLabelsBargraph'));
-const dataset = [utils.deepClone(data)];
+const dataset = utils.deepClone(data);
 
 export default () => (
   <>

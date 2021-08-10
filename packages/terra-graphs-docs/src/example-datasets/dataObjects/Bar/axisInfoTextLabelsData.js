@@ -5,32 +5,37 @@ import {
 } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {
-  key: 'uid_bar_1',
+  key: 'uid_bar_7',
   label: {
-    display: 'Data Label 1',
+    display: 'Data Label 7',
   },
-  color: Carbon.helpers.COLORS.GREEN,
+  group: 'uid_bar_1',
+  color: Carbon.helpers.COLORS.YELLOW,
   onClick: loadBarPopup,
   values: [
     {
       x: 1,
-      y: 30,
-    },
-    {
-      x: 2,
       y: 10,
     },
     {
-      x: 3,
-      y: 13,
-    },
-    {
-      x: 4,
+      x: 2,
       y: 15,
     },
     {
-      x: 5,
+      x: 3,
       y: 18,
+    },
+    {
+      x: 4,
+      y: 6,
+    },
+    {
+      x: 5,
+      y: 0,
+    },
+    {
+      x: 6,
+      y: 10,
     },
   ],
   axisInfoRow: [
