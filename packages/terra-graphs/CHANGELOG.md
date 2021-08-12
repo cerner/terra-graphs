@@ -30,5 +30,6 @@
   * Updated all snapshots.
   * Updated Combination graph snapshots.
   * Updated Bar Graph snapshots.
+  * Updated Bar datasets and examples to maintain consistency.
 
 * Initial stable release
