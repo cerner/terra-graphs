@@ -1,5 +1,5 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';

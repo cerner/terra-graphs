@@ -1,4 +1,5 @@
 import React from 'react';
+import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 import Button from 'terra-button/lib/Button';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
