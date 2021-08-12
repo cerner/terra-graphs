@@ -33,3 +33,4 @@
   * Updated Pie chart documentation and examples to be carbon-centric.
   * Updated Timeline documentation and examples to be carbon-centric.
   * Updated Pie chart documentation and examples to be carbon-centric.
+  * Updated Bar datasets and examples to maintain consistency.
