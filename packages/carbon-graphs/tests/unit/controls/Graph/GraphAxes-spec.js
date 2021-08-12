@@ -2030,7 +2030,7 @@ describe('Graph - Axes', () => {
         };
         graph = new Graph({ ...getAxes(axisObj) });
       });
-      it('should add correct transform point to y-axis label shape container', () => {
+      it('should add the correct transform point to y-axis label shape container', () => {
         expect(
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelYShapeContainer)),
@@ -2042,7 +2042,7 @@ describe('Graph - Axes', () => {
           ).translate[1],
         ).toBe(117.5);
       });
-      it('should add correct transform point to y2-axis label shape container', () => {
+      it('should add the correct transform point to y2-axis label shape container', () => {
         expect(
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),
