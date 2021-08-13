@@ -86,25 +86,25 @@ The data can now by plotted by as a line graph by using the following:
 
 This results in the following graph:
 
-![Alt](../terra-docs/docs/assets/carbon-simple-line-graph.png "simple line graph")
+![Alt](../terra-graphs-docs/docs/assets/carbon-simple-line-graph.png "simple line graph")
 
 
 ## Graph types
 
 The following graph types can be plotted using Carbon:
 
--   [Line](../terra-docs/docs/controls/Line.md#usage)
--   [Multi Line](../terra-docs/docs/controls/Line.md#multi-line)
--   [Spline Line](../terra-docs/docs/controls/Line.md#spline-line)
--   [Paired Result](../terra-docs/docs/controls/PairedResult.md#usage)
--   [Bar](../terra-docs/docs/controls/Bar.md#usage)
--   [Timeline](../terra-docs/docs/controls/Timeline.md#usage)
--   [Pie](../terra-docs/docs/controls/Pie.md#usage)
--   [Gantt](../terra-docs/docs/controls/Gantt.md#usage)
--   [Scatter](../terra-docs/docs/controls/Scatter.md#usage)
--   [Bubble](../terra-docs/docs/controls/Bubble.md#usage)
-    -   [Bubble Single Dataset](../terra-docs/docs/controls/BubbleSingleDataset.md)
-    -   [Bubble Multiple Dataset](../terra-docs/docs/controls/BubbleMultipleDataset.md)
+-   [Line](../terra-graphs-docs/docs/controls/Line.md)
+-   [Multi Line](../terra-graphs-docs/docs/controls/Line.md#multi-line)
+-   [Spline Line](../terra-graphs-docs/docs/controls/Line.md#spline-line)
+-   [Paired Result](../terra-graphs-docs/docs/controls/PairedResult.md)
+-   [Bar](../terra-graphs-docs/docs/controls/Bar.md)
+-   [Timeline](../terra-graphs-docs/docs/controls/Timeline.md)
+-   [Pie](../terra-graphs-docs/docs/controls/Pie.md)
+-   [Gantt](../terra-graphs-docs/docs/controls/Gantt.md)
+-   [Scatter](../terra-graphs-docs/docs/controls/Scatter.md)
+-   [Bubble](../terra-graphs-docs/docs/controls/Bubble.md)
+    -   [Bubble Single Dataset](../terra-graphs-docs/docs/controls/BubbleSingleDataset.md)
+    -   [Bubble Multiple Dataset](../terra-graphs-docs/docs/controls/BubbleMultipleDataset.md)
 
 
 ## LICENSE
