@@ -176,12 +176,12 @@ const translateYAxisLabelShapeContainer = (config, shapeContainerPath) => shapeC
   .call(constants.d3Transition(config.settingsDictionary.transition))
   .attr(
     'transform',
-    `translate(${getYAxisLabelShapeXPosition(
-      config,
-    )}, ${getYAxisLabelShapeYPosition(
-      config,
-      getShapeContainerSize(shapeContainerPath),
-    )}) rotate(${getRotationForAxis(constants.Y_AXIS)})`,
+      `translate(${getYAxisLabelShapeXPosition(
+        config,
+      )}, ${getYAxisLabelShapeYPosition(
+        config,
+        getShapeContainerSize(shapeContainerPath),
+      )}) rotate(${getRotationForAxis(constants.Y_AXIS)})`,
   );
 /**
  * Translates Y2 Axis label shape container to correct position. Typically this is
@@ -217,6 +217,15 @@ const buildYAxisLabelShapeContainer = (config, canvasPath) => {
   const path = canvasPath
     .append('g')
     .classed(styles.axisLabelYShapeContainer, true);
+  path.attr(
+    'transform',
+      `translate(${getYAxisLabelShapeXPosition(
+        config,
+      )}, ${getYAxisLabelShapeYPosition(
+        config,
+        getShapeContainerSize(path),
+      )})`,
+  );
   translateYAxisLabelShapeContainer(config, path);
   return path;
 };
@@ -232,6 +241,16 @@ const buildY2AxisLabelShapeContainer = (config, canvasPath) => {
   const path = canvasPath
     .append('g')
     .classed(styles.axisLabelY2ShapeContainer, true);
+  path.attr(
+    'transform',
+    `translate(${getY2AxisLabelShapeXPosition(
+      config,
+    )}, ${getY2AxisLabelShapeYPosition(
+      config,
+      getShapeContainerSize(path),
+    )})`,
+  );
+
   translateY2AxisLabelShapeContainer(config, path);
   return path;
 };

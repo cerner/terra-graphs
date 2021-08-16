@@ -1,0 +1,150 @@
+# Shapes
+
+A Shape is a nested svg within a Carbon graph. We use OCS SVGs for default Carbon Shapes.
+Custom shapes can be provided if needed.
+
+-   [Shape](#shape)
+    -   [Default Shapes](#default-shapes)
+        -   [Dark](#dark)
+        -   [Light](#light)
+    -   [Custom Shapes](#custom-shapes)
+        -   [Exposed functions](#exposed-functions)
+        -   [Shape JSON structure](#shape-json-structure)
+            -   [JSON input for a single path icon](#json-input-for-a-single-path-icon)
+            -   [JSON input for a multiple path icon](#json-input-for-a-multiple-path-icon)
+            -   [JSON input properties](#json-input-properties)
+        -   [Shape SVG Properties](#shape-svg-properties)
+        -   [Usage](#usage)
+
+## Default Shapes
+
+### Dark
+
+Used via `Carbon.helpers.SHAPES.DARK`
+
+| Constant      | Rendered as                                                                                                                                                 |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CIRCLE        | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0001_circle.svg?sanitize=true"/>       |
+| CROSS         | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0003_plus.svg?sanitize=true"/>         |
+| DIAMOND       | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0008_thinDiamond.svg?sanitize=true"/>  |
+| RHOMBUS       | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0002_diamond.svg?sanitize=true"/>      |
+| SQUARE        | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0005_square.svg?sanitize=true"/>       |
+| TEAR_DROP     | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0006_teardrop.svg?sanitize=true"/>     |
+| TEAR_ALT      | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0007_teardropUp.svg?sanitize=true"/>   |
+| TRIANGLE      | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0009_triangle.svg?sanitize=true"/>     |
+| TRIANGLE_DOWN | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0010_triangleDown.svg?sanitize=true"/> |
+| VERTICAL_BAR  | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0004_rectangle.svg?sanitize=true"/>    |
+| X             | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0011_x.svg?sanitize=true"/>            |
+
+### Light
+
+Used via `Carbon.helpers.SHAPES.LIGHT`
+
+| Constant      | Rendered as                                                                                                                                                       |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CIRCLE        | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0001_circle_light.svg?sanitize=true"/>       |
+| CROSS         | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0003_plus_light.svg?sanitize=true"/>         |
+| DIAMOND       | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0008_thinDiamond_light.svg?sanitize=true"/>  |
+| RHOMBUS       | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0002_diamond_light.svg?sanitize=true"/>      |
+| SQUARE        | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0005_square_light.svg?sanitize=true"/>       |
+| TEAR_DROP     | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0006_teardrop_light.svg?sanitize=true"/>     |
+| TEAR_ALT      | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0007_teardropUp_light.svg?sanitize=true"/>   |
+| TRIANGLE      | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0009_triangle_light.svg?sanitize=true"/>     |
+| TRIANGLE_DOWN | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0010_triangleDown_light.svg?sanitize=true"/> |
+| VERTICAL_BAR  | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0004_rectangle_light.svg?sanitize=true"/>    |
+| X             | <img width="16px" height="16px" src="https://raw.githubusercontent.com/cerner/one-cerner-style-icons/main/src/icons/S_0011_x_light.svg?sanitize=true"/>            |
+
+
+## Custom Shapes
+### Exposed functions
+
+Carbon exposes the following functions for consumers' benefit:
+
+-   `shape`:(Function) - Returns a new SVG shape instance with attributes provided in the JSON
+-   `defaultSVGProps`:(Function) - Returns an Object containing default properties for an SVG which can be applied on a `shape`
+
+### Shape JSON structure
+
+Shape instances can be created by providing a `JSON` as an input and calling upon the exposed `shape` function.
+
+#### JSON input for a single path icon
+
+```json
+{
+    "path": {
+        "d": "M24,0l24,24L24,48L0,24L24,0z"
+    },
+    "options": {
+        "x": -6,
+        "y": -6,
+        "scale": 0.25
+    }
+}
+```
+
+#### JSON input for a multiple path icon
+
+```json
+{
+    "path": [
+        {
+            "id": "triangle_1_",
+            "fill": "#E50000",
+            "d": "M1.2,45c-1.1,0-1.6-0.8-1-1.7L23,3.7c0.5-1,1.4-1,2,0l22.8,39.6c0.5,1,0.1,1.7-1,1.7H1.2z"
+        },
+        {
+            "id": "exclamation",
+            "fill": "#FFFFFF",
+            "d": "M21.5,36.7h5V42h-5V36.7z M21.5,14h5v17.3h-5V14z"
+        }
+    ],
+    "options": {
+        "x": -6,
+        "y": -6,
+        "scale": 0.25
+    }
+}
+```
+
+#### JSON input properties
+
+##### Path
+
+| Property Name | Expected | Description                                          |
+| ------------- | -------- | ---------------------------------------------------- |
+| d             | string   | Path data for svg                                    |
+| class         | string   | Class of the path                                    |
+| fill          | string   | Color fill for the path. Represents a Hex Color Code |
+| id            | string   | ID for the path                                      |
+
+##### Options
+
+X and Y co-ordinates are relative values with respect to the center of the svg.
+When an svg is created, the starting point of that svg is at top-left corner, since we want to use the icon in graph centrally aligned,
+we would need to move the svg top and left pointing to the center.
+
+| Property Name | Expected | Description                       |
+| ------------- | -------- | --------------------------------- |
+| x             | number   | X position relative to the center |
+| y             | number   | Y position relative to the center |
+| scale         | number   | Scale/size of the icon            |
+
+### Shape SVG Properties
+
+Consumers need to provide svg properties to generate an SVG icon using `shape`.
+
+| Property Name  | Expected | Description                                                                                       |
+| -------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| svgClassNames  | string   | Classname for svg                                                                                 |
+| svgStyles      | string   | Styles for svg                                                                                    |
+| transformFn    | Function | Transform function for the path(s) within svg. Used to position the svg within consumer container |
+| onClickFn      | Function | Callback function called when clicked on the icon                                                 |
+| a11yAttributes | Object   | Aria attributes to be set within svg                                                              |
+
+### Usage
+
+```javascript
+Carbon.tools
+    .shape(/* JSON object provided here */)
+    .getShapeElement(Carbon.tools.defaultSVGProps()); // Consumers can provide their own SVG properties object
+```

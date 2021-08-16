@@ -1,0 +1,114 @@
+# Contributing to Terra Graphs
+
+Thanks for contributing to Terra Graphs! :1st_place_medal: :1st_place_medal:
+
+-   [Code of Conduct](#code-of-conduct)
+-   [Consumers](#consumers)
+-   [Developers](#developers)
+    -   [Development](#development)
+        -   [Pulling in dependencies](#pulling-in-dependencies)
+        -   [Building the project](#building-the-project)
+    -   [Code Review](#code-review)
+        -   [Pull Request checklist](#pull-request-checklist)
+        -   [Commit message format](#commit-message-format)
+        -   [Pull Request](#pull-request)
+    -   [Release](#release)
+    -   [Deploying the site to GitHub](#deploying-the-site-to-github)
+-   [Breaking changes](#breaking-changes)
+
+This project uses NPM for dependency management and provides NPM scripts to call on `Webpack` to run tasks on the project.
+To get started, you will need to checkout this project.
+
+## Code of Conduct
+
+Terra Graphs adheres to the [JS Foundation Code of Conduct](https://js.foundation/community/code-of-conduct).
+
+## Consumers
+
+We use `Github` issues for tracking. Please log an issue to https://github.com/cerner/terra-graphs/issues and apply the appropriate tags such as `Bug` or `Feature Request`.
+
+## Developers
+
+If you're a developer looking forward to contribute to Terra graphs:
+
+ 1. Create an issue on https://github.com/cerner/terra-graphs/issues 
+ 2. Assign it to yourself
+ 3. Add the appropiate tags such as `Bug` or `Feature Request`.
+ 4. Once the issue is approved by a member of the Terra team, you may fork the repo and begin work on it.
+ 5. After your contribution is complete, you may create a Pull Request
+
+#### Pulling in dependencies
+
+After checking out the project, you will want to run the following command to pull in dependencies needed by the project:
+
+```sh
+npm install
+```
+
+When contributing to Terra Graphs, you would need to run the below command and load the test page. The test page auto reloads whenever you make any changes to the .CSS, .JS files or if you make any changes to the sample .html file
+
+```sh
+npm start
+```
+
+Open in browser:
+
+```sh
+http://localhost:8080/
+```
+
+This will generate `dist` and `lib` folders with `core + packaged dependencies` and `core` source codes respectively.
+
+### Code Review
+
+#### Pull Request checklist
+
+-   Follow the [UX Design Standards](https://wiki.ucern.com/display/UserExperience/Standard+Graphs).
+-   Setup a design meeting to discuss overall design of the project.
+-   Add the code changes.
+-   Add unit tests.
+-   Ensure your code is thoroughly unit tested. (Coverage is at `carbon-graphs\.coverage\html\index.html`)
+-   Ensure no unit tests are broken.
+-   Ensure no linting errors are present.
+-   Add examples in appropriate tab within `dev`.
+-   Write documentation in `Markdown`, following the existing documentation pattern.
+-   Include screenshots and animated GIFs in your **pull request** whenever possible.
+-   Follow proper PR title and Commit message [format](#commit-message-format).
+-   End files with a newline.
+
+#### Commit message format
+
+We follow `ESLint` [commit convention](https://eslint.org/docs/1.0.0/developer-guide/contributing#step-2-make-your-changes).
+Your commit message should look something like this:
+
+```text
+<Tag>: <Short description> (fixes #1234)
+```
+**Note**:
+1234 in the above example is the [Github issue number](https://github.com/cerner/terra-graphs/issues).
+
+#### Pull Request
+
+-   Provide the PR with all necessary information to ease code review process in the `Description`, for instance:
+    -   Add the appropriate tags such as `bug-fix` or `enhancement-fix`.
+    -   
+    -   Screenshots of the working prototype.
+    -   Files you want the reviewer to focus on.
+-   Respond to all comments.
+-   Do **not** rebase with main and force push until you reach `ready to merge` status.
+
+### Release
+
+Release is automated, and will be performed when PR is merged to `main` branch.
+
+Terra graphs will be released every Tuesday provided there are code changes to be released.
+
+## Breaking changes
+
+For any breaking changes, add information on how to migrate from previous version along with changes that was provided.
+Create an issue and add any stakeholders to that issue.
+This issue will be closed once you have :+1: from all of the stakeholders (or subsequent issues are created within their own git repo queues).
+
+#### Note: 
+
+To run the WDIO tests locally, please install docker version 17.09.0 or higher. Installation instructions can found [here](https://docs.docker.com/get-docker/).
