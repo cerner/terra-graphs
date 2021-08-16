@@ -2,7 +2,7 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import { loadPiePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const dataset3 = {
-  key: 'uid_3',
+  key: 'simple_pie_data_3',
   label: {
     display: 'Dataset 3',
   },
