@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint no-unused-vars off
 import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
