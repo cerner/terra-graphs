@@ -33,8 +33,8 @@ If there is only 1 axis in the graph, the tick intervals are calculated automati
 
 | Property Name       | Expected | Default | Description                                                                                                                                                                                                                            |
 | ------------------- | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| lowerStepTickValues | array    | []      | Lower-Tick-Values in the axis. Each tick will have an associated grid line. When lowerTickValues are present, values are disregarded. Lighter gray shade when compared to others.                                                      |
-| midpointTickValues  | array    | []      | Mid-Tick-Values in the axis. Each tick will have an associated grid line. Darker when compared to lowerTickValues. Uses the default coloring of values, if none of the lowerTickValues, midTickValues and upperTickValues are provided |
+| lowerStepTickValues | array    | []      | Lower-Tick-Values in the axis. Each tick will have an associated grid line. When lowerTickValues are present, values are disregarded. Lighter when compared to upperTickValues but darker than midpointTickValues.                                                       |
+| midpointTickValues  | array    | []      | Mid-Tick-Values in the axis. Each tick will have an associated grid line. Lightest gray shade when compared to others. Uses the default coloring of values, if none of the lowerTickValues, midTickValues and upperTickValues are provided |
 | upperStepTickValues | array    | []      | Upper-Tick-Values in the axis. Each tick will have an associated grid line. Much thicker and darker when compared with lowerTickValues, midTickValues and values axis.                                                                 |
 
 #### Constraints
