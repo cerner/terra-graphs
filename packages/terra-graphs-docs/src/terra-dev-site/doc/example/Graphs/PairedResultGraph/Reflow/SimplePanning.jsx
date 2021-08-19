@@ -9,7 +9,7 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pai
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const dataset = utils.deepClone(data);
+const dataset = [utils.deepClone(data)];
 
 const initialState = {
   initial: 0,

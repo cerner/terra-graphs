@@ -1,4 +1,4 @@
-const pairedResultDefault = (id) => ({
+const getPairedResultConfig = (id) => ({
   bindTo: id,
   axis: {
     x: {
@@ -18,4 +18,4 @@ const pairedResultDefault = (id) => ({
   showHGrid: true,
 });
 
-export default pairedResultDefault;
+export default getPairedResultConfig;

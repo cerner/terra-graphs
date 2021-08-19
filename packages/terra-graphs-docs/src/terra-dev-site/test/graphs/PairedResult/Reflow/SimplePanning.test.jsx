@@ -6,8 +6,7 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/simplePanningData';
 
-const dataset = utils.deepClone(data);
-
+const dataset = [utils.deepClone(data)];
 const initialState = {
   initial: 0,
   factor: 3,

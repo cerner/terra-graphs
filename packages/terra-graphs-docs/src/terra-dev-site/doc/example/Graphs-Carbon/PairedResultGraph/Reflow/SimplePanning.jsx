@@ -12,7 +12,7 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getPairedResultTimeseriesPanningConfig('#simplePairedResultPanning'));
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(exampleData)];
 
 const state = {
   initial: 0,
@@ -42,18 +42,22 @@ const SimplePairedResultPanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    graph.reflowMultipleDatasets();
-
     return {
       initial: hour,
       factor: panState.factor,
     };
   };
 
-  const [, dispatch] = React.useReducer(reducer, state);
+  const [panState, dispatch] = React.useReducer(reducer, state);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    graph.reflowMultipleDatasets();
+  }, [panState.initial]);
 
   return (
     <React.Fragment>

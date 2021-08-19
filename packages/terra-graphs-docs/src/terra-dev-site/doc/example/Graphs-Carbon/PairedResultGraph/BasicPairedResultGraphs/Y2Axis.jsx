@@ -4,15 +4,16 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
-import pairedResultTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseries';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisData';
+import getPairedResultY2AxisTimeseriesConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseriesWithY2Axis';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(pairedResultTimeseries('#y2AxisPairedResultGraph'));
+const graphConfig = utils.deepClone(getPairedResultY2AxisTimeseriesConfig('#y2AxisPairedResultGraph'));
 graphConfig.axis.y2.show = true;
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 const Y2AxisPiaredResultExample = () => {
   React.useEffect(() => {

@@ -5,16 +5,15 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
-import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/multipleDatasetWithY2PanningData';
+import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanningY2Axis';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/panningWithY2AxisDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/panningWithY2AxisDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getPairedResultTimeseriesPanningConfig('#pairedResultMultipleDatasetWithY2Axis'));
-graphConfig.axis.y2.show = true;
-
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 const state = {
   initial: 0,
@@ -44,18 +43,22 @@ const MultipleDatasetWithY2AxisPairedResultPanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    graph.reflowMultipleDatasets();
-
     return {
       initial: hour,
       factor: panState.factor,
     };
   };
 
-  const [, dispatch] = React.useReducer(reducer, state);
+  const [panState, dispatch] = React.useReducer(reducer, state);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    graph.reflowMultipleDatasets();
+  }, [panState.initial]);
 
   return (
     <React.Fragment>

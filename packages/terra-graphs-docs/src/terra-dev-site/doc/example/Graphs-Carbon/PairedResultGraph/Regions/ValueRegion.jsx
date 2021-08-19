@@ -11,7 +11,7 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(pairedResultDefault('#pairedResultGraphValueRegion'));
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(exampleData)];
 
 const ValueRegionPiaredResultExample = () => {
   React.useEffect(() => {

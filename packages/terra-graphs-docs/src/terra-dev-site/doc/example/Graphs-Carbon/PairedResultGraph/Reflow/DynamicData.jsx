@@ -6,12 +6,13 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/dynamicPanningData';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/dynamicPanningDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/dynamicPanningDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const dataset = [utils.deepClone(exampleData[0])];
+const dataset = [utils.deepClone(dataset1)];
 const graphConfig = utils.deepClone(getPairedResultTimeseriesPanningConfig('#PairedResultDynamicData'));
 
 const state = {
@@ -42,22 +43,26 @@ const PairedResultDynamicDataPanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    const newDataset = {
-      panData: [utils.deepClone(exampleData[1])],
-    };
-
-    graph.reflowMultipleDatasets(newDataset);
-
     return {
       initial: hour,
       factor: panState.factor,
     };
   };
 
-  const [, dispatch] = React.useReducer(reducer, state);
+  const [panState, dispatch] = React.useReducer(reducer, state);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    const newDataset = {
+      panData: [utils.deepClone(dataset2)],
+    };
+
+    graph.reflowMultipleDatasets(newDataset);
+  }, [panState.initial]);
 
   return (
     <React.Fragment>

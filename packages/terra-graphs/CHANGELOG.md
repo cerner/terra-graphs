@@ -24,5 +24,5 @@
   * Made changes to WDIO test url's according to terra rules. 
   * Updated components to maintain consistent design.
   * Updated Pie chart snapshots.
-  
+  * Updated Paired result graph snapshots.
 * Initial stable release
