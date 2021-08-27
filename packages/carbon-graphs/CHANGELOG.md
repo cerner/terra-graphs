@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated date format strings for locales as per internationalization Standards.
+
 ## 2.17.3 - (August 17, 2021)
 
 * Changed

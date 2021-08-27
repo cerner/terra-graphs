@@ -6,9 +6,10 @@ import { getScale, getType, getDomain } from '../core/BaseConfig';
 import constants, { AXES_ORIENTATION, AXIS_TYPE } from './constants';
 import styles from './styles';
 import utils from './utils';
-import { DEFAULT_TICK_FORMAT } from '../locale';
+import LOCALE, { DEFAULT_TICK_FORMAT } from '../locale';
 import { prepareHAxis } from './datetimeBuckets';
 import { shouldTruncateLabel, truncateLabel } from './label';
+import * as localeFormat from './localeFormat';
 
 /**
  * @module axis
@@ -171,13 +172,34 @@ const getAxisTickFormat = (locale, format, type = AXIS_TYPE.DEFAULT) => {
   if (format === '') {
     return format;
   }
+
   const localeVar = type === AXIS_TYPE.TIME_SERIES
     ? d3.timeFormatDefaultLocale(locale)
     : d3.formatDefaultLocale(locale);
 
   if (utils.isEmpty(format)) {
-    return DEFAULT_TICK_FORMAT;
+    if (type === 'default') {
+      return DEFAULT_TICK_FORMAT;
+    }
+
+    switch (JSON.stringify(locale)) {
+    case JSON.stringify(LOCALE.es_ES):
+      return localeFormat.getDefaultDateFormat;
+    case JSON.stringify(LOCALE.pt_BR):
+      return localeFormat.getDefaultDateFormat;
+    case JSON.stringify(LOCALE.de_DE):
+      return localeFormat.getGermanyDateFormat;
+    case JSON.stringify(LOCALE.sv_SE):
+      return localeFormat.getSwedenDateFormat;
+    case JSON.stringify(LOCALE.nl_NL):
+      return localeFormat.getDefaultDateFormat;
+    case JSON.stringify(LOCALE.fr_FR):
+      return localeFormat.getFrenchDateFormat;
+    default:
+      return DEFAULT_TICK_FORMAT;
+    }
   }
+
   return localeVar.format(format);
 };
 
