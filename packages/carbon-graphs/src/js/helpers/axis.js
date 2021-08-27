@@ -188,9 +188,9 @@ const getAxisTickFormat = (localeObject, format, type = AXIS_TYPE.DEFAULT) => {
     case LOCALE.pt_BR.locale:
       return localeFormat.getDefaultDateFormat;
     case LOCALE.de_DE.locale:
-      return localeFormat.getGermanyDateFormat;
+      return localeFormat.getGermanDateFormat;
     case LOCALE.sv_SE.locale:
-      return localeFormat.getSwedenDateFormat;
+      return localeFormat.getSwedishDateFormat;
     case LOCALE.nl_NL.locale:
       return localeFormat.getDefaultDateFormat;
     case LOCALE.fr_FR.locale:

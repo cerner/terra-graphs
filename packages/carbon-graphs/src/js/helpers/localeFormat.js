@@ -25,13 +25,13 @@ const getDefaultDateFormat = (date) => {
 };
 
 /**
- * Creates format for Germany(de_DE) locale.
+ * Creates format for German(de_DE) locale.
  *
  * @private
  * @param {object} date - date object which are going to assign for axis ticks.
  * @returns {string} format to be displayed on axis.
  */
-const getGermanyDateFormat = (date) => {
+const getGermanDateFormat = (date) => {
   if (d3.timeSecond(date) < date) {
     return d3.timeFormat('.%L')(date);
   } if (d3.timeMinute(date) < date) {
@@ -49,13 +49,13 @@ const getGermanyDateFormat = (date) => {
 };
 
 /**
- * Creates format for sweden(sv_SE) locale.
+ * Creates format for Swedish(sv_SE) locale.
  *
  * @private
  * @param {object} date - date object which are going to assign for axis ticks.
  * @returns {string} format to be displayed on axis.
  */
-const getSwedenDateFormat = (date) => {
+const getSwedishDateFormat = (date) => {
   if (d3.timeSecond(date) < date) {
     return d3.timeFormat('.%L')(date);
   } if (d3.timeMinute(date) < date) {
@@ -98,7 +98,7 @@ const getFrenchDateFormat = (date) => {
 
 export {
   getDefaultDateFormat,
-  getGermanyDateFormat,
-  getSwedenDateFormat,
+  getGermanDateFormat,
+  getSwedishDateFormat,
   getFrenchDateFormat,
 };
