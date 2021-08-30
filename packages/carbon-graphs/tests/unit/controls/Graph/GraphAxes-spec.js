@@ -755,7 +755,7 @@ describe('Graph - Axes', () => {
       const tick = xAxisElement
         .querySelector('.tick')
         .querySelector('text');
-      expect(tick.textContent).toBe('ene 2016');
+      expect(tick.textContent).toBe('ene. 2016');
     });
     it('Creates x axis with ticks in provided locale - PT_BR', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
@@ -770,8 +770,250 @@ describe('Graph - Axes', () => {
       const tick = xAxisElement
         .querySelector('.tick')
         .querySelector('text');
-      expect(tick.textContent).toBe('Jan 2016');
+      expect(tick.textContent).toBe('jan 2016');
     });
+    describe('When format is provided', () => {
+      describe('should display date as input format', () => {
+        let axisData = {};
+        beforeEach(() => {
+          graph.destroy();
+          axisData = utils.deepClone(axisTimeSeries);
+          axisData.x.ticks = {
+            format: '%b',
+          };
+        });
+        it('for locale nl_NL', () => {
+          graph = new Graph(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('jan');
+        });
+        it('for locale fr_FR', () => {
+          graph = new Graph(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('janv.');
+        });
+        it('For locale sv_SE', () => {
+          graph = new Graph(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('jan');
+        });
+        it('For locale es_ES', () => {
+          graph = new Graph(({ locale: LOCALE.es_ES, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('ene.');
+        });
+        it('For locale pt_BR', () => {
+          graph = new Graph(({ locale: LOCALE.pt_BR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('jan');
+        });
+        it('For locale de_DE', () => {
+          graph = new Graph(({ locale: LOCALE.de_DE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('Jan');
+        });
+      });
+    });
+    describe('When blank is provided as format', () => {
+      describe('should hide x axis tick labels ', () => {
+        let axisData = {};
+        beforeEach(() => {
+          graph.destroy();
+          axisData = utils.deepClone(axisTimeSeries);
+          axisData.x.ticks = {
+            format: '',
+          };
+          axisData.x.upperLimit = new Date(2016, 2, 0, 0).toISOString();
+        });
+        it(' for locale nl_NL', () => {
+          graph = new Graph(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('text');
+          xAxisTickTexts.forEach((textElement) => {
+            expect(textElement.innerHTML).toBe('');
+          });
+        });
+        it('for locale fr_FR', () => {
+          graph = new Graph(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('text');
+          xAxisTickTexts.forEach((textElement) => {
+            expect(textElement.innerHTML).toBe('');
+          });
+        });
+        it('For locale sv_SE', () => {
+          graph = new Graph(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('text');
+          xAxisTickTexts.forEach((textElement) => {
+            expect(textElement.innerHTML).toBe('');
+          });
+        });
+        it('For locale es_ES', () => {
+          graph = new Graph(({ locale: LOCALE.es_ES, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('text');
+          xAxisTickTexts.forEach((textElement) => {
+            expect(textElement.innerHTML).toBe('');
+          });
+        });
+        it('For locale pt_BR', () => {
+          graph = new Graph(({ locale: LOCALE.pt_BR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('text');
+          xAxisTickTexts.forEach((textElement) => {
+            expect(textElement.innerHTML).toBe('');
+          });
+        });
+        it('For locale de_DE', () => {
+          graph = new Graph(({ locale: LOCALE.de_DE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('text');
+          xAxisTickTexts.forEach((textElement) => {
+            expect(textElement.innerHTML).toBe('');
+          });
+        });
+      });
+    });
+    describe('When input format is not provided', () => {
+      describe('should display correct month format on x axis ticks as per upper and lower limits provided by consumer', () => {
+        let axisData = {};
+        beforeEach(() => {
+          graph.destroy();
+          axisData = utils.deepClone(axisTimeSeries);
+          axisData.x.upperLimit = new Date(2016, 2, 0, 0).toISOString();
+        });
+        it('for locale nl_NL', () => {
+          graph = new Graph(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('27 dec');
+        });
+        it('for locale fr_FR', () => {
+          graph = new Graph(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('27 déc.');
+        });
+        it('For locale sv_SE', () => {
+          graph = new Graph(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('27 dec');
+        });
+        it('For locale es_ES', () => {
+          graph = new Graph(({ locale: LOCALE.es_ES, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('27 dic.');
+        });
+        it('For locale pt_BR', () => {
+          graph = new Graph(({ locale: LOCALE.pt_BR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('27 dez');
+        });
+        it('For locale de_DE', () => {
+          graph = new Graph(({ locale: LOCALE.de_DE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTick = xAxisElement.querySelector('.tick');
+          expect(xAxisTick.textContent)
+            .toBe('27. Dez');
+        });
+      });
+      describe('should display correct week format on x axis ticks as per upper and lower limits provided by consumer', () => {
+        let axisData = {};
+        beforeEach(() => {
+          graph.destroy();
+          axisData = utils.deepClone(axisTimeSeries);
+          axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+        });
+        it('for locale nl_NL', () => {
+          graph = new Graph(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('di 05');
+        });
+        it('for locale fr_FR', () => {
+          graph = new Graph(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('mar.  5');
+        });
+        it('For locale sv_SE', () => {
+          graph = new Graph(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('Tis  5');
+        });
+        it('For locale es_ES', () => {
+          graph = new Graph(({ locale: LOCALE.es_ES, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('mar. 05');
+        });
+        it('For locale pt_BR', () => {
+          graph = new Graph(({ locale: LOCALE.pt_BR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('ter 05');
+        });
+        it('For locale de_DE', () => {
+          graph = new Graph(({ locale: LOCALE.de_DE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('Di, 05.');
+        });
+      });
+    });
+    describe('Ticks with number should have no padding', () => {
+      let axisData = {};
+      beforeEach(() => {
+        graph.destroy();
+        axisData = utils.deepClone(axisTimeSeries);
+        axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+      });
+      it('for locale fr_FR', () => {
+        graph = new Graph(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+        const xAxisElement = fetchElementByClass(styles.axisX);
+        const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+        expect(xAxisTickTexts[2].textContent)
+          .toBe('mar.  5');
+      });
+      it('For locale sv_SE', () => {
+        graph = new Graph(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+        const xAxisElement = fetchElementByClass(styles.axisX);
+        const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+        expect(xAxisTickTexts[1].textContent)
+          .toBe(' 3 jan');
+        expect(xAxisTickTexts[2].textContent)
+          .toBe('Tis  5');
+      });
+    });
+
     it('Hides x axis tick labels when format is blank', () => {
       graph.destroy();
       const axisData = utils.deepClone(axisTimeSeries);

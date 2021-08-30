@@ -6,9 +6,10 @@ import { getScale, getType, getDomain } from '../core/BaseConfig';
 import constants, { AXES_ORIENTATION, AXIS_TYPE } from './constants';
 import styles from './styles';
 import utils from './utils';
-import { DEFAULT_TICK_FORMAT } from '../locale';
+import LOCALE, { DEFAULT_TICK_FORMAT } from '../locale';
 import { prepareHAxis } from './datetimeBuckets';
 import { shouldTruncateLabel, truncateLabel } from './label';
+import * as localeFormat from './localeFormat';
 
 /**
  * @module axis
@@ -162,22 +163,43 @@ const getXAxisWidth = (config) => config.canvasWidth
  * @private
  * @see https://docs.python.org/2/library/string.html#format-specification-mini-language
  * @see https://github.com/d3/d3-time-format/blob/master/README.md#locales
- * @param {object} locale - d3 Locale object
+ * @param {object} localeObject - d3 Locale object
  * @param {string} format - tick format string
  * @param {string} type - default or timeseries chart type
  * @returns {object} d3 locale object formatter
  */
-const getAxisTickFormat = (locale, format, type = AXIS_TYPE.DEFAULT) => {
+const getAxisTickFormat = (localeObject, format, type = AXIS_TYPE.DEFAULT) => {
   if (format === '') {
     return format;
   }
+
   const localeVar = type === AXIS_TYPE.TIME_SERIES
-    ? d3.timeFormatDefaultLocale(locale)
-    : d3.formatDefaultLocale(locale);
+    ? d3.timeFormatDefaultLocale(localeObject)
+    : d3.formatDefaultLocale(localeObject);
 
   if (utils.isEmpty(format)) {
-    return DEFAULT_TICK_FORMAT;
+    if (type === 'default') {
+      return DEFAULT_TICK_FORMAT;
+    }
+
+    switch (localeObject.locale) {
+    case LOCALE.es_ES.locale:
+      return localeFormat.getDefaultDateFormat;
+    case LOCALE.pt_BR.locale:
+      return localeFormat.getDefaultDateFormat;
+    case LOCALE.de_DE.locale:
+      return localeFormat.getGermanDateFormat;
+    case LOCALE.sv_SE.locale:
+      return localeFormat.getSwedishDateFormat;
+    case LOCALE.nl_NL.locale:
+      return localeFormat.getDefaultDateFormat;
+    case LOCALE.fr_FR.locale:
+      return localeFormat.getFrenchDateFormat;
+    default:
+      return DEFAULT_TICK_FORMAT;
+    }
   }
+
   return localeVar.format(format);
 };
 

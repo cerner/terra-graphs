@@ -28,6 +28,7 @@ import {
   getData,
   legendJSON,
 } from './helpers';
+import { axisTimeSeries } from '../Graph/helpers';
 
 describe('Gantt - Generate', () => {
   let gantt = null;
@@ -606,7 +607,7 @@ describe('Gantt - Generate', () => {
         const tick = xAxisElement
           .querySelector('.tick')
           .querySelector('text');
-        expect(tick.textContent).toBe('ene 2018');
+        expect(tick.textContent).toBe('ene. 2018');
       });
       it('Creates x axis with ticks in provided locale - PT_BR', () => {
         gantt.destroy();
@@ -624,7 +625,325 @@ describe('Gantt - Generate', () => {
         const tick = xAxisElement
           .querySelector('.tick')
           .querySelector('text');
-        expect(tick.textContent).toBe('Jan 2018');
+        expect(tick.textContent).toBe('jan 2018');
+      });
+      describe('When format is provided', () => {
+        describe('should display date as input format', () => {
+          let localeAxisObj = {};
+          beforeEach(() => {
+            gantt.destroy();
+            localeAxisObj = utils.deepClone(axisJSON);
+            localeAxisObj.x.ticks = {
+              format: '%b',
+            };
+            localeAxisObj.x.upperLimit = new Date(2018, 3, 0, 12).toISOString();
+          });
+          it('for locale nl_NL', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.nl_NL,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('jan');
+          });
+          it('for locale fr_FR', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.fr_FR,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('janv.');
+          });
+          it('for locale sv_SE', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.sv_SE,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('jan');
+          });
+          it('For locale es_ES', () => {
+            gantt = new Gantt(({ locale: LOCALE.es_ES, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('ene.');
+          });
+          it('For locale pt_BR', () => {
+            gantt = new Gantt(({ locale: LOCALE.pt_BR, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('jan');
+          });
+          it('For locale de_DE', () => {
+            gantt = new Gantt(({ locale: LOCALE.de_DE, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('Jan');
+          });
+        });
+      });
+      describe('When blank is provided as format', () => {
+        describe('should hide x axis tick labels ', () => {
+          let localeAxisObj = {};
+          beforeEach(() => {
+            gantt.destroy();
+            localeAxisObj = utils.deepClone(axisJSON);
+            localeAxisObj.x.ticks = {
+              format: '',
+            };
+            localeAxisObj.x.upperLimit = new Date(2018, 3, 0, 12).toISOString();
+          });
+          it('for locale nl_NL', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.nl_NL,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const ticks = xAxisElement
+              .querySelectorAll('text');
+            ticks.forEach((textElement) => {
+              expect(textElement.innerHTML).toBe('');
+            });
+          });
+          it('for locale fr_FR', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.fr_FR,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const ticks = xAxisElement
+              .querySelectorAll('text');
+            ticks.forEach((textElement) => {
+              expect(textElement.innerHTML).toBe('');
+            });
+          });
+          it('for locale sv_SE', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.sv_SE,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const ticks = xAxisElement
+              .querySelectorAll('text');
+            ticks.forEach((textElement) => {
+              expect(textElement.innerHTML).toBe('');
+            });
+          });
+          it('For locale es_ES', () => {
+            gantt = new Gantt(({ locale: LOCALE.es_ES, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const ticks = xAxisElement
+              .querySelectorAll('text');
+            ticks.forEach((textElement) => {
+              expect(textElement.innerHTML).toBe('');
+            });
+          });
+          it('For locale pt_BR', () => {
+            gantt = new Gantt(({ locale: LOCALE.pt_BR, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const ticks = xAxisElement
+              .querySelectorAll('text');
+            ticks.forEach((textElement) => {
+              expect(textElement.innerHTML).toBe('');
+            });
+          });
+          it('For locale de_DE', () => {
+            gantt = new Gantt(({ locale: LOCALE.de_DE, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const ticks = xAxisElement
+              .querySelectorAll('text');
+            ticks.forEach((textElement) => {
+              expect(textElement.innerHTML)
+                .toBe('');
+            });
+          });
+        });
+      });
+      describe('When input format is not provided', () => {
+        describe('should display axis ticks as per upper and lower limits provided by consumer', () => {
+          let localeAxisObj = {};
+          beforeEach(() => {
+            gantt.destroy();
+            localeAxisObj = utils.deepClone(axisJSON);
+            localeAxisObj.x.upperLimit = new Date(2018, 2, 0, 12).toISOString();
+          });
+          it('for locale nl_NL', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.nl_NL,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('31 dec');
+          });
+          it('for locale fr_FR', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.fr_FR,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('31 déc.');
+          });
+          it('for locale sv_SE', () => {
+            gantt = new Gantt(
+              ({
+                locale: LOCALE.sv_SE,
+                ...getAxes(localeAxisObj),
+              }),
+            );
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('31 dec');
+          });
+          it('For locale es_ES', () => {
+            gantt = new Gantt(({ locale: LOCALE.es_ES, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('31 dic.');
+          });
+          it('For locale pt_BR', () => {
+            gantt = new Gantt(({ locale: LOCALE.pt_BR, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('31 dez');
+          });
+          it('For locale de_DE', () => {
+            gantt = new Gantt(({ locale: LOCALE.de_DE, ...getAxes(localeAxisObj) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const tick = xAxisElement
+              .querySelector('.tick')
+              .querySelector('text');
+            expect(tick.textContent)
+              .toBe('31. Dez');
+          });
+        });
+        describe('should display correct week format on x axis ticks as per upper and lower limits provided by consumer', () => {
+          let axisData = {};
+          beforeEach(() => {
+            gantt.destroy();
+            axisData = utils.deepClone(axisTimeSeries);
+            axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+          });
+          it('for locale nl_NL', () => {
+            gantt = new Gantt(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('di 05');
+          });
+          it('for locale fr_FR', () => {
+            gantt = new Gantt(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('mar.  5');
+          });
+          it('For locale sv_SE', () => {
+            gantt = new Gantt(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('Tis  5');
+          });
+          it('For locale es_ES', () => {
+            gantt = new Gantt(({ locale: LOCALE.es_ES, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('mar. 05');
+          });
+          it('For locale pt_BR', () => {
+            gantt = new Gantt(({ locale: LOCALE.pt_BR, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('ter 05');
+          });
+          it('For locale de_DE', () => {
+            gantt = new Gantt(({ locale: LOCALE.de_DE, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('Di, 05.');
+          });
+        });
+      });
+      describe('Ticks with number should have no padding', () => {
+        let axisData = {};
+        beforeEach(() => {
+          gantt.destroy();
+          axisData = utils.deepClone(axisTimeSeries);
+          axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+        });
+        it('for locale fr_FR', () => {
+          gantt = new Gantt(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('mar.  5');
+        });
+        it('For locale sv_SE', () => {
+          gantt = new Gantt(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+          const xAxisElement = fetchElementByClass(styles.axisX);
+          const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+          expect(xAxisTickTexts[1].textContent)
+            .toBe(' 3 jan');
+          expect(xAxisTickTexts[2].textContent)
+            .toBe('Tis  5');
+        });
       });
     });
   });
