@@ -4,57 +4,20 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
-import pairedResultTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseries';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisData';
-
-export const multiRegion = {
-  high: [
-    {
-      axis: 'y',
-      start: 120,
-      end: 170,
-      color: '#c8cacb',
-    },
-  ],
-  low: [
-    {
-      axis: 'y',
-      start: 20,
-      end: 100,
-    },
-  ],
-};
-export const multiRegionAlt = {
-  high: [
-    {
-      axis: 'y2',
-      start: 210,
-      end: 280,
-      color: '#c8cacb',
-    },
-  ],
-  low: [
-    {
-      axis: 'y2',
-      start: 175,
-      end: 200,
-    },
-  ],
-};
+import pairedResultTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseriesWithY2Axis';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultRegionDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultRegionDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(pairedResultTimeseries('#timeseriesPairedResultGraph'));
-graphConfig.axis.y2.show = true;
-const contentData = utils.deepClone(exampleData);
-contentData[0].regions = multiRegion;
-contentData[1].regions = multiRegionAlt;
+const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 const MultipleRegionPiaredResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    contentData.forEach((data) => {
+    dataset.forEach((data) => {
       graph.loadContent(Carbon.api.pairedResult(data));
     });
   }, []);

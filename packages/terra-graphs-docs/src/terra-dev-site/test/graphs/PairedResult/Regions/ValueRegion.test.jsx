@@ -5,11 +5,8 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import pairedResultDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultDefault';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultValueRegionData';
 
-/*
-Please refer documentation below to see graphConfig and data objects.
-*/
 const graphConfig = utils.deepClone(pairedResultDefault('#simplePairedResultGraph'));
-const dataset = utils.deepClone(data);
+const dataset = [utils.deepClone(data)];
 
 export default () => (
   <React.Fragment>

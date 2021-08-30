@@ -4,12 +4,13 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/dynamicPanningData';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultDynamicPanningDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultDynamicPanningDataset2';
 
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0])],
+  dataset: [utils.deepClone(dataset1)],
   graphConfig: utils.deepClone(getPairedResultTimeseriesPanningConfig('#PairedResultDynamicData')),
 };
 
@@ -17,7 +18,7 @@ const PairedResultPanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
     let hour;
-    const newDataset = [utils.deepClone(data[1])];
+    const newDataset = [utils.deepClone(dataset2)];
 
     switch (action.type) {
       case 'panLeft':

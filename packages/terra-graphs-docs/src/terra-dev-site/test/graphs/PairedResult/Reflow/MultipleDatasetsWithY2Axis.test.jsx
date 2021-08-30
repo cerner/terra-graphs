@@ -3,14 +3,12 @@ import PairedResultGraph from '@cerner/terra-graphs/lib/components/PairedResult/
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/multipleDatasetWithY2PanningData';
+import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanningY2Axis';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultPanningWithY2AxisDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultPanningWithY2AxisDataset2';
 
 const graphConfig = utils.deepClone(getPairedResultTimeseriesPanningConfig('#pairedResultMultipleDatasetWithY2Axis'));
-graphConfig.axis.y2.show = true;
-
-const dataset = utils.deepClone(data);
-
+const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 const initialState = {
   initial: 0,
   factor: 3,

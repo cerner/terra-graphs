@@ -5,23 +5,14 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
-import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/simplePanningData';
+import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanningWithEventline';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultSimplePanningData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getPairedResultTimeseriesPanningConfig('#PairedResultDynamicEventline'));
-graphConfig.eventline = [
-  {
-    color: Carbon.helpers.COLORS.GREY,
-    style: {
-      strokeDashArray: '4,4',
-    },
-    value: new Date(2016, 0, 1, 8).toISOString(),
-  },
-];
-const dataset = [utils.deepClone(exampleData[0])];
+const dataset = [utils.deepClone(exampleData)];
 
 const state = {
   initial: 0,
@@ -51,8 +42,19 @@ const PairedResultDynamicEventlinePanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
+    return {
+      initial: hour,
+      factor: panState.factor,
+    };
+  };
+
+  const [panState, dispatch] = React.useReducer(reducer, state);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
 
     const newEventline = [
       {
@@ -65,19 +67,12 @@ const PairedResultDynamicEventlinePanningExample = () => {
     ];
 
     const newDataset = {
-      panData: [utils.deepClone(exampleData[0])],
+      panData: [utils.deepClone(exampleData)],
       eventline: newEventline,
     };
 
     graph.reflowMultipleDatasets(newDataset);
-
-    return {
-      initial: hour,
-      factor: panState.factor,
-    };
-  };
-
-  const [, dispatch] = React.useReducer(reducer, state);
+  }, [panState.initial]);
 
   return (
     <React.Fragment>

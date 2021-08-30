@@ -3,8 +3,8 @@ import {
   loadPopup,
 } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
-const data = [{
-  key: 'uid_3',
+const data = {
+  key: 'value_region_dataset',
   label: {
     high: {
       display: 'High',
@@ -185,6 +185,6 @@ const data = [{
       },
     },
   ],
-}];
+};
 
 export default data;
