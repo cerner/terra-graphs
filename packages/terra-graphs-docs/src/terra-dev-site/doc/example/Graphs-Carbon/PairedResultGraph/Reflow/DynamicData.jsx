@@ -6,8 +6,8 @@ import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanning';
-import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/dynamicPanningDataset1';
-import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/dynamicPanningDataset2';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultDynamicPanningDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultDynamicPanningDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects

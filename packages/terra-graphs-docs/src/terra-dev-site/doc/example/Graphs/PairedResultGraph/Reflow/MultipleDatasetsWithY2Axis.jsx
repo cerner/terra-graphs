@@ -4,8 +4,8 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanningY2Axis';
-import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/panningWithY2AxisDataset1';
-import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/panningWithY2AxisDataset2';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultPanningWithY2AxisDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultPanningWithY2AxisDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
