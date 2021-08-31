@@ -89,6 +89,7 @@
     "raf": "^3.4.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-intl": "^2.9.0",
     "react-json-pretty": "^2.2.0",
     "react-test-renderer": "^16.4.2",
     "regenerator-runtime": "^0.13.2",
