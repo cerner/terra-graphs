@@ -1,4 +1,5 @@
 export default {
+  locale: 'fr_FR',
   decimal: ',',
   thousands: '.',
   grouping: [3],

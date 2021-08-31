@@ -3,6 +3,11 @@
 ## Unreleased
 
 * Changed
+  * Updated date format strings for locales as per internationalization Standards.
+
+## 2.17.3 - (August 17, 2021)
+
+* Changed
   * Fixed a bug causing a UI glitch while rendering graphs having Y2 axis.
   * Updated hyperlinks in `README.md` to reflect the updated package name from `terra-docs` to `terra-graphs-docs`.
 

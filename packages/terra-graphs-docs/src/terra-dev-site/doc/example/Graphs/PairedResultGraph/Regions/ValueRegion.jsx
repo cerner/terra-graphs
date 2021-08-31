@@ -9,7 +9,7 @@ import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pai
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(pairedResultDefault('#simplePairedResultGraph'));
-const dataset = utils.deepClone(data);
+const dataset = [utils.deepClone(data)];
 
 export default () => (
   <React.Fragment>

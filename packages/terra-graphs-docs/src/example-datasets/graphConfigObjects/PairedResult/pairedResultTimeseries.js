@@ -1,6 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
-const pairedResultTimeseries = (id) => ({
+const getPairedResultTimeseriesConfig = (id) => ({
   bindTo: id,
   axis: {
     x: {
@@ -30,4 +30,4 @@ const pairedResultTimeseries = (id) => ({
   showHGrid: true,
 });
 
-export default pairedResultTimeseries;
+export default getPairedResultTimeseriesConfig;

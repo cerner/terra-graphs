@@ -18,6 +18,7 @@ import {
   valuesJSON,
 } from './helpers';
 import { loadCustomJasmineMatcher } from '../../helpers/commonHelpers';
+import { axisTimeSeries } from '../Graph/helpers';
 
 describe('Timeline', () => {
   let timeline = null;
@@ -623,9 +624,10 @@ describe('Timeline', () => {
     describe('Axes', () => {
       it('Creates the x axis markup', () => {
         const xAxisElement = fetchElementByClass(styles.axisX);
-        expect(xAxisElement.getAttribute('class')).toBe(
-                    `${styles.axis} ${styles.axisX}`,
-        );
+        expect(xAxisElement.getAttribute('class'))
+          .toBe(
+            `${styles.axis} ${styles.axisX}`,
+          );
       });
       it('Ignores x axis show/hide property', () => {
         timeline.destroy();
@@ -634,10 +636,12 @@ describe('Timeline', () => {
         timeline = new Timeline(getAxes(hiddenAxisObj));
         timeline.loadContent(getData(valuesJSON));
         const xAxisElement = fetchElementByClass(styles.axisX);
-        expect(xAxisElement.getAttribute('class')).toBe(
-                    `${styles.axis} ${styles.axisX}`,
-        );
-        expect(xAxisElement.getAttribute('aria-hidden')).toBe('false');
+        expect(xAxisElement.getAttribute('class'))
+          .toBe(
+            `${styles.axis} ${styles.axisX}`,
+          );
+        expect(xAxisElement.getAttribute('aria-hidden'))
+          .toBe('false');
       });
       describe('Locale', () => {
         it('Creates x axis with ticks in default locale', () => {
@@ -651,7 +655,8 @@ describe('Timeline', () => {
           const tick = xAxisElement
             .querySelector('.tick')
             .querySelector('text');
-          expect(tick.textContent).toBe('Jan 2018');
+          expect(tick.textContent)
+            .toBe('Jan 2018');
         });
         it('Creates x axis with ticks in provided locale - DE', () => {
           timeline.destroy();
@@ -670,7 +675,8 @@ describe('Timeline', () => {
           const tick = xAxisElement
             .querySelector('.tick')
             .querySelector('text');
-          expect(tick.textContent).toBe('Jan 2018');
+          expect(tick.textContent)
+            .toBe('Jan 2018');
         });
         it('Creates x axis with ticks in provided locale - FR', () => {
           timeline.destroy();
@@ -689,7 +695,8 @@ describe('Timeline', () => {
           const tick = xAxisElement
             .querySelector('.tick')
             .querySelector('text');
-          expect(tick.textContent).toBe('janv. 2018');
+          expect(tick.textContent)
+            .toBe('janv. 2018');
         });
         it('Creates x axis with ticks in provided locale - ES', () => {
           timeline.destroy();
@@ -707,7 +714,8 @@ describe('Timeline', () => {
           const tick = xAxisElement
             .querySelector('.tick')
             .querySelector('text');
-          expect(tick.textContent).toBe('ene 2018');
+          expect(tick.textContent)
+            .toBe('ene. 2018');
         });
         it('Creates x axis with ticks in provided locale - PT_BR', () => {
           timeline.destroy();
@@ -725,7 +733,332 @@ describe('Timeline', () => {
           const tick = xAxisElement
             .querySelector('.tick')
             .querySelector('text');
-          expect(tick.textContent).toBe('Jan 2018');
+          expect(tick.textContent)
+            .toBe('jan 2018');
+        });
+        describe('When format is provided', () => {
+          describe('should display date as input format', () => {
+            let localeAxisObj = {};
+            beforeEach(() => {
+              timeline.destroy();
+              localeAxisObj = utils.deepClone(axisJSON);
+              localeAxisObj.x.ticks = {
+                format: '%b',
+              };
+              localeAxisObj.x.upperLimit = new Date(2018, 3, 0, 12).toISOString();
+            });
+            it('for locale nl_NL', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.nl_NL,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('dec');
+            });
+            it('for locale fr_FR', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.fr_FR,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('déc.');
+            });
+            it('for locale sv_SE', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.sv_SE,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('dec');
+            });
+            it('For locale es_ES', () => {
+              timeline = new Timeline(({ locale: LOCALE.es_ES, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('dic.');
+            });
+            it('For locale pt_BR', () => {
+              timeline = new Timeline(({ locale: LOCALE.pt_BR, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('dez');
+            });
+            it('For locale de_DE', () => {
+              timeline = new Timeline(({ locale: LOCALE.de_DE, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('Dez');
+            });
+          });
+        });
+        describe('When blank is provided as format', () => {
+          describe('should hide x axis tick labels ', () => {
+            let localeAxisObj = {};
+            beforeEach(() => {
+              timeline.destroy();
+              localeAxisObj = utils.deepClone(axisJSON);
+              localeAxisObj.x.ticks = {
+                format: '',
+              };
+              localeAxisObj.x.upperLimit = new Date(2018, 3, 0, 12).toISOString();
+            });
+            it('for locale nl_NL', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.nl_NL,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const ticks = xAxisElement
+                .querySelectorAll('text');
+              ticks.forEach((textElement) => {
+                expect(textElement.innerHTML)
+                  .toBe('');
+              });
+            });
+            it('for locale fr_FR', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.fr_FR,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const ticks = xAxisElement
+                .querySelectorAll('text');
+              ticks.forEach((textElement) => {
+                expect(textElement.innerHTML)
+                  .toBe('');
+              });
+            });
+            it('for locale sv_SE', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.sv_SE,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const ticks = xAxisElement
+                .querySelectorAll('text');
+              ticks.forEach((textElement) => {
+                expect(textElement.innerHTML)
+                  .toBe('');
+              });
+            });
+            it('For locale es_ES', () => {
+              timeline = new Timeline(({ locale: LOCALE.es_ES, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const ticks = xAxisElement
+                .querySelectorAll('text');
+              ticks.forEach((textElement) => {
+                expect(textElement.innerHTML)
+                  .toBe('');
+              });
+            });
+            it('For locale pt_BR', () => {
+              timeline = new Timeline(({ locale: LOCALE.pt_BR, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const ticks = xAxisElement
+                .querySelectorAll('text');
+              ticks.forEach((textElement) => {
+                expect(textElement.innerHTML)
+                  .toBe('');
+              });
+            });
+            it('For locale de_DE', () => {
+              timeline = new Timeline(({ locale: LOCALE.de_DE, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const ticks = xAxisElement
+                .querySelectorAll('text');
+              ticks.forEach((textElement) => {
+                expect(textElement.innerHTML)
+                  .toBe('');
+              });
+            });
+          });
+        });
+        describe('When input format is not provided', () => {
+          describe('should display axis ticks as per upper and lower limits provided by consumer', () => {
+            let localeAxisObj = {};
+            beforeEach(() => {
+              timeline.destroy();
+              localeAxisObj = utils.deepClone(axisJSON);
+              localeAxisObj.x.upperLimit = new Date(2018, 3, 0, 12).toISOString();
+            });
+            it('for locale nl_NL', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.nl_NL,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('31 dec');
+            });
+            it('for locale fr_FR', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.fr_FR,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('31 déc.');
+            });
+            it('for locale sv_SE', () => {
+              timeline = new Timeline(
+                ({
+                  locale: LOCALE.sv_SE,
+                  ...getAxes(localeAxisObj),
+                }),
+              );
+              const xAxisElement = fetchElementByClass(styles.axisX);
+
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('31 dec');
+            });
+            it('For locale es_ES', () => {
+              timeline = new Timeline(({ locale: LOCALE.es_ES, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('31 dic.');
+            });
+            it('For locale pt_BR', () => {
+              timeline = new Timeline(({ locale: LOCALE.pt_BR, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('31 dez');
+            });
+            it('For locale de_DE', () => {
+              timeline = new Timeline(({ locale: LOCALE.de_DE, ...getAxes(localeAxisObj) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const tick = xAxisElement
+                .querySelector('.tick')
+                .querySelector('text');
+              expect(tick.textContent)
+                .toBe('31. Dez');
+            });
+          });
+          describe('should display correct week format on x axis ticks as per upper and lower limits provided by consumer', () => {
+            let axisData = {};
+            beforeEach(() => {
+              timeline.destroy();
+              axisData = utils.deepClone(axisTimeSeries);
+              axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+            });
+            it('for locale nl_NL', () => {
+              timeline = new Timeline(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+              expect(xAxisTickTexts[2].textContent)
+                .toBe('di 05');
+            });
+            it('for locale fr_FR', () => {
+              timeline = new Timeline(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+              expect(xAxisTickTexts[2].textContent)
+                .toBe('mar.  5');
+            });
+            it('For locale sv_SE', () => {
+              timeline = new Timeline(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+              expect(xAxisTickTexts[2].textContent)
+                .toBe('Tis  5');
+            });
+            it('For locale es_ES', () => {
+              timeline = new Timeline(({ locale: LOCALE.es_ES, ...getAxes(axisData) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+              expect(xAxisTickTexts[2].textContent)
+                .toBe('mar. 05');
+            });
+            it('For locale pt_BR', () => {
+              timeline = new Timeline(({ locale: LOCALE.pt_BR, ...getAxes(axisData) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+              expect(xAxisTickTexts[2].textContent)
+                .toBe('ter 05');
+            });
+            it('For locale de_DE', () => {
+              timeline = new Timeline(({ locale: LOCALE.de_DE, ...getAxes(axisData) }));
+              const xAxisElement = fetchElementByClass(styles.axisX);
+              const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+              expect(xAxisTickTexts[2].textContent)
+                .toBe('Di, 05.');
+            });
+          });
+        });
+        describe('Ticks with number should have no padding', () => {
+          let axisData = {};
+          beforeEach(() => {
+            timeline.destroy();
+            axisData = utils.deepClone(axisTimeSeries);
+            axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+          });
+          it('for locale fr_FR', () => {
+            timeline = new Timeline(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('mar.  5');
+          });
+          it('For locale sv_SE', () => {
+            timeline = new Timeline(({ locale: LOCALE.sv_SE, ...getAxes(axisData) }));
+            const xAxisElement = fetchElementByClass(styles.axisX);
+            const xAxisTickTexts = xAxisElement.querySelectorAll('.tick text');
+            expect(xAxisTickTexts[1].textContent)
+              .toBe(' 3 jan');
+            expect(xAxisTickTexts[2].textContent)
+              .toBe('Tis  5');
+          });
         });
       });
     });

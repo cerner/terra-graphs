@@ -1,4 +1,5 @@
 export default {
+  locale: 'de_DE',
   decimal: ',',
   thousands: '.',
   grouping: [3],
@@ -16,7 +17,7 @@ export default {
     'Freitag',
     'Samstag',
   ],
-  shortDays: ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'],
+  shortDays: ['So,', 'Mo,', 'Di,', 'Mi,', 'Do,', 'Fr,', 'Sa,'],
   months: [
     'Januar',
     'Februar',
