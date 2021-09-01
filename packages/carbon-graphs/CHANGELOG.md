@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.18.0 - (August 31, 2021)
+
 * Changed
   * Updated date format strings for locales as per internationalization Standards.
 
