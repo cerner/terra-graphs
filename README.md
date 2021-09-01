@@ -25,32 +25,28 @@ Terra Graphs is a graphing library built using D3 visualization library. It prov
   - [Dependencies](#dependencies)
   - [Install](#install)
 - [Features](#features)
-    -   [Graph types](#graph-types)
-    -   [Graph Settings and Toggles](#graph-settings-and-toggles)
-    -   [Other highlights](#other-highlights)
+  - [Graph types](#graph-types)
+  - [Graph Settings and Toggles](#graph-settings-and-toggles)
+  - [Other highlights](#other-highlights)
 - [Internationalization (I18n)](#internationalization-i18n)
   - [Packages Requiring I18n](#packages-requiring-i18n)
 - [Contributing](#contributing)
 - [Local Development](#local-development)
 - [LICENSE](#license)
 
+---
 
-<hr>
-<!--  -->
+## Packages
 
-<h2 id="packages">
-  Packages
-</h2>
+This repo consists of two packages:
 
-This repo consists of two packages: 
 1. Carbon-graphs: Vanilla JavaScript implementation of the graphing library.
 2. Terra-graphs: React implementation of graphing library.
 
-<h3 id="versioning">
-  Versioning
-</h3>
+### Versioning
 
 When a component reaches v1.0.0., it is considered to be stable and will follow [SemVer](http://semver.org/) for versioning.
+
 1. MAJOR versions represent breaking changes
 2. MINOR versions represent added functionality in a backwards-compatible manner
 3. PATCH versions represent backwards-compatible bug fixes
@@ -62,23 +58,17 @@ We view the React.js props API of our components as our main public API. We use 
 Prior to components reaching v1.0.0, a component is considered to be in a beta stage.
 Components in beta stage may include breaking changes, new features, and bug fixes all within v0.x.x releases.
 
-<h3 id="status">
-  Status
-</h3>
+### Status
 
 ![Stable](https://badgen.net/badge/status/Stable/green)
 ![Beta](https://badgen.net/badge/status/Beta/orange)
 ![Deprecated](https://badgen.net/badge/status/Deprecated/grey)
 
-<!-- AUTO-GENERATED-CONTENT:START (SUBPACKAGELIST) -->
 | Packages     | Version | Status | Dependencies |
 |--------------------|---------|--------|--------------|
 | [Carbon-graphs](./packages/carbon-graphs/README.md)| ![npm](https://img.shields.io/npm/v/@cerner/carbon-graphs)| ![Stable](https://badgen.net/badge/status/Stable/green)| [![carbon-graphs](https://img.shields.io/david/cerner/terra-graphs?path=packages%2Fcarbon-graphs)](https://david-dm.org/cerner/terra-graphs?path=packages/carbon-graphs)|
 
-<!-- AUTO-GENERATED-CONTENT:END *-->
-
-<hr>
-<!--  -->
+---
 
 ## Supported Browsers
 
@@ -90,16 +80,16 @@ Components in beta stage may include breaking changes, new features, and bug fix
 | Internet Explorer           | 10 & 11 |
 | Safari & Mobile Safari      | Current |
 
-<hr>
-<!--  -->
+---
 
 ## Getting Started
 
 ### Dependencies
--   D3
--   Polyfills:
-    -   Object.assign
-    -   Object.values
+
+- D3
+- Polyfills:
+  - Object.assign
+  - Object.values
 
 ### Install
 
@@ -109,102 +99,85 @@ You can install Carbon via `npm` or download the [latest release](https://github
 npm i @cerner/carbon-graphs --save-dev
 ```
 
-### Getting Started
+- [Getting Started](./packages/terra-graphs-docs/docs/getting-started/GettingStarted.md)
+- [API Reference](./packages/terra-graphs-docs/docs/README.md)
 
--   [Getting Started](./packages/terra-graphs-docs/docs/getting-started/GettingStarted.md)
--   [API Reference](./packages/terra-graphs-docs/docs/README.md)
-
-<hr>
-<!--  -->
+---
 
 ## Features
 
--   Adheres to Cerner standard design template
--   Responsive
--   Native-built graphs
--   Default theme for data points
+- Adheres to Cerner standard design template
+- Responsive
+- Native-built graphs
+- Default theme for data points
 
 ### Graph types
 
--   [Line](./packages/terra-graphs-docs/docs/controls/Line.md#usage)
--   [Multi Line](./packages/terra-graphs-docs/docs/controls/Line.md#multi-line)
--   [Spline Line](./packages/terra-graphs-docs/docs/controls/Line.md#spline-line)
--   [Paired Result](./packages/terra-graphs-docs/docs/controls/PairedResult.md#usage)
--   [Bar](./packages/terra-graphs-docs/docs/controls/Bar.md#usage)
--   [Timeline](./packages/terra-graphs-docs/docs/controls/Timeline.md#usage)
--   [Pie](./packages/terra-graphs-docs/docs/controls/Pie.md#usage)
--   [Gantt](./packages/terra-graphs-docs/docs/controls/Gantt.md#usage)
--   [Scatter](./packages/terra-graphs-docs/docs/controls/Scatter.md#usage)
--   [Bubble](./packages/terra-graphs-docs/docs/controls/Bubble.md#usage)
-    -   [Bubble Single Dataset](./packages/terra-graphs-docs/docs/controls/BubbleSingleDataset.md)
-    -   [Bubble Multiple Dataset](./packages/terra-graphs-docs/docs/controls/BubbleMultipleDataset.md)
-
+- [Line](./packages/terra-graphs-docs/docs/controls/Line.md#usage)
+- [Multi Line](./packages/terra-graphs-docs/docs/controls/Line.md#multi-line)
+- [Spline Line](./packages/terra-graphs-docs/docs/controls/Line.md#spline-line)
+- [Paired Result](./packages/terra-graphs-docs/docs/controls/PairedResult.md#usage)
+- [Bar](./packages/terra-graphs-docs/docs/controls/Bar.md#usage)
+- [Timeline](./packages/terra-graphs-docs/docs/controls/Timeline.md#usage)
+- [Pie](./packages/terra-graphs-docs/docs/controls/Pie.md#usage)
+- [Gantt](./packages/terra-graphs-docs/docs/controls/Gantt.md#usage)
+- [Scatter](./packages/terra-graphs-docs/docs/controls/Scatter.md#usage)
+- [Bubble](./packages/terra-graphs-docs/docs/controls/Bubble.md#usage)
+  - [Bubble Single Dataset](./packages/terra-graphs-docs/docs/controls/BubbleSingleDataset.md)
+  - [Bubble Multiple Dataset](./packages/terra-graphs-docs/docs/controls/BubbleMultipleDataset.md)
 
 ### Graph Settings and Toggles
 
--   Legend
--   Labels
--   Grid `vertical & horizontal`
--   Axes `x and y or y2`
--   Regions `horizontal`
+- Legend
+- Labels
+- Grid `vertical & horizontal`
+- Axes `x and y or y2`
+- Regions `horizontal`
 
 ### Other highlights
 
--   Supports different shapes for each data-set
--   Supports custom SVG shapes for data-sets
--   `Non-contiguous` data point line graph
--   `Sparkline` graph (with Shapes as hidden)
--   Criticality indicators for data point
--   Locale support for axes ticks
--   Y and Y2 Axes label along with respective shapes
--   Graph Panning
+- Supports different shapes for each data-set
+- Supports custom SVG shapes for data-sets
+- `Non-contiguous` data point line graph
+- `Sparkline` graph (with Shapes as hidden)
+- Criticality indicators for data point
+- Locale support for axes ticks
+- Y and Y2 Axes label along with respective shapes
+- Graph Panning
 
-<hr>
-<!--  -->
-
-<h2 id="internationalization-i18n">
-  Internationalization (I18n)
-</h2>
+## Internationalization (I18n)
 
 Please review [Terra's Internationalization documentation](https://engineering.cerner.com/terra-ui/guides/terra-ui/internationalization/internationalization-intro) for more information. Included are directions on consumption and how internationalization is setup.
 
-<hr>
-<!--  -->
-
-<h2 id="contributing">
-  Contributing
-</h2>
+## Contributing
 
 Please read through our [contributing guidelines](CONTRIBUTING.md). Included are directions for issue reporting and pull requests.
 
-<hr>
-<!--  -->
+---
 
-<h2 id="local-development">
-  Local Development
-</h2>
+## Local Development
 
-* For local development on Terra-graphs, first install dependencies using:
+- For local development on Terra-graphs, first install dependencies using:
+
 ```sh
 npm install
 ```
 
-* Tests can be executed using:
+- Tests can be executed using:
+
 ```sh
 npm run test
 ```
 
-* To view any visual changes, the dev site can be launched using:
+- To view any visual changes, the dev site can be launched using:
+
 ```sh
-npm run dev 
+npm run dev
 ```
 
-<hr>
-<!--  -->
+---
 
-<h2 id="license">
-  LICENSE
-</h2>
+## LICENSE
 
 Copyright 2020 - present Cerner Innovation, Inc.
 
