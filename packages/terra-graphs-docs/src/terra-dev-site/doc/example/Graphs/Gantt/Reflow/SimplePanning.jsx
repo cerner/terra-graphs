@@ -10,8 +10,7 @@ import graphData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObject
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getGanttPanningConfig('#simpleGanttPanning'));
-
-const dataset = utils.deepClone(graphData);
+const dataset = [utils.deepClone(graphData)];
 
 const initialState = {
   initial: 0,

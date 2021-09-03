@@ -3,22 +3,12 @@ import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import getGanttPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttPanning';
+import getGanttPanningWithEventlineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttPanningWithEventline';
 import graphData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/simplePanningData';
 import Carbon from '@cerner/carbon-graphs/src/js/carbon';
 
-const graphConfig = utils.deepClone(getGanttPanningConfig('#GanttPanningWithDynamicEventline'));
-graphConfig.eventline = [
-  {
-    color: Carbon.helpers.COLORS.GREY,
-    style: {
-      strokeDashArray: '4,4',
-    },
-    value: new Date(2016, 0, 1, 4).toISOString(),
-  },
-];
-
-const dataset = utils.deepClone(graphData);
+const graphConfig = utils.deepClone(getGanttPanningWithEventlineConfig('#GanttPanningWithDynamicEventline'));
+const dataset = [utils.deepClone(graphData)];
 
 const initialState = {
   initial: 0,
@@ -31,7 +21,7 @@ const GanttPanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphConfig = utils.deepClone(panState.graphConfig);
     let hour;
-    const newDataset = [utils.deepClone(graphData[0])];
+    const newDataset = [utils.deepClone(graphData)];
 
     switch (action.type) {
       case 'panLeft':

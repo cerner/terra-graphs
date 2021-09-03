@@ -4,10 +4,11 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getGanttPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttPanning';
-import graphData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/multipleDatasetsPanningData';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/panningMultipleDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/panningMultipleDataset2';
 
 const graphConfig = utils.deepClone(getGanttPanningConfig('#ganttPanningMultipleDatasets'));
-const dataset = utils.deepClone(graphData);
+const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 const initialState = {
   initial: 0,

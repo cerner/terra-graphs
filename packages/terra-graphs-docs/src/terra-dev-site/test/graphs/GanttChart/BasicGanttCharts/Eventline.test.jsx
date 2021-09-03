@@ -1,33 +1,16 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import getGanttDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefault';
+import getGanttEventlineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttEventlineConfig';
 import loadTracks from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/loadTracks';
-import tasksData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/tasksData';
+import taskDataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset1';
+import taskDataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset2';
+import taskDataset3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset3';
+import taskDataset4 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset4';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects
-*/
-const graphConfig = utils.deepClone(getGanttDefaultConfig('#ganttEventline'));
-graphConfig.eventline = [
-  {
-    color: Carbon.helpers.COLORS.GREY,
-    style: {
-      strokeDashArray: '4,4',
-    },
-    value: new Date(2018, 10, 13).toISOString(),
-  },
-  {
-    color: Carbon.helpers.COLORS.BLACK,
-    style: {
-      strokeDashArray: '2,2',
-    },
-    value: new Date(2018, 10, 20).toISOString(),
-  },
-];
-graphConfig.showActionLegend = false;
+const graphConfig = utils.deepClone(getGanttEventlineConfig('#ganttEventline'));
+const tasksData = [utils.deepClone(taskDataset1), utils.deepClone(taskDataset2), utils.deepClone(taskDataset3), utils.deepClone(taskDataset4)];
 const dataset = loadTracks(tasksData, [], [], [], 4);
 
 export default () => (

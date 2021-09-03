@@ -4,7 +4,7 @@ import {
   loadXAndYAxisLabelPopup,
 } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
-const percentageData = [{
+const percentageData = {
   key: 'track 1',
   trackLabel: {
     display: 'Percentage',
@@ -34,6 +34,6 @@ const percentageData = [{
       endDate: new Date(2018, 5, 12).toISOString(),
     },
   ],
-}];
+};
 
 export default percentageData;

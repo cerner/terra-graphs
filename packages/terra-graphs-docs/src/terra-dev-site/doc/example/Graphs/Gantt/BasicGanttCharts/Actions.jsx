@@ -2,16 +2,17 @@ import React from 'react';
 import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import getGanttDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefault';
+import getGanttActionConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttActionConfig';
 import loadTracks from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/loadTracks';
-import actionsData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/actionsData';
+import actionDataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/actionDataset1';
+import actionDataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/actionDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getGanttDefaultConfig('#ganttActions'));
+const graphConfig = utils.deepClone(getGanttActionConfig('#ganttActions'));
 graphConfig.showActionLegend = true;
-const actions = utils.deepClone(actionsData);
+const actions = [utils.deepClone(actionDataset1), utils.deepClone(actionDataset2)];
 const dataset = loadTracks([], [], [], actions, 2);
 
 export default () => (

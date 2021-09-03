@@ -1,6 +1,8 @@
-import GanttChart from '../../../example/Graphs/Gantt/Reflow/MultipleDatasets?dev-site-example';
+import GanttChart from '../../../example/Graphs-Carbon/Gantt/Reflow/MultipleDatasets?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttPanning.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/multipleDatasetsPanningData.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/panningMultipleDataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/panningMultipleDataset1.js?dev-site-codeblock';
+
 require('details-polyfill')
 
 # Simple Gantt chart panning - Multiple dataset
@@ -30,5 +32,9 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 <GraphConfig />
 
 ### Data object
-<DataObject />
+#### Dataset 1
+<DataObject1 />
+
+####  Dataset 2
+<DataObject2 />
 </details>
