@@ -1,8 +1,9 @@
 import DynamicData from '@cerner/terra-graphs-docs/src/terra-dev-site/doc/example/Graphs-Carbon/Timeline/Reflow/DynamicData.jsx?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig?dev-site-codeblock';
-import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset.js?dev-site-codeblock';
-import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset.js?dev-site-codeblock';
-
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset2.js?dev-site-codeblock';
+import DynamicDataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset1.js?dev-site-codeblock';
+import DynamicDataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset2.js?dev-site-codeblock';
 require('details-polyfill')
 
 # Timeline graph Dynamic Data
@@ -32,10 +33,18 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 <GraphConfig />
 
 ### Data object
-##### Initial Data
+#### Initial Data
+##### Timeline A Dataset
 <DataObject1 />
 
-##### Updated Data
+##### Timeline B Dataset
 <DataObject2 />
+
+#### Updated Data
+##### Timeline A Dataset
+<DynamicDataObject1 />
+
+##### Timeline B Dataset
+<DynamicDataObject2 />
 
 </details>
