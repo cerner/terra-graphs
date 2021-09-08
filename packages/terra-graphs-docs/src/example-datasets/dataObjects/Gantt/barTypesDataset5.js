@@ -1,7 +1,4 @@
-import {
-  loadXAndYAxisLabelPopup,
-  loadTaskPopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { loadXAndYAxisLabelPopup, loadTaskPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const barTypesDataset5 = {
   key: 'track 4',

@@ -1,6 +1,4 @@
-import {
-  loadTaskPopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { loadTaskPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const taskDataset4 = [
   {
