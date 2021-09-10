@@ -9,6 +9,7 @@ import bubbleDataColorBased from '@cerner/terra-graphs-docs/src/example-datasets
 /*
 Please refer to the documentation below to see graphConfig and data objects.
 */
+
 const graphConfig = utils.deepClone(getSimpleAxisData('#colorBasedBubbleGraph'));
 const dataset = utils.deepClone(bubbleDataColorBased);
 

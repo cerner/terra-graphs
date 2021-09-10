@@ -9,6 +9,7 @@ import bubbleDataColorWeightBased from '@cerner/terra-graphs-docs/src/example-da
 /*
 Please refer to the documentation below to see graphConfig and data objects.
 */
+
 const graphConfig = utils.deepClone(getSimpleAxisData('#weightColorBasedBubbleGraph'));
 const dataset = utils.deepClone(bubbleDataColorWeightBased);
 

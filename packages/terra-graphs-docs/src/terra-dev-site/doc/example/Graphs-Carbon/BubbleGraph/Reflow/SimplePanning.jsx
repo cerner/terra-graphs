@@ -10,6 +10,7 @@ import bubbleDataBasic from '@cerner/terra-graphs-docs/lib/example-datasets/data
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubblePanning'));
 const dataset = utils.deepClone(bubbleDataBasic);
 

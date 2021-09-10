@@ -9,6 +9,7 @@ import bubbleDataWeightBased from '@cerner/terra-graphs-docs/src/example-dataset
 /*
 Please refer to the documentation below to see graphConfig and data objects.
 */
+
 const graphConfig = utils.deepClone(getSimpleAxisData('#weightBasedBubbleGraph'));
 const dataset = utils.deepClone(bubbleDataWeightBased);
 

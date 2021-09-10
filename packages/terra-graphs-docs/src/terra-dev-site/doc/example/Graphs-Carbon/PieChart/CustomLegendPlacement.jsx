@@ -13,6 +13,7 @@ import dataset3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const graphConfig = utils.deepClone(getPieConfig('#graphContainer'));
 const dataset = [
   utils.deepClone(dataset1),

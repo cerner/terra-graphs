@@ -10,6 +10,7 @@ import bubbleDataCustomRadius from '@cerner/terra-graphs-docs/src/example-datase
 /*
 Please refer to the documentation below to see graphConfig and data objects.
 */
+
 const graphConfig = utils.deepClone(getSimpleAxisData('#multipleDatasetBubbleGraph'));
 const dataset1 = utils.deepClone(bubbleDataBasic);
 const dataset2 = utils.deepClone(bubbleDataCustomRadius);

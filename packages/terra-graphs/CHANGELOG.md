@@ -27,5 +27,6 @@
   * Updated Paired result graph snapshots.
   * Updated Gantt Chart snapshots.
   * Updated Timeline graph snapshots.
+  * Updated all snapshots.
 
 * Initial stable release

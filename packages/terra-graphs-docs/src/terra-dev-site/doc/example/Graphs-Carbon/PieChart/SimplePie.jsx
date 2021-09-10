@@ -9,6 +9,10 @@ import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects
 import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset2';
 import dataset3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset3';
 
+/*
+Please refer to the documentation below to see the graphConfig and data objects
+*/
+
 const graphConfig = utils.deepClone(getPieConfig('#simplePie'));
 const dataset = [
   utils.deepClone(dataset1),

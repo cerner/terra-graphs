@@ -11,6 +11,7 @@ import bubbleDynamicPanningData2 from '@cerner/terra-graphs-docs/lib/example-dat
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const state = {
   initial: 0,
   factor: 3,

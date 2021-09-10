@@ -39,3 +39,4 @@
   * Updated Gantt datasets and examples to maintain consistency.
   * Updated Timeline datasets and examples to maintain consistency.
   * Updated Bubble datasets and examples to maintain consistency.
+  * Updated scss imports for all graphs.
