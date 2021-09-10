@@ -2,27 +2,14 @@ import React from 'react';
 import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import getGanttDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefault';
-import {
-  dateTimeBucketData, lowerStepTickValues, midpointTickValues, upperStepTickValues,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/dateTimeBucketData';
+import getGanttDatetimeBucketConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDatetimeBucketConfig';
+import dateTimeBucketData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/dateTimeBucketData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getGanttDefaultConfig('#ganttDatetimeBucket'));
-graphConfig.axis.x.lowerLimit = new Date(2018, 1, 1, 23).toISOString();
-graphConfig.axis.x.upperLimit = new Date(2018, 1, 3, 1).toISOString();
-graphConfig.axis.x.ticks = {
-  format: '%H',
-  lowerStepTickValues,
-  midpointTickValues,
-  upperStepTickValues,
-};
-graphConfig.showActionLegend = false;
-graphConfig.dateline = [];
-
-const dataset = utils.deepClone(dateTimeBucketData);
+const graphConfig = utils.deepClone(getGanttDatetimeBucketConfig('#ganttDatetimeBucket'));
+const dataset = [utils.deepClone(dateTimeBucketData)];
 
 export default () => (
   <React.Fragment>

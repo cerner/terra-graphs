@@ -4,7 +4,8 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getGanttPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/dynamicPanningData';
+import dynamicPanningDataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/dynamicPanningDataset1';
+import dynamicPanningDataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/dynamicPanningDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
@@ -12,7 +13,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0])],
+  dataset: [utils.deepClone(dynamicPanningDataset1)],
   graphConfig: utils.deepClone(getGanttPanningConfig('#GanttPanningDynamicData')),
 };
 
@@ -20,7 +21,7 @@ const GanttPanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
     let hour;
-    const newDataset = [utils.deepClone(data[1])];
+    const newDataset = [utils.deepClone(dynamicPanningDataset2)];
 
     switch (action.type) {
       case 'panLeft':

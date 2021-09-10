@@ -92,63 +92,15 @@ const activitiesData = [
   },
 ];
 
-const secondDataset = {
-  actions: [
-    {
-      key: 'uid_action_1',
-      values: [
-        new Date(2016, 0, 1, 7, 15).toISOString(),
-        new Date(2016, 0, 1, 8, 15).toISOString(),
-      ],
-    },
-    {
-      key: 'uid_action_2',
-      values: [new Date(2016, 0, 1, 9, 15).toISOString()],
-    },
-  ],
-  tasks: [
-    {
-      key: 'task10',
-      startDate: new Date(2016, 0, 1, 0).toISOString(),
-      endDate: new Date(2016, 0, 1, 13).toISOString(),
-    },
-    {
-      key: 'task11',
-      startDate: new Date(2016, 0, 1, 15).toISOString(),
-      endDate: new Date(2016, 0, 1, 20).toISOString(),
-    },
-  ],
-  events: [
-    {
-      key: 'uid_event_4',
-      shape: scheduled,
-      values: [new Date(2016, 0, 1, 2, 15).toISOString()],
-    },
-  ],
-};
-
-const panningData = [{
+const dynamicPanningDataset1 = {
   key: 'track 0',
   trackLabel: {
-    display: 'Project A',
+    display: 'Default',
     onClick: loadXAndYAxisLabelPopup,
   },
   tasks: tasksData,
   actions: actionsData,
   events: eventData,
   activities: activitiesData,
-},
-{
-  key: 'track 1',
-  trackLabel: {
-    display: 'Project B',
-    onClick: loadXAndYAxisLabelPopup,
-  },
-  actions: secondDataset.actions,
-  tasks: secondDataset.tasks,
-  events: secondDataset.events,
-  activities: secondDataset.activities,
-},
-];
-
-export default panningData;
+};
+export default dynamicPanningDataset1;

@@ -36,3 +36,4 @@
   * Moved colors, shapes, errors and locale documentation to terra-dev-site.
   * Updated Pie datasets and examples to maintain consistency.
   * Updated Bar datasets and examples to maintain consistency.
+  * Updated Gantt datasets and examples to maintain consistency.

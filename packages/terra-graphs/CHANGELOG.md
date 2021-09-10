@@ -25,4 +25,6 @@
   * Updated components to maintain consistent design.
   * Updated Pie chart snapshots.
   * Updated Paired result graph snapshots.
+  * Updated Gantt Chart snapshots.
+  
 * Initial stable release

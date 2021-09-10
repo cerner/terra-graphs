@@ -1,7 +1,5 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import {
-  loadPopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const scheduled = {
   path: [
@@ -83,60 +81,34 @@ const alert = {
   },
 };
 
-const eventsData = [
-  [
-    {
-      key: 'uid_event_1',
-      label: {
-        display: 'Defect A',
-      },
-      onClick: loadPopup,
-      shape: scheduled,
-      color: Carbon.helpers.COLORS.BLACK,
-      values: [new Date(2018, 2, 5).toISOString()],
+const eventDataset1 = [
+  {
+    key: 'uid_event_1',
+    label: {
+      display: 'Defect A',
     },
-    {
-      key: 'uid_event_2',
-      label: {
-        display: 'Defect B',
-      },
-      shape: dueSoon,
-      color: Carbon.helpers.COLORS.WHITE,
-      values: [new Date(2018, 5, 4).toISOString()],
+    onClick: loadPopup,
+    shape: scheduled,
+    color: Carbon.helpers.COLORS.BLACK,
+    values: [new Date(2018, 2, 5).toISOString()],
+  },
+  {
+    key: 'uid_event_2',
+    label: {
+      display: 'Defect B',
     },
-    {
-      key: 'uid_event_3',
-      label: {
-        display: 'Defect C',
-      },
-      shape: alert,
-      values: [new Date(2018, 3, 30).toISOString()],
+    shape: dueSoon,
+    color: Carbon.helpers.COLORS.WHITE,
+    values: [new Date(2018, 5, 4).toISOString()],
+  },
+  {
+    key: 'uid_event_3',
+    label: {
+      display: 'Defect C',
     },
-  ],
-  [
-    {
-      key: 'uid_event_4',
-      label: {
-        display: 'Defect A',
-      },
-      onClick: loadPopup,
-      shape: scheduled,
-      color: Carbon.helpers.COLORS.BLACK,
-      values: [new Date(2016, 0, 1, 5, 15).toISOString()],
-    },
-  ],
-  [
-    {
-      key: 'uid_event_4',
-      label: {
-        display: 'Defect B',
-      },
-      onClick: loadPopup,
-      shape: dueSoon,
-      color: Carbon.helpers.COLORS.BLACK,
-      values: [new Date(2016, 0, 1, 7, 30).toISOString()],
-    },
-  ],
+    shape: alert,
+    values: [new Date(2018, 3, 30).toISOString()],
+  },
 ];
 
-export default eventsData;
+export default eventDataset1;

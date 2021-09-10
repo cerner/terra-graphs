@@ -35,7 +35,7 @@ const actionsData = [
   },
 ];
 
-const simplePanningData = [{
+const simplePanningData = {
   key: 'track 0',
   trackLabel: {
     display: 'Default',
@@ -43,7 +43,6 @@ const simplePanningData = [{
   },
   tasks: tasksData,
   actions: actionsData,
-},
-];
+};
 
 export default simplePanningData;
