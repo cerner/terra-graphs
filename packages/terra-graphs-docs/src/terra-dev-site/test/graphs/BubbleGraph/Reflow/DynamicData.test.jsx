@@ -4,12 +4,13 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getSimpleAxisData from '@cerner/terra-graphs-docs/src/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
-import bubbleDynamicPanningData from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData.js';
+import bubbleDynamicPanningData1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData1.js';
+import bubbleDynamicPanningData2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData2.js';
 
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(bubbleDynamicPanningData[0])],
+  dataset: [utils.deepClone(bubbleDynamicPanningData1)],
   graphConfig: utils.deepClone(getSimpleAxisData('#BubbleDynamicDataPanning')),
 };
 
@@ -17,7 +18,7 @@ const BubblePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
     let hour;
-    const newDataset = [utils.deepClone(bubbleDynamicPanningData[1])];
+    const newDataset = [utils.deepClone(bubbleDynamicPanningData2)];
 
     switch (action.type) {
       case 'panLeft':

@@ -9,7 +9,7 @@ import bubbleDataBasic from '@cerner/terra-graphs-docs/src/example-datasets/data
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const dataset = utils.deepClone(bubbleDataBasic);
+const dataset = [utils.deepClone(bubbleDataBasic)];
 
 const initialState = {
   initial: 0,
@@ -44,13 +44,13 @@ const BubblePanningExample = () => {
   };
 
   const [panState, dispatch] = React.useReducer(reducer, initialState);
-  const bubbleData = [dataset];
+
   return (
     <React.Fragment>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <BubbleSingleDataset graphID="simpleBubblePanning" graphConfig={panState.graphConfig} dataset={bubbleData} />
+      <BubbleSingleDataset graphID="simpleBubblePanning" graphConfig={panState.graphConfig} dataset={dataset} />
     </React.Fragment>
   );
 };

@@ -10,8 +10,7 @@ import bubbleDataCustomRadius from '@cerner/terra-graphs-docs/src/example-datase
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const basicDataset = utils.deepClone(bubbleDataBasic);
-const customRadiusDataset = utils.deepClone(bubbleDataCustomRadius);
+const dataset = [utils.deepClone(bubbleDataBasic), utils.deepClone(bubbleDataCustomRadius)];
 
 const initialState = {
   initial: 0,
@@ -46,13 +45,13 @@ const BubblePanningExample = () => {
   };
 
   const [panState, dispatch] = React.useReducer(reducer, initialState);
-  const bubbleData = [basicDataset, customRadiusDataset];
+
   return (
     <React.Fragment>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <BubbleMultipleDataset graphID="BubbleMultipleDatasetsPanning" graphConfig={panState.graphConfig} dataset={bubbleData} />
+      <BubbleMultipleDataset graphID="BubbleMultipleDatasetsPanning" graphConfig={panState.graphConfig} dataset={dataset} />
     </React.Fragment>
   );
 };

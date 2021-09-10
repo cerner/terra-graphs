@@ -7,8 +7,7 @@ import getSimpleAxisData from '@cerner/terra-graphs-docs/src/example-datasets/gr
 import bubbleDataBasic from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDataBasic.js';
 import bubbleDataCustomRadius from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDataCustomRadius.js';
 
-const dataset = utils.deepClone(bubbleDataBasic);
-const dataset1 = utils.deepClone(bubbleDataCustomRadius);
+const dataset = [utils.deepClone(bubbleDataBasic), utils.deepClone(bubbleDataCustomRadius)];
 
 const initialState = {
   initial: 0,
@@ -43,13 +42,13 @@ const BubblePanningExample = () => {
   };
 
   const [panState, dispatch] = React.useReducer(reducer, initialState);
-  const bubbleData = [dataset, dataset1];
+
   return (
     <React.Fragment>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <BubbleMultipleDataset graphID="BubbleMultipleDatasetsPanning" graphConfig={panState.graphConfig} dataset={bubbleData} />
+      <BubbleMultipleDataset graphID="BubbleMultipleDatasetsPanning" graphConfig={panState.graphConfig} dataset={dataset} />
     </React.Fragment>
   );
 };

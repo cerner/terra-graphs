@@ -6,11 +6,11 @@ import getSimpleAxisData from '@cerner/terra-graphs-docs/src/example-datasets/gr
 import bubbleDataWeightBased from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDataWeightBased.js';
 
 const graphConfig = utils.deepClone(getSimpleAxisData('#weightBasedBubbleGraph'));
-const dataset = utils.deepClone(bubbleDataWeightBased);
+const dataset = [utils.deepClone(bubbleDataWeightBased)];
 
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <BubbleSingleDataset graphID="weightBasedBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
+    <BubbleSingleDataset graphID="weightBasedBubbleGraph" graphConfig={graphConfig} dataset={dataset} />
   </React.Fragment>
 );

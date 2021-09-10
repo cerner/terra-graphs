@@ -9,11 +9,11 @@ import bubbleDataBasic from '@cerner/terra-graphs-docs/src/example-datasets/data
 Please refer to the documentation below to see graphConfig and data objects.
 */
 const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubbleGraph'));
-const dataset = utils.deepClone(bubbleDataBasic);
+const dataset = [utils.deepClone(bubbleDataBasic)];
 
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
+    <BubbleSingleDataset graphID="simpleBubbleGraph" graphConfig={graphConfig} dataset={dataset} />
   </React.Fragment>
 );

@@ -6,11 +6,11 @@ import getSimpleAxisData from '@cerner/terra-graphs-docs/src/example-datasets/gr
 import bubbleDataColorBased from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDataColorBased.js';
 
 const graphConfig = utils.deepClone(getSimpleAxisData('#colorBasedBubbleGraph'));
-const dataset = utils.deepClone(bubbleDataColorBased);
+const dataset = [utils.deepClone(bubbleDataColorBased)];
 
 export default () => (
   <React.Fragment>
     <div id="tooltip" className="initial-tooltip" />
-    <BubbleSingleDataset graphID="colorBasedBubbleGraph" graphConfig={graphConfig} dataset={[dataset]} />
+    <BubbleSingleDataset graphID="colorBasedBubbleGraph" graphConfig={graphConfig} dataset={dataset} />
   </React.Fragment>
 );

@@ -1,7 +1,9 @@
 import BubbleSingleDatasetExample from '@cerner/terra-graphs-docs/src/terra-dev-site/doc/example/Graphs-Carbon/BubbleGraph/Reflow/DynamicData.jsx?dev-site-example';
 import PropsTable from '@cerner/terra-graphs/lib/components/Bubble/BubbleSingleDataset?dev-site-props-table';
 import GraphConfig from '@cerner/terra-graphs-docs/src/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData1?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData1?dev-site-codeblock';
+require('details-polyfill')
 
 # Bubble Graph Panning - Dynamic data
 
@@ -31,5 +33,9 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 <GraphConfig />
 
 ### Data object
-<DataObject />
+#### Initial Dataset
+<DataObject1 />
+
+#### Updated Dataset
+<DataObject2 />
 </details>
