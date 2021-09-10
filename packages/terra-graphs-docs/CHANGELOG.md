@@ -35,5 +35,6 @@
   * Updated Pie chart documentation and examples to be carbon-centric.
   * Moved colors, shapes, errors and locale documentation to terra-dev-site.
   * Updated Pie datasets and examples to maintain consistency.
-  * Updated Bar datasets and examples to maintain consistency.
+  * Updated Paired Result datasets and examples to maintain consistency.
   * Updated Gantt datasets and examples to maintain consistency.
+  * Updated Timeline datasets and examples to maintain consistency.

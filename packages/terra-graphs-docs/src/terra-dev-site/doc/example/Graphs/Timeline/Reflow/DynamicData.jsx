@@ -3,25 +3,26 @@ import Timeline from '@cerner/terra-graphs/lib/components/Timeline/Timeline';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
-import data1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset';
-import data2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset';
 import getTimelinePanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig';
+import dataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset2';
+import dynamicDataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset1';
+import dynamicDataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: utils.deepClone(data1),
+  dataset: [utils.deepClone(dataset1), utils.deepClone(dataset2)],
   graphConfig: utils.deepClone(getTimelinePanningConfig('#TimelinePanningExample')),
 };
 
 const TimelinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
-    const newDataset = utils.deepClone(data2);
+    const newDataset = [utils.deepClone(dynamicDataset1), utils.deepClone(dynamicDataset2)];
 
     let hour;
 

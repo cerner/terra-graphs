@@ -4,15 +4,15 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Timeline/Timeline.module.scss';
-import getTimelineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelineConfigObject';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset.js';
+import getTimelineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelineDefaultConfig';
+import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset1.js';
+import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset2.js';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-
 const graphConfig = utils.deepClone(getTimelineConfig('#simpleTimelineGraph'));
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 const SimpleTimelineExample = () => {
   React.useEffect(() => {

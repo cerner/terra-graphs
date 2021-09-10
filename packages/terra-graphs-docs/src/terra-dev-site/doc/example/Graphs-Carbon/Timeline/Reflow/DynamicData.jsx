@@ -5,16 +5,17 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Timeline/Timeline.module.scss';
-import data1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset';
-import data2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset';
+import dataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset1';
+import dataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset2';
 import getTimelinePanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig';
+import dynamicDataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset1';
+import dynamicDataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-
 const graphConfig = utils.deepClone(getTimelinePanningConfig('#TimelinePanningDynamicExample'));
-const dataset = [utils.deepClone(data1)];
+const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 const initialState = {
   initial: 0,
@@ -60,7 +61,7 @@ const TimelinePanningDynamicDataExample = () => {
     graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
 
     const newDataset = {
-      panData: utils.deepClone(data2),
+      panData: [utils.deepClone(dynamicDataset1), utils.deepClone(dynamicDataset2)],
     };
 
     graph.reflowMultipleDatasets(newDataset);
