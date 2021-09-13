@@ -3,6 +3,11 @@ import Timeline from '@cerner/terra-graphs/lib/components/Timeline/Timeline';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+<<<<<<< HEAD
+=======
+import data1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset';
+import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset';
+>>>>>>> updated imports from src to lib
 import getTimelinePanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig';
 import dataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset1';
 import dataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset2';

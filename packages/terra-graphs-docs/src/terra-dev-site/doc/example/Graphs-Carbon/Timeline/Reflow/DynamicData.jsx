@@ -5,9 +5,9 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Timeline/Timeline.module.scss';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import getTimelinePanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig';
 import dataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset1';
 import dataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset2';
-import getTimelinePanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig';
 import dynamicDataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset1';
 import dynamicDataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/criticalDataset2';
 
