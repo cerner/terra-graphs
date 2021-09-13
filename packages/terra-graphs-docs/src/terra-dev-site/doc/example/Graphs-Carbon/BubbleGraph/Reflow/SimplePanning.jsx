@@ -4,28 +4,26 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import Button from 'terra-button/lib/Button';
-import getSimpleAxisData from '@cerner/terra-graphs-docs/src/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
-import bubbleDataBasic from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDataBasic.js';
+import getSimpleAxisData from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
+import bubbleDataBasic from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic.js';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubblePanning'));
 const dataset = utils.deepClone(bubbleDataBasic);
 
-const initialState = {
+const state = {
   initial: 0,
   factor: 3,
 };
 
-const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubblePanning'));
 let graph;
 
 const BubblePanningExample = () => {
   React.useEffect(() => {
-    if (!graph) {
-      graph = Carbon.api.graph(graphConfig);
-      graph.loadContent(Carbon.api.bubbleSingleDataset(dataset));
-    }
+    graph = Carbon.api.graph(graphConfig);
+    graph.loadContent(Carbon.api.bubbleMultipleDataset(dataset));
   }, []);
 
   const reducer = (panState, action) => {
@@ -42,18 +40,22 @@ const BubblePanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    graph.reflowMultipleDatasets();
-
     return {
       initial: hour,
       factor: panState.factor,
     };
   };
 
-  const [, dispatch] = React.useReducer(reducer, initialState);
+  const [panState, dispatch] = React.useReducer(reducer, state);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    graph.reflowMultipleDatasets();
+  }, [panState.initial]);
 
   return (
     <React.Fragment>

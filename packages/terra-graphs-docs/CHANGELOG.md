@@ -38,3 +38,4 @@
   * Updated Paired Result datasets and examples to maintain consistency.
   * Updated Gantt datasets and examples to maintain consistency.
   * Updated Timeline datasets and examples to maintain consistency.
+  * Updated Bubble datasets and examples to maintain consistency.

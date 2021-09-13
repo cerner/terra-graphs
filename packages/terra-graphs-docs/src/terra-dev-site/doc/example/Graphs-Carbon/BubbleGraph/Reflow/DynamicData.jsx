@@ -4,25 +4,30 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import Button from 'terra-button/lib/Button';
-import getSimpleAxisData from '@cerner/terra-graphs-docs/src/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
-import bubbleDynamicPanningData from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData.js';
+import getSimpleAxisData from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
+import bubbleDynamicPanningData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData1.js';
+import bubbleDynamicPanningData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData2.js';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const initialState = {
+const state = {
   initial: 0,
   factor: 3,
 };
 
-const dataset = utils.deepClone(bubbleDynamicPanningData[0]);
+const dataset = utils.deepClone(bubbleDynamicPanningData1);
 const graphConfig = utils.deepClone(getSimpleAxisData('#BubbleDynamicDataPanning'));
 let graph;
 
 const BubblePanningExample = () => {
+  React.useEffect(() => {
+    graph = Carbon.api.graph(graphConfig);
+    graph.loadContent(Carbon.api.bubbleSingleDataset(dataset));
+  }, []);
+
   const reducer = (panState, action) => {
     let hour;
-    const newDataset = { panData: [utils.deepClone(bubbleDynamicPanningData[1])] };
 
     switch (action.type) {
       case 'panLeft':
@@ -35,23 +40,23 @@ const BubblePanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    graph.reflowMultipleDatasets(newDataset);
-
     return {
       initial: hour,
       factor: panState.factor,
     };
   };
 
-  const [, dispatch] = React.useReducer(reducer, initialState);
+  const [panState, dispatch] = React.useReducer(reducer, state);
 
-  React.useEffect(() => {
-    graph = Carbon.api.graph(graphConfig);
-    graph.loadContent(Carbon.api.bubbleSingleDataset(dataset));
-  }, []);
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+    const newDataset = { panData: [bubbleDynamicPanningData2] };
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    graph.reflowMultipleDatasets(newDataset);
+  }, [panState.initial]);
 
   return (
     <React.Fragment>
