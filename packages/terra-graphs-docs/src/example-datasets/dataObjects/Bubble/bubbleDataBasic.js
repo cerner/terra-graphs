@@ -2,7 +2,7 @@ import { loadBubblePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const bubbleDataBasic = {
-  key: 'Bubble_Basic_Data',
+  key: 'bubble_basic_data',
   label: {
     display: 'Bubble set A',
   },

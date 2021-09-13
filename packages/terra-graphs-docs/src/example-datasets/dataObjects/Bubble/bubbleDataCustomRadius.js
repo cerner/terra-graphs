@@ -2,7 +2,7 @@ import { loadBubblePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const bubbleDataCustomRadius = {
-  key: 'Bubble_Custom_Radius_Dataset',
+  key: 'bubble_custom_radius_dataset',
   label: {
     display: 'Bubble set B',
   },

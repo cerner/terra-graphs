@@ -2,7 +2,7 @@ import { loadBubblePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const bubbleDynamicPanningData = {
-  key: 'Bubble_Dynamic_Panning_Data',
+  key: 'bubble_dynamic_panning_data',
   label: {
     display: 'Bubble set A',
   },

@@ -2,7 +2,7 @@ import { loadBubblePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const bubbleDataWeightBased = {
-  key: 'Bubble_Weight_Based_Dataset',
+  key: 'bubble_weight_based_dataset',
   label: {
     display: 'Amount',
   },
