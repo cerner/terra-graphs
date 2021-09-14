@@ -1,8 +1,8 @@
 import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
+import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getCombinationGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Combination/combinationDefault';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/lineWithSingleBubbleData';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';

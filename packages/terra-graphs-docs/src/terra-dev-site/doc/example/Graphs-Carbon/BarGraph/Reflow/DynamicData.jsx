@@ -2,9 +2,9 @@ import React from 'react';
 import Button from 'terra-button/lib/Button';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs/src/components/Bar/BarGraph.module.scss';
+import '@cerner/terra-graphs/lib/components/Bar/BarGraph.module.scss';
+import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dynamicPanningData';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
+import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import Button from 'terra-button/lib/Button';
 import getSimpleAxisData from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
 import bubbleDataBasic from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic.js';
@@ -10,6 +10,7 @@ import bubbleDataBasic from '@cerner/terra-graphs-docs/lib/example-datasets/data
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const graphConfig = utils.deepClone(getSimpleAxisData('#simpleBubblePanning'));
 const dataset = utils.deepClone(bubbleDataBasic);
 
