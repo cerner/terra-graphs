@@ -44,6 +44,7 @@ import {
   translateGraph,
   translateContentContainer,
   updateAxesDomain,
+  handleLabelClickFunctionDuringReflow,
 } from './helpers/helpers';
 
 /**
@@ -484,6 +485,7 @@ class Graph extends Construct {
       this.config.axis.x.label = utils.sanitize(graphData.xLabel) || this.config.axis.x.label;
       this.config.axis.y.label = utils.sanitize(graphData.yLabel) || this.config.axis.y.label;
       this.config.axis.y2.label = utils.sanitize(graphData.y2Label) || this.config.axis.y2.label;
+      handleLabelClickFunctionDuringReflow(this.config);
     }
     this.resize();
     return this;
@@ -553,6 +555,7 @@ class Graph extends Construct {
       this.config.axis.x.label = utils.sanitize(graphData.xLabel) || this.config.axis.x.label;
       this.config.axis.y.label = utils.sanitize(graphData.yLabel) || this.config.axis.y.label;
       this.config.axis.y2.label = utils.sanitize(graphData.y2Label) || this.config.axis.y2.label;
+      handleLabelClickFunctionDuringReflow(this.config);
     }
     this.resize();
     return this;

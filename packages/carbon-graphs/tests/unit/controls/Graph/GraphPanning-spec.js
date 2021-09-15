@@ -30,6 +30,8 @@ import utils from '../../../../src/js/helpers/utils';
 describe('Graph - Panning', () => {
   let graph = null;
   let graphContainer;
+  const largeLabel = 'Project long display value which is only for testing, Project long display value which is only for testing '
+      + 'Project long display value which is only for testing, Project long display value which is only for testing';
   let consolewarn;
 
   beforeAll(() => {
@@ -439,6 +441,194 @@ describe('Graph - Panning', () => {
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
         done();
+      });
+    });
+  });
+  describe('When large label is provided for x, y and y2 axis during initial render', () => {
+    describe('when small label is updated in x, y and y2 axis during reflow', () => {
+      it('should remove onCLick function for all axis labels, ', () => {
+        const labelAxisObj = utils.deepClone(axisDefault);
+        labelAxisObj.y2 = {
+          show: true,
+          label: largeLabel,
+          lowerLimit: 0,
+          upperLimit: 20,
+        };
+        labelAxisObj.y.label = largeLabel;
+        labelAxisObj.x.label = largeLabel;
+        graph = new Graph(getAxes(labelAxisObj));
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelX} text`)).on('click')),
+        ).toBe(true);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY} text`)).on('click')),
+        ).toBe(true);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY2} text`)).on('click')),
+        ).toBe(true);
+        const panData = {
+          key: 'uid_1',
+          values: [{
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+          ],
+          xLabel: 'updated xLabel',
+          yLabel: 'updated yLabel',
+          y2Label: 'updated y2Label',
+        };
+        graph.reflow(panData);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelX} text`)).on('click')),
+        ).toBe(false);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY} text`)).on('click')),
+        ).toBe(false);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY2} text`)).on('click')),
+        ).toBe(false);
+      });
+      it('should remove pointer cursor for all axis labels, ', () => {
+        const labelAxisObj = utils.deepClone(axisDefault);
+        labelAxisObj.y2 = {
+          show: true,
+          label: largeLabel,
+          lowerLimit: 0,
+          upperLimit: 20,
+        };
+        labelAxisObj.y.label = largeLabel;
+        labelAxisObj.x.label = largeLabel;
+        graph = new Graph(getAxes(labelAxisObj));
+        expect(
+          document.querySelector(`.${styles.axisLabelX} text`).style.cursor,
+        ).toBe('pointer');
+        expect(
+          document.querySelector(`.${styles.axisLabelY} text`).style.cursor,
+        ).toBe('pointer');
+        expect(
+          document.querySelector(`.${styles.axisLabelY2} text`).style.cursor,
+        ).toBe('pointer');
+        const panData = {
+          key: 'uid_1',
+          values: [{
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+          ],
+          xLabel: 'updated xLabel',
+          yLabel: 'updated yLabel',
+          y2Label: 'updated y2Label',
+        };
+        graph.reflow(panData);
+        expect(
+          document.querySelector(`.${styles.axisLabelX} text`).style.cursor,
+        ).toBe('auto');
+        expect(
+          document.querySelector(`.${styles.axisLabelY} text`).style.cursor,
+        ).toBe('auto');
+        expect(
+          document.querySelector(`.${styles.axisLabelY2} text`).style.cursor,
+        ).toBe('auto');
+      });
+    });
+  });
+  describe('When small label is provided for x, y and y2 axis during initial render', () => {
+    describe('when Large label is updated in x, y and y2 axis during reflow', () => {
+      it('should add onCLick function for all axis labels', () => {
+        const labelAxisObj = utils.deepClone(axisDefault);
+        labelAxisObj.y2 = {
+          show: true,
+          label: 'Some Y2 axis label',
+          lowerLimit: 0,
+          upperLimit: 20,
+        };
+        graph = new Graph(getAxes(labelAxisObj));
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelX} text`)).on('click')),
+        ).toBe(false);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY} text`)).on('click')),
+        ).toBe(false);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY2} text`)).on('click')),
+        ).toBe(false);
+        const panData = {
+          key: 'uid_1',
+          values: [{
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+          ],
+          xLabel: largeLabel,
+          yLabel: largeLabel,
+          y2Label: largeLabel,
+        };
+        graph.reflow(panData);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelX} text`)).on('click')),
+        ).toBe(true);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY} text`)).on('click')),
+        ).toBe(true);
+        expect(
+          utils.isFunction(d3.select(document.querySelector(`.${styles.axisLabelY2} text`)).on('click')),
+        ).toBe(true);
+      });
+      it('should add pointer cursor for all axis labels, ', () => {
+        const labelAxisObj = utils.deepClone(axisDefault);
+        labelAxisObj.y2 = {
+          show: true,
+          label: 'Some Y2 axis label',
+          lowerLimit: 0,
+          upperLimit: 20,
+        };
+        graph = new Graph(getAxes(labelAxisObj));
+        expect(
+          document.querySelector(`.${styles.axisLabelX} text`).style.cursor,
+        ).toBe('');
+        expect(
+          document.querySelector(`.${styles.axisLabelY} text`).style.cursor,
+        ).toBe('');
+        expect(
+          document.querySelector(`.${styles.axisLabelY2} text`).style.cursor,
+        ).toBe('');
+        const panData = {
+          key: 'uid_1',
+          values: [{
+            x: '2016-03-03T12:00:00Z',
+            y: 2,
+          },
+          {
+            x: '2016-04-03T12:00:00Z',
+            y: 20,
+          },
+          ],
+          xLabel: largeLabel,
+          yLabel: largeLabel,
+          y2Label: largeLabel,
+        };
+        graph.reflow(panData);
+        expect(
+          document.querySelector(`.${styles.axisLabelX} text`).style.cursor,
+        ).toBe('pointer');
+        expect(
+          document.querySelector(`.${styles.axisLabelY} text`).style.cursor,
+        ).toBe('pointer');
+        expect(
+          document.querySelector(`.${styles.axisLabelY2} text`).style.cursor,
+        ).toBe('pointer');
       });
     });
   });
