@@ -45,7 +45,7 @@ export default () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesBarWithDateline"> </div>
+      <div id="timeseriesBarWithDateline" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

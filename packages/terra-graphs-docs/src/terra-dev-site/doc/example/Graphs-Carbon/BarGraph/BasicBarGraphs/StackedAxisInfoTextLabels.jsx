@@ -27,7 +27,7 @@ export default () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="stackedAxisInfoTextLabelsBargraph"> </div>
+      <div id="stackedAxisInfoTextLabelsBargraph" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };
