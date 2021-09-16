@@ -6,18 +6,25 @@ import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.s
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multipleDatasets';
+import initialData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1';
+import updatedData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1-newData';
+import initialData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3';
+import updatedData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3-newData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#multipleDatasetsExample'));
-const dataset = utils.deepClone(exampleData.initialData);
 
+const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#multipleDatasetsExample'));
+const dataset = [
+  utils.deepClone(initialData1),
+  utils.deepClone(initialData2),
+];
 const state = {
   initial: 0,
   factor: 3,
 };
+
 let graph;
 
 const MultipleDatasetsLinePanningExample = () => {
@@ -42,23 +49,29 @@ const MultipleDatasetsLinePanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
-
-    const newDataset = {
-      panData: utils.deepClone(utils.deepClone(exampleData.panData)),
-    };
-
-    graph.reflowMultipleDatasets(newDataset);
-
     return {
       initial: hour,
       factor: panState.factor,
     };
   };
 
-  const [, dispatch] = React.useReducer(reducer, state);
+  const [panState, dispatch] = React.useReducer(reducer, state);
 
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
+
+    const newDataset = {
+      panData: [
+        utils.deepClone(updatedData1),
+        utils.deepClone(updatedData2),
+      ],
+    };
+
+    graph.reflowMultipleDatasets(newDataset);
+  }, [panState.initial]);
   return (
     <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />

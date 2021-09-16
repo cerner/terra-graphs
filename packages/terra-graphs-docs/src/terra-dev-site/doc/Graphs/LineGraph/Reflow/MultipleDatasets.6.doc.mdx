@@ -1,11 +1,15 @@
 import LineGraphPanning from '../../../example/Graphs-Carbon/LineGraph/Reflow/MultipleDatasets?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multipleDatasets.js?dev-site-codeblock';
+import initialData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1.js?dev-site-codeblock';
+import updatedData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1-newData.js?dev-site-codeblock';
+import initialData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3.js?dev-site-codeblock';
+import updatedData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3-newData.js?dev-site-codeblock';
 require('details-polyfill')
 
 # Line Graph - panning
 
-This is a line graph example that implements panning.
+This is a line graph example that implements panning. Click on the panning buttons to see the updated data.
 
 ## Getting Started
 
@@ -27,8 +31,15 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 </summary>
 
 ### Graph Config object
-<GraphConfig />
+#### Initial data 1
+<initialData1 />
 
-### Data object
-<DataObject />
+#### Updated data 1
+<updatedData1  /> 
+
+#### Initial data 2
+<initialData1 />
+
+#### Updated data 2
+<updatedData1  /> 
 </details>

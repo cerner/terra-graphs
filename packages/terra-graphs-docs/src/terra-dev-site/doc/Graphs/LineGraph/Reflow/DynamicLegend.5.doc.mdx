@@ -1,11 +1,12 @@
 import LineGraphPanning from '../../../example/Graphs-Carbon/LineGraph/Reflow/DynamicLegend?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-legend.js?dev-site-codeblock';
+import initialData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1.js?dev-site-codeblock';
+import updatedData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1-newData2.js?dev-site-codeblock';
 require('details-polyfill')
 
 # Line Graph - panning
 
-This is a line graph example with a dynamically updating legend.
+This is a line graph example with a dynamically updating legend. Click on the panning buttons to see the updated data.
 
 ## Getting Started
 
@@ -30,5 +31,9 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 <GraphConfig />
 
 ### Data object
-<DataObject />
+#### Initial data
+<initialData />
+
+#### Updated data
+<updatedData />
 </details>

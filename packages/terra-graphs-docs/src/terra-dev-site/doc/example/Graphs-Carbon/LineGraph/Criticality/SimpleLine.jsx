@@ -4,25 +4,22 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/simpleLineData';
+import getLineDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset1-critical';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(lineDefault('#criticalitySimpleLine'));
 
-const contentData = utils.deepClone(exampleData);
-contentData[0].values[0].isCritical = true;
-contentData[0].values[10].isCritical = true;
+const graphConfig = utils.deepClone(getLineDefaultConfig('#criticalitySimpleLine'));
+const dataset = utils.deepClone(exampleData);
 
 const CriticalitySimpleLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    contentData.forEach((data) => {
-      graph.loadContent(Carbon.api.line(data));
-    });
+    graph.loadContent(Carbon.api.line(dataset));
   }, []);
+
   return (
     <ExampleGraphContainer id="criticalitySimpleLine" />
   );

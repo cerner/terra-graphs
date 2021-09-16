@@ -1,15 +1,17 @@
 import LineGraphPanning from '../../../example/Graphs-Carbon/LineGraph/Reflow/Y2Panning?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningY2.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData.js?dev-site-codeblock';
-require('details-polyfill')
+import initialDataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1.js?dev-site-codeblock';
+import updatedData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1-newData.js?dev-site-codeblock';
+require('details-polyfill');
 
 # Line Graph - panning
 
-This is a line graph example that implements panning with 2 axes.
+This is a line graph example that implements panning with dynamically updating data. Click on the panning buttons to see the updated data.
 
 ## Getting Started
 
-- Install with [npmjs](https://www.npmjs.com):
+- Install with [npmjs](https://www.npmjs.com):25ftg6hj
   - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
@@ -17,7 +19,7 @@ This is a line graph example that implements panning with 2 axes.
 import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
 import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
-
+1142
 ## Examples
 <LineGraphPanning />
 

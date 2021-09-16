@@ -2,12 +2,11 @@ import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/disableCalibrationData';
+import getLineDefaultNoCalibrationConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefaultNoCalibration';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset6';
 
-const graphConfig = utils.deepClone(lineDefault('#disableCalibration'));
-graphConfig.allowCalibration = false;
-const dataset = utils.deepClone(data);
+const graphConfig = utils.deepClone(getLineDefaultNoCalibrationConfig('#disableCalibration'));
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <>

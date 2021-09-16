@@ -4,19 +4,26 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multipleDatasets';
+import initialData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1';
+import updatedData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1-newData';
+import initialData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3';
+import updatedData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3-newData';
 
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: utils.deepClone(data.initialData),
+  dataset: [utils.deepClone(initialData1), utils.deepClone(initialData2)],
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#multipleDatasetsExample')),
 };
 
 const LinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
-    const newDataset = utils.deepClone(data.panData);
+    const newDataset = [
+      utils.deepClone(updatedData1),
+      utils.deepClone(updatedData2),
+    ];
+
     let hour;
 
     switch (action.type) {

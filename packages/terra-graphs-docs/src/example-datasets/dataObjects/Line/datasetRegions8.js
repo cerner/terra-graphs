@@ -1,0 +1,32 @@
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { createGraphValuesWithCos } from './createGraphValues';
+
+// simple 2
+
+const data = {
+  key: 'uid_5',
+  label: {
+    display: 'Data Label 5',
+  },
+  color: Carbon.helpers.COLORS.GREEN,
+  shape: Carbon.helpers.SHAPES.DARK.X,
+  onClick: loadPopup,
+  legendOptions: {
+    showLine: true,
+    showShape: true,
+  },
+  regions: [
+    {
+      axis: 'y',
+      start: 2,
+      end: 10,
+      color: '#f4f4f4',
+    },
+  ],
+  values: createGraphValuesWithCos({
+    length: 12, initialX: 85, xModifier: 25, yModifier: Math.PI * 4,
+  }),
+};
+
+export default data;
