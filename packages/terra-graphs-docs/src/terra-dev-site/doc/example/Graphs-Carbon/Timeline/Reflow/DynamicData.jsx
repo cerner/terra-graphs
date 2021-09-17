@@ -73,7 +73,7 @@ const TimelinePanningDynamicDataExample = () => {
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <div id="TimelinePanningDynamicExample" />
+      <div id="TimelinePanningDynamicExample" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

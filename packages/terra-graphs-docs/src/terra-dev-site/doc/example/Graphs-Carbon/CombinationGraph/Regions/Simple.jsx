@@ -48,7 +48,7 @@ const LineWithPairedResultRegionCombinationExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="lineWithPairedResultRegion" />
+      <div id="lineWithPairedResultRegion" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

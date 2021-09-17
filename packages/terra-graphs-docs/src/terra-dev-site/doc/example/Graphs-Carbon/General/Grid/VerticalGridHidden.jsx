@@ -19,7 +19,7 @@ const VerticalGridHiddenGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="verticalGridHidden" />
+      <div id="verticalGridHidden" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

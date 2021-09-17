@@ -25,7 +25,7 @@ const SimpleTimelineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleTimelineGraph" />
+      <div id="simpleTimelineGraph" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

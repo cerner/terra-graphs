@@ -69,7 +69,7 @@ const PairedResultDynamicDataPanningExample = () => {
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <div id="PairedResultDynamicData" />
+      <div id="PairedResultDynamicData" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

@@ -30,7 +30,7 @@ const XAxisAlternateLocaleGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="xAxisAlternateLocale" />
+      <div id="xAxisAlternateLocale" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

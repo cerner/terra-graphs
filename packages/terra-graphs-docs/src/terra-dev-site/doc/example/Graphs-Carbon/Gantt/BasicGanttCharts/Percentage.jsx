@@ -25,7 +25,7 @@ const GanttPercentageExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttPercentage" />
+      <div id="ganttPercentage" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

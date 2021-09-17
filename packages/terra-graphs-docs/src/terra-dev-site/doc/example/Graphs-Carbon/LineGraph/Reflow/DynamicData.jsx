@@ -64,7 +64,7 @@ const DynamicLinePanningExample = () => {
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <div id="dynamicLineData" />
+      <div id="dynamicLineData" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

@@ -23,7 +23,7 @@ const LineTimeseriesExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="lineTimeseries" />
+      <div id="lineTimeseries" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

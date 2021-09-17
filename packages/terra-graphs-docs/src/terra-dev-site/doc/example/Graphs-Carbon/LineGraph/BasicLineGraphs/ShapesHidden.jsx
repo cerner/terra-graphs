@@ -24,7 +24,7 @@ const ShapesHiddenLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="shapesHidden" />
+      <div id="shapesHidden" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

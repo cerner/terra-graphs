@@ -24,7 +24,7 @@ const MultipleRegionPiaredResultExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesPairedResultGraph" />
+      <div id="timeseriesPairedResultGraph" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

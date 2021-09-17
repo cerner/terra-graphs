@@ -23,7 +23,7 @@ const LegendItemDisablePiaredResultExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="legendItemDisable" />
+      <div id="legendItemDisable" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

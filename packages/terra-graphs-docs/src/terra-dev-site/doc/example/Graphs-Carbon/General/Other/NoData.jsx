@@ -17,7 +17,7 @@ const NodataGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="nodata" />
+      <div id="nodata" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

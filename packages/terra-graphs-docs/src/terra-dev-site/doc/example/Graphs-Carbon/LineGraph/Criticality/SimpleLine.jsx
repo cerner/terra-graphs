@@ -25,7 +25,7 @@ const CriticalitySimpleLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="criticalitySimpleLine" />
+      <div id="criticalitySimpleLine" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

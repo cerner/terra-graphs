@@ -27,7 +27,7 @@ const LineWithLegendOptionGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="lineWithLegendOption" />
+      <div id="lineWithLegendOption" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

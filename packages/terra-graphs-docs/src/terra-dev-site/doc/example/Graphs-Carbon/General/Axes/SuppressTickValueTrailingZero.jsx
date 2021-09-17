@@ -17,7 +17,7 @@ const SupressTickValueGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="supressTickValue" />
+      <div id="supressTickValue" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

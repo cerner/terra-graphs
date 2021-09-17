@@ -23,7 +23,7 @@ const BarGraphWithLineCombinationExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="barGraphWithLine" />
+      <div id="barGraphWithLine" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

@@ -30,7 +30,7 @@ const RegionLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="regionLine" />
+      <div id="regionLine" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

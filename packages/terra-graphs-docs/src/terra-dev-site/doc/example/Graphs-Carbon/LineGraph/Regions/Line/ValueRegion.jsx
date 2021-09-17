@@ -22,7 +22,7 @@ const ValueRegionLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="valueRegion" />
+      <div id="valueRegion" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

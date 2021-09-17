@@ -29,7 +29,7 @@ const XAxisTicksFormattedGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="xAxisTicksFormatted" />
+      <div id="xAxisTicksFormatted" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

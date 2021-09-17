@@ -25,7 +25,7 @@ const AxisWithNoTickValuesTimelineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="axisWithNoTickValuesTimelineGraph" />
+      <div id="axisWithNoTickValuesTimelineGraph" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

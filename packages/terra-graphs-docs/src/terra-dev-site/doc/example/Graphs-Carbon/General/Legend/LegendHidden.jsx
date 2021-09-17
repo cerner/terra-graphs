@@ -24,7 +24,7 @@ const LegendHiddenGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="legendHidden" />
+      <div id="legendHidden" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

@@ -22,7 +22,7 @@ const TimelineScatterExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesScatterGraph" />
+      <div id="timeseriesScatterGraph" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };

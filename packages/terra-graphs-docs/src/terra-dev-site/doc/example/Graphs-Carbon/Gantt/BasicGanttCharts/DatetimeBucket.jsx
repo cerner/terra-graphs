@@ -25,7 +25,7 @@ const GanttDatetimeBucketExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttDatetimeBucket" />
+      <div id="ganttDatetimeBucket" class="example-graph-container"> </div>
     </React.Fragment>
   );
 };
