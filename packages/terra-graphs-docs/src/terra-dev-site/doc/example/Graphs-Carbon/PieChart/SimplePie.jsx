@@ -30,7 +30,7 @@ const SimplePieExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simplePie" class="example-graph-container"> </div>
+      <div id="simplePie" class="example-graph-container" />
     </React.Fragment>
   );
 };

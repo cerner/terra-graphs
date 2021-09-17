@@ -31,7 +31,7 @@ const Y2RegionLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="y2Region" class="example-graph-container"> </div>
+      <div id="y2Region" class="example-graph-container" />
     </React.Fragment>
   );
 };

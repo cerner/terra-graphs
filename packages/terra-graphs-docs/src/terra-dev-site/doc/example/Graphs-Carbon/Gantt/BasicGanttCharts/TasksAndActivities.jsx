@@ -35,7 +35,7 @@ const GanttTasksAndActivitiesExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttTasksAndActivities" class="example-graph-container"> </div>
+      <div id="ganttTasksAndActivities" class="example-graph-container" />
     </React.Fragment>
   );
 };

@@ -18,7 +18,7 @@ const YAxisHiddenGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="yAxisHidden" class="example-graph-container"> </div>
+      <div id="yAxisHidden" class="example-graph-container" />
     </React.Fragment>
   );
 };

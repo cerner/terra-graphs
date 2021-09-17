@@ -23,7 +23,7 @@ const ValueRegionPiaredResultExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="pairedResultGraphValueRegion" class="example-graph-container"> </div>
+      <div id="pairedResultGraphValueRegion" class="example-graph-container" />
     </React.Fragment>
   );
 };

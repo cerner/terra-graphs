@@ -23,7 +23,7 @@ const TimeseriesPiaredResultExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesPairedResultGraph" class="example-graph-container"> </div>
+      <div id="timeseriesPairedResultGraph" class="example-graph-container" />
     </React.Fragment>
   );
 };

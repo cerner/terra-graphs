@@ -23,7 +23,7 @@ const LineWithPairedResultCombinationExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="lineWithPairedResult" class="example-graph-container"> </div>
+      <div id="lineWithPairedResult" class="example-graph-container" />
     </React.Fragment>
   );
 };

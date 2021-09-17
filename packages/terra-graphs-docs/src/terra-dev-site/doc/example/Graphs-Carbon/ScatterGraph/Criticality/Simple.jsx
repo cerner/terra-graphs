@@ -26,7 +26,7 @@ const SimpleCriticalityScatterExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleCriticalScattergraph" class="example-graph-container"> </div>
+      <div id="simpleCriticalScattergraph" class="example-graph-container" />
     </React.Fragment>
   );
 };

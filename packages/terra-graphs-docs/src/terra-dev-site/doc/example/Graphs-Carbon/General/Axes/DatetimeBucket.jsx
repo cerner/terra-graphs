@@ -23,7 +23,7 @@ const DatetimeBucketGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="datetimeBucket" class="example-graph-container"> </div>
+      <div id="datetimeBucket" class="example-graph-container" />
     </React.Fragment>
   );
 };

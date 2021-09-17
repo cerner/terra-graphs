@@ -23,7 +23,7 @@ const DisableCalibrationLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="disableCalibration" class="example-graph-container"> </div>
+      <div id="disableCalibration" class="example-graph-container" />
     </React.Fragment>
   );
 };

@@ -18,7 +18,7 @@ const HorizontalGridHiddenGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="horizontalGridHidden" class="example-graph-container"> </div>
+      <div id="horizontalGridHidden" class="example-graph-container" />
     </React.Fragment>
   );
 };

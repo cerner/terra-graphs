@@ -18,7 +18,7 @@ const LabelHiddenGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="labelHidden" class="example-graph-container"> </div>
+      <div id="labelHidden" class="example-graph-container" />
     </React.Fragment>
   );
 };

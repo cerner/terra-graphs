@@ -29,7 +29,7 @@ const CriticalityMultiLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="criticalityMultiLine" class="example-graph-container"> </div>
+      <div id="criticalityMultiLine" class="example-graph-container" />
     </React.Fragment>
   );
 };

@@ -22,7 +22,7 @@ export default () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="customWeightGraph" class="example-graph-container"> </div>
+      <div id="customWeightGraph" class="example-graph-container" />
     </React.Fragment>
   );
 };

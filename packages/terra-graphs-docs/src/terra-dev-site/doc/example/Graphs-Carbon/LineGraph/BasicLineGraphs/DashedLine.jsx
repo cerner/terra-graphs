@@ -21,7 +21,7 @@ const DashedLineExample = () => {
     });
   }, []);
   return (
-    <div id="dashedLine" class="example-graph-container"> </div>
+    <div id="dashedLine" class="example-graph-container" />
   );
 };
 

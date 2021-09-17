@@ -27,7 +27,7 @@ const NoLowerBoundLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="noLowerBound" class="example-graph-container"> </div>
+      <div id="noLowerBound" class="example-graph-container" />
     </React.Fragment>
   );
 };

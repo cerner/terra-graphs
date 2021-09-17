@@ -63,7 +63,7 @@ const SimplePanningExample = () => {
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <div id="scatterPanningExample" class="example-graph-container"> </div>
+      <div id="scatterPanningExample" class="example-graph-container" />
     </React.Fragment>
   );
 };

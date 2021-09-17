@@ -23,7 +23,7 @@ const BackgroundColorGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="backgroundColor" class="example-graph-container"> </div>
+      <div id="backgroundColor" class="example-graph-container" />
     </React.Fragment>
   );
 };

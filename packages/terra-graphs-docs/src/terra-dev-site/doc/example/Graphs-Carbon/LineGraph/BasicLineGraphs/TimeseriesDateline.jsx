@@ -38,7 +38,7 @@ const TimeseriesDatelineLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesDateLine" class="example-graph-container"> </div>
+      <div id="timeseriesDateLine" class="example-graph-container" />
     </React.Fragment>
   );
 };

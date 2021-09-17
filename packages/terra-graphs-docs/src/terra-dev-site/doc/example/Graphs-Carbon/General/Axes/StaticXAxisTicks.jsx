@@ -29,7 +29,7 @@ const StaticXAxisTicksGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="staticXAxisTicks" class="example-graph-container"> </div>
+      <div id="staticXAxisTicks" class="example-graph-container" />
     </React.Fragment>
   );
 };
