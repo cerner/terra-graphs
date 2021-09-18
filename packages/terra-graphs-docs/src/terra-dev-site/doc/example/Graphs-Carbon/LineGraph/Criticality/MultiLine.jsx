@@ -7,7 +7,7 @@ import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
-import '@cerner/terra-graphs-docs/lib/components/Line/LineGraph.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph.module.scss';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 /*
 Please refer to the documentation below to see the graphConfig and data objects
