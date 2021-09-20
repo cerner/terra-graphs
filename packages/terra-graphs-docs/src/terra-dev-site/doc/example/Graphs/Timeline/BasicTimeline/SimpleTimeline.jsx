@@ -1,11 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD
-import Timeline from '../../../../../../components/Timeline/Timeline';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import Timeline from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Timeline/Timeline';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-=======
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
->>>>>>> linter changes
 import getTimelineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelineDefaultConfig';
 import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset1.js';
 import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset2.js';

@@ -1,5 +1,5 @@
 import React from 'react';
-import ScatterGraph from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph';
+import ScatterGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Scatter/ScatterGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';

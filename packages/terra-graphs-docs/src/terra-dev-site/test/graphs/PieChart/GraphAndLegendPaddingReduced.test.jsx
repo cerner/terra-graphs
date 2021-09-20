@@ -1,5 +1,5 @@
 import React from 'react';
-import PieChart from '@cerner/terra-graphs/lib/components/Pie/PieChart';
+import PieChart from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Pie/PieChart';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getPieConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/reducedPaddingConfig';

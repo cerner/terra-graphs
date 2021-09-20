@@ -1,6 +1,6 @@
 import React from 'react';
-import Timeline from '../../../../../../components/Timeline/Timeline';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import Timeline from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Timeline/Timeline';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getTimelineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelineWithNoAxisTicksConfig';
 import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset1.js';
