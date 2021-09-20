@@ -25,7 +25,7 @@ const GanttLabelTruncationExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttLabelTruncation" class="example-graph-container" />
+      <div id="ganttLabelTruncation" className="example-graph-container" />
     </React.Fragment>
   );
 };

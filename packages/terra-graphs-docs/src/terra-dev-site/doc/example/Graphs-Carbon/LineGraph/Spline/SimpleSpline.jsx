@@ -23,7 +23,7 @@ const SimpleSlineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleSpline" class="example-graph-container" />
+      <div id="simpleSpline" className="example-graph-container" />
     </React.Fragment>
   );
 };

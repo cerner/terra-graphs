@@ -5,7 +5,7 @@ import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Bar/BarGraph.module.scss';
 import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simpleBarData';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simpleBarData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
@@ -25,7 +25,7 @@ export default () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleBargraph" class="example-graph-container" />
+      <div id="simpleBargraph" className="example-graph-container" />
     </React.Fragment>
   );
 };

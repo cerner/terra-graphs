@@ -24,7 +24,7 @@ const Y2AxisLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="lineY2Axis" class="example-graph-container" />
+      <div id="lineY2Axis" className="example-graph-container" />
     </React.Fragment>
   );
 };

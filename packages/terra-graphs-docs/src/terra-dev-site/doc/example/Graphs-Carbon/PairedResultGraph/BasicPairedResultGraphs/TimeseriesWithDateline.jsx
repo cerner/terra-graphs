@@ -23,7 +23,7 @@ const PairedResultWithDatelineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="pairedResultWithDateLine" class="example-graph-container" />
+      <div id="pairedResultWithDateLine" className="example-graph-container" />
     </React.Fragment>
   );
 };

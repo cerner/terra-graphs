@@ -40,7 +40,7 @@ const MultipleRegionsLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="multipleRegions" class="example-graph-container" />
+      <div id="multipleRegions" className="example-graph-container" />
     </React.Fragment>
   );
 };

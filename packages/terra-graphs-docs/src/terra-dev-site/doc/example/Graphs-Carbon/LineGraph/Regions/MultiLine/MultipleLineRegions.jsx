@@ -34,7 +34,7 @@ const MultipleLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="multipleline" class="example-graph-container" />
+      <div id="multipleline" className="example-graph-container" />
     </React.Fragment>
   );
 };

@@ -67,7 +67,7 @@ const TimelinePanningExample = () => {
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
-      <div id="TimelinePanningExample" class="example-graph-container" />
+      <div id="TimelinePanningExample" className="example-graph-container" />
     </React.Fragment>
   );
 };

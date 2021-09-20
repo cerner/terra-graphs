@@ -82,7 +82,7 @@ export default () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="groupedGoalLineBargraph" class="example-graph-container" />
+      <div id="groupedGoalLineBargraph" className="example-graph-container" />
     </React.Fragment>
   );
 };

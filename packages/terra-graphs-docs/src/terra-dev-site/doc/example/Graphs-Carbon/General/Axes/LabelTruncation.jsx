@@ -17,7 +17,7 @@ const LabelTruncationGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="labelTruncation" class="example-graph-container" />
+      <div id="labelTruncation" className="example-graph-container" />
     </React.Fragment>
   );
 };

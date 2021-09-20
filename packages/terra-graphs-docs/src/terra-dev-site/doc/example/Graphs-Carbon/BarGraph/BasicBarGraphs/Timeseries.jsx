@@ -23,7 +23,7 @@ export default () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesBargraph" class="example-graph-container" />
+      <div id="timeseriesBargraph" className="example-graph-container" />
     </React.Fragment>
   );
 };

@@ -23,7 +23,7 @@ const PiaredResultWithEventlineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="pairedResultWithEventline" class="example-graph-container" />
+      <div id="pairedResultWithEventline" className="example-graph-container" />
     </React.Fragment>
   );
 };

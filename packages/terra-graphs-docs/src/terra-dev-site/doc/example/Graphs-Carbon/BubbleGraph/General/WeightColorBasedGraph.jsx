@@ -22,7 +22,7 @@ export default () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="weightColorBasedBubbleGraph" class="example-graph-container" />
+      <div id="weightColorBasedBubbleGraph" className="example-graph-container" />
     </React.Fragment>
   );
 };

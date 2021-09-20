@@ -22,7 +22,7 @@ const LineWithSingleBubbleDataCombinationExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="lineWithSingleBubbleData" class="example-graph-container" />
+      <div id="lineWithSingleBubbleData" className="example-graph-container" />
     </React.Fragment>
   );
 };

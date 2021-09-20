@@ -22,7 +22,7 @@ const SimpleScatterExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleScattergraph" class="example-graph-container" />
+      <div id="simpleScattergraph" className="example-graph-container" />
     </React.Fragment>
   );
 };

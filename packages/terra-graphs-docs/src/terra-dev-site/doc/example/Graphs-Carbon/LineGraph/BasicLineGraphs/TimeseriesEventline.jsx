@@ -39,7 +39,7 @@ const TimeseriesEventlineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="timeseriesEventLine" class="example-graph-container" />
+      <div id="timeseriesEventLine" className="example-graph-container" />
     </React.Fragment>
   );
 };

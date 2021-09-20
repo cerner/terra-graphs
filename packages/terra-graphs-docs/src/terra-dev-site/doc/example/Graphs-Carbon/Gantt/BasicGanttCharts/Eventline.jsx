@@ -30,7 +30,7 @@ const GanttEventlineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttEventline" class="example-graph-container" />
+      <div id="ganttEventline" className="example-graph-container" />
     </React.Fragment>
   );
 };

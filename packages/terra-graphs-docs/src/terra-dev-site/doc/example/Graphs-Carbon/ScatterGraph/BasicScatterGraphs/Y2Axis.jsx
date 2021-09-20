@@ -22,7 +22,7 @@ const Y2AxisScatterExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="scatterY2Axis" class="example-graph-container" />
+      <div id="scatterY2Axis" className="example-graph-container" />
     </React.Fragment>
   );
 };

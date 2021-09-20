@@ -18,7 +18,7 @@ const XAxisOrientationTopGeneralExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="xAxisOrientationTop" class="example-graph-container" />
+      <div id="xAxisOrientationTop" className="example-graph-container" />
     </React.Fragment>
   );
 };
