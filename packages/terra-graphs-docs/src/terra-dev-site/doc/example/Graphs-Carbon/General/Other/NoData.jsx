@@ -10,7 +10,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineDefault('#noData'));
 
-const noDataGeneralExample = () => {
+const NoDataGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
   }, []);
@@ -22,4 +22,4 @@ const noDataGeneralExample = () => {
   );
 };
 
-export default noDataGeneralExample;
+export default NoDataGeneralExample;
