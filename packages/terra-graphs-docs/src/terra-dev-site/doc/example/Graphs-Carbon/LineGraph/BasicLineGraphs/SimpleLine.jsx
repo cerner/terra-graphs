@@ -5,7 +5,7 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
@@ -23,7 +23,7 @@ const SimpleLineExample = () => {
   return (
     <React.Fragment>
       <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleLinegraph" className="example-graph-container" />
+      <ExampleGraphContainer id="simpleLinegraph" />
     </React.Fragment>
   );
 };

@@ -3,7 +3,7 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
 import dashedLineData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dashedLineData';
 
@@ -21,7 +21,10 @@ const DashedLineExample = () => {
     });
   }, []);
   return (
-    <div id="dashedLine" className="example-graph-container" />
+    <React.Fragment>
+      <div id="tooltip" className="initial-tooltip" />
+      <ExampleGraphContainer id="dashedLine" />
+    </React.Fragment>
   );
 };
 
