@@ -15,10 +15,7 @@ const SupressTickValueGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="supressTickValue" />
-    </React.Fragment>
+    <ExampleGraphContainer id="supressTickValue" />
   );
 };
 

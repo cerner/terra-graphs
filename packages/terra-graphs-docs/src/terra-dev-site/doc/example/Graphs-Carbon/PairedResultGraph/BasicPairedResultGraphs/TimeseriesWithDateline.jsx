@@ -21,10 +21,7 @@ const PairedResultWithDatelineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="pairedResultWithDateLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="pairedResultWithDateLine" />
   );
 };
 

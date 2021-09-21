@@ -21,10 +21,7 @@ const DatetimeBucketGeneralExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="datetimeBucket" />
-    </React.Fragment>
+    <ExampleGraphContainer id="datetimeBucket" />
   );
 };
 

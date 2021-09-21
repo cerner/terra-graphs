@@ -23,10 +23,7 @@ const GanttLabelTruncationExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="ganttLabelTruncation" />
-    </React.Fragment>
+    <ExampleGraphContainer id="ganttLabelTruncation" />
   );
 };
 

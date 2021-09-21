@@ -38,10 +38,7 @@ const TimelineWithDatelineScatterExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="timeseriesDateLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="timeseriesDateLine" />
   );
 };
 

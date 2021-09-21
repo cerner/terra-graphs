@@ -26,10 +26,7 @@ const MultiLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="multiLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="multiLine" />
   );
 };
 

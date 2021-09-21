@@ -21,10 +21,7 @@ const LineWithPairedResultCombinationExample = () => {
     graph.loadContent(Carbon.api.pairedResult(dataset[1]));
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="lineWithPairedResult" />
-    </React.Fragment>
+    <ExampleGraphContainer id="lineWithPairedResult" />
   );
 };
 

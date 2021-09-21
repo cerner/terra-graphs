@@ -16,10 +16,7 @@ const YAxisHiddenGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="yAxisHidden" />
-    </React.Fragment>
+    <ExampleGraphContainer id="yAxisHidden" />
   );
 };
 

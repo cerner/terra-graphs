@@ -28,10 +28,7 @@ const GanttEventlineExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="ganttEventline" />
-    </React.Fragment>
+    <ExampleGraphContainer id="ganttEventline" />
   );
 };
 

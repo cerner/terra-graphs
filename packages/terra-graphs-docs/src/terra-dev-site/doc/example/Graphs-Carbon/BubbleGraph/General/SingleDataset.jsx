@@ -20,9 +20,6 @@ export default () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simpleBubbleGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleBubbleGraph" />
   );
 };

@@ -27,10 +27,7 @@ const XAxisTicksFormattedGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="xAxisTicksFormatted" />
-    </React.Fragment>
+    <ExampleGraphContainer id="xAxisTicksFormatted" />
   );
 };
 

@@ -25,10 +25,7 @@ const LineWithLegendOptionGeneralExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="lineWithLegendOption" />
-    </React.Fragment>
+    <ExampleGraphContainer id="lineWithLegendOption" />
   );
 };
 

@@ -37,10 +37,7 @@ const TimeseriesEventlineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="timeseriesEventLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="timeseriesEventLine" />
   );
 };
 

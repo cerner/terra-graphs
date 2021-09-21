@@ -23,10 +23,7 @@ const SimpleTimelineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simpleTimelineGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleTimelineGraph" />
   );
 };
 

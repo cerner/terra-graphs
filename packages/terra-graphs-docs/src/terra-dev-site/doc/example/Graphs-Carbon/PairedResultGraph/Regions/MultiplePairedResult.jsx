@@ -22,10 +22,7 @@ const MultipleRegionPiaredResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="timeseriesPairedResultGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="timeseriesPairedResultGraph" />
   );
 };
 

@@ -20,10 +20,7 @@ const LineWithSingleBubbleDataCombinationExample = () => {
     graph.loadContent(Carbon.api.line(dataset[1]));
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="lineWithSingleBubbleData" />
-    </React.Fragment>
+    <ExampleGraphContainer id="lineWithSingleBubbleData" />
   );
 };
 

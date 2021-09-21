@@ -20,10 +20,7 @@ const PairedResultWithScatterCombinationExample = () => {
     graph.loadContent(Carbon.api.pairedResult(dataset[1]));
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="pairedResultWithScatter" />
-    </React.Fragment>
+    <ExampleGraphContainer id="pairedResultWithScatter" />
   );
 };
 

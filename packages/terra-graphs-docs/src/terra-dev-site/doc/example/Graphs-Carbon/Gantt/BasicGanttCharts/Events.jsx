@@ -27,10 +27,7 @@ const GanttEventsExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="ganttEvents" />
-    </React.Fragment>
+    <ExampleGraphContainer id="ganttEvents" />
   );
 };
 

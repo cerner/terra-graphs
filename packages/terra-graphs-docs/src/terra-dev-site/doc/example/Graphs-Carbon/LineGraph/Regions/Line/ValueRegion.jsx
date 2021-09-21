@@ -20,10 +20,7 @@ const ValueRegionLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
       <ExampleGraphContainer id="valueRegion" />
-    </React.Fragment>
   );
 };
 

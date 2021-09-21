@@ -15,10 +15,7 @@ const LabelTruncationGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="labelTruncation" />
-    </React.Fragment>
+    <ExampleGraphContainer id="labelTruncation" />
   );
 };
 

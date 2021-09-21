@@ -24,10 +24,7 @@ const SimpleCriticalityScatterExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simpleCriticalScattergraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleCriticalScattergraph" />
   );
 };
 

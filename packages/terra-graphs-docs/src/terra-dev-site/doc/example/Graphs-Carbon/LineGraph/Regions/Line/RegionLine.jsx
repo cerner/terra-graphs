@@ -28,10 +28,7 @@ const RegionLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="regionLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="regionLine" />
   );
 };
 

@@ -29,7 +29,6 @@ const CustomLegendPlacementPieExample = () => {
   }, []);
   return (
     <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
       <div className="bindto-container">
         <div id="legendContainer" className="legend-bindto-container" />
         <div id="graphContainer" className="legend-bindto-graph-container" />

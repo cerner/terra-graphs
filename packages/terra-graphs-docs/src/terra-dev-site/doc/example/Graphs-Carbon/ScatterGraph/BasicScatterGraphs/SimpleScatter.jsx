@@ -20,10 +20,7 @@ const SimpleScatterExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simpleScattergraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleScattergraph" />
   );
 };
 

@@ -29,10 +29,7 @@ const Y2RegionLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="y2Region" />
-    </React.Fragment>
+    <ExampleGraphContainer id="y2Region" />
   );
 };
 

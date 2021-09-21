@@ -23,10 +23,7 @@ const CriticalitySimpleLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="criticalitySimpleLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="criticalitySimpleLine" />
   );
 };
 

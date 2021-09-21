@@ -22,10 +22,7 @@ const Y2AxisLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="lineY2Axis" />
-    </React.Fragment>
+    <ExampleGraphContainer id="lineY2Axis" />
   );
 };
 

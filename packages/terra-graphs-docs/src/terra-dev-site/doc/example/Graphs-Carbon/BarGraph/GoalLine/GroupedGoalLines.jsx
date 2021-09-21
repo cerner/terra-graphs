@@ -80,9 +80,6 @@ export default () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="groupedGoalLineBargraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="groupedGoalLineBargraph" />
   );
 };

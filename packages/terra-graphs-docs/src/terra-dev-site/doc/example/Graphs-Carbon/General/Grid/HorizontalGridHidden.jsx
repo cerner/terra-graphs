@@ -16,10 +16,7 @@ const HorizontalGridHiddenGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="horizontalGridHidden" />
-    </React.Fragment>
+    <ExampleGraphContainer id="horizontalGridHidden" />
   );
 };
 

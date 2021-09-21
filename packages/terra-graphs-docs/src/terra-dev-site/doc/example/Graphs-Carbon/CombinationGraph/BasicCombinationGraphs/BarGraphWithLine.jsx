@@ -21,10 +21,7 @@ const BarGraphWithLineCombinationExample = () => {
     graph.loadContent(Carbon.api.line(dataset[1]));
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="barGraphWithLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="barGraphWithLine" />
   );
 };
 

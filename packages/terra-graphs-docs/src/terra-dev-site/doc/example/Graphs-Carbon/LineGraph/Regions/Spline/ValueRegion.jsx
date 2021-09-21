@@ -21,10 +21,7 @@ const SimpleSplineRegionExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simpleSplineRegion" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleSplineRegion" />
   );
 };
 

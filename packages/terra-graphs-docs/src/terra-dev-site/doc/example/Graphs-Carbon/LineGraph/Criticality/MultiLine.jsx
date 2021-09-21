@@ -27,10 +27,7 @@ const CriticalityMultiLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="criticalityMultiLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="criticalityMultiLine" />
   );
 };
 

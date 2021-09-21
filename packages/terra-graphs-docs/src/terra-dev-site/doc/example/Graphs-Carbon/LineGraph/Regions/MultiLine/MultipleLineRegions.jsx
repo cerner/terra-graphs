@@ -32,10 +32,7 @@ const MultipleLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="multipleline" />
-    </React.Fragment>
+    <ExampleGraphContainer id="multipleline" />
   );
 };
 

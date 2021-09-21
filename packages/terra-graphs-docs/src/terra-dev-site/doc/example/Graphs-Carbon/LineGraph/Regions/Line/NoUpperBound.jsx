@@ -25,10 +25,7 @@ const NoUpperBoundLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="noUpperBound" />
-    </React.Fragment>
+    <ExampleGraphContainer id="noUpperBound" />
   );
 };
 

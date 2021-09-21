@@ -21,10 +21,7 @@ const PiaredResultWithEventlineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="pairedResultWithEventline" />
-    </React.Fragment>
+    <ExampleGraphContainer id="pairedResultWithEventline" />
   );
 };
 

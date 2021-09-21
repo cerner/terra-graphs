@@ -33,11 +33,7 @@ const GanttBarTypeExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttBarType" className="example-graph-container" />
-      <ExampleGraphContainer id="ganttBarType" />
-    </React.Fragment>
+    <ExampleGraphContainer id="ganttBarType" />
   );
 };
 

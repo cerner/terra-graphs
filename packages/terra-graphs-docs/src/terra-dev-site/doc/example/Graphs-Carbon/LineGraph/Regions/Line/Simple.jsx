@@ -31,10 +31,7 @@ const SimpleRegionLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simpleRegionLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleRegionLine" />
   );
 };
 

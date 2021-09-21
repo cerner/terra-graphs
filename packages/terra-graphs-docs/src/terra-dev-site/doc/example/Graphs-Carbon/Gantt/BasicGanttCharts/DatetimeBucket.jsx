@@ -23,10 +23,7 @@ const GanttDatetimeBucketExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="ganttDatetimeBucket" />
-    </React.Fragment>
+    <ExampleGraphContainer id="ganttDatetimeBucket" />
   );
 };
 

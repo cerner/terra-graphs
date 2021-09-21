@@ -22,10 +22,7 @@ const MultipleCriticalPiaredResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="multipleCriticalPairedResultGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="multipleCriticalPairedResultGraph" />
   );
 };
 

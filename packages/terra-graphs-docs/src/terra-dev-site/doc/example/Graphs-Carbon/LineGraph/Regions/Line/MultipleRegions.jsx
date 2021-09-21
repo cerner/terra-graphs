@@ -38,10 +38,7 @@ const MultipleRegionsLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="multipleRegions" />
-    </React.Fragment>
+    <ExampleGraphContainer id="multipleRegions" />
   );
 };
 

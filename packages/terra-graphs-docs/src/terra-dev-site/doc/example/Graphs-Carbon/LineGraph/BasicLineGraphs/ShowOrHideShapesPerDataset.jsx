@@ -25,10 +25,7 @@ const ShowOrHideShapesPerDatasetLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="showOrHideShapesPerDataset" />
-    </React.Fragment>
+    <ExampleGraphContainer id="showOrHideShapesPerDataset" />
   );
 };
 

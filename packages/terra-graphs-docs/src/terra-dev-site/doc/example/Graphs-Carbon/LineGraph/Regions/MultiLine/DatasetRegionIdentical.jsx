@@ -40,10 +40,7 @@ const DatasetRegionIdenticalLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="datasetRegionIdentical" />
-    </React.Fragment>
+    <ExampleGraphContainer id="datasetRegionIdentical" />
   );
 };
 

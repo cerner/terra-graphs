@@ -16,10 +16,7 @@ const XAxisOrientationTopGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="xAxisOrientationTop" />
-    </React.Fragment>
+    <ExampleGraphContainer id="xAxisOrientationTop" />
   );
 };
 

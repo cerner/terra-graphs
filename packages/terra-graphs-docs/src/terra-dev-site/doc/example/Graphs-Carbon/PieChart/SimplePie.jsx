@@ -28,10 +28,7 @@ const SimplePieExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simplePie" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simplePie" />
   );
 };
 

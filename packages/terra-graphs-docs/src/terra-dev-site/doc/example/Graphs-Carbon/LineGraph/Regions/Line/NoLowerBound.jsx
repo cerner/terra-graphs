@@ -25,10 +25,7 @@ const NoLowerBoundLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="noLowerBound" />
-    </React.Fragment>
+    <ExampleGraphContainer id="noLowerBound" />
   );
 };
 

@@ -22,10 +22,7 @@ const LegendHiddenGeneralExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="legendHidden" />
-    </React.Fragment>
+    <ExampleGraphContainer id="legendHidden" />
   );
 };
 

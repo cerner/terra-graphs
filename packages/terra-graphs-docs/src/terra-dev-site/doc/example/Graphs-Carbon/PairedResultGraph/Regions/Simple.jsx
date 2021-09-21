@@ -21,10 +21,7 @@ const SimpleRegionPairedResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simplePairedResultGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simplePairedResultGraph" />
   );
 };
 

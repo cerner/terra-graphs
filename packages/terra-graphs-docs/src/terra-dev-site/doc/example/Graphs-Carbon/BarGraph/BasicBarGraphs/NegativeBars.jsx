@@ -25,9 +25,6 @@ export default () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="negativeBargraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="negativeBargraph" />
   );
 };

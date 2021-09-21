@@ -16,10 +16,7 @@ const XAxisHiddenGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="xAxisHidden" />
-    </React.Fragment>
+    <ExampleGraphContainer id="xAxisHidden" />
   );
 };
 

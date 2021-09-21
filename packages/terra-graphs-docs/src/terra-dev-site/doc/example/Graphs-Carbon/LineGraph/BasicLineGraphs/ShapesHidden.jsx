@@ -22,10 +22,7 @@ const ShapesHiddenLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="shapesHidden" />
-    </React.Fragment>
+    <ExampleGraphContainer id="shapesHidden" />
   );
 };
 

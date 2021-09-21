@@ -17,10 +17,7 @@ const VerticalGridHiddenGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="verticalGridHidden" />
-    </React.Fragment>
+    <ExampleGraphContainer id="verticalGridHidden" />
   );
 };
 

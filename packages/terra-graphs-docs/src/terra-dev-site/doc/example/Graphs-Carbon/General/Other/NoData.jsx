@@ -15,10 +15,7 @@ const NoDataGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="noData" />
-    </React.Fragment>
+    <ExampleGraphContainer id="noData" />
   );
 };
 

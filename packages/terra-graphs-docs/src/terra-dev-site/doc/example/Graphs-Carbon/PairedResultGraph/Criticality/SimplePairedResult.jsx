@@ -21,11 +21,7 @@ const SimpleCriticalPiaredResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="simplePairedResultGraph" className="example-graph-container" />
-      <ExampleGraphContainer id="colorBasedBubbleGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="colorBasedBubbleGraph" />
   );
 };
 

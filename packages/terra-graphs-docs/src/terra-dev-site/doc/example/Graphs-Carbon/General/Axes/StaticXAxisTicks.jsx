@@ -27,10 +27,7 @@ const StaticXAxisTicksGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="staticXAxisTicks" />
-    </React.Fragment>
+    <ExampleGraphContainer id="staticXAxisTicks" />
   );
 };
 

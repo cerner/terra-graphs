@@ -54,9 +54,6 @@ export default () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="stackedGoalLineBargraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="stackedGoalLineBargraph" />
   );
 };

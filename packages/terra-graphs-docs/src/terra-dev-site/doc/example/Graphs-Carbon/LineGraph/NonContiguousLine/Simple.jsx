@@ -20,10 +20,7 @@ const NonContiguousLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="simpleLinegraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleLinegraph" />
   );
 };
 

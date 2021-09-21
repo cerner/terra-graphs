@@ -21,10 +21,7 @@ const ValueRegionPiaredResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="pairedResultGraphValueRegion" />
-    </React.Fragment>
+    <ExampleGraphContainer id="pairedResultGraphValueRegion" />
   );
 };
 

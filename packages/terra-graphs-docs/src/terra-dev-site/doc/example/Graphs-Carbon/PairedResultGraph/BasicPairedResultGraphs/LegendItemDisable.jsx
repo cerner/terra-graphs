@@ -21,10 +21,7 @@ const LegendItemDisablePiaredResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="legendItemDisable" />
-    </React.Fragment>
+    <ExampleGraphContainer id="legendItemDisable" />
   );
 };
 

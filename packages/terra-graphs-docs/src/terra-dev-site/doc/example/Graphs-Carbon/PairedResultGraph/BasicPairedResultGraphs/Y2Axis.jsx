@@ -23,10 +23,7 @@ const Y2AxisPiaredResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="y2AxisPairedResultGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="y2AxisPairedResultGraph" />
   );
 };
 

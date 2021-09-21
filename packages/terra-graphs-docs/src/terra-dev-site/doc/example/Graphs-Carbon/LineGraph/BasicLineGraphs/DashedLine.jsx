@@ -21,10 +21,7 @@ const DashedLineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="dashedLine" />
-    </React.Fragment>
+    <ExampleGraphContainer id="dashedLine" />
   );
 };
 

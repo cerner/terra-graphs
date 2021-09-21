@@ -28,11 +28,7 @@ const SimpleGanttExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleGantt" className="example-graph-container" />
       <ExampleGraphContainer id="simpleGantt" />
-    </React.Fragment>
   );
 };
 

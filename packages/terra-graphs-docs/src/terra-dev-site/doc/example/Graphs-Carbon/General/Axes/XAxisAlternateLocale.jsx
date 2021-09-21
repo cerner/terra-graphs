@@ -28,10 +28,7 @@ const XAxisAlternateLocaleGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="xAxisAlternateLocale" />
-    </React.Fragment>
+    <ExampleGraphContainer id="xAxisAlternateLocale" />
   );
 };
 

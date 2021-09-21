@@ -34,10 +34,7 @@ const GanttTrackSelectionExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="ganttTrackSelection" />
-    </React.Fragment>
+    <ExampleGraphContainer id="ganttTrackSelection" />
   );
 };
 

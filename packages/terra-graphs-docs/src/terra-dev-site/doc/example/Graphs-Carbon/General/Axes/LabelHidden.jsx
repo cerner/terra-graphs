@@ -16,10 +16,7 @@ const LabelHiddenGeneralExample = () => {
     Carbon.api.graph(graphConfig);
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="labelHidden" />
-    </React.Fragment>
+    <ExampleGraphContainer id="labelHidden" />
   );
 };
 

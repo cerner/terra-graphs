@@ -21,10 +21,7 @@ const BackgroundColorGeneralExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="backgroundColor" />
-    </React.Fragment>
+    <ExampleGraphContainer id="backgroundColor" />
   );
 };
 

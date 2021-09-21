@@ -26,10 +26,7 @@ const GanttGraphAndLegendPaddingReducedExample = () => {
   }, []);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <ExampleGraphContainer id="ganttGraphAndLegendPaddingReduced" />
-    </React.Fragment>
+    <ExampleGraphContainer id="ganttGraphAndLegendPaddingReduced" />
   );
 };
 
