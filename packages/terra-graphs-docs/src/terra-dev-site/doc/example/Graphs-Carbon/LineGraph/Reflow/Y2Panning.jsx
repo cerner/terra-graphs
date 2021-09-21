@@ -1,15 +1,12 @@
 import React from 'react';
 import Button from 'terra-button/lib/Button';
-import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningY2';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
-import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
+import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
+import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningY2';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects

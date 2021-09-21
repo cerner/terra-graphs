@@ -1,12 +1,9 @@
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs/lib/components/Gantt/GanttChart.module.scss';
-import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Gantt/GanttChart.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getGanttDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefaultConfig';
 import loadTracks from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/loadTracks';
 import taskDataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset2';

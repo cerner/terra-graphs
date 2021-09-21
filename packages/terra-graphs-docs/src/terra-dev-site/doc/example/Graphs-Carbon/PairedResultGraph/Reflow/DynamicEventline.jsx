@@ -1,13 +1,10 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import Button from 'terra-button/lib/Button';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
-import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/PairedResult/PairedResultGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanningWithEventline';
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultSimplePanningData';
 
