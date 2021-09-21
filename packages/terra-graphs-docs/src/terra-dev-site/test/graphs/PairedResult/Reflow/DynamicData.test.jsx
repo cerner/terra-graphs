@@ -48,7 +48,6 @@ const PairedResultPanningExample = () => {
     <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
       <PairedResultGraph graphID="PairedResultDynamicData" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </>
   );
