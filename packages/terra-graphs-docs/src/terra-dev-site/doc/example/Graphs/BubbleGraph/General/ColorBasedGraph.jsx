@@ -12,8 +12,8 @@ const graphConfig = utils.deepClone(getSimpleAxisData('#colorBasedBubbleGraph'))
 const dataset = [utils.deepClone(bubbleDataColorBased)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BubbleSingleDataset graphID="colorBasedBubbleGraph" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

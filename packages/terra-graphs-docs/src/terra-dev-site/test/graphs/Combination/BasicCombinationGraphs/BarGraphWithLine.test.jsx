@@ -9,8 +9,8 @@ const graphConfig = utils.deepClone(getCombinationGraphConfig('#barGraphWithLine
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <CombinationGraph graphID="barGraphWithLine" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

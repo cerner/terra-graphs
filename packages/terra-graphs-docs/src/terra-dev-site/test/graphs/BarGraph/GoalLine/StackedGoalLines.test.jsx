@@ -43,8 +43,8 @@ contentData[1].regions = region;
 contentData[2].regions = region;
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={contentData} />
-  </React.Fragment>
+  </>
 );

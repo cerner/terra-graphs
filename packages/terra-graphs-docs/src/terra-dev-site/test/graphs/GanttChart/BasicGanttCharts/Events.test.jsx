@@ -13,8 +13,8 @@ graphConfig.dateline = [];
 const dataset = loadTracks([taskDataset2], [], [eventDataset1], [], 1);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttEvents" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

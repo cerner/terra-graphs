@@ -9,8 +9,8 @@ const graphConfig = utils.deepClone(getPairedResultEventlineTimeseriesConfig('#p
 const dataset = [utils.deepClone(data)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <PairedResultGraph graphID="pairedResultWithEventline" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

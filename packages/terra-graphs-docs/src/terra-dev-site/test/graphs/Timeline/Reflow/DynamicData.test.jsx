@@ -48,12 +48,12 @@ const TimelinePanningExample = () => {
   const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
       <Timeline graphID="TimelinePanningExample" graphConfig={panState.graphConfig} dataset={panState.dataset} />
-    </React.Fragment>
+    </>
   );
 };
 

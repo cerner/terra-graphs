@@ -22,8 +22,8 @@ const contentArray = [barTypesDatset1, barTypesDatset2, barTypesDatset3, barType
 const dataset = utils.deepClone(contentArray);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttBarType" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

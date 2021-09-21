@@ -10,10 +10,10 @@ const propTypes = {
 };
 
 const ExampleGraphContainer = (props) => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <div id={props.id} className="example-graph-container" />
-  </React.Fragment>
+  </>
 );
 
 ExampleGraphContainer.propTypes = propTypes;

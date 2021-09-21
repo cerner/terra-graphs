@@ -60,11 +60,11 @@ const DynamicLinePanningExample = () => {
   const [, dispatch] = React.useReducer(reducer, state);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <ExampleGraphContainer id="dynamicLineData" />
-    </React.Fragment>
+    </>
   );
 };
 

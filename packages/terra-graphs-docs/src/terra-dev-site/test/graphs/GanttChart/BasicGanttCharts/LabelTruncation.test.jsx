@@ -9,8 +9,8 @@ const graphConfig = utils.deepClone(getGanttLabelTruncationConfig('#ganttLabelTr
 const dataset = [utils.deepClone(labelTruncationDataset)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttLabelTruncation" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

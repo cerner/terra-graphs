@@ -34,8 +34,8 @@ graphConfig.showVGrid = false;
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BarGraph graphID="timeseriesBarWithEventline" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

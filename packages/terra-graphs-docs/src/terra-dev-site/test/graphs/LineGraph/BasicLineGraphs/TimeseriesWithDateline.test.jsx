@@ -25,8 +25,8 @@ graphConfig.dateline = [
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <LineGraph graphID="timeseriesDateLine" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

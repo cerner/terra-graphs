@@ -28,13 +28,13 @@ const GraphAndLegendPaddingReducedPieExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
+    <>
       <div className="bindto-container">
         <div id="legendContainer" className="legend-bindto-container" />
         <div id="graphContainer" className="legend-bindto-graph-container" />
       </div>
       <ExampleGraphContainer id="pieGraphContainer" />
-    </React.Fragment>
+    </>
   );
 };
 

@@ -18,8 +18,8 @@ contentData[1].label.isDisabled = true;
 contentData[2].label.isDisabled = true;
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BarGraph graphID="stackedAxisInfoTextLabelsBargraph" graphConfig={graphConfig} dataset={contentData} />
-  </React.Fragment>
+  </>
 );

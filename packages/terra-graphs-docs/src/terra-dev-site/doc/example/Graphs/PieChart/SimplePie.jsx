@@ -18,8 +18,8 @@ const dataset = [
 ];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <PieChart graphID="simplePie" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

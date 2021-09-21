@@ -13,8 +13,8 @@ const graphConfig = utils.deepClone(getTimelineConfig('#simpleTimelineGraph'));
 const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <Timeline graphID="simpleTimelineGraph" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

@@ -50,9 +50,9 @@ const dataset = loadTracks(
 );
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttTrackSelection" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );
 

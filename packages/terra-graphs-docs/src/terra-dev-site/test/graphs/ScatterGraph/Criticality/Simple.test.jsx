@@ -15,8 +15,8 @@ dataContent[0].values[0].isCritical = true;
 dataContent[0].values[5].isCritical = true;
 dataContent[0].values[10].isCritical = true;
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <ScatterGraph graphID="simpleScattergraph" graphConfig={graphConfig} dataset={dataContent} />
-  </React.Fragment>
+  </>
 );

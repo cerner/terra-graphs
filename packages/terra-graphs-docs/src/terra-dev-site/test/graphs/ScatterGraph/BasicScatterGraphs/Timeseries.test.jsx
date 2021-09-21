@@ -12,8 +12,8 @@ const graphConfig = utils.deepClone(lineTimesries('#timeseriesScatterGraph'));
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <ScatterGraph graphID="timeseriesScatterGraph" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

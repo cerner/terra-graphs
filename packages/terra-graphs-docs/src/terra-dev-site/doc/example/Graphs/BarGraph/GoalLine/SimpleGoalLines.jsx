@@ -41,8 +41,8 @@ const contentData = utils.deepClone(data);
 contentData[0].regions = regions;
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BarGraph graphID="simpleGoalLineBargraph" graphConfig={graphConfig} dataset={contentData} />
-  </React.Fragment>
+  </>
 );

@@ -25,9 +25,9 @@ export default () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <div id="tooltip" className="initial-tooltip" />
       <div id="negativeBargraph"> </div>
-    </React.Fragment>
+    </>
   );
 };

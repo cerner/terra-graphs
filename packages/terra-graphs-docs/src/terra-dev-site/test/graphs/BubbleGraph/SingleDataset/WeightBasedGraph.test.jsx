@@ -9,8 +9,8 @@ const graphConfig = utils.deepClone(getSimpleAxisData('#weightBasedBubbleGraph')
 const dataset = [utils.deepClone(bubbleDataWeightBased)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BubbleSingleDataset graphID="weightBasedBubbleGraph" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

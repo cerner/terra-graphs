@@ -29,8 +29,8 @@ graphConfig.eventline = [
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <ScatterGraph graphID="timeseriesEventLine" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

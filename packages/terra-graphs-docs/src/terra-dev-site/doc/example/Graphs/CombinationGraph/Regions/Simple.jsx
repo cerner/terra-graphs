@@ -37,8 +37,8 @@ dataset[1].regions = {
 };
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <CombinationGraph graphID="lineWithPairedResultRegion" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

@@ -31,8 +31,8 @@ graphConfig.clickPassThrough = {
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <ScatterGraph graphID="timeseriesDateLine" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

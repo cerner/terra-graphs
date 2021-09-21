@@ -17,9 +17,9 @@ contentData[0].color = Carbon.helpers.COLORS.BLUE;
 contentData[0].style = { strokeDashArray: '2,2' };
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <LineGraph graphID="lineWithLegendOption" graphConfig={graphConfig} dataset={contentData} />
-  </React.Fragment>
+  </>
 );
 

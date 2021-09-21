@@ -14,8 +14,8 @@ graphConfig.axis.y.upperLimit = 0;
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BarGraph graphID="negativeBargraph" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

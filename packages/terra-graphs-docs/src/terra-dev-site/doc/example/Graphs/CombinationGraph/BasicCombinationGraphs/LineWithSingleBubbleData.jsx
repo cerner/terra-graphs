@@ -12,8 +12,8 @@ const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithSingleBu
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <CombinationGraph graphID="lineWithSingleBubbleData" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

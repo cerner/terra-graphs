@@ -13,8 +13,8 @@ const graphConfig = utils.deepClone(getPairedResultY2AxisTimeseriesConfig('#time
 const dataset = [utils.deepClone(dataset1), utils.deepClone(dataset2)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <PairedResultGraph graphID="timeseriesY2AxisPairedResultGraph" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

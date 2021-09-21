@@ -60,11 +60,11 @@ const SimplePairedResultPanningExample = () => {
   }, [panState.initial]);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <ExampleGraphContainer id="simplePairedResultPanning" />
-    </React.Fragment>
+    </>
   );
 };
 

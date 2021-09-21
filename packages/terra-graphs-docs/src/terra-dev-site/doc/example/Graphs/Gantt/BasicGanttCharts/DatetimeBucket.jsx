@@ -12,8 +12,8 @@ const graphConfig = utils.deepClone(getGanttDatetimeBucketConfig('#ganttDatetime
 const dataset = [utils.deepClone(dateTimeBucketData)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttDatetimeBucket" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

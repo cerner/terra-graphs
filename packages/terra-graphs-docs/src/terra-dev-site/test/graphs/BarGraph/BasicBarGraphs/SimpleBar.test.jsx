@@ -12,8 +12,8 @@ const graphConfig = utils.deepClone(barDefault('#simpleBargraph'));
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

@@ -12,8 +12,8 @@ graphConfig.axis.y2.show = true;
 const dataset = utils.deepClone(data);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <ScatterGraph graphID="scatterY2Axis" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

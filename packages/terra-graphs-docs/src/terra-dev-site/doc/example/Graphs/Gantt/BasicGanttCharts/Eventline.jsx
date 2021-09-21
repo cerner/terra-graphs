@@ -17,8 +17,8 @@ const tasksData = [utils.deepClone(taskDataset1), utils.deepClone(taskDataset2),
 const dataset = loadTracks(tasksData, [], [], [], 4);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttEventline" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

@@ -12,8 +12,8 @@ const graphConfig = utils.deepClone(getPairedResultConfig('#simplePairedResultGr
 const contentData = [utils.deepClone(data)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <PairedResultGraph graphID="simplePairedResultGraph" graphConfig={graphConfig} dataset={contentData} />
-  </React.Fragment>
+  </>
 );

@@ -16,8 +16,8 @@ const actions = [utils.deepClone(actionDataset1), utils.deepClone(actionDataset2
 const dataset = loadTracks([], [], [], actions, 2);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttActions" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

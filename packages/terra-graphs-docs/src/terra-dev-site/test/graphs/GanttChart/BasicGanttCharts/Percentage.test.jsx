@@ -9,8 +9,8 @@ const graphConfig = utils.deepClone(getGanttDefaultConfig('#ganttPercentage'));
 const dataset = [utils.deepClone(percentageData)];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttPercentage" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

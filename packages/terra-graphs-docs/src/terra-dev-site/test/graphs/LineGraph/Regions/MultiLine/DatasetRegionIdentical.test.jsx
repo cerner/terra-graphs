@@ -29,8 +29,8 @@ contentData[2].regions = [
 ];
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <LineGraph graphID="datasetRegionIdentical" graphConfig={graphConfig} dataset={contentData} />
-  </React.Fragment>
+  </>
 );
