@@ -23,6 +23,6 @@ export default () => {
   }, []);
 
   return (
-      <ExampleGraphContainer id="axisInfoTextLabelsBargraph" />
+    <ExampleGraphContainer id="axisInfoTextLabelsBargraph" />
   );
 };

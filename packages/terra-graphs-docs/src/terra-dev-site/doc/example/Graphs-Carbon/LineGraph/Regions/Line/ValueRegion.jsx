@@ -20,7 +20,7 @@ const ValueRegionLineExample = () => {
     });
   }, []);
   return (
-      <ExampleGraphContainer id="valueRegion" />
+    <ExampleGraphContainer id="valueRegion" />
   );
 };
 

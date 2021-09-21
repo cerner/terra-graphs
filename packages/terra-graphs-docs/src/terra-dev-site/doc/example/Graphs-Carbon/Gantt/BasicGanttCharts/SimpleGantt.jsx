@@ -28,7 +28,7 @@ const SimpleGanttExample = () => {
   }, []);
 
   return (
-      <ExampleGraphContainer id="simpleGantt" />
+    <ExampleGraphContainer id="simpleGantt" />
   );
 };
 
