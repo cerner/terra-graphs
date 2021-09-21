@@ -3,7 +3,7 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
 
@@ -63,12 +63,11 @@ const DynamicLinePanningExample = () => {
   }, [panState.initial]);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="dynamicLineData" />
-    </React.Fragment>
+      <ExampleGraphContainer id="dynamicLineData" />
+    </>
   );
 };
 

@@ -3,7 +3,7 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Timeline/Timeline.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getTimelineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelineDefaultConfig';
 import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset1';
 import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset2';
@@ -22,10 +22,7 @@ const SimpleTimelineExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleTimelineGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleTimelineGraph" />
   );
 };
 

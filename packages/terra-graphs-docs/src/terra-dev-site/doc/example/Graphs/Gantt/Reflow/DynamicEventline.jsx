@@ -2,7 +2,7 @@ import React from 'react';
 import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getGanttPanningWithEventlineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttPanningWithEventline';
 import graphData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/simplePanningData';
 import Carbon from '@cerner/carbon-graphs/src/js/carbon';
@@ -64,12 +64,12 @@ const GanttPanningExample = () => {
   const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
       <GanttChart graphID="GanttPanningWithDynamicEventline" graphConfig={panState.graphConfig} dataset={panState.dataset} />
-    </React.Fragment>
+    </>
   );
 };
 

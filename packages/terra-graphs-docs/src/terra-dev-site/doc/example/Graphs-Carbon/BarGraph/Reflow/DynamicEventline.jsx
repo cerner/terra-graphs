@@ -4,7 +4,7 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Bar/BarGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simplePanningData';
 
@@ -81,12 +81,11 @@ const BarPanningExample = () => {
   }, [panState.initial]);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="barPanningDynamicEventline"> </div>
-    </React.Fragment>
+      <ExampleGraphContainer id="barPanningDynamicEventline" />
+    </>
   );
 };
 

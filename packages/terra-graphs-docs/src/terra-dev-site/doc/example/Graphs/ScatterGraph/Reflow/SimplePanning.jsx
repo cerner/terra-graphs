@@ -2,7 +2,7 @@ import React from 'react';
 import ScatterGraph from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
 /*
@@ -46,12 +46,12 @@ const ScatterPanningExample = () => {
   const [panState, dispatch] = React.useReducer(reducer, initialState);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <div id="tooltip" className="initial-tooltip" />
       <ScatterGraph graphID="scatterPanningExample" graphConfig={panState.graphConfig} dataset={dataset} />
-    </React.Fragment>
+    </>
   );
 };
 

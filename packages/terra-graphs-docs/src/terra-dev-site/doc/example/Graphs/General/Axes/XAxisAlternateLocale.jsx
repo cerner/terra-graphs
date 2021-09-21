@@ -2,7 +2,7 @@ import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import LineGraph from '@cerner/terra-graphs/lib/components/Line/LineGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import lineTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
 
 const tickValues = [

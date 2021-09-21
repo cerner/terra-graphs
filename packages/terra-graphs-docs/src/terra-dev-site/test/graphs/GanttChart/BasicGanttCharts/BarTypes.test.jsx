@@ -1,7 +1,7 @@
 import React from 'react';
 import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getGanttDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefaultConfig';
 import barTypesDatset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/barTypesDataset1';
 import barTypesDatset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/barTypesDataset2';
@@ -19,8 +19,8 @@ const contentArray = [barTypesDatset1, barTypesDatset2, barTypesDatset3, barType
 const dataset = utils.deepClone(contentArray);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttBarType" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );

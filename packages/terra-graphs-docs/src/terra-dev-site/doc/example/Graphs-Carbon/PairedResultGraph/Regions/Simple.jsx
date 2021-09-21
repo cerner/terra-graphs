@@ -3,7 +3,7 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getPairedResultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultDefault';
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultSimpleRegionDataset';
 
@@ -21,10 +21,7 @@ const SimpleRegionPairedResultExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="simplePairedResultGraph" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simplePairedResultGraph" />
   );
 };
 

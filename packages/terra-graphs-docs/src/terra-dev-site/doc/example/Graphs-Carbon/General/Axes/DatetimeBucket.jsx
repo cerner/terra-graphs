@@ -3,7 +3,7 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import dateTimeBucket from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/dateTimeBucket';
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
 
@@ -21,10 +21,7 @@ const DatetimeBucketGeneralExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="datetimeBucket" />
-    </React.Fragment>
+    <ExampleGraphContainer id="datetimeBucket" />
   );
 };
 

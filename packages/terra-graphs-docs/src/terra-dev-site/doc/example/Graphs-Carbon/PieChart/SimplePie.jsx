@@ -3,7 +3,7 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Pie/PieChart.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getPieConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/simplePieConfig';
 import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset1';
 import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset2';
@@ -28,10 +28,7 @@ const SimplePieExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="simplePie" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simplePie" />
   );
 };
 

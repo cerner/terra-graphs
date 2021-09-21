@@ -4,7 +4,7 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Gantt/GanttChart.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getGanttPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttPanning';
 import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/panningMultipleDataset1';
 import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/panningMultipleDataset2';
@@ -63,12 +63,11 @@ const GanttPanningMultipleDatasetsExample = () => {
   }, [panState.initial]);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="ganttPanningMultipleDatasets" />
-    </React.Fragment>
+      <ExampleGraphContainer id="ganttPanningMultipleDatasets" />
+    </>
   );
 };
 

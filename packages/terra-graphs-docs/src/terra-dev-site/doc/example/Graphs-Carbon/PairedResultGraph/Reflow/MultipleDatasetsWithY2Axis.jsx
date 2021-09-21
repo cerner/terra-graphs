@@ -4,7 +4,7 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanningY2Axis';
 import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultPanningWithY2AxisDataset1';
 import dataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultPanningWithY2AxisDataset2';
@@ -61,12 +61,11 @@ const MultipleDatasetWithY2AxisPairedResultPanningExample = () => {
   }, [panState.initial]);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="pairedResultMultipleDatasetWithY2Axis" />
-    </React.Fragment>
+      <ExampleGraphContainer id="pairedResultMultipleDatasetWithY2Axis" />
+    </>
   );
 };
 

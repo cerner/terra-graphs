@@ -4,7 +4,7 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Timeline/Timeline.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getTimelinePanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig';
 import dataset1 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset1';
 import dataset2 from '@cerner/terra-graphs-docs/src/example-datasets/dataObjects/Timeline/defaultDataset2';
@@ -69,12 +69,11 @@ const TimelinePanningDynamicDataExample = () => {
   }, [panState.initial]);
 
   return (
-    <React.Fragment>
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="TimelinePanningDynamicExample" />
-    </React.Fragment>
+      <ExampleGraphContainer id="TimelinePanningDynamicExample" />
+    </>
   );
 };
 

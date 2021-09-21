@@ -40,3 +40,4 @@
   * Updated Timeline datasets and examples to maintain consistency.
   * Updated Bubble datasets and examples to maintain consistency.
   * Updated scss imports for all graphs.
+  * Moved class overrides for `carbon-graph-container` to a separate class.

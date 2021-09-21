@@ -5,7 +5,7 @@ import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphC
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/valueRegionData';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
 import '@cerner/terra-graphs/lib/components/Line/LineGraph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
@@ -21,10 +21,7 @@ const SimpleSplineRegionExample = () => {
     });
   }, []);
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleSplineRegion" />
-    </React.Fragment>
+    <ExampleGraphContainer id="simpleSplineRegion" />
   );
 };
 

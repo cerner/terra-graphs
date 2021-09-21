@@ -2,7 +2,7 @@ import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import Button from 'terra-button/lib/Button';
 import getSimpleAxisData from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
 import bubbleDynamicPanningData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDynamicPanningData1.js';
@@ -60,12 +60,11 @@ const BubblePanningExample = () => {
   }, [panState.initial]);
 
   return (
-    <React.Fragment>
-      <div id="tooltip" className="initial-tooltip" />
+    <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="BubbleDynamicDataPanning"> </div>
-    </React.Fragment>
+      <ExampleGraphContainer id="BubbleDynamicDataPanning" />
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import GanttChart from '@cerner/terra-graphs/lib/components/Gantt/GanttChart';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getGanttDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttDefaultConfig';
 import loadTracks from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/loadTracks';
 import taskDataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset2';
@@ -13,8 +13,8 @@ graphConfig.dateline = [];
 const dataset = loadTracks([taskDataset2], [], [eventDataset1], [], 1);
 
 export default () => (
-  <React.Fragment>
+  <>
     <div id="tooltip" className="initial-tooltip" />
     <GanttChart graphID="ganttEvents" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
+  </>
 );
