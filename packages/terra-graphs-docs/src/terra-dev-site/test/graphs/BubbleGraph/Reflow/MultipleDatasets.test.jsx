@@ -1,7 +1,7 @@
 import React from 'react';
-import BubbleMultipleDataset from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bubble/BubbleMultipleDataset';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import BubbleMultipleDataset from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bubble/BubbleMultipleDataset';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getSimpleAxisData from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
 import bubbleDataBasic from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic.js';
