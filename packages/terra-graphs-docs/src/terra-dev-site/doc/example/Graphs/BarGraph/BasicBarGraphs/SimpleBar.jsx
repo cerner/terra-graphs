@@ -12,11 +12,9 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 const graphConfig = utils.deepClone(barDefault('#simpleBargraph'));
 const dataset = utils.deepClone(exampleData);
 
-export default () => {
-  return (
-    <>
-      <div id="tooltip" className="initial-tooltip" />
-      <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={dataset} />
-    </>
-  );
-};
+export default () => (
+  <>
+    <div id="tooltip" className="initial-tooltip" />
+    <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={dataset} />
+  </>
+);
