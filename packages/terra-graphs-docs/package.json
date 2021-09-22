@@ -27,12 +27,12 @@
   "dependencies": {
     "@cerner/carbon-graphs":"^2.16.0",
     "prop-types": "^15.5.8",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "terra-theme-context": "^1.0.0"
   },
   "devDependencies": {
     "terra-button": "^3.55.0",
-    "terra-dev-site": "^6.5.0",
-    "terra-theme-context": "^1.0.0"
+    "terra-dev-site": "^6.5.0"
   },
   "peerDependencies": {
     "react": "^16.8.5",
