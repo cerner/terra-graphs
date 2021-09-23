@@ -540,8 +540,8 @@ describe('Graph - Panning', () => {
       });
     });
   });
-  describe('When small label is provided for x, y and y2 axis during initial render', () => {
-    describe('when Large label is updated in x, y and y2 axis during reflow', () => {
+  describe('When a small label is provided for x, y and y2 axis during initial render', () => {
+    describe('when a Large label is updated in x, y and y2 axis during reflow', () => {
       it('should add onCLick function for all axis labels', () => {
         const labelAxisObj = utils.deepClone(axisDefault);
         labelAxisObj.y2 = {
