@@ -273,7 +273,7 @@ const getAxesLabelCharacterLimits = (config) => ({
  * @private
  * @param {d3.selection} canvasSVG - d3 selection node of canvas svg
  * @param {string} className - class name of axis
- * @param {object} axisObj - Axis object provided by the consumer
+ * @param {object} axisObj - axis object provided by the consumer
  * @param {number} charLimit - character limit of label in axis
  * @param {string} axisType - type of axis
  * @returns {object} d3 svg path
