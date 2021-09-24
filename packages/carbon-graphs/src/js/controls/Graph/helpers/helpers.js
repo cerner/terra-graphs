@@ -309,20 +309,16 @@ const addLabelEventHandler = (
 const handleLabelClickFunctionDuringReflow = (config) => {
   const axesLabelCharLimits = getAxesLabelCharacterLimits(config);
   const selectLabelTextElement = (className) => document.querySelector(`.${className} text`);
-  const setClickFunction = (className) => d3.select(selectLabelTextElement(className)).on('click', null).style('cursor', 'auto');
+  const updateOnClickForAxis = (axisLabel, axisLimit, axisStyles) => {
+    const labelHasOnClick = (selectLabelTextElement(axisStyles) === null) ? false : utils.isFunction(d3.select(selectLabelTextElement(axisStyles)).on('click'));
+    if (axisLabel && !shouldTruncateLabel(axisLabel, axisLimit) && labelHasOnClick) {
+      d3.select(selectLabelTextElement(axisStyles)).on('click', null).style('cursor', 'auto');
+    }
+  };
 
-  if (config.axis.x.label && !shouldTruncateLabel(config.axis.x.label, axesLabelCharLimits.xAxisLimit)
-      && ((selectLabelTextElement(styles.axisLabelX) === null) ? false : (utils.isFunction(d3.select(selectLabelTextElement(styles.axisLabelX)).on('click'))))) {
-    setClickFunction(styles.axisLabelX);
-  }
-  if (config.axis.y.label && !shouldTruncateLabel(config.axis.y.label, axesLabelCharLimits.yAndY2AxisLimit)
-      && ((selectLabelTextElement(styles.axisLabelY) === null) ? false : (utils.isFunction(d3.select(selectLabelTextElement(styles.axisLabelY)).on('click'))))) {
-    setClickFunction(styles.axisLabelY);
-  }
-  if (config.axis.y2.label && !shouldTruncateLabel(config.axis.y2.label, axesLabelCharLimits.yAndY2AxisLimit)
-  && ((selectLabelTextElement(styles.axisLabelY2) === null) ? false : (utils.isFunction(d3.select(selectLabelTextElement(styles.axisLabelY2)).on('click'))))) {
-    setClickFunction(styles.axisLabelY2);
-  }
+  updateOnClickForAxis(config.axis.x.label, axesLabelCharLimits.xAxisLimit, styles.axisLabelX);
+  updateOnClickForAxis(config.axis.y.label, axesLabelCharLimits.yAndY2AxisLimit, styles.axisLabelY);
+  updateOnClickForAxis(config.axis.y2.label, axesLabelCharLimits.yAndY2AxisLimit, styles.axisLabelY2);
 };
 /**
  * Updates the x, y, y2 axes label positions on resize
