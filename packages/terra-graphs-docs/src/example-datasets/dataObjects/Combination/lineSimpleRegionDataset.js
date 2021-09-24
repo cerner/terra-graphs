@@ -1,5 +1,5 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import {loadPopup} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {
   key: 'simple_region_line_dataset',
