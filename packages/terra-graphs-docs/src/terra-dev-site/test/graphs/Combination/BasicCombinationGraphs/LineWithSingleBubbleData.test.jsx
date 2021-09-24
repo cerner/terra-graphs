@@ -12,11 +12,6 @@ const dataset = [utils.deepClone(singleBubbleDataset), utils.deepClone(lineDatas
 export default () => (
   <>
     <div id="tooltip" className="initial-tooltip" />
-<<<<<<< HEAD
-    <CombinationGraph graphID="lineWithPairedResult" graphConfig={graphConfig} dataset={dataset} />
-  </>
-=======
     <CombinationGraph graphID="lineWithSingleBubbleData" graphConfig={graphConfig} dataset={dataset} />
-  </React.Fragment>
->>>>>>> 401809bf... Updated Combination graph datasets and examples to maintain consistency.
+  </>
 );
