@@ -1,8 +1,8 @@
 import React from 'react';
-import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import '@cerner/terra-graphs/lib/components/Graph.module.scss';
-import '@cerner/terra-graphs/lib/components/Pie/PieChart.module.scss';
+import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Pie/PieChart.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getPieConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/reducedPaddingConfig';
 import dataset1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset1';

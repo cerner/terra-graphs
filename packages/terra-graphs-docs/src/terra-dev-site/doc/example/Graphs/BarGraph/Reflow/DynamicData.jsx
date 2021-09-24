@@ -1,7 +1,7 @@
 import React from 'react';
-import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dynamicPanningData';
@@ -50,7 +50,6 @@ const BarPanningExample = () => {
     <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
       <BarGraph graphID="BarPanningDynamicData" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </>
   );

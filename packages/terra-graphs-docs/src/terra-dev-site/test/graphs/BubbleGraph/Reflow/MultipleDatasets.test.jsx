@@ -1,7 +1,7 @@
 import React from 'react';
-import BubbleMultipleDataset from '@cerner/terra-graphs/lib/components/Bubble/BubbleMultipleDataset';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import BubbleMultipleDataset from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bubble/BubbleMultipleDataset';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getSimpleAxisData from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData';
 import bubbleDataBasic from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic.js';
@@ -47,7 +47,6 @@ const BubblePanningExample = () => {
     <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
       <BubbleMultipleDataset graphID="BubbleMultipleDatasetsPanning" graphConfig={panState.graphConfig} dataset={dataset} />
     </>
   );

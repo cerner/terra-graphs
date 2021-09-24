@@ -1,6 +1,6 @@
 import React from 'react';
-import ScatterGraph from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import ScatterGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Scatter/ScatterGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/simpleLineData';

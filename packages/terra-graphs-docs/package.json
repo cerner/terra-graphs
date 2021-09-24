@@ -26,9 +26,9 @@
   "homepage": "https://github.com/cerner/terra-graphs#readme",
   "dependencies": {
     "@cerner/carbon-graphs":"^2.16.0",
-    "@cerner/terra-graphs":"^0.0.0",
     "prop-types": "^15.5.8",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "terra-theme-context": "^1.0.0"
   },
   "devDependencies": {
     "terra-button": "^3.55.0",
