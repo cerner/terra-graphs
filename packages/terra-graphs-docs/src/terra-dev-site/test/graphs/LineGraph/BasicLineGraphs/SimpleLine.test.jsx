@@ -13,3 +13,4 @@ export default () => (
     <div id="tooltip" className="initial-tooltip" />
     <LineGraph graphID="simpleLinegraph" graphConfig={graphConfig} dataset={dataset} />
   </>
+);
