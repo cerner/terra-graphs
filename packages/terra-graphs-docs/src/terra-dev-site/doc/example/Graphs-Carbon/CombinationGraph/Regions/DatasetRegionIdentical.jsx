@@ -6,48 +6,17 @@ import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/PairedResult/PairedResultGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import lineAndPairedResultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Combination/lineAndPairedResultConfig';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/lineAndPairedResultData';
+import lineDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/lineIdenticalRegionDataset';
+import pairedResultDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/pairedResultIdenticalRegionDataset';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineAndPairedResultConfig('#lineWithPairedResultRegion'));
-const dataset = utils.deepClone(data);
-dataset[1].yAxis = 'y';
-dataset[0].regions = [
-  {
-    axis: 'y',
-    start: 120,
-    end: 180,
-    color: '#c8cacb',
-  },
+const dataset = [
+  utils.deepClone(lineDataset),
+  utils.deepClone(pairedResultDataset),
 ];
-dataset[1].regions = {
-  high: [
-    {
-      axis: 'y',
-      start: 120,
-      end: 180,
-      color: '#c8cacb',
-    },
-  ],
-  mid: [
-    {
-      axis: 'y',
-      start: 120,
-      end: 180,
-      color: '#c8cacb',
-    },
-  ],
-  low: [
-    {
-      axis: 'y',
-      start: 120,
-      end: 180,
-      color: '#c8cacb',
-    },
-  ],
-};
 
 const LineWithPairedResultRegionCombinationExample = () => {
   React.useEffect(() => {

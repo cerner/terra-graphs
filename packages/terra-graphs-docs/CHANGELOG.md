@@ -42,3 +42,4 @@
   * Updated scss imports for all graphs.
   * Moved class overrides for `carbon-graph-container` to a separate class.
   * Removed all dependencies on Terra-Graphs by copying over the source locally.
+  * Updated Combination graph datasets and examples to maintain consistency.
