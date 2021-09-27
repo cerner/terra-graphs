@@ -1,9 +1,8 @@
 import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import '@cerner/terra-graphs/lib/components/Graph.module.scss';
+import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs/lib/components/Bar/BarGraph.module.scss';
+import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simpleBarData';
 
@@ -13,18 +12,9 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 const graphConfig = utils.deepClone(barDefault('#simpleBargraph'));
 const dataset = utils.deepClone(exampleData);
 
-export default () => {
-  React.useEffect(() => {
-    const graph = Carbon.api.graph(graphConfig);
-    dataset.forEach((data) => {
-      graph.loadContent(Carbon.api.bar(data));
-    });
-  }, []);
-  return (
-    <>
-      <div id="tooltip" className="initial-tooltip" />
-      <div id="simpleBargraph" />
-    </>
-  );
-};
-
+export default () => (
+  <>
+    <div id="tooltip" className="initial-tooltip" />
+    <BarGraph graphID="simpleBargraph" graphConfig={graphConfig} dataset={dataset} />
+  </>
+);

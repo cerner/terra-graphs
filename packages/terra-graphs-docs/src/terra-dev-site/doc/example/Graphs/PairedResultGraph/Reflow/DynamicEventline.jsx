@@ -1,8 +1,8 @@
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import PairedResultGraph from '@cerner/terra-graphs/lib/components/PairedResult/PairedResultGraph';
 import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
+import PairedResultGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/PairedResult/PairedResultGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getPairedResultTimeseriesPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultPanningWithEventline';
 import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultSimplePanningData';
@@ -65,7 +65,6 @@ const PairedResultPanningExample = () => {
     <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
-      <div id="tooltip" className="initial-tooltip" />
       <PairedResultGraph graphID="PairedResultDynamicEventline" graphConfig={panState.graphConfig} dataset={panState.dataset} />
     </>
   );
