@@ -2,12 +2,10 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 import { createGraphValuesWithCos } from './createGraphValues';
 
-// no upper bound
-
 const data = {
-  key: 'uid_5',
+  key: 'uid_4',
   label: {
-    display: 'Data Label 5',
+    display: 'Data Label 4',
   },
   shape: Carbon.helpers.SHAPES.DARK.SQUARE,
   color: Carbon.helpers.COLORS.ORANGE,

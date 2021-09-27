@@ -3,9 +3,9 @@ import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup'
 import { createGraphValuesWithCos } from './createGraphValues';
 
 const data = {
-  key: 'uid_6',
+  key: 'uid_5',
   label: {
-    display: 'Data Label 6',
+    display: 'Data Label 5',
   },
   shape: Carbon.helpers.SHAPES.DARK.SQUARE,
   color: Carbon.helpers.COLORS.ORANGE,

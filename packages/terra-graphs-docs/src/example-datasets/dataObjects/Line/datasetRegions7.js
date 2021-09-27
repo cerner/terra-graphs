@@ -1,12 +1,10 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
-//  value region
-
 const data = {
-  key: 'uid_4',
+  key: 'uid_7',
   label: {
-    display: 'Data Label 4',
+    display: 'Data Label 7',
   },
   shape: Carbon.helpers.SHAPES.DARK.CIRCLE,
   onClick: loadPopup,
