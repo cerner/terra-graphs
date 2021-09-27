@@ -13,7 +13,10 @@ import barDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjec
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getCombinationGraphConfig('#barGraphWithLine'));
-const dataset = [utils.deepClone(barDataset), utils.deepClone(lineDataset)];
+const dataset = [
+  utils.deepClone(barDataset),
+  utils.deepClone(lineDataset),
+];
 
 const BarGraphWithLineCombinationExample = () => {
   React.useEffect(() => {

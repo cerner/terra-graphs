@@ -13,7 +13,11 @@ import multipleBubbleDataset2 from '@cerner/terra-graphs-docs/lib/example-datase
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithMultipleBubbleData'));
-const dataset = [utils.deepClone(multipleBubbleDataset1), utils.deepClone(multipleBubbleDataset2), utils.deepClone(lineDataset)];
+const dataset = [
+  utils.deepClone(multipleBubbleDataset1),
+  utils.deepClone(multipleBubbleDataset2),
+  utils.deepClone(lineDataset),
+];
 
 const LineWithMultipleBubbleDataCombinationExample = () => {
   React.useEffect(() => {

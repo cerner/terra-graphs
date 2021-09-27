@@ -7,7 +7,10 @@ import lineDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 import singleBubbleDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/bubbleDataset1';
 
 const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithSingleBubbleData'));
-const dataset = [utils.deepClone(singleBubbleDataset), utils.deepClone(lineDataset)];
+const dataset = [
+  utils.deepClone(singleBubbleDataset),
+  utils.deepClone(lineDataset),
+];
 
 export default () => (
   <>

@@ -12,7 +12,10 @@ import singleBubbleDataset from '@cerner/terra-graphs-docs/lib/example-datasets/
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithSingleBubbleData'));
-const dataset = [utils.deepClone(singleBubbleDataset), utils.deepClone(lineDataset)];
+const dataset = [
+  utils.deepClone(singleBubbleDataset),
+  utils.deepClone(lineDataset),
+];
 
 const LineWithSingleBubbleDataCombinationExample = () => {
   React.useEffect(() => {

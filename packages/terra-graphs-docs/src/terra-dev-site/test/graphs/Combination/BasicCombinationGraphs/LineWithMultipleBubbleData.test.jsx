@@ -8,7 +8,11 @@ import multipleBubbleDataset1 from '@cerner/terra-graphs-docs/lib/example-datase
 import multipleBubbleDataset2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/bubbleDataset2';
 
 const graphConfig = utils.deepClone(getCombinationGraphConfig('#lineWithMultipleBubbleData'));
-const dataset = [utils.deepClone(multipleBubbleDataset1), utils.deepClone(multipleBubbleDataset2), utils.deepClone(lineDataset)];
+const dataset = [
+  utils.deepClone(multipleBubbleDataset1),
+  utils.deepClone(multipleBubbleDataset2),
+  utils.deepClone(lineDataset),
+];
 
 export default () => (
   <>

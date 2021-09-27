@@ -7,7 +7,10 @@ import lineDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 import barDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/barDataset';
 
 const graphConfig = utils.deepClone(getCombinationGraphConfig('#barGraphWithLine'));
-const dataset = [utils.deepClone(barDataset), utils.deepClone(lineDataset)];
+const dataset = [
+  utils.deepClone(barDataset),
+  utils.deepClone(lineDataset),
+];
 
 export default () => (
   <>

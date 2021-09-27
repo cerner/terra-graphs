@@ -7,7 +7,10 @@ import lineDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 import pairedResultDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/pairedResultIdenticalRegionDataset';
 
 const graphConfig = utils.deepClone(lineAndPairedResultConfig('#lineWithPairedResultRegion'));
-const dataset = [utils.deepClone(lineDataset), utils.deepClone(pairedResultDataset)];
+const dataset = [
+  utils.deepClone(lineDataset),
+  utils.deepClone(pairedResultDataset),
+];
 
 export default () => (
   <>

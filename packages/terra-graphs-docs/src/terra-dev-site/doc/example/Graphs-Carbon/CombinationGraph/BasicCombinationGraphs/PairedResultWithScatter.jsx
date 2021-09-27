@@ -13,7 +13,10 @@ import pairedResultDataset from '@cerner/terra-graphs-docs/lib/example-datasets/
 Please refer to the documentation below to see the graphConfig and data objects
 */
 const graphConfig = utils.deepClone(lineAndPairedResultConfig('#pairedResultWithScatter'));
-const dataset = [utils.deepClone(scatterDataset), utils.deepClone(pairedResultDataset)];
+const dataset = [
+  utils.deepClone(scatterDataset),
+  utils.deepClone(pairedResultDataset),
+];
 
 const PairedResultWithScatterCombinationExample = () => {
   React.useEffect(() => {

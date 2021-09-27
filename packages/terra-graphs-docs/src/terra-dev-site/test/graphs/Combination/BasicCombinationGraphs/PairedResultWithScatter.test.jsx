@@ -7,7 +7,10 @@ import scatterDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataO
 import pairedResultDataset from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/pairedResultDataset';
 
 const graphConfig = utils.deepClone(lineAndPairedResultConfig('#pairedResultWithScatter'));
-const dataset = [utils.deepClone(scatterDataset), utils.deepClone(pairedResultDataset)];
+const dataset = [
+  utils.deepClone(scatterDataset),
+  utils.deepClone(pairedResultDataset),
+];
 
 export default () => (
   <>
