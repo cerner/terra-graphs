@@ -5,7 +5,7 @@ import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/Examp
 import getLineDefaultConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
 import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset1';
 import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset4';
-import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset5-noShapes';
+import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset5noShapes';
 
 const graphConfig = utils.deepClone(getLineDefaultConfig('#showOrHideShapesPerDataset'));
 const dataset = [
