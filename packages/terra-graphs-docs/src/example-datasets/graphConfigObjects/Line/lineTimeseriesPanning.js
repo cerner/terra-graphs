@@ -1,6 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
-const getConfigLineTimeseriesPanning = (id) => ({
+const getLineTimeseriesPanningConfig = (id) => ({
   bindTo: id,
   axis: {
     x: {
@@ -31,4 +31,4 @@ const getConfigLineTimeseriesPanning = (id) => ({
   showHGrid: true,
 });
 
-export default getConfigLineTimeseriesPanning;
+export default getLineTimeseriesPanningConfig;

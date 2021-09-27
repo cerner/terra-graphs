@@ -1,11 +1,13 @@
 import LineGraph from '../../../example/Graphs-Carbon/LineGraph/Criticality/MultiLine?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/defaultMultiLineData.js?dev-site-codeblock';
-require('details-polyfill')
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset1critical.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset3critical?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset4critical?dev-site-codeblock';
+require('details-polyfill');
 
 # Criticality in MultiLine
 
-This is multi line graph with critical points(highlighted with red circle) in it.
+This is multi-line graph with critical points (highlighted with red circles).
 
 ## Getting Started
 
@@ -29,5 +31,13 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 <GraphConfig />
 
 ### Data object
-<DataObject />
+
+#### Dataset 1
+<DataObject1 />
+
+#### Dataset 2
+<DataObject2 />
+
+#### Dataset 3
+<DataObject3 />
 </details>

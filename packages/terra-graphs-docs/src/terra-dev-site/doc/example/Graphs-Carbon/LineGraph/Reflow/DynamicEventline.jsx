@@ -6,26 +6,25 @@ import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.s
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanningEventline';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-eventline';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#dynamicEventlineExample'));
-const dataset = [utils.deepClone(exampleData[0])];
 
+const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#dynamicEventlineExample'));
+const dataset = utils.deepClone(exampleData);
 const initialState = {
   initial: 0,
   factor: 3,
 };
+
 let graph;
 
 const DynamicEventlinePanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
-    dataset.forEach((data) => {
-      graph.loadContent(Carbon.api.line(data));
-    });
+    graph.loadContent(Carbon.api.line(dataset));
   }, []);
 
   const reducer = (panState, action) => {
@@ -42,8 +41,19 @@ const DynamicEventlinePanningExample = () => {
         return panState;
     }
 
-    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, hour).toISOString();
-    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, hour).toISOString();
+    return {
+      initial: hour,
+      factor: panState.factor,
+    };
+  };
+
+  const [panState, dispatch] = React.useReducer(reducer, initialState);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
+    graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
 
     const newEventline = [
       {
@@ -56,19 +66,12 @@ const DynamicEventlinePanningExample = () => {
     ];
 
     const newDataset = {
-      panData: [utils.deepClone(exampleData[1])],
+      // panData: [utils.deepClone(exampleData[1])],
       eventline: newEventline,
     };
 
     graph.reflowMultipleDatasets(newDataset);
-
-    return {
-      initial: hour,
-      factor: panState.factor,
-    };
-  };
-
-  const [, dispatch] = React.useReducer(reducer, initialState);
+  }, [panState.initial]);
 
   return (
     <>
