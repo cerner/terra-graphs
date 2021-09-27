@@ -265,6 +265,62 @@ const getAxesLabelCharacterLimits = (config) => ({
   yAndY2AxisLimit: config.height / 8,
 });
 /**
+ * Adds onClick event for each label in Axes.
+ * Criteria:
+ *  * Text needs to have a valid function for onClick
+ *  * Label should exceed the calculated character limit with respect to axis length
+ *
+ * @private
+ * @param {d3.selection} canvasSVG - d3 selection node of canvas svg
+ * @param {string} className - class name of axis
+ * @param {object} axisObj - axis object provided by the consumer
+ * @param {number} charLimit - character limit of label in axis
+ * @param {string} axisType - type of axis
+ * @returns {object} d3 svg path
+ */
+const addLabelEventHandler = (
+  canvasSVG,
+  className,
+  axisObj,
+  charLimit,
+  axisType,
+) => canvasSVG.selectAll(`.${className} text`).each(function () {
+  // eslint-disable-next-line no-unused-expressions
+  shouldTruncateLabel(axisObj.label, charLimit)
+    ? d3
+      .select(this)
+      .style('cursor', 'pointer')
+      .on('click', () => {
+        // eslint-disable-next-line no-unused-expressions
+        utils.isDefined(axisObj.onLabelClick)
+            && utils.isFunction(axisObj.onLabelClick)
+          ? axisObj.onLabelClick(axisObj.label, d3.select(this))
+          : loadLabelPopup(axisObj.label, axisType);
+      })
+    : (null);
+});
+
+/**
+ * Removes label click event if label is small during reflow.
+ *
+ * @param {object} config - config object derived from input JSON
+ * @returns {undefined} - returns nothing
+ */
+const handleLabelClickFunctionDuringReflow = (config) => {
+  const axesLabelCharLimits = getAxesLabelCharacterLimits(config);
+  const selectLabelTextElement = (className) => document.querySelector(`.${className} text`);
+  const updateOnClickForAxis = (axisLabel, axisLimit, axisStyles) => {
+    const labelHasOnClick = (selectLabelTextElement(axisStyles) === null) ? false : utils.isFunction(d3.select(selectLabelTextElement(axisStyles)).on('click'));
+    if (axisLabel && !shouldTruncateLabel(axisLabel, axisLimit) && labelHasOnClick) {
+      d3.select(selectLabelTextElement(axisStyles)).on('click', null).style('cursor', 'auto');
+    }
+  };
+
+  updateOnClickForAxis(config.axis.x.label, axesLabelCharLimits.xAxisLimit, styles.axisLabelX);
+  updateOnClickForAxis(config.axis.y.label, axesLabelCharLimits.yAndY2AxisLimit, styles.axisLabelY);
+  updateOnClickForAxis(config.axis.y2.label, axesLabelCharLimits.yAndY2AxisLimit, styles.axisLabelY2);
+};
+/**
  * Updates the x, y, y2 axes label positions on resize
  *
  * @private
@@ -297,6 +353,14 @@ const translateLabel = (config, canvasSVG) => {
           ),
         );
       });
+
+    addLabelEventHandler(
+      canvasSVG,
+      styles.axisLabelX,
+      config.axis.x,
+      axesLabelCharLimits.xAxisLimit,
+      constants.X_AXIS,
+    );
   }
 
   if (config.axis.y.label) {
@@ -322,6 +386,14 @@ const translateLabel = (config, canvasSVG) => {
           ),
         );
       });
+
+    addLabelEventHandler(
+      canvasSVG,
+      styles.axisLabelY,
+      config.axis.y,
+      axesLabelCharLimits.yAndY2AxisLimit,
+      constants.Y_AXIS,
+    );
   }
 
   if (hasY2Axis(config.axis)) {
@@ -347,6 +419,14 @@ const translateLabel = (config, canvasSVG) => {
           ),
         );
       });
+
+    addLabelEventHandler(
+      canvasSVG,
+      styles.axisLabelY2,
+      config.axis.y2,
+      axesLabelCharLimits.yAndY2AxisLimit,
+      constants.Y2_AXIS,
+    );
   }
 };
 /**
@@ -493,41 +573,6 @@ const createGrid = (axis, scale, config, canvasSVG) => {
   }
 };
 
-/**
- * Adds onClick event for each label in Axes.
- * Criteria:
- *  * Text needs to have a valid function for onClick
- *  * Label should exceed the calculated character limit with respect to axis length
- *
- * @private
- * @param {d3.selection} canvasSVG - d3 selection node of canvas svg
- * @param {string} className - class name of axis
- * @param {object} axisObj - Axis object provided by the consumer
- * @param {number} charLimit - character limit of label in axis
- * @param {string} axisType - type of axis
- * @returns {object} d3 svg path
- */
-const addLabelEventHandler = (
-  canvasSVG,
-  className,
-  axisObj,
-  charLimit,
-  axisType,
-) => canvasSVG.selectAll(`.${className} text`).each(function () {
-  // eslint-disable-next-line no-unused-expressions
-  shouldTruncateLabel(axisObj.label, charLimit)
-    ? d3
-      .select(this)
-      .style('cursor', 'pointer')
-      .on('click', () => {
-        // eslint-disable-next-line no-unused-expressions
-        utils.isDefined(axisObj.onLabelClick)
-                      && utils.isFunction(axisObj.onLabelClick)
-          ? axisObj.onLabelClick(axisObj.label, d3.select(this))
-          : loadLabelPopup(axisObj.label, axisType);
-      })
-    : null;
-});
 /**
  * Create the d3 Labels - X, Y and Y2 and append into the canvas.
  * Only if showLabel is enabled. X Axis is 0 deg rotated, Y Axis is rotated 90 deg
@@ -974,4 +1019,5 @@ export {
   getAxisInfoRowLabelHeight,
   removeNoDataView,
   drawNoDataView,
+  handleLabelClickFunctionDuringReflow,
 };
