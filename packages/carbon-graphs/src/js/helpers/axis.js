@@ -246,11 +246,12 @@ const getAxisInfoOrientation = (xAxisOrientation) => (isXAxisOrientationTop(xAxi
  * @param {object} format - d3 locale object formatted to represent the tick.
  * @returns {object} d3 object which forms the y-axis scale
  */
-const prepareYAxis = (scale, tickValues, height, format) => d3
-  .axisLeft(scale)
-  .ticks(height / constants.DEFAULT_Y_AXIS_SPACING)
-  .tickValues(tickValues)
-  .tickFormat(format);
+const prepareYAxis = (scale, tickValues, height, format) => {
+  return d3
+    .axisLeft(scale)
+    .ticks(height / constants.DEFAULT_Y_AXIS_SPACING)
+    .tickValues(tickValues);
+};
 
 /**
  * Creates the axis using the scale provided for Y2 Axis using d3 svg axis
@@ -262,11 +263,13 @@ const prepareYAxis = (scale, tickValues, height, format) => d3
  * @param {object} format - d3 locale object formatted to represent the tick.
  * @returns {object} d3 object which forms the y2-axis scale
  */
-const prepareY2Axis = (scale, tickValues, height, format) => d3
-  .axisRight(scale)
-  .ticks(height / constants.DEFAULT_Y_AXIS_SPACING)
-  .tickValues(tickValues)
-  .tickFormat(format);
+const prepareY2Axis = (scale, tickValues, height, format) => {
+  console.log(" in last step  "+tickValues)
+  return d3
+    .axisRight(scale)
+    .ticks(height / constants.DEFAULT_Y_AXIS_SPACING)
+    .tickValues(tickValues)
+};
 
 /**
  * Generates an array of tick values for to be used as the
@@ -307,11 +310,16 @@ const generateYAxesTickValues = (
   }
 
   const interval = (upperLimit - lowerLimit) / (ticksCount + 1);
+  console.log("upperLimit " + upperLimit)
+  console.log("lowerlimit " + lowerLimit)
 
+  console.log("interval " + interval)
   for (let index = 1; index <= ticksCount; index += 1) {
     tickValues.push(lowerLimit + interval * index);
   }
 
+  console.log(tickValues);
+  //[-1, -3, -4, 0, 0.466666666, 3]
   return tickValues;
 };
 
@@ -446,6 +454,7 @@ const getAxesScale = (axis, scale, config) => {
             : tickFormatToTrimTrailingZeros,
         ),
       );
+      console.log(axis.y);
 
       // Reset the tickFormatToTrimTrailingZeros to null, so that
       // if the y2 axis suppressTrailingZeros is set to false and
@@ -515,6 +524,8 @@ const getAxesScale = (axis, scale, config) => {
             : tickFormatToTrimTrailingZeros,
         ),
       );
+      console.log(axis.y);
+
       tickFormatToTrimTrailingZeros = null;
 
       if (
@@ -579,6 +590,8 @@ const getAxesScale = (axis, scale, config) => {
             : tickFormatToTrimTrailingZeros,
         ),
       );
+      console.log(axis.y);
+
       tickFormatToTrimTrailingZeros = null;
 
       if (
@@ -625,6 +638,8 @@ const getAxesScale = (axis, scale, config) => {
             : tickFormatToTrimTrailingZeros,
         ),
       );
+      console.log(axis.y);
+
       // return axis;
       // eslint-disable-next-line brace-style
     }
@@ -658,6 +673,8 @@ const getAxesScale = (axis, scale, config) => {
             : tickFormatToTrimTrailingZeros,
         ),
       );
+      console.log(axis.y);
+
       // eslint-disable-next-line brace-style
     }
     // Single Y axis - default case when
@@ -682,6 +699,7 @@ const getAxesScale = (axis, scale, config) => {
             : tickFormatToTrimTrailingZeros,
         ),
       );
+      console.log(axis.y);
     }
   }
   return axis;

@@ -180,19 +180,23 @@ const DATA = [
           type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
           label: 'Datetime',
           lowerLimit: new Date(2016, 0, 1, 1, 0).toISOString(),
-          upperLimit: new Date(2016, 0, 1, 23, 59).toISOString(),
+          upperLimit: new Date(2016, 0, 1, 9, 45).toISOString(),
         },
         y: {
           label: 'Line Set A',
-          lowerLimit: 10,
+          lowerLimit: 0,
           upperLimit: 30,
         },
         y2: {
-          show: false,
+          show: true,
           label: 'Line Set B',
-          lowerLimit: 0,
-          upperLimit: 250,
+          lowerLimit: -4,
+          upperLimit: 3,
+          ticks: {
+            format: '.1f',
+          },
         },
+
       },
       data: [
         {
@@ -278,39 +282,71 @@ const DATA = [
             },
             {
               x: new Date(2016, 0, 1, 2, 15).toISOString(),
-              y: 50,
+              y: -4,
             },
             {
               x: new Date(2016, 0, 1, 3, 15).toISOString(),
-              y: 60,
+              y: -2,
             },
             {
               x: new Date(2016, 0, 1, 4, 15).toISOString(),
-              y: 80,
+              y: 1,
             },
             {
               x: new Date(2016, 0, 1, 5, 15).toISOString(),
-              y: 120,
+              y: 1,
             },
             {
               x: new Date(2016, 0, 1, 6, 15).toISOString(),
-              y: 130,
+              y: 0,
             },
             {
               x: new Date(2016, 0, 1, 7, 0).toISOString(),
-              y: 180,
+              y: 0,
             },
             {
               x: new Date(2016, 0, 1, 8, 15).toISOString(),
-              y: 185,
+              y: 3,
             },
             {
               x: new Date(2016, 0, 1, 9, 45).toISOString(),
-              y: 200,
+              y: 2,
             },
             {
               x: new Date(2016, 0, 1, 12, 15).toISOString(),
-              y: 220,
+              y: -1,
+            },
+            {
+              x: new Date(2016, 0, 1, 12, 15).toISOString(),
+              y: 2,
+            },
+            {
+              x: new Date(2016, 0, 1, 13, 15).toISOString(),
+              y: 3,
+            },
+            {
+              x: new Date(2016, 0, 1, 14, 15).toISOString(),
+              y: 0,
+            },
+            {
+              x: new Date(2016, 0, 1, 19, 45).toISOString(),
+              y: 1,
+            },
+            {
+              x: new Date(2016, 0, 1, 21, 15).toISOString(),
+              y: -2,
+            },
+            {
+              x: new Date(2016, 0, 1, 21, 15).toISOString(),
+              y: 0,
+            },
+            {
+              x: new Date(2016, 0, 1, 21, 15).toISOString(),
+              y: 1,
+            },
+            {
+              x: new Date(2016, 0, 1, 21, 15).toISOString(),
+              y: 3,
             },
           ],
           yAxis: 'y2',

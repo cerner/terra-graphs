@@ -276,6 +276,7 @@ class Graph extends Construct {
     createXAxisInfoRow(this.axis, this.scale, this.config, this.svg);
     createLabel(this.config, this.svg, this);
     createAxisReferenceLine(this.axis, this.scale, this.config, this.svg);
+
     if (
       utils.notEmpty(this.config.dateline)
             && this.config.axis.x.type === AXIS_TYPE.TIME_SERIES
