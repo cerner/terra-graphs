@@ -1,19 +1,17 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import {
-  loadBarPopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { loadBarPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {
-  key: 'grouped_bar_3',
+  key: 'simple_bar_1',
   label: {
-    display: 'Dataset 3',
+    display: 'Dataset 1',
   },
-  color: Carbon.helpers.COLORS.BLUE,
+  color: Carbon.helpers.COLORS.GREEN,
   onClick: loadBarPopup,
   values: [
     {
       x: 1,
-      y: 15,
+      y: 30,
     },
     {
       x: 2,
@@ -25,7 +23,11 @@ const data = {
     },
     {
       x: 4,
-      y: 8,
+      y: 15,
+    },
+    {
+      x: 5,
+      y: 18,
     },
   ],
 };

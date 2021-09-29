@@ -1,8 +1,5 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import {
-  loadBarPopup,
-  loadTextLabelPopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { loadBarPopup, loadTextLabelPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {
   key: 'uid_bar_1',

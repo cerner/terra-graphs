@@ -1,13 +1,10 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import {
-  loadBarPopup,
-  loadTextLabelPopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { loadBarPopup, loadTextLabelPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {
-  key: 'uid_bar_7',
+  key: 'axisinfo_bar_1',
   label: {
-    display: 'Data Label 7',
+    display: 'Dataset 1',
   },
   group: 'uid_bar_1',
   color: Carbon.helpers.COLORS.YELLOW,
