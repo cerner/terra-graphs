@@ -20,6 +20,8 @@ Ticks are labels on the Axes to represent axis values. These values are determin
 
 If there is only 1 axis in the graph, the tick intervals are calculated automatically using the d3.js `nice` function. If the Y2 axis is visible, the tick intervals are set based on the range of the Y & Y2 axes. This can be overridden to be custom using the `ticksCount` property in the graph configuration object. Acceptable values for `ticksCount` are `0 - 19`. Invalid values will result in `ticksCount` being ignored and going back to the default behavior.
 
+**Note:** If tick values are in between `[-0.5 < x < 0.5 and x != 0] or [-0.05 < x < 0.05 and x != 0]` and so on till `[-0.00005 < x < 0.00005 and x != 0]` which may leads to displaying multiple zero's on Y or Y2 axes, we set the formatting to be `-Math.floor(Math.log10(x))` decimal place.
+If consumers override the formatting in above situation which leads to multiple Zeros on Y or Y2 axes ticks, we honor that but add to our documentation a warning or fyi on what can happen and possible ways to fix it.
 ## JSON Properties
 
 #### Required
@@ -128,7 +130,7 @@ The tick values are set using one of 3 methods in the following priority:
 -   **Default**
 
      If neither `ticksCount` nor custom tick values are provided, then the default behavior is as follows:
-    
+
     - If the Y2 Axis is visible, then Carbon will calculate and use a ticksCount value, based on the ranges of Y and Y2.
 
     - Else if there is no Y2 axis and `ticksCount = undefined`, Carbon will use D3.js to automatically find the tick values.
