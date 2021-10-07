@@ -55,7 +55,7 @@ const data = {
       start: 4,
       end: 4,
     },
-  ]
+  ],
 };
 
 export default data;

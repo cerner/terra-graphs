@@ -26,7 +26,7 @@ const getbarConfig = (id) => ({
       label: 'Bar Set A',
       lowerLimit: 0,
       upperLimit: 20,
-    }
+    },
   },
   pan: {
     enabled: true,
