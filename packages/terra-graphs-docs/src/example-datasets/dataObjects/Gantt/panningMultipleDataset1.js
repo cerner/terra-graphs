@@ -1,6 +1,6 @@
 import { loadTaskPopup, loadXAndYAxisLabelPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
-import { loadPopup } from '@cerner/carbon-graphs/dev/examples/popup';
-import Carbon from '@cerner/carbon-graphs/src/js/carbon';
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import { loadPopup } from '../../popup';
 
 const scheduled = {
   path: [
