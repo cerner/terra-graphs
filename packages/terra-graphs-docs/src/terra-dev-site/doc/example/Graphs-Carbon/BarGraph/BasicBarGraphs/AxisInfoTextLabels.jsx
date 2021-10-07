@@ -11,7 +11,7 @@ import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObje
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(getBarConfig('#axisInfoTextLabelsBargraph'));
+const graphConfig = utils.deepClone(getBarConfig('#axisInfoTextLabelsBarGraph'));
 const dataset = utils.deepClone(exampleData);
 
 export default () => {
@@ -21,6 +21,6 @@ export default () => {
   }, []);
 
   return (
-    <ExampleGraphContainer id="axisInfoTextLabelsBargraph" />
+    <ExampleGraphContainer id="axisInfoTextLabelsBarGraph" />
   );
 };

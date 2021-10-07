@@ -2,31 +2,31 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import { loadBarPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {
-  key: 'uid_bar_t1',
+  key: 'dynamic_dataset_1',
   label: {
-    display: 'Data Label t1',
+    display: 'Data Label 1',
   },
   color: Carbon.helpers.COLORS.BLUE,
   onClick: loadBarPopup,
   values: [
     {
-      x: new Date(2018, 0, 1).toISOString(),
+      x: new Date(2016, 0, 1, 3).toISOString(),
       y: 15,
     },
     {
-      x: new Date(2018, 0, 2).toISOString(),
+      x: new Date(2016, 0, 1, 6).toISOString(),
       y: 19,
     },
     {
-      x: new Date(2018, 0, 3).toISOString(),
+      x: new Date(2016, 0, 1, 9).toISOString(),
       y: 10,
     },
     {
-      x: new Date(2018, 0, 4).toISOString(),
+      x: new Date(2016, 0, 1, 12).toISOString(),
       y: 13,
     },
     {
-      x: new Date(2018, 0, 5).toISOString(),
+      x: new Date(2016, 0, 1, 15).toISOString(),
       y: 15,
     },
   ],

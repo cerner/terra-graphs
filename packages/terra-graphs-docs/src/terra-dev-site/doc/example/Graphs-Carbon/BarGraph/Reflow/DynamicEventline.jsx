@@ -6,7 +6,7 @@ import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.s
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanningEventline';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simpleBarDataPanning';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/datasetTimeseries1';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
@@ -18,7 +18,7 @@ const initialState = {
   factor: 3,
 };
 
-const dataset = utils.deepClone(data);
+const dataset = utils.deepClone(exampleData);
 let graph;
 
 const BarPanningExample = () => {

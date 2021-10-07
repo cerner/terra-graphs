@@ -2,13 +2,12 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import { loadBarPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {
-  key: 'grouped_bar_2',
+  key: 'dataset_bar_1',
   label: {
-    display: 'Dataset 2',
+    display: 'Dataset 1',
   },
   color: Carbon.helpers.COLORS.LIGHT_PURPLE,
   onClick: loadBarPopup,
-  yAxis: 'y2',
   values: [
     {
       x: 1,

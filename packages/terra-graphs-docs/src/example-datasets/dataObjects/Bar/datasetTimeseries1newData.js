@@ -7,7 +7,7 @@ const data = {
     },
     {
       x: new Date(2016, 0, 1, 6).toISOString(),
-      y: 11,
+      y: 5,
     },
     {
       x: new Date(2016, 0, 1, 9).toISOString(),

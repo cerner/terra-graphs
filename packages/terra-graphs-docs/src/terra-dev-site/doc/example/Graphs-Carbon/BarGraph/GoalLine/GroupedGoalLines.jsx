@@ -5,15 +5,15 @@ import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.s
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData1';
-import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData2Regions';
-import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData3Regions';
+import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset1regions';
+import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset2regions';
+import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset3regions';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(getBarConfig('#groupedGoalLineBargraph'));
+const graphConfig = utils.deepClone(getBarConfig('#groupedGoalLineBarGraph'));
 
 const dataset = [
   utils.deepClone(exampleData1),
@@ -30,6 +30,6 @@ export default () => {
   }, []);
 
   return (
-    <ExampleGraphContainer id="groupedGoalLineBargraph" />
+    <ExampleGraphContainer id="groupedGoalLineBarGraph" />
   );
 };

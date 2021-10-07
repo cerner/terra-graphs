@@ -1,5 +1,3 @@
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-
 const getbarConfig = (id) => ({
   bindTo: id,
   bindLegendTo: null,
@@ -13,16 +11,15 @@ const getbarConfig = (id) => ({
         values: [1, 2, 3, 4, 5, 6, 7],
         format: '.0f',
       },
-      orientation: Carbon.helpers.AXES_ORIENTATION.X.TOP,
     },
     y: {
       show: true,
       label: 'Bar Set A',
-      lowerLimit: -15,
-      upperLimit: 0,
+      lowerLimit: 0,
+      upperLimit: 35,
     },
     y2: {
-      show: false,
+      show: true,
       label: 'Bar Set B',
       lowerLimit: 0,
       upperLimit: 30,

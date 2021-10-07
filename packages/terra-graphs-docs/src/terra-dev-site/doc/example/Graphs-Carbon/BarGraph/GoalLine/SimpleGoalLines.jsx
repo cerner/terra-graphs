@@ -5,13 +5,13 @@ import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.s
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData2Regions';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset1regions';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(getBarConfig('#simpleGoalLineBargraph'));
+const graphConfig = utils.deepClone(getBarConfig('#simpleGoalLineBarGraph'));
 const dataset = [utils.deepClone(exampleData)];
 
 export default () => {
@@ -23,6 +23,6 @@ export default () => {
   }, []);
 
   return (
-    <ExampleGraphContainer id="simpleGoalLineBargraph" />
+    <ExampleGraphContainer id="simpleGoalLineBarGraph" />
   );
 };

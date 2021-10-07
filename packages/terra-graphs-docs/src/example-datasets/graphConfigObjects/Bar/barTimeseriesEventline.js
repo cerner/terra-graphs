@@ -8,19 +8,17 @@ const getbarConfig = (id) => ({
       show: true,
       type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
       label: 'Data',
-      lowerLimit: new Date(2017, 11, 31).toISOString(),
-      upperLimit: new Date(2018, 0, 8).toISOString(),
+      lowerLimit: new Date(2016, 0, 1, 0).toISOString(),
+      upperLimit: new Date(2016, 0, 2, 0).toISOString(),
       ticks: {
         values: [
-          new Date(2018, 0, 1).toISOString(),
-          new Date(2018, 0, 2).toISOString(),
-          new Date(2018, 0, 3).toISOString(),
-          new Date(2018, 0, 4).toISOString(),
-          new Date(2018, 0, 5).toISOString(),
-          new Date(2018, 0, 6).toISOString(),
-          new Date(2018, 0, 7).toISOString(),
+          new Date(2016, 0, 1, 3).toISOString(),
+          new Date(2016, 0, 1, 6).toISOString(),
+          new Date(2016, 0, 1, 9).toISOString(),
+          new Date(2016, 0, 1, 12).toISOString(),
+          new Date(2016, 0, 1, 15).toISOString(),
         ],
-        format: '%a %b %e',
+        format: '%H',
       },
     },
     y: {
@@ -47,14 +45,14 @@ const getbarConfig = (id) => ({
       style: {
         strokeDashArray: '4,4',
       },
-      value: new Date(2017, 12, 2).toISOString(),
+      value: new Date(2016, 0, 1, 6).toISOString(),
     },
     {
       color: Carbon.helpers.COLORS.BLACK,
       style: {
         strokeDashArray: '2,2',
       },
-      value: new Date(2017, 12, 3).toISOString(),
+      value: new Date(2016, 0, 1, 12).toISOString(),
     },
   ],
   clickPassThrough: {

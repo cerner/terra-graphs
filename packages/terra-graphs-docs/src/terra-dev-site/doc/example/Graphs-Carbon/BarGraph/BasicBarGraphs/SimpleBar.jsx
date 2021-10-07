@@ -4,14 +4,14 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefaultNegativeAxis';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/negativeBarData';
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset1';
 
 /*
- Please refer to the documentation below to see the graphConfig and data objects
- */
+Please refer to the documentation below to see the graphConfig and data objects
+*/
 
-const graphConfig = utils.deepClone(getBarConfig('#simpleBargraph'));
+const graphConfig = utils.deepClone(getBarConfig('#simpleBarGraph'));
 const dataset = utils.deepClone(exampleData);
 
 export default () => {
@@ -21,6 +21,6 @@ export default () => {
   }, []);
 
   return (
-    <ExampleGraphContainer id="simpleBargraph" />
+    <ExampleGraphContainer id="simpleBarGraph" />
   );
 };

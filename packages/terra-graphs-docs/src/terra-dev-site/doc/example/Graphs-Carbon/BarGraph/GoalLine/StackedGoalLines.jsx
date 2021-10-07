@@ -5,19 +5,19 @@ import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.s
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
 import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import data1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData1';
-import data2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData2';
-import data3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData3';
+import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData1';
+import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData2';
+import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedGoalLinesData3';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(getBarConfig('#stackedGoalLineBargraph'));
+const graphConfig = utils.deepClone(getBarConfig('#stackedGoalLineBarGraph'));
 const dataset = [
-  utils.deepClone(data1),
-  utils.deepClone(data2),
-  utils.deepClone(data3),
+  utils.deepClone(exampleData1),
+  utils.deepClone(exampleData2),
+  utils.deepClone(exampleData3),
 ];
 
 export default () => {
@@ -29,6 +29,6 @@ export default () => {
   }, []);
 
   return (
-    <ExampleGraphContainer id="stackedGoalLineBargraph" />
+    <ExampleGraphContainer id="stackedGoalLineBarGraph" />
   );
 };

@@ -8,7 +8,6 @@ const data = {
   },
   color: Carbon.helpers.COLORS.LIGHT_PURPLE,
   onClick: loadBarPopup,
-  yAxis: 'y2',
   values: [
     {
       x: 1,
@@ -33,25 +32,25 @@ const data = {
   ],
   regions: [
     {
-      axis: 'y2',
+      axis: 'y',
       x: 1,
       start: 7,
       end: 7,
     },
     {
-      axis: 'y2',
+      axis: 'y',
       x: 2,
       start: 13,
       end: 13,
     },
     {
-      axis: 'y2',
+      axis: 'y',
       x: 3,
       start: 17,
       end: 17,
     },
     {
-      axis: 'y2',
+      axis: 'y',
       x: 4,
       start: 4,
       end: 4,

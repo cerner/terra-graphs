@@ -19,7 +19,7 @@ const getbarConfig = (id) => ({
       upperLimit: 35,
     },
     y2: {
-      show: true,
+      show: false,
       label: 'Bar Set B',
       lowerLimit: 0,
       upperLimit: 30,

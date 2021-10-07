@@ -26,13 +26,7 @@ const getbarConfig = (id) => ({
       label: 'Bar Set A',
       lowerLimit: 0,
       upperLimit: 20,
-    },
-    y2: {
-      show: false,
-      label: 'Line Set B',
-      lowerLimit: 0,
-      upperLimit: 20,
-    },
+    }
   },
   pan: {
     enabled: true,

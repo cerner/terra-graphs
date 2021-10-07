@@ -2,21 +2,19 @@ import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import BarGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/timeseriesData';
-import '@cerner/terra-graphs-docs/lib/Css/ExampleGraphContainer.module.scss';
 import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barTimeseries';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/simpleBarDataTimeseries';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/datasetTimeseries1';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(getBarConfig('#timeseriesBargraph'));
-const dataset = [utils.deepClone(data)];
+const graphConfig = utils.deepClone(getBarConfig('#timeseriesBarGraph'));
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <>
     <div id="tooltip" className="initial-tooltip" />
-    <BarGraph graphID="timeseriesBargraph" graphConfig={graphConfig} dataset={dataset} />
+    <BarGraph graphID="timeseriesBarGraph" graphConfig={graphConfig} dataset={dataset} />
   </>
 );

@@ -13,7 +13,7 @@ import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObj
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(getBarConfig('#stackedAxisInfoTextLabelsBargraph'));
+const graphConfig = utils.deepClone(getBarConfig('#stackedAxisInfoTextLabelsBarGraph'));
 const dataset = [
   utils.deepClone(exampleData1),
   utils.deepClone(exampleData2),
@@ -29,6 +29,6 @@ export default () => {
   }, []);
 
   return (
-    <ExampleGraphContainer id="stackedAxisInfoTextLabelsBargraph" />
+    <ExampleGraphContainer id="stackedAxisInfoTextLabelsBarGraph" />
   );
 };
