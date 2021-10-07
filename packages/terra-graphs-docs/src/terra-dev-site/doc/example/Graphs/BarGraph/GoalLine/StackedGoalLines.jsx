@@ -21,6 +21,6 @@ const dataset = [
 export default () => (
   <>
     <div id="tooltip" className="initial-tooltip" />
-    <BarGraph graphID="simpleBarGraph" graphConfig={graphConfig} dataset={dataset} />
+    <BarGraph graphID="stackedGoalLineBarGraph" graphConfig={graphConfig} dataset={dataset} />
   </>
 );
