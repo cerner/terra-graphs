@@ -2,10 +2,8 @@ import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import lineDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/noDataView';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/generalDefault';
 
-const graphConfig = utils.deepClone(lineDefault('#nodata'));
-const dataset = utils.deepClone(data);
+const graphConfig = utils.deepClone(getGraphConfig('#nodata'));
 
 export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} dataset={dataset} />;

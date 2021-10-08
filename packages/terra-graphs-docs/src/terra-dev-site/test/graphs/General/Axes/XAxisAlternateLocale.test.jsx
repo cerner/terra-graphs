@@ -1,23 +1,9 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import lineTimeseries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/timeseriesConfigAlternateLocale';
 
-const tickValues = [
-  new Date(2016, 0, 1, 1, 0).toISOString(),
-  new Date(2016, 0, 1, 5, 0).toISOString(),
-  new Date(2016, 0, 1, 10, 0).toISOString(),
-  new Date(2016, 0, 1, 15, 0).toISOString(),
-  new Date(2016, 0, 1, 20, 0).toISOString(),
-];
-
-const graphConfig = utils.deepClone(lineTimeseries('#xAxisAlternateLocale'));
-graphConfig.locale = Carbon.helpers.LOCALE.de_DE;
-graphConfig.axis.x.ticks = {
-  values: tickValues,
-  format: '%A %e %B %Y, %X',
-};
+const graphConfig = utils.deepClone(getGraphConfig('#xAxisAlternateLocale'));
 
 export default () => <LineGraph graphID="xAxisAlternateLocale" graphConfig={graphConfig} />;

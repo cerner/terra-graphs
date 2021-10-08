@@ -7,6 +7,7 @@ import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graph
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const graphConfig = utils.deepClone(getGraphConfig('#labelTruncation'));
 
 export default () => <LineGraph graphID="labelTruncation" graphConfig={graphConfig} />;

@@ -12,11 +12,11 @@ const dataset = [
   utils.deepClone(exampleData1),
   utils.deepClone(exampleData2),
   utils.deepClone(exampleData3),
-];
+];å
 
 export default () => (
   <>
     <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="legendHidden" graphConfig={graphConfig} dataset={dataset} />
+    <LineGraph graphID="legendItemDisable" graphConfig={graphConfig} dataset={contentData} />
   </>
 );
