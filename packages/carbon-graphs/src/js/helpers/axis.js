@@ -299,7 +299,6 @@ const getYAndY2AxisFormat = (tickValues, axisData) => {
       } else {
         format = `.${tickDecimalMagnitude % 10}f`;
       }
-      console.log(format);
       return format;
     }
     return undefined;
