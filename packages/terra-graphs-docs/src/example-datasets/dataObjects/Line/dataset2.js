@@ -1,6 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
-import { createGraphValuesWithSin } from './createGraphValues';
+import { createGraphValuesWithSin } from '../createGraphValues';
 
 const data = {
   key: 'uid_2',
