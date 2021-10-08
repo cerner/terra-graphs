@@ -20,7 +20,6 @@ const dataset = [
   utils.deepClone(exampleData3),
 ];
 
-
 const LegendItemDisabledGeneralExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);

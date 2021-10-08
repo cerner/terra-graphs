@@ -18,7 +18,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 
 const graphConfig = utils.deepClone(getGraphConfig('#xAxisAlternateLocale'));
-graphConfig.locale = Carbon.helpers.LOCALE.de_DE;
+// graphConfig.locale = Carbon.helpers.LOCALE.de_DE;
 // graphConfig.axis.x.ticks = {
 //   values: tickValues,
 //   format: '%A %e %B %Y, %X',
