@@ -3,13 +3,14 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import dateTimeBucket from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/dateTimeBucket';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/datasetTimeseries1';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
+
 const graphConfig = utils.deepClone(dateTimeBucket('#datetimeBucket'));
-const dataset = utils.deepClone(data);
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <>
