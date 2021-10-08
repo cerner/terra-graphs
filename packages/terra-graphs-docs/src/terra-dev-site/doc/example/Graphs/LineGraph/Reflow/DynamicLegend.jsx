@@ -4,25 +4,24 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
 import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData-legend';
+import initialData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1';
+import updatedData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1newData2';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-data[1].values = [];
-
 const initialState = {
   initial: 0,
   factor: 3,
-  dataset: [utils.deepClone(data[0])],
+  dataset: [utils.deepClone(initialData)],
   graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#DynamicLegendExample')),
 };
 
 const LinePanningExample = () => {
   const reducer = (panState, action) => {
     const newGraphState = utils.deepClone(panState.graphConfig);
-    const newDataset = [utils.deepClone(data[1])];
+    const newDataset = [utils.deepClone(updatedData)];
     let hour;
 
     switch (action.type) {

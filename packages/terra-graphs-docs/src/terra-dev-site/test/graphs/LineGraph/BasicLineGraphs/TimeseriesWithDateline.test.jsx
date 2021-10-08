@@ -2,27 +2,11 @@ import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
-import {
-  loadDatelinePopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import getLineTimeseriesDatelineConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesDateline';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1';
 
-const graphConfig = utils.deepClone(lineTimesries('#timeseriesDateLine'));
-graphConfig.dateline = [
-  {
-    showDatelineIndicator: true,
-    label: {
-      display: 'Current Date',
-    },
-    color: '#C97318',
-    shape: Carbon.helpers.SHAPES.DARK.SQUARE,
-    onClick: loadDatelinePopup,
-    value: new Date(2016, 0, 1, 6).toISOString(),
-  },
-];
-const dataset = utils.deepClone(data);
+const graphConfig = utils.deepClone(getLineTimeseriesDatelineConfig('#timeseriesDateLine'));
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <>

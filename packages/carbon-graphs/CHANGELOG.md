@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.18.1 - (September 28, 2021)
+
 * Changed
   * Fixed label state retained during reflow.
 

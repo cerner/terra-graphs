@@ -1,0 +1,21 @@
+import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import { createGraphValuesWithSin } from './createGraphValues';
+
+const data = {
+  key: 'uid_3',
+  label: {
+    display: 'Data Label 3',
+  },
+  shape: Carbon.helpers.SHAPES.DARK.X,
+  color: Carbon.helpers.COLORS.GREEN,
+  onClick: loadPopup,
+  values: createGraphValuesWithSin({
+    length: 8, initialX: 85, xModifier: 25, yModifier: Math.PI * 4,
+  }),
+};
+
+data.values[2].isCritical = true;
+data.values[6].isCritical = true;
+
+export default data;

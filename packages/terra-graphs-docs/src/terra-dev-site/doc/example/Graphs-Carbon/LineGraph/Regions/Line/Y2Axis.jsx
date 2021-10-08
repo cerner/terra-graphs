@@ -4,28 +4,24 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/y2AxisData';
+import getLineDefaultY2Config from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefaultY2';
+import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset2';
+import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetRegions6';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(lineTimesries('#y2Region'));
-graphConfig.axis.y2.show = true;
 
-const contentData = utils.deepClone(exampleData);
-contentData[1].regions = [
-  {
-    axis: 'y2',
-    start: 50,
-    end: 150,
-  },
+const graphConfig = utils.deepClone(getLineDefaultY2Config('#y2Region'));
+const dataset = [
+  utils.deepClone(exampleData1),
+  utils.deepClone(exampleData2),
 ];
 
 const Y2RegionLineExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    contentData.forEach((data) => {
+    dataset.forEach((data) => {
       graph.loadContent(Carbon.api.line(data));
     });
   }, []);
