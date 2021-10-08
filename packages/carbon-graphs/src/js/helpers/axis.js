@@ -282,9 +282,7 @@ const getYAndY2AxisFormat = (tickValues, axisData) => {
   tickValues.forEach((tick) => {
     if (tick !== 0) {
       let tempTick = tick;
-      if (tick < 0) {
-        tempTick = -tick;
-      }
+      tempTick = Math.abs(tick);
       const tempTickDecimalMagnitude = -Math.floor(Math.log10(tempTick));
       if (tempTickDecimalMagnitude > tickDecimalMagnitude) {
         tickDecimalMagnitude = tempTickDecimalMagnitude;
@@ -301,30 +299,18 @@ const getYAndY2AxisFormat = (tickValues, axisData) => {
       } else {
         format = `.${tickDecimalMagnitude % 10}f`;
       }
+      console.log(format);
       return format;
     }
     return undefined;
   };
 
-  switch (tickDecimalMagnitude) {
-  case 1:
-    return setFormat(-0.5, 0.5);
-
-  case 2:
-    return setFormat(-0.05, 0.05);
-
-  case 3:
-    return setFormat(-0.005, 0.005);
-
-  case 4:
-    return setFormat(-0.0005, 0.0005);
-
-  case 5:
-    return setFormat(-0.00005, 0.00005);
-
-  default:
+  if (tickDecimalMagnitude > 5) {
     return undefined;
   }
+  const rangeValue = 5 / (10 ** tickDecimalMagnitude);
+
+  return setFormat(-rangeValue, rangeValue);
 };
 /**
  * Generates an array of tick values for to be used as the
