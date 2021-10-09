@@ -6,4 +6,4 @@ import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graph
 
 const graphConfig = utils.deepClone(getGraphConfig('#nodata'));
 
-export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} dataset={dataset} />;
+export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} />;

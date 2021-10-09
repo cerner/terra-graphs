@@ -10,5 +10,5 @@ Please refer to the documentation below to see the graphConfig and data objects
 
 const graphConfig = utils.deepClone(getGraphConfig('#nodata'));
 
-export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} dataset={dataset} />;
+export default () => <LineGraph graphID="nodata" graphConfig={graphConfig} />;
 
