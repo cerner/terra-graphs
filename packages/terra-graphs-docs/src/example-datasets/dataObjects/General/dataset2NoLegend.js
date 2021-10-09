@@ -6,7 +6,7 @@ const data = {
   key: 'uid_2',
   label: {
     display: 'Data Label 2',
-    isDisabled: true
+    isDisabled: true,
   },
   shape: Carbon.helpers.SHAPES.DARK.TRIANGLE,
   color: Carbon.helpers.COLORS.BLUE,

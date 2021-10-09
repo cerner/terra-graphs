@@ -9,7 +9,7 @@ const getDefaultConfig = (id) => ({
       label: 'Data',
       lowerLimit: 80,
       upperLimit: 280,
-      orientation: Carbon.helpers.AXES_ORIENTATION.X.TOP
+      orientation: Carbon.helpers.AXES_ORIENTATION.X.TOP,
     },
     y: {
       show: true,

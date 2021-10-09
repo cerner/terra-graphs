@@ -9,7 +9,6 @@ import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObj
 import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset2';
 import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset3';
 
-
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */

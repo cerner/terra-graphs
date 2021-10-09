@@ -17,7 +17,7 @@ const getLineTimeseriesConfig = (id) => ({
           new Date(2016, 0, 1, 20, 0).toISOString(),
         ],
         format: '%A %e %B %Y, %X',
-      }
+      },
     },
     y: {
       label: 'Line Set A',
@@ -36,7 +36,7 @@ const getLineTimeseriesConfig = (id) => ({
   showShapes: true,
   showVGrid: true,
   showHGrid: true,
-  locale: Carbon.helpers.LOCALE.de_DE
+  locale: Carbon.helpers.LOCALE.de_DE,
 });
 
 export default getLineTimeseriesConfig;
