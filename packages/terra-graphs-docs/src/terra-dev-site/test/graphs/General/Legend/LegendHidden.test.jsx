@@ -7,7 +7,7 @@ import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObj
 import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset2NoLegend';
 import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset3';
 
-const graphConfig = utils.deepClone(getGraphConfig('#legendItemDisable'));
+const graphConfig = utils.deepClone(getGraphConfig('#legendHidden'));
 const dataset = [
   utils.deepClone(exampleData1),
   utils.deepClone(exampleData2),

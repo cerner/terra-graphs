@@ -21,7 +21,7 @@ const dataset = [
 export default () => (
   <>
     <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="lineWithLegendOption" graphConfig={graphConfig} dataset={contentData} />
+    <LineGraph graphID="lineWithLegendOption" graphConfig={graphConfig} dataset={dataset} />
   </>
 );
 

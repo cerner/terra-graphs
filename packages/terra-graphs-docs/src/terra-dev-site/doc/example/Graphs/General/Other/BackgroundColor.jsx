@@ -10,7 +10,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 
 const graphConfig = utils.deepClone(getGraphConfig('#backgroundColor'));
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <div className="background-color-class">

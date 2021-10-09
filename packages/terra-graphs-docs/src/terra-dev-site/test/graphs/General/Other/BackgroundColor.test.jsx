@@ -6,7 +6,7 @@ import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graph
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset1';
 
 const graphConfig = utils.deepClone(getGraphConfig('#backgroundColor'));
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <div className="background-color-class">

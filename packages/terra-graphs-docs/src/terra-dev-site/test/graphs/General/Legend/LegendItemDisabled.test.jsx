@@ -7,16 +7,16 @@ import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObj
 import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset2NoLegend';
 import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset3';
 
-const graphConfig = utils.deepClone(getGraphConfig('#legendItemDisable'));
+const graphConfig = utils.deepClone(getGraphConfig('#legendItemDisabled'));
 const dataset = [
   utils.deepClone(exampleData1),
   utils.deepClone(exampleData2),
   utils.deepClone(exampleData3),
-];å
+];
 
 export default () => (
   <>
     <div id="tooltip" className="initial-tooltip" />
-    <LineGraph graphID="legendItemDisable" graphConfig={graphConfig} dataset={contentData} />
+    <LineGraph graphID="legendItemDisabled" graphConfig={graphConfig} dataset={dataset} />
   </>
 );

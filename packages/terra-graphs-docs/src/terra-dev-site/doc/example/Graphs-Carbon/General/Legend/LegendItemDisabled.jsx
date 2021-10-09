@@ -28,8 +28,7 @@ const LegendItemDisabledGeneralExample = () => {
     });
   }, []);
   return (
-    <ExampleGraphContainer id="legendItemDisabled" /
-    >
+    <ExampleGraphContainer id="legendItemDisabled" />
   );
 };
 

@@ -15,11 +15,9 @@ const graphConfig = utils.deepClone(getGraphConfig('#backgroundColor'));
 const dataset = utils.deepClone(exampleData);
 
 const BackgroundColorGeneralExample = () => {
-  React.useEffect(() => {å
+  React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
-    dataset.forEach((data) => {
-      graph.loadContent(Carbon.api.line(data));
-    });
+    graph.loadContent(Carbon.api.line(dataset));
   }, []);
   return (
     <ExampleGraphContainer id="backgroundColor" />
