@@ -5,20 +5,20 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import getBarPanningConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dynamicPanningData';
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barPanning';
+import initialData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/datasetTimeseries1';
+import updatedData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/datasetTimeseries1newData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
+const graphConfig = utils.deepClone(getBarConfig('#BarPanningDynamicData'));
+const dataset = utils.deepClone(initialData);
 const initialState = {
   initial: 0,
   factor: 3,
 };
-
-const graphConfig = utils.deepClone(getBarPanningConfig('#BarPanningDynamicData'));
-const dataset = utils.deepClone(data[0]);
 
 let graph;
 
@@ -56,7 +56,7 @@ const BarPanningExample = () => {
     graph.config.axis.x.lowerLimit = new Date(2016, 0, 1, panState.initial).toISOString();
     graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
 
-    const newDataset = { panData: [utils.deepClone(data[1])] };
+    const newDataset = { panData: [utils.deepClone(updatedData)] };
 
     graph.reflowMultipleDatasets(newDataset);
   }, [panState.initial]);
