@@ -20,9 +20,9 @@ const BackgroundColorGeneralExample = () => {
     graph.loadContent(Carbon.api.line(dataset));
   }, []);
   return (
-  <div className="background-color-class">
-    <ExampleGraphContainer id="backgroundColor" />
-  </div>
+    <div className="background-color-class">
+      <ExampleGraphContainer id="backgroundColor" />
+    </div>
   );
 };
 
