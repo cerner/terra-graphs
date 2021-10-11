@@ -176,6 +176,9 @@ export const processInput = (input, config, type) => {
     y2: getDefaultValue(axis.y2.padDomain, true),
   };
   config.axisInfoRowLabelHeight = 0; // specific only to  Bar Graphs (when axis info row labels are used in Bar Graphs)
+  config.axis.y.isConsumerProvidedFormat = utils.isDefined(config.axis.y.ticks.format);
+  config.axis.y2.isConsumerProvidedFormat = utils.isDefined(config.axis.y2.ticks.format);
+
   return config;
 };
 
