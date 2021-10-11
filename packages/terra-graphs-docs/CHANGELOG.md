@@ -44,3 +44,4 @@
   * Removed all dependencies on Terra-Graphs by copying over the source locally.
   * Updated Combination graph datasets and examples to maintain consistency.
   * Fixed broken hyperlinks in documentation.
+  * Added multiple zero's on ticks issue and fix description as note in the tick documentation.
