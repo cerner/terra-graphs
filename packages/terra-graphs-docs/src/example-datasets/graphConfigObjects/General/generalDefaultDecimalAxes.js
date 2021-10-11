@@ -1,4 +1,4 @@
-const lineDecimalAxes = (id) => ({
+const getDefaultConfig = (id) => ({
   bindTo: id,
   axis: {
     x: {
@@ -29,4 +29,4 @@ const lineDecimalAxes = (id) => ({
   ticksCount: 7,
 });
 
-export default lineDecimalAxes;
+export default getDefaultConfig;

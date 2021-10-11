@@ -2,22 +2,21 @@ import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import LineGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multiTimeseriesData';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/generalDefaultCustomLegend';
+import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset1';
+import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset2';
+import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset3';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(lineTimesries('#graphContainer'));
-graphConfig.bindLegendTo = '#legendContainer';
-graphConfig.removeContainerPadding = true;
-graphConfig.legendPadding = {
-  left: 2.5,
-  right: 2.5,
-  top: 2.5,
-  bottom: 2.5,
-};
-const dataset = utils.deepClone(data);
+
+const graphConfig = utils.deepClone(getGraphConfig('#graphContainer', '#legendContainer'));
+const dataset = [
+  utils.deepClone(exampleData1),
+  utils.deepClone(exampleData2),
+  utils.deepClone(exampleData3),
+];
 
 export default () => (
   <div id="graphAndLegendPaddingReduced" className="custom-container-legend-style">

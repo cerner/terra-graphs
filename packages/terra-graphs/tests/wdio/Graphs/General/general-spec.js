@@ -86,7 +86,7 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
     });
 
     it('validates legend item disable graph container', () => {
-      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/legend/legend-item-disable');
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/legend/legend-item-disabled');
       Terra.validates.screenshot('legend_item-disable', { selector: '.carbon-graph-container' });
     });
 

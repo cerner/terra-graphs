@@ -1,7 +1,7 @@
 const largeLabel = 'Project long display value which is only for testing, Project long display value which is only for testing '
     + 'Project long display value which is only for testing, Project long display value which is only for testing';
 
-const lineDefault = (id) => ({
+const getDefaultConfig = (id) => ({
   bindTo: id,
   bindLegendTo: null,
   axis: {
@@ -31,5 +31,4 @@ const lineDefault = (id) => ({
   showHGrid: true,
 });
 
-export default lineDefault;
-
+export default getDefaultConfig;
