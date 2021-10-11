@@ -10,7 +10,6 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 
 const graphConfig = utils.deepClone(getGraphConfig('#horizontalGridHidden'));
-// graphConfig.showHGrid = false;
 
 const HorizontalGridHiddenGeneralExample = () => {
   React.useEffect(() => {

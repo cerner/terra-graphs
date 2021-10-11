@@ -11,7 +11,6 @@ Please refer to the documentation below to see the graphConfig and data objects
 */
 
 const graphConfig = utils.deepClone(getGraphConfig('#verticalGridHidden'));
-// graphConfig.showVGrid = false;
 
 const VerticalGridHiddenGeneralExample = () => {
   React.useEffect(() => {
