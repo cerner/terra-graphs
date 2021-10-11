@@ -269,6 +269,49 @@ const prepareY2Axis = (scale, tickValues, height, format) => d3
   .tickFormat(format);
 
 /**
+ * Creates the Y and Y2 axis format when tick values are in between -0.5 to 0.5 or -0.05 to 0.05 or -0.005 to 0.005 and so on.
+ *
+ * @private
+ * @param {Array} tickValues - Array of values that represent the tick values
+ * @param {Object} axisData - Object which consists of Y or Y2 axis data.
+ * @returns {object} d3 object which forms the y2-axis scale
+ */
+const getYAndY2AxisFormat = (tickValues, axisData) => {
+  let tickDecimalMagnitude = 0;
+  let largestDecimalValue = 0;
+  tickValues.forEach((tick) => {
+    if (tick !== 0) {
+      let tempTick = tick;
+      tempTick = Math.abs(tick);
+      const tempTickDecimalMagnitude = -Math.floor(Math.log10(tempTick));
+      if (tempTickDecimalMagnitude > tickDecimalMagnitude) {
+        tickDecimalMagnitude = tempTickDecimalMagnitude;
+        largestDecimalValue = tick;
+      }
+    }
+  });
+
+  const setFormat = (lowerRangeValue, upperRangeValue) => {
+    if (largestDecimalValue > lowerRangeValue && largestDecimalValue < upperRangeValue && largestDecimalValue !== 0) {
+      let format;
+      if (axisData.suppressTrailingZeros) {
+        format = `.${tickDecimalMagnitude % 10}~f`;
+      } else {
+        format = `.${tickDecimalMagnitude % 10}f`;
+      }
+      return format;
+    }
+    return undefined;
+  };
+
+  if (tickDecimalMagnitude > 5) {
+    return undefined;
+  }
+  const rangeValue = 5 / (10 ** tickDecimalMagnitude);
+
+  return setFormat(-rangeValue, rangeValue);
+};
+/**
  * Generates an array of tick values for to be used as the
  * tick labels on the Y & Y2 axis.
  *
@@ -284,6 +327,7 @@ const generateYAxesTickValues = (
   upperLimit,
   ticksCount = constants.DEFAULT_TICKSCOUNT,
   allowCalibration = true,
+  axisData,
 ) => {
   ticksCount = Math.abs(ticksCount);
   const tickValues = [];
@@ -311,7 +355,9 @@ const generateYAxesTickValues = (
   for (let index = 1; index <= ticksCount; index += 1) {
     tickValues.push(lowerLimit + interval * index);
   }
-
+  if (!axisData.isConsumerProvidedFormat && utils.isUndefined(axisData.ticks.values)) {
+    axisData.ticks.format = getYAndY2AxisFormat(tickValues, axisData);
+  }
   return tickValues;
 };
 
@@ -488,6 +534,7 @@ const getAxesScale = (axis, scale, config) => {
         config.axis.y.domain.upperLimit,
         config.ticksCount,
         config.allowCalibration,
+        config.axis.y,
       );
 
       const y2TickValues = generateYAxesTickValues(
@@ -495,6 +542,7 @@ const getAxesScale = (axis, scale, config) => {
         config.axis.y2.domain.upperLimit,
         config.ticksCount,
         config.allowCalibration,
+        config.axis.y2,
       );
 
       if (
@@ -553,12 +601,14 @@ const getAxesScale = (axis, scale, config) => {
         config.axis.y.domain.upperLimit,
         ticksCount,
         config.allowCalibration,
+        config.axis.y,
       );
       const y2TickValues = generateYAxesTickValues(
         config.axis.y2.domain.lowerLimit,
         config.axis.y2.domain.upperLimit,
         ticksCount,
         config.allowCalibration,
+        config.axis.y2,
       );
 
       if (
@@ -638,6 +688,7 @@ const getAxesScale = (axis, scale, config) => {
         config.axis.y.domain.upperLimit,
         config.ticksCount,
         config.allowCalibration,
+        config.axis.y,
       );
 
       if (
