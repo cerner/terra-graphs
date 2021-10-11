@@ -1,20 +1,23 @@
 import BarGraph from '../../../example/Graphs-Carbon/BarGraph/BasicBarGraphs/StackedBars?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData2.js?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData3.js?dev-site-codeblock';
+
 require('details-polyfill')
 
 # Stacked Bar Graph
-This is the graph with multiple bar contents stacked up together.
+This is graph with multiple datasets stacked up.
 
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
 ```jsx
-import React from 'react';
-import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 ## Examples
 <BarGraph />
@@ -27,6 +30,15 @@ import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 ### Graph Config object
 <GraphConfig />
 
-### Data object
-<DataObject />
+### Data objects
+
+#### Dataset 1
+<DataObject1 />
+
+#### Dataset 2
+<DataObject2 />
+
+#### Dataset 3
+<DataObject3 />
+
 </details>

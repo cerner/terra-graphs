@@ -1,6 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
-const barTimeseries = (id) => ({
+const getbarConfig = (id) => ({
   bindTo: id,
   bindLegendTo: null,
   axis: {
@@ -8,19 +8,17 @@ const barTimeseries = (id) => ({
       show: true,
       type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
       label: 'Data',
-      lowerLimit: new Date(2017, 11, 31).toISOString(),
-      upperLimit: new Date(2018, 0, 8).toISOString(),
+      lowerLimit: new Date(2016, 0, 1, 0).toISOString(),
+      upperLimit: new Date(2016, 0, 2, 0).toISOString(),
       ticks: {
         values: [
-          new Date(2018, 0, 1).toISOString(),
-          new Date(2018, 0, 2).toISOString(),
-          new Date(2018, 0, 3).toISOString(),
-          new Date(2018, 0, 4).toISOString(),
-          new Date(2018, 0, 5).toISOString(),
-          new Date(2018, 0, 6).toISOString(),
-          new Date(2018, 0, 7).toISOString(),
+          new Date(2016, 0, 1, 3).toISOString(),
+          new Date(2016, 0, 1, 6).toISOString(),
+          new Date(2016, 0, 1, 9).toISOString(),
+          new Date(2016, 0, 1, 12).toISOString(),
+          new Date(2016, 0, 1, 15).toISOString(),
         ],
-        format: '%a %b %e',
+        format: '%H',
       },
     },
     y: {
@@ -43,5 +41,5 @@ const barTimeseries = (id) => ({
   showHGrid: true,
 });
 
-export default barTimeseries;
+export default getbarConfig;
 

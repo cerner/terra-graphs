@@ -4,15 +4,21 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Bar/BarGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import barDefault from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData';
+import getBarConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault';
+import exampleData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset1';
+import exampleData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset2';
+import exampleData3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset3';
 
 /*
- Please refer to the documentation below to see the graphConfig and data objects
- */
+Please refer to the documentation below to see the graphConfig and data objects
+*/
 
-const graphConfig = utils.deepClone(barDefault('#groupedBarGraph'));
-const dataset = utils.deepClone(exampleData);
+const graphConfig = utils.deepClone(getBarConfig('#groupedBarGraph'));
+const dataset = [
+  utils.deepClone(exampleData1),
+  utils.deepClone(exampleData2),
+  utils.deepClone(exampleData3),
+];
 
 export default () => {
   React.useEffect(() => {
