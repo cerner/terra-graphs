@@ -29,5 +29,7 @@
   * Updated Timeline graph snapshots.
   * Updated all snapshots.
   * Updated Combination graph snapshots.
+  * Updated Bar graph snapshots.
+  * Updated General example snapshots.
 
 * Initial stable release

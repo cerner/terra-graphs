@@ -30,7 +30,6 @@
   * Updated general graph documentation and examples to be carbon-centric.
   * Updated Paired Result documentation and examples to be carbon-centric.
   * Updated Scatter graph documentation and examples to be carbon-centric.
-  * Updated Pie chart documentation and examples to be carbon-centric.
   * Updated Timeline documentation and examples to be carbon-centric.
   * Updated Pie chart documentation and examples to be carbon-centric.
   * Moved colors, shapes, errors and locale documentation to terra-dev-site.
@@ -45,3 +44,5 @@
   * Updated Combination graph datasets and examples to maintain consistency.
   * Fixed broken hyperlinks in documentation.
   * Added multiple zero's on ticks issue and fix description as note in the tick documentation.
+  * Updated Bar datasets and examples to maintain consistency.
+  * Updated General examples to maintain consistency.

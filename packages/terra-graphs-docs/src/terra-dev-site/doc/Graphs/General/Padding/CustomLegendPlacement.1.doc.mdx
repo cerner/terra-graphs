@@ -1,11 +1,13 @@
 import LineGraph from '../../../example/Graphs-Carbon/General/Padding/CustomLegendPlacement?dev-site-example';
-import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multiTimeseriesData.js?dev-site-codeblock';
-require('details-polyfill')
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/generalDefault.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset2NoLegend.js?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/dataset3.js?dev-site-codeblock';
+require('details-polyfill');
 
 # Custom legend placement
 
-This is timeseries line graph with custom legend placement.
+This is a graph with custom legend placement.
 
 ## Getting Started
 
@@ -30,5 +32,13 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 <GraphConfig />
 
 ### Data object
-<DataObject />
+
+#### Dataset 1
+<DataObject1 />
+
+#### Dataset 2
+<DataObject2 />
+
+#### Dataset 3
+<DataObject3 />
 </details>

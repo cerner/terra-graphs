@@ -1,14 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
-const tickValues = [
-  new Date(2016, 0, 1, 1, 0).toISOString(),
-  new Date(2016, 0, 1, 5, 0).toISOString(),
-  new Date(2016, 0, 1, 10, 0).toISOString(),
-  new Date(2016, 0, 1, 15, 0).toISOString(),
-  new Date(2016, 0, 1, 20, 0).toISOString(),
-];
-
-const lineTimeseries = (id) => ({
+const getGraphConfig = (id) => ({
   bindTo: id,
   axis: {
     x: {
@@ -17,7 +9,13 @@ const lineTimeseries = (id) => ({
       lowerLimit: new Date(2016, 0, 0, 23, 59).toISOString(),
       upperLimit: new Date(2016, 0, 2, 1, 0).toISOString(),
       ticks: {
-        values: tickValues,
+        values: [
+          new Date(2016, 0, 1, 1, 0).toISOString(),
+          new Date(2016, 0, 1, 5, 0).toISOString(),
+          new Date(2016, 0, 1, 10, 0).toISOString(),
+          new Date(2016, 0, 1, 15, 0).toISOString(),
+          new Date(2016, 0, 1, 20, 0).toISOString(),
+        ],
         format: '%H',
         lowerStepTickValues: [
           new Date(2016, 0, 1, 6).toISOString(),
@@ -55,4 +53,4 @@ const lineTimeseries = (id) => ({
   showHGrid: true,
 });
 
-export default lineTimeseries;
+export default getGraphConfig;

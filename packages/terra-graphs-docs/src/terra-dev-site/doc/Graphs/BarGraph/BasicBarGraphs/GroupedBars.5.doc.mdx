@@ -1,6 +1,9 @@
 import BarGraph from '../../../example/Graphs-Carbon/BarGraph/BasicBarGraphs/GroupedBars?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/groupedBarData.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset2.js?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset3.js?dev-site-codeblock';
+
 require('details-polyfill')
 
 # Grouped Bar Graph
@@ -9,12 +12,12 @@ This is the graph with multiple bar contents grouped together.
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm install terra-graphs`
+  - `npm i @cerner/carbon-graphs --save-dev`
 
 ## Usage
 ```jsx
-import React from 'react';
-import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 ## Examples
 <BarGraph />
@@ -28,5 +31,13 @@ import BarGraph from '@cerner/terra-graphs/lib/components/Bar/BarGraph';
 <GraphConfig />
 
 ### Data object
-<DataObject />
+#### Dataset 1
+<DataObject1 />
+
+#### Dataset 2
+<DataObject2 />
+
+#### Dataset 3
+<DataObject3 />
+
 </details>
