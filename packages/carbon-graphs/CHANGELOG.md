@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.18.2 - (October 12, 2021)
+
 * Changed
   * Fixed displaying multiple zeros on Y and Y2 axis ticks.
 
