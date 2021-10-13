@@ -5,14 +5,16 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/PairedResult/PairedResultGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/panningData';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesPanning';
+import initialData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries';
+import updatedData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseriesNewData';
 
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
-const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#dynamicLineData'));
-const dataset = [utils.deepClone(exampleData[0])];
+
+const graphConfig = utils.deepClone(getGraphConfig('#dynamicLineData'));
+const dataset = utils.deepClone(initialData);
 
 const initialState = {
   initial: 0,
@@ -23,9 +25,7 @@ let graph;
 const DynamicLinePanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
-    dataset.forEach((data) => {
-      graph.loadContent(Carbon.api.scatter(data));
-    });
+    graph.loadContent(Carbon.api.scatter(dataset));
   }, []);
 
   const reducer = (panState, action) => {
@@ -57,7 +57,7 @@ const DynamicLinePanningExample = () => {
     graph.config.axis.x.upperLimit = new Date(2016, 0, 2, panState.initial).toISOString();
 
     const newDataset = {
-      panData: [utils.deepClone(utils.deepClone(exampleData[1]))],
+      panData: [utils.deepClone(utils.deepClone(updatedData))],
     };
 
     graph.reflowMultipleDatasets(newDataset);
@@ -66,6 +66,7 @@ const DynamicLinePanningExample = () => {
   return (
     <>
       <Button className="button-pan-left" text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <Button className="button-pan-right" text=">" onClick={() => dispatch({ type: 'panRight' })} />
       <ExampleGraphContainer id="dynamicLineData" />
     </>
