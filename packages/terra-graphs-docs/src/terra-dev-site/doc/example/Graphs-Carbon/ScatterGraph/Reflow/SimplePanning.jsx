@@ -14,7 +14,6 @@ Please refer to the documentation below to see the graphConfig and data objects
 
 const graphConfig = utils.deepClone(getGraphConfig('#scatterPanningExample'));
 const dataset = utils.deepClone(exampleData);
-
 const initialState = {
   initial: 0,
   factor: 3,

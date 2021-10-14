@@ -3,18 +3,18 @@ import Button from 'terra-button/lib/Button';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import ScatterGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Scatter/ScatterGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesPanning';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries';
+
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const dataset = utils.deepClone(data);
-
+const dataset = utils.deepClone(exampleData);
 const initialState = {
   initial: 0,
   factor: 3,
-  graphConfig: utils.deepClone(getConfigLineTimeseriesPanning('#scatterPanningExample')),
+  graphConfig: utils.deepClone(getGraphConfig('#scatterPanningExample')),
 };
 
 const ScatterPanningExample = () => {
