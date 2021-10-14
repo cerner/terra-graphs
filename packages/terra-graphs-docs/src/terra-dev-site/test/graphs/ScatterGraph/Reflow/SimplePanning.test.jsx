@@ -6,7 +6,7 @@ import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/Examp
 import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesPanning';
 import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries';
 
-const dataset = utils.deepClone(exampleData);
+const dataset = [utils.deepClone(exampleData)];
 const initialState = {
   initial: 0,
   factor: 3,
