@@ -46,4 +46,9 @@
   * Added multiple zero's on ticks issue and fix description as note in the tick documentation.
   * Updated Bar datasets and examples to maintain consistency.
   * Updated General examples to maintain consistency.
+<<<<<<< HEAD
   * Restructured documentation and general examples into getting started section.
+=======
+  * Updated Scatter datasets and examples to maintain consistency.
+  * Updated Scatter documentation to include api information.
+>>>>>>> added CHANGELOG

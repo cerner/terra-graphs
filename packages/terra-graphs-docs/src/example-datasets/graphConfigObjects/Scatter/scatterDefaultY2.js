@@ -1,4 +1,4 @@
-const getLineDefaultConfig = (id) => ({
+const getScatterDefaultConfig = (id) => ({
   bindTo: id,
   bindLegendTo: null,
   axis: {
@@ -28,5 +28,5 @@ const getLineDefaultConfig = (id) => ({
   showHGrid: true,
 });
 
-export default getLineDefaultConfig;
+export default getScatterDefaultConfig;
 
