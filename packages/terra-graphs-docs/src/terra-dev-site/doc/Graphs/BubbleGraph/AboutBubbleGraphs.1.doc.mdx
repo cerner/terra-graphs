@@ -1,0 +1,135 @@
+import BubbleSingleDatasetExample from '@cerner/terra-graphs-docs/lib/terra-dev-site/doc/example/Graphs-Carbon/BubbleGraph/General/SingleDataset?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simpleAxisData?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic?dev-site-codeblock';
+require('details-polyfill')
+
+# Bubble Graph
+
+A plot showing data with x and y coordinates along with a 3rd dimension represented by the radius of the circle. Terra-Graphs has two APIs to utilize bubble graphs:
+
+```js
+Carbon.api.bubbleSingleDataset(<dataset>);
+Carbon.api.bubbleMultipleDataset(<dataset>);
+```
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+
+An instance of a scatter graph can be obtained by:
+
+```js
+Carbon.api.scatter(/* dataset */)
+```
+A scatter graph can be plotted as follows:
+
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+
+const graph = Carbon.api.graph(/* graph config JSON */);
+graph.loadContent(Carbon.api.scatter(/* dataset  1*/));
+
+## Dataset Properties
+
+### Structure
+
+```json
+{
+  key: string
+  values: [
+    {
+      x: number or Date object,
+      y: number,
+      isCritical: bool
+    },
+  ],
+  color: hex value as string,
+  label: {
+    display: string,
+  },
+  legendOptions:{
+    showElement: bool
+  }
+  onClick: function,
+  regions: [
+    start: number
+    end: number
+    axis: "y" or "y2"
+    color: hex value as string
+  ]
+  shape: Carbon.helpers.SHAPES.DARK.RHOMBUS,
+  yAxis: "y" or "y2",
+
+}
+```
+
+### Data
+
+| Property Name | Type     | Required | Default              | Description                                                      |
+|---------------|----------|----------|----------------------|------------------------------------------------------------------|
+| key           | string   | yes      | -                    | Unique id which represents the data-set                          |
+| values        | Array    | yes      | -                    | Array of values to plot. Refer to [Values](#values)               |
+| color         | string   | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from Colors                                     |
+| label         | object   | no       | {}                   | Dislay value for the dataset which the datappoints belong to     |
+| legendOptions | object   | no       | `undefined`          | Toggle to show legend. Refer to [LegendOptions](#legendOptions)  |
+| onClick       | function | no       | `undefined`          | Any action that can be performed when clicking on the data point |
+| palette       | string | | no       | `undefined`    | Set of shades to be used for color based bubbles. Only works for datasets of <=4 datapoints                     |
+
+| regions       | array    | no       | `[]`                 | Refer to [Regions](#regions)                                     |
+| weight         | object   | no       |{} |  Provide `min` and `max` for weight based or `fixedRadius` for a custom sized bubble. Refer to [Weight](#Weight)                      |
+| yAxis         | string   | no       | `"y"`                | Prop to select either the Y or Y2 axis for the dataset   valid values are `y` or `y2`        |
+
+-   If the dataset `label` display is not provided then the legend item will not be shown as well
+-   Each bubble can have a legendOptions object in [Values](#values) level.
+
+
+
+
+
+#### Values
+
+| Property Name | Type     | Required | Default            | Description                                                      |
+|---------------|----------|----------|--------------------|------------------------------------------------------------------|
+| x             | string   | yes      | -                  | value for the x coordinate                                       |
+| y             | string   | yes      | -                  | value for the y coordinate                                       |
+| isCritical    | bool     | no       | `false`            | highlights a datapoint if `true`                                 |
+
+
+#### LegendOptions
+
+Each scatter can have a legendOptions object in [Values](#values) level.
+
+| Property Name | Type     | Required | Default            | Description                                                      |
+|---------------|----------|----------|--------------------|------------------------------------------------------------------|
+| showElement   | bool     | no       | `true`             | Toggle to hide the legend when it has no data                    |
+
+#### Regions
+
+Each data-set can have 1 or more regions. `start` and `end` is necessary for rendering a horizontal area.
+
+| Property Name | Type     | Required | Default                                                                                         | Description                                                      |
+|---------------|----------|----------|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| start         | number   | yes      | -                                                                                               | start of the region                                              |
+| end           | number   | yes      | -                                                                                               | end of the region                                                |
+| axis          | string   | no       | `"y"`                                                                                           | Y-axis to bind the region to; valid values are `y` or `y2`       |
+| color         | string   | no       | <img width="16px" height="16px" src="https://placehold.it/15/008fe0/000000?text=+" /> `#008fe0` | default color of the region                                      |
+
+
+## Examples
+<BubbleSingleDatasetExample />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>
