@@ -65,7 +65,7 @@ const data = {
       x: new Date(2016, 0, 1, 21, 15).toISOString(),
       y: 14,
     },
-  ]
+  ],
 };
 
 export default data;

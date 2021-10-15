@@ -1,5 +1,4 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-import { loadDatelinePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const getLineTimeseriesConfig = (id) => ({
   bindTo: id,
