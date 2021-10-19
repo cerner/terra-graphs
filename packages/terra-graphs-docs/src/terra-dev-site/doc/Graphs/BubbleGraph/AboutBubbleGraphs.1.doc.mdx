@@ -1,7 +1,9 @@
 import BubbleSingleDatasetExample from '@cerner/terra-graphs-docs/lib/terra-dev-site/doc/example/Graphs-Carbon/BubbleGraph/General/SingleDataset?dev-site-example';
+import BubbleMultipleDatasetExample from '@cerner/terra-graphs-docs/lib/terra-dev-site/doc/example/Graphs-Carbon/BubbleGraph/General/MultipleDatasets?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simpleAxisData?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic?dev-site-codeblock';
-require('details-polyfill')
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataCustomRadius?dev-site-codeblock';
+require('details-polyfill');
 
 # Bubble Graph
 
@@ -11,6 +13,26 @@ A plot showing data with x and y coordinates along with a 3rd dimension represen
 Carbon.api.bubbleSingleDataset(<dataset>);
 Carbon.api.bubbleMultipleDataset(<dataset>);
 ```
+
+-   [Getting Started](#getting-started)
+-   [Usage](#usage)
+-   [structure](#dataset-structure)
+-   [properties](#dataset-properties)
+    -   [key](#key)
+    -   [values](#values)
+    -   [color](#color)
+    -   [label](#label)
+    -   [legendoptions](#legendoptions)
+    -   [onClick](#onclick)
+    -   [palette](#palette)
+    -   [regions](#regions)
+    -   [weight](#weight)
+    -   [yAxis](#yaxis)
+-   [Examples](#Examples)
+-   [Data](#data)
+    -   [Graph Config](#graph-config-object)
+    -   [Data Object](#data-object)
+
 
 ## Getting Started
 
@@ -31,96 +53,181 @@ import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
 import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 
 const graph = Carbon.api.graph(/* graph config JSON */);
-graph.loadContent(Carbon.api.scatter(/* dataset  1*/));
 
-## Dataset Properties
+// for a single dataset:
+graph.loadContent(Carbon.api.bubbleSingleDataset(/* dataset */));
 
-### Structure
-
-```json
-{
-  key: string
-  values: [
-    {
-      x: number or Date object,
-      y: number,
-      isCritical: bool
-    },
-  ],
-  color: hex value as string,
-  label: {
-    display: string,
-  },
-  legendOptions:{
-    showElement: bool
-  }
-  onClick: function,
-  regions: [
-    start: number
-    end: number
-    axis: "y" or "y2"
-    color: hex value as string
-  ]
-  shape: Carbon.helpers.SHAPES.DARK.RHOMBUS,
-  yAxis: "y" or "y2",
-
-}
+// for multiple datasets
+graph.loadContent(Carbon.api.bubbleMultipleDataset(/* dataset 1 */));
+graph.loadContent(Carbon.api.bubbleMultipleDataset(/* dataset 2 */));
+graph.loadContent(Carbon.api.bubbleMultipleDataset(/* dataset 3 */));
 ```
 
-### Data
+## Dataset Structure
 
-| Property Name | Type     | Required | Default              | Description                                                      |
-|---------------|----------|----------|----------------------|------------------------------------------------------------------|
-| key           | string   | yes      | -                    | Unique id which represents the data-set                          |
-| values        | Array    | yes      | -                    | Array of values to plot. Refer to [Values](#values)               |
-| color         | string   | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from Colors                                     |
-| label         | object   | no       | {}                   | Dislay value for the dataset which the datappoints belong to     |
-| legendOptions | object   | no       | `undefined`          | Toggle to show legend. Refer to [LegendOptions](#legendOptions)  |
-| onClick       | function | no       | `undefined`          | Any action that can be performed when clicking on the data point |
-| palette       | string | | no       | `undefined`    | Set of shades to be used for color based bubbles. Only works for datasets of <=4 datapoints                     |
+```js
+const dataset = {
+  key: <string>,
+  values: [
+    {
+      x: <number or Date object>,
+      y: <number>,
+      isCritical: <bool>
+    },
+  ],
+  color: <hex value as string>,
+  label: {
+    display: <string>,
+  },
+  legendOptions:{
+    showElement: <bool>
+  }
+  onClick: <function>,
+  string: <string>,
+  regions: [
+    start: <number>
+    end: <number>
+    axis: <"y" or "y2">
+    color: <hex value as string>
+  ],
+  weight: {
+    min: <number>,
+    max: <number>,
+    fixedRadius: <number>
+  },
+  yAxis: <"y" or "y2">,
 
-| regions       | array    | no       | `[]`                 | Refer to [Regions](#regions)                                     |
-| weight         | object   | no       |{} |  Provide `min` and `max` for weight based or `fixedRadius` for a custom sized bubble. Refer to [Weight](#Weight)                      |
-| yAxis         | string   | no       | `"y"`                | Prop to select either the Y or Y2 axis for the dataset   valid values are `y` or `y2`        |
+}
+``` 
+## Dataset Properties 
 
--   If the dataset `label` display is not provided then the legend item will not be shown as well
--   Each bubble can have a legendOptions object in [Values](#values) level.
+- ### `key`
+**type:** string | `required prop`
+
+  This is a unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error. 
+
+- ### `values`  
+**type:**  array of objects | `required prop`
+
+  This is an array of objects representing the dataset. 
+  It is a required prop; passing `undefined` will result in an error. 
+  However passing an empty array (`[]`) will result in the graph successfully rendering without a dataset. 
+  Each object in the array takes the following shape:
+
+  ```json
+    {
+      x: <number>,
+      y: <number>,
+      isCritical: <bool>
+      legendOptions: <object>
+    }
+  ```
+
+  | Property Name | Type   | Required | Default | Description                         |
+  |---------------|--------|----------|---------|-------------------------------------|
+  | x             | string | yes      | -       | value for the x coordinate          |
+  | y             | string | yes      | -       | value for the y coordinate          |
+  | isCritical    | bool   | no       | `false` | highlights a datapoint if `true`    |
+  | legendOptions | bool   | no       | `false` | see [legendOptions](#legendoptions) |
 
 
+- ### `color`
+**type:** string  
+**default value:** `COLORS.BLACK`
+
+  Color for the data points. Can be a hex value (`#ffffff`) or a constant from Colors.
 
 
+- ### `label`
+**type:** object  
+**default value:** `{}`
 
-#### Values
+  Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../Documentation/Core/Colors).
 
-| Property Name | Type     | Required | Default            | Description                                                      |
-|---------------|----------|----------|--------------------|------------------------------------------------------------------|
-| x             | string   | yes      | -                  | value for the x coordinate                                       |
-| y             | string   | yes      | -                  | value for the y coordinate                                       |
-| isCritical    | bool     | no       | `false`            | highlights a datapoint if `true`                                 |
+  If the dataset `label` display is not provided then the legend item will not be shown as well.
 
 
-#### LegendOptions
+- ### `legendOptions`
+**type:** object  
+**default value:** `undefined`
 
-Each scatter can have a legendOptions object in [Values](#values) level.
+  Options for showing dataset in the legend. This prop has the following shape:
 
-| Property Name | Type     | Required | Default            | Description                                                      |
-|---------------|----------|----------|--------------------|------------------------------------------------------------------|
-| showElement   | bool     | no       | `true`             | Toggle to hide the legend when it has no data                    |
+    ```json
+      legendOptions: {
+        showElement: <bool>
+      }
+    ```
 
-#### Regions
+  | Property Name | Type | Required | Default | Description                                   |
+  |---------------|------|----------|---------|-----------------------------------------------|
+  | showElement   | bool | no       | `true`  | Toggle to hide the legend when it has no data |
 
-Each data-set can have 1 or more regions. `start` and `end` is necessary for rendering a horizontal area.
+- ### `onClick`
+**type:** function  
+**default value:** `undefined`
 
-| Property Name | Type     | Required | Default                                                                                         | Description                                                      |
-|---------------|----------|----------|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| start         | number   | yes      | -                                                                                               | start of the region                                              |
-| end           | number   | yes      | -                                                                                               | end of the region                                                |
-| axis          | string   | no       | `"y"`                                                                                           | Y-axis to bind the region to; valid values are `y` or `y2`       |
-| color         | string   | no       | <img width="16px" height="16px" src="https://placehold.it/15/008fe0/000000?text=+" /> `#008fe0` | default color of the region                                      |
+ 	Any action that can be performed when clicking on the data point.
 
+
+- ### `palette`
+**type:** string  
+**default value:** `undefined`
+
+  Set of shades to use with a bubble graph. Only works if `datapoints <= 4` and if `color` is `undefined`.
+
+
+- ### `regions`
+  **type:** array of objects  
+  **default value:** `[]`
+
+  Each data-set can have one or more regions. `start` and `end` is necessary for rendering a horizontal area.
+
+    ```json
+    legendOptions: {
+      showElement: <bool>
+    }
+    ```
+
+  | Property Name | Expected | Description         |
+  |---------------|----------|---------------------|
+  | start         | number   | Start of the region |
+  | end           | number   | End of the region   |
+
+
+- ### `weight`
+**type:** object  
+**default value:** `undefined`
+
+  The radius of the bubbles. To restrict the radius to a certain range, use `min` and `max` or `fixedRadius` for a custom sized bubble.
+
+  ```json
+  weight: {
+    min: <number>,
+    max: <number>,
+    fixedRadius: <number>
+  }
+  ```
+  | Property Name | Type   | Required | Default     | Description                                                |
+  |---------------|--------|----------|-------------|------------------------------------------------------------|
+  | min           | number | no       | `undefined` | start of the region                                        |
+  | max           | number | no       | `undefined` | end of the region                                          |
+  | fixedRadius   | number | no       | 30          | Y-axis to bind the region to; valid values are `y` or `y2` |
+
+
+- ### `yAxis`
+**type:** string  
+**default value:** `y`
+
+  Prop to select either the Y or Y2 axis for the dataset. 
+
+  **valid values:**
+  - `y`
+  - `y2`
 
 ## Examples
 <BubbleSingleDatasetExample />
+<BubbleMultipleDatasetExample />
 
 <details>
 <summary style={{fontSize: 24 }}>
@@ -131,5 +238,9 @@ Each data-set can have 1 or more regions. `start` and `end` is necessary for ren
 <GraphConfig />
 
 ### Data object
-<DataObject />
+#### bubbleDataBasic
+<DataObject1 />
+
+#### bubbleDataCustomRadius
+<DataObject2 />
 </details>
