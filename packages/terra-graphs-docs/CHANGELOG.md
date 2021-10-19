@@ -46,3 +46,4 @@
   * Added multiple zero's on ticks issue and fix description as note in the tick documentation.
   * Updated Bar datasets and examples to maintain consistency.
   * Updated General examples to maintain consistency.
+  * Restructured documentation and general examples into getting started section.
