@@ -51,3 +51,4 @@
   * Updated Bar documentation to include api information.
   * Restructured documentation and general examples into getting started section.
   * Updated Paired result documentation to include api information.
+  * Updated Bubble graph documentation to include api information.
