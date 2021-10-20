@@ -105,12 +105,12 @@ const dataset = {
     }
   ```
 
-  | Property Name | Type   | Required | Default | Description                         |
-  |---------------|--------|----------|---------|-------------------------------------|
-  | x             | string | yes      | -       | value for the x coordinate          |
-  | y             | string | yes      | -       | value for the y coordinate          |
-  | isCritical    | bool   | no       | `false` | highlights a datapoint if `true`    |
-  | legendOptions | bool   | no       | `false` | see [legendOptions](#legendoptions) |
+  | Property Name | Type   | Required | Default | Description                          |
+  |---------------|--------|----------|---------|--------------------------------------|
+  | x             | string | yes      | -       | Value for the x coordinate.          |
+  | y             | string | yes      | -       | Value for the y coordinate.          |
+  | isCritical    | bool   | no       | `false` | Highlights a datapoint if `true`.    |
+  | legendOptions | bool   | no       | `false` | See [legendOptions](#legendoptions). |
 
 
 - ### `legendOptions`
@@ -134,7 +134,7 @@ const dataset = {
   **type:** array of objects  
   **default value:** `[]`
 
-  Each data-set can have one or more regions. `start` and `end` is necessary for rendering a horizontal area.
+  Each dataset can have one or more regions. `start` and `end` is necessary for rendering a horizontal area.
 
     ```json
     legendOptions: {
@@ -142,10 +142,10 @@ const dataset = {
     }
     ```
 
-  | Property Name | Expected | Description         |
-  |---------------|----------|---------------------|
-  | start         | number   | Start of the region |
-  | end           | number   | End of the region   |
+  | Property Name | Expected | Description          |
+  |---------------|----------|----------------------|
+  | start         | number   | Start of the region. |
+  | end           | number   | End of the region.   |
 
 
 ## Example
