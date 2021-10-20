@@ -75,10 +75,18 @@ const dataset = {
 
 ## Dataset Properties 
 
-- ### `key`
-**type:** string | `required prop`
+| Property Name | Type             | Required | Default              | Description                                                                                                          |
+|---------------|------------------|----------|----------------------|----------------------------------------------------------------------------------------------------------------------|
+| key           | string           | yes      | -                    | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.              |
+| values        | array of objects | yes      | -                    | Refer to [Values](#values).                                                                                          |
+| color         | string           | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../Documentation/Core/Colors). |
+| label         | object           | no       | {}                   | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                  |
+| legendOptions | object           | no       | `undefined`          | Refer to [LegendOptions](#legendOptions).                                                                            |
+| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
+| regions       | array of objects | no       | `[]`                 | Refer to [Regions](#regions).                                                                                        |
+| shape         | string           | no       | `SHAPES.DARK.CIRCLE` | Shape for representing the data points.                                                                              |
+| yAxis         | string           | no       | `"y"`                | Prop to select either the Y or Y2 axis for the dataset. Valid values are `y` or `y2`.                                |
 
-  This is a unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error. 
 
 - ### `values`  
 **type:**  array of objects | `required prop`
@@ -105,22 +113,6 @@ const dataset = {
   | legendOptions | bool   | no       | `false` | see [legendOptions](#legendoptions) |
 
 
-- ### `color`
-**type:** string  
-**default value:** `COLORS.BLACK`
-
-  Color for the data points. Can be a hex value (`#ffffff`) or a constant from Colors.
-
-
-- ### `label`
-**type:** object  
-**default value:** `{}`
-
-  Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../Documentation/Core/Colors).
-
-  If the dataset `label` display is not provided then the legend item will not be shown as well.
-
-
 - ### `legendOptions`
 **type:** object  
 **default value:** `undefined`
@@ -136,12 +128,6 @@ const dataset = {
   | Property Name | Type | Required | Default | Description                                   |
   |---------------|------|----------|---------|-----------------------------------------------|
   | showElement   | bool | no       | `true`  | Toggle to hide the legend when it has no data |
-
-- ### `onClick`
-**type:** function  
-**default value:** `undefined`
-
- 	Any action that can be performed when clicking on the data point.
 
 
 - ### `regions`
@@ -160,25 +146,6 @@ const dataset = {
   |---------------|----------|---------------------|
   | start         | number   | Start of the region |
   | end           | number   | End of the region   |
-
-
-- ### `weight`
-**type:** object  
-**default value:** `Carbon.helpers.SHAPES.DARK.RHOMBUS`
-
-  Shape for representing the data points.
-
-  **valid values:** constant from [Carbon Shapes](../Documentation/Core/Colors) or a custom svg.
-
-- ### `yAxis`
-**type:** string  
-**default value:** `y`
-
-  Prop to select either the Y or Y2 axis for the dataset. 
-
-  **valid values:**
-  - `y`
-  - `y2`
 
 
 ## Example
