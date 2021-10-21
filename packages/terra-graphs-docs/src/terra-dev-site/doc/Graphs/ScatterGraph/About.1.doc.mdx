@@ -15,8 +15,10 @@ A scatter plot can be used to plot datapoints of fixed size with independent x a
     -   [label](#label)
     -   [legendOptions](#legendoptions)
     -   [regions](#regions)
--   [Example](#example)
-
+-   [Example](#Example)
+-   [Data](#data)
+    -   [Graph Config](#graph-config-object)
+    -   [Data Object](#data-object)
     
 ## Getting Started
 
@@ -93,7 +95,7 @@ const dataset = {
 | color         | string           | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../Documentation/Core/Colors).   |
 | label         | object           | no       | {}                   | See [label](#label).                                                                                                 |
 | legendOptions | object           | no       | `undefined`          | See [LegendOptions](#legendOptions).                                                                                   |
-| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as to display a popup.                                            |
+| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as, to display a popup.                                            |
 | regions       | array of objects | no       | `[]`                 | See [Regions](#regions).                                                                                               |
 | shape         | string           | no       | `SHAPES.DARK.CIRCLE` | Shape for representing the data points. Can be a constant from [shapes](../Documentation/Core/Shapes) or a custom SVG. |
 | yAxis         | string           | no       | `"y"`                | Prop to select either the Y or Y2 axis for the dataset. Valid values are `y` or `y2`.                                  |
