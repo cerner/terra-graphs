@@ -1,6 +1,9 @@
-import ScatterGraph from '../../example/Graphs-Carbon/ScatterGraph/BasicScatterGraphs/SimpleScatter?dev-site-example';
-import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesPanning.js?dev-site-codeblock';
-import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries.js?dev-site-codeblock';
+import ScatterGraphDefault from '../../example/Graphs-Carbon/ScatterGraph/BasicScatterGraphs/SimpleScatter?dev-site-example';
+import GraphConfigDefault  from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterDefault.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1.js?dev-site-codeblock';
+import ScatterGraphTimeseries from '../../example/Graphs-Carbon/ScatterGraph/BasicScatterGraphs/Timeseries?dev-site-example';
+import GraphTimeseriesConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseries.js?dev-site-codeblock';
+import DataObjectTimeseries1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries.js?dev-site-codeblock';
 require('details-polyfill');
 
 # Scatter Graph
@@ -15,10 +18,10 @@ A scatter plot can be used to plot datapoints of fixed size with independent x a
     -   [label](#label)
     -   [legendOptions](#legendoptions)
     -   [regions](#regions)
--   [Example](#Example)
--   [Data](#data)
-    -   [Graph Config](#graph-config-object)
-    -   [Data Object](#data-object)
+-   [Examples](#examples)
+    -   [Default](#default-x-axis)
+    -   [Timeseries](#timeseries-x-axis)
+
     
 ## Getting Started
 
@@ -61,7 +64,7 @@ const dataset = {
   key: <string>,
   values: [
     {
-      x: <number or Date object>,
+      x: <number> or <Date>,
       y: <number>,
       isCritical: <bool>
     },
@@ -177,17 +180,41 @@ const dataset = {
   | end           | number   | End of the region.   |
 
 
-## Example
-<ScatterGraph />
+## Examples
+
+### Default X-axis
+<ScatterGraphDefault />
+
+### Timeseries X-axis
+
+For a timeseries x-axis, the `type` of the x-axis config is set to `AXIS_TYPE.TIME_SERIES`:
+```js
+  // ...
+  axis: {
+    x: {
+      type: Carbon.helpers.AXIS_TYPE.TIME_SERIES
+    }
+    // ...
+  }
+  // ...
+```
+<ScatterGraphTimeseries />
+
 
 <details>
 <summary style={{fontSize: 24 }}>
 <b>Example Data</b>
 </summary>
 
-### Graph Config object
-<GraphConfig />
+### Graph Config Default Axis
+<GraphConfigDefault />
 
-### Data object
-<DataObject />
+### Graph Config Timeseries
+<GraphTimeseriesConfig />
+
+### `dataset1`
+<DataObject1 />
+
+### `dataset1timeseries`
+<DataObjectTimeseries1 />
 </details>
