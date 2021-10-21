@@ -19,9 +19,7 @@ A single-axis horizontal graph with plottable datapoints.
     -   [values](#values)
     -   [label](#label)
 -   [Example](#example)
--   [Data](#data)
-    -   [Graph Config](#graph-config-object)
-    -   [Data Object](#data-object)
+
 
 ## Getting Started
 
@@ -125,6 +123,7 @@ Timeline is marked only on `X Axis`, there is no other axis supplied. Axis is se
     }
   ```
 
+
   | Property Name | Type | Required | Default | Description                         |
   |---------------|------|----------|---------|-------------------------------------|
   | top           | 4    | no       | `4`     | Top padding of legend container.    |
@@ -174,7 +173,7 @@ const dataset = {
 | values        | array of objects | yes      | -                    | See [Values](#values).                                                                                                 |
 | color         | string           | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../Documentation/Core/Colors).   |
 | label         | object           | no       | {}                   | See [label](#label).                                                                                                   |
-| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as, to display a popup.                                            |
+| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as to display a popup.                                            |
 | shape         | string           | no       | `SHAPES.DARK.CIRCLE` | Shape for representing the data points. Can be a constant from [shapes](../Documentation/Core/Shapes) or a custom SVG. |
 
 
@@ -217,6 +216,7 @@ const dataset = {
 
 
 ## Example
+
 <Timeline />
 
 <details>
@@ -225,6 +225,7 @@ const dataset = {
 </summary>
 
 ### Graph Config object
+
 <GraphConfig />
 
 ### Data object
