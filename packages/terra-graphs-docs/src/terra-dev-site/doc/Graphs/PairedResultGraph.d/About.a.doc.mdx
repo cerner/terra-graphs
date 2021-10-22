@@ -45,7 +45,7 @@ graph.loadContent(Carbon.api.pairedResult(/* dataset 3 */));
 ## Configuration Structure
 
 You will **not** need all the properties in the example below.
-Check [Graph](../GettingStarted/GraphCore/Documentation/Graph) for graph configuration properties.
+Check [Graph](../getting-started/graph-core/Documentation/Graph) for graph configuration properties.
 
 ```javascript
 var root = {
@@ -71,7 +71,7 @@ var root = {
 
 ## Configuration Properties
 
-Refer [Graph](../GettingStarted/GraphCore/Documentation/Graph) for graph configuration properties.
+Refer [Graph](../getting-started/graph-core/Documentation/Graph) for graph configuration properties.
 
 
 ## Dataset Structure
@@ -136,7 +136,7 @@ var data = {
 | shape         | string   | no       | SHAPES.DARK.CIRCLE | Shape for representing the data points                                       |
 | yAxis         | string   | no       | "y"                | Setting for using different Y based axis. For now: its either Y or Y2        |
 
-- #### LegendOptions
+- ### `legendOptions`
 
     Each paired result can have a legendOptions object in [Values](#values) level.
       ```js
@@ -153,7 +153,7 @@ var data = {
     | style         | object   | no       | {}      | Any style that can be applied. Refer [Styles](#style) |
     | showElement   | boolean  | no       | true    | Toggle to hide legend when legend item has no data.   |
 
-- ##### Style
+- ### `style`
 
     Each paired result can have a style object in [Values](#values) level.
     ```js
@@ -163,7 +163,7 @@ var data = {
     | --------------- | ------ | -------- | --------| ------------------------------------------------------ |
     | strokeDashArray | string | no       | "0"     | Applies stroke-dasharray CSS property to the SVG line. |
 
-- #### Values
+- ### `values`
     ```js
     values: [
         {
@@ -196,7 +196,7 @@ var data = {
     -   Providing invalid data to x or y will lead to an error.
 
 
-- #### Regions
+- ### `regions`
 
     Draws a Horizontal area along the X-Axis
 
@@ -240,9 +240,9 @@ var data = {
     | axis          | string  | "y"                                                                                             | Defines which axis if represents from |
     | color         | string  | <img width="16px" height="16px" src="https://placehold.it/15/f4f4f4/000000?text=+" /> `#f4f4f4` | Default color of the region area      |
 
-## Constraints
+- ### Constraints
 
--   If data-set `label` display is not provided for `high`, `low` and `mid`, the legend item will not be shown as well
+    -   If data-set `label` display is not provided for `high`, `low` and `mid`, the legend item will not be shown as well
 
 ## Example
 <SimplePairedResultGraph />
