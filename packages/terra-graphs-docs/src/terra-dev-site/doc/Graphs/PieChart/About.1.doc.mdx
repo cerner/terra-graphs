@@ -18,9 +18,7 @@ This is a simple Pie chart.
 -   [Dataset Properties](#dataset-properties)
     -   [label](#label)
 -   [Example](#examples)
--   [Data](#data)
-    -   [Graph Config](#graph-config-object)
-    -   [Data Object](#data-object)
+
 
 ## Getting Started
 
@@ -39,12 +37,12 @@ Therefore, the pie graph can not be combined with other graphs.
 import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
 import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 
-var timelineGraph = Carbon.api.timeline(/* config object */);
-timelineGraph.loadContent(/* dataset */);
+var pieGraph = Carbon.api.pie(/* config object */);
+pieGraph.loadContent(/* dataset */);
 
 // Multiple datasets can be added:
-timelineGraph.loadContent(/* dataset1 */);
-timelineGraph.loadContent(/* dataset2 */);
+pieGraph.loadContent(/* dataset1 */);
+pieGraph.loadContent(/* dataset2 */);
 ```
 
 ## Configuration Structure
