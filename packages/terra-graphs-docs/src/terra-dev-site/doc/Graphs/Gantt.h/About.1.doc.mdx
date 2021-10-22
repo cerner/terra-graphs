@@ -1,4 +1,4 @@
-import GanttChart from '../../../example/Graphs-Carbon/Gantt/BasicGanttCharts/SimpleGantt?dev-site-example';
+import GanttChart from '../../example/Graphs-Carbon/Gantt/BasicGanttCharts/SimpleGantt?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Gantt/ganttSimpleConfig.js?dev-site-codeblock';
 import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset1.js?dev-site-codeblock';
 import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Gantt/taskDataset2.js?dev-site-codeblock';
@@ -96,18 +96,18 @@ const timelineConfig = {
 
 | Property Name          | Type    | Required | Default                                        | Description                                                                       |
 |------------------------|---------|----------|------------------------------------------------|-----------------------------------------------------------------------------------|
-| axis                   | object  | yes      | -                                              | See [Axis](#axis).                                                                |
+| axis                   | object  | yes      | -                                              | See [axis](#axis).                                                                |
 | bindTo                 | string  | yes      | -                                              | DOM ID to bind the graph container to.                                            |
-| actionLegend           | array   | no       | `[]`                                           | See [[actionLegend](#actionlegend).                                               |
+| actionLegend           | array   | no       | `[ ]`                                          | See [actionLegend](#actionlegend).                                                |
 | bindLegendTo           | object  | no       | `null`                                         | ID of custom container to bind legend to (Example: `"#legendContainer"`).         |
 | clickPassThrough       | object  | no       | `null`                                         | See [Pass Through](#Pass-Through) .                                               |
-| dateline               | array   | no       | `[]`                                           | See [Dateline](../Documentation/Core/Dateline).                                   |
+| dateline               | array   | no       | `[ ]`                                          | See [Dateline](../Documentation/Core/Dateline).                                   |
 | legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | See [legendPadding](#legendpadding).                                              |
-| locale                 | object  | no       | LOCALE.en_US                                   | Locale object for X-Axis tick values. See [Locale](../Documentation/Core/Locale). |
+| locale                 | object  | no       | `LOCALE.en_US`                                 | Locale object for X-Axis tick values. See [Locale](../Documentation/Core/Locale). |
 | padding                | object  | no       | `{ top: 10, bottom: 10, left: 30, right: 50 }` | See [Padding](../Documentation/Core/Padding).                                     |
 | pan                    | object  | no       | `{enabled: false}`                             | See [Panning](../Documentation/Core/Panning).                                     |
 | removeContainerPadding | boolean | no       | false                                          | Toggle to remove top and bottom padding of the container for the graph.           |
-| showActionLegend       | boolean | yes      | true                                           | Toggle to show graph legend .                                                     |
+| showActionLegend       | boolean | no       | true                                           | Toggle to show graph legend .                                                     |
 
 
 - ### `axis`
@@ -141,6 +141,21 @@ axis: {
 | ticks         | objects | no       | See [Ticks](../Documentation/Core/Ticks) (x-axis only).  |
 
 
+- ### `actionLegend`
+
+Loads the legend for `actions`. See [actions](#actions) for more information.
+
+-   Hovering over the legend item will blur other actions within the graph.
+-   Clicking on the legend item will remove the action from the graph.
+
+| Property Name | Type   | Required | Default              | Description                                                                                  |
+|---------------|--------|----------|----------------------|----------------------------------------------------------------------------------------------|
+| key           | string | yes      | -                    | Unique id which represents the actions within the tracks.                                    |
+| color         | string | no       | `COLORS.BLACK`       | Color for the data point `action`.                                                           |
+| label         | object | yes      | `{ }`                | Structure: `{ display: <string> }`. String to display as the label for the `action` dataset. |
+| shape         | string | no       | `SHAPES.DARK.CIRCLE` | Shape for representing the data points.                                                      |
+
+
 - ### `clickPassThrough`
 **type:** object  
 
@@ -155,7 +170,7 @@ Toggle for various parts of the Gantt chart for allowing click events to element
       datelines: <bool>
   }
 ```
-The following is a table of how `clickPassThrough` works with the `onClick` property`.
+The following is a table of how `clickPassThrough` works with the `onClick` property.
 
 | `clickPassThrough` item Value | `onClick` function | Result                                                                                                             |
 |-------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|
@@ -167,11 +182,11 @@ The following is a table of how `clickPassThrough` works with the `onClick` prop
 
 ```javascript
 clickPassThrough = {
-    tasks: false,
-    activities: false,
-    events: false,
     actions: false,
-    dateline: false
+    activities: false,
+    dateline: false,
+    events: false,
+    tasks: false
 };
 ```
 
@@ -190,13 +205,12 @@ clickPassThrough = {
     }
   ```
 
-  | Property Name | Type | Required | Default | Description                         |
-  |---------------|------|----------|---------|-------------------------------------|
-  | top           | 4    | no       | `4`     | Top padding of legend container.    |
-  | bottom        | 4    | no       | `4`     | Bottom padding of legend container. |
-  | left          | 8    | no       | `8`     | Left padding of legend container.   |
-  | right         | 8    | no       | `8`     | Right padding of legend container.  |
-
+  | Property Name | Type   | Required | Default | Description                         |
+  |---------------|--------|----------|---------|-------------------------------------|
+  | top           | number | no       | `4`     | Top padding of legend container.    |
+  | bottom        | number | no       | `4`     | Bottom padding of legend container. |
+  | left          | number | no       | `8`     | Left padding of legend container.   |
+  | right         | number | no       | `8`     | Right padding of legend container.  |
 
 
   ## Track Structure
@@ -237,48 +251,62 @@ const timelineConfig = {
 
 ## Track Properties 
 
-| Property Name          | Type    | Required | Default                                        | Description                                                                       |
-|------------------------|---------|----------|------------------------------------------------|-----------------------------------------------------------------------------------|
-| key                   | string  | yes      | -                                              | See [Axis](#axis).                                                                |
-| trackLabel                 | object  | yes      | -                                              | DOM ID to bind the graph container to.                                            |
-| actionLegend           | array   | no       | `[]`                                           | See [[actionLegend](#actionlegend).                                               |
-| bindLegendTo           | object  | no       | `null`                                         | ID of custom container to bind legend to (Example: `"#legendContainer"`).         |
-| clickPassThrough       | object  | no       | `null`                                         | See [Pass Through](#Pass-Through) .                                               |
-| dateline               | array   | no       | `[]`                                           | See [Dateline](../Documentation/Core/Dateline).                                   |
-| legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | See [legendPadding](#legendpadding).                                              |
-| locale                 | object  | no       | LOCALE.en_US                                   | Locale object for X-Axis tick values. See [Locale](../Documentation/Core/Locale). |
-| padding                | object  | no       | `{ top: 10, bottom: 10, left: 30, right: 50 }` | See [Padding](../Documentation/Core/Padding).                                     |
-| pan                    | object  | no       | `{enabled: false}`                             | See [Panning](../Documentation/Core/Panning).                                     |
-| removeContainerPadding | boolean | no       | false                                          | Toggle to remove top and bottom padding of the container for the graph.           |
-| showActionLegend       | boolean | yes      | true                                           | Toggle to show graph legend .                                                     |
+| Property Name | Type     | Required | Default     | Description                                                                 |
+|---------------|----------|----------|-------------|-----------------------------------------------------------------------------|
+| axis          | object   | yes      | -           | DOM ID to bind the graph container to.                                      |
+| trackLabel    | string   | yes      | -           | See [trackLabel](#trackLabel).                                              |
+| onClick       | function | no       | `undefined` | Function to execute upon clicking a datapoint, such as, to display a popup. |
+| actions       | array    | no       | `[ ]`       | See [actions](#actions).                                                    |
+| activities    | array    | no       | `[ ]`       | See [activities](#activities).                                              |
+| dimension     | object   | no       | `{ }`       | See [dimension](#dimension) .                                               |
+| events        | object   | no       | `{ }`       | See [events](#events) .                                                     |
+| loadAtIndex   | number   | no       | `null`      | Index where the track needs to be loaded.                                   |
+| tasks         | array    | no       | `[ ]`       | See [tasks](#tasks).                                                        |
 
 
-### Tracks
+- ### `actions`
+**type:** array  
 
-| Property Name          | Type    | Required | Default                                        | Description                                                                       |
-|------------------------|---------|----------|------------------------------------------------|-----------------------------------------------------------------------------------|
-| key                   | object  | yes      | -                                              | See [axis](#axis).                                                                |
-| trackLabel                 | string  | yes      | -                                              | See [trackLabel](#trackLabel).                                           |
-| actionLegend           | array   | no       | `[]`                                           | See [[actionLegend](#actionlegend).                                               |
-| bindLegendTo           | object  | no       | `null`                                         | ID of custom container to bind legend to (Example: `"#legendContainer"`).         |
-| clickPassThrough       | object  | no       | `null`                                         | See [Pass Through](#Pass-Through) .                                               |
-| dateline               | array   | no       | `[]`                                           | See [Dateline](../Documentation/Core/Dateline).                                   |
-| legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | See [legendPadding](#legendpadding).                                              |
+| Property Name | Type     | Required               | Default     | Description                                                                 |
+|---------------|----------|------------------------|-------------|-----------------------------------------------------------------------------|
+| key           | string   | yes                    | -           | Unique id which needs to be same as `key` in `actionLegend`                 |
+| values        | array    | yes                    | -           | List of string (ISO8601) where a data point `action` needs to be placed     |
+| onClick       | function | conditionally required | `undefined` | Function to execute upon clicking a datapoint, such as, to display a popup. |
 
-| Property Name | Expected | Description                              |
-| ------------- | -------- | ---------------------------------------- |
-| key           | string   | Unique `id` which represents the content |
-| trackLabel    | object   | Refer [Track Label](#track-label)        |
+If `clickPassThrough.actions` is `true`, `onClick` parameter would be required for any non-pass through operations.
 
 
-| Property Name | Expected | Default   | Description                                             |
-| ------------- | -------- | --------- | ------------------------------------------------------- |
-| loadAtIndex   | number   | null      | Index where the track needs to be loaded.               |
-| onClick       | Function | undefined | Any action that can be performed when clicking on track |
-| dimension     | object   | {}        | Refer [Dimension](#dimension)                           |
-| tasks         | array    | []        | Refer [Tasks](#tasks)                                   |
-| activities    | array    | []        | Refer [Activities](#activities)                         |
-| actions       | array    | []        | Refer [Actions](#actions)                               |
+- ### `activities`
+**type:** object  
+
+An Activity is a `background-bar` along the track. This represents the overall background process which may encapsulate one or more tasks.
+
+-   A `activity` needs a start and end date.
+-   A `activity` will not be selectable.
+-   If start date is not provided, a `duration` needs to be provided
+-   If end date is not provided, a `duration` needs to be provided
+-   If start and end date are same then a fixed width `chunk` is created
+-   Start and End date does not encapsulate the underlying tasks.
+
+An activity can be styled as follows:
+
+-   A `bar` can be `Hashed`
+
+```json
+  activities: {
+      trackHeight: <number>
+  }
+```
+
+| Property Name | Type             | Required | Default            | Description                                                                                  |
+|---------------|------------------|----------|--------------------|----------------------------------------------------------------------------------------------|
+| key           | string           | yes      | -                  | Unique id which represents the task                                                          |
+| startDate     | string (ISO8601) | yes      | -                  | Task start date or `duration`.                                                               |
+| endDate       | string (ISO8601) | yes      | -                  | Task end date or `duration`.                                                                 |
+| color         | string           | no       | `COLORS.BLUE`      | Color for the bar.                                                                           |
+| duration      | function         | no       | `undefined`        | Function that returns a number that is relative to start or end date.                        |
+| label         | string (ISO8601) | no       | `{ }`              | Structure: `{ display: <string> }`. String to display as the label for the `action` dataset. |
+| style         | string (ISO8601) | no       | `{isHashed: true}` | Styling for `bar`.                                                                           |
 
 
 - ### `dimension`
@@ -295,6 +323,19 @@ const timelineConfig = {
 | trackHeight   | number | yes      | `41` (px) | Sets the height for the gantt track content. |
 
 
+- ### `events`
+
+| Property Name | Expected | Required               | Default       | Description                                                                 |
+|---------------|----------|------------------------|---------------|-----------------------------------------------------------------------------|
+| key           | string   | yes                    | -             | Unique id which represents the actions within the tracks.                   |
+| values        | array    | yes                    | -             | List of string(ISO8601) where a data point `event` needs to be placed.      |
+| shape         | object   | yes                    | -             | svg represented as json, which got transpiled from `@cerner/svg-to-carbon`. |
+| label         | object   | no                     | `{ }`         | To address a group of events.                                               |
+| color         | string   | no                     | `COLORS.BLUE` | color of the data point.                                                    |
+| onClick       | Function | conditionally required | undefined     | Any event that can be performed when clicking on the data point             |
+
+If `clickPassThrough.events` is provided, `onClick` parameter would be required for any non-pass through operations.
+
 
 - ### `trackLabel`
 **type:** object  
@@ -305,12 +346,62 @@ const timelineConfig = {
   }
 ```
 
-| Property Name | Type     | Required | Default     | Description                                                                |
-|---------------|----------|----------|-------------|----------------------------------------------------------------------------|
-| display       | number   | yes      | -           | Track Label which forms the Gantt chart content.                           |
-| onClick       | function | no       | `undefined` | Function to execute upon clicking a datapoint, such as to display a popup. |
-| trackHeight   | number   | yes      | `41` (px)   | Sets the height for the gantt track content.                               |
+| Property Name | Type     | Required | Default     | Description                                                                    |
+|---------------|----------|----------|-------------|--------------------------------------------------------------------------------|
+| display       | number   | yes      | -           | Track Label which forms the Gantt chart content.                               |
+| onClick       | function | no       | `undefined` | Function to execute upon clicking the track label, such as to display a popup. |
 
+
+- ### `tasks`
+**type:** object  
+
+```json
+  dimension: {
+      trackHeight: <number>
+  }
+```
+A Task is a `foreground-bar` along the track. This represents a unit of work.
+
+-   A `task` needs a start and end date.
+-   If start date is not provided, a `duration` needs to be provided
+-   If end date is not provided, a `duration` needs to be provided
+-   Providing a `percentage` transforms a `bar` into a Percentage Bar
+-   If start and end date are same then a fixed width `chunk` is created
+
+A task can be styled as follows:
+
+-   A `bar` can be `Hollow`
+-   A `bar` can be `Dotted`
+-   A `bar` can be `Hashed`
+
+| Property Name | Type             | Required               | Default                                            | Description                                                                                     |
+|---------------|------------------|------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| key           | string           | yes                    | -                                                  | Unique id which represents the task.                                                            |
+| startDate     | string (ISO8601) | yes                    | -                                                  | Task start date or `duration`.                                                                  |
+| endDate       | string (ISO8601) | yes                    | -                                                  | Task end date or `duration`.                                                                    |
+| color         | string           | no                     | `COLORS.BLUE`                                      | Color for the bar.                                                                              |
+| duration      | Function         | no                     | `undefined`                                        | Function that returns a number that is relative to start or end date.                           |
+| label         | object           | no                     | `{ }`                                              | `display` property needs to be provided for label.                                              |
+| percentage    | number           | no                     | `null`                                             | Transforms `bar` into Percentage bar and fill the bar with color opted for in `color` property. |
+| style         | object           | no                     | `{isDotted: true, isHollow: true, isHashed: true}` | Styling for `bar`.                                                                              |
+| onClick       | function         | conditionally required | `undefined`                                        | Any action that can be performed when clicking on the task                                      |
+
+If `clickPassThrough.tasks` is `true`, `onClick` parameter would be required for any non-pass through operations.
+
+## Layering
+
+Here is a list of how layering will be followed inside `Gantt`. Layering here follows the order from `bottom` to `top`.
+
+-   `Activities`
+-   `Tasks`
+-   `Events`
+-   `Actions`
+
+## Constraints
+
+-   If ganttContent's `loadAtIndex` is below 0, we throw an error.
+-   If ganttContent's `loadAtIndex` is equal to trackLength or exceeds trackLength, we insert at the end.
+-   If ganttContent's `loadAtIndex` is in between 0 and trackLength, we insert in between.
 
 
 ## Examples
