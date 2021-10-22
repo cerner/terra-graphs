@@ -54,8 +54,8 @@ var root = {
     axis: {
         x: {
             label: <string>,
-            lowerLimit: <number or Date object>,
-            upperLimit: <number or Date object>,
+            lowerLimit: <number> or <Date>,
+            upperLimit: <number> or <Date>,
         },
         y: {
             label: <string>,
@@ -140,7 +140,13 @@ var data = {
 - #### LegendOptions
 
     Each paired result can have a legendOptions object in [Values](#values) level.
-
+      ```js
+      legendOptions: {
+        showLine: <bool>,
+        showShape: <bool>,
+        style: <object>,
+      }
+      ```
     | Property Name | Type     | Required | Default | Description                                           |
     | ------------- | -------- | -------- | ------- | ----------------------------------------------------- |
     | showLine      | boolean  | no       | false   | Display Line in the legend.                           |
@@ -151,31 +157,77 @@ var data = {
 - ##### Style
 
     Each paired result can have a style object in [Values](#values) level.
-
+    ```js
+    style: { strokeDashArray: '2,2' }
+    ```
     | Property Name   | Type   | Required | Default | Description                                            |
     | --------------- | ------ | -------- | --------| ------------------------------------------------------ |
     | strokeDashArray | string | no       | "0"     | Applies stroke-dasharray CSS property to the SVG line. |
 
 - #### Values
+    ```js
+    values: [
+        {
+          high: {
+            x: 20,
+            y: 150,
+          },
+          mid: {
+            x: 20,
+            y: 40,
+          },
+          low: {
+            x: 20,
+            y: 10,
+          },
+        }
+       ]
+    ```
+    | Property Name | Type    | Value                                            | Description                                               |
+    | ------------- | ------- | ------------------------------------------------ | --------------------------------------------------------- |
+    | high          | object  | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
+    | low           | object  | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
+    | mid           | object  | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
 
-| Property Name | Type    | Value                                            | Description                                               |
-| ------------- | ------- | ------------------------------------------------ | --------------------------------------------------------- |
-| high          | object  | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
-| low           | object  | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
-| mid           | object  | _{x: "", y: "", isCritical: `true`, region: {}}_ | Data point co-ordinate x and y, Refer [Regions](#regions) |
+    `Note:`
 
-`Note:`
-
-- At least one of the high/low/medium should be provided with valid data.
--   `isCritical` toggle is disabled by default
--   When `isCritical` toggle is enabled, an indicator will be shown surrounding the data point
--   Providing invalid data to x or y will lead to an error.
+    - At least one of the high/low/medium should be provided with valid data.
+    -   `isCritical` toggle is disabled by default
+    -   When `isCritical` toggle is enabled, an indicator will be shown surrounding the data point
+    -   Providing invalid data to x or y will lead to an error.
 
 
 - #### Regions
 
     Draws a Horizontal area along the X-Axis
 
+    ```js
+      regions: {
+        high: [
+          {
+            axis: <"y or y2">,
+            start: <number>,
+            end: <number>,
+            color: <hex value as string>,
+          },
+        ],
+        mid: [
+          {
+            axis: <"y or y2">,
+            start: <number>,
+            end: <number>,
+            color: <hex value as string>,
+          },
+        ],
+        low: [
+          {
+            axis: <"y or y2">,
+            start: <number>,
+            end: <number>,
+          },
+        ],
+      }
+    ```
     -   Each data-set can have 1 or more regions for `high`, `low` and/or `mid`,
     -   Each value can have a region object for `high`, `low` and/or `mid`,
     -   Each pair type mentioned above needs to have a `start` and `end`,
