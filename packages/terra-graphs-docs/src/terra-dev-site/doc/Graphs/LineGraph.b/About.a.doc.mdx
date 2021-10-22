@@ -130,11 +130,11 @@ Refer [Graph](../GettingStarted/GraphCore/Documentation/Graph) for graph configu
             onClick: <function>,
             values: [
                 {
-                    x: <number or Date object>,
+                    x: <number> or <Date>,
                     y: <number>,
                 },
                 {
-                    x: <number or Date object>,
+                    x: <number> or <Date>,
                     y: <number>,
                     isCritical: <bool>
                 },
@@ -155,11 +155,11 @@ Refer [Graph](../GettingStarted/GraphCore/Documentation/Graph) for graph configu
             type: <"SPLINE" or "LINEAR">, /*SPLINE should be used to create SPLINE graph.*/
             values: [
                 {
-                    x: <number or Date object>,
+                    x: <number> or <Date>,
                     y: <number>,
                 },
                 {
-                    x: <number or Date object>,
+                    x: <number> or <Date>,
                     y: <number>,
                 },
             ]
@@ -170,8 +170,8 @@ Refer [Graph](../GettingStarted/GraphCore/Documentation/Graph) for graph configu
 
 | Property Name | Type     | Required   |Default             | Description                                                                                    |
 | ------------- | -------- | ---------- | ------------------ | ---------------------------------------------------------------------------------------------- |
-| key           | string   | yes        | -                  |Unique id which represents the data-set                                                         |
-| values        | Array    | yes        | -                  |[Values](#values)                                                                               |
+| key           | string   | yes        | -                  | Unique id which represents the data-set                                                         |
+| values        | Array    | yes        | -                  | [Values](#values)                                                                               |
 | color         | string   | no         | COLORS.BLACK       | Color for the data point and line                                                              |
 | label         | object   | no         | {}                 | Display value for the data-set which the data points belong to                                 |
 | legendOptions | object   | no         | undefined          | Toggle to show shape, line and legend. Refer [LegendOptions](#legend-options)                   |
@@ -179,7 +179,7 @@ Refer [Graph](../GettingStarted/GraphCore/Documentation/Graph) for graph configu
 | regions       | array    | no         | []                 | Refer [Regions](#regions)                                                                      |
 | shape         | string   | no         | SHAPES.DARK.CIRCLE | Shape for representing the data points                                                         |
 | style         | object   | no         | {}                 | Any style that can be applied. Refer [Styles](#style)                                          |
-| showShapes    | boolean  | no         | undefined          | Option to show/hide shapes per data set. This option overrides the graph's showShapes property |
+| showShapes    | boolean  | no         | true               | Option to show/hide shapes per data set. This option overrides the graph's showShapes property |
 | type          | string   | no         | LINE_TYPE.LINEAR   | Nature of line that needs to be drawn (Linear or Cardinal)                                     |
 | yAxis         | string   | no         | "y"                | Setting for using different Y based axis. For now: its either Y or Y2                          |
 
@@ -218,11 +218,11 @@ Refer [Graph](../GettingStarted/GraphCore/Documentation/Graph) for graph configu
     ```js
         values: [
             {
-                x: <number or Date object>,
+                x: <number> or <Date>,
                 y: <number>,
             },
             {
-                x: <number or Date object>,
+                x: <number> or <Date>,
                 y: <number>,
                 isCritical: <bool>
             },
