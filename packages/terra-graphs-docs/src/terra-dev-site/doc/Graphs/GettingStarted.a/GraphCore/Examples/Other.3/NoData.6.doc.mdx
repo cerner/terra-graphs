@@ -1,10 +1,11 @@
-import LineGraph from '../../../example/Graphs-Carbon/General/Other/NoData?dev-site-example';
-import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/generalDefault.js?dev-site-codeblock';
+import LineGraph from '../../../../../example/Graphs-Carbon/General/Other/NoData?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/General/noDataView.js?dev-site-codeblock';
 require('details-polyfill');
 
 # Graph with no data
 
-This is a graph without any data.
+This is simple graph with no data in it.
 
 ## Getting Started
 
@@ -17,7 +18,7 @@ import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
 import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 
-## Examples
+## Example
 <LineGraph />
 
 <details>
@@ -27,4 +28,7 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 
 ### Graph Config object
 <GraphConfig />
+
+### Data object
+<DataObject />
 </details>
