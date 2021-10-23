@@ -106,20 +106,20 @@ const ganttConfig = {
 
 ## Configuration Properties 
 
-| Property Name          | Type    | Required | Default                                        | Description                                                                       |
-|------------------------|---------|----------|------------------------------------------------|-----------------------------------------------------------------------------------|
-| axis                   | object  | yes      | -                                              | See [axis](#axis).                                                                |
-| bindTo                 | string  | yes      | -                                              | DOM ID to bind the graph container to.                                            |
-| actionLegend           | array   | no       | `[ ]`                                          | See [actionLegend](#actionlegend).                                                |
-| bindLegendTo           | object  | no       | `null`                                         | ID of custom container to bind legend to (Example: `"#legendContainer"`).         |
-| clickPassThrough       | object  | no       | `null`                                         | See [Pass Through](#Pass-Through) .                                               |
-| dateline               | array   | no       | `[ ]`                                          | See [Dateline](../Documentation/Core/Dateline).                                   |
-| legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | See [legendPadding](#legendpadding).                                              |
-| locale                 | object  | no       | `LOCALE.en_US`                                 | Locale object for X-Axis tick values. See [Locale](../Documentation/Core/Locale). |
-| padding                | object  | no       | `{ top: 10, bottom: 10, left: 30, right: 50 }` | See [Padding](../Documentation/Core/Padding).                                     |
-| pan                    | object  | no       | `{enabled: false}`                             | See [Panning](../Documentation/Core/Panning).                                     |
-| removeContainerPadding | boolean | no       | false                                          | Toggle to remove top and bottom padding of the container for the graph.           |
-| showActionLegend       | boolean | no       | true                                           | Toggle to show graph legend .                                                     |
+| Property Name          | Type    | Required | Default                                        | Description                                                                                             |
+|------------------------|---------|----------|------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| axis                   | object  | yes      | -                                              | See [axis](#axis).                                                                                      |
+| bindTo                 | string  | yes      | -                                              | DOM ID to bind the graph container to.                                                                  |
+| actionLegend           | array   | no       | `[ ]`                                          | See [actionLegend](#actionlegend).                                                                      |
+| bindLegendTo           | object  | no       | `null`                                         | ID of custom container to bind legend to (Example: `"#legendContainer"`).                               |
+| clickPassThrough       | object  | no       | `null`                                         | See [Pass Through](#Pass-Through) .                                                                     |
+| dateline               | array   | no       | `[ ]`                                          | See [Dateline](../GettingStarted.a/GraphCore/Documentation/Dateline).                                   |
+| legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | See [legendPadding](#legendpadding).                                                                    |
+| locale                 | object  | no       | `LOCALE.en_US`                                 | Locale object for X-Axis tick values. See [Locale](../GettingStarted.a/GraphCore/Documentation/Locale). |
+| padding                | object  | no       | `{ top: 10, bottom: 10, left: 30, right: 50 }` | See [Padding](../GettingStarted.a/GraphCore/Documentation/Padding).                                     |
+| pan                    | object  | no       | `{enabled: false}`                             | See [Panning](../GettingStarted.a/GraphCore/Documentation/Panning).                                     |
+| removeContainerPadding | boolean | no       | false                                          | Toggle to remove top and bottom padding of the container for the graph.                                 |
+| showActionLegend       | boolean | no       | true                                           | Toggle to show graph legend .                                                                           |
 
 
 - ### `axis`
@@ -144,13 +144,13 @@ const ganttConfig = {
   }
   ```
 
-  | Property Name | Type    | Required | Description                                              |
-  |---------------|---------|----------|----------------------------------------------------------|
-  | lowerLimit    | string  | yes      | Lower bound for the axis (`x` or `y`) This is inclusive. |
-  | upperLimit    | string  | yes      | Upper bound for the axis (`x` or `y`) This is inclusive. |
-  | rangeRounding | bool    | no       | Toggle for range rounding (x-axis only).                 |
-  | show          | bool    | no       | Toggle for showing the axis.                             |
-  | ticks         | objects | no       | See [Ticks](../Documentation/Core/Ticks) (x-axis only).  |
+  | Property Name | Type    | Required | Description                                                                   |
+  |---------------|---------|----------|-------------------------------------------------------------------------------|
+  | lowerLimit    | string  | yes      | Lower bound for the axis (`x` or `y`) This is inclusive.                      |
+  | upperLimit    | string  | yes      | Upper bound for the axis (`x` or `y`) This is inclusive.                      |
+  | rangeRounding | bool    | no       | Toggle for range rounding (x-axis only).                                      |
+  | show          | bool    | no       | Toggle for showing the axis.                                                  |
+  | ticks         | objects | no       | See [Ticks](../GettingStarted.a/GraphCore/Documentation/Ticks) (x-axis only). |
 
 
 - ### `actionLegend`
