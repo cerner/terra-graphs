@@ -47,3 +47,4 @@
   * Updated Bar datasets and examples to maintain consistency.
   * Updated General examples to maintain consistency.
   * Restructured documentation and general examples into getting started section.
+  * Updated Bar documentation to include api information.
