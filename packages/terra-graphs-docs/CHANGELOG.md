@@ -47,4 +47,6 @@
   * Updated Bar datasets and examples to maintain consistency.
   * Updated General examples to maintain consistency.
   * Restructured documentation and general examples into getting started section.
+  * Updated Scatter datasets and examples to maintain consistency.
+  * Updated Scatter documentation to include api information.
   * Updated Bar documentation to include api information.
