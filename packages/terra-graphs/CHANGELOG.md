@@ -31,5 +31,6 @@
   * Updated Combination graph snapshots.
   * Updated Bar graph snapshots.
   * Updated General example snapshots.
+  * Updated Scater Graph snapshots.
 
 * Initial stable release
