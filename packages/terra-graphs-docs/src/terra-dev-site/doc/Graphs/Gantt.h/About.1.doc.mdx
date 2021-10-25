@@ -26,7 +26,7 @@ A native Gantt Chart using D3 based on standard design patterns.
     -   [dimension](#dimension)
     -   [events](#events)
     -   [tasks](#tasks)
-    -   [trackLabel](#trackLabel)
+    -   [trackLabel](#tracklabel)
     -   [Layering](#layering)
     -   [Constraints](#constraints)
 -   [Example](#example)
@@ -112,12 +112,12 @@ const ganttConfig = {
 | bindTo                 | string  | yes      | -                                              | DOM ID to bind the graph container to.                                                                  |
 | actionLegend           | array   | no       | `[ ]`                                          | See [actionLegend](#actionlegend).                                                                      |
 | bindLegendTo           | object  | no       | `null`                                         | ID of custom container to bind legend to (Example: `"#legendContainer"`).                               |
-| clickPassThrough       | object  | no       | `null`                                         | See [Pass Through](#Pass-Through) .                                                                     |
-| dateline               | array   | no       | `[ ]`                                          | See [Dateline](../GettingStarted.a/GraphCore/Documentation/Dateline).                                   |
+| clickPassThrough       | object  | no       | `null`                                         | See [clickpassthrough](#clickpassthrough) .                                                             |
+| dateline               | array   | no       | `[ ]`                                          | See [Dateline](../GettingStarted/GraphCore/Documentation/Dateline).                                     |
 | legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | See [legendPadding](#legendpadding).                                                                    |
-| locale                 | object  | no       | `LOCALE.en_US`                                 | Locale object for X-Axis tick values. See [Locale](../GettingStarted.a/GraphCore/Documentation/Locale). |
-| padding                | object  | no       | `{ top: 10, bottom: 10, left: 30, right: 50 }` | See [Padding](../GettingStarted.a/GraphCore/Documentation/Padding).                                     |
-| pan                    | object  | no       | `{enabled: false}`                             | See [Panning](../GettingStarted.a/GraphCore/Documentation/Panning).                                     |
+| locale                 | object  | no       | `LOCALE.en_US`                                 | Locale object for X-Axis tick values. See [Locale](../getting-started/graph-core/documentation/Locale). |
+| padding                | object  | no       | `{ top: 10, bottom: 10, left: 30, right: 50 }` | See [Padding](../getting-started/graph-core/documentation/Padding).                                     |
+| pan                    | object  | no       | `{enabled: false}`                             | See [Panning](../getting-started/graph-core/documentation/Panning).                                     |
 | removeContainerPadding | boolean | no       | false                                          | Toggle to remove top and bottom padding of the container for the graph.                                 |
 | showActionLegend       | boolean | no       | true                                           | Toggle to show graph legend .                                                                           |
 
@@ -150,7 +150,7 @@ const ganttConfig = {
   | upperLimit    | string  | yes      | Upper bound for the axis (`x` or `y`) This is inclusive.                      |
   | rangeRounding | bool    | no       | Toggle for range rounding (x-axis only).                                      |
   | show          | bool    | no       | Toggle for showing the axis.                                                  |
-  | ticks         | objects | no       | See [Ticks](../GettingStarted.a/GraphCore/Documentation/Ticks) (x-axis only). |
+  | ticks         | objects | no       | See [Ticks](../getting-started/graph-core/documentation/Ticks) (x-axis only). |
 
 
 - ### `actionLegend`
