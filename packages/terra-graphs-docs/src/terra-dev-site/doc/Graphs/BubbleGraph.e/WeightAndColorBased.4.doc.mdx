@@ -1,0 +1,51 @@
+import ColorBasedGraphExample from '@cerner/terra-graphs-docs/lib/terra-dev-site/doc/example/Graphs-Carbon/BubbleGraph/General/ColorBasedGraph?dev-site-example';
+import WeightBasedGraphExample from '@cerner/terra-graphs-docs/lib/terra-dev-site/doc/example/Graphs-Carbon/BubbleGraph/General/WeightBasedGraph?dev-site-example';
+import WeightColorBasedGraphExample from '@cerner/terra-graphs-docs/lib/terra-dev-site/doc/example/Graphs-Carbon/BubbleGraph/General/WeightColorBasedGraph?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simpleAxisData.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataColorBased?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataWeightBased?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataColorWeightBased?dev-site-codeblock';
+require('details-polyfill');
+
+# Weight And Color based graphs
+
+Single dataset bubble graphs that show datasets based on color and or weight.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+
+```jsx
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+
+## Examples
+<ColorBasedGraphExample />
+
+<WeightBasedGraphExample />
+
+<WeightColorBasedGraphExample />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config Object
+<GraphConfig />
+
+### Data Object
+
+#### Color Based Data
+<DataObject1 />
+
+#### Weight Based Data
+<DataObject2 />
+
+#### Weight and Color Based Data
+<DataObject3 />
+</details>

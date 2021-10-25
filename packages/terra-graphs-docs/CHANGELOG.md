@@ -53,3 +53,5 @@
   * Restructured documentation and general examples into getting started section.
   * Updated Paired result documentation to include api information.
   * Updated Gantt Chart documentation to include api information.
+  * Updated Pie chart documentation to include api information.
+  * Updated Bubble graph documentation to include api information.
