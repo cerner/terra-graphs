@@ -1,0 +1,180 @@
+import PieChart from '../../example/Graphs-Carbon/PieChart/SimplePie?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Pie/simplePieConfig.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset2.js?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Pie/simplePieDataset3.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Simple Pie
+This is a simple Pie chart.
+
+-   [Getting Started](#getting-started)
+-   [Usage](#usage)
+-   [Config Structure](#configuration-structure)
+-   [Config properties](#configuration-properties)
+    -   [dimension](#dimension)
+    -   [legendPadding](#legendpadding)
+-   [Dataset Structure](#dataset-structure)
+-   [Dataset Properties](#dataset-properties)
+    -   [label](#label)
+-   [Example](#examples)
+
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+
+An instance of a pie graph can be accessed though the `Carbon.api.pie()` function. 
+Unlike most of the other graphs, the pie api does not need an instance of `Carbon.api.graph`.
+Instead, the graph configuration is directly passed as a parameter to the timeline instance, 
+with the dataset object also directly passed to the `loadContent` function.
+Therefore, the pie graph can not be combined with other graphs.
+
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+
+var pieGraph = Carbon.api.pie(/* config object */);
+pieGraph.loadContent(/* dataset */);
+
+// Multiple datasets can be added:
+pieGraph.loadContent(/* dataset1 */);
+pieGraph.loadContent(/* dataset2 */);
+```
+
+## Configuration Structure
+```js
+const pieConfig = {
+    axis: {
+        x: {
+            label: <string>,
+            lowerLimit: <number> or <Date>,
+            upperLimit: <number or <Date>
+        }
+    },
+    bindTo: <string>,
+    bindLegendTo: <string>,
+    dimension: { 
+      height: <number>
+    },
+    legendPadding: { 
+      top: <number>, 
+      bottom: <number>, 
+      left: <number>, 
+      right: <number> 
+    },
+    removeContainerPadding: <bool>,
+    showLegend: <bool>,
+}
+```
+## Configuration Properties
+
+| Property Name          | Type    | Required | Default                                    | Description                                                               |
+|------------------------|---------|----------|--------------------------------------------|---------------------------------------------------------------------------|
+| bindTo                 | string  | yes      | -                                          | DOM ID to bind the graph container to.                                    |
+| data                   | object  | yes      | -                                          | See [Dataset-structure](#dataset-structure).                              |
+| bindLegendTo           | string  | no       | null                                       | ID of custom container to bind legend to (Example: `"#legendContainer"`). |
+| dimension              | object  | no       | `{ }`                                      | See [dimension](#dimension).                                              |
+| legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }` | See [legendPadding](#legendpadding).                                      |
+| removeContainerPadding | boolean | no       | `false`                                    | Toggle to remove top and bottom padding of the container for the graph.   |
+| showLegend             | boolean | no       | `true`                                     | Toggle to show graph legend.                                              |
+
+- ### `dimension`
+**type:** object  
+
+Timeline is marked only on `X Axis`, there is no other axis supplied. Axis is set to `show` by default.
+
+| Property Name | Type   | Required | Description                                |
+|---------------|--------|----------|--------------------------------------------|
+| height        | number | no       | Sets the size of pie chart.                |
+| upperLimit    | string | yes      | Upper bound for X axis. This is inclusive. |
+| label         | string | yes      | Axis label value.                          |
+
+
+- ### `legendPadding`
+**type:** object  
+
+  Sets the legend padding and removes the carbon default margin of `8px` around legend.
+
+  ```json
+    legendPadding: { 
+      top: <number>, 
+      bottom: <number>, 
+      left: <number>, 
+      right: <number> 
+    }
+  ```
+  | Property Name | Type   | Required | Default | Description                         |
+  |---------------|--------|----------|---------|-------------------------------------|
+  | top           | number | no       | `4`     | Top padding of legend container.    |
+  | bottom        | number | no       | `4`     | Bottom padding of legend container. |
+  | left          | number | no       | `8`     | Left padding of legend container.   |
+  | right         | number | no       | `8`     | Right padding of legend container.  |
+
+
+## Dataset Structure
+
+```js
+const dataset = {
+  key: <string>,
+  value: <number>,
+  color: <hex value as string>,
+  label: {
+    display: <string>,
+  },
+  onClick: <function>
+}
+``` 
+
+### Dataset Properties 
+
+| Property Name | Type     | Required | Default       | Description                                                                                                                                |
+|---------------|----------|----------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| key           | string   | yes      | -             | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.                                    |
+| value         | number   | yes      | -             | Value for the slice.                                                                                                                       |
+| color         | string   | no       | `COLORS.BLUE` | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../getting-started/graph-core/documentation/Colors). |
+| label         | object   | no       | {}            | See [label](#label).                                                                                                                       |
+| onClick       | function | no       | `undefined`   | Function to execute upon clicking a datapoint, such as to display a popup.                                                                 |
+
+
+- ### `label`
+**type:** object  
+**default value:** `{}`
+
+  Label for the dataset in the legend. If it is not provided then it will not be shown in the legend. 
+
+    ```json
+      label: {
+        display: <string>
+      }
+    ```
+
+  | Property Name | Type   | Required | Default     | Description                                   |
+  |---------------|--------|----------|-------------|-----------------------------------------------|
+  | display       | string | no       | `undefined` | Text to display as the label for the dataset. |
+
+
+## Examples
+<PieChart />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+#### Dataset 1
+<DataObject1 />
+
+#### Dataset 2
+<DataObject2 />
+
+#### Dataset 3
+<DataObject3 />
+</details>
