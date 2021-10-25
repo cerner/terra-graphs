@@ -271,8 +271,8 @@ const track = {
     tasks: [
       {
         key: <string>,
-        startDate: <string>,
-        endDate: <string>,
+        startDate: <Date>,
+        endDate: <Date>,
         color: <string>,
         duration: <string>,
         label: {
@@ -435,7 +435,7 @@ const track = {
         startDate: <string>,
         endDate: <string>,
         color: <string>,
-        duration: <string>,
+        duration: <function>,
         label: {
           display: <string>
         },
@@ -456,7 +456,7 @@ const track = {
   | startDate     | Date     | yes                    | -                                                  | Task start date or `duration`.                                                                  |
   | endDate       | Date     | yes                    | -                                                  | Task end date or `duration`.                                                                    |
   | color         | string   | no                     | `COLORS.BLUE`                                      | Color for the bar.                                                                              |
-  | duration      | Function | no                     | `undefined`                                        | Function that returns a number that is relative to start or end date.                           |
+  | duration      | function | no                     | `undefined`                                        | Function that returns a number that is relative to start or end date.                           |
   | label         | object   | no                     | `{ }`                                              | `display` property needs to be provided for label.                                              |
   | onClick       | function | conditionally required | `undefined`                                        | Any action that can be performed when clicking on the task                                      |
   | percentage    | number   | no                     | `null`                                             | Transforms `bar` into Percentage bar and fill the bar with color opted for in `color` property. |
