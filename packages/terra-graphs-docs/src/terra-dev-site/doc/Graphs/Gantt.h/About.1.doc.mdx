@@ -53,8 +53,8 @@ ganttInstance.loadContent(/* data */);
 const ganttConfig = {
     axis: {
       x: {
-        lowerLimit: <number>,
-        upperLimit: <number>,
+        lowerLimit: <number> or <Date>,
+        upperLimit: <number> or <Date>,
         rangeRounding: <bool>,
         show: <bool>,
         ticks: <object>
@@ -130,8 +130,8 @@ const ganttConfig = {
   ```json
   axis: {
     x: {
-      lowerLimit: <number>,
-      upperLimit: <number>,
+      lowerLimit: <number> or <Date>,
+      upperLimit: <number> or <Date>,
       rangeRounding: <bool>,
       show: <bool>,
       ticks: <object>
@@ -146,8 +146,8 @@ const ganttConfig = {
 
   | Property Name | Type    | Required | Description                                                                   |
   |---------------|---------|----------|-------------------------------------------------------------------------------|
-  | lowerLimit    | string  | yes      | Lower bound for the axis (`x` or `y`) This is inclusive.                      |
-  | upperLimit    | string  | yes      | Upper bound for the axis (`x` or `y`) This is inclusive.                      |
+  | lowerLimit    | number  | yes      | Lower bound for the axis (`x` or `y`) This is inclusive.                      |
+  | upperLimit    | number  | yes      | Upper bound for the axis (`x` or `y`) This is inclusive.                      |
   | rangeRounding | bool    | no       | Toggle for range rounding (x-axis only).                                      |
   | show          | bool    | no       | Toggle for showing the axis.                                                  |
   | ticks         | objects | no       | See [Ticks](../getting-started/graph-core/documentation/Ticks) (x-axis only). |
@@ -356,15 +356,15 @@ const track = {
       }
     ```
 
-    | Property Name | Type             | Required | Default            | Description                                                                                  |
-    |---------------|------------------|----------|--------------------|----------------------------------------------------------------------------------------------|
-    | key           | string           | yes      | -                  | Unique id which represents the activity.                                                     |
-    | startDate     | string (ISO8601) | yes      | -                  | Task start date or `duration`.                                                               |
-    | endDate       | string (ISO8601) | yes      | -                  | Task end date or `duration`.                                                                 |
-    | color         | string           | no       | `COLORS.BLUE`      | Color for the bar.                                                                           |
-    | duration      | function         | no       | `undefined`        | Function that returns a number that is relative to start or end date.                        |
-    | label         | string (ISO8601) | no       | `{ }`              | Structure: `{ display: <string> }`. String to display as the label for the `action` dataset. |
-    | style         | object           | no       | `{isHashed: true}` | Styling for the bar. Has a `isHashed` property that can be set to true or false.             |
+    | Property Name | Type     | Required | Default            | Description                                                                                  |
+    |---------------|----------|----------|--------------------|----------------------------------------------------------------------------------------------|
+    | key           | string   | yes      | -                  | Unique id which represents the activity.                                                     |
+    | startDate     | Date     | yes      | -                  | Task start date or `duration`.                                                               |
+    | endDate       | Date     | yes      | -                  | Task end date or `duration`.                                                                 |
+    | color         | string   | no       | `COLORS.BLUE`      | Color for the bar.                                                                           |
+    | duration      | function | no       | `undefined`        | Function that returns a number that is relative to start or end date.                        |
+    | label         | object   | no       | `{ }`              | Structure: `{ display: <string> }`. String to display as the label for the `action` dataset. |
+    | style         | object   | no       | `{isHashed: true}` | Styling for the bar. Has a `isHashed` property that can be set to true or false.             |
 
 
 - ### `dimension`
@@ -399,11 +399,11 @@ const track = {
     ]
   ```
 
-  | Property Name | Type | Required               | Default       | Description                                                                 |
+  | Property Name | Type     | Required               | Default       | Description                                                                 |
   |---------------|----------|------------------------|---------------|-----------------------------------------------------------------------------|
   | key           | string   | yes                    | -             | Unique id which represents the event.                                       |
   | values        | array    | yes                    | -             | Array of string(ISO8601) where a data point `event` needs to be placed.     |
-  | shape         | object   | yes                    | -             | svg represented as json, which got transpiled from `@cerner/svg-to-carbon`. |
+  | shape         | string   | yes                    | -             | svg represented as json, which got transpiled from `@cerner/svg-to-carbon`. |
   | color         | string   | no                     | `COLORS.BLUE` | color of the data point.                                                    |
   | label         | object   | no                     | `{ }`         | To address a group of events.                                               |
   | onClick       | Function | conditionally required | undefined     | Any event that can be performed when clicking on the data point             |
@@ -439,7 +439,7 @@ const track = {
         label: {
           display: <string>
         },
-        onClick: <string>,
+        onClick: <function>,
         percentage: <number>,
         style: {
           isDotted: <bool>, 
@@ -450,17 +450,17 @@ const track = {
     ]
   ```
 
-  | Property Name | Type             | Required               | Default                                            | Description                                                                                     |
-  |---------------|------------------|------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------|
-  | key           | string           | yes                    | -                                                  | Unique id which represents the task.                                                            |
-  | startDate     | string (ISO8601) | yes                    | -                                                  | Task start date or `duration`.                                                                  |
-  | endDate       | string (ISO8601) | yes                    | -                                                  | Task end date or `duration`.                                                                    |
-  | color         | string           | no                     | `COLORS.BLUE`                                      | Color for the bar.                                                                              |
-  | duration      | Function         | no                     | `undefined`                                        | Function that returns a number that is relative to start or end date.                           |
-  | label         | object           | no                     | `{ }`                                              | `display` property needs to be provided for label.                                              |
-  | onClick       | function         | conditionally required | `undefined`                                        | Any action that can be performed when clicking on the task                                      |
-  | percentage    | number           | no                     | `null`                                             | Transforms `bar` into Percentage bar and fill the bar with color opted for in `color` property. |
-  | style         | object           | no                     | `{isDotted: true, isHollow: true, isHashed: true}` | Styling for `bar`. Has 3 bool props: `isDotted`, `isHollow`, `isHashed`.                        |
+  | Property Name | Type     | Required               | Default                                            | Description                                                                                     |
+  |---------------|----------|------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------|
+  | key           | string   | yes                    | -                                                  | Unique id which represents the task.                                                            |
+  | startDate     | Date     | yes                    | -                                                  | Task start date or `duration`.                                                                  |
+  | endDate       | Date     | yes                    | -                                                  | Task end date or `duration`.                                                                    |
+  | color         | string   | no                     | `COLORS.BLUE`                                      | Color for the bar.                                                                              |
+  | duration      | Function | no                     | `undefined`                                        | Function that returns a number that is relative to start or end date.                           |
+  | label         | object   | no                     | `{ }`                                              | `display` property needs to be provided for label.                                              |
+  | onClick       | function | conditionally required | `undefined`                                        | Any action that can be performed when clicking on the task                                      |
+  | percentage    | number   | no                     | `null`                                             | Transforms `bar` into Percentage bar and fill the bar with color opted for in `color` property. |
+  | style         | object   | no                     | `{isDotted: true, isHollow: true, isHashed: true}` | Styling for `bar`. Has 3 bool props: `isDotted`, `isHollow`, `isHashed`.                        |
 
 If `clickPassThrough.tasks` is `true`, `onClick` parameter would be required for any non-pass through operations.
 
