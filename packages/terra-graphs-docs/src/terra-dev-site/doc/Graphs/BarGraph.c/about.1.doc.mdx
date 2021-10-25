@@ -1,0 +1,387 @@
+import SimpleBarGraph from '../../example/Graphs-Carbon/BarGraph/BasicBarGraphs/SimpleBar?dev-site-example';
+import SimpleBarGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault.js?dev-site-codeblock';
+import SimpleBarDataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset1.js?dev-site-codeblock';
+import TimeseriesBarGraph from '../../example/Graphs-Carbon/BarGraph/BasicBarGraphs/Timeseries?dev-site-example';
+import TimeseriesBarGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barTimeseries.js?dev-site-codeblock';
+import TimeseriesBarDataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/datasetTimeseries1.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Bar
+
+A native bar graph using D3 based on standard design patterns.
+
+-   [Bar](#bar)
+    -   [Getting started](#getting-started)
+    -   [Usage](#usage)
+    -   [Configuration structure](#configuration-structure)
+    -   [Configuration properties](#configuration-properties)
+    -   [Dataset structure](#dataset-structure)
+          -   [Simple Bar](#simple-bar)
+          -   [Negative Bar](#negative-bar)
+    -   [Dataset properties](#dataset-properties)
+        -   [legendOptions](#legendoptions)
+        -   [values](#values)
+        -   [regions](#regions)
+        -   [style](#style)
+        -   [group](#group)
+        -   [Axis Info Row](#axis-info-row)
+        -   [Constraints](#constraints)
+    -   [Examples](#examples)
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+
+An instance of Bar graph is obtained as follows:
+
+```js
+Carbon.api.bar(/* dataset */)
+```
+A Bar graph can be plotted as follows:
+
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+const graph = Carbon.api.graph(/* graph config JSON */);
+graph.loadContent(Carbon.api.bar(/* dataset 1 */));
+
+// Multiple datasets can be added:
+graph.loadContent(Carbon.api.bar(/* dataset 1 */));
+graph.loadContent(Carbon.api.bar(/* dataset 2 */));
+```
+
+## Configuration Structure
+
+You will **not** need all the properties in the example below. Check [Graph](../getting-started/graph-core/Documentation/Graph) for graph configuration properties.
+
+```javascript
+var root = {
+    bindTo: <string>,
+    axis: {
+        x: {
+            label: <string>,
+            lowerLimit: <number> or <Date>,
+            upperLimit: <number> or <Date>,
+            ticks: {
+                values: <Array>,
+                format: <format string>
+            }
+        },
+        y: {
+            label: <string>,
+            lowerLimit: <number>,
+            upperLimit: <number>,
+        },
+        y2: {
+            show: <bool>,
+            label: <string>,
+            lowerLimit: <number>,
+            upperLimit: <number>,
+        }
+    },
+    showLabel: <bool>,
+    showLegend: <bool>,
+    showShapes: <bool>,
+    showVGrid: <bool>,
+    showHGrid: <bool>,
+};
+```
+## Configuration Properties
+
+See [Graph](../getting-started/graph-core/Documentation/Graph) for more details.
+
+## Dataset Structure
+
+- ### Simple Bar
+
+    ```js
+    var data = {
+        key: <string>,
+        label: {
+            display: <string>
+        },
+        regions: [
+            {
+                axis: <"y" or "y2">,
+                start: <number>,
+                end: <number>,
+                x: <number>,
+            }
+        ],
+        color: <hex value as string>,
+        onClick: <function>,
+        axisInfoRow: [
+            {
+                axis: <"x">,
+                x: 1,
+                value: {
+                    onClick: <function>,
+                    characterCount: <number>,
+                    color: <hex value as string>,
+                    shape: <shape SVG>,
+                    label: {
+                        display: <string>,
+                        secondaryDisplay: <string>,
+                    }
+                }
+            },
+            {
+                axis: "x",
+                x: 2,
+                value: {
+                    onClick: <function>,
+                    color: <hex value as string>,
+                    shape: <shape SVG>,
+                    label: {
+                        display: <string>,
+                    }
+                }
+            }
+        ],
+        values: [
+            {
+                x: <number>,
+                y: <number> or <Date>,
+            },
+            {
+                x: <number>,
+                y: <number> or <Date>,
+                style: {
+                    isHashed: <bool>,
+                }
+            },
+            {
+                x: <number>,
+                y: <number> or <Date>
+            },
+        ]
+    };
+    ```
+
+- ### Negative Bar
+
+    ```javascript
+    var negativeData = {
+        key: <string>,
+        label: {
+            display: <string>,
+        },
+
+        yAxis: <"y" or y2">,
+        color: <hex value as string>,
+        onClick: <function>,
+        values: [
+            {
+                x: <number>,
+                y: <negative number>,
+            },
+            {
+                x: <number>,
+                y: <negative number>,
+            }
+        ]
+    };
+    ```
+
+## Dataset Properties
+
+| Property Name | Type     | Required | Default      | Description                                                                                                          |
+| ------------- | -------- | -------- | ------------ | -------------------------------------------------------------------------------------------------------------------- |
+| key           | string   | yes      | -            | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.              |
+| values        | Array    | yes      | -            | See [Values](#values).                                                                                               |
+| label         | object   | no       | -            | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                  |
+| axisInfoRow   | array    | no       | []           | See [Axis Info Row](#Axis-Info-Row).                                                                                 |
+| color         | string   | no       | COLORS.BLACK | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [colors](../Documentation/Core/Colors). |
+| group         | string   | no       | key          | Used for stacking bar content under another bar content. See [Group](#group).                                        |
+| legendOptions | object   | no       | undefined    | Toggle to show shape, line and legend. See [LegendOptions](#legendoptions).                                          |
+| onClick       | Function | no       | undefined    | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
+| regions       | array    | no       | []           | See [regions](#regions).                                                                                             |
+| style         | object   | no       | {}           | Any style that can be applied. See [style](#style).                                                                  |
+| yAxis         | string   | no       | "y"          | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
+
+- ### `legendOptions`
+
+    Each bar can have a legendOptions object in [Values](#values) level.
+
+        ```js
+          legendOptions: {
+            showElement: <bool>,
+          },
+        ```
+
+    | Property Name | Type     | Required | Default | Description                                         |
+    | ------------- | -------- | -------- | ------- | --------------------------------------------------- |
+    | showElement   | boolean  | no       | true    | Toggle to hide legend when legend item has no data. |
+
+- ### `values`
+
+    ```js
+        values: [
+            {
+                x: <number>,
+                y: <negative number>,
+            },
+            {
+                x: <number>,
+                y: <negative number>,
+            }
+        ]
+     ```
+
+    | Property Name | Type     | Required | Default | Description                                           |
+    | ------------- | -------- | -------- | ------- | ----------------------------------------------------- |
+    | x             | string   | yes      | -       | Coordinate x, for plotting the bar.                   |
+    | y             | string   | yes      | -       | Coordinate y, for height of bar.                      |
+    | style         | object   | no       | {}      | Any style that can be applied. See [style](#style).    |
+
+**Note: Providing invalid data to x or y will lead to an error.**
+
+- ### `regions`
+
+    `regions` in Bar Graph are conceptually different than other graph types, since `goal lines` are **per bar** as opposed to `regions lines` which are **per data-set**.
+
+    ```js
+        regions: [
+            {
+                axis: <"y" or "y2">,
+                start: <number>,
+                end: <number>,
+                x: <number>,
+            }
+        ],
+    ```
+
+    - Each bar can have 1 or more regions. `start` and `end` is necessary for rendering a region.
+    - Stacked bars has combined regions. Pass in same regions array for every bar content that is stacked.
+    - Grouped bars has separate region for each content. Pass in different regions for each content.
+
+    | Property Name | Expected | Required | Default                                                            | Description                                            |
+    | ------------- | -------- |--------- | ------------------------------------------------------------------ | ------------------------------------------------------ |
+    | start         | number   | yes      | -                                                                  | Start of the region.                                   |
+    | end           | number   | yes      | -                                                                  | End of the region.                                     |
+    | x             | number   | yes      | -                                                                  | X axis tick value for which you want to render region. |
+    | axis          | string   | no       | "y"                                                                | Defines which axis if represents from.                 |
+    | color         | string   | no       | ![#bcbfc0](https://placehold.it/15/bcbfc0/000000?text=+) `#bcbfc0` | Default color of the region area.                      |
+
+- ### `style`
+
+    Each bar can have 1 or more styles.
+
+    ```js
+       style: {
+          isHashed: <bool>,
+          isHollow: <bool>,
+          isDotted: <bool>,
+       }
+    ```
+
+    -   To apply style to entire content, pass style object in [Data](#dataset-structure) level.
+    -   To apply style to a single bar, pass style object in [Values](#values) level.
+    -   In case both objects are provided, Value level style object will take precedence over Data level style object.
+
+    | Property Name | Expected | Required | Default | Description                           |
+    | ------------- | -------- |--------- | ------- | ------------------------------------- |
+    | isHashed      | boolean  | no       | false   | applies hash pattern to bar           |
+    | isHollow      | boolean  | no       | false   | creates hollow bar                    |
+    | isDotted      | boolean  | no       | false   | applies dotted pattern to bar outline |
+
+- ### `group`
+
+    `group` property is used to enable stacking of bar content on another content. Each content is assigned a group id (by default this is the `key` property) when rendering on the graph.
+    For instance:
+    If `Content 2` needs to be stacked, then `Content 2` needs to provide the unique `key` of `Content 1` as `group`.
+
+    ```js
+       group: <first dataset ID>,
+    ```
+    Note:
+
+    -   Not providing a `group` will load the content beside `Content 1`.
+
+- ### Axis Info Row
+
+    Each bar can have Axis Info Row Labels. `axis`, `x` and `value` is necessary for rendering an axis info row label.
+    ```js
+        axisInfoRow: [
+            {
+                axis: <"x">,
+                x: 1,
+                value: {
+                    onClick: <function>,
+                    characterCount: <number>,
+                    color: <hex value as string>,
+                    shape: <shape SVG>,
+                    label: {
+                        display: <string>,
+                        secondaryDisplay: <string>,
+                    }
+                }
+            },
+            {
+                axis: "x",
+                x: 2,
+                value: {
+                    onClick: <function>,
+                    color: <hex value as string>,
+                    shape: <shape SVG>,
+                    label: {
+                        display: <string>,
+                    }
+                }
+            }
+        ],
+    ```
+    -   Stacked Bar Graph has combined axis info row labels. Pass in `axisInfoRow` array for first bar content that is stacked.
+    -   Grouped Bar Graph has separate axis info row labels for each content. Pass in different axis info row labels for each content.
+    Note:
+
+    -   For a Stacked Bar Graph, disable legend items while using Axis Info Row since toggling legend items will not change the Axis Info Row Labels.
+
+    | Property Name  | Type     | Required | Default                                                                                        | Description                                                                                                        |
+    | -------------- | -------- | -------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+    | x              | number   | yes      | -                                                                                              | X axis tick value for corresponding axis info row label item                                                       |
+    | value          | object   | yes      | -                                                                                              | Values that are used in axis info rows.                                                                 |
+    | axis           | string   | no       | "x"                                                                                            | Axis where you want to render axis info row labels                                                                 |
+    | characterCount | number   | no       | No Default Value                                                                               | Maximum character length before truncation                                                                         |
+    | color          | string   | no       | <img width="16px" height="16px" src="https://placehold.it/15/1c1f21/000000?text=+" /> `#1c1f21`| Default color of the display (For Primary label only)                                                              |
+    | onClick        | Function | no       | undefined                                                                                      | Any action that can be performed when clicking on the data point                                                   |
+    | label          | object   | no       | {}                                                                                             | `display` property needs to be provided for label <br/> `secondaryDisplay` property can also be provided for label |
+    | shape          | object   | no       | {}                                                                                             | svg represented as json, which got transpiled from `@cerner/svg-to-carbon`. See[Shapes](../README.md#Shapes)    |
+
+- ### Constraints
+
+    -   If data-set `label` display is not provided then the legend item will not be shown as well
+
+## Examples
+<SimpleBarGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data used for simple bar graph</b>
+</summary>
+
+### Graph Config object
+<SimpleBarGraphConfig />
+
+### Data object
+<SimpleBarDataObject />
+</details>
+
+<br/><br/><br/>
+
+<TimeseriesBarGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data used for timeseries bar graph</b>
+</summary>
+
+### Graph Config object
+<TimeseriesBarGraphConfig />
+
+### Data object
+<TimeseriesBarDataObject />
+</details>

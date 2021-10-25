@@ -1,13 +1,12 @@
-import BarGraph from '../../../example/Graphs-Carbon/BarGraph/BasicBarGraphs/GroupedBars?dev-site-example';
+import BarGraph from '../../../example/Graphs-Carbon/BarGraph/BasicBarGraphs/StackedBars?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bar/barDefault.js?dev-site-codeblock';
-import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset1.js?dev-site-codeblock';
-import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset2.js?dev-site-codeblock';
-import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/dataset3.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData2.js?dev-site-codeblock';
+import DataObject3 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bar/stackedBarData3.js?dev-site-codeblock';
+require('details-polyfill');
 
-require('details-polyfill')
-
-# Grouped Bar Graph
-This is the graph with multiple bar contents grouped together.
+# Stacked Bar Graph
+This is graph with multiple datasets stacked up.
 
 ## Getting Started
 
@@ -30,7 +29,8 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ### Graph Config object
 <GraphConfig />
 
-### Data object
+### Data objects
+
 #### Dataset 1
 <DataObject1 />
 
