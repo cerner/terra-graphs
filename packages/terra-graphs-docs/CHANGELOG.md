@@ -50,3 +50,4 @@
   * Updated Scatter documentation to include api information.
   * Restructured documentation and general examples into getting started section.
   * Updated Paired result documentation to include api information.
+  * Updated Gantt Chart documentation to include api information.
