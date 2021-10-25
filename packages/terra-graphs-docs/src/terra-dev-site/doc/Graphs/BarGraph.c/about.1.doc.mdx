@@ -47,6 +47,7 @@ import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
 import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 const graph = Carbon.api.graph(/* graph config JSON */);
 graph.loadContent(Carbon.api.bar(/* dataset 1 */));
+
 // Multiple datasets can be added:
 graph.loadContent(Carbon.api.bar(/* dataset 1 */));
 graph.loadContent(Carbon.api.bar(/* dataset 2 */));
