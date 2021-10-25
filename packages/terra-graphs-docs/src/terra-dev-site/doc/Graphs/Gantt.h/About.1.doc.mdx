@@ -67,19 +67,19 @@ const ganttConfig = {
     },
     bindTo: <string>,
     actionLegend: {
-      key: <string>
+      key: <string>,
       color: <string>,
       label: {
         display: <string>
-      }
+      },
       shape: <string>
     },
-    bindLegendTo: <string>
+    bindLegendTo: <string>,
     clickPassThrough:{
       actions: <bool>,
       activities: <bool>,
       events: <bool>,
-      datelines: <bool>
+      datelines: <bool>,
       tasks: <bool>
     }
     dateline: [<Dateline Object>],
@@ -125,7 +125,7 @@ const ganttConfig = {
 - ### `axis`
 **type:** object  
 
-  The `axis` property contains two objects int the following structure:
+  The `axis` property contains two objects in the following structure:
 
   ```json
   axis: {
@@ -182,7 +182,7 @@ const ganttConfig = {
 - ### `clickPassThrough`
 **type:** object  
 
-  Toggle for various parts of the Gantt chart for allowing click events to elements below. It as the following structure. The default value for each item in the `clickPassThrough` object is `false`.
+  Toggle for various parts of the Gantt chart for allowing click events to elements below. It has the following structure. The default value for each item in the `clickPassThrough` object is `false`.
 
   ```json
     clickPassThrough: {
