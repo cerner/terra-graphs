@@ -1,0 +1,60 @@
+import ShapesHiddenLineGraph from '../../../example/Graphs-Carbon/LineGraph/BasicLineGraphs/ShapesHidden?dev-site-example';
+import ShapesHiddenGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
+import ShapesHiddenDataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset2.js?dev-site-codeblock';
+import ShowOrHideShapesLineGraph from '../../../example/Graphs-Carbon/LineGraph/BasicLineGraphs/ShowOrHideShapesPerDataset?dev-site-example';
+import ShowOrHideShapesGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
+import ShowOrHideShapesDataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset1.js?dev-site-codeblock';
+import ShowOrHideShapesDataObject4 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset4.js?dev-site-codeblock';
+import ShowOrHideShapesDataObject5 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset5noShapes.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Shapes
+Shapes contains examples like shapes hidden in line graph and show or hide shapes per line graph dataset.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+## Examples
+<ShapesHiddenLineGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data used for shapes hidden</b>
+</summary>
+
+### Graph Config object
+<ShapesHiddenGraphConfig />
+
+### Data object
+<ShapesHiddenDataObject />
+</details>
+
+<br/><br/><br/>
+
+<ShowOrHideShapesLineGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data used for show or hide shapes per dataset</b>
+</summary>
+
+### Graph Config object
+<ShowOrHideShapesGraphConfig />
+
+### Data object
+#### Dataset 1
+<ShowOrHideShapesDataObject1 />
+
+#### Dataset 4
+<ShowOrHideShapesDataObject4 />
+
+#### Dataset 5
+<ShowOrHideShapesDataObject5 />
+</details>
