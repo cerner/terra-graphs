@@ -26,9 +26,6 @@ Carbon.api.bubbleMultipleDataset(<dataset>);
     -   [regions](#regions)
     -   [weight](#weight)
 -   [Examples](#Examples)
--   [Data](#data)
-    -   [Graph Config](#graph-config-object)
-    -   [Data Object](#data-object)
 
 
 ## Getting Started
@@ -38,12 +35,7 @@ Carbon.api.bubbleMultipleDataset(<dataset>);
 
 ## Usage
 
-An instance of a scatter graph can be obtained by:
-
-```js
-Carbon.api.scatter(/* dataset */)
-```
-A scatter graph can be plotted as follows:
+A bubble graph can be plotted as follows:
 
 ```js
 import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
@@ -106,18 +98,18 @@ const dataset = {
 ``` 
 ## Dataset Properties 
 
-| Property Name | Type             | Required | Default              | Description                                                                                                          |
-|---------------|------------------|----------|----------------------|----------------------------------------------------------------------------------------------------------------------|
-| key           | string           | yes      | -                    | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.              |
-| values        | array of objects | yes      | -                    | See [values](#values).                                                                                          |
-| color         | string           | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [colors](../Documentation/Core/Colors). |
-| label         | object           | no       | {}                   | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                  |
-| legendOptions | object           | no       | `undefined`          | See [legendOptions](#legendOptions).                                                                            |
-| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
-| palette       | string           | no       | `undefined`          | See [palette](#palette)                                                                                         |
-| regions       | array of objects | no       | `[]`                 | See [regions](#regions).                                                                                        |
-| shape         | string           | no       | `SHAPES.DARK.CIRCLE` | Shape for representing the data points.                                                                              |
-| yAxis         | string           | no       | `"y"`                | Prop to select either the Y or Y2 axis for the dataset. Valid values are `y` or `y2`.                                |
+| Property Name | Type             | Required | Default              | Description                                                                                                                                |
+|---------------|------------------|----------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| key           | string           | yes      | -                    | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.                                    |
+| values        | array of objects | yes      | -                    | See [values](#values).                                                                                                                     |
+| color         | string           | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [colors](../getting-started/graph-core/documentation/Colors). |
+| label         | object           | no       | {}                   | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                                        |
+| legendOptions | object           | no       | `undefined`          | See [legendOptions](#legendoptions).                                                                                                       |
+| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as, to display a popup.                                                                |
+| palette       | string           | no       | `undefined`          | See [palette](#palette)                                                                                                                    |
+| regions       | array of objects | no       | `[]`                 | See [regions](#regions).                                                                                                                   |
+| shape         | string           | no       | `SHAPES.DARK.CIRCLE` | Shape for representing the data points.                                                                                                    |
+| yAxis         | string           | no       | `"y"`                | Prop to select either the Y or Y2 axis for the dataset. Valid values are `y` or `y2`.                                                      |
 
 
 - ### `values`  
@@ -143,6 +135,23 @@ const dataset = {
   | y             | number | yes      | -       | value for the y coordinate          |
   | isCritical    | bool   | no       | `false` | highlights a datapoint if `true`    |
   | legendOptions | bool   | no       | `false` | see [legendOptions](#legendoptions) |
+
+
+- ### `label`
+**type:** object  
+**default value:** `{}`
+
+  Label for the dataset in the legend. If it is not provided then it will not be shown in the legend. 
+
+    ```json
+      label: {
+        display: <string>
+      }
+    ```
+
+  | Property Name | Type   | Required | Default     | Description                                   |
+  |---------------|--------|----------|-------------|-----------------------------------------------|
+  | display       | string | no       | `undefined` | Text to display as the label for the dataset. |
 
 
 - ### `legendOptions`
@@ -237,7 +246,7 @@ const dataset = {
 <b>Data</b>
 </summary>
 
-### Graph Config object
+### Graph Config bject
 <GraphConfig />
 
 ### Data object
