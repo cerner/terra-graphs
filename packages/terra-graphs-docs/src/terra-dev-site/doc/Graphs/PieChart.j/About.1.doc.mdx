@@ -107,12 +107,12 @@ Timeline is marked only on `X Axis`, there is no other axis supplied. Axis is se
       right: <number> 
     }
   ```
-  | Property Name | Type | Required | Default | Description                         |
-  |---------------|------|----------|---------|-------------------------------------|
-  | top           | number    | no       | `4`     | Top padding of legend container.    |
-  | bottom        | number    | no       | `4`     | Bottom padding of legend container. |
-  | left          | number    | no       | `8`     | Left padding of legend container.   |
-  | right         | number    | no       | `8`     | Right padding of legend container.  |
+  | Property Name | Type   | Required | Default | Description                         |
+  |---------------|--------|----------|---------|-------------------------------------|
+  | top           | number | no       | `4`     | Top padding of legend container.    |
+  | bottom        | number | no       | `4`     | Bottom padding of legend container. |
+  | left          | number | no       | `8`     | Left padding of legend container.   |
+  | right         | number | no       | `8`     | Right padding of legend container.  |
 
 
 ## Dataset Structure
@@ -131,13 +131,13 @@ const dataset = {
 
 ### Dataset Properties 
 
-| Property Name | Type     | Required | Default        | Description                                                                                                          |
-|---------------|----------|----------|----------------|----------------------------------------------------------------------------------------------------------------------|
-| key           | string   | yes      | -              | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.              |
-| value         | number   | yes      | -              | Value for the slice.                                                                                               |
-| color         | string   | no       | `COLORS.BLUE` | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../Documentation/Core/Colors). |
-| label         | object   | no       | {}             | See [label](#label).                                                                                                 |
-| onClick       | function | no       | `undefined`    | Function to execute upon clicking a datapoint, such as to display a popup.                                          |
+| Property Name | Type     | Required | Default       | Description                                                                                                                                |
+|---------------|----------|----------|---------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| key           | string   | yes      | -             | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.                                    |
+| value         | number   | yes      | -             | Value for the slice.                                                                                                                       |
+| color         | string   | no       | `COLORS.BLUE` | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../getting-started/graph-core/documentation/Colors). |
+| label         | object   | no       | {}            | See [label](#label).                                                                                                                       |
+| onClick       | function | no       | `undefined`   | Function to execute upon clicking a datapoint, such as to display a popup.                                                                 |
 
 
 - ### `label`
