@@ -127,7 +127,7 @@ var data = {
 
 | Property Name | Type     | Required | Default            | Description                                                                                                          |
 | ------------- | -------- | -------- | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| key           | string   | yes      | -                  | A unique `id` to identify the dataset. Adding two datasets with the same `key`.                                      |
+| key           | string   | yes      | -                  | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error. |
 | values        | Array    | yes      | -                  | see Values](#values).                                                                                                |
 | color         | string   | no       | COLORS.BLACK       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [colors](../Documentation/Core/Colors). |
 | label         | object   | no       | {}                 | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                  |
