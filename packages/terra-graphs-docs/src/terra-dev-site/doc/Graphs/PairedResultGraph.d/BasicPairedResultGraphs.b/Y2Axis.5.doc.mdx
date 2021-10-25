@@ -1,13 +1,12 @@
-import PairedResultGraph from '../../../example/Graphs-Carbon/PairedResultGraph/Regions/MultiplePairedResult?dev-site-example';
+import PairedResultGraph from '../../../example/Graphs-Carbon/PairedResultGraph/BasicPairedResultGraphs/Y2Axis?dev-site-example';
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseriesWithY2Axis.js?dev-site-codeblock';
-import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultRegionDataset1.js?dev-site-codeblock';
-import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultRegionDataset2.js?dev-site-codeblock';
-require('details-polyfill')
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisDataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisDataset2.js?dev-site-codeblock';
+require('details-polyfill');
 
-# Simple Paired Result Graph
+#  Paired Result Graph with Y2 axis
 
-This is a multiple paired result graph associated with multiple regions.
-NOTE: Hover onto legend to see the region associated with each legend.
+This is a timeseries paired result graph with both Y and Y2 axis.
 
 ## Getting Started
 
@@ -20,7 +19,7 @@ import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
 import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ```
 
-## Examples
+## Example
 <PairedResultGraph />
 
 <details>
