@@ -90,7 +90,7 @@ var root = {
 ```
 ## Configuration Properties
 
-Refer [Graph](../getting-started/graph-core/Documentation/Graph) for more details.
+See [Graph](../getting-started/graph-core/Documentation/Graph) for more details.
 
 ## Dataset Structure
 
@@ -187,19 +187,19 @@ Refer [Graph](../getting-started/graph-core/Documentation/Graph) for more detail
 
 ## Dataset Properties
 
-| Property Name | Type     | Required | Default      | Description                                                                                            |
-| ------------- | -------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------ |
-| key           | string   | yes      | -            | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error |
-| values        | Array    | yes      | -            | [Values](#values)                                                                                      |
-| label         | object   | no       | -            | Display value for the data-set which the data points belong to                                         |
-| axisInfoRow   | array    | no       | []           | Refer [Axis Info Row](#Axis-Info-Row)                                                                  |
-| color         | string   | no       | COLORS.BLACK | Color for the data point and line                                                                      |
-| group         | string   | no       | key          | Used for stacking bar content under another bar content. Refer [Group](#group)                         |
-| legendOptions | object   | no       | undefined    | Option to show legend. Refer [LegendOptions](#legendoptions)                                           |
-| onClick       | Function | no       | undefined    | Any action that can be performed when clicking on the data point                                       |
-| regions       | array    | no       | []           | Refer [Regions](#regions)                                                                              |
-| style         | object   | no       | {}           | Any style that can be applied. Refer [Style](#style)                                                  |
-| yAxis         | string   | no       | "y"          | Setting for using different Y based axis. For now: its either Y or Y2                                  |
+| Property Name | Type     | Required | Default      | Description                                                                                                          |
+| ------------- | -------- | -------- | ------------ | -------------------------------------------------------------------------------------------------------------------- |
+| key           | string   | yes      | -            | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.              |
+| values        | Array    | yes      | -            | See [Values](#values).                                                                                               |
+| label         | object   | no       | -            | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                  |
+| axisInfoRow   | array    | no       | []           | See [Axis Info Row](#Axis-Info-Row).                                                                                 |
+| color         | string   | no       | COLORS.BLACK | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [colors](../Documentation/Core/Colors). |
+| group         | string   | no       | key          | Used for stacking bar content under another bar content. See [Group](#group).                                        |
+| legendOptions | object   | no       | undefined    | Toggle to show shape, line and legend. See [LegendOptions](#legendoptions).                                          |
+| onClick       | Function | no       | undefined    | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
+| regions       | array    | no       | []           | See [Regions](#regions).                                                                                             |
+| style         | object   | no       | {}           | Any style that can be applied. See [Style](#style).                                                                  |
+| yAxis         | string   | no       | "y"          | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
 
 - ### `legendOptions`
 
@@ -210,6 +210,7 @@ Refer [Graph](../getting-started/graph-core/Documentation/Graph) for more detail
             showElement: <bool>,
           },
         ```
+
     | Property Name | Type     | Required | Default | Description                                         |
     | ------------- | -------- | -------- | ------- | --------------------------------------------------- |
     | showElement   | boolean  | no       | true    | Toggle to hide legend when legend item has no data. |
@@ -231,9 +232,9 @@ Refer [Graph](../getting-started/graph-core/Documentation/Graph) for more detail
 
     | Property Name | Type     | Required | Default | Description                                           |
     | ------------- | -------- | -------- | ------- | ----------------------------------------------------- |
-    | x             | string   | yes      | -       | Co-ordinate x, for plotting the bar                   |
-    | y             | string   | yes      | -       | Co-ordinate y, for height of bar                      |
-    | style         | object   | no       | {}      | Any style that can be applied. Refer [Style](#style) |
+    | x             | string   | yes      | -       | Co-ordinate x, for plotting the bar.                  |
+    | y             | string   | yes      | -       | Co-ordinate y, for height of bar.                     |
+    | style         | object   | no       | {}      | Any style that can be applied. See [style](#style).    |
 
 **Note: Providing invalid data to x or y will lead to an error.**
 
@@ -251,17 +252,18 @@ Refer [Graph](../getting-started/graph-core/Documentation/Graph) for more detail
             }
         ],
     ```
+
     - Each bar can have 1 or more regions. `start` and `end` is necessary for rendering a region.
     - Stacked bars has combined regions. Pass in same regions array for every bar content that is stacked.
     - Grouped bars has separate region for each content. Pass in different regions for each content.
 
-    | Property Name | Expected | Required | Default                                                            | Description                                           |
-    | ------------- | -------- |--------- | ------------------------------------------------------------------ | ----------------------------------------------------- |
-    | start         | number   | yes      | -                                                                  | Start of the region                                   |
-    | end           | number   | yes      | -                                                                  | End of the region                                     |
-    | x             | number   | yes      | -                                                                  | X axis tick value for which you want to render region |
-    | axis          | string   | no       | "y"                                                                | Defines which axis if represents from                 |
-    | color         | string   | no       | ![#bcbfc0](https://placehold.it/15/bcbfc0/000000?text=+) `#bcbfc0` | Default color of the region area                      |
+    | Property Name | Expected | Required | Default                                                            | Description                                            |
+    | ------------- | -------- |--------- | ------------------------------------------------------------------ | ------------------------------------------------------ |
+    | start         | number   | yes      | -                                                                  | Start of the region.                                   |
+    | end           | number   | yes      | -                                                                  | End of the region.                                     |
+    | x             | number   | yes      | -                                                                  | X axis tick value for which you want to render region. |
+    | axis          | string   | no       | "y"                                                                | Defines which axis if represents from.                 |
+    | color         | string   | no       | ![#bcbfc0](https://placehold.it/15/bcbfc0/000000?text=+) `#bcbfc0` | Default color of the region area.                      |
 
 - ### `style`
 
@@ -274,6 +276,7 @@ Refer [Graph](../getting-started/graph-core/Documentation/Graph) for more detail
           isDotted: <bool>,
        }
     ```
+
     -   To apply style to entire content, pass style object in [Data](#dataset-structure) level.
     -   To apply style to a single bar, pass style object in [Values](#values) level.
     -   In case both objects are provided, Value level style object will take precedence over Data level style object.
@@ -345,7 +348,7 @@ Refer [Graph](../getting-started/graph-core/Documentation/Graph) for more detail
     | color          | string   | no       | <img width="16px" height="16px" src="https://placehold.it/15/1c1f21/000000?text=+" /> `#1c1f21`| Default color of the display (For Primary label only)                                                              |
     | onClick        | Function | no       | undefined                                                                                      | Any action that can be performed when clicking on the data point                                                   |
     | label          | object   | no       | {}                                                                                             | `display` property needs to be provided for label <br/> `secondaryDisplay` property can also be provided for label |
-    | shape          | object   | no       | {}                                                                                             | svg represented as json, which got transpiled from `@cerner/svg-to-carbon`. Refer [Shapes](../README.md#Shapes)    |
+    | shape          | object   | no       | {}                                                                                             | svg represented as json, which got transpiled from `@cerner/svg-to-carbon`. See[Shapes](../README.md#Shapes)    |
 
 - ### Constraints
 
