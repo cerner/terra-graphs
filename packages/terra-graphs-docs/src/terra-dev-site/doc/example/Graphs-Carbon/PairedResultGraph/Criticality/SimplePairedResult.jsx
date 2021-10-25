@@ -21,7 +21,7 @@ const SimpleCriticalPiaredResultExample = () => {
     });
   }, []);
   return (
-    <ExampleGraphContainer id="colorBasedBubbleGraph" />
+    <ExampleGraphContainer id="simplePairedResultGraph" />
   );
 };
 
