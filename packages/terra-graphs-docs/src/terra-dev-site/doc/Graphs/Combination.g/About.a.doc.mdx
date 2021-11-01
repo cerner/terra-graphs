@@ -41,13 +41,11 @@ A Combination graph can be plotted as follows:
 import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
 import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 const graph = Carbon.api.graph(/* graph config JSON */);
-graph.loadContent(Carbon.api.bar(/* dataset 1 */));
-graph.loadContent(Carbon.api.line(/* dataset 2 */));
+graph.loadContent(Carbon.api.line(/* dataset 1 */));
 
-// Multiple graph types can be added to a combination graph:
-graph.loadContent(Carbon.api.bar(/* dataset 1 */));
-graph.loadContent(Carbon.api.line(/* dataset 2 */));
-graph.loadContent(Carbon.api.pairedResult(/* dataset 2 */));
+// Additional graph types can be added:
+graph.loadContent(Carbon.api.bar(/* dataset 2 */));
+graph.loadContent(Carbon.api.pairedResult(/* dataset 3 */));
 ```
 
 ## Configuration Structure
