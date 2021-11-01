@@ -915,6 +915,152 @@ describe('Graph - Axes', () => {
     });
   });
 
+  describe('When there is a chance of getting multiple zeros on Y axis', () => {
+    let localeAxisObj = {};
+    localeAxisObj = utils.deepClone(axisDefault);
+    localeAxisObj.y2 = {
+      show: true,
+      label: 'y2 axis',
+      lowerLimit: -5,
+      upperLimit: 60,
+    };
+    describe('When ticks consists of value between -0.1 to 0.1  and not 0', () => {
+      beforeEach(() => {
+        graph.destroy();
+        localeAxisObj.y = {
+          label: 'y axis',
+          lowerLimit: -4.5,
+          upperLimit: 1,
+        };
+      });
+      it('Should create correct format, When consumer does not provide format', () => {
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y.ticks.format,
+        ).toBe('.2f');
+      });
+      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+        localeAxisObj.y.suppressTrailingZeros = true;
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y.ticks.format,
+        ).toBe('.2~f');
+      });
+    });
+    describe('When ticks consists of value between -0.01 to 0.01  and not 0', () => {
+      beforeEach(() => {
+        graph.destroy();
+        localeAxisObj.y = {
+          label: 'y axis',
+          lowerLimit: -0.45,
+          upperLimit: 0.1,
+        };
+      });
+      it('Should create correct format, When consumer does not provide format', () => {
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y.ticks.format,
+        ).toBe('.3f');
+      });
+      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+        localeAxisObj.y.suppressTrailingZeros = true;
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y.ticks.format,
+        ).toBe('.3~f');
+      });
+    });
+  });
+  describe('When there is a chance of getting multiple zeros on Y2 axis', () => {
+    let localeAxisObj = {};
+    localeAxisObj = utils.deepClone(axisDefault);
+    localeAxisObj.y = {
+      label: 'y axis',
+      lowerLimit: -5,
+      upperLimit: 60,
+    };
+    describe('When ticks consists of value between -0.1 to 0.1  and not 0', () => {
+      beforeEach(() => {
+        graph.destroy();
+        localeAxisObj.y2 = {
+          show: true,
+          label: 'y2 axis',
+          lowerLimit: -4.5,
+          upperLimit: 1,
+        };
+      });
+      it('Should create correct format, When consumer does not provide format', () => {
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y2.ticks.format,
+        ).toBe('.2f');
+      });
+      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+        localeAxisObj.y2.suppressTrailingZeros = true;
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y2.ticks.format,
+        ).toBe('.2~f');
+      });
+    });
+    describe('When ticks consists of value between -0.01 to 0.01  and not 0', () => {
+      beforeEach(() => {
+        graph.destroy();
+        localeAxisObj.y2 = {
+          show: true,
+          label: 'y2 axis',
+          lowerLimit: -0.45,
+          upperLimit: 0.1,
+        };
+      });
+      fit('Should create correct format, When consumer does not provide format', () => {
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y2.ticks.format,
+        ).toBe('.3f');
+      });
+      fit('Should create correct format, when suppress trailing zeros is set to true', () => {
+        localeAxisObj.y2.suppressTrailingZeros = true;
+        graph = new Graph(
+          ({
+            ...getAxes(localeAxisObj),
+          }),
+        );
+        expect(
+          graph.config.axis.y2.ticks.format,
+        ).toBe('.3~f');
+      });
+    });
+  });
+
   describe('when Y-2 axis is present', () => {
     beforeEach(() => {
       graph.destroy();
