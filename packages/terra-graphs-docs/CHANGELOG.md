@@ -55,4 +55,4 @@
   * Updated Gantt Chart documentation to include api information.
   * Updated Pie chart documentation to include api information.
   * Updated Bubble graph documentation to include api information.
-  * Updated line graph example datasets to display correct line graph in examples file.
+  * Updated datasets to fix incorrect line graph examples.
