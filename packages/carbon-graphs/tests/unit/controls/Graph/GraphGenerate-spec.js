@@ -222,24 +222,6 @@ describe('Graph - Generate', () => {
         ),
       );
     });
-    it('Renders correctly with X Axis orientation - Top without Label', () => {
-      graph.destroy();
-      const graphConfig = getAxes(axisDefault);
-      graphConfig.axis.x.orientation = AXES_ORIENTATION.X.TOP;
-      graphConfig.axis.x.label = '';
-      graphConfig.padding = {
-        top: -17,
-        left: -17,
-        right: 0,
-        bottom: 0,
-      };
-      graph = new Graph(graphConfig);
-      const contentContainer = d3.select(`.${styles.contentContainer}`);
-      expect(toNumber(contentContainer.attr('x'), 10)).toBeCloserTo(-16);
-      expect(toNumber(contentContainer.attr('y'), 10)).toBeCloserTo(
-        graphConfig.padding.top,
-      );
-    });
   });
   describe('Grid', () => {
     it('Creates the grid markup', () => {
@@ -562,16 +544,13 @@ describe('Graph - Generate', () => {
       expect(toNumber(translate[1], 10)).toBeCloserTo(47);
       expect(toNumber(translate[1], 10)).not.toBe(120);
     });
-    it('Doesnt create label x axis when text is not present', () => {
-      graph.destroy();
-      const labelAxisObj = utils.deepClone(axisDefault);
-      labelAxisObj.x.label = '';
-      graph = new Graph(getAxes(labelAxisObj));
-
-      const canvasElement = fetchElementByClass(styles.canvas);
-      expect(
-        canvasElement.querySelector(`.${styles.axisLabelX}`),
-      ).toBeNull();
+    it('Throws error when label x axis text is not present', () => {
+      expect(() => {
+        graph.destroy();
+        const labelAxisObj = utils.deepClone(axisDefault);
+        labelAxisObj.x.label = '';
+        graph = new Graph(getAxes(labelAxisObj));
+      }).toThrowError(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
     });
     it('Throws error when label y axis text is not present', () => {
       expect(() => {
