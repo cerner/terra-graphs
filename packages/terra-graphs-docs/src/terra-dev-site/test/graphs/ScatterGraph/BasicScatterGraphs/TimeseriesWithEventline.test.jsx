@@ -1,32 +1,12 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import ScatterGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Scatter/ScatterGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesEventline';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects.
-*/
-const graphConfig = utils.deepClone(lineTimesries('#timeseriesEventLine'));
-graphConfig.eventline = [
-  {
-    color: Carbon.helpers.COLORS.GREY,
-    style: {
-      strokeDashArray: '4,4',
-    },
-    value: new Date(2016, 0, 1, 8).toISOString(),
-  },
-  {
-    color: Carbon.helpers.COLORS.BLACK,
-    style: {
-      strokeDashArray: '2,2',
-    },
-    value: new Date(2016, 0, 1, 12).toISOString(),
-  },
-];
-const dataset = utils.deepClone(data);
+const graphConfig = utils.deepClone(getGraphConfig('#timeseriesEventLine'));
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <>

@@ -1,34 +1,12 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import ScatterGraph from '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Scatter/ScatterGraph';
 import '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer.module.scss';
-import lineTimesries from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries';
-import data from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
-import {
-  loadDatelinePopup,
-} from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesDateline';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries';
 
-/*
-Please refer to the documentation below to see the graphConfig and data objects.
-*/
-const graphConfig = utils.deepClone(lineTimesries('#timeseriesDateLine'));
-graphConfig.dateline = [
-  {
-    showDatelineIndicator: true,
-    label: {
-      display: 'Current Date',
-    },
-    color: '#C97318',
-    shape: Carbon.helpers.SHAPES.DARK.SQUARE,
-    onClick: loadDatelinePopup,
-    value: new Date(2016, 0, 1, 6).toISOString(),
-  },
-];
-graphConfig.clickPassThrough = {
-  dateline: false,
-};
-const dataset = utils.deepClone(data);
+const graphConfig = utils.deepClone(getGraphConfig('#timeseriesDateLine'));
+const dataset = [utils.deepClone(exampleData)];
 
 export default () => (
   <>

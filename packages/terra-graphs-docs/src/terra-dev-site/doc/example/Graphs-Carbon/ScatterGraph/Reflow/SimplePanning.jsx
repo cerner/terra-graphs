@@ -5,15 +5,15 @@ import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/PairedResult/PairedResultGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-import getConfigLineTimeseriesPanning from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning';
-import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/timeseriesData';
+import getGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesPanning';
+import exampleData from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries';
+
 /*
 Please refer to the documentation below to see the graphConfig and data objects
 */
 
-const graphConfig = utils.deepClone(getConfigLineTimeseriesPanning('#scatterPanningExample'));
+const graphConfig = utils.deepClone(getGraphConfig('#scatterPanningExample'));
 const dataset = utils.deepClone(exampleData);
-
 const initialState = {
   initial: 0,
   factor: 3,
@@ -23,9 +23,7 @@ let graph;
 const SimplePanningExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
-    dataset.forEach((data) => {
-      graph.loadContent(Carbon.api.scatter(data));
-    });
+    graph.loadContent(Carbon.api.scatter(dataset));
   }, []);
 
   const reducer = (panState, action) => {
