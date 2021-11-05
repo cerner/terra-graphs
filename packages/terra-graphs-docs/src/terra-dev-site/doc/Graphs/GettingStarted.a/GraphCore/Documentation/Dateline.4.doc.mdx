@@ -58,22 +58,3 @@ If `showDatelineIndicator` is explicitly set to false then `shape` is optional.
   | Property Name | Type   | Required | Default     | Description                                   |
   |---------------|--------|----------|-------------|-----------------------------------------------|
   | display       | string | no       | `undefined` | Text to display as the label for the dataset. |
-
-
-## JSON Properties
-
-### Required
-
-| Property Name | Expected         | Description                                                                                                                   |
-|---------------|------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| value         | string (ISO8601) | Position where dateline needs to be placed                                                                                    |
-| color         | string (ISO8601) | color of the dateline                                                                                                         |
-| shape         | string (ISO8601) | `Shape` of the indicator above dateline. Required field if `showDatelineIndicator` is set to true. Refer [a Shapes](./Shapes) |
-
-### Optional
-
-| Property Name         | Expected | Default   | Description                                                      |
-|-----------------------|----------|-----------|------------------------------------------------------------------|
-| onClick               | Function | undefined | Any action that can be performed when clicking on the data point |
-| showDatelineIndicator | boolean  | true      | Shows the indicator above dateline, this can be clicked          |
-| label                 | object   | {}        | `display` property needs to be provided for label                |

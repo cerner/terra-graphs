@@ -1,13 +1,30 @@
 # Panning
 
-Panning is applied with timeline/custom button
+Panning is applied with timeline/custom button.
 
--   [Panning](#panning)
-    -   [Usage](#usage)
-    -   [JSON Properties](#json-properties)
-        -   [Root](#root)
-            -   [Optional](#optional)
-    -   [Constraints](#constraints)
+-   [Structure](#structure)
+-   [Properties](#properties)
+-   [Usage](#usage)
+
+
+## Structure
+```js
+graphConfig: {
+    ...
+    panning: {
+        enabled: <bool>
+    }
+}
+```
+
+## Properties
+
+| Property Name | Expected | Default   | Required | Description                        |
+|---------------|----------|-----------|----------|------------------------------------|
+| enabled       | boolean  | `undefined` | no       | Set to true when panning is needed |
+
+
+-   If `graphConfig.panning` is not provided then enabled will be false.
 
 ## Usage
 
@@ -136,16 +153,3 @@ export const renderLinePanningWithDynamicData = (id) => {
 };
 ```
 
-## JSON Properties
-
-### Root
-
-#### Optional
-
-| Property Name | Expected | Default   | Description                        |
-| ------------- | -------- | --------- | ---------------------------------- |
-| enabled       | boolean  | undefined | Set to true when panning is needed |
-
-## Constraints
-
--   If panning is not provided then enabled will be false.
