@@ -1,5 +1,5 @@
 import { loadTaskPopup, loadXAndYAxisLabelPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
-import { loadPopup } from '@cerner/carbon-graphs/dev/examples/popup';
+import { loadPopup } from '../../popup';
 
 const tasksData = [
   {
