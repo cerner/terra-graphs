@@ -23,7 +23,7 @@ const data = {
     },
   ],
   values: createGraphValuesWithCos({
-    length: 12, initialX: 85, xModifier: 25, yModifier: Math.PI * 4,
+    length: 12, initialX: 85, xModifier: 17, yModifier: Math.PI * 4,
   }),
 };
 
