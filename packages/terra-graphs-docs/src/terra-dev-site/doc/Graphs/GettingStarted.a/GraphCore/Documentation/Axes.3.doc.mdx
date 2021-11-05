@@ -2,70 +2,117 @@
 
 Any graph that inherits from `Graph` API will inherit the following `Axis` and `Tick` properties as well.
 
--   [Axes](#axes)
-    -   [JSON Properties](#json-properties)
-        -   [Required](#required)
-        -   [Optional](#optional)
-            -   [Constraints](#constraints)
-    -   [AXIS_TYPE](#axistype)
-    -   [AXES_ORIENTATION](#axesorientation)
-    -   [X Axis Domain Padding](#x-axis-domain-padding)
+
+-   [JSON Properties](#json-properties)
+        -   [Constraints](#constraints)
+-   [AXIS_TYPE](#axistype)
+-   [AXES_ORIENTATION](#axesorientation)
+-   [X Axis Domain Padding](#x-axis-domain-padding)
+
+
+
+
+
+## Structure 
+
+```json
+axis: {
+    x: <x-axis object>,
+    y: <y-axis object>,
+    y2: <y2-axis object>,
+}
+
+
+```json
+axis: {
+    x: {
+        lowerLimit: <number> or <Date>,
+        upperLimit: <number> or <Date>,
+        label: <string>,
+        onLabelClick: <Function>,
+        orientation: <string>
+        rangeRounding: <bool>,
+        show: <boolean>,
+        suppressingTrailingZeros: <bool>,
+        ticks: <Ticks object>,
+        type: <string>
+    },
+    y: {
+        lowerLimit: <number> or <Date>,
+        upperLimit: <number> or <Date>,
+        label: <string>,
+        onLabelClick: <Function>,
+        padDomain: <bool>,
+        rangeRounding: <bool>,
+        show: <boolean>,
+        suppressingTrailingZeros: <bool>,
+        ticks: <Ticks object>,
+        type: <string>
+    },
+    y2:{
+        lowerLimit: <number> or <Date>,
+        upperLimit: <number> or <Date>,
+        label: <string>,
+        onLabelClick: <Function>,
+        padDomain: <bool>,
+        rangeRounding: <bool>,
+        show: <boolean>,
+        suppressingTrailingZeros: <bool>,
+        ticks: <Ticks object>,
+        type: <string>
+    }
+
+}
+
+```
+
 
 ## JSON Properties
 
-### Required
-
-| Property Name | Expected | Description                                                   |
-| ------------- | -------- | ------------------------------------------------------------- |
-| lowerLimit    | string   | Upper bound for the axis. This is inclusive                   |
-| upperLimit    | string   | Lower bound for the axis. This is inclusive                   |
-| label         | string   | Axis label value. Will not be rendered if nothing is provided |
+| Property Name         | Type           | Default                    | Required | Description                                                                                                                                                                                                                                                           |
+|-----------------------|----------------|----------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| lowerLimit            | number or Date | -                          | yes      | Upper bound for the axis. This is inclusive                                                                                                                                                                                                                           |
+| upperLimit            | number or Date | -                          | yes      | Lower bound for the axis. This is inclusive                                                                                                                                                                                                                           |
+| label                 | string         | -                          | yes      | Axis label value. Will not be rendered if nothing is provided                                                                                                                                                                                                         |
+| onLabelClick          | Function       | `undefined`                | no       | Any action that can be performed when clicking on label                                                                                                                                                                                                               |
+| orientation           | Function       | `AXES_ORIENTATION.DEFAULT` | no       | Any action that can be performed when clicking on label                                                                                                                                                                                                               |
+| padDomain             | boolean        | `true`                     | no       | Toggle for disabling the padding (only for Y and Y2 axes)                                                                                                                                                                                                             |
+| rangeRounding         | boolean        | `true`                     | no       | Toggle for range rounding                                                                                                                                                                                                                                             |
+| show                  | boolean        | `true`                     | no       | Toggle for showing the axis                                                                                                                                                                                                                                           |
+| suppressTrailingZeros | boolean        | `false`                    | no       | Toggle to suppress tick values's trailing zeros when default d3 tick formatting is used. For X axis, this property works only when X axis type is set to AXIS_TYPE.DEFAULT. Specifying `~` in the tick format takes precedence over `suppressTrailingZeros` property. |
+| ticks                 | object         | `null`                     | no       | See [Ticks](./Ticks)                                                                                                                                                                                                                                                  |
+| type                  | string         | `AXIS_TYPE.DEFAULT`        | no       | See [type](#type). Normal number value or time-based. Only for x-axis.                                                                                                                                                                                                |
 
 **Note:**
 
 -   y2 axis is mandatory if the **y2.show** is enabled
 -   Ticks are mandatory for Bar graphs
-
-### Optional
-
-Each axis - X, Y and Y2 should have the following properties:
-
-| Property Name         | Expected | Default           | Description                                                                                                                                                                                                                                                         |
-| --------------------- | -------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onLabelClick          | Function | undefined         | Any action that can be performed when clicking on label                                                                                                                                                                                                             |
-| padDomain             | boolean  | true              | Toggle for disabling the padding (only for Y and Y2 axes)                                                                                                                                                                                                           |
-| rangeRounding         | boolean  | true              | Toggle for range rounding                                                                                                                                                                                                                                           |
-| show                  | boolean  | true              | Toggle for showing the axis                                                                                                                                                                                                                                         |
-| suppressTrailingZeros | boolean  | false             | Toggle to suppress tick values's trailing zeros when default d3 tick formatting is used. For X axis, this property works only when X axis type is set to AXIS_TYPE.DEFAULT. Specifying ~ in the tick format takes precedence over `suppressTrailingZeros` property. |
-| ticks                 | object   | null              | Refer [Ticks](./Ticks)                                                                                                                                                                                                                                             |
-| type                  | string   | AXIS_TYPE.DEFAULT | Normal number value or time-based                                                                                                                                                                                                                                   |
-
-**Note:**
-
 -   `rangeRounding` property extends the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value
 -   `padDomain` property is only for Y and Y2 axes.
 -   `onLabelClick` property will override default onClick functionality provided by Carbon-graphs.
-
-#### Constraints
-
 -   For Bar Graphs, `padDomain` property will be overridden to false.
 
-## AXIS_TYPE
+see
 
+### `type`
+
+AXIS_TYPE
 Consumers can pick axes tick type from default list. DEFAULT is enabled by default. This represents number based axes.
 TIMESERIES is time based axes. For now it only reflects on X-Axis
 
 | Constant    | Value                   |
-| ----------- | ----------------------- |
+|-------------|-------------------------|
 | DEFAULT     | Numeric based X-axis    |
 | TIME_SERIES | Timeseries based X-axis |
+
+### `orientation`
 
 ## AXES_ORIENTATION
 
 Sets the orientation for Axes (X-Axis for now, for Right orientation use Y2 axis).
 
 | Constant | Value       |
-| -------- | ----------- |
+|----------|-------------|
 | X        | TOP, BOTTOM |
 | Y        | LEFT, RIGHT |
 
