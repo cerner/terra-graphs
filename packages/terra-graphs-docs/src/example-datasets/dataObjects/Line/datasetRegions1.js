@@ -23,7 +23,7 @@ const data = {
     },
   ],
   values: createGraphValuesWithSin({
-    length: 5, initialX: 85, xModifier: 50, yModifier: Math.PI * 3,
+    length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI,
   }),
 };
 
