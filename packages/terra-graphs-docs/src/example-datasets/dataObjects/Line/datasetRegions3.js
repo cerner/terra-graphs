@@ -11,7 +11,7 @@ const data = {
   color: Carbon.helpers.COLORS.ORANGE,
   onClick: loadPopup,
   values: createGraphValuesWithCos({
-    length: 6, initialX: 85, xModifier: 36, yModifier: Math.PI * 5,
+    length: 20, initialX: 85, xModifier: 10, yModifier: Math.PI,
   }),
   legendOptions: {
     showLine: true,
