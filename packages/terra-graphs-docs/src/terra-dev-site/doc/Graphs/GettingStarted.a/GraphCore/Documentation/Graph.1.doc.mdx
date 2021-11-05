@@ -69,10 +69,10 @@ const graphConfig = {
 | Property Name          | Expected | Default                                        | Required | Description                                                                           |
 |------------------------|----------|------------------------------------------------|----------|---------------------------------------------------------------------------------------|
 | axis                   | object   | -                                              | yes      | See [Axis](./Axes).                                                                   |
-| bindTo                 | string   | -                                              | yes      | DOM id to bind the graph into.                                                        |
+| bindTo                 | string   | -                                              | yes      | DOM ID to bind the graph container to.                                                |
 | allowCalibration       | boolean  | `true`                                         | no       | Toggle to allow calibration to adjust the y axis.                                     |
 | bindLegendTo           | string   | `null`                                         | no       | If DOM id provided, binds legend into that container (Example: `"#legendContainer"`). |
-| clickPassThrough       | object   | `{}`                                           | no       | See [clickPassThrough](./clickpassthrough).                                           |
+| clickPassThrough       | object   | `{}`                                           | no       | See [clickPassThrough](#clickpassthrough).                                            |
 | dateline               | array    | `[]`                                           | no       | See [Dateline](./Dateline).                                                           |
 | eventline              | array    | `[]`                                           | no       | See [Eventline](./Eventline).                                                         |
 | dimension              | object   | `{}`                                           | no       | See [dimension](#dimension).                                                          |
@@ -88,7 +88,7 @@ const graphConfig = {
 | showNoDataText         | boolean  | `true`                                         | no       | Toggle to show no data text.                                                          |
 | showShapes             | boolean  | `true`                                         | no       | Toggle to show shapes in the line graph.                                              |
 | showVGrid              | boolean  | `true`                                         | no       | Toggle to show vertical grid.                                                         |
-| ticksCount             | number   | `3`-`7` depending on the input range           | no       | See [ticksCount](#ticksCount).                                                        |
+| ticksCount             | number   | `3`-`7` depending on the input range           | no       | See [ticksCount](#tickscount).                                                        |
 
 - ### `clickPassThrough` 
 
