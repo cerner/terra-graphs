@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Fixed no error when passing empty string or undefined as label for x-axis.
+
 ## 2.18.2 - (October 12, 2021)
 
 * Changed

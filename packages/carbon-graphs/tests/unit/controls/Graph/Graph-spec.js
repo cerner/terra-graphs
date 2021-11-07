@@ -163,6 +163,19 @@ describe('Graph', () => {
           );
         }).toThrowError(errors.THROW_MSG_NO_AXIS_LIMIT_INFO);
       });
+      it('If x axis label is not present', () => {
+        expect(() => {
+          graph = new Graph(
+            getAxes({
+              x: {
+                lowerLimit: 0,
+                upperLimit: 20,
+              },
+              y: axisDefault.y,
+            }),
+          );
+        }).toThrowError(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
+      });
       it('If y axis label is not present', () => {
         expect(() => {
           graph = new Graph(
@@ -900,19 +913,6 @@ describe('Graph', () => {
         axisXElement.getAttribute('transform'),
       );
       expect(toNumber(translate[0], 10)).toBeCloserTo(55);
-      expect(toNumber(translate[1], 10)).toBeCloserTo(10);
-    });
-    it('Sets x axis position correctly when x axis label is hidden', () => {
-      const hiddenXLabelObj = utils.deepClone(axisDefault);
-      hiddenXLabelObj.x.orientation = AXES_ORIENTATION.X.TOP;
-      hiddenXLabelObj.x.label = '';
-      const input = getAxes(hiddenXLabelObj);
-      graph = new Graph(input);
-      const axisXElement = fetchElementByClass(styles.axisX);
-      const { translate } = getSVGAnimatedTransformList(
-        axisXElement.getAttribute('transform'),
-      );
-      expect(toNumber(translate[0], 10)).toBeCloserTo(67);
       expect(toNumber(translate[1], 10)).toBeCloserTo(10);
     });
   });

@@ -55,7 +55,7 @@ export default {
   THROW_MSG_NO_AXIS_LIMIT_INFO:
         'Invalid input format, axis limits must be provided.',
   THROW_MSG_NO_AXIS_LABEL_INFO:
-        'Invalid input format, axis labels must be provided.',
+        'Invalid input format, axis labels for all axes must be provided.',
   THROW_MSG_INVALID_TYPE: 'Invalid input format, type must be valid.',
   THROW_MSG_INVALID_AXIS_TYPE_VALUES:
         'Axis type invalid, bounds need to be in ISO8601 datetime format.',
