@@ -2,17 +2,12 @@
 
 Ticks and Grid lines representing Axes values.
 
--   [Ticks](#ticks)
-    -   [Overview](#overview)
-    -   [JSON Properties](#json-properties)
-        -   [Required](#required)
-        -   [Optional](#optional)
-        -   [Constraints](#constraints)
-        -   [Example](#example)
-            -   [Values example](#values-example)
-            -   [Datetime Buckets example](#datetime-buckets-example)
-                -   [Use Case](#use-case)
-    -   [Tick Values](#tick-values)
+-   [Overview](#overview)
+-   [Properties](#properties)
+-   [Tick Values](#tick-values)
+-   [Examples](#example)
+    -   [Values](#values)
+    -   [Datetime Buckets](#datetime-buckets)
 
 ## Overview
 
@@ -22,32 +17,51 @@ If there is only 1 axis in the graph, the tick intervals are calculated automati
 
 **Note:** If tick values are in between `[-0.5 < x < 0.5 and x != 0] or [-0.05 < x < 0.05 and x != 0]` and so on till `[-0.00005 < x < 0.00005 and x != 0]` which may lead to displaying multiple zeros on Y or Y2 axes, we set the formatting to be `-Math.floor(Math.log10(x))` decimal place.
 If consumers override the formatting in above situation which leads to multiple Zeros on Y or Y2 axes ticks, we honor that but add to our documentation a warning or fyi on what can happen and possible ways to fix it.
-## JSON Properties
 
-#### Required
+## Properties 
 
-| Property Name | Expected | Description                                                                                                                                                                                                                                                                                                                                              |
-| ------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| values        | array    | Ticks values in the axis. Each tick will have an associated grid line. If they are not provided, optional tick values need to exist.                                                                                                                                                                                                                     |
-| format        | string   | [Formatter](https://github.com/d3/d3-time-format/blob/master/README.md#locales) for tick values. `Note:` This is mandatory if values are provided. To suppress tick values's trailing zeros, specify '~' just before the format type. `Eg: format: "~r"`. Specifying ~ in the format takes precedence over the axis object `suppressTrailingZeros` prop. |
+* **Note** while the `ticks` object itself is optional, if it is proved then the required props must also be provided.
 
-#### Optional
+| Property Name       | Type   | Default | Required | Description                                                                                                                                                                                                                                                                                                                                              |
+|---------------------|--------|---------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| values              | array  | -       | yes*     | Ticks values in the axis. Each tick will have an associated grid line.                                                                                                                                                                                                                                                                                   |
+| format              | string | -       | yes      | [Formatter](https://github.com/d3/d3-time-format/blob/master/README.md#locales) for tick values. `Note:` This is mandatory if values are provided. To suppress tick values's trailing zeros, specify '~' just before the format type. `Eg: format: "~r"`. Specifying ~ in the format takes precedence over the axis object `suppressTrailingZeros` prop. |
+| lowerStepTickValues | array  | `[]`    | no*      | lower-Tick-Values in the axis. Each tick will have an associated grid line. When lowerTickValues are present, values are disregarded. Lighter when compared to upperTickValues but darker than midpointTickValues.                                                                                                                                       |
+| midpointTickValues  | array  | `[]`    | no*      | Mid-Tick-Values in the axis. Each tick will have an associated grid line. Lightest gray shade when compared to others. Uses the default coloring of values, if none of the `lowerTickValues`, `midTickValues` and `upperTickValues` are provided.                                                                                                        |
+| upperStepTickValues | array  | `[]`    | no*      | Upper-Tick-Values in the axis. Each tick will have an associated grid line. Much thicker and darker when compared with lowerTickValues, midTickValues and values axis.                                                                                                                                                                                   |
 
-| Property Name       | Expected | Default | Description                                                                                                                                                                                                                            |
-| ------------------- | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| lowerStepTickValues | array    | []      | Lower-Tick-Values in the axis. Each tick will have an associated grid line. When lowerTickValues are present, values are disregarded. Lighter when compared to upperTickValues but darker than midpointTickValues.                                                       |
-| midpointTickValues  | array    | []      | Mid-Tick-Values in the axis. Each tick will have an associated grid line. Lightest gray shade when compared to others. Uses the default coloring of values, if none of the lowerTickValues, midTickValues and upperTickValues are provided |
-| upperStepTickValues | array    | []      | Upper-Tick-Values in the axis. Each tick will have an associated grid line. Much thicker and darker when compared with lowerTickValues, midTickValues and values axis.                                                                 |
+  - ***note**: If `values` is not provided then at least one of `lowerStepTickValues`, `midpointTickValues`, `upperStepTickValues` needs to be provided instead.
+  - When using `values`/`lowerStepTickValues` and/or`midpointTickValues`, `upperStepTickValues` it is the consumers' responsibility to ensure that there is no overlap among these values.
+  -   `midpointTickValues` do not have an associated tick label on the X Axis. They are supposed to denote a separation between Lower Step and Upper Step or consecutive Lower Steps/Upper Steps.
 
-#### Constraints
+## Tick Values
 
--   When both `lowerStepTickValues` and `values` properties are provided, preference is given to the former and we disregard `values`.
--   When using `values`/`lowerStepTickValues` and one of the following: `midpointTickValues`, `upperStepTickValues` it is the consumers' responsibility to ensure that the datetime values provided do not overlap with each other.
--   `midpointTickValues` do not have an associated tick label on the X Axis. They are supposed to denote a separation between Lower Step and Upper Step or consecutive Lower Steps/Upper Steps.
+The tick values are set using one of 3 methods in the following priority:
 
-#### Example
+-   **Consumer provided values**:
 
-##### Values example
+    Consumer-provided-values in `axis.y.ticks.values` and `axis.y2.ticks.values` will take highest priority if it is set.
+    -   When both `lowerStepTickValues` and `values` properties are provided, then `values` is ignored.
+
+-   **ticksCount property**
+
+    If no values are provided and the ticksCount property is set, then it will be used to calculate tick values by dividing `upperLimit - lowerLimit` into `ticksCount + 1` equal divisions.
+
+    If ticksCount is an invalid value, such as greater than `TICKSCOUNT_MAXLIMIT`, then this property will be ignored and the default behavior will be used.
+
+    If `axis.y.ticks.values` AND `ticksCount` are both provided, then `ticksCount` will be ignored in favor of the custom values.
+
+-   **Default**
+
+     If neither `ticksCount` nor custom tick values are provided, then the default behavior is as follows:
+
+    - If the Y2 Axis is visible, then Carbon will calculate and use a ticksCount value, based on the ranges of Y and Y2.
+
+    - Else if there is no Y2 axis and `ticksCount = undefined`, Carbon will use D3.js to automatically find the tick values.
+
+## Examples
+
+### Values
 
 ```javascript
 var axis = {
@@ -70,9 +84,7 @@ var axis = {
 };
 ```
 
-##### Datetime Buckets example
-
-###### Use Case
+### Datetime Buckets
 
 **Note:** Usage of datetime buckets are very use case specific. One such use case is described below:
 
@@ -111,26 +123,4 @@ var axis = {
 };
 ```
 
-## Tick Values
 
-The tick values are set using one of 3 methods in the following priority:
-
--   **Consumer provided values**:
-
-    Consumer provided values in `axis.y.ticks.values` and `axis.y2.ticks.values` will take highest priority if it is set.
-
--   **ticksCount property**
-
-    If no values are provided and the ticksCount property is set, then it will be used to calculate tick values by dividing `upperLimit - lowerLimit` into `ticksCount + 1` equal divisions.
-
-    If ticksCount is an invalid value, such as greater than `TICKSCOUNT_MAXLIMIT`, then this property will be ignored and the default behavior will be used.
-
-    If `axis.y.ticks.values` AND `ticksCount` are both provided, then `ticksCount` will be ignored in favor of the custom values.
-
--   **Default**
-
-     If neither `ticksCount` nor custom tick values are provided, then the default behavior is as follows:
-
-    - If the Y2 Axis is visible, then Carbon will calculate and use a ticksCount value, based on the ranges of Y and Y2.
-
-    - Else if there is no Y2 axis and `ticksCount = undefined`, Carbon will use D3.js to automatically find the tick values.
