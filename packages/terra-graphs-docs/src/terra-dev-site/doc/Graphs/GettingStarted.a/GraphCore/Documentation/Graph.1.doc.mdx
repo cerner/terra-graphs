@@ -1,96 +1,151 @@
 # Graph
 
-Graph is a set of graphs that share a common set of base visualization structure. These include:
+The graph configuration object has a set of properties for the underlying grid of a graph. 
+It hold various properties to configure a grid. 
 
--   X Axis
--   Y Axis
--   Vertical Grid
--   Horizontal Grid
--   X Axis labels
--   Y Axis labels
--   Legend
+-   [Valid Graphs](#valid-graphs)
+-   [Configuration Structure](#configuration-structure)
+-   [Configuration Properties](#configuration-properties)
+    -   [clickPassThrough](#clickpassthrough)
+    -   [dimension](#dimension)
+    -   [legendPadding](#legendpadding)
+    -   [ticksCount](#tickscount)
 
--   [Graph](#Graph)
-    -   [Root](#root)
-        -   [Required](#required)
-        -   [Optional](#optional)
-    -   [Dimension](#dimension)
-        -   [Required](#required-1)
-        -   [Optional](#optional-1)
-    -   [Structure](#structure)
-## Root Properties
+## Valid Graphs
 
-### Required
+It is required for the following graphs:
 
-| Property Name | Expected | Description                                                                                                                                    |
-| ------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| bindTo        | string   | DOM id to bind the graph into                                                                                                                  |
-| axis          | object   | Refer [Axis](./Axes)                                                                                                               |
-| data          | array    | Refer respective graph content `data` section. This is _not_ an actual object property rather this is provided as a parameter to `loadContent` |
+- [Bar](../../../bar-graph/about)
+- [Bubble](../../../bubble-graph/about)
+- [Combination](../../../combination/about)
+- [Line](../../../line-graph/about)
+- [Paired Result](../../../paired-result-graph/about)
+- [Scatter](../../../scatter-graph/about)
 
-### Optional
 
-| Property Name          | Expected | Default                                        | Description                                                                                                                                                                                 |
-| ---------------------- | -------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| allowCalibration       | boolean  | true                                           | Toggle to allow calibration to adjust the y axis                                                                                                                                            |
-| bindLegendTo           | string   | null                                           | If DOM id provided, binds legend into that container (Example: `"#legendContainer"`)                                                                                                        |
-| dateline               | array    | []                                             | Refer [Dateline](./Dateline)                                                                                                                                                    |
-| dimension              | object   | {}                                             | Refer [Dimension](#dimension)                                                                                                                                                               |
-| legendPadding          | object   | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | Sets the legend padding and removes the carbon default margin of 8px around legend                                                                                                          |
-| locale                 | object   | LOCALE.en_US                                   | Locale object for X-Axis tick values                                                                                                                                                        |
-| opaqueBackground       | false    | false                                          | Toggle between a transparent or White background for the container                                                                                                                          |
-| padding                | object   | `{ top: 10, bottom: 10, left: 30, right: 50 }` | Refer [Padding](./Padding)                                                                                                                                                     |
-| pan                    | object   | {}                                             | Refer [Panning](./Panning)                                                                                                                                                     |
-| removeContainerPadding | boolean  | false                                          | Toggle to remove carbon container top and bottom padding                                                                                                                                    |
-| showHGrid              | boolean  | true                                           | Toggle to show horizontal grid                                                                                                                                                              |
-| showLabel              | boolean  | true                                           | Toggle to show axes labels                                                                                                                                                                  |
-| showLegend             | boolean  | true                                           | Toggle to show graph legend                                                                                                                                                                 |
-| showNoDataText         | boolean  | true                                           | Toggle to show no data text                                                                                                                                                                 |
-| showShapes             | boolean  | true                                           | Toggle to show shapes in the line graph                                                                                                                                                     |
-| showVGrid              | boolean  | true                                           | Toggle to show vertical grid                                                                                                                                                                |
-| ticksCount             | number   | 3-7 depending on the input range               | Number of ticks (0-19) to show on the vertical axes, excluding the upper and lower limits, if not provided, the number of ticks will be set to a value from 3-7, based on the Y & Y2 range. |
-| throttle               | number   | (1000/60) => time in ms                        | Delay between resize of a browser window                                                                                                                                                    |
-
-## Dimension
-
-### Required
-
-`N/A`
-
-### Optional
-
-| Property Name | Expected | Default | Description                           |
-| ------------- | -------- | ------- | ------------------------------------- |
-| height        | number   | 250     | Sets the height for the graph content |
-
-## Structure
-
-```javascript
-var input = {
-    bindTo: "#root",
-    axis: {
-        x: {
-            type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
-            label: "Some X Label",
-            lowerLimit: "2016-01-01T12:00:00Z",
-            upperLimit: "2017-01-01T12:00:00Z"
-        },
-        y: {
-            label: "Some Y Label",
-            lowerLimit: 0,
-            upperLimit: 20
-        },
-        y2: {
-            show: false,
-            label: "Some Y2 Label",
-            lowerLimit: 0,
-            upperLimit: 250
-        }
+## Configuration Structure
+```js
+const graphConfig = {
+    axis: <Axis object>,
+    bindTo: <string>,
+    allowCalibration: <bool>,
+    bindLegendTo: <string>,
+    clickPassThrough: {
+      datelines: <bool>,
+      eventlines: <bool>,
+    }
+    dateline: <Dateline object>,
+    eventline: <Eventlines object>,
+    legendPadding: { 
+      top: <number>, 
+      bottom: <number>, 
+      left: <number>, 
+      right: <number> 
     },
-    showLabel: true,
-    showLegend: true,
-    showShapes: true,
-    showVGrid: true,
-    showHGrid: true
-};
+    locale: <locale object>,
+    padding: { 
+      top: <number>, 
+      bottom: <number>, 
+      left: <number>, 
+      right: <number> 
+    },
+    pan: {
+      enabled: <bool>
+    },
+    removeContainerPadding: <bool>,
+    showHGrid: <bool>,
+    showLabel: <bool>,
+    showLegend: <bool>,
+    showNoDataText: <bool>,
+    showShapes: <bool>,
+    showLabel: <bool>,
+    showVGrid: <bool>,
+    ticksCount: <number>
+}
 ```
+
+## Configuration Properties
+
+| Property Name          | Expected | Default                                        | Required | Description                                                                           |
+|------------------------|----------|------------------------------------------------|----------|---------------------------------------------------------------------------------------|
+| axis                   | object   | -                                              | yes      | See [Axis](./Axes).                                                                   |
+| bindTo                 | string   | -                                              | yes      | DOM ID to bind the graph container to.                                                |
+| allowCalibration       | boolean  | `true`                                         | no       | Toggle to allow calibration to adjust the y axis.                                     |
+| bindLegendTo           | string   | `null`                                         | no       | If DOM id provided, binds legend into that container (Example: `"#legendContainer"`). |
+| clickPassThrough       | object   | `{}`                                           | no       | See [clickPassThrough](#clickpassthrough).                                            |
+| dateline               | array    | `[]`                                           | no       | See [Dateline](./Dateline).                                                           |
+| eventline              | array    | `[]`                                           | no       | See [Eventline](./Eventline).                                                         |
+| dimension              | object   | `{}`                                           | no       | See [dimension](#dimension).                                                          |
+| legendPadding          | object   | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | no       | Sets the legend padding and removes the carbon default margin of `8px` around legend. |
+| locale                 | object   | `LOCALE.en_US`                                 | no       | Locale object for x-Axis tick values.                                                 |
+| opaqueBackground       | false    | `false`                                        | no       | Toggle between a `transparent` or `white` background for the container.               |
+| padding                | object   | `{ top: 10, bottom: 10, left: 30, right: 50 }` | no       | See [Padding](./Padding).                                                             |
+| pan                    | object   | `{}`                                           | no       | See [Panning](./Panning).                                                             |
+| removeContainerPadding | boolean  | `false`                                        | no       | Toggle to remove the top and bottom padding of the carbon container.                  |
+| showHGrid              | boolean  | `true`                                         | no       | Toggle to show horizontal grid.                                                       |
+| showLabel              | boolean  | `true`                                         | no       | Toggle to show axes labels.                                                           |
+| showLegend             | boolean  | `true`                                         | no       | Toggle to show graph legend.                                                          |
+| showNoDataText         | boolean  | `true`                                         | no       | Toggle to show no data text.                                                          |
+| showShapes             | boolean  | `true`                                         | no       | Toggle to show shapes in the line graph.                                              |
+| showVGrid              | boolean  | `true`                                         | no       | Toggle to show vertical grid.                                                         |
+| ticksCount             | number   | `3`-`7` depending on the input range           | no       | See [ticksCount](#tickscount).                                                        |
+
+- ### `clickPassThrough` 
+
+  | Property Name | Expected | Default | Required | Description                                                 |
+  |---------------|----------|---------|----------|-------------------------------------------------------------|
+  | datelines     | object   | null    | no       | Toggle for allowing click events to items below datelines.  |
+  | eventlines    | object   | null    | no       | Toggle for allowing click events to items below eventlines. |
+
+  The following is a table of how `clickPassThrough` works:
+
+  ##### `dateline`
+
+  | `clickPassThrough.dateline` Value | `onClick` function | Result                                                                                                             |
+  |-----------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|
+  | `true`                            | defined            | `onClick` function is executed  and cursor pointer is visible top of the element.                                  |
+  | `true`                            | `undefined`        | The element beneath it is clickable. If the bottom element is selectable, then the cursor pointer is also visible. |
+  | `false`                           | defined            | `onClick` function is executed  and cursor pointer is visible top of the element.                                  |
+  | `false`                           | `undefined`        | All mouse events are disabled.                                                                                     |
+
+  ##### `eventline`
+  | `clickPassThrough.eventline` Value | Result                                                                                                       |
+  |------------------------------------|--------------------------------------------------------------------------------------------------------------|
+  | `true`                             | Clicking underneath the element is allowed and if bottom element is selectable, then the pointer is visible. |
+  | `false`                            | All mouse events are disabled.                                                                               |
+
+
+- ### `dimension`
+  **type:** object  
+
+  | Property Name | Type   | Required | Description                   |
+  |---------------|--------|----------|-------------------------------|
+  | height        | number | no       | Sets the height of the graph. |
+
+
+- ### `legendPadding`
+    **type:** object  
+
+  Sets the legend padding and removes the carbon default margin of `8px` around legend.
+
+  ```json
+    legendPadding: { 
+      top: <number>, 
+      bottom: <number>, 
+      left: <number>, 
+      right: <number> 
+    }
+  ```
+
+  | Property Name | Type   | Required | Default | Description                         |
+  |---------------|--------|----------|---------|-------------------------------------|
+  | top           | number | no       | `4`     | Top padding of legend container.    |
+  | bottom        | number | no       | `4`     | Bottom padding of legend container. |
+  | left          | number | no       | `8`     | Left padding of legend container.   |
+  | right         | number | no       | `8`     | Right padding of legend container.  |
+
+- ### `ticksCount`
+  **type:** number  
+
+  Number of ticks (0-19) to show on the vertical axes, excluding the upper and lower limits, if not provided, the number of ticks will be set to a value from 3-7, based on the `Y` & `Y2` range.
+  See [Ticks](./Ticks) for more information on how this is used with the Ticks object.

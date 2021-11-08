@@ -57,3 +57,4 @@
   * Updated Bubble graph documentation to include api information.
   * Updated datasets to fix incorrect line graph examples.
   * Updated Combination graph documentation to include api information.
+  * Updated Getting Started documentation to be consistent with the rest of the graph docs.
