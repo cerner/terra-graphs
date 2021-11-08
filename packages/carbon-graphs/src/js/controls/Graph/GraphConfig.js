@@ -287,6 +287,9 @@ class GraphConfig extends BaseConfig {
     ) {
       throw new Error(errors.THROW_MSG_NO_AXIS_LIMIT_INFO);
     }
+    if (utils.isEmpty(this.input.axis.x.label)) {
+      throw new Error(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
+    }
     if (utils.isEmpty(this.input.axis.y.label)) {
       throw new Error(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
     }
