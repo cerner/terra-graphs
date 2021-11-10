@@ -305,55 +305,57 @@ const track = {
 | tasks         | array    | no       | `[ ]`       | See [tasks](#tasks).                                                        |
 
 
-- ### `actions`
-  **type:** array  
+  - ### `actions`
+    **type:** array  
 
-  ```json
-  action: {
-    key: <string>,
-    values: [<string>],
-    onClick: <function>
-  }
-  ```
-  | Property Name | Type     | Required               | Default     | Description                                                                 |
-  |---------------|----------|------------------------|-------------|-----------------------------------------------------------------------------|
-  | key           | string   | yes                    | -           | Unique id which needs to be same as `key` in `actionLegend`                 |
-  | values        | array    | yes                    | -           | List of string (ISO8601) where a data point `action` needs to be placed     |
-  | onClick       | function | conditionally required | `undefined` | Function to execute upon clicking a datapoint, such as, to display a popup. |
+    ```json
+    action: {
+      key: <string>,
+      values: [<string>],
+      onClick: <function>
+    }
+    ```
+    | Property Name | Type     | Required               | Default     | Description                                                                 |
+    |---------------|----------|------------------------|-------------|-----------------------------------------------------------------------------|
+    | key           | string   | yes                    | -           | Unique id which needs to be same as `key` in `actionLegend`                 |
+    | values        | array    | yes                    | -           | List of string (ISO8601) where a data point `action` needs to be placed     |
+    | onClick       | function | conditionally required | `undefined` | Function to execute upon clicking a datapoint, such as, to display a popup. |
 
-  If `clickPassThrough.actions` is `true`, `onClick` parameter would be required for any non-pass through operations.
+    If `clickPassThrough.actions` is `true`, `onClick` parameter would be required for any non-pass through operations.
 
 
 - ### `activities`
-**type:** object  
+  **type:** object  
 
-    An activity is a `background-bar` along the track. This represents the overall background process which may encapsulate one or more tasks.
+  An activity is a `background-bar` along the track. This represents the overall background process which may encapsulate one or more tasks.
 
-    -   An `activity` needs a start and end date.
-    -   An `activity` will not be selectable.
-    -   If start date is not provided, a `duration` needs to be provided
-    -   If end date is not provided, a `duration` needs to be provided
-    -   If start and end date are same then a fixed width `chunk` is created
-    -   Start and End date does not encapsulate the underlying tasks.
+  -   An `activity` needs a start and end date.
+  -   An `activity` will not be selectable.
+  -   If start date is not provided, a `duration` needs to be provided.
+  -   If end date is not provided, a `duration` needs to be provided.
+  -   If start and end date are same then a fixed width `chunk` is created.
+  -   Start and End date does not encapsulate the underlying tasks.
 
-    An activity can be styled as follows:
+  An activity can be styled as follows:
+    -   A `bar` can be `Hashed`.
 
-    -   A `bar` can be `Hashed`
-
-    ```json
-      activities: {
-          key: <string>,
-          startDate: <Date>,
-          endDate: <Date>,
-          color: <string>,
-          duration: <function>,
-          label: {
-            display: <string>
-          },
-          style: {
-            isHashed: <bool>
-          },
+  The structure of an activity object is as follows:
+  ```json
+    activities: [
+      {
+        key: <string>,
+        startDate: <Date>,
+        endDate: <Date>,
+        color: <string>,
+        duration: <function>,
+        label: {
+          display: <string>
+        },
+        style: {
+          isHashed: <bool>
+        },
       }
+    ]
     ```
 
     | Property Name | Type     | Required | Default            | Description                                                                                  |
@@ -367,36 +369,36 @@ const track = {
     | style         | object   | no       | `{isHashed: true}` | Styling for the bar. Has a `isHashed` property that can be set to true or false.             |
 
 
-- ### `dimension`
-**type:** object  
+  - ### `dimension`
+  **type:** object  
 
-  ```json
-    dimension: {
-        trackHeight: <number>
-    }
-  ```
-
-  | Property Name | Type   | Required | Default   | Description                                  |
-  |---------------|--------|----------|-----------|----------------------------------------------|
-  | trackHeight   | number | yes      | `41` (px) | Sets the height for the gantt track content. |
-
-
-- ### `events`
-
-  ```json
-  events: [
-      {
-        key: <string>,
-        values: [<string>],
-        shape: <string>,
-        color: <string>,
-        duration: <string>,
-        label: {
-          display: <string>
-        },
-        onClick: <string>,
+    ```json
+      dimension: {
+          trackHeight: <number>
       }
-    ]
+    ```
+
+    | Property Name | Type   | Required | Default   | Description                                  |
+    |---------------|--------|----------|-----------|----------------------------------------------|
+    | trackHeight   | number | yes      | `41` (px) | Sets the height for the gantt track content. |
+
+
+  - ### `events`
+
+    ```json
+    events: [
+        {
+          key: <string>,
+          values: [<string>],
+          shape: <string>,
+          color: <string>,
+          duration: <string>,
+          label: {
+            display: <string>
+          },
+          onClick: <string>,
+        }
+      ]
   ```
 
   | Property Name | Type     | Required               | Default       | Description                                                                 |
@@ -416,53 +418,54 @@ const track = {
 
   A Task is a `foreground-bar` along the track. This represents a unit of work.
 
-  -   A `task` needs a start and end date.
-  -   If start date is not provided, a `duration` needs to be provided
-  -   If end date is not provided, a `duration` needs to be provided
-  -   Providing a `percentage` transforms a `bar` into a Percentage Bar
-  -   If start and end date are same then a fixed width `chunk` is created
+    -   A `task` needs a start and end date.
+    -   If start date is not provided, a `duration` needs to be provided.
+    -   If end date is not provided, a `duration` needs to be provided.
+    -   Providing a `percentage` transforms a `bar` into a Percentage Bar.
+    -   If start and end date are same then a fixed width `chunk` is created.
 
   A task can be styled as follows:
+    -   A `bar` can be `Hollow`.
+    -   A `bar` can be `Dotted`.
+    -   A `bar` can be `Hashed`.
 
-  -   A `bar` can be `Hollow`
-  -   A `bar` can be `Dotted`
-  -   A `bar` can be `Hashed`
+  The structure of a task object is as follows:
 
-  ```json
-    tasks: [
-      {
-        key: <string>,
-        startDate: <string>,
-        endDate: <string>,
-        color: <string>,
-        duration: <function>,
-        label: {
-          display: <string>
-        },
-        onClick: <function>,
-        percentage: <number>,
-        style: {
-          isDotted: <bool>, 
-          isHollow: <bool>, 
-          isHashed: <bool>
-        },  
-      }
-    ]
-  ```
+    ```json
+      tasks: [
+        {
+          key: <string>,
+          startDate: <string>,
+          endDate: <string>,
+          color: <string>,
+          duration: <function>,
+          label: {
+            display: <string>
+          },
+          onClick: <function>,
+          percentage: <number>,
+          style: {
+            isDotted: <bool>, 
+            isHollow: <bool>, 
+            isHashed: <bool>
+          },  
+        }
+      ]
+    ```
 
-  | Property Name | Type     | Required               | Default                                            | Description                                                                                     |
-  |---------------|----------|------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------|
-  | key           | string   | yes                    | -                                                  | Unique id which represents the task.                                                            |
-  | startDate     | Date     | yes                    | -                                                  | Task start date or `duration`.                                                                  |
-  | endDate       | Date     | yes                    | -                                                  | Task end date or `duration`.                                                                    |
-  | color         | string   | no                     | `COLORS.BLUE`                                      | Color for the bar.                                                                              |
-  | duration      | function | no                     | `undefined`                                        | Function that returns a number that is relative to start or end date.                           |
-  | label         | object   | no                     | `{ }`                                              | `display` property needs to be provided for label.                                              |
-  | onClick       | function | conditionally required | `undefined`                                        | Any action that can be performed when clicking on the task                                      |
-  | percentage    | number   | no                     | `null`                                             | Transforms `bar` into Percentage bar and fill the bar with color opted for in `color` property. |
-  | style         | object   | no                     | `{isDotted: true, isHollow: true, isHashed: true}` | Styling for `bar`. Has 3 bool props: `isDotted`, `isHollow`, `isHashed`.                        |
+    | Property Name | Type     | Required               | Default                                            | Description                                                                                     |
+    |---------------|----------|------------------------|----------------------------------------------------|-------------------------------------------------------------------------------------------------|
+    | key           | string   | yes                    | -                                                  | Unique id which represents the task.                                                            |
+    | startDate     | Date     | yes                    | -                                                  | Task start date or `duration`.                                                                  |
+    | endDate       | Date     | yes                    | -                                                  | Task end date or `duration`.                                                                    |
+    | color         | string   | no                     | `COLORS.BLUE`                                      | Color for the bar.                                                                              |
+    | duration      | function | no                     | `undefined`                                        | Function that returns a number that is relative to start or end date.                           |
+    | label         | object   | no                     | `{ }`                                              | `display` property needs to be provided for label.                                              |
+    | onClick       | function | conditionally required | `undefined`                                        | Any action that can be performed when clicking on the task                                      |
+    | percentage    | number   | no                     | `null`                                             | Transforms `bar` into Percentage bar and fill the bar with color opted for in `color` property. |
+    | style         | object   | no                     | `{isDotted: true, isHollow: true, isHashed: true}` | Styling for `bar`. Has 3 bool props: `isDotted`, `isHollow`, `isHashed`.                        |
 
-If `clickPassThrough.tasks` is `true`, `onClick` parameter would be required for any non-pass through operations.
+  If `clickPassThrough.tasks` is `true`, `onClick` parameter would be required for any non-pass through operations.
 
 
 - ### `trackLabel`
