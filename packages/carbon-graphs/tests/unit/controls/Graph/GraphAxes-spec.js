@@ -933,7 +933,7 @@ describe('Graph - Axes', () => {
           upperLimit: 1,
         };
       });
-      it('Should create correct format, When consumer does not provide format', () => {
+      it('Should use correct format, when consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -943,7 +943,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y.ticks.format,
         ).toBe('.2f');
       });
-      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+      it('Should use correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y.suppressTrailingZeros = true;
         graph = new Graph(
           ({
@@ -964,7 +964,7 @@ describe('Graph - Axes', () => {
           upperLimit: 0.1,
         };
       });
-      it('Should create correct format, When consumer does not provide format', () => {
+      it('Should use correct format, when consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -974,7 +974,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y.ticks.format,
         ).toBe('.3f');
       });
-      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+      it('Should use correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y.suppressTrailingZeros = true;
         graph = new Graph(
           ({
@@ -1005,7 +1005,7 @@ describe('Graph - Axes', () => {
           upperLimit: 1,
         };
       });
-      it('Should create correct format, When consumer does not provide format', () => {
+      it('Should use correct format, when consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -1015,7 +1015,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y2.ticks.format,
         ).toBe('.2f');
       });
-      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+      it('Should use correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y2.suppressTrailingZeros = true;
         graph = new Graph(
           ({
@@ -1037,7 +1037,7 @@ describe('Graph - Axes', () => {
           upperLimit: 0.1,
         };
       });
-      fit('Should create correct format, When consumer does not provide format', () => {
+      fit('Should use correct format, when consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -1047,7 +1047,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y2.ticks.format,
         ).toBe('.3f');
       });
-      fit('Should create correct format, when suppress trailing zeros is set to true', () => {
+      fit('Should use correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y2.suppressTrailingZeros = true;
         graph = new Graph(
           ({
