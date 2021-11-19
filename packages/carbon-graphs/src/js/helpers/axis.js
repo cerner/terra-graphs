@@ -296,10 +296,9 @@ const getYAndY2AxisFormat = (tickValues, axisData) => {
     } else {
       format = `.${tickDecimalMagnitude % 10}f`;
     }
-    return format;
   }
 
-  return undefined;
+  return format;
 };
 /**
  * Generates an array of tick values for to be used as the
