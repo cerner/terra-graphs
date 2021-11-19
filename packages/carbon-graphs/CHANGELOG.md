@@ -5,6 +5,11 @@
 * Changed
   * Updated logic for displaying multiple zeros on Y and Y2 axis ticks.
   
+## 2.20.0 - (November 16, 2021)
+
+* Changed
+  * Updated terra functional testing to 2.0
+
 ## 2.19.0 - (November 9, 2021)
 
 * Changed
