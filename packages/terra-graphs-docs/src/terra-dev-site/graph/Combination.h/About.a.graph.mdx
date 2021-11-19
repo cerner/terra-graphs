@@ -1,0 +1,148 @@
+import CombinationGraph from '../example/Graphs-Carbon/CombinationGraph/BasicCombinationGraphs/BarGraphWithLine?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Combination/combinationDefault.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/barDataset.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Combination/lineDataset1.js?dev-site-codeblock';
+require('details-polyfill')
+
+# Combination
+
+A combination graph is built by combining two different native graphs(line, bar, paired result etc) build using D3 based on standard design patterns.
+
+-   We can draw different combinations of graphs. i.e. We can draw a _Combination graph_ with _2 Bar graphs_ or _1 Bar graph_ and _1 line graph_ without ever needing to building those natively in Carbon.
+-   We can draw different combinations of graph in any order necessary.
+
+-   [Combination](#combination)
+    -   [Getting Started](#getting-started)
+    -   [Usage](#usage)
+    -   [Configuration Structure](#configuration-structure)
+    -   [Configuration properties](#configuration-properties)
+    -   [Dataset Structure](#dataset-structure)
+    -   [Dataset Properties](#dataset-properties)
+        -  [Constraints](#constraints)
+    -  [Example](#example)
+
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+
+An instance of Combination graph is obtained as follows:
+
+```js
+Carbon.api.line(/* dataset1 */)
+Carbon.api.bar(/* dataset2 */)
+```
+A Combination graph can be plotted as follows:
+
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+const graph = Carbon.api.graph(/* graph config JSON */);
+graph.loadContent(Carbon.api.line(/* dataset 1 */));
+
+// Additional graph types can be added:
+graph.loadContent(Carbon.api.bar(/* dataset 2 */));
+graph.loadContent(Carbon.api.pairedResult(/* dataset 3 */));
+```
+
+## Configuration Structure
+
+You will **not** need all the properties in the example below.
+Check [Graph](../core-configuration/Documentation/Graph) for graph configuration properties.
+
+```js
+var root = {
+    bindTo: <String>,
+    axis: {
+        x: {
+            type: <string>,
+            label: <string>,
+            lowerLimit: <number> or <Date>,
+            upperLimit: <number> or <Date>,
+        },
+        y: {
+            label: <string>,
+            lowerLimit: <number>,
+            upperLimit: <number>,
+        },
+        y2: {
+            show: <bool>,
+            label: <string>,
+            lowerLimit: <number>,
+            upperLimit: <number>,
+        }
+    },
+    dateline: [
+        {
+            showDatelineIndicator: <bool>,
+            label: {
+                display: <string>
+            },
+            color: <hex value as string>,
+            shape: <shape SVG>,
+            onClick: <function>,
+            value: <date object>
+        }
+    ],
+    clickPassThrough: {
+        datelines: <bool>
+    },
+    showLabel: <bool>,
+    showLegend: <bool>,
+    showShapes: <bool>,
+    showVGrid: <bool>,
+    showHGrid: <bool>,
+};
+```
+
+## Configuration Properties
+
+See [Graph](../core-configuration/Documentation/Graph) for graph configuration properties.
+
+
+## Dataset Structure
+
+- Please refer the  graphs below to see their respective data structure.
+
+  - [Line graph](../line-graph/about#dataset-structure)
+  - [Bar graph](../bar-graph/about#dataset-structure)
+  - [Paired result graph](../paired-result-graph/about#dataset-structure)
+  - [Bubble graph](../bubble-graph/about#dataset-structure)
+  - [Scatter graph](../scatter-graph/about#dataset-structure)
+
+## Dataset Properties
+
+- Please refer the graphs below to see their respective data structure.
+  - [Line graph](../line-graph/about#dataset-properties)
+  - [Bar graph](../bar-graph/about#dataset-properties)
+  - [Paired result graph](../paired-result-graph/about#dataset-properties)
+  - [Bubble graph](../bubble-graph/about#dataset-properties)
+  - [Scatter graph](../scatter-graph/about#dataset-properties)
+
+- ### Constraints
+    -   A `Gantt` chart **cannot** be combined with a `Line` graph -> `Line` needs a X and Y axis whereas `Gantt` chart Construct only has X Axis when drawn.
+    -   A `Timeline` graph **cannot** be combined with a `Line` graph -> `Line` needs a X and Y axis whereas `Timeline` graph doesn't have a Y Axis.
+    -   A `Line` graph **can** be combined with a `Bar` or `Paired Result`.
+
+## Example
+<CombinationGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+#### Bar Dataset
+<DataObject1 />
+
+#### Line Dataset
+<DataObject2 />
+</details>
+

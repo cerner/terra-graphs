@@ -1,0 +1,40 @@
+import BubbleMultipleDatasetExample from '../example/Graphs-Carbon/BubbleGraph/Reflow/MultipleDatasets?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Bubble/simplePanningAxisData?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataBasic?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Bubble/bubbleDataCustomRadius?dev-site-codeblock';
+require('details-polyfill')
+
+# Bubble Graph Panning - Multiple datasets
+
+This is a bubble graph example that implements panning with multiple datasets.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+
+```jsx
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+
+## Example
+<BubbleMultipleDatasetExample />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+#### Bubble Set A Dataset
+<DataObject1 />
+
+#### Bubble Set B Dataset
+<DataObject2 />
+</details>

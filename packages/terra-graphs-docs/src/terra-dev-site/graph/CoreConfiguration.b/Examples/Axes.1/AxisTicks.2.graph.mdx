@@ -1,0 +1,63 @@
+import StaticXAxisTicksGraph from '../../../example/Graphs-Carbon/General/Axes/StaticXAxisTicks?dev-site-example';
+import StaticXAxisTicksGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries.js?dev-site-codeblock';
+import XAxisTicksFormattedGraph from '../../../example/Graphs-Carbon/General/Axes/XAxisTicksFormatted?dev-site-example';
+import XAxisTicksFormattedGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseries.js?dev-site-codeblock';
+import SuppressTickValueTrailingZeroGraph from '../../../example/Graphs-Carbon/General/Axes/SuppressTickValueTrailingZero?dev-site-example';
+import SuppressTickValueTrailingZeroGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/General/generalDefaultDecimalAxes.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Axis Ticks
+
+Axis ticks contains simple graph examples with static x-axis ticks, formatted ticks and suppress tick values trailing zeros.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+
+## Examples
+<StaticXAxisTicksGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data used for static x-axis ticks</b>
+</summary>
+
+### Graph Config object
+<StaticXAxisTicksGraphConfig />
+
+</details>
+
+<br/><br/><br/>
+
+<XAxisTicksFormattedGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data used for x-axis ticks formatted </b>
+</summary>
+
+### Graph Config object
+<XAxisTicksFormattedGraphConfig />
+
+</details>
+
+<br/><br/><br/>
+
+<SuppressTickValueTrailingZeroGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data used for suppress tick value trailing zero's</b>
+</summary>
+
+### Graph Config object
+<SuppressTickValueTrailingZeroGraphConfig />
+
+</details>

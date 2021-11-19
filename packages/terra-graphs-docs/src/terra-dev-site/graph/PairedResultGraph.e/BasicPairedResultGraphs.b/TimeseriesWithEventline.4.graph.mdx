@@ -1,0 +1,34 @@
+import PairedResultGraph from '../../example/Graphs-Carbon/PairedResultGraph/BasicPairedResultGraphs/TimeseriesWithEventline?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseriesWithEventline.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultTimeseriesData.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Timeseries with eventline
+
+This is a timeseries paired result graph with eventlines in it.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+
+## Example
+<PairedResultGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>
