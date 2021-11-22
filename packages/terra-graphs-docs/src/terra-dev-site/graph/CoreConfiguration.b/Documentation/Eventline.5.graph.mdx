@@ -1,0 +1,47 @@
+# Eventline
+
+An `Eventline` is a dotted line (by default) used to show an event occurring at a specific time.
+Unlike `Dateline`, `Eventline` does not have an indicator and therefore is not interactable.
+Consumers is expected to define the use-case accordingly.
+
+If `eventLine` is provided then the `value` property is mandatory.
+
+When using Eventline with graph then `x axis type` must be **timeseries**.
+
+-   [Structure](#structure)
+-   [Properties](#properties)
+    -   [style](#style)
+
+
+## Structure
+
+  ```json
+    dateline:[
+      {
+        color: <hex value as string>,
+        value: <Date>,
+        style: <style object>
+      }
+    ]
+  ```
+
+## Properties
+
+| Property Name | Type             | Default                    | Required | Description                                                                                  |
+|---------------|------------------|----------------------------|----------|----------------------------------------------------------------------------------------------|
+| color         | string (ISO8601) | -                          | yes      | Value for the color of the eventline. Can be a hex value or constant from [Colors](./colors). |
+| value         | Date             | -                          | yes      | Position where eventline needs to be placed.                                                 |
+| style         | object           | `{strokeDashArray: "2,2"}` | no       | See [style](#style).                                      |
+
+- ### `style`
+
+  Each line can have a style object in the values level.
+
+  ```js
+      style: { strokeDashArray: <string> },
+  ```
+
+  | Property Name   | Type   | Required | Default | Description                                            |
+  |-----------------|--------|----------|---------|--------------------------------------------------------|
+  | strokeDashArray | string | no       | "0"     | Applies stroke-dasharray CSS property to the SVG line. |
+

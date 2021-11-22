@@ -1,0 +1,35 @@
+import ScatterGraphPanning from '../example/Graphs-Carbon/ScatterGraph/Reflow/DynamicData?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Scatter/scatterTimeseriesPanning.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Scatter/dataset1timeseries.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Scatter Graph - Panning
+
+This is a scatter graph example that implements panning.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm install terra-graphs`
+
+## Usage
+
+```jsx
+import React from 'react';
+import ScatterGraph from '@cerner/terra-graphs/lib/components/Scatter/ScatterGraph';
+```
+
+## Example
+<ScatterGraphPanning />
+
+<details>
+<summary style={{ fontSize: 24 }}>
+<b>Example Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>

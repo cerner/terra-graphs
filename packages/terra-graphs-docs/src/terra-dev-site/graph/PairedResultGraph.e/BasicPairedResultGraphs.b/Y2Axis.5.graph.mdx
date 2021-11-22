@@ -1,0 +1,39 @@
+import PairedResultGraph from '../../example/Graphs-Carbon/PairedResultGraph/BasicPairedResultGraphs/Y2Axis?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/PairedResult/pairedResultTimeseriesWithY2Axis.js?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisDataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/PairedResult/pairedResultY2AxisDataset2.js?dev-site-codeblock';
+require('details-polyfill');
+
+#  Paired Result Graph with Y2 axis
+
+This is a timeseries paired result graph with both Y and Y2 axis.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+
+## Example
+<PairedResultGraph />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+#### Dataset 1
+<DataObject1 />
+
+#### Dataset 2
+<DataObject2 />
+</details>

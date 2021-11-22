@@ -1,0 +1,50 @@
+import DynamicData from '../example/Graphs-Carbon/Timeline/Reflow/DynamicData?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelinePanningConfig?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset2.js?dev-site-codeblock';
+import DynamicDataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset1.js?dev-site-codeblock';
+import DynamicDataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/criticalDataset2.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Timeline graph Dynamic Data
+
+This is a basic timeline graph with Dynamic Data.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+
+```
+## Example
+<DynamicData />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+#### Initial Data
+##### Timeline A Dataset
+<DataObject1 />
+
+##### Timeline B Dataset
+<DataObject2 />
+
+#### Updated Data
+##### Timeline A Dataset
+<DynamicDataObject1 />
+
+##### Timeline B Dataset
+<DynamicDataObject2 />
+
+</details>

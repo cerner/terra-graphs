@@ -1,0 +1,45 @@
+import LineGraphPanning from '../../example/Graphs-Carbon/LineGraph/Reflow/MultipleDatasets?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineTimeseriesPanning.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/multipleDatasets.js?dev-site-codeblock';
+import initialData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1.js?dev-site-codeblock';
+import updatedData1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries1newData.js?dev-site-codeblock';
+import initialData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3.js?dev-site-codeblock';
+import updatedData2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/datasetTimeseries3newData.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Line Graph - panning
+
+This is a line graph example that implements panning. Click on the panning buttons to see the updated data.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+
+## Example
+<LineGraphPanning />
+
+<details>
+<summary style={{ fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+#### Initial data 1
+<initialData1 />
+
+#### Updated data 1
+<updatedData1  />
+
+#### Initial data 2
+<initialData1 />
+
+#### Updated data 2
+<updatedData1  />
+</details>

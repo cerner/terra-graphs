@@ -1,0 +1,60 @@
+# Dateline
+
+If Dateline is provided then the `value` property is mandatory.
+
+When using dateline with graph then `x axis type` must be **timeseries** it is mandatory.
+
+-   [Structure](#structure)
+-   [Properties](#properties)
+    -   [label](#label)
+
+
+## Structure
+
+  ```js
+    dateline:[
+      {
+        color: <hex value as string>,
+        shape: <string>,
+        value: <Date>,
+        style: <style object>,
+        label: {
+            display: <string>
+        },
+        onClick: <function>,
+        showDatelineIndicator: <boolshowDatelineIndicator>,
+      }
+    ]
+  ```
+
+
+## Properties
+
+| Property Name         | Type             | Default     | Required | Description                                                                                 |
+|-----------------------|------------------|-------------|----------|---------------------------------------------------------------------------------------------|
+| color                 | string (ISO8601) | -           | yes      | Value for the color of the dateline. Can be a hex value or constant from [Colors](./colors). |
+| shape                 | string (ISO8601) | -           | yes      | `Shape` of the indicator above dateline. See [Shapes](./Shapes).                            |
+| value                 | Date             | -           | yes      | Position where eventline needs to be placed.                                                |
+| label                 | object           | `undefined` | no       | See [label](#label).                                                                        |
+| onClick               | function         | `undefined` | no       | Function to execute upon clicking the dataline, such as to display a popup.                 |
+| showDatelineIndicator | bool             | `false`     | no       | Shows a clickable indicator above dateline.                                                 |
+
+* `shape` is required if `showDatelineIndicator` is `true`.
+If `showDatelineIndicator` is explicitly set to false then `shape` is optional.
+
+
+- ### `label`
+**type:** object
+**default value:** `{}`
+
+  Label for the dataset in the legend. If it is not provided then it will not be shown in the legend.
+
+    ```json
+      label: {
+        display: <string>
+      }
+    ```
+
+  | Property Name | Type   | Required | Default     | Description                                   |
+  |---------------|--------|----------|-------------|-----------------------------------------------|
+  | display       | string | no       | `undefined` | Text to display as the label for the dataset. |

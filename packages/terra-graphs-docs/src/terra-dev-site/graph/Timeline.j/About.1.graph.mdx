@@ -1,0 +1,237 @@
+import Timeline from '../example/Graphs-Carbon/Timeline/BasicTimeline/SimpleTimeline?dev-site-example';
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Timeline/timelineDefaultConfig?dev-site-codeblock';
+import DataObject1 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset1.js?dev-site-codeblock';
+import DataObject2 from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Timeline/defaultDataset2.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Timeline Graph
+
+A single-axis horizontal graph with plottable datapoints.
+
+-   [Getting Started](#getting-started)
+-   [Usage](#usage)
+-   [Config Structure](#configuration-structure)
+-   [Config properties](#configuration-properties)
+    -   [axis](#axis)
+    -   [legendPadding](#legendpadding)
+-   [Dataset Structure](#dataset-structure)
+-   [Dataset Properties](#dataset-properties)
+    -   [values](#values)
+    -   [label](#label)
+-   [Example](#example)
+
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+
+An instance of a timeline graph can be accessed though the `Carbon.api.timeline()` function.
+Unlike most of the other graphs, the timeline api does not need an instance of `Carbon.api.graph`.
+Instead, the graph configuration is directly passed as a parameter to the timeline instance,
+with the dataset object also directly passed to the `loadContent` function.
+Therefore, the timeline graph can not be combined with other graphs.
+
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+
+var timelineGraph = Carbon.api.timeline(/* config object */);
+timelineGraph.loadContent(/* dataset */);
+
+// Multiple datasets can be added:
+timelineGraph.loadContent(/* dataset1 */);
+timelineGraph.loadContent(/* dataset2 */);
+```
+
+## Configuration Structure
+```js
+const timelineConfig = {
+    axis: {
+        x: {
+            label: <string>,
+            lowerLimit: <number> or <Date>,
+            upperLimit: <number or <Date>
+        }
+    },
+    bindTo: <string>,
+    bindLegendTo: <string>,
+    legendPadding: {
+      top: <number>,
+      bottom: <number>,
+      left: <number>,
+      right: <number>
+    },
+    locale: <locale object>,
+    padding: {
+      top: <number>,
+      bottom: <number>,
+      left: <number>,
+      right: <number>
+    },
+    pan: {
+      enabled: <bool>
+    },
+    removeContainerPadding: <bool>,
+    showLabel: <bool>,
+    showLegend: <bool>,
+    throttle: <number>
+}
+```
+## ConfigurationProperties
+
+| Property Name          | Type    | Required | Default                                        | Description                                                                       |
+|------------------------|---------|----------|------------------------------------------------|-----------------------------------------------------------------------------------|
+| axis                   | object  | yes      | -                                              | See [axis](#axis).                                                                |
+| bindTo                 | string  | yes      | -                                              | DOM ID to bind the graph container to.                                            |
+| bindLegendTo           | string  | no       | null                                           | ID of custom container to bind legend to (Example: `"#legendContainer"`).         |
+| legendPadding          | object  | no       | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | See [legendPadding](#legendpadding).                                              |
+| locale                 | object  | no       | LOCALE.en_US                                   | Locale object for X-Axis tick values. See [Locale](../core-configuration/documentation/Locale). |
+| padding                | object  | no       | `{ top: 10, bottom: 10, left: 30, right: 50 }` | See [Padding](../core-configuration/documentation/Padding).                                     |
+| pan                    | object  | no       | `{enabled: false}`                             | See [Panning](../core-configuration/documentation/Panning).                                     |
+| removeContainerPadding | boolean | no       | false                                          | Toggle to remove top and bottom padding of the container for the graph.           |
+| showLabel              | boolean | no       | true                                           | Toggle to show X axis label.                                                      |
+| showLegend             | boolean | no       | true                                           | Toggle to show graph legend.                                                      |
+| throttle               | number  | no       | (1000/60) => time in ms                        | Re-render delay afer resizing of a browser window.                                |
+
+
+- ### `axis`
+**type:** object
+
+Timeline is marked only on `X Axis`, there is no other axis supplied. Axis is set to `show` by default.
+
+| Property Name | Type   | Required | Description                                |
+|---------------|--------|----------|--------------------------------------------|
+| lowerLimit    | string | yes      | Lower bound for X axis. This is inclusive. |
+| upperLimit    | string | yes      | Upper bound for X axis. This is inclusive. |
+| label         | string | yes      | Axis label value.                          |
+
+
+- ### `legendPadding`
+**type:** object
+
+  Sets the legend padding and removes the carbon default margin of `8px` around legend.
+
+  ```json
+    legendPadding: {
+      top: <number>,
+      bottom: <number>,
+      left: <number>,
+      right: <number>
+    }
+  ```
+
+
+  | Property Name | Type   | Required | Default | Description                         |
+  |---------------|--------|----------|---------|-------------------------------------|
+  | top           | number | no       | `4`     | Top padding of legend container.    |
+  | bottom        | number | no       | `4`     | Bottom padding of legend container. |
+  | left          | number | no       | `8`     | Left padding of legend container.   |
+  | right         | number | no       | `8`     | Right padding of legend container.  |
+
+
+
+## Dataset Structure
+
+```js
+const dataset = {
+  key: <string>,
+  values: [
+    {
+      x: <number or Date object>,
+      y: <number>,
+      isCritical: <bool>
+    },
+  ],
+  color: <hex value as string>,
+  label: {
+    display: <string>,
+  },
+  legendOptions:{
+    showElement: <bool>
+  }
+  onClick: <function>,
+  regions: [
+    start: <number>
+    end: <number>
+    axis: <"y" or "y2">
+    color: <hex value as string>
+  ],
+  shape: < shape SVG >,
+  yAxis: <"y" or "y2">,
+
+}
+```
+
+### Dataset Properties
+
+| Property Name | Type             | Required | Default              | Description                                                                                                            |
+|---------------|------------------|----------|----------------------|------------------------------------------------------------------------------------------------------------------------|
+| key           | string           | yes      | -                    | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.                |
+| values        | array of objects | yes      | -                    | See [Values](#values).                                                                                                 |
+| color         | string           | no       | `COLORS.BLACK`       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [Colors](../core-configuration/documentation/colors).   |
+| label         | object           | no       | {}                   | See [label](#label).                                                                                                   |
+| onClick       | function         | no       | `undefined`          | Function to execute upon clicking a datapoint, such as to display a popup.                                             |
+| shape         | string           | no       | `SHAPES.DARK.CIRCLE` | Shape for representing the data points. Can be a constant from [shapes](../core-configuration/documentation/Shapes) or a custom SVG. |
+
+
+- ### `values`
+**type:**  array of objects | `required prop`
+
+  This is an array of objects representing the dataset.
+  It is a required prop; passing `undefined` will result in an error.
+  However passing an empty array (`[]`) will result in the graph successfully rendering without a dataset.
+  Each object in the array takes the following shape:
+
+  ```json
+    {
+      x: <number>,
+      isCritical: <bool>
+    }
+  ```
+
+  | Property Name | Type   | Required | Default | Description                       |
+  |---------------|--------|----------|---------|-----------------------------------|
+  | x             | string | yes      | -       | Value for the x coordinate.       |
+  | isCritical    | bool   | no       | `false` | Highlights a datapoint if `true`. |
+
+
+- ### `label`
+**type:** object
+**default value:** `{}`
+
+  Label for the dataset in the legend. If it is not provided then it will not be shown in the legend.
+
+    ```json
+      label: {
+        display: <string>
+      }
+    ```
+
+  | Property Name | Type   | Required | Default     | Description                                   |
+  |---------------|--------|----------|-------------|-----------------------------------------------|
+  | display       | string | no       | `undefined` | Text to display as the label for the dataset. |
+
+
+## Example
+
+<Timeline />
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+
+<GraphConfig />
+
+### Data object
+#### Timeline A Dataset
+<DataObject1 />
+
+#### Timeline B Dataset
+<DataObject2 />
+</details>
