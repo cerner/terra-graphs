@@ -278,7 +278,6 @@ const prepareY2Axis = (scale, tickValues, height, format) => d3
  */
 const getYAndY2AxisFormat = (tickValues, axisData) => {
   let tickDecimalMagnitude = 0;
-  let largestDecimalValue = 0;
   tickValues.forEach((tick) => {
     if (tick !== 0) {
       let tempTick = tick;
@@ -286,30 +285,20 @@ const getYAndY2AxisFormat = (tickValues, axisData) => {
       const tempTickDecimalMagnitude = -Math.floor(Math.log10(tempTick));
       if (tempTickDecimalMagnitude > tickDecimalMagnitude) {
         tickDecimalMagnitude = tempTickDecimalMagnitude;
-        largestDecimalValue = tick;
       }
     }
   });
 
-  const setFormat = (lowerRangeValue, upperRangeValue) => {
-    if (largestDecimalValue > lowerRangeValue && largestDecimalValue < upperRangeValue && largestDecimalValue !== 0) {
-      let format;
-      if (axisData.suppressTrailingZeros) {
-        format = `.${tickDecimalMagnitude % 10}~f`;
-      } else {
-        format = `.${tickDecimalMagnitude % 10}f`;
-      }
-      return format;
+  let format;
+  if (tickDecimalMagnitude > 0 && tickDecimalMagnitude < 6) {
+    if (axisData.suppressTrailingZeros) {
+      format = `.${tickDecimalMagnitude % 10}~f`;
+    } else {
+      format = `.${tickDecimalMagnitude % 10}f`;
     }
-    return undefined;
-  };
-
-  if (tickDecimalMagnitude > 5) {
-    return undefined;
   }
-  const rangeValue = 5 / (10 ** tickDecimalMagnitude);
 
-  return setFormat(-rangeValue, rangeValue);
+  return format;
 };
 /**
  * Generates an array of tick values for to be used as the
