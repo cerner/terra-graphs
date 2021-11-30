@@ -1,7 +1,6 @@
 {
   "name": "@cerner/terra-graphs-docs",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
   "description": "A react based dev-site that has documentation and example graphs",
   "repository": {
     "type": "git",
