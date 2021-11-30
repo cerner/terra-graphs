@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## 0.0.1 - (November 30, 2021)
+## 1.0.0 - (November 30, 2021)
 
 * Added 
   * Added documentation for bubble components.
