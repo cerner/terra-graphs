@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.0 - (November 30, 2021)
+
 * Added 
   * Added documentation for bubble components.
   * Created this separate package for terra-dev-site and documentation.

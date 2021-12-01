@@ -4,8 +4,7 @@
   "command": {
     "publish": {
       "ignoreChanges": [
-        "packages/terra-graphs/**",
-        "packages/terra-graphs-docs/**"
+        "packages/terra-graphs/**"
       ]
     }
   }
