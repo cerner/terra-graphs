@@ -2,9 +2,14 @@
 
 ## Unreleased
 
+## 1.0.1 - (December 2, 2021)
+
+* Fixed
+  * Publish terra-graphs-docs as a public package
+
 ## 1.0.0 - (November 30, 2021)
 
-* Added 
+* Added
   * Added documentation for bubble components.
   * Created this separate package for terra-dev-site and documentation.
   * Added data objects and examples for Line, Bar and Paired result graphs.
@@ -22,7 +27,7 @@
   * Added reflow examples for Timeline graph.
   * Added reflow examples for Scatter graph. 
 
-* Changed 
+* Changed
   * Moved core documentation to terra-dev-site.
   * Moved Getting started documentation to terra-dev-site.
   * Updated Bubble graph documentation and examples to be carbon centric.
