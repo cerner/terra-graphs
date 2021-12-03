@@ -10,11 +10,11 @@ Below is a guide for releasing packages:
 
 ## Releasing a new package
 If you are publishing a new package, e.g. a v1.0.0 release, the package will be listed with only you as the collaborator.
-You'll need to move the package into the terra-ui team under the Cerner org on npm.
+You'll need to move the package into the carbon team under the Cerner org on npm.
 - Log into npm's website
-- Navigate to the terra-ui package page: https://www.npmjs.com/settings/cerner/teams/team/terra-ui/access
+- Navigate to the carbon package page: https://www.npmjs.com/settings/cerner/teams/team/carbon/access
 - At the top of this page, there should be an input labeled, "Package". Type in the full package name and press enter.
-- This will add the package to ther terra-ui team's packages under the Cerner org on npm and then all team members on the terra-ui team in npm will have access to publish in future releases.
+- This will add the package to ther carbon team's packages under the Cerner org on npm and then all team members on the carbon team in npm will have access to publish in future releases.
 
 ## Releasing a major version bump
 
