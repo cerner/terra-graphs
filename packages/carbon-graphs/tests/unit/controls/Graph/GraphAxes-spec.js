@@ -456,7 +456,7 @@ describe('Graph - Axes', () => {
       show: true,
       label: 'y2 axis',
       lowerLimit: 0,
-      upperLimit: 30,
+      upperLimit: 11,
     };
     describe('When ticks consists of value between -0.5 to 0.5 and not 0', () => {
       beforeEach(() => {
@@ -467,7 +467,7 @@ describe('Graph - Axes', () => {
           upperLimit: 2,
         };
       });
-      xit('Should create correct format, When consumer does not provide format', () => {
+      it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -490,7 +490,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y.ticks.format,
         ).toBe('.2f');
       });
-      xit('Should create correct format, when suppress trailing zeros is set to true', () => {
+      it('Should create correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y.suppressTrailingZeros = true;
         graph = new Graph(
           ({
@@ -685,7 +685,7 @@ describe('Graph - Axes', () => {
     localeAxisObj.y = {
       label: 'y axis',
       lowerLimit: 0,
-      upperLimit: 30,
+      upperLimit: 11,
     };
     describe('When ticks consists of value between -0.5 to 0.5  and not 0', () => {
       beforeEach(() => {
@@ -697,7 +697,7 @@ describe('Graph - Axes', () => {
           upperLimit: 2,
         };
       });
-      xit('Should create correct format, When consumer does not provide format', () => {
+      it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -720,7 +720,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y2.ticks.format,
         ).toBe('.2f');
       });
-      xit('Should create correct format, when suppress trailing zeros is set to true', () => {
+      it('Should create correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y2.suppressTrailingZeros = true;
         graph = new Graph(
           ({
