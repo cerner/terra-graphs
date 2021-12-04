@@ -342,7 +342,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, true, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
           .length,
       ).toEqual(ticksCount + 2);
     });
@@ -358,7 +358,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, true, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
           .length,
       ).toEqual(ticksCount + 2);
     });
@@ -374,7 +374,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, true, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
           .length,
       ).toEqual(ticksCount + 2);
     });
@@ -390,7 +390,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, true, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
           .length,
       ).toEqual(Math.abs(ticksCount) + 2);
     });
@@ -458,7 +458,7 @@ describe('Graph - Axes', () => {
       lowerLimit: 0,
       upperLimit: 30,
     };
-    describe('When ticks consists of value between -0.5 to 0.5  and not 0', () => {
+    describe('When ticks consists of value between -0.5 to 0.5 and not 0', () => {
       beforeEach(() => {
         graph.destroy();
         localeAxisObj.y = {
@@ -467,7 +467,7 @@ describe('Graph - Axes', () => {
           upperLimit: 2,
         };
       });
-      it('Should create correct format, When consumer does not provide format', () => {
+      xit('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -490,7 +490,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y.ticks.format,
         ).toBe('.2f');
       });
-      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+      xit('Should create correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y.suppressTrailingZeros = true;
         graph = new Graph(
           ({
@@ -697,7 +697,7 @@ describe('Graph - Axes', () => {
           upperLimit: 2,
         };
       });
-      it('Should create correct format, When consumer does not provide format', () => {
+      xit('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
           ({
             ...getAxes(localeAxisObj),
@@ -720,7 +720,7 @@ describe('Graph - Axes', () => {
           graph.config.axis.y2.ticks.format,
         ).toBe('.2f');
       });
-      it('Should create correct format, when suppress trailing zeros is set to true', () => {
+      xit('Should create correct format, when suppress trailing zeros is set to true', () => {
         localeAxisObj.y2.suppressTrailingZeros = true;
         graph = new Graph(
           ({
