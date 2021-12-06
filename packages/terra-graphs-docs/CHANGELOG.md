@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added reflowMultipleDataset documentation in panning docs.
+
 ## 1.0.1 - (December 2, 2021)
 
 * Fixed
@@ -66,4 +69,3 @@
   * Updated Combination graph documentation to include api information.
   * Updated Getting Started documentation to be consistent with the rest of the graph docs.
   * Updated example extensions from .doc to .graph.
-  * Added reflowMultipleDataset documentation in panning docs.
