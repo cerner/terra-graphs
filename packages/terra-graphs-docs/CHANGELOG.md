@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added reflowMultipleDataset documentation in panning docs.
+
 ## 1.0.1 - (December 2, 2021)
 
 * Fixed
