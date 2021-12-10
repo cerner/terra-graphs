@@ -1112,39 +1112,135 @@ describe('Graph - Axes', () => {
       const allYAxisElements = document.querySelectorAll(
                 `.${styles.axisY}`,
       );
-      const NumberOfTicks = allYAxisElements[0].childNodes.length;
-      expect(
-        allYAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('3');
-      expect(
-        allYAxisElements[0].childNodes[NumberOfTicks - 1].querySelector(
-          'text',
-        ).textContent,
-      ).toBe('7');
+      
+      let yTicks = [];
+      // The first child element is the domain itself, and second child onwards denote the ticks
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      expect(yTicks).toEqual([0, 3, 7, 10]);
+
+    });
+    describe('if Y and Y2 ranges are multiples of each other', () => {
+      it('factors the larger range by the smaller one and uses that as the interval size', () => {
+        const localeAxisObj = utils.deepClone(axisDefault);
+        localeAxisObj.allowCallibration = false;
+        localeAxisObj.y = {
+          label: 'y axis',
+          lowerLimit: 0,
+          upperLimit: 50,
+        };
+        localeAxisObj.y2 = {
+          show: true,
+          label: 'y2 axis',
+          lowerLimit: 0,
+          upperLimit: 250,
+        };
+        graph = new Graph({ ...getAxes(localeAxisObj) });
+        graph.allowCallibration = false;
+  
+        const allYAxisElements = document.querySelectorAll(
+          `.${styles.axisY}`,
+        );
+  
+        let yTicks = [];
+        const expectedYTicks = [0, 10, 20, 30, 40, 50];
+    
+        for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+          yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+        }
+  
+        expect(yTicks).toEqual(expectedYTicks);
+      });
+      it('does not use this method if factor <= 4', () => {
+        const localeAxisObj = utils.deepClone(axisDefault);
+        localeAxisObj.allowCallibration = false;
+        localeAxisObj.y = {
+          label: 'y axis',
+          lowerLimit: 0,
+          upperLimit: 50,
+        };
+        localeAxisObj.y2 = {
+          show: true,
+          label: 'y2 axis',
+          lowerLimit: 0,
+          upperLimit: 100,
+        };
+        graph = new Graph({ ...getAxes(localeAxisObj) });
+        graph.allowCallibration = false;
+  
+        const allYAxisElements = document.querySelectorAll(
+          `.${styles.axisY}`,
+        );
+  
+        let yTicks = [];
+        const expectedYTicks = [0, 10, 20, 30, 40, 50];
+    
+        for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+          yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+        }
+  
+        expect(allYAxisElements[0].childNodes.length).toBeGreaterThan(3);
+      });
     });
 
-    it('uses default method for Y tick values when custom ticks and ticksCount are not provided', () => {
+    it('finds a common denominator if it exists between > 3 and  < 9 ', () => {
+      const localeAxisObj = utils.deepClone(axisDefault);
+      localeAxisObj.allowCallibration = false;
+      localeAxisObj.y = {
+        label: 'y axis',
+        lowerLimit: 0,
+        upperLimit: 30,
+      };
+      localeAxisObj.y2 = {
+        show: true,
+        label: 'y2 axis',
+        lowerLimit: 0,
+        upperLimit: 120,
+      };
+      graph = new Graph({ ...getAxes(localeAxisObj) });
+
+      const allYAxisElements = document.querySelectorAll(`.${styles.axisY}`);
+      const allY2AxisElements = document.querySelectorAll(`.${styles.axisY2}`);
+
+      let yTicks = [];
+      const expectedYTicks = [0, 5, 10, 15, 20, 25, 30];
+      let y2Ticks = [];
+      const expectedY2Ticks = [0, 20, 40, 60, 80, 100, 120];
+
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+        y2Ticks.push(parseInt(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+
+      expect(yTicks).toEqual(expectedYTicks);
+      expect(y2Ticks).toEqual(expectedY2Ticks);
+    });
+    it('uses default method for Y ans Y2 tick values when custom ticks and ticksCount are not provided', () => {
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y = {
         label: 'y axis - default method',
         lowerLimit: 0,
-        upperLimit: 10,
+        upperLimit: 11,
+      };
+      localeAxisObj.y2 = {
+        label: 'y axis - default method',
+        lowerLimit: 0,
+        upperLimit: 23,
       };
       graph = new Graph({ ...getAxes(localeAxisObj) });
       const allYAxisElements = document.querySelectorAll(
                 `.${styles.axisY}`,
       );
-      const NumberOfTicks = allYAxisElements[0].childNodes.length;
-      expect(
-        allYAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('1');
-      expect(
-        allYAxisElements[0].childNodes[NumberOfTicks - 2].querySelector(
-          'text',
-        ).textContent,
-      ).toBe('9');
+
+      let yTicks = [];
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      console.log(yTicks);
+
     });
     describe('when space is passed as label', () => {
       beforeEach(() => {
@@ -1193,7 +1289,7 @@ describe('Graph - Axes', () => {
     beforeEach(() => {
       graph.destroy();
     });
-    it('uses custom values for Y and Y2 tick values when custom ticks are provided', () => {
+    it('uses custom values for Y when custom ticks are provided', () => {
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y = {
         label: 'y axis - custom tick values',
@@ -1257,9 +1353,6 @@ describe('Graph - Axes', () => {
         label: 'y2 axis - ticksCount',
         lowerLimit: 11,
         upperLimit: 25,
-        ticks: {
-          values: [12, 14, 16, 18],
-        },
       };
       graph = new Graph(
         ({
@@ -1273,28 +1366,20 @@ describe('Graph - Axes', () => {
       const allY2AxisElements = document.querySelectorAll(
                 `.${styles.axisY2}`,
       );
-      const NumberOfTicks = allYAxisElements[0].childNodes.length;
-      expect(
-        allYAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('3');
-      expect(
-        allYAxisElements[0].childNodes[NumberOfTicks - 1].querySelector(
-          'text',
-        ).textContent,
-      ).toBe('7');
-      expect(
-        allY2AxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('16');
-      expect(
-        allY2AxisElements[0].childNodes[
-          NumberOfTicks - 1
-        ].querySelector('text').textContent,
-      ).toBe('20');
-    });
+      
+      let yTicks = [];
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      let y2Ticks = [];
+      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+        y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
 
-    it('uses default method for Y and Y2 tick values when custom ticks and ticksCount are undefined', () => {
+      expect(yTicks).toEqual([0, 3, 7, 10]);
+      expect(y2Ticks).toEqual([11, 16, 20, 25]);
+    });
+    it('uses default methods for Y and Y2 tick values when custom ticks and ticksCount are undefined', () => {
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y = {
         label: 'y axis - default ticks',
@@ -1314,25 +1399,13 @@ describe('Graph - Axes', () => {
       const allY2AxisElements = document.querySelectorAll(
                 `.${styles.axisY2}`,
       );
-      const NumberOfTicks = allYAxisElements[0].childNodes.length;
-      expect(
-        allYAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('3');
-      expect(
-        allYAxisElements[0].childNodes[NumberOfTicks - 1].querySelector(
-          'text',
-        ).textContent,
-      ).toBe('8');
-      expect(
-        allY2AxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('15');
-      expect(
-        allY2AxisElements[0].childNodes[
-          NumberOfTicks - 1
-        ].querySelector('text').textContent,
-      ).toBe('22');
+      
+      let yTicks = [];
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+
+      expect(yTicks).toEqual([0, 3, 5, 8, 10]);
     });
   });
   describe('For timeseries type', () => {
@@ -1872,30 +1945,17 @@ describe('Graph - Axes', () => {
           ...getAxes(localeAxisObj),
         }),
       );
-      const allXAxisElements = document.querySelectorAll(
-                `.${styles.axisX}`,
-      );
+      const allXAxisElements = document.querySelectorAll( `.${styles.axisX}`);
+
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allXAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0');
-      expect(
-        allXAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allXAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('1');
-      expect(
-        allXAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
-      expect(
-        allXAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('2');
+      let xTicks = [];
+      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+        xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+
+      xTicks.sort((a, b) => a - b);
+
+      expect(xTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe('When default d3 tick formatting is used for x axis and suppressTrailingZeros for x axis is set to false', () => {
@@ -1917,30 +1977,18 @@ describe('Graph - Axes', () => {
           ...getAxes(localeAxisObj),
         }),
       );
-      const allXAxisElements = document.querySelectorAll(
-                `.${styles.axisX}`,
-      );
+
+      const allXAxisElements = document.querySelectorAll( `.${styles.axisX}`);
+      let xTicks = [];
+      
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allXAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0.0');
-      expect(
-        allXAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allXAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('1.0');
-      expect(
-        allXAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
-      expect(
-        allXAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('2.0');
+      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+        xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      xTicks.sort((a, b) => a - b);
+
+      expect(xTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe("When default d3 tick formatting is not used for x axis and consumer specifies '~' in tick format", () => {
@@ -1966,26 +2014,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisX}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allXAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0');
-      expect(
-        allXAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allXAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('1');
-      expect(
-        allXAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
-      expect(
-        allXAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('2');
+      let xTicks = [];
+      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+        xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      xTicks.sort((a, b) => a - b);
+
+      expect(xTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe("When default d3 tick formatting is not used for x axis and consumer does not specify '~' in tick format", () => {
@@ -2011,26 +2047,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisX}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allXAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0.0');
-      expect(
-        allXAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allXAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('1.0');
-      expect(
-        allXAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
-      expect(
-        allXAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('2.0');
+      let xTicks = [];
+      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+        xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      xTicks.sort((a, b) => a - b);
+
+      expect(xTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe('When default d3 tick formatting for y axis is used and suppressTrailingZeros for y axis is set to true', () => {
@@ -2054,26 +2078,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allYAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0');
-      expect(
-        allYAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2');
-      expect(
-        allYAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allYAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1');
-      expect(
-        allYAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let yTicks = [];
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      yTicks.sort((a, b) => a - b);
+
+      expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe('When default d3 tick formatting is used for y axis and suppressTrailingZeros for y axis is set to false', () => {
@@ -2097,26 +2109,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allYAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0.0');
-      expect(
-        allYAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2.0');
-      expect(
-        allYAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allYAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.0');
-      expect(
-        allYAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let yTicks = [];
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      yTicks.sort((a, b) => a - b);
+
+      expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe("When default d3 tick formatting is not used for y axis and consumer specifies '~' in tick format", () => {
@@ -2142,26 +2142,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allYAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0');
-      expect(
-        allYAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2');
-      expect(
-        allYAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allYAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1');
-      expect(
-        allYAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let yTicks = [];
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      yTicks.sort((a, b) => a - b);
+
+      expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe("When default d3 tick formatting is not used for y axis and consumer does not specify '~' in tick format", () => {
@@ -2187,26 +2175,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allYAxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0.0');
-      expect(
-        allYAxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2.0');
-      expect(
-        allYAxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allYAxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.0');
-      expect(
-        allYAxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let yTicks = [];
+      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+        yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      yTicks.sort((a, b) => a - b);
+
+      expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe('When default d3 tick formatting for y2 axis is used and suppressTrailingZeros for y2 is set to true', () => {
@@ -2231,26 +2207,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allY2AxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0');
-      expect(
-        allY2AxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2');
-      expect(
-        allY2AxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allY2AxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1');
-      expect(
-        allY2AxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let y2Ticks = [];
+      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+        y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      y2Ticks.sort((a, b) => a - b);
+
+      expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe('When default d3 tick formatting is used for y2 axis and suppressTrailingZeros for y2 is set to false', () => {
@@ -2275,26 +2239,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allY2AxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0.0');
-      expect(
-        allY2AxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2.0');
-      expect(
-        allY2AxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allY2AxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.0');
-      expect(
-        allY2AxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let y2Ticks = [];
+      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+        y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      y2Ticks.sort((a, b) => a - b);
+
+      expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe("When default d3 tick formatting is not used for y2 axis and consumer specifies '~' in tick format", () => {
@@ -2321,26 +2273,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allY2AxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0');
-      expect(
-        allY2AxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2');
-      expect(
-        allY2AxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allY2AxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1');
-      expect(
-        allY2AxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let y2Ticks = [];
+      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+        y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      y2Ticks.sort((a, b) => a - b);
+
+      expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe("When default d3 tick formatting is not used for y2 axis and consumer does not specify '~' in tick format", () => {
@@ -2367,26 +2307,14 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      expect(
-        allY2AxisElements[0].childNodes[1].querySelector('text')
-          .textContent,
-      ).toBe('0.0');
-      expect(
-        allY2AxisElements[0].childNodes[2].querySelector('text')
-          .textContent,
-      ).toBe('2.0');
-      expect(
-        allY2AxisElements[0].childNodes[3].querySelector('text')
-          .textContent,
-      ).toBe('0.5');
-      expect(
-        allY2AxisElements[0].childNodes[4].querySelector('text')
-          .textContent,
-      ).toBe('1.0');
-      expect(
-        allY2AxisElements[0].childNodes[5].querySelector('text')
-          .textContent,
-      ).toBe('1.5');
+      let y2Ticks = [];
+      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+        y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      }
+      
+      y2Ticks.sort((a, b) => a - b);
+
+      expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
     });
   });
   describe('If axes width is 1024px and height is 230px', () => {

@@ -333,6 +333,8 @@ const generateYAxesTickValues = (
     tickValues.push(lowerLimit + interval * index);
   }
   
+  tickValues.sort((a, b) => a - b);
+  
   return tickValues;
 };
 
