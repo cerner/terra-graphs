@@ -563,7 +563,7 @@ const getAxesScale = (axis, scale, config) => {
       // console.log(greaterRange);
       let factor = greaterRange / lowerRange;
 
-      if (Number.isInteger(factor) && Number.isInteger(lowerRange/factor) && factor!=1){
+      if (Number.isInteger(factor) && Number.isInteger(lowerRange/factor) && factor > 2){
         // console.log("method 1");
         intervalCount = factor;
       }

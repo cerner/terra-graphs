@@ -1152,7 +1152,7 @@ describe('Graph - Axes', () => {
   
         expect(yTicks).toEqual(expectedYTicks);
       });
-      it('does not use this method if factor <= 4', () => {
+      it('does not use this method if factor < 3', () => {
         const localeAxisObj = utils.deepClone(axisDefault);
         localeAxisObj.allowCallibration = false;
         localeAxisObj.y = {
@@ -1169,9 +1169,7 @@ describe('Graph - Axes', () => {
         graph = new Graph({ ...getAxes(localeAxisObj) });
         graph.allowCallibration = false;
   
-        const allYAxisElements = document.querySelectorAll(
-          `.${styles.axisY}`,
-        );
+        const allYAxisElements = document.querySelectorAll(`.${styles.axisY}`);
   
         let yTicks = [];
         const expectedYTicks = [0, 10, 20, 30, 40, 50];
@@ -1179,8 +1177,17 @@ describe('Graph - Axes', () => {
         for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
           yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
         }
-  
-        expect(allYAxisElements[0].childNodes.length).toBeGreaterThan(3);
+
+        const allY2AxisElements = document.querySelectorAll(`.${styles.axisY2}`);
+
+        let y2Ticks = [];
+        const expectedY2Ticks = [0, 20, 40, 60, 80, 100];
+    
+        for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+          y2Ticks.push(parseInt(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+        }
+        expect(yTicks).toEqual(expectedYTicks);
+        expect(y2Ticks).toEqual(expectedY2Ticks);
       });
     });
 
