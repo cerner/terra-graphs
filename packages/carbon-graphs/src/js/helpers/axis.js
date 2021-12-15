@@ -315,7 +315,6 @@ const generateYAxesTickValues = (
   lowerLimit,
   upperLimit,
   ticksCount = constants.DEFAULT_TICKSCOUNT,
-  axisData,
 ) => {
   ticksCount = Math.abs(ticksCount);
   const tickValues = [];
@@ -332,9 +331,9 @@ const generateYAxesTickValues = (
   for (let index = 1; index <= ticksCount; index += 1) {
     tickValues.push(lowerLimit + interval * index);
   }
-  
+
   tickValues.sort((a, b) => a - b);
-  
+
   return tickValues;
 };
 
@@ -502,7 +501,8 @@ const getAxesScale = (axis, scale, config) => {
       return axis;
     }
     // Y and Y2 axes - ticksCount.
-    let yLowerLimit, yUpperLimit, y2LowerLimit, y2UpperLimit;
+    let yLowerLimit; let yUpperLimit; let y2LowerLimit; let
+      y2UpperLimit;
     yLowerLimit = config.axis.y.domain.lowerLimit;
     yUpperLimit = config.axis.y.domain.upperLimit;
     y2LowerLimit = config.axis.y2.domain.lowerLimit;
@@ -523,20 +523,21 @@ const getAxesScale = (axis, scale, config) => {
     }
     // console.log(yLowerLimit, yUpperLimit, y2LowerLimit, y2UpperLimit);
 
-    let yTickValues, y2TickValues;
+    let yTickValues; let
+      y2TickValues;
 
     if (
       utils.isDefined(config.ticksCount)
         && config.ticksCount <= constants.TICKSCOUNT_MAXLIMIT
     ) {
-       yTickValues = generateYAxesTickValues(
+      yTickValues = generateYAxesTickValues(
         yLowerLimit,
         yUpperLimit,
         config.ticksCount,
         config.axis.y,
       );
 
-       y2TickValues = generateYAxesTickValues(
+      y2TickValues = generateYAxesTickValues(
         y2LowerLimit,
         y2UpperLimit,
         config.ticksCount,
@@ -544,37 +545,30 @@ const getAxesScale = (axis, scale, config) => {
       );
 
       // eslint-disable-next-line brace-style
-    }
+    } else {
     // Y and Y2 axes - If ticksCount is undefined or greater than
     // TICKS_MAXCOUNT AND if the Y2 is visible, then utilize a default value
     // for the ticksCount. This is based on the ranges of the Y & Y2 axes.
-    else {
 
-      let intervalCount = undefined;
+      let intervalCount;
 
-      // Are the range values by one another? 
-      // Divide the larger range value (a) by the smaller value (b) and determine if a whole number (c) is returned. 
-      // If the return value is a whole number and does not have a value greater than 10, divide the smaller range value (b) by the return value (c) 
+      // Divide the larger range value (a) by the smaller value (b) and determine if a whole number (c) is returned.
+      // If the return value is a whole number and does not have a value grter than 10, divide the smaller range value (b) by the return value (c)
       // and determine if a whole number is returned. If a whole number is returned, use the initial return value to configure the tick count of the graph.
-      let yRange  = yUpperLimit - yLowerLimit;
-      let y2Range = y2UpperLimit - y2LowerLimit;
-      let greaterRange = yRange >= y2Range ? yRange : y2Range;
-      let lowerRange   = yRange <= y2Range ? yRange : y2Range;
-      // console.log(greaterRange);
-      let factor = greaterRange / lowerRange;
+      const yRange = yUpperLimit - yLowerLimit;
+      const y2Range = y2UpperLimit - y2LowerLimit;
+      const greaterRange = yRange >= y2Range ? yRange : y2Range;
+      const lowerRange = yRange <= y2Range ? yRange : y2Range;
+      const factor = greaterRange / lowerRange;
 
-      if (Number.isInteger(factor) && Number.isInteger(lowerRange/factor) && factor > 2){
-        // console.log("method 1");
+      if (Number.isInteger(factor) && Number.isInteger(lowerRange / factor) && factor > 2) {
         intervalCount = factor;
-      }
-      
-      // If any part of the step above fails, determine if the two range values are both evenly divisible by 
-      // any number between 3 and 9 (resulting in a whole number). 
+      } else {
+      // If any part of the step above fails, determine if the two range values are both evenly divisible by
+      // any number between 3 and 9 (resulting in a whole number).
       // If yes, choose the highest value to configure the tick count.
-      else {
-        for(let _commonDenominator = 9; _commonDenominator >= 3 ; _commonDenominator-- ){
-          if (Number.isInteger(greaterRange/_commonDenominator) && Number.isInteger(lowerRange/_commonDenominator)){
-            // console.log("method 2");
+        for (let _commonDenominator = 9; _commonDenominator >= 3; _commonDenominator -= 1) {
+          if (Number.isInteger(greaterRange / _commonDenominator) && Number.isInteger(lowerRange / _commonDenominator)) {
             intervalCount = _commonDenominator;
             break;
           }
@@ -583,27 +577,23 @@ const getAxesScale = (axis, scale, config) => {
 
       // Default ticksCount Behavior
       // If both checks above fail, proceed with the current logic to configure the tick counts
-      if(utils.isUndefined(intervalCount)){
-        // console.log("method 3");
+      if (utils.isUndefined(intervalCount)) {
         intervalCount = getAverageTicksCount(yRange, y2Range) + 1;
       }
 
-
       // generating ticksCount based on the calculated value above
-
-       yTickValues = generateYAxesTickValues(
+      yTickValues = generateYAxesTickValues(
         yLowerLimit,
         yUpperLimit,
         intervalCount - 1,
         config.axis.y,
       );
-       y2TickValues = generateYAxesTickValues(
+      y2TickValues = generateYAxesTickValues(
         y2LowerLimit,
         y2UpperLimit,
         intervalCount - 1,
         config.axis.y2,
       );
-
     }
     if (
       config.axis.y.suppressTrailingZeros
@@ -653,8 +643,8 @@ const getAxesScale = (axis, scale, config) => {
   }
   // Only single Y axis
   else {
-
-    let yLowerLimit, yUpperLimit;
+    let yLowerLimit; let
+      yUpperLimit;
     yLowerLimit = config.axis.y.domain.lowerLimit;
     yUpperLimit = config.axis.y.domain.upperLimit;
 

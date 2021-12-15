@@ -1112,14 +1112,13 @@ describe('Graph - Axes', () => {
       const allYAxisElements = document.querySelectorAll(
                 `.${styles.axisY}`,
       );
-      
-      let yTicks = [];
+
+      const yTicks = [];
       // The first child element is the domain itself, and second child onwards denote the ticks
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
-        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
       expect(yTicks).toEqual([0, 3, 7, 10]);
-
     });
     describe('if Y and Y2 ranges are multiples of each other', () => {
       it('factors the larger range by the smaller one and uses that as the interval size', () => {
@@ -1138,18 +1137,18 @@ describe('Graph - Axes', () => {
         };
         graph = new Graph({ ...getAxes(localeAxisObj) });
         graph.allowCallibration = false;
-  
+
         const allYAxisElements = document.querySelectorAll(
           `.${styles.axisY}`,
         );
-  
-        let yTicks = [];
+
+        const yTicks = [];
         const expectedYTicks = [0, 10, 20, 30, 40, 50];
-    
-        for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
-          yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+
+        for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
+          yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
         }
-  
+
         expect(yTicks).toEqual(expectedYTicks);
       });
       it('does not use this method if factor < 3', () => {
@@ -1168,23 +1167,23 @@ describe('Graph - Axes', () => {
         };
         graph = new Graph({ ...getAxes(localeAxisObj) });
         graph.allowCallibration = false;
-  
+
         const allYAxisElements = document.querySelectorAll(`.${styles.axisY}`);
-  
-        let yTicks = [];
+
+        const yTicks = [];
         const expectedYTicks = [0, 10, 20, 30, 40, 50];
-    
-        for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
-          yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+
+        for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
+          yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
         }
 
         const allY2AxisElements = document.querySelectorAll(`.${styles.axisY2}`);
 
-        let y2Ticks = [];
+        const y2Ticks = [];
         const expectedY2Ticks = [0, 20, 40, 60, 80, 100];
-    
-        for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
-          y2Ticks.push(parseInt(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+
+        for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
+          y2Ticks.push(parseInt(allY2AxisElements[0].childNodes[i].querySelector('text').textContent, 10));
         }
         expect(yTicks).toEqual(expectedYTicks);
         expect(y2Ticks).toEqual(expectedY2Ticks);
@@ -1210,16 +1209,16 @@ describe('Graph - Axes', () => {
       const allYAxisElements = document.querySelectorAll(`.${styles.axisY}`);
       const allY2AxisElements = document.querySelectorAll(`.${styles.axisY2}`);
 
-      let yTicks = [];
+      const yTicks = [];
       const expectedYTicks = [0, 5, 10, 15, 20, 25, 30];
-      let y2Ticks = [];
+      const y2Ticks = [];
       const expectedY2Ticks = [0, 20, 40, 60, 80, 100, 120];
 
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
-        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
-      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
-        y2Ticks.push(parseInt(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
+        y2Ticks.push(parseInt(allY2AxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
 
       expect(yTicks).toEqual(expectedYTicks);
@@ -1242,12 +1241,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
 
-      let yTicks = [];
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
-        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+      const yTicks = [];
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
       console.log(yTicks);
-
     });
     describe('when space is passed as label', () => {
       beforeEach(() => {
@@ -1373,14 +1371,14 @@ describe('Graph - Axes', () => {
       const allY2AxisElements = document.querySelectorAll(
                 `.${styles.axisY2}`,
       );
-      
-      let yTicks = [];
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
-        yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+
+      const yTicks = [];
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
+        yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
-      let y2Ticks = [];
-      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
-        y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
+      const y2Ticks = [];
+      for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
+        y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
 
       expect(yTicks).toEqual([0, 3, 7, 10]);
@@ -1406,13 +1404,21 @@ describe('Graph - Axes', () => {
       const allY2AxisElements = document.querySelectorAll(
                 `.${styles.axisY2}`,
       );
-      
-      let yTicks = [];
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
-        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
+
+      const expectedYTicks = [0, 3, 5, 8, 10];
+      const yTicks = [];
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
+        yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
 
-      expect(yTicks).toEqual([0, 3, 5, 8, 10]);
+      const expectedY2Ticks = [11, 15, 18, 22, 25];
+      const y2Ticks = [];
+      for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
+        y2Ticks.push(parseInt(allY2AxisElements[0].childNodes[i].querySelector('text').textContent, 10));
+      }
+
+      expect(yTicks).toEqual(expectedYTicks);
+      expect(y2Ticks).toEqual(expectedY2Ticks);
     });
   });
   describe('For timeseries type', () => {
@@ -1952,11 +1958,11 @@ describe('Graph - Axes', () => {
           ...getAxes(localeAxisObj),
         }),
       );
-      const allXAxisElements = document.querySelectorAll( `.${styles.axisX}`);
+      const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
 
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let xTicks = [];
-      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+      const xTicks = [];
+      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
         xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
 
@@ -1985,14 +1991,14 @@ describe('Graph - Axes', () => {
         }),
       );
 
-      const allXAxisElements = document.querySelectorAll( `.${styles.axisX}`);
-      let xTicks = [];
-      
+      const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
+      const xTicks = [];
+
       // The first child element is the domain itself, and second child onwards denote the ticks
-      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
         xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       xTicks.sort((a, b) => a - b);
 
       expect(xTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2021,11 +2027,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisX}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let xTicks = [];
-      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+      const xTicks = [];
+      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
         xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       xTicks.sort((a, b) => a - b);
 
       expect(xTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2054,11 +2060,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisX}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let xTicks = [];
-      for(let i = 1; i < allXAxisElements[0].childNodes.length; i++){
+      const xTicks = [];
+      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
         xTicks.push(parseFloat(allXAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       xTicks.sort((a, b) => a - b);
 
       expect(xTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2085,11 +2091,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let yTicks = [];
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+      const yTicks = [];
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
         yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       yTicks.sort((a, b) => a - b);
 
       expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2116,11 +2122,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let yTicks = [];
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+      const yTicks = [];
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
         yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       yTicks.sort((a, b) => a - b);
 
       expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2149,11 +2155,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let yTicks = [];
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+      const yTicks = [];
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
         yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       yTicks.sort((a, b) => a - b);
 
       expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2182,11 +2188,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let yTicks = [];
-      for(let i = 1; i < allYAxisElements[0].childNodes.length; i++){
+      const yTicks = [];
+      for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
         yTicks.push(parseFloat(allYAxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       yTicks.sort((a, b) => a - b);
 
       expect(yTicks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2214,11 +2220,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let y2Ticks = [];
-      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+      const y2Ticks = [];
+      for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
         y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       y2Ticks.sort((a, b) => a - b);
 
       expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2246,11 +2252,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let y2Ticks = [];
-      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+      const y2Ticks = [];
+      for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
         y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       y2Ticks.sort((a, b) => a - b);
 
       expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2280,11 +2286,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let y2Ticks = [];
-      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+      const y2Ticks = [];
+      for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
         y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       y2Ticks.sort((a, b) => a - b);
 
       expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
@@ -2314,11 +2320,11 @@ describe('Graph - Axes', () => {
                 `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
-      let y2Ticks = [];
-      for(let i = 1; i < allY2AxisElements[0].childNodes.length; i++){
+      const y2Ticks = [];
+      for (let i = 1; i < allY2AxisElements[0].childNodes.length; i += 1) {
         y2Ticks.push(parseFloat(allY2AxisElements[0].childNodes[i].querySelector('text').textContent));
       }
-      
+
       y2Ticks.sort((a, b) => a - b);
 
       expect(y2Ticks).toEqual([0.0, 0.5, 1.0, 1.5, 2.0]);
