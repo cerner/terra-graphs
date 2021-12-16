@@ -555,7 +555,7 @@ const getAxesScale = (axis, scale, config) => {
       let intervalCount;
 
       // Divide the larger range value (a) by the smaller value (b) and determine if a whole number (c) is returned.
-      // If the return value is a whole number and does not have a value grter than 10, divide the smaller range value (b) by the return value (c)
+      // If the return value is a whole number and does not have a value greater than 10, divide the smaller range value (b) by the return value (c)
       // and determine if a whole number is returned. If a whole number is returned, use the initial return value to configure the tick count of the graph.
       const yRange = yUpperLimit - yLowerLimit;
       const y2Range = y2UpperLimit - y2LowerLimit;
