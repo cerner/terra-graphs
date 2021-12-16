@@ -501,8 +501,10 @@ const getAxesScale = (axis, scale, config) => {
       return axis;
     }
     // Y and Y2 axes - ticksCount.
-    let yLowerLimit; let yUpperLimit; let y2LowerLimit; let
-      y2UpperLimit;
+    let yLowerLimit;
+    let yUpperLimit;
+    let y2LowerLimit;
+    let y2UpperLimit;
     yLowerLimit = config.axis.y.domain.lowerLimit;
     yUpperLimit = config.axis.y.domain.upperLimit;
     y2LowerLimit = config.axis.y2.domain.lowerLimit;
