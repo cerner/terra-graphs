@@ -525,8 +525,8 @@ const getAxesScale = (axis, scale, config) => {
     }
     // console.log(yLowerLimit, yUpperLimit, y2LowerLimit, y2UpperLimit);
 
-    let yTickValues; let
-      y2TickValues;
+    let yTickValues;
+    let y2TickValues;
 
     if (
       utils.isDefined(config.ticksCount)
