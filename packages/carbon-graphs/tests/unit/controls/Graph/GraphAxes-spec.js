@@ -342,7 +342,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
       ).toEqual(ticksCount + 2);
     });
@@ -358,7 +358,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
       ).toEqual(ticksCount + 2);
     });
@@ -374,7 +374,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
       ).toEqual(ticksCount + 2);
     });
@@ -390,7 +390,7 @@ describe('Graph - Axes', () => {
         },
       };
       expect(
-        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount, axisData)
+        generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
       ).toEqual(Math.abs(ticksCount) + 2);
     });

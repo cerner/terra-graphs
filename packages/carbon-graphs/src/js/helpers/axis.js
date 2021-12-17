@@ -534,14 +534,12 @@ const getAxesScale = (axis, scale, config) => {
         yLowerLimit,
         yUpperLimit,
         config.ticksCount,
-        config.axis.y,
       );
 
       y2TickValues = generateYAxesTickValues(
         y2LowerLimit,
         y2UpperLimit,
         config.ticksCount,
-        config.axis.y2,
       );
 
       // eslint-disable-next-line brace-style
@@ -586,13 +584,11 @@ const getAxesScale = (axis, scale, config) => {
         yLowerLimit,
         yUpperLimit,
         intervalCount - 1,
-        config.axis.y,
       );
       y2TickValues = generateYAxesTickValues(
         y2LowerLimit,
         y2UpperLimit,
         intervalCount - 1,
-        config.axis.y2,
       );
     }
     if (
@@ -690,7 +686,6 @@ const getAxesScale = (axis, scale, config) => {
         yLowerLimit,
         yUpperLimit,
         config.ticksCount,
-        config.axis.y,
       );
 
       if (
