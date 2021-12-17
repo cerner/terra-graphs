@@ -10,7 +10,6 @@ import LOCALE, { DEFAULT_TICK_FORMAT } from '../locale';
 import { prepareHAxis } from './datetimeBuckets';
 import { shouldTruncateLabel, truncateLabel } from './label';
 import * as localeFormat from './localeFormat';
-// import { cosh } from 'core-js/core/number';
 
 /**
  * @module axis
@@ -523,7 +522,6 @@ const getAxesScale = (axis, scale, config) => {
         .nice()
         .domain();
     }
-    // console.log(yLowerLimit, yUpperLimit, y2LowerLimit, y2UpperLimit);
 
     let yTickValues;
     let y2TickValues;
@@ -559,8 +557,8 @@ const getAxesScale = (axis, scale, config) => {
       // and determine if a whole number is returned. If a whole number is returned, use the initial return value to configure the tick count of the graph.
       const yRange = yUpperLimit - yLowerLimit;
       const y2Range = y2UpperLimit - y2LowerLimit;
-      const greaterRange = yRange >= y2Range ? yRange : y2Range;
-      const lowerRange = yRange <= y2Range ? yRange : y2Range;
+      const greaterRange = Math.max(yRange, y2Range);
+      const lowerRange = Math.min(yRange, y2Range);
       const factor = greaterRange / lowerRange;
 
       if (Number.isInteger(factor) && Number.isInteger(lowerRange / factor) && factor > 2) {
