@@ -334,13 +334,6 @@ describe('Graph - Axes', () => {
       const lowerLimit = 0;
       const upperLimit = 10;
       const ticksCount = constants.TICKSCOUNT_MAXLIMIT;
-      const axisData = {
-        isConsumerProvidedFormat: true,
-        ticks: {
-          format: null,
-          values: [],
-        },
-      };
       expect(
         generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
@@ -350,13 +343,6 @@ describe('Graph - Axes', () => {
       const lowerLimit = 0;
       const upperLimit = 10;
       const ticksCount = constants.TICKSCOUNT_MAXLIMIT - 1;
-      const axisData = {
-        isConsumerProvidedFormat: true,
-        ticks: {
-          format: null,
-          values: [],
-        },
-      };
       expect(
         generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
@@ -366,13 +352,6 @@ describe('Graph - Axes', () => {
       const lowerLimit = 0;
       const upperLimit = 10;
       const ticksCount = 0;
-      const axisData = {
-        isConsumerProvidedFormat: true,
-        ticks: {
-          format: null,
-          values: [],
-        },
-      };
       expect(
         generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
@@ -382,13 +361,6 @@ describe('Graph - Axes', () => {
       const lowerLimit = 0;
       const upperLimit = 10;
       const ticksCount = -5;
-      const axisData = {
-        isConsumerProvidedFormat: true,
-        ticks: {
-          format: null,
-          values: [],
-        },
-      };
       expect(
         generateYAxesTickValues(lowerLimit, upperLimit, ticksCount)
           .length,
