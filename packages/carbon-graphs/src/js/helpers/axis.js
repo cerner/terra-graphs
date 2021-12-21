@@ -559,8 +559,8 @@ const getAxesScale = (axis, scale, config) => {
       const lowerRange = Math.min(yRange, y2Range);
       const factor = greaterRange / lowerRange;
 
-      if (Number.isInteger(factor) 
-          && Number.isInteger(lowerRange / factor) 
+      if (Number.isInteger(factor)
+          && Number.isInteger(lowerRange / factor)
           && factor > 2
       ) {
         intervalCount = factor;
@@ -569,7 +569,7 @@ const getAxesScale = (axis, scale, config) => {
       // any number between 3 and 9 (resulting in a whole number).
       // If yes, choose the highest value to configure the tick count.
         for (let _commonDenominator = 9; _commonDenominator >= 3; _commonDenominator -= 1) {
-          if (Number.isInteger(greaterRange / _commonDenominator) 
+          if (Number.isInteger(greaterRange / _commonDenominator)
               && Number.isInteger(lowerRange / _commonDenominator)
           ) {
             intervalCount = _commonDenominator;
@@ -603,9 +603,9 @@ const getAxesScale = (axis, scale, config) => {
       axis.y = d3.axisLeft(scale.y);
       tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
     }
-    if (!config.axis.y.isConsumerProvidedFormat 
+    if (!config.axis.y.isConsumerProvidedFormat
         && utils.isUndefined(config.axis.y.ticks.values)
-      ) {
+    ) {
       config.axis.y.ticks.format = getYAndY2AxisFormat(yTickValues, config.axis.y);
     }
     axis.y = prepareYAxis(
@@ -628,7 +628,7 @@ const getAxesScale = (axis, scale, config) => {
       axis.y2 = d3.axisRight(scale.y2);
       tickFormatToTrimTrailingZeros = tickFormatter(axis.y2);
     }
-    if (!config.axis.y2.isConsumerProvidedFormat 
+    if (!config.axis.y2.isConsumerProvidedFormat
         && utils.isUndefined(config.axis.y2.ticks.values)
     ) {
       config.axis.y2.ticks.format = getYAndY2AxisFormat(y2TickValues, config.axis.y2);
@@ -704,7 +704,7 @@ const getAxesScale = (axis, scale, config) => {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
       }
-      if (!config.axis.y.isConsumerProvidedFormat 
+      if (!config.axis.y.isConsumerProvidedFormat
           && utils.isUndefined(config.axis.y.ticks.values)
       ) {
         config.axis.y.ticks.format = getYAndY2AxisFormat(yTickValues, config.axis.y);
