@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.20.3 - (January 4, 2022)
+
 * Changed
   * Updated default to calculate cleaner tick values when Y and Y2 axes are present.
 
