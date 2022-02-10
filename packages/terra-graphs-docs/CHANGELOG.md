@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added showXLabel documentation in Graph docs.
+
 ## 1.0.3 - (January 4, 2022)
 
 * Changed

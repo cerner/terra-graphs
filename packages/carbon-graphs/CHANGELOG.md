@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+* Changed
+  * Fixed to not throw an error when no x-axis label is provided.
+
+* Added
+  * Added the `showXLabel` property to allow hiding or showing the x-axis label.
+
 ## 2.20.3 - (January 4, 2022)
 
 * Changed

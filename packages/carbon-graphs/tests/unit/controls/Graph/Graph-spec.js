@@ -174,7 +174,7 @@ describe('Graph', () => {
               y: axisDefault.y,
             }),
           );
-        }).toThrowError(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
+        }).not.toThrowError(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
       });
       it('If y axis label is not present', () => {
         expect(() => {
@@ -354,6 +354,7 @@ describe('Graph', () => {
       expect(graph.config.d3Locale).not.toBeNull();
       expect(graph.config.throttle).toEqual(constants.RESIZE_THROTTLE);
       expect(graph.config.showLabel).toEqual(true);
+      expect(graph.config.showXLabel).toEqual(true);
       expect(graph.config.showLegend).toEqual(true);
       expect(graph.config.showNoDataText).toEqual(true);
       expect(graph.config.showShapes).toEqual(true);
@@ -445,6 +446,7 @@ describe('Graph', () => {
       expect(graph.config.d3Locale).not.toBeNull();
       expect(graph.config.throttle).toEqual(constants.RESIZE_THROTTLE);
       expect(graph.config.showLabel).toEqual(true);
+      expect(graph.config.showXLabel).toEqual(true);
       expect(graph.config.showLegend).toEqual(true);
       expect(graph.config.showNoDataText).toEqual(true);
       expect(graph.config.showShapes).toEqual(true);
@@ -848,6 +850,7 @@ describe('Graph', () => {
       expect(graph.config.d3Locale).not.toBeNull();
       expect(graph.config.throttle).toEqual(constants.RESIZE_THROTTLE);
       expect(graph.config.showLabel).toEqual(true);
+      expect(graph.config.showXLabel).toEqual(true);
       expect(graph.config.showLegend).toEqual(true);
       expect(graph.config.showNoDataText).toEqual(true);
       expect(graph.config.showShapes).toEqual(true);
@@ -914,6 +917,37 @@ describe('Graph', () => {
       );
       expect(toNumber(translate[0], 10)).toBeCloserTo(55);
       expect(toNumber(translate[1], 10)).toBeCloserTo(10);
+    });
+    it('Sets x axis position correctly when x axis label is empty', () => {
+      const hiddenXLabelObj = utils.deepClone(axisDefault);
+      hiddenXLabelObj.x.orientation = AXES_ORIENTATION.X.TOP;
+      hiddenXLabelObj.x.label = '';
+      const input = getAxes(hiddenXLabelObj);
+      graph = new Graph(input);
+      const axisXElement = fetchElementByClass(styles.axisX);
+      const { translate } = getSVGAnimatedTransformList(
+        axisXElement.getAttribute('transform'),
+      );
+      expect(toNumber(translate[0], 10)).toBeCloserTo(67);
+      expect(toNumber(translate[1], 10)).toBeCloserTo(10);
+    });
+
+    it('Sets x axis as hidden when showXLabel is false', () => {
+      const hiddenXLabelObj = utils.deepClone(axisDefault);
+      hiddenXLabelObj.x.orientation = AXES_ORIENTATION.X.TOP;
+      hiddenXLabelObj.x.label = 'X Label';
+      graph = new Graph(
+        ({
+          showXLabel: false,
+          ...getAxes(hiddenXLabelObj),
+        }),
+      );
+      const axisXElement = fetchElementByClass(styles.axisX);
+      const { translate } = getSVGAnimatedTransformList(
+        axisXElement.getAttribute('transform'),
+      );
+      expect(toNumber(translate[0], 10)).toBeCloserTo(67);
+      expect(toNumber(translate[1], 10)).toBeCloserTo(46);
     });
   });
 });

@@ -587,7 +587,7 @@ const createGrid = (axis, scale, config, canvasSVG) => {
 const createLabel = (config, canvasSVG, control) => {
   if (config.showLabel) {
     const axesLabelCharLimits = getAxesLabelCharacterLimits(config);
-    if (config.axis.x.label) {
+    if (config.showXLabel && config.axis.x.label) {
       const labelPath = canvasSVG
         .append('g')
         .classed(styles.axisLabelX, true)
