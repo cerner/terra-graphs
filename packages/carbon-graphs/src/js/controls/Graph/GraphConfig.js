@@ -125,6 +125,7 @@ export const processInput = (input, config, type) => {
   );
   config.settingsDictionary = settingsDictionary(input);
   config.showLabel = getDefaultValue(input.showLabel, true);
+  config.showXLabel = getDefaultValue(input.showXLabel, true);
   config.showLegend = getDefaultValue(input.showLegend, true);
   config.showShapes = getDefaultValue(input.showShapes, true);
   config.showHGrid = getDefaultValue(input.showHGrid, true);
@@ -287,8 +288,10 @@ class GraphConfig extends BaseConfig {
     ) {
       throw new Error(errors.THROW_MSG_NO_AXIS_LIMIT_INFO);
     }
-    if (utils.isEmpty(this.input.axis.x.label)) {
-      throw new Error(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
+
+    if (getDefaultValue(this.input.showXLabel, true) && utils.isEmpty(this.input.axis.x.label)) {
+      // eslint-disable-next-line no-console
+      console.warn('A label for the x-axis is expected to be provided to meet accessibility standards. This label will become required starting in terra-graphs version 3.0.0. "showXLabel" can be set to false to hide the label for situations where the label should not be displayed.');
     }
     if (utils.isEmpty(this.input.axis.y.label)) {
       throw new Error(errors.THROW_MSG_NO_AXIS_LABEL_INFO);

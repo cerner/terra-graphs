@@ -544,13 +544,13 @@ describe('Graph - Generate', () => {
       expect(toNumber(translate[1], 10)).toBeCloserTo(47);
       expect(toNumber(translate[1], 10)).not.toBe(120);
     });
-    it('Throws error when label x axis text is not present', () => {
+    it('Do not throw error when label x axis text is not present', () => {
       expect(() => {
         graph.destroy();
         const labelAxisObj = utils.deepClone(axisDefault);
         labelAxisObj.x.label = '';
         graph = new Graph(getAxes(labelAxisObj));
-      }).toThrowError(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
+      }).not.toThrowError(errors.THROW_MSG_NO_AXIS_LABEL_INFO);
     });
     it('Throws error when label y axis text is not present', () => {
       expect(() => {
