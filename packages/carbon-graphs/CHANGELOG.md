@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.21.0 - (February 15, 2022)
+
 * Changed
   * Fixed to not throw an error when no x-axis label is provided.
 
