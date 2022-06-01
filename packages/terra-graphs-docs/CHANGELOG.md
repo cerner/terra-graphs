@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated terra-devsite version
+
 ## 1.1.0 - (February 15, 2022)
 
 * Added
