@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "terra-button": "^3.55.0",
-    "terra-dev-site": "^6.5.0"
+    "terra-dev-site": "^8.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.5",
