@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-graphs-docs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A react based dev-site that has documentation and example graphs",
   "repository": {
     "type": "git",
@@ -35,8 +35,8 @@
     "terra-theme-context": "^1.0.0"
   },
   "devDependencies": {
-    "terra-button": "^3.55.0",
-    "@cerner/terra-dev-site": "^8.0.0"
+    "@cerner/terra-dev-site": "^8.0.0",
+    "terra-button": "^3.55.0"
   },
   "peerDependencies": {
     "react": "^16.8.5",
