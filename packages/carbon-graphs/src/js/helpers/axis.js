@@ -2,7 +2,7 @@
 
 import * as d3 from 'd3';
 import Bar from '../controls/Bar/Bar';
-import { getScale, getType, getDomain } from '../core/BaseConfig';
+import { getScale, getType, getXAxisDomain } from '../core/BaseConfig';
 import constants, { AXES_ORIENTATION, AXIS_TYPE } from './constants';
 import styles from './styles';
 import utils from './utils';
@@ -416,6 +416,7 @@ const getAxesScale = (axis, scale, config) => {
 
   axis.x = prepareXAxis(
     scale.x,
+    // undefined,
     config.axis.x.ticks.values,
     getXAxisWidth(config),
     getAxisTickFormat(
@@ -500,28 +501,10 @@ const getAxesScale = (axis, scale, config) => {
       return axis;
     }
     // Y and Y2 axes - ticksCount.
-    let yLowerLimit;
-    let yUpperLimit;
-    let y2LowerLimit;
-    let y2UpperLimit;
-    yLowerLimit = config.axis.y.domain.lowerLimit;
-    yUpperLimit = config.axis.y.domain.upperLimit;
-    y2LowerLimit = config.axis.y2.domain.lowerLimit;
-    y2UpperLimit = config.axis.y2.domain.upperLimit;
-
-    // if allowCalibration is true then adjust limits
-    if (config.allowCalibration) {
-      [yLowerLimit, yUpperLimit] = d3
-        .scaleLinear()
-        .domain([yLowerLimit, yUpperLimit])
-        .nice()
-        .domain();
-      [y2LowerLimit, y2UpperLimit] = d3
-        .scaleLinear()
-        .domain([y2LowerLimit, y2UpperLimit])
-        .nice()
-        .domain();
-    }
+    const yLowerLimit = config.axis.y.domain.lowerLimit;
+    const yUpperLimit = config.axis.y.domain.upperLimit;
+    const y2LowerLimit = config.axis.y2.domain.lowerLimit;
+    const y2UpperLimit = config.axis.y2.domain.upperLimit;
 
     let yTickValues;
     let y2TickValues;
@@ -648,19 +631,8 @@ const getAxesScale = (axis, scale, config) => {
   }
   // Only single Y axis
   else {
-    let yLowerLimit; let
-      yUpperLimit;
-    yLowerLimit = config.axis.y.domain.lowerLimit;
-    yUpperLimit = config.axis.y.domain.upperLimit;
-
-    // if allowCalibration is true then adjust limits
-    if (config.allowCalibration) {
-      [yLowerLimit, yUpperLimit] = d3
-        .scaleLinear()
-        .domain([yLowerLimit, yUpperLimit])
-        .nice()
-        .domain();
-    }
+    const yLowerLimit = config.axis.y.domain.lowerLimit;
+    const yUpperLimit = config.axis.y.domain.upperLimit;
 
     // Single Y axis - custom tick values
     // eslint-disable-next-line no-lonely-if
@@ -733,6 +705,7 @@ const getAxesScale = (axis, scale, config) => {
         axis.y = d3.axisLeft(scale.y);
         tickFormatToTrimTrailingZeros = tickFormatter(axis.y);
       }
+
       axis.y = prepareYAxis(
         scale.y,
         undefined,
@@ -1106,7 +1079,7 @@ const getXAxisHeight = (config) => {
     return config.padding.bottom;
   }
   const scale = getScale(config.axis.x.type)
-    .domain(config.axis.x.domain)
+    .domain([config.axis.x.domain.lowerLimit, config.axis.x.domain.upperLimit])
     .range([0, config.canvasWidth]);
   const axis = d3.axisBottom(scale);
   const dummy = d3.select('body').append('div');
@@ -1305,14 +1278,46 @@ const calculateAxesLabelSize = (config) => {
  *
  * @private
  * @param {object} config - config object derived from input JSON
- * @param {string} yAxis - Y, Y2 etc
+ * @param {string} axis - X, Y, or Y2
  * @returns {number} returns a number representing the mid value of y axes domain
  */
-const getMidPoint = (config, yAxis) => {
-  const axisMidValue = (config.axis[yAxis].domain.upperLimit
-            - config.axis[yAxis].domain.lowerLimit)
+const getMidPoint = (config, axis) => {
+  const axisMidValue = (config.axis[axis].domain.upperLimit
+            - config.axis[axis].domain.lowerLimit)
         / 2;
-  return config.axis[yAxis].domain.lowerLimit + axisMidValue;
+  return config.axis[axis].domain.lowerLimit + axisMidValue;
+};
+
+/**
+ * Calculates the lower part of the outlier based on data points.
+ * If the content has any data points that are outside the lower and upper bounds set
+ * in the vertical axis then we adjust the axis bounds to support that outlier value.
+ *
+ * @private
+ * @param {object} config - config object derived from input JSON
+ * @returns {Array} List of lower bound values for each of the vertical axis
+ */
+// eslint-disable-next-line no-unused-vars
+const getLowerOutlierStretchFactorXAxis = (config) => {
+  const lowerStretchFactors = [];
+  const getMinValue = (conf, xAxis, axisMinValue) => {
+    const dataRangeMinValue = conf.axis[xAxis].dataRange.min;
+    return dataRangeMinValue < axisMinValue
+      ? dataRangeMinValue
+      : axisMinValue;
+  };
+  const getLowerStretchFactor = (xAxis) => {
+    const axisMinValue = config.axis[xAxis].domain.lowerLimit;
+    const axisMidPoint = getMidPoint(config, xAxis);
+    const lowerStretchFactor = Math.abs(
+      (axisMidPoint - getMinValue(config, xAxis, axisMinValue))
+                / (axisMidPoint - axisMinValue),
+    );
+    return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
+  };
+  lowerStretchFactors.push(getLowerStretchFactor(constants.X_AXIS));
+
+  return lowerStretchFactors;
 };
 
 /**
@@ -1355,7 +1360,7 @@ const getLowerOutlierStretchFactorList = (config) => {
  * @param {object} config - config object derived from input JSON
  */
 const updateXAxisDomain = (config) => {
-  config.axis.x.domain = getDomain(
+  config.axis.x.domain = getXAxisDomain(
     config.axis.x.type,
     config.axis.x.lowerLimit,
     config.axis.x.upperLimit,
@@ -1392,6 +1397,59 @@ const getUpperOutlierStretchFactorList = (config) => {
     upperStretchFactors.push(getUpperStretchFactor(constants.Y2_AXIS));
   }
   return upperStretchFactors;
+};
+
+/**
+ * Calculates the upper part of the outlier based on data points.
+ * If the content has any data points that are outside the lower and upper bounds set
+ * in the vertical axis then we adjust the axis bounds to support that outlier value.
+ *
+ * @private
+ * @param {object} config - config object derived from input JSON
+ * @returns {Array} List of upper bound values for each of the vertical axis
+ */
+const getUpperOutlierStretchFactorXAxis = (config) => {
+  const upperStretchFactors = [];
+  const getMaxValue = (conf, xAxis, axisMaxValue) => {
+    const dataRangeMaxValue = conf.axis[xAxis].dataRange.max;
+    return dataRangeMaxValue > axisMaxValue
+      ? dataRangeMaxValue
+      : axisMaxValue;
+  };
+  const getUpperStretchFactor = (xAxis) => {
+    const axisMaxValue = config.axis[xAxis].domain.upperLimit;
+    const axisMidPoint = getMidPoint(config, xAxis);
+    const upperStretchFactor = Math.abs(
+      (getMaxValue(config, xAxis, axisMaxValue) - axisMidPoint)
+                / (axisMaxValue - axisMidPoint),
+    );
+    return upperStretchFactor > 1 ? upperStretchFactor : 1;
+  };
+  upperStretchFactors.push(getUpperStretchFactor(constants.X_AXIS));
+
+  return upperStretchFactors;
+};
+
+/**
+* Determines if the values provided exceed the lower and upper bounds provided in the Y or Y2 axes
+* If the values exceed the bounds then the range and domain are adjusted accordingly.
+* There is no outlier check for X axis, for now, due to the possibility that X axis can be a timeseries.
+*
+* @private
+* @param {object} config - config object derived from input JSON
+* @returns {object} stretch factor determines the new upper and lower limit.
+*/
+//
+const determineOutlierStretchFactorXAxis = (config) => {
+  const sortOutlier = (firstValue, secondValue) => secondValue - firstValue;
+  return {
+    upperLimit: getUpperOutlierStretchFactorXAxis(config).sort(
+      sortOutlier,
+    )[0],
+    lowerLimit: getLowerOutlierStretchFactorList(config).sort(
+      sortOutlier,
+    )[0],
+  };
 };
 
 /**
@@ -1570,6 +1628,9 @@ const getAxesDataRange = (
   config,
   content = [],
 ) => {
+  if (utils.isEmpty(config.axis.x.dataRange)) {
+    config.axis.x.dataRange = {};
+  }
   if (utils.isEmpty(config.axis.y.dataRange)) {
     config.axis.y.dataRange = {};
   }
@@ -1646,6 +1707,7 @@ export {
   calculateAxesSize,
   calculateAxesLabelSize,
   determineOutlierStretchFactor,
+  determineOutlierStretchFactorXAxis,
   buildAxisLabel,
   getAxesScale,
   createAxes,

@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseConfig, { getDefaultValue, getDomain } from '../../core/BaseConfig';
+import BaseConfig, { getDefaultValue, getXAxisDomain } from '../../core/BaseConfig';
 import {
   generateClipPathId,
   generateDatelineClipPathId,
@@ -75,113 +75,6 @@ export const settingsDictionary = (config) => (isPanningModeEnabled(config)
     transition: constants.D3_TRANSITION_PROPERTIES_ENABLED,
     shouldCreateDatelineDefs: false,
   });
-
-/**
- * Processes the input from the JSON and updates the config object.
- * d3 domain and ranges are stored based on the upper and lower x, y and y2 limits.
- *
- * @private
- * @param {object} input - Input JSON provided by the consumer
- * @param {object} config - config object used by the graph
- * @param {string} type - input type
- * @returns {object} - returns configuration object constructed using Input JSON
- */
-export const processInput = (input, config, type) => {
-  const axis = utils.deepClone(input.axis);
-  const getAxisDomain = (conf, yAxis, axisObj, showAxis = false) => {
-    conf.axis[yAxis].ticks = getDefaultValue(axisObj[yAxis].ticks, {});
-    conf.axis[yAxis].show = getDefaultValue(
-      axisObj[yAxis].show,
-      showAxis,
-    );
-    conf.axis[yAxis].domain = {
-      lowerLimit: utils.getNumber(axisObj[yAxis].lowerLimit),
-      upperLimit: utils.getNumber(axisObj[yAxis].upperLimit),
-    };
-    conf.axis[yAxis].rangeRounding = getDefaultValue(
-      axisObj[yAxis].rangeRounding,
-      true,
-    );
-    conf.axis[yAxis].suppressTrailingZeros = getDefaultValue(
-      axisObj[yAxis].suppressTrailingZeros,
-      false,
-    );
-    return conf;
-  };
-  config.clipPathId = generateClipPathId();
-  config.datelineClipPathId = generateDatelineClipPathId();
-  config.bindTo = input.bindTo;
-  config.bindLegendTo = input.bindLegendTo;
-  config.axis = axis;
-  config.dateline = getDefaultValue(utils.deepClone(input.dateline), []);
-  config.eventline = getDefaultValue(utils.deepClone(input.eventline), []);
-  config.padding = getPadding(config, input.padding);
-  config.locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
-  config.d3Locale = getDefaultValue(input.locale, DEFAULT_LOCALE);
-  config.showNoDataText = getDefaultValue(input.showNoDataText, true);
-  config.throttle = getDefaultValue(
-    input.throttle,
-    constants.RESIZE_THROTTLE,
-  );
-  config.settingsDictionary = settingsDictionary(input);
-  config.showLabel = getDefaultValue(input.showLabel, true);
-  config.showXLabel = getDefaultValue(input.showXLabel, true);
-  config.showLegend = getDefaultValue(input.showLegend, true);
-  config.showShapes = getDefaultValue(input.showShapes, true);
-  config.showHGrid = getDefaultValue(input.showHGrid, true);
-  config.showVGrid = getDefaultValue(input.showVGrid, true);
-  config.dimension = getDefaultValue(input.dimension, {});
-  config.allowCalibration = getDefaultValue(input.allowCalibration, true);
-  config.removeContainerPadding = getDefaultValue(
-    input.removeContainerPadding,
-    false,
-  );
-  config.legendPadding = getLegendPadding(config, input.legendPadding);
-
-  // Additional X Axis properties defined on top of input axis
-  config.axis.x.type = getDefaultValue(axis.x.type, AXIS_TYPE.DEFAULT);
-  config.axis.x.ticks = getDefaultValue(axis.x.ticks, {});
-  config.axis.x.show = getDefaultValue(axis.x.show, true);
-  config.axis.x.orientation = getDefaultValue(
-    axis.x.orientation,
-    AXES_ORIENTATION.X.BOTTOM,
-  );
-  config.axis.x.domain = getDomain(
-    type,
-    axis.x.lowerLimit,
-    axis.x.upperLimit,
-  );
-  config.axis.x.rangeRounding = getDefaultValue(axis.x.rangeRounding, true);
-  config.axis.x.suppressTrailingZeros = getDefaultValue(
-    axis.x.suppressTrailingZeros,
-    false,
-  );
-
-  // Additional Y & Y2 Axis properties defined on top of input axis
-  if (input.axis.y) {
-    getAxisDomain(config, constants.Y_AXIS, axis, true);
-  } else {
-    config.axis.y = initialAxisInfo;
-  }
-  if (input.axis.y2) {
-    getAxisDomain(config, constants.Y2_AXIS, axis);
-  } else {
-    config.axis.y2 = initialAxisInfo;
-  }
-  config.shownTargets = [];
-  config.hasCriticality = false;
-  config.shouldHideAllRegion = false;
-  // axisPadding is needed for case by case basis. Example: for bar graphs, we toggle padding using this variable
-  config.axisPadding = {
-    y: getDefaultValue(axis.y.padDomain, true),
-    y2: getDefaultValue(axis.y2.padDomain, true),
-  };
-  config.axisInfoRowLabelHeight = 0; // specific only to  Bar Graphs (when axis info row labels are used in Bar Graphs)
-  config.axis.y.isConsumerProvidedFormat = utils.isDefined(config.axis.y.ticks.format);
-  config.axis.y2.isConsumerProvidedFormat = utils.isDefined(config.axis.y2.ticks.format);
-
-  return config;
-};
 
 /**
  * Checks if the keys for data points sets are unique
@@ -338,13 +231,130 @@ class GraphConfig extends BaseConfig {
     return this;
   }
 
+  // TODO: cloning may bloat up the the graph config object by adding additional properties.
+  // This may also be an unecessary or redundant step as processInput adds in default values
+  // if any are missing. A spike needs to be done to confirm if this step is unecessary and
+  // can be removed.
+
   /**
      * Clones the input JSON into the config object
      *
      * @returns {GraphConfig} instance object
      */
-  clone() {
+  cloneInput() {
     this.config = utils.deepClone(this.input);
+    return this;
+  }
+
+  // TODO: this method needs to be added to the baseConfig class as part of the class template
+
+  /**
+  * Processes the input from the JSON and updates the config object.
+  * d3 domain and ranges are stored based on the upper and lower x, y and y2 limits.
+  *
+  * @private
+  * @param {object} input - Input JSON provided by the consumer
+  * @param {object} config - config object used by the graph
+  * @param {string} type - input type
+  * @returns {GraphConfig} instance object
+  */
+
+  processInput() {
+    const axis = utils.deepClone(this.input.axis);
+    const getYAxesDomain = (conf, yAxis, axisObj, showAxis = false) => {
+      conf.axis[yAxis].ticks = getDefaultValue(axisObj[yAxis].ticks, {});
+      conf.axis[yAxis].show = getDefaultValue(
+        axisObj[yAxis].show,
+        showAxis,
+      );
+      conf.axis[yAxis].domain = {
+        lowerLimit: utils.getNumber(axisObj[yAxis].lowerLimit),
+        upperLimit: utils.getNumber(axisObj[yAxis].upperLimit),
+      };
+      conf.axis[yAxis].rangeRounding = getDefaultValue(
+        axisObj[yAxis].rangeRounding,
+        true,
+      );
+      conf.axis[yAxis].suppressTrailingZeros = getDefaultValue(
+        axisObj[yAxis].suppressTrailingZeros,
+        false,
+      );
+      return conf;
+    };
+
+    // Sets default value if undefined. Otherwise adds the input value.
+
+    this.config.clipPathId = generateClipPathId();
+    this.config.datelineClipPathId = generateDatelineClipPathId();
+    this.config.bindTo = this.input.bindTo;
+    this.config.bindLegendTo = this.input.bindLegendTo;
+    this.config.axis = axis;
+    this.config.dateline = getDefaultValue(utils.deepClone(this.input.dateline), []);
+    this.config.eventline = getDefaultValue(utils.deepClone(this.input.eventline), []);
+    this.config.padding = getPadding(this.config, this.input.padding);
+    this.config.locale = getDefaultValue(this.input.locale, DEFAULT_LOCALE);
+    this.config.d3Locale = getDefaultValue(this.input.locale, DEFAULT_LOCALE);
+    this.config.showNoDataText = getDefaultValue(this.input.showNoDataText, true);
+    this.config.throttle = getDefaultValue(
+      this.input.throttle,
+      constants.RESIZE_THROTTLE,
+    );
+    this.config.settingsDictionary = settingsDictionary(this.input);
+    this.config.showLabel = getDefaultValue(this.input.showLabel, true);
+    this.config.showXLabel = getDefaultValue(this.input.showXLabel, true);
+    this.config.showLegend = getDefaultValue(this.input.showLegend, true);
+    this.config.showShapes = getDefaultValue(this.input.showShapes, true);
+    this.config.showHGrid = getDefaultValue(this.input.showHGrid, true);
+    this.config.showVGrid = getDefaultValue(this.input.showVGrid, true);
+    this.config.dimension = getDefaultValue(this.input.dimension, {});
+    this.config.allowCalibration = getDefaultValue(this.input.allowCalibration, true);
+    this.config.removeContainerPadding = getDefaultValue(
+      this.input.removeContainerPadding,
+      false,
+    );
+    this.config.legendPadding = getLegendPadding(this.config, this.input.legendPadding);
+    this.config.opaqueBackground = getDefaultValue(this.input.opaqueBackground, false);
+
+    // Additional X Axis properties defined on top of input axis
+    this.config.axis.x.type = getDefaultValue(axis.x.type, AXIS_TYPE.DEFAULT);
+    this.config.axis.x.ticks = getDefaultValue(axis.x.ticks, {});
+    this.config.axis.x.show = getDefaultValue(axis.x.show, true);
+    this.config.axis.x.orientation = getDefaultValue(
+      axis.x.orientation,
+      AXES_ORIENTATION.X.BOTTOM,
+    );
+    this.config.axis.x.domain = getXAxisDomain(
+      this.config.axis.x.type,
+      this.config.axis.x.lowerLimit,
+      this.config.axis.x.upperLimit,
+    );
+    this.config.axis.x.rangeRounding = getDefaultValue(axis.x.rangeRounding, true);
+    this.config.axis.x.suppressTrailingZeros = getDefaultValue(axis.x.suppressTrailingZeros, false);
+    this.config.axis.x.allowCalibration = getDefaultValue(axis.x.allowCalibration, false);
+
+    // Additional Y & Y2 Axis properties defined on top of input axis
+    if (this.input.axis.y) {
+      getYAxesDomain(this.config, constants.Y_AXIS, axis, true);
+    } else {
+      this.config.axis.y = initialAxisInfo;
+    }
+    if (this.input.axis.y2) {
+      getYAxesDomain(this.config, constants.Y2_AXIS, axis);
+    } else {
+      this.config.axis.y2 = initialAxisInfo;
+    }
+    this.config.shownTargets = [];
+    this.config.hasCriticality = false;
+    this.config.shouldHideAllRegion = false;
+    // axisPadding is needed for case by case basis. Example: for bar graphs, we toggle padding using this variable
+    this.config.axisPadding = {
+      y: getDefaultValue(axis.y.padDomain, true),
+      y2: getDefaultValue(axis.y2.padDomain, true),
+    };
+    this.config.axisInfoRowLabelHeight = 0; // specific only to  Bar Graphs (when axis info row labels are used in Bar Graphs)
+    this.config.axis.y.isConsumerProvidedFormat = utils.isDefined(this.config.axis.y.ticks.format);
+    this.config.axis.y2.isConsumerProvidedFormat = utils.isDefined(this.config.axis.y2.ticks.format);
+
     return this;
   }
 }

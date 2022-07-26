@@ -20,7 +20,7 @@ import { createLegend } from '../../helpers/legend';
 import { createRegionContainer } from '../../helpers/region';
 import { createTooltipDiv, destroyTooltipDiv } from '../../helpers/label';
 import styles from '../../helpers/styles';
-import GraphConfig, { processInput, validateContent } from './GraphConfig';
+import GraphConfig, { validateContent } from './GraphConfig';
 import utils from '../../helpers/utils';
 import { createDateline, redrawDatelineContent } from '../../helpers/dateline';
 import getElementBoxSizingParameters from '../../helpers/paddingUtils';
@@ -99,17 +99,7 @@ const setCanvasHeight = (config) => {
  * @returns {boolean} true if min-max range changed
  */
 const isRangeModified = (config, yAxis = constants.Y_AXIS) => config.axis[yAxis].dataRange.isRangeModified;
-/**
- * Data point sets can be loaded using this function.
- * Load function validates, clones and stores the input onto a config object.
- *
- * @private
- * @throws {module:errors.THROW_MSG_NO_AXES_DATA_LOADED}
- * @param {object} inputJSON - Input JSON provided by the consumer
- * @returns {object} config object containing consumer data
- */
-const loadInput = (inputJSON) => new GraphConfig().setInput(inputJSON).validateInput().clone()
-  .getConfig();
+
 /**
  * Executes the before init process checklist, needs to be called by parent control.
  *  Binds the chart id provided in the input JSON to graph container.
@@ -218,6 +208,21 @@ class Graph extends Construct {
     this.generate(input);
   }
 
+  // TODO: update generate to return an instance of the graph object and utilize getGraphSVG
+  // wherever it is called.
+
+  /**
+   * Draw function that is called by the parent control. This draws the Axes, grid, legend and
+   * labels for the chart construct.
+   *
+   * @description Returns the selection node of the svg.
+   * @returns {d3.selection} d3 selection node of svg.
+   */
+
+  getGraphSVG() {
+    return this.svg;
+  }
+
   /**
      * Draw function that is called by the parent control. This draws the Axes, grid, legend and
      * labels for the chart construct.
@@ -237,8 +242,13 @@ class Graph extends Construct {
      * @returns {d3.selection} d3 selection node of svg.
      */
   generate(input) {
-    this.config = loadInput(input);
-    processInput(input, this.config, this.config.axis.x.type);
+    this.config = new GraphConfig()
+      .setInput(input)
+      .validateInput()
+      .cloneInput()
+      .processInput()
+      .getConfig();
+
     beforeInit(this);
     init(this);
     const containerSVG = d3
@@ -258,9 +268,6 @@ class Graph extends Construct {
           ? this.config.canvasWidth
           : this.config.canvasWidth - BASE_CANVAS_WIDTH_PADDING,
       );
-    if (utils.isUndefined(this.config.opaqueBackground)) {
-      this.config.opaqueBackground = false;
-    }
 
     if (this.config.opaqueBackground) {
       d3.select(`.${styles.container}`).style(
@@ -343,6 +350,16 @@ class Graph extends Construct {
     this.contentConfig.push(content.config);
     this.contentKeys.push(content.config.key);
     setAxisPadding(this.config.axisPadding, content);
+
+    console.log(content.config);
+
+    getAxesDataRange(
+      content,
+      content.config.xAxis,
+      this.config,
+      this.content,
+    );
+
     getAxesDataRange(
       content,
       content.config.yAxis,
@@ -371,6 +388,7 @@ class Graph extends Construct {
     if (utils.notEmpty(content.config.values)) {
       removeNoDataView(this.svg);
     }
+    return this;
   }
 
   /**

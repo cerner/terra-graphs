@@ -2,7 +2,7 @@ import BaseConfig from './BaseConfig';
 
 import {
   getDefaultValue,
-  getDomain,
+  getXAxisDomain,
   getInterpolationType,
   getScale,
   getType,
@@ -13,7 +13,7 @@ import {
 export {
   BaseConfig as default,
   getDefaultValue,
-  getDomain,
+  getXAxisDomain,
   getScale,
   getType,
   getInterpolationType,
