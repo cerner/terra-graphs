@@ -332,6 +332,10 @@ class GraphConfig extends BaseConfig {
     this.config.axis.x.suppressTrailingZeros = getDefaultValue(axis.x.suppressTrailingZeros, false);
     this.config.axis.x.allowCalibration = getDefaultValue(axis.x.allowCalibration, false);
 
+    if(utils.isDefined(this.input.pan.enabled) && this.input.pan.enabled){
+      this.config.axis.x.allowCalibration = false;
+    }
+
     // Additional Y & Y2 Axis properties defined on top of input axis
     if (this.input.axis.y) {
       getYAxesDomain(this.config, constants.Y_AXIS, axis, true);
