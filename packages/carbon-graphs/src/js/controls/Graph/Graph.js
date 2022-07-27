@@ -351,15 +351,6 @@ class Graph extends Construct {
     this.contentKeys.push(content.config.key);
     setAxisPadding(this.config.axisPadding, content);
 
-    console.log(content.config);
-
-    getAxesDataRange(
-      content,
-      content.config.xAxis,
-      this.config,
-      this.content,
-    );
-
     getAxesDataRange(
       content,
       content.config.yAxis,
