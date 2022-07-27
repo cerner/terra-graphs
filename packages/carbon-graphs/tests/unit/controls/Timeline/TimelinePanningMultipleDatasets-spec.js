@@ -189,9 +189,6 @@ describe('Panning', () => {
       timeline = new Timeline(axisData);
       timeline.loadContent(input);
     });
-    it('Check if clamp is true if pan is undefined', () => {
-      expect(timeline.scale.x.clamp()).toEqual(true);
-    });
     it('Check if data point are getting translated properly', () => {
       const dataPoint = fetchElementByClass(styles.point).firstChild;
       expect(
