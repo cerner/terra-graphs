@@ -1135,9 +1135,6 @@ describe('PairedResult', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new PairedResult(input));
     });
-    it('Checks if clamp is true when pan is disabled', () => {
-      expect(graphDefault.scale.x.clamp()).toEqual(true);
-    });
     it('translates DatelineGroup properly after some delay when panning is disabled', (done) => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
