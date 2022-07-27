@@ -99,22 +99,6 @@ export const getScale = (type) => (getType(type) === AXIS_TYPE.TIME_SERIES ? d3.
  * @returns {Array} Array represented by lower and upper limit ranges.
  */
 export const getXAxisDomain = (type, lowerLimit, upperLimit) => (getType(type) === AXIS_TYPE.TIME_SERIES
-  // ? [utils.parseDateTime(lowerLimit), utils.parseDateTime(upperLimit)]
-  // : [utils.getNumber(lowerLimit), utils.getNumber(upperLimit)]);
-  ? { lowerLimit: utils.parseDateTime(lowerLimit), upperLimit: utils.parseDateTime(upperLimit) }
-  : { lowerLimit: utils.getNumber(lowerLimit), upperLimit: utils.getNumber(upperLimit) });
-  /**
- * Returns the domain for the axes. If the range is a number then the domain is treated
- * as a number or if its a datetime then they are converted to a date object and returned as
- * an object.
- *
- * @private
- * @param {string} type - input type
- * @param {string} lowerLimit - lower limit of the axes
- * @param {string} upperLimit - upper limit of the axes
- * @returns {Array} Array represented by lower and upper limit ranges.
- */
-export const getXDomain = (type, lowerLimit, upperLimit) => (getType(type) === AXIS_TYPE.TIME_SERIES
   ? { lowerLimit: utils.parseDateTime(lowerLimit), upperLimit: utils.parseDateTime(upperLimit) }
   : { lowerLimit: utils.getNumber(lowerLimit), upperLimit: utils.getNumber(upperLimit) });
 /**
