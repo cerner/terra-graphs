@@ -332,7 +332,7 @@ class GraphConfig extends BaseConfig {
     this.config.axis.x.suppressTrailingZeros = getDefaultValue(axis.x.suppressTrailingZeros, false);
     this.config.axis.x.allowCalibration = getDefaultValue(axis.x.allowCalibration, false);
 
-    if(isPanningModeEnabled(this.input)){
+    if (isPanningModeEnabled(this.input)) {
       this.config.axis.x.allowCalibration = false;
     }
 
