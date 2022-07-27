@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added preliminary logic for new prop `config.axis.x.allowCalibration` to update automatically axis limits to allow padding.
+
 ## 2.21.0 - (February 15, 2022)
 
 * Changed
