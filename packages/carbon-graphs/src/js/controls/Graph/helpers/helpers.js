@@ -493,8 +493,8 @@ const updateAxesDomain = (config, input = {}) => {
     if (config.axis.x.allowCallibration) {
       config.axis[xAxis].domain = setDomain(
         config.outlierStretchFactorXAxis,
-        config.axis[xAxis].lowerLimit,
-        config.axis[xAxis].upperLimit,
+        config.axis[xAxis].domain.lowerLimit,
+        config.axis[xAxis].domain.upperLimit,
         xAxis,
       );
     }
