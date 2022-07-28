@@ -501,13 +501,27 @@ const getAxesScale = (axis, scale, config) => {
       return axis;
     }
     // Y and Y2 axes - ticksCount.
-    const yLowerLimit = config.axis.y.domain.lowerLimit;
-    const yUpperLimit = config.axis.y.domain.upperLimit;
-    const y2LowerLimit = config.axis.y2.domain.lowerLimit;
-    const y2UpperLimit = config.axis.y2.domain.upperLimit;
+    let yLowerLimit = config.axis.y.domain.lowerLimit;
+    let yUpperLimit = config.axis.y.domain.upperLimit;
+    let y2LowerLimit = config.axis.y2.domain.lowerLimit;
+    let y2UpperLimit = config.axis.y2.domain.upperLimit;
 
     let yTickValues;
     let y2TickValues;
+
+     // if allowCalibration is true then adjust limits
+     if (config.allowCalibration) {
+      [yLowerLimit, yUpperLimit] = d3
+        .scaleLinear()
+        .domain([yLowerLimit, yUpperLimit])
+        .nice()
+        .domain();
+      [y2LowerLimit, y2UpperLimit] = d3
+        .scaleLinear()
+        .domain([y2LowerLimit, y2UpperLimit])
+        .nice()
+        .domain();
+    }
 
     if (
       utils.isDefined(config.ticksCount)
