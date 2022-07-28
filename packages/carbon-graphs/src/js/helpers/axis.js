@@ -416,7 +416,6 @@ const getAxesScale = (axis, scale, config) => {
 
   axis.x = prepareXAxis(
     scale.x,
-    // undefined,
     config.axis.x.ticks.values,
     getXAxisWidth(config),
     getAxisTickFormat(
