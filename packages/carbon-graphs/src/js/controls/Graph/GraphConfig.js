@@ -252,10 +252,6 @@ class GraphConfig extends BaseConfig {
   * Processes the input from the JSON and updates the config object.
   * d3 domain and ranges are stored based on the upper and lower x, y and y2 limits.
   *
-  * @private
-  * @param {object} input - Input JSON provided by the consumer
-  * @param {object} config - config object used by the graph
-  * @param {string} type - input type
   * @returns {GraphConfig} instance object
   */
 
