@@ -509,8 +509,8 @@ const getAxesScale = (axis, scale, config) => {
     let yTickValues;
     let y2TickValues;
 
-     // if allowCalibration is true then adjust limits
-     if (config.allowCalibration) {
+    // if allowCalibration is true then adjust limits
+    if (config.allowCalibration) {
       [yLowerLimit, yUpperLimit] = d3
         .scaleLinear()
         .domain([yLowerLimit, yUpperLimit])

@@ -44,25 +44,27 @@ describe('Graph - Axes', () => {
     graphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     graphContainer.setAttribute('class', 'carbon-test-class');
     document.body.appendChild(graphContainer);
-
-    graph = new Graph(getAxes(axisDefault));
   });
   afterEach(() => {
+    graph.destroy();
     document.body.innerHTML = '';
   });
   it('Creates the x axis markup', () => {
+    graph = new Graph(getAxes(axisDefault));
     const xAxisElement = fetchElementByClass(styles.axisX);
     expect(xAxisElement.getAttribute('class')).toBe(
             `${styles.axis} ${styles.axisX}`,
     );
   });
   it('Creates the y axis markup', () => {
+    graph = new Graph(getAxes(axisDefault));
     const yAxisElement = fetchElementByClass(styles.axisY);
     expect(yAxisElement.getAttribute('class')).toBe(
             `${styles.axis} ${styles.axisY}`,
     );
   });
   it('Creates the y axis reference line markup', () => {
+    graph = new Graph(getAxes(axisDefault));
     const referenceElement = fetchElementByClass(styles.axisReferenceLine);
     expect(referenceElement.classList.contains(styles.axis)).toBeTruthy();
     expect(
@@ -73,7 +75,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('d')).not.toBeNull();
   });
   it('Creates the y2 axis reference line markup', () => {
-    graph.destroy();
     graph = new Graph(
       getAxes({
         x: axisDefault.x,
@@ -99,7 +100,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('d')).not.toBeNull();
   });
   it('Does not create the y axis reference line markup when 0 to -ve', () => {
-    graph.destroy();
     graph = new Graph(
       getAxes({
         x: axisDefault.x,
@@ -120,7 +120,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('aria-hidden')).toBe('true');
   });
   it('Does not create the y axis reference line markup when -ve to -ve', () => {
-    graph.destroy();
     graph = new Graph(
       getAxes({
         x: axisDefault.x,
@@ -141,7 +140,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('aria-hidden')).toBe('true');
   });
   it('Creates the y axis reference line markup when in range +ve to -ve', () => {
-    graph.destroy();
     graph = new Graph(
       getAxes({
         x: axisDefault.x,
@@ -162,7 +160,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('aria-hidden')).toBe('false');
   });
   it('Does not create the y axis reference line markup when in range 0 to +ve', () => {
-    graph.destroy();
     graph = new Graph(
       getAxes({
         x: axisDefault.x,
@@ -183,7 +180,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('aria-hidden')).toBe('true');
   });
   it('Does not create the y axis reference line markup when in range +ve to +ve', () => {
-    graph.destroy();
     graph = new Graph(
       getAxes({
         x: axisDefault.x,
@@ -204,7 +200,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('aria-hidden')).toBe('true');
   });
   it('Sets y2 axis start from 0 when padDomain is false', () => {
-    graph.destroy();
     graph = new Graph(
       getAxes({
         x: axisDefault.x,
@@ -225,7 +220,6 @@ describe('Graph - Axes', () => {
     ).toBe('0');
   });
   it('Sets x axis orientation to bottom', () => {
-    graph.destroy();
     const xAxisBottomOrientation = utils.deepClone(axisDefault);
     xAxisBottomOrientation.x.orientation = AXES_ORIENTATION.X.BOTTOM;
     const input = getAxes(xAxisBottomOrientation);
@@ -235,7 +229,6 @@ describe('Graph - Axes', () => {
     );
   });
   it('Hides x axis when not enabled', () => {
-    graph.destroy();
     const hiddenAxisObj = utils.deepClone(axisTimeSeries);
     hiddenAxisObj.x.show = false;
     graph = new Graph(getAxes(hiddenAxisObj));
@@ -246,7 +239,6 @@ describe('Graph - Axes', () => {
     expect(xAxisElement.getAttribute('aria-hidden')).toBe('true');
   });
   it('Hides y axis when not enabled', () => {
-    graph.destroy();
     const hiddenAxisObj = utils.deepClone(axisTimeSeries);
     hiddenAxisObj.y.show = false;
     graph = new Graph(getAxes(hiddenAxisObj));
@@ -256,8 +248,11 @@ describe('Graph - Axes', () => {
     );
     expect(yAxisElement.getAttribute('aria-hidden')).toBe('true');
   });
+  it('sets x-axis clamping to false when axis.x.allowCalibration is undefined', () => {
+    graph = new Graph(getAxes(axisDefault));
+    expect(graph.scale.x.clamp()).toEqual(false);
+  });
   it('Sets axis info row orientation to top when x axis orientation is bottom', () => {
-    graph.destroy();
     const xAxisBottomOrientation = utils.deepClone(axisDefault);
     xAxisBottomOrientation.x.orientation = AXES_ORIENTATION.X.BOTTOM;
     const input = getAxes(xAxisBottomOrientation);
@@ -278,7 +273,6 @@ describe('Graph - Axes', () => {
     );
   });
   it('Sets axis info row orientation to bottom when x axis orientation is top', () => {
-    graph.destroy();
     const xAxisBottomOrientation = utils.deepClone(axisDefault);
     xAxisBottomOrientation.x.orientation = AXES_ORIENTATION.X.TOP;
     const input = getAxes(xAxisBottomOrientation);
@@ -299,7 +293,6 @@ describe('Graph - Axes', () => {
     );
   });
   it('Creates the y axis reference line markup even when hidden', () => {
-    graph.destroy();
     const hiddenAxisObj = utils.deepClone(axisTimeSeries);
     hiddenAxisObj.y.show = false;
     graph = new Graph(getAxes(hiddenAxisObj));
@@ -307,7 +300,6 @@ describe('Graph - Axes', () => {
     expect(referenceElement.getAttribute('aria-hidden')).toBe('true');
   });
   it('Hides x and y axis when not enabled', () => {
-    graph.destroy();
     const hiddenAxisObj = utils.deepClone(axisTimeSeries);
     hiddenAxisObj.x.show = false;
     hiddenAxisObj.y.show = false;
@@ -327,9 +319,6 @@ describe('Graph - Axes', () => {
   });
 
   describe('Axes ticks processing', () => {
-    beforeEach(() => {
-      graph.destroy();
-    });
     it('Has correct output if ticksCount = TICKSCOUNT_MAXLIMIT', () => {
       const lowerLimit = 0;
       const upperLimit = 10;
@@ -432,12 +421,14 @@ describe('Graph - Axes', () => {
     };
     describe('When ticks consists of value between -0.5 to 0.5 and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y = {
           label: 'y axis',
           lowerLimit: -4,
           upperLimit: 2,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -476,12 +467,14 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.05 to 0.05  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y = {
           label: 'y axis',
           lowerLimit: -0.4,
           upperLimit: 0.2,
         };
+      });
+      beforeEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -520,12 +513,14 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.005 to 0.005  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y = {
           label: 'y axis',
           lowerLimit: -0.04,
           upperLimit: 0.02,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -564,12 +559,14 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.0005 to 0.0005  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y = {
           label: 'y axis',
           lowerLimit: -0.004,
           upperLimit: 0.002,
         };
+      });
+      beforeEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -608,12 +605,14 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.00005 to 0.00005  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y = {
           label: 'y axis',
           lowerLimit: -0.0004,
           upperLimit: 0.0002,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -661,13 +660,15 @@ describe('Graph - Axes', () => {
     };
     describe('When ticks consists of value between -0.5 to 0.5  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y2 = {
           show: true,
           label: 'y2 axis',
           lowerLimit: -4,
           upperLimit: 2,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -706,13 +707,15 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.05 to 0.05  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y2 = {
           show: true,
           label: 'y2 axis',
           lowerLimit: -0.4,
           upperLimit: 0.2,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -751,13 +754,15 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.005 to 0.005  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y2 = {
           show: true,
           label: 'y2 axis',
           lowerLimit: -0.04,
           upperLimit: 0.02,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -796,14 +801,15 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.0005 to 0.0005  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y2 = {
           show: true,
           label: 'y2 axis',
           lowerLimit: -0.004,
           upperLimit: 0.002,
-
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -842,13 +848,15 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.00005 to 0.00005  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y2 = {
           show: true,
           label: 'y2 axis',
           lowerLimit: -0.0004,
           upperLimit: 0.0002,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should create correct format, When consumer does not provide format', () => {
         graph = new Graph(
@@ -898,12 +906,14 @@ describe('Graph - Axes', () => {
     };
     describe('When ticks consists of value between -0.1 to 0.1  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y = {
           label: 'y axis',
           lowerLimit: -4.5,
           upperLimit: 1,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should use correct format, when consumer does not provide format', () => {
         graph = new Graph(
@@ -969,13 +979,15 @@ describe('Graph - Axes', () => {
     };
     describe('When ticks consists of value between -0.1 to 0.1  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y2 = {
           show: true,
           label: 'y2 axis',
           lowerLimit: -4.5,
           upperLimit: 1,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should use correct format, when consumer does not provide format', () => {
         graph = new Graph(
@@ -1001,13 +1013,15 @@ describe('Graph - Axes', () => {
     });
     describe('When ticks consists of value between -0.01 to 0.01  and not 0', () => {
       beforeEach(() => {
-        graph.destroy();
         localeAxisObj.y2 = {
           show: true,
           label: 'y2 axis',
           lowerLimit: -0.45,
           upperLimit: 0.1,
         };
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('Should use correct format, when consumer does not provide format', () => {
         graph = new Graph(
@@ -1034,7 +1048,7 @@ describe('Graph - Axes', () => {
   });
 
   describe('when Y-2 axis is present', () => {
-    beforeEach(() => {
+    afterEach(() => {
       graph.destroy();
     });
     it('uses custom tick values when axis.y.ticks.values is set and ignores ticksCount', () => {
@@ -1913,7 +1927,6 @@ describe('Graph - Axes', () => {
   });
   describe('When default d3 tick formatting for x axis is used and suppressTrailingZeros for x axis is set to true', () => {
     it("should suppress x axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.x = {
         label: 'Some X Label',
@@ -1945,7 +1958,6 @@ describe('Graph - Axes', () => {
   });
   describe('When default d3 tick formatting is used for x axis and suppressTrailingZeros for x axis is set to false', () => {
     it("should not suppress x axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.x = {
         label: 'Some X Label',
@@ -1978,7 +1990,6 @@ describe('Graph - Axes', () => {
   });
   describe("When default d3 tick formatting is not used for x axis and consumer specifies '~' in tick format", () => {
     it("should suppress x axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.x = {
         label: 'Some X Label',
@@ -2011,7 +2022,6 @@ describe('Graph - Axes', () => {
   });
   describe("When default d3 tick formatting is not used for x axis and consumer does not specify '~' in tick format", () => {
     it("should not suppress x axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.x = {
         label: 'Some X Label',
@@ -2204,7 +2214,6 @@ describe('Graph - Axes', () => {
   });
   describe('When default d3 tick formatting is used for y2 axis and suppressTrailingZeros for y2 is set to false', () => {
     it("should not suppress y2 axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y2 = {
         show: true,
@@ -2270,7 +2279,6 @@ describe('Graph - Axes', () => {
   });
   describe("When default d3 tick formatting is not used for y2 axis and consumer does not specify '~' in tick format", () => {
     it("should not suppress y2 axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y2 = {
         show: true,
@@ -2470,7 +2478,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 800px and height is 800px', () => {
     beforeEach(() => {
-      graph.destroy();
       graphContainer.setAttribute('style', 'width: 800px; height: 800px');
       dimension.height = 800;
       axisDefault.y2 = {
@@ -2482,6 +2489,7 @@ describe('Graph - Axes', () => {
     });
     afterEach(() => {
       axisDefault.y2 = '';
+      graph.destroy();
     });
     it('Truncates if too long', (done) => {
       const labelAxisObj = utils.deepClone(axisDefault);
@@ -2530,7 +2538,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 1400px and height is 1400px', () => {
     beforeEach(() => {
-      graph.destroy();
       graphContainer.setAttribute(
         'style',
         'width: 1400px; height: 1400px',
@@ -2544,6 +2551,7 @@ describe('Graph - Axes', () => {
       };
     });
     afterEach(() => {
+      graph.destroy();
       axisDefault.y2 = '';
     });
     it('Truncates if too long', (done) => {
@@ -2803,19 +2811,20 @@ describe('Graph - Axes', () => {
   });
   describe('when graph is loaded', () => {
     it('should add div element with display as none for the popup tooltip', () => {
+      graph = new Graph(getAxes(axisDefault));
       const tooltipElement = fetchElementByClass(
         styles.labelPopupTooltip,
       );
       expect(tooltipElement.style.display).toBe('none');
     });
     it('should add div element for the popup tooltip', () => {
+      graph = new Graph(getAxes(axisDefault));
       expect(
         fetchElementByClass(styles.labelPopupTooltip),
       ).not.toBeNull();
     });
     describe('when y2Axis is true', () => {
       beforeEach(() => {
-        graph.destroy();
         const axisObj = utils.deepClone(axisDefault);
         axisObj.y2 = {
           show: true,
@@ -2824,6 +2833,9 @@ describe('Graph - Axes', () => {
           upperLimit: 25,
         };
         graph = new Graph({ ...getAxes(axisObj) });
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('should add the correct transform point to y-axis label shape container', () => {
         expect(
