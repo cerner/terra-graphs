@@ -392,9 +392,6 @@ describe('Graph - Panning', () => {
     beforeEach(() => {
       graph = new Graph(axisDefaultWithoutPanning);
     });
-    it('Check if clamp is true if pan is disabled', () => {
-      expect(graph.scale.x.clamp()).toEqual(true);
-    });
     it('Check if different clipPath for dateline is not created', () => {
       const defsElement = fetchElementByClass(styles.canvas).firstChild;
       expect(defsElement.childElementCount).toBe(1);
@@ -419,9 +416,6 @@ describe('Graph - Panning', () => {
   describe('When undefined', () => {
     beforeEach(() => {
       graph = new Graph(axisTimeseriesWithDateline);
-    });
-    it('Check if clamp is true if pan is undefined', () => {
-      expect(graph.scale.x.clamp()).toEqual(true);
     });
     it('Check if different clipPath for dateline is not created', () => {
       const defsElement = fetchElementByClass(styles.canvas).firstChild;

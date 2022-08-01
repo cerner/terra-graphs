@@ -6,6 +6,7 @@ import {
   buildAxisLabel,
   calculateVerticalPadding,
   determineOutlierStretchFactor,
+  determineOutlierStretchFactorXAxis,
   getAxesScale,
   getRotationForAxis,
   getXAxisLabelXPosition,
@@ -463,6 +464,8 @@ const padDomain = (domain, isPaddingNeeded = true) => {
  */
 const updateAxesDomain = (config, input = {}) => {
   config.outlierStretchFactor = determineOutlierStretchFactor(config);
+  config.outlierStretchFactorXAxis = determineOutlierStretchFactorXAxis(config);
+
   const setDomain = (outlierStretchFactor, lowerLimit, upperLimit, yAxis) => {
     const halfDomain = (upperLimit - lowerLimit) / 2;
     const midPoint = (upperLimit + lowerLimit) / 2;
@@ -479,12 +482,22 @@ const updateAxesDomain = (config, input = {}) => {
 
   if (utils.notEmpty(input)) {
     const yAxis = input.config.yAxis || constants.Y_AXIS;
+    const xAxis = input.config.xAxis || constants.X_AXIS;
     config.axis[yAxis].domain = setDomain(
       config.outlierStretchFactor,
       config.axis[yAxis].domain.lowerLimit,
       config.axis[yAxis].domain.upperLimit,
       yAxis,
     );
+
+    if (config.axis.x.allowCallibration) {
+      config.axis[xAxis].domain = setDomain(
+        config.outlierStretchFactorXAxis,
+        config.axis[xAxis].domain.lowerLimit,
+        config.axis[xAxis].domain.upperLimit,
+        xAxis,
+      );
+    }
   }
   return config;
 };
@@ -712,9 +725,9 @@ const createContentContainer = (config, canvasSVG) => canvasSVG
  */
 const scaleGraph = (scale, config) => {
   scale.x = getScale(config.axis.x.type)
-    .domain(config.axis.x.domain)
+    .domain([config.axis.x.domain.lowerLimit, config.axis.x.domain.upperLimit])
     .range(getXAxisRange(config))
-    .clamp(config.settingsDictionary.shouldClamp);
+    .clamp(config.axis.x.allowCalibration);
 
   scale.y = d3
     .scaleLinear()

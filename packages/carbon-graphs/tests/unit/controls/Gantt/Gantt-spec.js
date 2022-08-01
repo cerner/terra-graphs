@@ -285,10 +285,10 @@ describe('Gantt', () => {
       expect(gantt.config.actionLegend).toEqual(input.actionLegend || []);
       expect(gantt.config.axis.x.type).toEqual(AXIS_TYPE.TIME_SERIES);
       expect(gantt.config.axis.x.ticks).toEqual({});
-      expect(gantt.config.axis.x.domain[0]).toEqual(
+      expect(gantt.config.axis.x.domain.lowerLimit).toEqual(
         utils.parseDateTime(input.axis.x.lowerLimit),
       );
-      expect(gantt.config.axis.x.domain[1]).toEqual(
+      expect(gantt.config.axis.x.domain.upperLimit).toEqual(
         utils.parseDateTime(input.axis.x.upperLimit),
       );
       expect(gantt.config.axis.x.rangeRounding).toEqual(true);

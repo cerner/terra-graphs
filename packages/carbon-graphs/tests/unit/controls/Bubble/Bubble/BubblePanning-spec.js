@@ -245,9 +245,6 @@ describe('Bubble - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bubble(input));
     });
-    it('Check if clamp is true if pan is disabled', () => {
-      expect(graphDefault.scale.x.clamp()).toEqual(true);
-    });
     it('DatelineGroup translates properly after some delay when panning is disabled', (done) => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,

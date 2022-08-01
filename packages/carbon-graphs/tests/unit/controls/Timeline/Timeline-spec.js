@@ -364,10 +364,10 @@ describe('Timeline', () => {
       expect(timeline.config.axis.x.type).toEqual(AXIS_TYPE.TIME_SERIES);
       expect(timeline.config.axis.x.ticks).toEqual({});
       expect(timeline.config.axis.x.rangeRounding).toEqual(true);
-      expect(timeline.config.axis.x.domain[0]).toEqual(
+      expect(timeline.config.axis.x.domain.lowerLimit).toEqual(
         utils.parseDateTime(input.axis.x.lowerLimit),
       );
-      expect(timeline.config.axis.x.domain[1]).toEqual(
+      expect(timeline.config.axis.x.domain.upperLimit).toEqual(
         utils.parseDateTime(input.axis.x.upperLimit),
       );
       expect(timeline.config.axis.x.show).toBeTruthy();

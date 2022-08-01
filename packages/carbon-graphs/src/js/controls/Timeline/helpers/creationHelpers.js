@@ -163,7 +163,7 @@ const getAxesScale = (axis, scale, config) => {
 const scaleGraph = (scale, config) => {
   scale.x = d3
     .scaleTime()
-    .domain(config.axis.x.domain)
+    .domain([config.axis.x.domain.lowerLimit, config.axis.x.domain.upperLimit])
     .range([0, getXAxisWidth(config)])
     .clamp(config.settingsDictionary.shouldClamp);
   if (config.axis.x.rangeRounding) {

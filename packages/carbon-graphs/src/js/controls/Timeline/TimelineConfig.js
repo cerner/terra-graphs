@@ -1,6 +1,6 @@
 'use strict';
 
-import BaseConfig, { getDefaultValue, getDomain } from '../../core/BaseConfig';
+import BaseConfig, { getDefaultValue, getXAxisDomain } from '../../core/BaseConfig';
 import {
   generateClipPathId,
   isPanningModeEnabled,
@@ -90,7 +90,7 @@ export const processInput = (input, config) => {
     type: AXIS_TYPE.TIME_SERIES,
     show: true,
     ticks: getDefaultValue(axis.x.ticks, {}),
-    domain: getDomain(
+    domain: getXAxisDomain(
       AXIS_TYPE.TIME_SERIES,
       axis.x.lowerLimit,
       axis.x.upperLimit,

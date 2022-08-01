@@ -401,9 +401,6 @@ describe('Panning', () => {
       axisData.pan = { enabled: false };
       gantt = new Gantt(axisData);
     });
-    it('Checks if clamp is true when pan is disabled', () => {
-      expect(gantt.scale.x.clamp()).toEqual(true);
-    });
     it('Check if different clipPath for dateline is not created', () => {
       const defsElement = fetchElementByClass(styles.canvas).firstChild;
       expect(defsElement.childElementCount).toBe(1);
