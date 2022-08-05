@@ -301,7 +301,7 @@ class Timeline extends Construct {
       clickHandler: clickHandler(this, this, this.config, this.svg),
       hoverHandler: hoverHandler(this.config.shownTargets, this.svg),
     };
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
     if (

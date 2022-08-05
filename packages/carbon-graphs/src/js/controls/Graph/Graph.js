@@ -11,7 +11,7 @@ import {
   createXAxisInfoRow,
   getAxesDataRange,
   getYAxisHeight,
-  updateXAxisDomain,
+  setXAxisDomain,
   translateAxes,
 } from '../../helpers/axis';
 import constants, { AXIS_TYPE, COLORS } from '../../helpers/constants';
@@ -44,6 +44,7 @@ import {
   translateGraph,
   translateContentContainer,
   updateAxesDomain,
+  updateXAxisDomain,
   handleLabelClickFunctionDuringReflow,
 } from './helpers/helpers';
 
@@ -114,7 +115,9 @@ const isRangeModified = (config, yAxis = constants.Y_AXIS) => config.axis[yAxis]
 const beforeInit = (control) => {
   control.graphContainer = d3.select(control.config.bindTo);
   getAxesDataRange({}, '', control.config);
+  getAxesDataRange({}, constants.X_AXIS, control.config);
   updateAxesDomain(control.config);
+  updateXAxisDomain(control.config);
   createTooltipDiv();
   return control;
 };
@@ -357,12 +360,25 @@ class Graph extends Construct {
       this.config,
       this.content,
     );
+    getAxesDataRange(
+      content,
+      constants.X_AXIS,
+      this.config,
+      this.content,
+    );
     if (
       this.config.allowCalibration
       && isRangeModified(this.config, content.config.yAxis)
     ) {
       updateAxesDomain(this.config, content);
     }
+
+    if (
+      this.config.axis.x.allowCalibration
+      && isRangeModified(this.config, constants.X_AXIS)
+    ) {
+      updateXAxisDomain(this.config, content);
+    }    
     content.load(this);
     if (
       utils.notEmpty(this.config.dateline)
@@ -485,7 +501,7 @@ class Graph extends Construct {
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
     translateContentContainer(this.config, this.svg);
@@ -556,7 +572,7 @@ class Graph extends Construct {
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
 
