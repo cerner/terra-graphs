@@ -444,7 +444,7 @@ const padDomain = (domain, isPaddingNeeded = true) => {
   const upperBound = domain.upperLimit;
   const domainRange = Math.abs(upperBound - lowerBound);
   const domainStretch = domainRange * (50 / 1000);
-  console.log("domainstretch: ", domainStretch);
+  console.log('domainstretch: ', domainStretch);
   return {
     lowerLimit: lowerBound - (isPaddingNeeded ? domainStretch : 0),
     upperLimit: upperBound + (isPaddingNeeded ? domainStretch : 0),
@@ -464,43 +464,28 @@ const padDomain = (domain, isPaddingNeeded = true) => {
  * @returns {object} config - config object derived from input JSON
  */
 const updateAxesDomain = (config, input = {}) => {
-
-  config.outlierStretchFactor = determineOutlierStretchFactor(config);
-  console.log(config.outlierStretchFactor);
-  // const setDomain = (outlierStretchFactor, lowerLimit, upperLimit, yAxis) => {
-  //   const halfDomain = (upperLimit - lowerLimit) / 2;
-  //   const midPoint = (upperLimit + lowerLimit) / 2;
-  //   return padDomain(
-  //     {
-  //       lowerLimit: midPoint - halfDomain * outlierStretchFactor.lowerLimit,
-  //       upperLimit: midPoint + halfDomain * outlierStretchFactor.upperLimit,
-  //     },
-  //     config.axisPadding[yAxis],
-  //   );
-  // };
-
-
-
-
   if (utils.isEmpty(input)) {
     return config;
   }
-  const yAxis = input.config.yAxis || constants.Y_AXIS;
 
+  config.outlierStretchFactor = determineOutlierStretchFactor(config);
+  console.log(config.outlierStretchFactor);
+
+  const yAxis = input.config.yAxis || constants.Y_AXIS;
 
   const halfDomain = (config.axis[yAxis].domain.upperLimit - config.axis[yAxis].domain.lowerLimit) / 2;
   const midPoint = (config.axis[yAxis].domain.upperLimit + config.axis[yAxis].domain.lowerLimit) / 2;
   const newDomain = {
-                      lowerLimit: midPoint - halfDomain * config.outlierStretchFactor.lowerLimit,
-                      upperLimit: midPoint + halfDomain * config.outlierStretchFactor.upperLimit,
-                    };
+    lowerLimit: midPoint - halfDomain * config.outlierStretchFactor.lowerLimit,
+    upperLimit: midPoint + halfDomain * config.outlierStretchFactor.upperLimit,
+  };
 
-  config.axis[yAxis].domain = padDomain( newDomain, config.axisPadding[yAxis]);
+  config.axis[yAxis].domain = padDomain(newDomain, config.axisPadding[yAxis]);
 
   return config;
 };
 /**
- * Determines the domain for x, y and y2 axes. For Y axis and Y2 axis,
+ * Determines the domain for the x axis.
  * the end points are calculated based on the ranges provided. This is done so that the axes are
  * padded on both ends properly.
  * For X Axis no such processing is provided. This decision was made due to the resize happening
@@ -512,35 +497,29 @@ const updateAxesDomain = (config, input = {}) => {
  * @param {object} [input] - array of target objects
  * @returns {object} config - config object derived from input JSON
  */
- const updateXAxisDomain = (config, input = {}) => {
-  config.axis.x.outlierStretchFactor = determineOutlierStretchFactorXAxis(config);
-  console.log(config.axis.x.outlierStretchFactor);
-
-
-  if (utils.isEmpty(input)) {
+const updateXAxisDomain = (config, input = {}) => {
+  if (utils.isEmpty(input) || !config.axis.x.allowCalibration) {
     return config;
   }
 
+  config.axis.x.outlierStretchFactor = determineOutlierStretchFactorXAxis(config);
+  console.log(config.axis.x.outlierStretchFactor);
 
-  console.log("x-axis lowerLimit: ", config.axis.x.domain.lowerLimit);
-  console.log("x-axis upperLimit: ", config.axis.x.domain.upperLimit);
+  console.log('x-axis lowerLimit: ', config.axis.x.domain.lowerLimit);
+  console.log('x-axis upperLimit: ', config.axis.x.domain.upperLimit);
 
-  if (config.axis.x.allowCalibration) {
-    config.axisPadding.x = false;
+  config.axisPadding.x = false;
 
+  const halfDomain = (config.axis.x.domain.upperLimit - config.axis.x.domain.lowerLimit) / 2;
+  const midPoint = (config.axis.x.domain.upperLimit + config.axis.x.domain.lowerLimit) / 2;
+  const newDomain = {
+    lowerLimit: midPoint - halfDomain * config.axis.x.outlierStretchFactor.lowerLimit,
+    upperLimit: midPoint + halfDomain * config.axis.x.outlierStretchFactor.upperLimit,
+  };
 
-    
-    const halfDomain = (config.axis.x.domain.upperLimit - config.axis.x.domain.lowerLimit) / 2;
-    const midPoint = (config.axis.x.domain.upperLimit + config.axis.x.domain.lowerLimit) / 2;
-    const newDomain = {
-                        lowerLimit: midPoint - halfDomain * config.axis.x.outlierStretchFactor.lowerLimit,
-                        upperLimit: midPoint + halfDomain * config.axis.x.outlierStretchFactor.upperLimit,
-                      };
+  config.axis.x.domain = padDomain(newDomain, config.axisPadding.x);
 
-    config.axis.x.domain = padDomain( newDomain, config.axisPadding.x);
-
-    console.log("x-axis domain: ", config.axis.x.domain)
-  }
+  console.log('x-axis domain: ', config.axis.x.domain);
   console.log(config.axisPadding);
 
   return config;
@@ -889,6 +868,9 @@ const determineHeight = (config, dimension) => {
   }
   const verticalPadding = config.padding.top + config.padding.bottom;
   const halfHeight = (DEFAULT_HEIGHT - verticalPadding) / 2;
+
+  config.outlierStretchFactor = determineOutlierStretchFactor(config);
+
   return (
     halfHeight * config.outlierStretchFactor.upperLimit
         + halfHeight * config.outlierStretchFactor.lowerLimit

@@ -2,7 +2,7 @@
 
 import * as d3 from 'd3';
 import Construct from '../../core/Construct';
-import { getYAxisHeight, updateXAxisDomain } from '../../helpers/axis';
+import { getYAxisHeight, setXAxisDomain } from '../../helpers/axis';
 import constants from '../../helpers/constants';
 import errors from '../../helpers/errors';
 import { createLegend, reflowLegend } from '../../helpers/legend';
@@ -336,7 +336,7 @@ class Timeline extends Construct {
       clickHandler: clickHandler(this, this, this.config, this.svg),
       hoverHandler: hoverHandler(this.config.shownTargets, this.svg),
     };
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
     if (

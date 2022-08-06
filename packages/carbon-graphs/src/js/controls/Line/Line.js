@@ -52,8 +52,8 @@ import LineConfig from './LineConfig';
 const calculateValuesRangeYAxis = (values) => {
   const yAxisValuesList = values.filter((i) => i.y !== null && i.y !== undefined).map((i) => i.y);
   return {
-      min: Math.min(...yAxisValuesList),
-      max: Math.max(...yAxisValuesList),
+    min: Math.min(...yAxisValuesList),
+    max: Math.max(...yAxisValuesList),
   };
 };
 
@@ -72,12 +72,12 @@ const calculateValuesRangeYAxis = (values) => {
  * @param {Array} values - Datapoint values
  * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
  */
- const calculateValuesRangeXAxis = (values) => {
+const calculateValuesRangeXAxis = (values) => {
   const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => i.x);
   // console.log(xAxisValuesList);
   return {
-      min: Math.min(...xAxisValuesList),
-      max: Math.max(...xAxisValuesList),
+    min: Math.min(...xAxisValuesList),
+    max: Math.max(...xAxisValuesList),
   };
 };
 
