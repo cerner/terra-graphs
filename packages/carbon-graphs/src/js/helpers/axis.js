@@ -1302,147 +1302,17 @@ const getMidPoint = (config, axis) => {
 };
 
 /**
- * Calculates the lower part of the outlier based on data points.
- * If the content has any data points that are outside the lower and upper bounds set
- * in the vertical axis then we adjust the axis bounds to support that outlier value.
- *
- * @private
- * @param {object} config - config object derived from input JSON
- * @returns {Array} List of lower bound values for each of the vertical axis
- */
-// eslint-disable-next-line no-unused-vars
-const getLowerOutlierStretchFactorXAxis = (config) => {
-  // const lowerStretchFactors = [];
-  // const getMinValue = (conf, xAxis, axisMinValue) => {
-  //   const dataRangeMinValue = conf.axis[xAxis].dataRange.min;
-  //   return dataRangeMinValue < axisMinValue
-  //     ? dataRangeMinValue
-  //     : axisMinValue;
-  // };
-  // const getLowerStretchFactor = (xAxis) => {
-  //   const axisMinValue = config.axis[xAxis].domain.lowerLimit;
-  //   const axisMidPoint = getMidPoint(config, xAxis);
-  //   const lowerStretchFactor = Math.abs(
-  //     (axisMidPoint - getMinValue(config, xAxis, axisMinValue))
-  //               / (axisMidPoint - axisMinValue),
-  //   );
-  //   return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
-  // };
-  // lowerStretchFactors.push(getLowerStretchFactor(constants.X_AXIS));
-  // console.log('lower stretch factor: ');
-  // console.log(lowerStretchFactors);
-
-  // return lowerStretchFactors;
-
-  const axisMinValue = config.axis.x.domain.lowerLimit;
-  const dataRangeMinValue = config.axis.x.dataRange.min < axisMinValue ? conf.axis.x.dataRange.min : axisMinValue;
-  const axisMidPoint = getMidPoint(config, constants.X_AXIS);
-  const lowerStretchFactor = Math.abs((axisMidPoint - dataRangeMinValue) / (axisMidPoint - axisMinValue));
-  
-  return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
-};
-
-/**
- * Calculates the lower part of the outlier based on data points.
- * If the content has any data points that are outside the lower and upper bounds set
- * in the vertical axis then we adjust the axis bounds to support that outlier value.
- *
- * @private
- * @param {object} config - config object derived from input JSON
- * @returns {Array} List of lower bound values for each of the vertical axis
- */
-const getLowerOutlierStretchFactorList = (config) => {
-  const lowerStretchFactors = [];
-  const getMinValue = (conf, yAxis, axisMinValue) => {
-    const dataRangeMinValue = conf.axis[yAxis].dataRange.min;
-    return dataRangeMinValue < axisMinValue
-      ? dataRangeMinValue
-      : axisMinValue;
-  };
-  const getLowerStretchFactor = (yAxis) => {
-    const axisMinValue = config.axis[yAxis].domain.lowerLimit;
-    const axisMidPoint = getMidPoint(config, yAxis);
-    const lowerStretchFactor = Math.abs(
-      (axisMidPoint - getMinValue(config, yAxis, axisMinValue))
-                / (axisMidPoint - axisMinValue),
-    );
-    return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
-  };
-  lowerStretchFactors.push(getLowerStretchFactor(constants.Y_AXIS));
-  if (hasY2Axis(config.axis)) {
-    lowerStretchFactors.push(getLowerStretchFactor(constants.Y2_AXIS));
-  }
-  return lowerStretchFactors;
-};
-
-/**
- * Calculates the lower part of the outlier based on data points.
- * If the content has any data points that are outside the lower and upper bounds set
- * in the vertical axis then we adjust the axis bounds to support that outlier value.
- *
- * @private
- * @param {object} config - config object derived from input JSON
- * @returns {Array} List of lower bound values for each of the vertical axis
- */
-const getLowerStretchFactorYAxis = (config, yAxis) => {
-  const axisMinValue = config.axis[yAxis].domain.lowerLimit;
-  const dataRangeMinValue = config.axis[yAxis].dataRange.min < axisMinValue ? config.axis[yAxis].dataRange.min : axisMinValue;
-  const axisMidPoint = getMidPoint(config, yAxis);
-  const lowerStretchFactor = Math.abs((axisMidPoint - dataRangeMinValue) / (axisMidPoint - axisMinValue));
-  return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
-};
-
-/**
- * Updates the x axis domain values.
+ * Sets the x axis domain values.
  *
  * @private
  * @param {object} config - config object derived from input JSON
  */
-const setXAxisDomain = (config) => {
+ const setXAxisDomain = (config) => {
   config.axis.x.domain = getXAxisDomain(
     config.axis.x.type,
     config.axis.x.lowerLimit,
     config.axis.x.upperLimit,
   );
-};
-/**
- * Calculates the upper part of the outlier based on data points.
- * If the content has any data points that are outside the lower and upper bounds set
- * in the vertical axis then we adjust the axis bounds to support that outlier value.
- *
- * @private
- * @param {object} config - config object derived from input JSON
- * @returns {Array} List of upper bound values for each of the vertical axis
- */
-const getUpperOutlierStretchFactorList = (config) => {
-  const upperStretchFactors = [];
-
-  // const getMaxValue = (conf, yAxis, axisMaxValue) => {
-  //   const dataRangeMaxValue = conf.axis[yAxis].dataRange.max;
-  //   return dataRangeMaxValue > axisMaxValue
-  //     ? dataRangeMaxValue
-  //     : axisMaxValue;
-  // };
-
-  const getUpperStretchFactor = (yAxis) => {
-
-    const axisMaxValue = config.axis[yAxis].domain.upperLimit;
-
-    const dataRangeMaxValue = config.axis[yAxis].dataRange.max > axisMaxValue ? config.axis[yAxis].dataRange.max: axisMaxValue;
-
-    const axisMidPoint = getMidPoint(config, yAxis);
-    const upperStretchFactor = Math.abs(
-      (dataRangeMaxValue - axisMidPoint)
-                / (axisMaxValue - axisMidPoint),
-    );
-    return upperStretchFactor > 1 ? upperStretchFactor : 1;
-  };
-
-  upperStretchFactors.push(getUpperStretchFactor(constants.Y_AXIS));
-  if (hasY2Axis(config.axis)) {
-    upperStretchFactors.push(getUpperStretchFactor(constants.Y2_AXIS));
-  }
-  return upperStretchFactors;
 };
 
 /**
@@ -1455,51 +1325,32 @@ const getUpperOutlierStretchFactorList = (config) => {
  * @returns {number} upper bound value for of the input vertical axis
  */
 
-const getUpperStretchFactorYAxis = (config, yAxis) => {
-
-  const axisMaxValue = config.axis[yAxis].domain.upperLimit;
-  const dataRangeMaxValue = config.axis[yAxis].dataRange.max > axisMaxValue ? config.axis[yAxis].dataRange.max: axisMaxValue;
-  const axisMidPoint = getMidPoint(config, yAxis);
+ const getUpperOutlierStretchFactor = (config, axis) => {
+  const axisMaxValue = config.axis[axis].domain.upperLimit;
+  const dataRangeMaxValue = config.axis[axis].dataRange.max > axisMaxValue ? config.axis[axis].dataRange.max: axisMaxValue;
+  const axisMidPoint = getMidPoint(config, axis);
   const upperStretchFactor = Math.abs((dataRangeMaxValue - axisMidPoint) / (axisMaxValue - axisMidPoint));
   return upperStretchFactor > 1 ? upperStretchFactor : 1;
 };
 
 /**
- * Calculates the upper part of the outlier based on data points.
+ * Calculates the lower part of the outlier based on data points.
  * If the content has any data points that are outside the lower and upper bounds set
  * in the vertical axis then we adjust the axis bounds to support that outlier value.
  *
  * @private
  * @param {object} config - config object derived from input JSON
- * @returns {number} List of upper bound values for each of the vertical axis
+ * @returns {Array} List of lower bound values for each of the vertical axis
  */
-const getUpperOutlierStretchFactorXAxis = (config) => {
-  // const upperStretchFactors = [];
-  // const getMaxValue = (conf, xAxis, axisMaxValue) => {
-  //   const dataRangeMaxValue = conf.axis.x.dataRange.max;
-  //   console.log(dataRangeMaxValue);
-  //   return dataRangeMaxValue > axisMaxValue
-  //     ? dataRangeMaxValue
-  //     : axisMaxValue;
-  // };
-  // const getUpperStretchFactor = (xAxis) => {
-  //   const axisMaxValue = config.axis[xAxis].domain.upperLimit;
-  //   const axisMidPoint = getMidPoint(config, xAxis);
-  //   const upperStretchFactor = Math.abs(
-  //     (getMaxValue(config, xAxis, axisMaxValue) - axisMidPoint)
-  //               / (axisMaxValue - axisMidPoint),
-  //   );
-  //   return upperStretchFactor > 1 ? upperStretchFactor : 1;
-  // };
-  // upperStretchFactors.push(getUpperStretchFactor(constants.X_AXIS));
+// eslint-disable-next-line no-unused-vars
+const getLowerOutlierStretchFactor = (config, axis) => {
 
-  // return upperStretchFactors;
-
-  const axisMaxValue = config.axis.x.domain.upperLimit;
-  const dataRangeMaxValue = config.axis.x.dataRange.max > axisMaxValue ? config.axis.x.dataRange.max: axisMaxValue;
-  const axisMidPoint = getMidPoint(config, constants.X_AXIS);
-  const upperStretchFactor = Math.abs((dataRangeMaxValue - axisMidPoint) / (axisMaxValue - axisMidPoint));
-  return upperStretchFactor > 1 ? upperStretchFactor : 1;
+  const axisMinValue = config.axis[axis].domain.lowerLimit;
+  const dataRangeMinValue = config.axis[axis].dataRange.min < axisMinValue ? config.axis[axis].dataRange.min : axisMinValue;
+  const axisMidPoint = getMidPoint(config, axis);
+  const lowerStretchFactor = Math.abs((axisMidPoint - dataRangeMinValue) / (axisMidPoint - axisMinValue));
+  
+  return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
 };
 
 /**
@@ -1511,14 +1362,12 @@ const getUpperOutlierStretchFactorXAxis = (config) => {
 * @param {object} config - config object derived from input JSON
 * @returns {object} stretch factor determines the new upper and lower limit.
 */
-//
 const determineOutlierStretchFactorXAxis = (config) => {
 
-  const sortOutlier = (firstValue, secondValue) => secondValue - firstValue;
   let stretchFactors = {};
 
-  stretchFactors.upperLimit = getUpperOutlierStretchFactorXAxis(config);
-  stretchFactors.lowerLimit = getLowerOutlierStretchFactorXAxis(config);
+  stretchFactors.upperLimit = getUpperOutlierStretchFactor(config, constants.X_AXIS);
+  stretchFactors.lowerLimit = getLowerOutlierStretchFactor(config, constants.X_AXIS);
 
   return stretchFactors;
 
@@ -1533,50 +1382,22 @@ const determineOutlierStretchFactorXAxis = (config) => {
  * @param {object} config - config object derived from input JSON
  * @returns {object} stretch factor determines the new upper and lower limit.
  */
-const determineOutlierStretchFactor = (config) => {
-  const sortOutlier = (firstValue, secondValue) => secondValue - firstValue;
+const determineOutlierStretchFactorYAxes = (config) => {
   let stretchFactors = {};
 
-  const upperStretchFactors = [];
-  const lowerStretchFactors = [];
-
-  stretchFactors.upperLimit = getUpperStretchFactorYAxis(config, constants.Y_AXIS);
-  stretchFactors.lowerLimit = getLowerStretchFactorYAxis(config, constants.Y_AXIS);
-
-  upperStretchFactors.push(stretchFactors.upperLimit);
-  lowerStretchFactors.push(stretchFactors.lowerLimit);
-
-
+  stretchFactors.upperLimit = getUpperOutlierStretchFactor(config, constants.Y_AXIS);
+  stretchFactors.lowerLimit = getLowerOutlierStretchFactor(config, constants.Y_AXIS);
 
   if (hasY2Axis(config.axis)) {
-    upperStretchFactors.push(getUpperStretchFactorYAxis(config, constants.Y2_AXIS));
-    lowerStretchFactors.push(getLowerStretchFactorYAxis(config, constants.Y2_AXIS));
 
-    let upperLimitY2 = getUpperStretchFactorYAxis(config, constants.Y2_AXIS);
-    let lowerLimitY2 = getLowerStretchFactorYAxis(config, constants.Y2_AXIS);
+    let upperLimitY2 = getUpperOutlierStretchFactor(config, constants.Y2_AXIS);
+    let lowerLimitY2 = getLowerOutlierStretchFactor(config, constants.Y2_AXIS);
 
     stretchFactors.upperLimit = upperLimitY2 > stretchFactors.upperLimit ? upperLimitY2 : stretchFactors.upperLimit;
     stretchFactors.lowerLimit = lowerLimitY2 > stretchFactors.lowerLimit ? lowerLimitY2 : stretchFactors.lowerLimit;
   }
-
-  // console.log(lowerStretchFactors);
-
-
-  // stretchFactors.upperLimit = upperStretchFactors.sort(sortOutlier)[0];
-  // stretchFactors.lowerLimit = lowerStretchFactors.sort(sortOutlier)[0];
-
-  // console.log(stretchFactors);
   
   return stretchFactors;
-
-  // return {
-  //   upperLimit: getUpperOutlierStretchFactorList(config).sort(
-  //     sortOutlier,
-  //   )[0],
-  //   lowerLimit: getLowerOutlierStretchFactorList(config).sort(
-  //     sortOutlier,
-  //   )[0],
-  // };
 };
 
 /**
@@ -1790,12 +1611,22 @@ const isValidAxisType = (x, xAxisType) => ((utils.isDate(x) || utils.isDateInsta
  * @enum {Function}
  */
 export {
-  prepareXAxis,
-  prepareHorizontalAxis,
-  prepareYAxis,
-  prepareY2Axis,
+  buildAxisLabel,
+  calculateAxesSize,
+  calculateAxesLabelSize,
+  calculateVerticalPadding,
+  createAxes,
+  createXAxisInfoRow,
+  createAxisReferenceLine,
+  determineOutlierStretchFactorXAxis,
+  determineOutlierStretchFactorYAxes,
+  formatLabel,
+  generateYAxesTickValues,
+  getAverageTicksCount,
+  getAxesDataRange,
+  getAxisInfoRowYPosition,
   getAxisTickFormat,
-  getRotationForAxis,
+  getAxesScale,
   getXAxisLabelXPosition,
   getXAxisLabelYPosition,
   getYAxisLabelXPosition,
@@ -1805,6 +1636,8 @@ export {
   getY2AxisLabelShapeXPosition,
   getYAxisLabelShapeYPosition,
   getY2AxisLabelShapeYPosition,
+  getRotationForAxis,
+  getTicksCountFromRange,
   getXAxisXPosition,
   getXAxisYPosition,
   getYAxisXPosition,
@@ -1819,28 +1652,16 @@ export {
   getAxisLabelWidth,
   getAxisLabelHeight,
   getYAxisWidth,
-  calculateAxesSize,
-  calculateAxesLabelSize,
-  determineOutlierStretchFactor,
-  determineOutlierStretchFactorXAxis,
-  buildAxisLabel,
-  getAxesScale,
-  createAxes,
-  createXAxisInfoRow,
-  createAxisReferenceLine,
-  getAxesDataRange,
-  processTickValues,
-  generateYAxesTickValues,
   hasY2Axis,
+  isXAxisOrientationTop,
+  isValidAxisType,
+  prepareHorizontalAxis,
+  processTickValues,
+  prepareXAxis,
+  prepareYAxis,
+  prepareY2Axis,
+  resetD3FontSize,
+  setXAxisDomain,
   translateAxes,
   translateAxisReferenceLine,
-  isValidAxisType,
-  resetD3FontSize,
-  calculateVerticalPadding,
-  isXAxisOrientationTop,
-  getAxisInfoRowYPosition,
-  setXAxisDomain,
-  getTicksCountFromRange,
-  getAverageTicksCount,
-  formatLabel,
 };

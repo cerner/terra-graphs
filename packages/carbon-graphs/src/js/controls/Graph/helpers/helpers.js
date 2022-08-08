@@ -5,7 +5,7 @@ import { getScale } from '../../../core/BaseConfig/index';
 import {
   buildAxisLabel,
   calculateVerticalPadding,
-  determineOutlierStretchFactor,
+  determineOutlierStretchFactorYAxes,
   determineOutlierStretchFactorXAxis,
   getAxesScale,
   getRotationForAxis,
@@ -467,7 +467,7 @@ const updateAxesDomain = (config, input = {}) => {
     return config;
   }
 
-  config.outlierStretchFactor = determineOutlierStretchFactor(config);
+  config.outlierStretchFactor = determineOutlierStretchFactorYAxes(config);
 
   const yAxis = input.config.yAxis || constants.Y_AXIS;
 
@@ -859,7 +859,7 @@ const determineHeight = (config, dimension) => {
   const verticalPadding = config.padding.top + config.padding.bottom;
   const halfHeight = (DEFAULT_HEIGHT - verticalPadding) / 2;
 
-  config.outlierStretchFactor = determineOutlierStretchFactor(config);
+  config.outlierStretchFactor = determineOutlierStretchFactorYAxes(config);
 
   return (
     halfHeight * config.outlierStretchFactor.upperLimit

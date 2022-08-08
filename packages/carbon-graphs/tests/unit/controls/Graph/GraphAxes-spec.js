@@ -1231,7 +1231,6 @@ describe('Graph - Axes', () => {
       for (let i = 1; i < allYAxisElements[0].childNodes.length; i += 1) {
         yTicks.push(parseInt(allYAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
       }
-      console.log(yTicks);
     });
     describe('when space is passed as label', () => {
       beforeEach(() => {
