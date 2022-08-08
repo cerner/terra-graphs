@@ -1339,8 +1339,6 @@ const getLowerOutlierStretchFactorXAxis = (config) => {
   const axisMidPoint = getMidPoint(config, constants.X_AXIS);
   const lowerStretchFactor = Math.abs((axisMidPoint - dataRangeMinValue) / (axisMidPoint - axisMinValue));
   
-  console.log('lower stretch factor: ', lowerStretchFactor);
-
   return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
 };
 
@@ -1516,29 +1514,13 @@ const getUpperOutlierStretchFactorXAxis = (config) => {
 //
 const determineOutlierStretchFactorXAxis = (config) => {
 
-
   const sortOutlier = (firstValue, secondValue) => secondValue - firstValue;
   let stretchFactors = {};
 
-  const upperStretchFactors = [];
-  const lowerStretchFactors = [];
+  stretchFactors.upperLimit = getUpperOutlierStretchFactorXAxis(config);
+  stretchFactors.lowerLimit = getLowerOutlierStretchFactorXAxis(config);
 
-  upperStretchFactors.push(getUpperOutlierStretchFactorXAxis(config));
-  lowerStretchFactors.push(getLowerOutlierStretchFactorXAxis(config));
-
-  stretchFactors.upperLimit = upperStretchFactors.sort(sortOutlier)[0];
-  stretchFactors.lowerLimit = lowerStretchFactors.sort(sortOutlier)[0];
-  
   return stretchFactors;
-
-  // return {
-  //   upperLimit: getUpperOutlierStretchFactorXAxis(config).sort(
-  //     sortOutlier,
-  //   )[0],
-  //   lowerLimit: getLowerOutlierStretchFactorXAxis(config).sort(
-  //     sortOutlier,
-  //   )[0],
-  // };
 
 };
 
@@ -1558,16 +1540,32 @@ const determineOutlierStretchFactor = (config) => {
   const upperStretchFactors = [];
   const lowerStretchFactors = [];
 
-  upperStretchFactors.push(getUpperStretchFactorYAxis(config, constants.Y_AXIS));
-  lowerStretchFactors.push(getLowerStretchFactorYAxis(config, constants.Y_AXIS));
+  stretchFactors.upperLimit = getUpperStretchFactorYAxis(config, constants.Y_AXIS);
+  stretchFactors.lowerLimit = getLowerStretchFactorYAxis(config, constants.Y_AXIS);
+
+  upperStretchFactors.push(stretchFactors.upperLimit);
+  lowerStretchFactors.push(stretchFactors.lowerLimit);
+
+
 
   if (hasY2Axis(config.axis)) {
     upperStretchFactors.push(getUpperStretchFactorYAxis(config, constants.Y2_AXIS));
     lowerStretchFactors.push(getLowerStretchFactorYAxis(config, constants.Y2_AXIS));
+
+    let upperLimitY2 = getUpperStretchFactorYAxis(config, constants.Y2_AXIS);
+    let lowerLimitY2 = getLowerStretchFactorYAxis(config, constants.Y2_AXIS);
+
+    stretchFactors.upperLimit = upperLimitY2 > stretchFactors.upperLimit ? upperLimitY2 : stretchFactors.upperLimit;
+    stretchFactors.lowerLimit = lowerLimitY2 > stretchFactors.lowerLimit ? lowerLimitY2 : stretchFactors.lowerLimit;
   }
 
-  stretchFactors.upperLimit = upperStretchFactors.sort(sortOutlier)[0];
-  stretchFactors.lowerLimit = lowerStretchFactors.sort(sortOutlier)[0];
+  // console.log(lowerStretchFactors);
+
+
+  // stretchFactors.upperLimit = upperStretchFactors.sort(sortOutlier)[0];
+  // stretchFactors.lowerLimit = lowerStretchFactors.sort(sortOutlier)[0];
+
+  // console.log(stretchFactors);
   
   return stretchFactors;
 
@@ -1693,8 +1691,6 @@ const translateAxisReferenceLine = (axis, scale, config, canvasSVG) => {
  * @returns {object} - Object with min and max value ranges
  */
 const getCurMinMaxValueRange = (input, content, axis) => {
-  console.log('getCurMinMaxValueRange - input.valueRange: ', input.valuesRange);
-  console.log(axis);
 
   if (input instanceof Bar) {
     let min = 0;
@@ -1739,7 +1735,6 @@ const getAxesDataRange = (
   config,
   content = [],
 ) => {
-  console.log('axis ', axis);
 
   if (utils.isEmpty(config.axis.x.dataRange)) {
     config.axis.x.dataRange = {};
@@ -1751,7 +1746,6 @@ const getAxesDataRange = (
     config.axis.y2.dataRange = {};
   }
 
-  console.log('input.valuesRange', input.valuesRange);
 
   if (utils.isEmpty(input) || utils.isEmpty(input.valuesRange)) {
     return;
@@ -1759,7 +1753,6 @@ const getAxesDataRange = (
 
   const curRange = getCurMinMaxValueRange(input, content, axis);
 
-  console.log('curRange: ', curRange);
 
   const prevMin = config.axis[axis].dataRange.oldMin;
   const prevMax = config.axis[axis].dataRange.oldMax;
@@ -1773,9 +1766,6 @@ const getAxesDataRange = (
   }
 
   config.axis[axis].dataRange.isRangeModified = isRangeModified;
-
-  console.log('isRangeModified ', isRangeModified);
-  console.log('dataRange ', config.axis[axis].dataRange);
 
   if (isRangeModified) {
     config.axis[axis].dataRange.oldMin = config.axis[axis].dataRange.min;

@@ -546,6 +546,7 @@ class Graph extends Construct {
               this.config,
               this.content,
             );
+            
             if (
               this.config.allowCalibration
                   && isRangeModified(

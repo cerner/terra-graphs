@@ -74,7 +74,6 @@ const calculateValuesRangeYAxis = (values) => {
  */
 const calculateValuesRangeXAxis = (values) => {
   const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => i.x);
-  // console.log(xAxisValuesList);
   return {
     min: Math.min(...xAxisValuesList),
     max: Math.max(...xAxisValuesList),
@@ -126,7 +125,6 @@ class Line extends GraphContent {
     this.valuesRange.x = calculateValuesRangeXAxis(
       this.config.values,
     );
-    console.log(this.valuesRange);
     this.dataTarget = {};
   }
 
