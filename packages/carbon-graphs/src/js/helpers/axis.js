@@ -1691,7 +1691,6 @@ const translateAxisReferenceLine = (axis, scale, config, canvasSVG) => {
  * @returns {object} - Object with min and max value ranges
  */
 const getCurMinMaxValueRange = (input, content, axis) => {
-
   if (input instanceof Bar) {
     let min = 0;
     let max = 0;
