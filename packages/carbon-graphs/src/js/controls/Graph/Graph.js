@@ -117,7 +117,7 @@ const beforeInit = (control) => {
   getAxesDataRange({}, '', control.config);
 
   if (utils.isDefined(control.config.axis.x.allowCalibration) && control.config.axis.x.allowCalibration) {
-    console.warn("allowCalibration for x-axis is a new feature that is currently a work in progress and may have stability issues. Use it at your own risk.")
+    console.warn('allowCalibration for x-axis is a new feature that is currently a work in progress and may have stability issues. Use it at your own risk.');
     getAxesDataRange({}, constants.X_AXIS, control.config);
   }
   updateAxesDomain(control.config);
@@ -361,9 +361,7 @@ class Graph extends Construct {
     setAxisPadding(this.config.axisPadding, content);
     getAxesDataRange(content, content.config.yAxis, this.config, this.content);
 
-
     if (utils.isDefined(this.config.axis.x.allowCalibration) && this.config.axis.x.allowCalibration) {
-      
       getAxesDataRange(content, constants.X_AXIS, this.config, this.content);
 
       if (isRangeModified(this.config, constants.X_AXIS)) {
@@ -546,7 +544,7 @@ class Graph extends Construct {
               this.config,
               this.content,
             );
-            
+
             if (
               this.config.allowCalibration
                   && isRangeModified(this.config, this.content[position].config.yAxis)

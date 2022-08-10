@@ -1307,7 +1307,7 @@ const getMidPoint = (config, axis) => {
  * @private
  * @param {object} config - config object derived from input JSON
  */
- const setXAxisDomain = (config) => {
+const setXAxisDomain = (config) => {
   config.axis.x.domain = getXAxisDomain(
     config.axis.x.type,
     config.axis.x.lowerLimit,
@@ -1326,9 +1326,9 @@ const getMidPoint = (config, axis) => {
  * @returns {number} the stretch factor for the new upper limit
  */
 
- const getUpperOutlierStretchFactor = (config, axis) => {
+const getUpperOutlierStretchFactor = (config, axis) => {
   const axisMaxValue = config.axis[axis].domain.upperLimit;
-  const dataRangeMaxValue = config.axis[axis].dataRange.max > axisMaxValue ? config.axis[axis].dataRange.max: axisMaxValue;
+  const dataRangeMaxValue = config.axis[axis].dataRange.max > axisMaxValue ? config.axis[axis].dataRange.max : axisMaxValue;
   const axisMidPoint = getMidPoint(config, axis);
   const upperStretchFactor = Math.abs((dataRangeMaxValue - axisMidPoint) / (axisMaxValue - axisMidPoint));
   return upperStretchFactor > 1 ? upperStretchFactor : 1;
@@ -1345,12 +1345,11 @@ const getMidPoint = (config, axis) => {
  * @returns {number} the stretch factor for the new lower limit
  */
 const getLowerOutlierStretchFactor = (config, axis) => {
-
   const axisMinValue = config.axis[axis].domain.lowerLimit;
   const dataRangeMinValue = config.axis[axis].dataRange.min < axisMinValue ? config.axis[axis].dataRange.min : axisMinValue;
   const axisMidPoint = getMidPoint(config, axis);
   const lowerStretchFactor = Math.abs((axisMidPoint - dataRangeMinValue) / (axisMidPoint - axisMinValue));
-  
+
   return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
 };
 
@@ -1363,8 +1362,7 @@ const getLowerOutlierStretchFactor = (config, axis) => {
 * @returns {object} stretch factor that determines the new upper and lower limit of the x-axis
 */
 const determineOutlierStretchFactorXAxis = (config) => {
-
-  let stretchFactors = {};
+  const stretchFactors = {};
 
   stretchFactors.upperLimit = getUpperOutlierStretchFactor(config, constants.X_AXIS);
   stretchFactors.lowerLimit = getLowerOutlierStretchFactor(config, constants.X_AXIS);
@@ -1381,20 +1379,19 @@ const determineOutlierStretchFactorXAxis = (config) => {
  * @returns {object} stretch factor determines the new upper and lower limit of the vertical axes
  */
 const determineOutlierStretchFactorYAxes = (config) => {
-  let stretchFactors = {};
+  const stretchFactors = {};
 
   stretchFactors.upperLimit = getUpperOutlierStretchFactor(config, constants.Y_AXIS);
   stretchFactors.lowerLimit = getLowerOutlierStretchFactor(config, constants.Y_AXIS);
 
   if (hasY2Axis(config.axis)) {
-
-    let upperLimitY2 = getUpperOutlierStretchFactor(config, constants.Y2_AXIS);
-    let lowerLimitY2 = getLowerOutlierStretchFactor(config, constants.Y2_AXIS);
+    const upperLimitY2 = getUpperOutlierStretchFactor(config, constants.Y2_AXIS);
+    const lowerLimitY2 = getLowerOutlierStretchFactor(config, constants.Y2_AXIS);
 
     stretchFactors.upperLimit = upperLimitY2 > stretchFactors.upperLimit ? upperLimitY2 : stretchFactors.upperLimit;
     stretchFactors.lowerLimit = lowerLimitY2 > stretchFactors.lowerLimit ? lowerLimitY2 : stretchFactors.lowerLimit;
   }
-  
+
   return stretchFactors;
 };
 
@@ -1553,7 +1550,6 @@ const getAxesDataRange = (
   config,
   content = [],
 ) => {
-
   if (utils.isEmpty(config.axis.x.dataRange)) {
     config.axis.x.dataRange = {};
   }
@@ -1564,13 +1560,11 @@ const getAxesDataRange = (
     config.axis.y2.dataRange = {};
   }
 
-
   if (utils.isEmpty(input) || utils.isEmpty(input.valuesRange)) {
     return;
   }
 
   const curRange = getCurMinMaxValueRange(input, content, axis);
-
 
   const prevMin = config.axis[axis].dataRange.oldMin;
   const prevMax = config.axis[axis].dataRange.oldMax;
