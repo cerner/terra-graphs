@@ -138,8 +138,6 @@ fdescribe('Line - Load', () => {
   describe('draws the graph', () => {
     let input = null;
     beforeEach(() => {
-      // input = getInput(valuesDefault, false, false);
-      // graphDefault.loadContent(new Line(input));
     });
     afterEach(() => {
       if (typeof graphDefault.destroy === 'function') {
