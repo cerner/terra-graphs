@@ -28,7 +28,7 @@ import {
   LINE_DASHED,
 } from '../../../../src/js/core/Shape/shapeDefinitions';
 
-describe('Line - Load', () => {
+fdescribe('Line - Load', () => {
   let graphDefault = null;
   let lineGraphContainer;
   beforeEach(() => {
@@ -43,6 +43,9 @@ describe('Line - Load', () => {
   });
   afterEach(() => {
     document.body.innerHTML = '';
+    if (typeof graphDefault.destroy === 'function') {
+      graphDefault.destroy();
+    }
   });
   it('returns the graph instance', () => {
     const loadedLine = new Line(getInput(valuesDefault, false, false));
@@ -135,10 +138,18 @@ describe('Line - Load', () => {
   describe('draws the graph', () => {
     let input = null;
     beforeEach(() => {
-      input = getInput(valuesDefault, false, false);
-      graphDefault.loadContent(new Line(input));
+      // input = getInput(valuesDefault, false, false);
+      // graphDefault.loadContent(new Line(input));
+    });
+    afterEach(() => {
+      if (typeof graphDefault.destroy === 'function') {
+        graphDefault.destroy();
+      }
     });
     it('adds content container for each line', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const lineContentContainer = fetchElementByClass(
         lineGraphContainer,
         styles.lineGraphContent,
@@ -150,6 +161,9 @@ describe('Line - Load', () => {
       );
     });
     it('adds container for each data points sets for each line', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const secInput = utils.deepClone(input);
       secInput.key = 'uid_2';
       graphDefault.loadContent(new Line(secInput));
@@ -159,6 +173,9 @@ describe('Line - Load', () => {
       expect(graphContent.length).toBe(2);
     });
     it('adds legend for each data points sets for each line', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const secInput = utils.deepClone(input);
       secInput.key = 'uid_2';
       graphDefault.loadContent(new Line(secInput));
@@ -168,7 +185,6 @@ describe('Line - Load', () => {
       expect(legendItems.length).toBe(2);
     });
     it('disables legend when disabled flag is set', () => {
-      graphDefault.destroy();
       const graph = new Graph(getAxes(axisDefault));
       const data = utils.deepClone(valuesDefault);
       input = getInput(data);
@@ -180,7 +196,6 @@ describe('Line - Load', () => {
       expect(legendItem.getAttribute('aria-disabled')).toBe('true');
     });
     it('disabled legend item is not tab-able', () => {
-      graphDefault.destroy();
       const graph = new Graph(getAxes(axisDefault));
       const data = utils.deepClone(valuesDefault);
       input = getInput(data);
@@ -192,6 +207,9 @@ describe('Line - Load', () => {
       expect(legendItem.getAttribute('tabindex')).toBe('-1');
     });
     it('add line group for line', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const lineContentContainer = fetchElementByClass(
         lineGraphContainer,
         styles.lineGraphContent,
@@ -205,6 +223,9 @@ describe('Line - Load', () => {
       expect(lineGroup.getAttribute('transform')).not.toBeNull();
     });
     it('adds line path as an SVG', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const lineContentContainer = fetchElementByClass(
         lineGraphContainer,
         styles.lineGraphContent,
@@ -219,6 +240,9 @@ describe('Line - Load', () => {
       ).toBeTruthy();
     });
     it('adds line with correct color with default stroke-dasharray to 0', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const lineElement = fetchElementByClass(
         lineGraphContainer,
         styles.line,
@@ -229,6 +253,9 @@ describe('Line - Load', () => {
       ).toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 0;`);
     });
     it('adds line with correct unique key', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const lineElement = fetchElementByClass(
         lineGraphContainer,
         styles.line,
@@ -240,7 +267,6 @@ describe('Line - Load', () => {
       ).toBe(input.key);
     });
     it('does not render data point if data point is null', () => {
-      graphDefault.destroy();
       const graph = new Graph(getAxes(axisDefault));
       const data = utils.deepClone(valuesDefault);
       data[0].y = null;
@@ -258,7 +284,6 @@ describe('Line - Load', () => {
       expect(selectedPoint.getAttribute('aria-hidden')).toContain('true');
     });
     it('does not render data point if data point is undefiend', () => {
-      graphDefault.destroy();
       const graph = new Graph(getAxes(axisDefault));
       const data = utils.deepClone(valuesDefault);
       data[0].y = undefined;
@@ -276,7 +301,6 @@ describe('Line - Load', () => {
       expect(selectedPoint.getAttribute('aria-hidden')).toContain('true');
     });
     it('does not render points if shapes needs to be hidden', () => {
-      graphDefault.destroy();
       const hiddenShapeInput = getAxes(axisDefault);
       hiddenShapeInput.showShapes = false;
       const hiddenShapeGraph = new Graph(hiddenShapeInput);
@@ -289,34 +313,85 @@ describe('Line - Load', () => {
         ),
       ).toBeNull();
     });
+    it('does not update x axis range if allow calibration is disabled', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = false;
+      disableCalibrationInput.axis.x.lowerLimit = 50;
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Line(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
+        .toEqual(disableCalibrationInput.axis.x.upperLimit);
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
+        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+    });
+    it('does not update x axis range by default if allowCalibration is undefined', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = undefined;
+      disableCalibrationInput.axis.x.lowerLimit = 50;
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Line(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
+        .toEqual(disableCalibrationInput.axis.x.upperLimit);
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
+        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+    });
+    it('does not x axis range if allowCalibration is true and datapoints are within limits', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = true;
+      disableCalibrationInput.axis.x.lowerLimit = 20;
+      disableCalibrationInput.axis.x.upperLimit = 70;
+
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Line(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(20);
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(70);
+    });
+    it('updates x axis range if allowCalibration is true and datapoints exceed or are equal to limits', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = true;
+      disableCalibrationInput.axis.x.lowerLimit = 30;
+      disableCalibrationInput.axis.x.upperLimit = 45;
+
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Line(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(24);
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(46);
+    });
     it('does not update y axis range if allow calibration is disabled', () => {
-      graphDefault.destroy();
       const disableCalibrationInput = getAxes(axisDefault);
       disableCalibrationInput.allowCalibration = false;
       const disableCalibrationGraph = new Graph(disableCalibrationInput);
       input = getInput(valuesDefault, false, false);
       disableCalibrationGraph.loadContent(new Line(input));
-      expect(disableCalibrationInput.axis.y.upperLimit).toEqual(
-        disableCalibrationGraph.config.axis.y.domain.upperLimit,
-      );
-      expect(disableCalibrationInput.axis.y.lowerLimit).toEqual(
-        disableCalibrationGraph.config.axis.y.domain.lowerLimit,
-      );
+
+      expect(disableCalibrationGraph.config.axis.y.domain.upperLimit)
+        .toEqual(disableCalibrationInput.axis.y.upperLimit);
+      expect(disableCalibrationGraph.config.axis.y.domain.lowerLimit)
+        .toEqual(disableCalibrationInput.axis.y.lowerLimit);
     });
     it('update y axis range by default', () => {
-      graphDefault.destroy();
       const disableCalibrationInput = getAxes(axisDefault);
       const disableCalibrationGraph = new Graph(disableCalibrationInput);
       input = getInput(valuesDefault, false, false);
       disableCalibrationGraph.loadContent(new Line(input));
-      expect(disableCalibrationInput.axis.y.upperLimit).not.toEqual(
-        disableCalibrationGraph.config.axis.y.domain.upperLimit,
-      );
-      expect(disableCalibrationInput.axis.y.lowerLimit).not.toEqual(
-        disableCalibrationGraph.config.axis.y.domain.lowerLimit,
-      );
+
+      expect(disableCalibrationGraph.config.axis.y.domain.upperLimit)
+        .not.toEqual(disableCalibrationInput.axis.y.upperLimit);
+      expect(disableCalibrationGraph.config.axis.y.domain.lowerLimit)
+        .not.toEqual(disableCalibrationInput.axis.y.lowerLimit);
     });
     it('add points group for data points', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const pointsGroup = fetchElementByClass(
         lineGraphContainer,
         styles.currentPointsGroup,
@@ -326,6 +401,9 @@ describe('Line - Load', () => {
       expect(pointsGroup.getAttribute('transform')).not.toBeNull();
     });
     it('adds points for each data point', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const pointsGroup = fetchElementByClass(
         lineGraphContainer,
         styles.currentPointsGroup,
@@ -334,6 +412,9 @@ describe('Line - Load', () => {
       expect(points.length).toBe(valuesDefault.length);
     });
     it('points have correct color', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const pointsGroup = fetchElementByClass(
         lineGraphContainer,
         styles.currentPointsGroup,
@@ -344,6 +425,9 @@ describe('Line - Load', () => {
       );
     });
     it('points have correct shape', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const pointsGroup = fetchElementByClass(
         lineGraphContainer,
         styles.currentPointsGroup,
@@ -354,6 +438,9 @@ describe('Line - Load', () => {
       ).toBe(SHAPES.RHOMBUS.path.d);
     });
     it('points have correct unique key assigned', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const pointsGroup = fetchElementByClass(
         lineGraphContainer,
         styles.currentPointsGroup,
@@ -362,6 +449,9 @@ describe('Line - Load', () => {
       expect(points.getAttribute('aria-describedby')).toBe(input.key);
     });
     it('adds a selected data point for each point', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const pointsGroup = fetchElementByClass(
         lineGraphContainer,
         styles.currentPointsGroup,
@@ -372,6 +462,9 @@ describe('Line - Load', () => {
       expect(selectedPoints.length).toBe(valuesDefault.length);
     });
     it('selected data point is hidden by default', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const selectedPoints = fetchElementByClass(
         lineGraphContainer,
         styles.dataPointSelection,
@@ -379,6 +472,9 @@ describe('Line - Load', () => {
       expect(selectedPoints.getAttribute('aria-hidden')).toBe('true');
     });
     it('selected data point has circle as shape', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const selectedPoints = fetchElementByClass(
         lineGraphContainer,
         styles.dataPointSelection,
@@ -389,6 +485,9 @@ describe('Line - Load', () => {
       );
     });
     it('selected data point has correct unique key assigned', () => {
+      input = getInput(valuesDefault, false, false);
+      graphDefault.loadContent(new Line(input));
+
       const selectedPoints = fetchElementByClass(
         lineGraphContainer,
         styles.dataPointSelection,
@@ -398,7 +497,6 @@ describe('Line - Load', () => {
       );
     });
     it('does not render points if shapes are hidden per data set', () => {
-      graphDefault.destroy();
       const hiddenShapeInput = getAxes(axisDefault);
       hiddenShapeInput.showShapes = true;
       const hiddenShapeGraph = new Graph(hiddenShapeInput);
@@ -414,7 +512,6 @@ describe('Line - Load', () => {
     });
     describe('adds line with stroke-dasharray as provided by consumer with', () => {
       it('comma seperated values', () => {
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.style = {
@@ -433,7 +530,6 @@ describe('Line - Load', () => {
         ).toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2,2;`);
       });
       it('space seperated values', () => {
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.style = {
@@ -452,7 +548,6 @@ describe('Line - Load', () => {
         ).toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2 2;`);
       });
       it('just a single value', () => {
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.style = {
@@ -474,7 +569,6 @@ describe('Line - Load', () => {
     it('adds line with correct stroke-dasharray', () => {});
     describe('when clicked on a data point', () => {
       it('does not do anything if no onClick callback is provided', (done) => {
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.onClick = null;
@@ -489,7 +583,6 @@ describe('Line - Load', () => {
         });
       });
       it('hides data point selection when parameter callback is called', (done) => {
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.onClick = (clearSelectionCallback) => {
@@ -513,7 +606,6 @@ describe('Line - Load', () => {
       });
       it('calls onClick callback', (done) => {
         const dataPointClickHandlerSpy = sinon.spy();
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.onClick = dataPointClickHandlerSpy;
@@ -529,7 +621,6 @@ describe('Line - Load', () => {
       });
       it('calls onClick callback with parameters', (done) => {
         let args = {};
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.onClick = (cb, key, index, val, target) => {
@@ -558,6 +649,9 @@ describe('Line - Load', () => {
         });
       });
       it('highlights the data point', (done) => {
+        input = getInput(valuesDefault, false, false);
+        graphDefault.loadContent(new Line(input));
+
         const selectionPoint = fetchElementByClass(
           lineGraphContainer,
           styles.dataPointSelection,
@@ -574,6 +668,9 @@ describe('Line - Load', () => {
         });
       });
       it('removes highlight when data point is clicked again', (done) => {
+        input = getInput(valuesDefault, false, false);
+        graphDefault.loadContent(new Line(input));
+
         const selectionPoint = fetchElementByClass(
           lineGraphContainer,
           styles.dataPointSelection,
@@ -594,6 +691,9 @@ describe('Line - Load', () => {
     });
     describe("when clicked on a data point's near surrounding area", () => {
       it('highlights the data point', (done) => {
+        input = getInput(valuesDefault, false, false);
+        graphDefault.loadContent(new Line(input));
+
         const selectionPoint = fetchElementByClass(
           lineGraphContainer,
           styles.dataPointSelection,
@@ -607,7 +707,6 @@ describe('Line - Load', () => {
       });
       it('calls onClick callback with parameters', (done) => {
         let args = {};
-        graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.onClick = (cb, key, index, val, target) => {
@@ -636,6 +735,9 @@ describe('Line - Load', () => {
         });
       });
       it('removes highlight when clicked again', (done) => {
+        input = getInput(valuesDefault, false, false);
+        graphDefault.loadContent(new Line(input));
+
         const selectionPoint = fetchElementByClass(
           lineGraphContainer,
           styles.dataPointSelection,
@@ -652,7 +754,6 @@ describe('Line - Load', () => {
     });
     describe('When interpolation type is provided', () => {
       it('Displays graph properly', () => {
-        graphDefault.destroy();
         const graph = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault);
         input.type = LINE_TYPE.SPLINE;
@@ -689,7 +790,6 @@ describe('Line - Load', () => {
       ];
       describe('In Y Axis', () => {
         it('Displays graph properly', () => {
-          graphDefault.destroy();
           const graph = new Graph(getAxes(axis));
           input = getInput(values, true, true, false);
           input.values = values;
@@ -707,7 +807,6 @@ describe('Line - Load', () => {
           expect(graph.config.axis.y.domain.upperLimit).toBe(209);
         });
         it('Displays graph properly without domain padding', () => {
-          graphDefault.destroy();
           const data = getAxes(axis);
           data.axis.y.padDomain = false;
           const graph = new Graph(data);
@@ -729,7 +828,6 @@ describe('Line - Load', () => {
       });
       describe('In Y2 Axis', () => {
         it('Displays graph properly', () => {
-          graphDefault.destroy();
           const graph = new Graph(getAxes(axis));
           input = getInput(values, true, true, true);
           graph.loadContent(new Line(input));
@@ -746,7 +844,6 @@ describe('Line - Load', () => {
           expect(graph.config.axis.y2.domain.upperLimit).toBe(209);
         });
         it('Displays graph properly without domain padding', () => {
-          graphDefault.destroy();
           const data = getAxes(axis);
           data.axis.y2.padDomain = false;
           const graph = new Graph(data);

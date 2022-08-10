@@ -1,7 +1,9 @@
 'use strict';
 
 import * as d3 from 'd3';
-import { getScale } from '../../../core/BaseConfig/index';
+import { getScale, getDefaultValue } from '../../../core/BaseConfig/index';
+// import { getDefaultValue } from '../../core/BaseConfig';
+
 import {
   buildAxisLabel,
   calculateVerticalPadding,
@@ -501,7 +503,6 @@ const updateXAxisDomain = (config, input = {}) => {
   }
 
   config.axis.x.outlierStretchFactor = determineOutlierStretchFactorXAxis(config);
-  config.axisPadding.x = false;
 
   const halfDomain = (config.axis.x.domain.upperLimit - config.axis.x.domain.lowerLimit) / 2;
   const midPoint = (config.axis.x.domain.upperLimit + config.axis.x.domain.lowerLimit) / 2;
@@ -509,6 +510,15 @@ const updateXAxisDomain = (config, input = {}) => {
     lowerLimit: midPoint - halfDomain * config.axis.x.outlierStretchFactor.lowerLimit,
     upperLimit: midPoint + halfDomain * config.axis.x.outlierStretchFactor.upperLimit,
   };
+
+  if(newDomain.upperLimit == config.axis.x.dataRange.max
+     || newDomain.lowerLimit == config.axis.x.dataRange.min )
+  {
+    config.axisPadding.x = true;
+  } 
+  else {
+    config.axisPadding.x = getDefaultValue(config.axisPadding.x, false);
+  }
 
   config.axis.x.domain = padDomain(newDomain, config.axisPadding.x);
 

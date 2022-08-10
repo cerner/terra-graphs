@@ -1331,6 +1331,9 @@ const getUpperOutlierStretchFactor = (config, axis) => {
   const dataRangeMaxValue = config.axis[axis].dataRange.max > axisMaxValue ? config.axis[axis].dataRange.max : axisMaxValue;
   const axisMidPoint = getMidPoint(config, axis);
   const upperStretchFactor = Math.abs((dataRangeMaxValue - axisMidPoint) / (axisMaxValue - axisMidPoint));
+  
+  // console.log(upperStretchFactor);
+
   return upperStretchFactor > 1 ? upperStretchFactor : 1;
 };
 
@@ -1346,8 +1349,8 @@ const getUpperOutlierStretchFactor = (config, axis) => {
  */
 const getLowerOutlierStretchFactor = (config, axis) => {
   const axisMinValue = config.axis[axis].domain.lowerLimit;
-  const dataRangeMinValue = config.axis[axis].dataRange.min < axisMinValue ? config.axis[axis].dataRange.min : axisMinValue;
   const axisMidPoint = getMidPoint(config, axis);
+  const dataRangeMinValue = config.axis[axis].dataRange.min < axisMinValue ? config.axis[axis].dataRange.min : axisMinValue;
   const lowerStretchFactor = Math.abs((axisMidPoint - dataRangeMinValue) / (axisMidPoint - axisMinValue));
 
   return lowerStretchFactor > 1 ? lowerStretchFactor : 1;
