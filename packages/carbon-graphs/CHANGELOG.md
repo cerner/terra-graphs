@@ -4,6 +4,7 @@
 
 * Added
   * Added preliminary logic for new prop `config.axis.x.allowCalibration` to automatically update axis limits to allow padding.
+  * Finished implementation for `config.axis.x.allowCalibration` for a line graph with a numerical x-axis.
 
 ## 2.21.0 - (February 15, 2022)
 
