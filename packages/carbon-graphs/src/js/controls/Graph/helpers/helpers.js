@@ -2,7 +2,6 @@
 
 import * as d3 from 'd3';
 import { getScale, getDefaultValue } from '../../../core/BaseConfig/index';
-// import { getDefaultValue } from '../../core/BaseConfig';
 
 import {
   buildAxisLabel,
