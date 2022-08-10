@@ -1317,12 +1317,13 @@ const getMidPoint = (config, axis) => {
 
 /**
  * Calculates the upper part of the outlier based on data points.
- * If the content has any data points that are outside the lower and upper bounds set
- * in the vertical axis then we adjust the axis bounds to support that outlier value.
+ * If the input dataset has any data points that are outside the lower bound
+ * of the given axis, then the factor to adjust the upper limit by is calculated
  *
  * @private
  * @param {object} config - config object derived from input JSON
- * @returns {number} upper bound value for of the input vertical axis
+ * @param {string} axis - the axis to calculate the new stretch factor for
+ * @returns {number} the stretch factor for the new upper limit
  */
 
  const getUpperOutlierStretchFactor = (config, axis) => {
@@ -1335,14 +1336,14 @@ const getMidPoint = (config, axis) => {
 
 /**
  * Calculates the lower part of the outlier based on data points.
- * If the content has any data points that are outside the lower and upper bounds set
- * in the vertical axis then we adjust the axis bounds to support that outlier value.
+ * If the input dataset has any data points that are outside the lower bound
+ * of the given axis, then the factor to adjust the lowerlimit by is calculated
  *
  * @private
  * @param {object} config - config object derived from input JSON
- * @returns {Array} List of lower bound values for each of the vertical axis
+ * @param {string} axis - the axis to calculate the new stretch factor for
+ * @returns {number} the stretch factor for the new lower limit
  */
-// eslint-disable-next-line no-unused-vars
 const getLowerOutlierStretchFactor = (config, axis) => {
 
   const axisMinValue = config.axis[axis].domain.lowerLimit;
@@ -1354,13 +1355,12 @@ const getLowerOutlierStretchFactor = (config, axis) => {
 };
 
 /**
-* Determines if the values provided exceed the lower and upper bounds provided in the Y or Y2 axes
+* Determines if the values provided exceed the lower and upper bounds for a numerical x-axis
 * If the values exceed the bounds then the range and domain are adjusted accordingly.
-* There is no outlier check for X axis, for now, due to the possibility that X axis can be a timeseries.
 *
 * @private
 * @param {object} config - config object derived from input JSON
-* @returns {object} stretch factor determines the new upper and lower limit.
+* @returns {object} stretch factor that determines the new upper and lower limit of the x-axis
 */
 const determineOutlierStretchFactorXAxis = (config) => {
 
@@ -1370,17 +1370,15 @@ const determineOutlierStretchFactorXAxis = (config) => {
   stretchFactors.lowerLimit = getLowerOutlierStretchFactor(config, constants.X_AXIS);
 
   return stretchFactors;
-
 };
 
 /**
  * Determines if the values provided exceed the lower and upper bounds provided in the Y or Y2 axes
  * If the values exceed the bounds then the range and domain are adjusted accordingly.
- * There is no outlier check for X axis, for now, due to the possibility that X axis can be a timeseries.
  *
  * @private
  * @param {object} config - config object derived from input JSON
- * @returns {object} stretch factor determines the new upper and lower limit.
+ * @returns {object} stretch factor determines the new upper and lower limit of the vertical axes
  */
 const determineOutlierStretchFactorYAxes = (config) => {
   let stretchFactors = {};

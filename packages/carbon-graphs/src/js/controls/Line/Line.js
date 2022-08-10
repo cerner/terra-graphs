@@ -63,7 +63,7 @@ const calculateValuesRangeYAxis = (values) => {
  * @typedef {object} LineConfig
  */
 /**
- * Calculates the min and max values for Y Axis or Y2 Axis.
+ * Calculates the min and max values for tje x-axis
  * First we filter out values that are `null`, this is a result of
  * datapoint being part of being in a non-contiguous series and then we
  * get the min and max values for the Y or Y2 axis domain.
@@ -119,12 +119,13 @@ class Line extends GraphContent {
     );
     this.valuesRange = {};
 
-    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(
-      this.config.values,
-    );
     this.valuesRange.x = calculateValuesRangeXAxis(
       this.config.values,
     );
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(
+      this.config.values,
+    );
+
     this.dataTarget = {};
   }
 
