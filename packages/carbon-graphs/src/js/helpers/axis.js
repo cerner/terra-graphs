@@ -1331,7 +1331,7 @@ const getUpperOutlierStretchFactor = (config, axis) => {
   const dataRangeMaxValue = config.axis[axis].dataRange.max > axisMaxValue ? config.axis[axis].dataRange.max : axisMaxValue;
   const axisMidPoint = getMidPoint(config, axis);
   const upperStretchFactor = Math.abs((dataRangeMaxValue - axisMidPoint) / (axisMaxValue - axisMidPoint));
-  
+
   // console.log(upperStretchFactor);
 
   return upperStretchFactor > 1 ? upperStretchFactor : 1;

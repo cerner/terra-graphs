@@ -510,12 +510,10 @@ const updateXAxisDomain = (config, input = {}) => {
     upperLimit: midPoint + halfDomain * config.axis.x.outlierStretchFactor.upperLimit,
   };
 
-  if(newDomain.upperLimit == config.axis.x.dataRange.max
-     || newDomain.lowerLimit == config.axis.x.dataRange.min )
-  {
+  if (newDomain.upperLimit === config.axis.x.dataRange.max
+     || newDomain.lowerLimit === config.axis.x.dataRange.min) {
     config.axisPadding.x = true;
-  } 
-  else {
+  } else {
     config.axisPadding.x = getDefaultValue(config.axisPadding.x, false);
   }
 
