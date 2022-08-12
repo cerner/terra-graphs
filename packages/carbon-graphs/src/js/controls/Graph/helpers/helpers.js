@@ -1,11 +1,12 @@
 'use strict';
 
 import * as d3 from 'd3';
-import { getScale } from '../../../core/BaseConfig/index';
+import { getScale, getDefaultValue } from '../../../core/BaseConfig/index';
+
 import {
   buildAxisLabel,
   calculateVerticalPadding,
-  determineOutlierStretchFactor,
+  determineOutlierStretchFactorYAxes,
   determineOutlierStretchFactorXAxis,
   getAxesScale,
   getRotationForAxis,
@@ -463,42 +464,61 @@ const padDomain = (domain, isPaddingNeeded = true) => {
  * @returns {object} config - config object derived from input JSON
  */
 const updateAxesDomain = (config, input = {}) => {
-  config.outlierStretchFactor = determineOutlierStretchFactor(config);
-  config.outlierStretchFactorXAxis = determineOutlierStretchFactorXAxis(config);
+  if (utils.isEmpty(input)) {
+    return config;
+  }
 
-  const setDomain = (outlierStretchFactor, lowerLimit, upperLimit, yAxis) => {
-    const halfDomain = (upperLimit - lowerLimit) / 2;
-    const midPoint = (upperLimit + lowerLimit) / 2;
-    return padDomain(
-      {
-        lowerLimit:
-                    midPoint - halfDomain * outlierStretchFactor.lowerLimit,
-        upperLimit:
-                    midPoint + halfDomain * outlierStretchFactor.upperLimit,
-      },
-      config.axisPadding[yAxis],
-    );
+  config.outlierStretchFactor = determineOutlierStretchFactorYAxes(config);
+
+  const yAxis = input.config.yAxis || constants.Y_AXIS;
+
+  const halfDomain = (config.axis[yAxis].domain.upperLimit - config.axis[yAxis].domain.lowerLimit) / 2;
+  const midPoint = (config.axis[yAxis].domain.upperLimit + config.axis[yAxis].domain.lowerLimit) / 2;
+  const newDomain = {
+    lowerLimit: midPoint - halfDomain * config.outlierStretchFactor.lowerLimit,
+    upperLimit: midPoint + halfDomain * config.outlierStretchFactor.upperLimit,
   };
 
-  if (utils.notEmpty(input)) {
-    const yAxis = input.config.yAxis || constants.Y_AXIS;
-    const xAxis = input.config.xAxis || constants.X_AXIS;
-    config.axis[yAxis].domain = setDomain(
-      config.outlierStretchFactor,
-      config.axis[yAxis].domain.lowerLimit,
-      config.axis[yAxis].domain.upperLimit,
-      yAxis,
-    );
+  config.axis[yAxis].domain = padDomain(newDomain, config.axisPadding[yAxis]);
 
-    if (config.axis.x.allowCallibration) {
-      config.axis[xAxis].domain = setDomain(
-        config.outlierStretchFactorXAxis,
-        config.axis[xAxis].domain.lowerLimit,
-        config.axis[xAxis].domain.upperLimit,
-        xAxis,
-      );
-    }
+  return config;
+};
+/**
+ * Determines the domain for the x axis.
+ * the end points are calculated based on the ranges provided. This is done so that the axes are
+ * padded on both ends properly.
+ * For X Axis no such processing is provided. This decision was made due to the resize happening
+ * horizontally rather than vertical resize. To alleviate processing cost we depend on x axis's end points directly.
+ * If the consumer needs to pad the X Axis then they can provide the range with sufficient padding.
+ *
+ * @private
+ * @param {object} config - config object derived from input JSON
+ * @param {object} [input] - array of target objects
+ * @returns {object} config - config object derived from input JSON
+ */
+const updateXAxisDomain = (config, input = {}) => {
+  if (utils.isEmpty(input) || !config.axis.x.allowCalibration) {
+    return config;
   }
+
+  config.axis.x.outlierStretchFactor = determineOutlierStretchFactorXAxis(config);
+
+  const halfDomain = (config.axis.x.domain.upperLimit - config.axis.x.domain.lowerLimit) / 2;
+  const midPoint = (config.axis.x.domain.upperLimit + config.axis.x.domain.lowerLimit) / 2;
+  const newDomain = {
+    lowerLimit: midPoint - halfDomain * config.axis.x.outlierStretchFactor.lowerLimit,
+    upperLimit: midPoint + halfDomain * config.axis.x.outlierStretchFactor.upperLimit,
+  };
+
+  if (newDomain.upperLimit === config.axis.x.dataRange.max
+     || newDomain.lowerLimit === config.axis.x.dataRange.min) {
+    config.axisPadding.x = true;
+  } else {
+    config.axisPadding.x = getDefaultValue(config.axisPadding.x, false);
+  }
+
+  config.axis.x.domain = padDomain(newDomain, config.axisPadding.x);
+
   return config;
 };
 /**
@@ -845,6 +865,9 @@ const determineHeight = (config, dimension) => {
   }
   const verticalPadding = config.padding.top + config.padding.bottom;
   const halfHeight = (DEFAULT_HEIGHT - verticalPadding) / 2;
+
+  config.outlierStretchFactor = determineOutlierStretchFactorYAxes(config);
+
   return (
     halfHeight * config.outlierStretchFactor.upperLimit
         + halfHeight * config.outlierStretchFactor.lowerLimit
@@ -1006,31 +1029,32 @@ const translateSVGElement = (canvasSVG, style, config) => {
 };
 
 export {
-  translateSVGElement,
-  translateAxes,
-  translateVerticalGrid,
-  translateContentContainer,
-  translateDefs,
-  translateLabel,
-  translateGrid,
-  translateCanvas,
-  updateAxesDomain,
+  attachEventHandlers,
   createDefs,
   createGrid,
   createLabel,
   createContentContainer,
-  scaleGraph,
-  translateGraph,
-  padDomain,
+  drawNoDataView,
   determineHeight,
-  getShapeForTarget,
-  getColorForTarget,
-  attachEventHandlers,
   detachEventHandlers,
   d3RemoveElement,
-  setAxisPadding,
   getAxisInfoRowLabelHeight,
-  removeNoDataView,
-  drawNoDataView,
+  getColorForTarget,
+  getShapeForTarget,
   handleLabelClickFunctionDuringReflow,
+  padDomain,
+  removeNoDataView,
+  scaleGraph,
+  setAxisPadding,
+  translateAxes,
+  translateCanvas,
+  translateContentContainer,
+  translateDefs,
+  translateGraph,
+  translateGrid,
+  translateSVGElement,
+  translateVerticalGrid,
+  translateLabel,
+  updateAxesDomain,
+  updateXAxisDomain,
 };

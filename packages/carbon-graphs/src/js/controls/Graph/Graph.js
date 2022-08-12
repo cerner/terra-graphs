@@ -11,7 +11,7 @@ import {
   createXAxisInfoRow,
   getAxesDataRange,
   getYAxisHeight,
-  updateXAxisDomain,
+  setXAxisDomain,
   translateAxes,
 } from '../../helpers/axis';
 import constants, { AXIS_TYPE, COLORS } from '../../helpers/constants';
@@ -44,6 +44,7 @@ import {
   translateGraph,
   translateContentContainer,
   updateAxesDomain,
+  updateXAxisDomain,
   handleLabelClickFunctionDuringReflow,
 } from './helpers/helpers';
 
@@ -114,7 +115,13 @@ const isRangeModified = (config, yAxis = constants.Y_AXIS) => config.axis[yAxis]
 const beforeInit = (control) => {
   control.graphContainer = d3.select(control.config.bindTo);
   getAxesDataRange({}, '', control.config);
+
+  if (utils.isDefined(control.config.axis.x.allowCalibration) && control.config.axis.x.allowCalibration) {
+    console.warn('allowCalibration for x-axis is a new feature that is currently a work in progress and may have stability issues. Use it at your own risk.');
+    getAxesDataRange({}, constants.X_AXIS, control.config);
+  }
   updateAxesDomain(control.config);
+  updateXAxisDomain(control.config);
   createTooltipDiv();
   return control;
 };
@@ -346,23 +353,29 @@ class Graph extends Construct {
    */
   processContent(content) {
     validateContent(this.content, content);
+
     this.content.push(content);
     this.contentConfig.push(content.config);
     this.contentKeys.push(content.config.key);
-    setAxisPadding(this.config.axisPadding, content);
 
-    getAxesDataRange(
-      content,
-      content.config.yAxis,
-      this.config,
-      this.content,
-    );
+    setAxisPadding(this.config.axisPadding, content);
+    getAxesDataRange(content, content.config.yAxis, this.config, this.content);
+
+    if (utils.isDefined(this.config.axis.x.allowCalibration) && this.config.axis.x.allowCalibration) {
+      getAxesDataRange(content, constants.X_AXIS, this.config, this.content);
+
+      if (isRangeModified(this.config, constants.X_AXIS)) {
+        updateXAxisDomain(this.config, content);
+      }
+    }
+
     if (
       this.config.allowCalibration
       && isRangeModified(this.config, content.config.yAxis)
     ) {
       updateAxesDomain(this.config, content);
     }
+
     content.load(this);
     if (
       utils.notEmpty(this.config.dateline)
@@ -379,6 +392,7 @@ class Graph extends Construct {
     if (utils.notEmpty(content.config.values)) {
       removeNoDataView(this.svg);
     }
+
     return this;
   }
 
@@ -413,13 +427,16 @@ class Graph extends Construct {
   unloadContent(input) {
     contentHandler(input, (i) => {
       const index = this.contentKeys.indexOf(i.key || i.config.key);
+
       if (index < 0) {
         throw new Error(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
       }
+
       this.content[index].unload(this);
       this.content.splice(index, 1);
       this.contentConfig.splice(index, 1);
       this.contentKeys.splice(index, 1);
+
       if (
         this.config.showNoDataText
         && this.content.every((content) => utils.isEmpty(content.config.values))
@@ -485,7 +502,7 @@ class Graph extends Construct {
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
     translateContentContainer(this.config, this.svg);
@@ -527,12 +544,10 @@ class Graph extends Construct {
               this.config,
               this.content,
             );
+
             if (
               this.config.allowCalibration
-                  && isRangeModified(
-                    this.config,
-                    this.content[position].config.yAxis,
-                  )
+                  && isRangeModified(this.config, this.content[position].config.yAxis)
             ) {
               updateAxesDomain(this.config, this.content[position]);
             }
@@ -556,7 +571,7 @@ class Graph extends Construct {
       redrawEventlineContent(this.scale, this.config, this.svg);
     }
 
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     translateAxes(this.axis, this.scale, this.config, this.svg);
 

@@ -2,7 +2,7 @@
 
 import * as d3 from 'd3';
 import Construct from '../../core/Construct';
-import { getYAxisHeight, updateXAxisDomain } from '../../helpers/axis';
+import { getYAxisHeight, setXAxisDomain } from '../../helpers/axis';
 import constants from '../../helpers/constants';
 import { contentHandler } from '../../helpers/constructUtils';
 import { createDateline } from '../../helpers/dateline';
@@ -336,7 +336,7 @@ class Gantt extends Construct {
      */
   reflow(graphData) {
     console.warn('reflow is deprecated and will be removed a future major release. Please use reflowMultipleDatasets instead.');
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     const eventHandlers = prepareLegendEventHandlers(
       this,
@@ -375,7 +375,7 @@ class Gantt extends Construct {
      *  @returns {Gantt} - Gantt instance
      */
   reflowMultipleDatasets(graphData) {
-    updateXAxisDomain(this.config);
+    setXAxisDomain(this.config);
     scaleGraph(this.scale, this.config);
     const eventHandlers = prepareLegendEventHandlers(
       this,
