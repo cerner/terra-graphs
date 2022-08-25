@@ -28,7 +28,7 @@ import {
   LINE_DASHED,
 } from '../../../../src/js/core/Shape/shapeDefinitions';
 
-fdescribe('Line - Load', () => {
+describe('Line - Load', () => {
   let graphDefault = null;
   let lineGraphContainer;
   beforeEach(() => {
