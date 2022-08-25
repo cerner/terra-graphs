@@ -202,25 +202,43 @@ const isEqual = (a, b) => (isDate(a) || isDateInstance(a)
   ? isDateEqual(parseDateTime(a), parseDateTime(b))
   : a === b);
 /**
+ * Returns the date in epoc format.
+ *
+ * @private
+ * @param {string} dateISO - Date in ISO String format
+ * @returns {number} - epoc representation of given date
+ */
+ const getEpocFromDateString = (dateISO) => parseInt(new Date(dateISO).getTime());
+ /**
+ * Returns a date object based on the given epoc.
+ *
+ * @private
+ * @param {number} epocDate - Date as an epoc int
+ * @returns {object typeof Date} - Date object based on epoc
+ */
+  const getDateFromEpoc = (epocDate) => new Date(epocDate);
+/**
  * @enum {Function}
  */
 export default {
   deepClone,
-  isFunction,
-  isArray,
-  isEmptyArray,
-  isDefined,
-  isUndefined,
-  isEmpty,
-  notEmpty,
-  hasValue,
-  sanitize,
+  getEpocFromDateString,
+  getDateFromEpoc,
   getNumber,
-  isDate,
-  isNumber,
-  parseDateTime,
   getTime,
-  isDateInstance,
-  isEqual,
+  hasValue,
+  isArray,
   isBoolean,
+  isFunction,
+  isDate,
+  isDateInstance,
+  isDefined,
+  isEmptyArray,
+  isEmpty,
+  isEqual,
+  isNumber,
+  isUndefined,
+  notEmpty,
+  parseDateTime,
+  sanitize,
 };
