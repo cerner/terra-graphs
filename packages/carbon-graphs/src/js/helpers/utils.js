@@ -208,15 +208,15 @@ const isEqual = (a, b) => (isDate(a) || isDateInstance(a)
  * @param {string} dateISO - Date in ISO String format
  * @returns {number} - epoc representation of given date
  */
- const getEpocFromDateString = (dateISO) => parseInt(new Date(dateISO).getTime());
- /**
+const getEpocFromDateString = (dateISO) => parseInt(new Date(dateISO).getTime(), 10);
+/**
  * Returns a date object based on the given epoc.
  *
  * @private
  * @param {number} epocDate - Date as an epoc int
  * @returns {object typeof Date} - Date object based on epoc
  */
-  const getDateFromEpoc = (epocDate) => new Date(epocDate);
+const getDateFromEpoc = (epocDate) => new Date(epocDate);
 /**
  * @enum {Function}
  */

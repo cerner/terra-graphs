@@ -76,7 +76,7 @@ const calculateValuesRangeXAxis = (values) => {
   const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
     // if the x-axis is a timeseries, then convert it to an epoc int
     // for easier calculations
-    if(typeof i.x === "string"||i.x instanceof Date){
+    if (typeof i.x === 'string' || i.x instanceof Date) {
       return utils.getEpocFromDateString(i.x);
     }
     return i.x;
