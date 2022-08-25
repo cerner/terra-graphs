@@ -1,12 +1,16 @@
 import AllowCalibrationEnabledY from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationEnabledYAxis?dev-site-example';
 import AllowCalibrationDisabledY from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationDisabledYAxis?dev-site-example';
+import AllowCalibrationEnabledX from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationEnabledXAxis?dev-site-example';
+import AllowCalibrationDisabledX from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationDisabledXAxis?dev-site-example';
 
 import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefaultNoCalibration.js?dev-site-codeblock';
 import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset6.js?dev-site-codeblock';
 require('details-polyfill');
 
-# Disable Calibration
-This is a simple line graph with calibration disabled.
+# Calibration
+Calibration is updating the axis limits to accommodate the graph. 
+By default, it is **enabled for the y-axes** and **disabled for the x-axis**.
+It can by toggled on/off by using the appropriate `allowCalibration` label.
 
 ## Getting Started
 
@@ -22,7 +26,12 @@ import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
 ## Examples
 
 <AllowCalibrationEnabledY/>
+
 <AllowCalibrationDisabledY/>
+
+<AllowCalibrationDisabledX/>
+
+<AllowCalibrationEnabledX/>
 
 
 
