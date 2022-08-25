@@ -26,6 +26,7 @@ const getConfig = (id) => ({
   showShapes: true,
   showVGrid: true,
   showHGrid: true,
+  allowCalibration: false,
 });
 
 export default getConfig;

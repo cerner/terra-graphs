@@ -4,6 +4,7 @@ Any graph that inherits from `Graph` API will inherit the following `Axis` and `
 
 -   [Structure](#structure)
 -   [Properties](#properties)
+    -   [allowCalibration](#allowCalibration)
     -   [type](#type)
     -   [orientation](#orientation)
     -   [Note](#note)
@@ -20,12 +21,12 @@ axis: {
 }
 
 
-```json
 axis: {
     x: {
         lowerLimit: <number> or <Date>,
         upperLimit: <number> or <Date>,
         label: <string>,
+        allowCalibration: <bool>
         onLabelClick: <Function>,
         orientation: <string>
         rangeRounding: <bool>,
@@ -71,6 +72,7 @@ axis: {
 | lowerLimit            | number or Date | -                          | yes      | Lower bound for the axis. This is inclusive.                                                                                                                                                                                                                          |
 | upperLimit            | number or Date | -                          | yes      | Upper bound for the axis. This is inclusive.                                                                                                                                                                                                                          |
 | label                 | string         | -                          | yes      | Axis label value. Will not be rendered if nothing is provided.                                                                                                                                                                                                        |
+| allowCalibration      | bool           | `false`                    | no       | See [allowCalibration](#allowCalibration).                                                                                                                                                                                                                            |
 | onLabelClick          | Function       | `undefined`                | no       | Any action that can be performed when clicking on label.                                                                                                                                                                                                              |
 | orientation           | Function       | `AXES_ORIENTATION.DEFAULT` | no       | See [orientation](#orientation).                                                                                                                                                                                                                                      |
 | padDomain             | boolean        | `true`                     | no       | Toggle for disabling the padding (only for Y and Y2 axes).                                                                                                                                                                                                            |
@@ -79,6 +81,15 @@ axis: {
 | suppressTrailingZeros | boolean        | `false`                    | no       | Toggle to suppress tick values's trailing zeros when default d3 tick formatting is used. For X axis, this property works only when X axis type is set to AXIS_TYPE.DEFAULT. Specifying `~` in the tick format takes precedence over `suppressTrailingZeros` property. |
 | ticks                 | object         | `null`                     | no       | See [Ticks](./Ticks).                                                                                                                                                                                                                                                 |
 | type                  | string         | `AXIS_TYPE.DEFAULT`        | no       | See [type](#type). Normal number value or time-based. Only for x-axis.                                                                                                                                                                                                |
+
+- ### `allowCalibration`
+    Set calibration for the axis. 
+    If `true`, then the axis upper and lower limits will update to fit the entire graph on the x-axis. 
+    This feature can _not_ be used in conjunction with panning. 
+    If panning is enabled then this property will be ignored if `true`.
+
+    NOTE: This property is only implemented for the x-axis (`config.axis.x.allowCalibration`). 
+    Please refer to [config.allowCalibration](./Graph/##configuration-properties) for calibrating the y-axes.
 
 
 - ### `type`

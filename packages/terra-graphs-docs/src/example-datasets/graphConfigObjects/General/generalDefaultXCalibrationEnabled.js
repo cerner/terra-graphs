@@ -7,6 +7,7 @@ const getConfig = (id) => ({
       label: 'Data',
       lowerLimit: 80,
       upperLimit: 280,
+      allowCalibration: true,
     },
     y: {
       show: true,
