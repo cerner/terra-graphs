@@ -217,6 +217,7 @@ const getEpocFromDateString = (dateISO) => parseInt(new Date(dateISO).getTime(),
  * @returns {object typeof Date} - Date object based on epoc
  */
 const getDateFromEpoc = (epocDate) => new Date(epocDate);
+
 /**
  * @enum {Function}
  */

@@ -1346,6 +1346,7 @@ const getUpperOutlierStretchFactor = (config, axis) => {
  * @returns {number} the stretch factor for the new lower limit
  */
 const getLowerOutlierStretchFactor = (config, axis) => {
+
   const axisMinValue = config.axis[axis].domain.lowerLimit;
   const axisMidPoint = getMidPoint(config, axis);
   const dataRangeMinValue = config.axis[axis].dataRange.min < axisMinValue ? config.axis[axis].dataRange.min : axisMinValue;
