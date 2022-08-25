@@ -73,7 +73,14 @@ const calculateValuesRangeYAxis = (values) => {
  * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
  */
 const calculateValuesRangeXAxis = (values) => {
-  const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => i.x);
+  const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
+    // if the x-axis is a timeseries, then convert it to an epoc int
+    // for easier calculations
+    if (typeof i.x === 'string' || i.x instanceof Date) {
+      return utils.getEpocFromDateString(i.x);
+    }
+    return i.x;
+  });
   return {
     min: Math.min(...xAxisValuesList),
     max: Math.max(...xAxisValuesList),

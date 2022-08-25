@@ -1332,8 +1332,6 @@ const getUpperOutlierStretchFactor = (config, axis) => {
   const axisMidPoint = getMidPoint(config, axis);
   const upperStretchFactor = Math.abs((dataRangeMaxValue - axisMidPoint) / (axisMaxValue - axisMidPoint));
 
-  // console.log(upperStretchFactor);
-
   return upperStretchFactor > 1 ? upperStretchFactor : 1;
 };
 
@@ -1582,12 +1580,14 @@ const getAxesDataRange = (
 
   config.axis[axis].dataRange.isRangeModified = isRangeModified;
 
-  if (isRangeModified) {
-    config.axis[axis].dataRange.oldMin = config.axis[axis].dataRange.min;
-    config.axis[axis].dataRange.oldMax = config.axis[axis].dataRange.max;
-    config.axis[axis].dataRange.min = curRange.min;
-    config.axis[axis].dataRange.max = curRange.max;
+  if (!isRangeModified) {
+    return;
   }
+
+  config.axis[axis].dataRange.oldMin = config.axis[axis].dataRange.min;
+  config.axis[axis].dataRange.oldMax = config.axis[axis].dataRange.max;
+  config.axis[axis].dataRange.min = curRange.min;
+  config.axis[axis].dataRange.max = curRange.max;
 };
 /**
  * Checks if provided input has valid axis type

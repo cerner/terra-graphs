@@ -28,7 +28,7 @@ import {
   translateAxisReferenceLine,
   formatLabel,
 } from '../../../helpers/axis';
-import constants, { SHAPES } from '../../../helpers/constants';
+import constants, { AXIS_TYPE, SHAPES } from '../../../helpers/constants';
 import { createVGrid, translateVGrid } from '../../../helpers/datetimeBuckets';
 import {
   buildY2AxisLabelShapeContainer,
@@ -501,6 +501,16 @@ const updateXAxisDomain = (config, input = {}) => {
     return config;
   }
 
+  // if the x-axis type is timeseries then convert to epoc date so it is a number for calculations
+  if (config.axis.x.type === AXIS_TYPE.TIME_SERIES) {
+    config.axis.x.domain.upperLimit = utils.getEpocFromDateString(config.axis.x.domain.upperLimit);
+    config.axis.x.domain.lowerLimit = utils.getEpocFromDateString(config.axis.x.domain.lowerLimit);
+    // Note: config.axis.x.dataRange.max and min are already numbers.
+    // In the case of a timeseries x-axis, they are the epoc representation
+    // of a date. Which is why only config.axis.x.domain.upperLimit and lowerLimit
+    // are converted to epoc.
+  }
+
   config.axis.x.outlierStretchFactor = determineOutlierStretchFactorXAxis(config);
 
   const halfDomain = (config.axis.x.domain.upperLimit - config.axis.x.domain.lowerLimit) / 2;
@@ -518,6 +528,16 @@ const updateXAxisDomain = (config, input = {}) => {
   }
 
   config.axis.x.domain = padDomain(newDomain, config.axisPadding.x);
+
+  // if the x-axis type is timeseries then convert the updated epoc date back to a string
+  if (config.axis.x.type === AXIS_TYPE.TIME_SERIES) {
+    config.axis.x.domain.upperLimit = utils.getDateFromEpoc(config.axis.x.domain.upperLimit);
+    config.axis.x.domain.lowerLimit = utils.getDateFromEpoc(config.axis.x.domain.lowerLimit);
+    // Note: config.axis.x.domain.upperLimit and lowerLimit are converted back to a Date object
+    // because that is how it is used in the rest of the code. Outside of this method,
+    // config.axis.x.dataRange.max and min are not utilized which is why converting them
+    // back to a date object is redundant.
+  }
 
   return config;
 };
