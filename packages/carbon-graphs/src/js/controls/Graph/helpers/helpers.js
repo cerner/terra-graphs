@@ -500,8 +500,6 @@ const updateXAxisDomain = (config, input = {}) => {
   if (utils.isEmpty(input) || !config.axis.x.allowCalibration) {
     return config;
   }
-  
-  // console.log(config.axis.x.domain);
 
   // if the x-axis type is timeseries then convert to epoc date so it is a number for calculations
   if(config.axis.x.type == AXIS_TYPE.TIME_SERIES){
