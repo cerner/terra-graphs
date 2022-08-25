@@ -501,8 +501,6 @@ const updateXAxisDomain = (config, input = {}) => {
     return config;
   }
 
-  // console.log(config.axis.x.domain);
-
   // if the x-axis type is timeseries then convert to epoc date so it is a number for calculations
   if (config.axis.x.type === AXIS_TYPE.TIME_SERIES) {
     config.axis.x.domain.upperLimit = utils.getEpocFromDateString(config.axis.x.domain.upperLimit);
