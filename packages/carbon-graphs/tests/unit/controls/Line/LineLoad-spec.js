@@ -402,8 +402,8 @@ describe('Line - Load', () => {
       input = getInput(valuesTimeSeries, false, false);
       graphInstance.loadContent(new Line(input));
 
-      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(new Date(2016, 0, 28, 4, 48));
-      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(new Date(2016, 5, 9, 8, 12));
+      expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-01-28T10:48:00.000Z');
+      expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-06-09T13:12:00.000Z');
     });
     it('updates the timeseries x axis range if allowCalibration is true and datapoints are equal to limits', () => {
       const graphConfig = getAxes(axisTimeSeries);
@@ -415,8 +415,8 @@ describe('Line - Load', () => {
       input = getInput(valuesTimeSeries, false, false);
       graphInstance.loadContent(new Line(input));
 
-      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(new Date(2016, 0, 28, 4, 48));
-      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(new Date(2016, 5, 9, 8, 12));
+      expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-01-28T10:48:00.000Z');
+      expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-06-09T13:12:00.000Z');
     });
     it('does not update y axis range if allow calibration is disabled', () => {
       const graphConfig = getAxes(axisDefault);
