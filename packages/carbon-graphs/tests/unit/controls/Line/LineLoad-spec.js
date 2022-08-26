@@ -350,10 +350,23 @@ describe('Line - Load', () => {
       expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(20);
       expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(70);
     });
-    it('updates x axis range if allowCalibration is true and datapoints exceed or are equal to limits', () => {
+    it('updates x axis range if allowCalibration is true and datapoints exceed limits', () => {
       const disableCalibrationInput = getAxes(axisDefault);
       disableCalibrationInput.axis.x.allowCalibration = true;
       disableCalibrationInput.axis.x.lowerLimit = 30;
+      disableCalibrationInput.axis.x.upperLimit = 40;
+
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Line(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(24);
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(46);
+    });
+    it('updates x axis range if allowCalibration is true and datapoints are equal to limits', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = true;
+      disableCalibrationInput.axis.x.lowerLimit = 25;
       disableCalibrationInput.axis.x.upperLimit = 45;
 
       const disableCalibrationGraph = new Graph(disableCalibrationInput);
@@ -379,11 +392,24 @@ describe('Line - Load', () => {
       expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(expectedDateLowerLimit);
       expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(expectedDateUpperLimit);
     });
-    it('updates the timeseries x axis range if allowCalibration is true and datapoints exceed or are equal to limits', () => {
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints exceed limits', () => {
       const disableCalibrationInput = getAxes(axisTimeSeries);
       disableCalibrationInput.axis.x.allowCalibration = true;
       disableCalibrationInput.axis.x.lowerLimit = new Date(2016, 3, 10).toISOString();
       disableCalibrationInput.axis.x.upperLimit = new Date(2016, 4, 25).toISOString();
+
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesTimeSeries, false, false);
+      disableCalibrationGraph.loadContent(new Line(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(new Date(2016, 0, 28, 4, 48));
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(new Date(2016, 5, 9, 8, 12));
+    });
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints are equal to limits', () => {
+      const disableCalibrationInput = getAxes(axisTimeSeries);
+      disableCalibrationInput.axis.x.allowCalibration = true;
+      disableCalibrationInput.axis.x.lowerLimit = '2016-02-03T12:00:00Z';
+      disableCalibrationInput.axis.x.upperLimit = '2016-06-03T12:00:00Z';
 
       const disableCalibrationGraph = new Graph(disableCalibrationInput);
       input = getInput(valuesTimeSeries, false, false);
