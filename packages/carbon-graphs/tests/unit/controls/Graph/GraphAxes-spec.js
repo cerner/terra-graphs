@@ -2314,7 +2314,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 1024px and height is 230px', () => {
     beforeEach(() => {
-      graph.destroy();
       axisDefault.y2 = {
         show: true,
         label: 'Some Y2 Label',
@@ -2324,6 +2323,9 @@ describe('Graph - Axes', () => {
     });
     afterEach(() => {
       axisDefault.y2 = '';
+      if (graph !== null) {
+        graph.destroy();
+      }
     });
     it('Truncates if too long', (done) => {
       const labelAxisObj = utils.deepClone(axisDefault);
