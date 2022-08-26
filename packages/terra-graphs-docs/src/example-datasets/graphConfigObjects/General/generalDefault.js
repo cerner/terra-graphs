@@ -6,7 +6,7 @@ const getConfig = (id) => ({
       show: true,
       label: 'Data',
       lowerLimit: 80,
-      upperLimit: 200,
+      upperLimit: 280,
     },
     y: {
       show: true,

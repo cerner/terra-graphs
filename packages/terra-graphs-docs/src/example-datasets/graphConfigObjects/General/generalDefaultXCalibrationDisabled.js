@@ -1,19 +1,19 @@
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
-
 const getConfig = (id) => ({
   bindTo: id,
+  bindLegendTo: null,
   axis: {
     x: {
-      type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
-      label: 'Datetime',
-      lowerLimit: new Date(2016, 0, 1, 9, 0).toISOString(),
-      upperLimit: new Date(2016, 0, 1, 15, 59).toISOString(),
-      allowCalibration: true,
+      show: true,
+      label: 'Data',
+      lowerLimit: 100,
+      upperLimit: 150,
+      allowCalibration: false,
     },
     y: {
+      show: true,
       label: 'Line Set A',
-      lowerLimit: 10,
-      upperLimit: 30,
+      lowerLimit: -18,
+      upperLimit: 18,
     },
     y2: {
       show: false,
@@ -30,3 +30,4 @@ const getConfig = (id) => ({
 });
 
 export default getConfig;
+

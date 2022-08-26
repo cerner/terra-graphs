@@ -1,6 +1,6 @@
 import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
-const getConfig = (id) => ({
+const getLineTimeseriesConfig = (id) => ({
   bindTo: id,
   axis: {
     x: {
@@ -8,7 +8,7 @@ const getConfig = (id) => ({
       label: 'Datetime',
       lowerLimit: new Date(2016, 0, 1, 9, 0).toISOString(),
       upperLimit: new Date(2016, 0, 1, 15, 59).toISOString(),
-      allowCalibration: true,
+      allowCalibration: false
     },
     y: {
       label: 'Line Set A',
@@ -29,4 +29,4 @@ const getConfig = (id) => ({
   showHGrid: true,
 });
 
-export default getConfig;
+export default getLineTimeseriesConfig;
