@@ -377,11 +377,11 @@ describe('Line - Load', () => {
       expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(46);
     });
     it('does not update the timeseries x axis range if allowCalibration is true and datapoints are within limits', () => {
-      const expectedDateLowerLimit = new Date(2016, 2, 1);
+      const expectedDateLowerLimit = new Date(2016, 1, 1);
       const expectedDateUpperLimit = new Date(2016, 5, 15);
 
       const disableCalibrationInput = getAxes(axisTimeSeries);
-      disableCalibrationInput.axis.x.allowCalibration = false;
+      disableCalibrationInput.axis.x.allowCalibration = true;
       disableCalibrationInput.axis.x.lowerLimit = expectedDateLowerLimit.toISOString();
       disableCalibrationInput.axis.x.upperLimit = expectedDateUpperLimit.toISOString();
 
