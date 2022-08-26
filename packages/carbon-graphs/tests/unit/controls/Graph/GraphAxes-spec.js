@@ -46,7 +46,9 @@ describe('Graph - Axes', () => {
     document.body.appendChild(graphContainer);
   });
   afterEach(() => {
-    graph.destroy();
+    if(graph!==null){
+      graph.destroy();
+    }
     document.body.innerHTML = '';
   });
   it('Creates the x axis markup', () => {
