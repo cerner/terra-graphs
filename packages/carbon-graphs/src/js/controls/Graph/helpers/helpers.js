@@ -502,7 +502,7 @@ const updateXAxisDomain = (config, input = {}) => {
   }
 
   // if the x-axis type is timeseries then convert to epoc date so it is a number for calculations
-  if(config.axis.x.type == AXIS_TYPE.TIME_SERIES){
+  if (config.axis.x.type === AXIS_TYPE.TIME_SERIES) {
     config.axis.x.domain.upperLimit = utils.getEpocFromDateString(config.axis.x.domain.upperLimit);
     config.axis.x.domain.lowerLimit = utils.getEpocFromDateString(config.axis.x.domain.lowerLimit);
     // Note: config.axis.x.dataRange.max and min are already numbers.
@@ -530,7 +530,6 @@ const updateXAxisDomain = (config, input = {}) => {
     upperLimit: midPoint + halfDomain * config.axis.x.outlierStretchFactor.upperLimit,
   };
 
-
   if (newDomain.upperLimit === config.axis.x.dataRange.max
      || newDomain.lowerLimit === config.axis.x.dataRange.min) {
     config.axisPadding.x = true;
@@ -539,17 +538,17 @@ const updateXAxisDomain = (config, input = {}) => {
   }
 
   config.axis.x.domain = padDomain(newDomain, config.axisPadding.x);
-  
+
   // if the x-axis type is timeseries then convert the updated epoc date back to a date object
-  if(config.axis.x.type == AXIS_TYPE.TIME_SERIES){
+  if (config.axis.x.type === AXIS_TYPE.TIME_SERIES) {
     config.axis.x.domain.upperLimit = utils.getDateFromEpoc(config.axis.x.domain.upperLimit);
     config.axis.x.domain.lowerLimit = utils.getDateFromEpoc(config.axis.x.domain.lowerLimit);
     // Note: config.axis.x.domain.upperLimit and lowerLimit are converted back to a Date object
-    // because that is how it is used in the rest of the code. Outside of this method, 
+    // because that is how it is used in the rest of the code. Outside of this method,
     // config.axis.x.dataRange.max and min are not utilized which is why converting them
     // back to a date object is redundant.
   }
-  
+
   return config;
 };
 /**

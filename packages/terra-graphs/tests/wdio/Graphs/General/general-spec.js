@@ -88,7 +88,7 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-enabled-y-axis');
       Terra.validates.screenshot('y-axis_allowcalibration_enabled', { selector: '.carbon-graph-container' });
     });
-    
+
     it('validates Y-axis hidden graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/y-axis-hidden');
       Terra.validates.screenshot('y-axis_hidden', { selector: '.carbon-graph-container' });

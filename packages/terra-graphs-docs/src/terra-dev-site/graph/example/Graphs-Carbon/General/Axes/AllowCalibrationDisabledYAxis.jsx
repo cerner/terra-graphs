@@ -14,7 +14,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(getLineDefaultNoCalibrationConfig('#disableCalibration'));
 const dataset = utils.deepClone(exampleData);
 
-const allowCalibrationExample = () => {
+const AllowCalibrationExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset));
@@ -25,5 +25,5 @@ const allowCalibrationExample = () => {
   );
 };
 
-export default allowCalibrationExample;
+export default AllowCalibrationExample;
 

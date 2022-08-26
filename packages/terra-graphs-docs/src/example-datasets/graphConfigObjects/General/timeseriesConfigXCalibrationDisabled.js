@@ -8,7 +8,7 @@ const getLineTimeseriesConfig = (id) => ({
       label: 'Datetime',
       lowerLimit: new Date(2016, 0, 1, 9, 0).toISOString(),
       upperLimit: new Date(2016, 0, 1, 15, 59).toISOString(),
-      allowCalibration: false
+      allowCalibration: false,
     },
     y: {
       label: 'Line Set A',
