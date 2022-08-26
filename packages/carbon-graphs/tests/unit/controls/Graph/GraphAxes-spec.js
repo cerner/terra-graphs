@@ -46,7 +46,7 @@ describe('Graph - Axes', () => {
     document.body.appendChild(graphContainer);
   });
   afterEach(() => {
-    if(graph!==null){
+    if (graph !== null) {
       graph.destroy();
     }
     document.body.innerHTML = '';
