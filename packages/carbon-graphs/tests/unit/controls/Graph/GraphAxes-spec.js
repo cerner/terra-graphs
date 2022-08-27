@@ -2247,7 +2247,6 @@ describe('Graph - Axes', () => {
   });
   describe("When default d3 tick formatting is not used for y2 axis and consumer specifies '~' in tick format", () => {
     it("should suppress y2 axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y2 = {
         show: true,
@@ -2869,7 +2868,9 @@ describe('Graph - Axes', () => {
   });
   describe('when graph is destroyed', () => {
     it('should remove div element for the popup tooltip', () => {
-      graph.destroy();
+      if (graph !== null) {
+        graph.destroy();
+      }
       expect(fetchElementByClass(styles.labelPopupTooltip)).toBeNull();
     });
   });
