@@ -2366,7 +2366,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 50px and height is 50px', () => {
     beforeEach(() => {
-      graph.destroy();
       graphContainer.setAttribute('style', 'width: 50px; height: 50px');
       dimension.height = 50;
       axisDefault.y2 = {
@@ -2377,6 +2376,7 @@ describe('Graph - Axes', () => {
       };
     });
     afterEach(() => {
+      graph.destroy();
       axisDefault.y2 = '';
     });
     it('Truncates if too long', (done) => {
@@ -2426,7 +2426,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 400px and height is 400px', () => {
     beforeEach(() => {
-      graph.destroy();
       graphContainer.setAttribute('style', 'width: 400px; height: 400px');
       dimension.height = 400;
       axisDefault.y2 = {
@@ -2437,6 +2436,7 @@ describe('Graph - Axes', () => {
       };
     });
     afterEach(() => {
+      graph.destroy();
       axisDefault.y2 = '';
     });
     it('Truncates if too long', (done) => {
@@ -2490,8 +2490,8 @@ describe('Graph - Axes', () => {
       };
     });
     afterEach(() => {
-      axisDefault.y2 = '';
       graph.destroy();
+      axisDefault.y2 = '';
     });
     it('Truncates if too long', (done) => {
       const labelAxisObj = utils.deepClone(axisDefault);
