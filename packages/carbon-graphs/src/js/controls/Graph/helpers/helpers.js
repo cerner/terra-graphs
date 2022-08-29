@@ -511,16 +511,6 @@ const updateXAxisDomain = (config, input = {}) => {
     // are converted to epoc.
   }
 
-  // if the x-axis type is timeseries then convert to epoc date so it is a number for calculations
-  if (config.axis.x.type === AXIS_TYPE.TIME_SERIES) {
-    config.axis.x.domain.upperLimit = utils.getEpocFromDateString(config.axis.x.domain.upperLimit);
-    config.axis.x.domain.lowerLimit = utils.getEpocFromDateString(config.axis.x.domain.lowerLimit);
-    // Note: config.axis.x.dataRange.max and min are already numbers.
-    // In the case of a timeseries x-axis, they are the epoc representation
-    // of a date. Which is why only config.axis.x.domain.upperLimit and lowerLimit
-    // are converted to epoc.
-  }
-
   config.axis.x.outlierStretchFactor = determineOutlierStretchFactorXAxis(config);
 
   const halfDomain = (config.axis.x.domain.upperLimit - config.axis.x.domain.lowerLimit) / 2;
