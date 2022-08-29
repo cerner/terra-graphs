@@ -529,7 +529,7 @@ const updateXAxisDomain = (config, input = {}) => {
 
   config.axis.x.domain = padDomain(newDomain, config.axisPadding.x);
 
-  // if the x-axis type is timeseries then convert the updated epoc date back to a string
+  // if the x-axis type is timeseries then convert the updated epoc date back to a date object
   if (config.axis.x.type === AXIS_TYPE.TIME_SERIES) {
     config.axis.x.domain.upperLimit = utils.getDateFromEpoc(config.axis.x.domain.upperLimit);
     config.axis.x.domain.lowerLimit = utils.getDateFromEpoc(config.axis.x.domain.lowerLimit);

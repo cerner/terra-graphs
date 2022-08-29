@@ -1,0 +1,53 @@
+import AllowCalibrationEnabledY from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationEnabledYAxis?dev-site-example';
+import AllowCalibrationDisabledY from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationDisabledYAxis?dev-site-example';
+import AllowCalibrationEnabledX from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationEnabledXAxis?dev-site-example';
+import AllowCalibrationDisabledX from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationDisabledXAxis?dev-site-example';
+import AllowCalibrationEnabledXTimeseries from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationEnabledTimeseriesXAxis?dev-site-example';
+import AllowCalibrationDisabledXTimeseries from '../../../example/Graphs-Carbon/General/Axes/AllowCalibrationDisabledTimeseriesXAxis?dev-site-example';
+
+import GraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefaultNoCalibration.js?dev-site-codeblock';
+import DataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset6.js?dev-site-codeblock';
+require('details-polyfill');
+
+# Calibration
+Calibration is updating the axis limits to accommodate the graph. 
+By default, it is **enabled for the y-axes** and **disabled for the x-axis**.
+It can by toggled on/off by using the appropriate `allowCalibration` label.
+
+## Getting Started
+
+- Install with [npmjs](https://www.npmjs.com):
+  - `npm i @cerner/carbon-graphs --save-dev`
+
+## Usage
+```js
+import Carbon from '@cerner/carbon-graphs/dist/js/carbon-graphs.js';
+import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+```
+
+## Examples
+
+<AllowCalibrationEnabledY/>
+
+<AllowCalibrationDisabledY/>
+
+<AllowCalibrationDisabledX/>
+
+<AllowCalibrationEnabledX/>
+
+<AllowCalibrationDisabledXTimeseries/>
+
+<AllowCalibrationEnabledXTimeseries/>
+
+<details>
+<summary style={{fontSize: 24 }}>
+<b>Data</b>
+</summary>
+
+### Graph Config object
+<GraphConfig />
+
+### Data object
+<DataObject />
+</details>
+

@@ -46,7 +46,9 @@ describe('Graph - Axes', () => {
     document.body.appendChild(graphContainer);
   });
   afterEach(() => {
-    graph.destroy();
+    if (graph !== null) {
+      graph.destroy();
+    }
     document.body.innerHTML = '';
   });
   it('Creates the x axis markup', () => {
@@ -1234,7 +1236,7 @@ describe('Graph - Axes', () => {
       console.log(yTicks);
     });
     describe('when space is passed as label', () => {
-      beforeEach(() => {
+      afterEach(() => {
         graph.destroy();
       });
       it('check transform position of y-axis when y2-axis is true', () => {
@@ -1277,7 +1279,7 @@ describe('Graph - Axes', () => {
   });
 
   describe('when only Y axis is present', () => {
-    beforeEach(() => {
+    afterEach(() => {
       graph.destroy();
     });
     it('uses custom values for Y when custom ticks are provided', () => {
@@ -1408,7 +1410,7 @@ describe('Graph - Axes', () => {
     });
   });
   describe('For timeseries type', () => {
-    beforeEach(() => {
+    afterEach(() => {
       graph.destroy();
     });
     it('Creates x axis with ticks in default locale', () => {
@@ -1603,9 +1605,11 @@ describe('Graph - Axes', () => {
       describe('should display correct month format on x axis ticks as per upper and lower limits provided by consumer', () => {
         let axisData = {};
         beforeEach(() => {
-          graph.destroy();
           axisData = utils.deepClone(axisTimeSeries);
           axisData.x.upperLimit = new Date(2016, 2, 0, 0).toISOString();
+        });
+        afterEach(() => {
+          graph.destroy();
         });
         it('for locale nl_NL', () => {
           graph = new Graph(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
@@ -1653,9 +1657,11 @@ describe('Graph - Axes', () => {
       describe('should display correct week format on x axis ticks as per upper and lower limits provided by consumer', () => {
         let axisData = {};
         beforeEach(() => {
-          graph.destroy();
           axisData = utils.deepClone(axisTimeSeries);
           axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+        });
+        afterEach(() => {
+          graph.destroy();
         });
         it('for locale nl_NL', () => {
           graph = new Graph(({ locale: LOCALE.nl_NL, ...getAxes(axisData) }));
@@ -1704,9 +1710,11 @@ describe('Graph - Axes', () => {
     describe('Ticks with number should have no padding', () => {
       let axisData = {};
       beforeEach(() => {
-        graph.destroy();
         axisData = utils.deepClone(axisTimeSeries);
         axisData.x.upperLimit = new Date(2016, 0, 15, 0).toISOString();
+      });
+      afterEach(() => {
+        graph.destroy();
       });
       it('for locale fr_FR', () => {
         graph = new Graph(({ locale: LOCALE.fr_FR, ...getAxes(axisData) }));
@@ -1725,9 +1733,7 @@ describe('Graph - Axes', () => {
           .toBe('Tis  5');
       });
     });
-
     it('Hides x axis tick labels when format is blank', () => {
-      graph.destroy();
       const axisData = utils.deepClone(axisTimeSeries);
       axisData.x.ticks = {
         format: '',
@@ -1854,8 +1860,10 @@ describe('Graph - Axes', () => {
     });
   });
   describe('For default type', () => {
-    it('Creates x axis with ticks in default locale', () => {
+    afterEach(() => {
       graph.destroy();
+    });
+    it('Creates x axis with ticks in default locale', () => {
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.x.lowerLimit = 1000;
       localeAxisObj.x.upperLimit = 20000;
@@ -1881,7 +1889,6 @@ describe('Graph - Axes', () => {
       ).toBe('20,000');
     });
     it('Creates x axis with ticks in provided locale - DE', () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.x.lowerLimit = 1000;
       localeAxisObj.x.upperLimit = 20000;
@@ -1912,7 +1919,6 @@ describe('Graph - Axes', () => {
       ).toContain('20.000');
     });
     it('Hides x axis tick labels when format is blank', () => {
-      graph.destroy();
       const axisData = utils.deepClone(axisDefault);
       axisData.x.ticks = {
         format: '',
@@ -2054,7 +2060,6 @@ describe('Graph - Axes', () => {
   });
   describe('When default d3 tick formatting for y axis is used and suppressTrailingZeros for y axis is set to true', () => {
     it("should suppress y axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y = {
         label: 'Some Y Label',
@@ -2085,7 +2090,6 @@ describe('Graph - Axes', () => {
   });
   describe('When default d3 tick formatting is used for y axis and suppressTrailingZeros for y axis is set to false', () => {
     it("should not suppress y axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y = {
         label: 'Some Y Label',
@@ -2116,7 +2120,6 @@ describe('Graph - Axes', () => {
   });
   describe("When default d3 tick formatting is not used for y axis and consumer specifies '~' in tick format", () => {
     it("should suppress y axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y = {
         label: 'Some Y Label',
@@ -2149,7 +2152,6 @@ describe('Graph - Axes', () => {
   });
   describe("When default d3 tick formatting is not used for y axis and consumer does not specify '~' in tick format", () => {
     it("should not suppress y axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y = {
         label: 'Some Y Label',
@@ -2182,7 +2184,6 @@ describe('Graph - Axes', () => {
   });
   describe('When default d3 tick formatting for y2 axis is used and suppressTrailingZeros for y2 is set to true', () => {
     it("should suppress y2 axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y2 = {
         show: true,
@@ -2245,7 +2246,6 @@ describe('Graph - Axes', () => {
   });
   describe("When default d3 tick formatting is not used for y2 axis and consumer specifies '~' in tick format", () => {
     it("should suppress y2 axis tick values's trailing zeros", () => {
-      graph.destroy();
       const localeAxisObj = utils.deepClone(axisDefault);
       localeAxisObj.y2 = {
         show: true,
@@ -2312,7 +2312,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 1024px and height is 230px', () => {
     beforeEach(() => {
-      graph.destroy();
       axisDefault.y2 = {
         show: true,
         label: 'Some Y2 Label',
@@ -2322,6 +2321,9 @@ describe('Graph - Axes', () => {
     });
     afterEach(() => {
       axisDefault.y2 = '';
+      if (graph !== null) {
+        graph.destroy();
+      }
     });
     it('Truncates if too long', (done) => {
       const labelAxisObj = utils.deepClone(axisDefault);
@@ -2364,7 +2366,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 50px and height is 50px', () => {
     beforeEach(() => {
-      graph.destroy();
       graphContainer.setAttribute('style', 'width: 50px; height: 50px');
       dimension.height = 50;
       axisDefault.y2 = {
@@ -2375,6 +2376,7 @@ describe('Graph - Axes', () => {
       };
     });
     afterEach(() => {
+      graph.destroy();
       axisDefault.y2 = '';
     });
     it('Truncates if too long', (done) => {
@@ -2424,7 +2426,6 @@ describe('Graph - Axes', () => {
   });
   describe('If axes width is 400px and height is 400px', () => {
     beforeEach(() => {
-      graph.destroy();
       graphContainer.setAttribute('style', 'width: 400px; height: 400px');
       dimension.height = 400;
       axisDefault.y2 = {
@@ -2435,6 +2436,7 @@ describe('Graph - Axes', () => {
       };
     });
     afterEach(() => {
+      graph.destroy();
       axisDefault.y2 = '';
     });
     it('Truncates if too long', (done) => {
@@ -2488,8 +2490,8 @@ describe('Graph - Axes', () => {
       };
     });
     afterEach(() => {
-      axisDefault.y2 = '';
       graph.destroy();
+      axisDefault.y2 = '';
     });
     it('Truncates if too long', (done) => {
       const labelAxisObj = utils.deepClone(axisDefault);
@@ -2865,7 +2867,9 @@ describe('Graph - Axes', () => {
   });
   describe('when graph is destroyed', () => {
     it('should remove div element for the popup tooltip', () => {
-      graph.destroy();
+      if (graph !== null) {
+        graph.destroy();
+      }
       expect(fetchElementByClass(styles.labelPopupTooltip)).toBeNull();
     });
   });
