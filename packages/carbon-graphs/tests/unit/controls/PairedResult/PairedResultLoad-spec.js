@@ -368,48 +368,48 @@ describe('Paired Result - Load', () => {
       expect(point.length).toBe(0);
     });
     it('does not update x axis range if allow calibration is disabled', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.allowCalibration = false;
-      disableCalibrationInput.axis.x.lowerLimit = 500;
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = false;
+      graphConfig.axis.x.lowerLimit = 500;
+      const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
-      disableCalibrationGraph.loadContent(new PairedResult(input));
+      graphInstance.loadContent(new PairedResult(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
-        .toEqual(disableCalibrationInput.axis.x.upperLimit);
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
-        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+      expect(graphInstance.config.axis.x.domain.upperLimit)
+        .toEqual(graphConfig.axis.x.upperLimit);
+      expect(graphInstance.config.axis.x.domain.lowerLimit)
+        .toEqual(graphConfig.axis.x.lowerLimit);
     });
     it('does not update x axis range if allow calibration is undefined', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.lowerLimit = 500;
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.lowerLimit = 500;
+      const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
-      disableCalibrationGraph.loadContent(new PairedResult(input));
+      graphInstance.loadContent(new PairedResult(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
-        .toEqual(disableCalibrationInput.axis.x.upperLimit);
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
-        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+      expect(graphInstance.config.axis.x.domain.upperLimit)
+        .toEqual(graphConfig.axis.x.upperLimit);
+      expect(graphInstance.config.axis.x.domain.lowerLimit)
+        .toEqual(graphConfig.axis.x.lowerLimit);
     });
     it('does not update x axis range if allow calibration is enabled and datapoints are within limits', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.allowCalibration = true;
-      disableCalibrationInput.axis.x.lowerLimit = 0;
-      disableCalibrationInput.axis.x.upperLimit = 500;
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 0;
+      graphConfig.axis.x.upperLimit = 500;
+      const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
-      disableCalibrationGraph.loadContent(new PairedResult(input));
+      graphInstance.loadContent(new PairedResult(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(500);
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(0);
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(500);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(0);
     });
-    it('updates x axis range if allow calibration is enabled and datapoints are within limits', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.allowCalibration = true;
-      disableCalibrationInput.axis.x.lowerLimit = 30;
-      disableCalibrationInput.axis.x.upperLimit = 35;
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+    it('updates x axis range if allow calibration is enabled and datapoints exceed limits', () => {
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 30;
+      graphConfig.axis.x.upperLimit = 35;
+      const graphInstance = new Graph(graphConfig);
       input = getInput(
         [
           {
@@ -444,10 +444,55 @@ describe('Paired Result - Load', () => {
         false,
         false,
       );
-      disableCalibrationGraph.loadContent(new PairedResult(input));
+      graphInstance.loadContent(new PairedResult(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(46);
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(24);
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(46);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(24);
+    });
+    it('updates x axis  range if allow calibration is enabled and datapoints are equal to limits', () => {
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 25;
+      graphConfig.axis.x.upperLimit = 45;
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(
+        [
+          {
+            high: {
+              x: 25,
+              y: 350,
+            },
+            mid: {
+              x: 25,
+              y: 146,
+            },
+            low: {
+              x: 25,
+              y: 75,
+            },
+          },
+          {
+            high: {
+              x: 45,
+              y: 110,
+            },
+            mid: {
+              x: 45,
+              y: 70,
+            },
+            low: {
+              x: 45,
+              y: 30,
+            },
+          },
+        ],
+        false,
+        false,
+      );
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(46);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(24);
     });
     describe('when invalid data is passed', () => {
       describe('for paired result high,', () => {
