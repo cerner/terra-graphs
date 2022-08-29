@@ -61,6 +61,34 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('x-axis_ticks_formatted', { selector: '.carbon-graph-container' });
     });
 
+    it('validates timeseries x-axis allowCalibration disabled graph container', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-disabled-timeseries-x-axis');
+      Terra.validates.screenshot('x-axis_timeseries_allowcalibration_disabled', { selector: '.carbon-graph-container' });
+    });
+
+    it('validates x-axis allowCalibration disabled graph container', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-disabled-x-axis');
+      Terra.validates.screenshot('x-axis_allowcalibration_disabled', { selector: '.carbon-graph-container' });
+    });
+    it('validates y-axis allowCalibration disabled graph container', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-disabled-y-axis');
+      Terra.validates.screenshot('y-axis_allowcalibration_disabled', { selector: '.carbon-graph-container' });
+    });
+
+    it('validates timeseries x-axis allowCalibration enabled graph container', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-enabled-timeseries-x-axis');
+      Terra.validates.screenshot('x-axis_timeseries_allowcalibration_enabled', { selector: '.carbon-graph-container' });
+    });
+
+    it('validates x-axis allowCalibration enabled graph container', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-enabled-x-axis');
+      Terra.validates.screenshot('x-axis_allowcalibration_enabled', { selector: '.carbon-graph-container' });
+    });
+    it('validates y-axis allowCalibration enabled graph container', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-enabled-y-axis');
+      Terra.validates.screenshot('y-axis_allowcalibration_enabled', { selector: '.carbon-graph-container' });
+    });
+
     it('validates Y-axis hidden graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/y-axis-hidden');
       Terra.validates.screenshot('y-axis_hidden', { selector: '.carbon-graph-container' });

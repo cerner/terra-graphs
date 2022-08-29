@@ -5,8 +5,9 @@ const getConfig = (id) => ({
     x: {
       show: true,
       label: 'Data',
-      lowerLimit: 80,
-      upperLimit: 280,
+      lowerLimit: 100,
+      upperLimit: 150,
+      allowCalibration: true,
     },
     y: {
       show: true,
