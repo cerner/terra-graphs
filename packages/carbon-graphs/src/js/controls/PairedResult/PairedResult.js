@@ -51,19 +51,43 @@ import { validatePairedResultData } from '../../helpers/constructUtils';
  *
  * @private
  * @param {Array} values - Datapoint values
- * @param {string} axis - y or y2
  * @returns {object} - Contains min and max values for the data points
  */
-const calculateValuesRange = (values, axis = constants.Y_AXIS) => ({
-  [axis]: {
+const calculateValuesRangeYAxis = (values) => {
+  const yAxisValuesList = values.map((i) => Object.keys(i).map((j) => i[j].y));
+  return {
     min: Math.min(
-      ...values.map((i) => Math.min(...Object.keys(i).map((j) => i[j].y))),
+      ...yAxisValuesList.map((i) => Math.min(...i)),
     ),
     max: Math.max(
-      ...values.map((i) => Math.max(...Object.keys(i).map((j) => i[j].y))),
+      ...yAxisValuesList.map((i) => Math.max(...i)),
     ),
-  },
-});
+  };
+};
+
+/**
+ * @typedef {object} PairedResult
+ * @typedef {object} GraphContent
+ * @typedef {object} PairedResultConfig
+ */
+/**
+ * Calculates the min and max values for X Axis
+ *
+ * @private
+ * @param {Array} values - Datapoint values
+ * @returns {object} - Contains min and max values for the data points
+ */
+const calculateValuesRangeXAxis = (values) => {
+  const xAxisValuesList = values.map((i) => Object.keys(i).map((j) => i[j].x));
+  return {
+    min: Math.min(
+      ...xAxisValuesList.map((i) => Math.min(...i)),
+    ),
+    max: Math.max(
+      ...xAxisValuesList.map((i) => Math.max(...i)),
+    ),
+  };
+};
 
 /**
  * Data point sets can be loaded using this function.
@@ -146,10 +170,15 @@ class PairedResult extends GraphContent {
       constants.Y_AXIS,
     );
     this.config.values = filterPairedResultData(this.config.values);
-    this.valuesRange = calculateValuesRange(
+
+    this.valuesRange = {};
+    this.valuesRange.x = calculateValuesRangeXAxis(
       this.config.values,
-      this.config.yAxis,
     );
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(
+      this.config.values,
+    );
+
     this.dataTarget = {};
   }
 
@@ -363,10 +392,7 @@ class PairedResult extends GraphContent {
       .call(drawBox);
     pairedBoxSVG.exit().remove();
 
-    this.valuesRange = calculateValuesRange(
-      this.config.values,
-      this.config.yAxis,
-    );
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(this.config.values);
     this.resize(graph);
   }
 

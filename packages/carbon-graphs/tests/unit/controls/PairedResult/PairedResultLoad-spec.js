@@ -367,6 +367,67 @@ describe('Paired Result - Load', () => {
       );
       expect(point.length).toBe(0);
     });
+    it('does not update x axis range if allow calibration is disabled', () => {
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = false;
+      graphConfig.axis.x.lowerLimit = 500;
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesDefault, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.upperLimit)
+        .toEqual(graphConfig.axis.x.upperLimit);
+      expect(graphInstance.config.axis.x.domain.lowerLimit)
+        .toEqual(graphConfig.axis.x.lowerLimit);
+    });
+    it('does not update x axis range if allow calibration is undefined', () => {
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.lowerLimit = 500;
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesDefault, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.upperLimit)
+        .toEqual(graphConfig.axis.x.upperLimit);
+      expect(graphInstance.config.axis.x.domain.lowerLimit)
+        .toEqual(graphConfig.axis.x.lowerLimit);
+    });
+    it('does not update x axis range if allow calibration is enabled and datapoints are within limits', () => {
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 0;
+      graphConfig.axis.x.upperLimit = 500;
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesDefault, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(500);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(0);
+    });
+    it('updates x axis range if allow calibration is enabled and datapoints exceed limits', () => {
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 100;
+      graphConfig.axis.x.upperLimit = 300;
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesDefault, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(491.25);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(23.75);
+    });
+    it('updates x axis  range if allow calibration is enabled and datapoints are equal to limits', () => {
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 45;
+      graphConfig.axis.x.upperLimit = 470;
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesDefault, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(491.25);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(23.75);
+    });
     describe('when invalid data is passed', () => {
       describe('for paired result high,', () => {
         it('should remove datapoint when undefined is passed', () => {
