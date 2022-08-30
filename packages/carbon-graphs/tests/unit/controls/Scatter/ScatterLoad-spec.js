@@ -296,6 +296,100 @@ describe('Scatter - Load', () => {
         input.key,
       );
     });
+    it('does not update x axis range if allow calibration is disabled', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = false;
+      disableCalibrationInput.axis.x.lowerLimit = 50;
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Scatter(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
+        .toEqual(disableCalibrationInput.axis.x.upperLimit);
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
+        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+    });
+    it('does not update x axis range by default if allowCalibration is undefined', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = undefined;
+      disableCalibrationInput.axis.x.lowerLimit = 50;
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Scatter(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
+        .toEqual(disableCalibrationInput.axis.x.upperLimit);
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
+        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+    });
+    it('does not x axis range if allowCalibration is true and datapoints are within limits', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = true;
+      disableCalibrationInput.axis.x.lowerLimit = 20;
+      disableCalibrationInput.axis.x.upperLimit = 70;
+
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Scatter(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(20);
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(70);
+    });
+    it('updates x axis range if allowCalibration is true and datapoints exceed or are equal to limits', () => {
+      const disableCalibrationInput = getAxes(axisDefault);
+      disableCalibrationInput.axis.x.allowCalibration = true;
+      disableCalibrationInput.axis.x.lowerLimit = 30;
+      disableCalibrationInput.axis.x.upperLimit = 45;
+
+      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      input = getInput(valuesDefault, false, false);
+      disableCalibrationGraph.loadContent(new Scatter(input));
+
+      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(24);
+      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(46);
+    });
+    it('does not update the timeseries x axis range if allowCalibration is true and datapoints are within limits', () => {
+      const expectedDateLowerLimit = new Date(2016, 1, 1);
+      const expectedDateUpperLimit = new Date(2016, 5, 15);
+
+      const graphConfig = getAxes(axisTimeSeries);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = expectedDateLowerLimit.toISOString();
+      graphConfig.axis.x.upperLimit = expectedDateUpperLimit.toISOString();
+
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesTimeSeries, false, false);
+      graphInstance.loadContent(new Scatter(input));
+
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(expectedDateLowerLimit);
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(expectedDateUpperLimit);
+    });
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints exceed limits', () => {
+      const graphConfig = getAxes(axisTimeSeries);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = new Date(2016, 3, 10).toISOString();
+      graphConfig.axis.x.upperLimit = new Date(2016, 4, 25).toISOString();
+
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesTimeSeries, false, false);
+      graphInstance.loadContent(new Scatter(input));
+
+      expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-01-28T10:48:00.000Z');
+      expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-06-09T13:12:00.000Z');
+    });
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints are equal to limits', () => {
+      const graphConfig = getAxes(axisTimeSeries);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = '2016-02-03T12:00:00Z';
+      graphConfig.axis.x.upperLimit = '2016-06-03T12:00:00Z';
+
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesTimeSeries, false, false);
+      graphInstance.loadContent(new Scatter(input));
+
+      expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-01-28T10:48:00.000Z');
+      expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-06-09T13:12:00.000Z');
+    });
     describe('when clicked on a data point', () => {
       it('does not do anything if no onClick callback is provided', (done) => {
         graphDefault.destroy();
