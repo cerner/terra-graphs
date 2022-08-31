@@ -297,56 +297,54 @@ describe('Scatter - Load', () => {
       );
     });
     it('does not update x axis range if allow calibration is disabled', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.allowCalibration = false;
-      disableCalibrationInput.axis.x.lowerLimit = 50;
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = false;
+      const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
-      disableCalibrationGraph.loadContent(new Scatter(input));
+      graphInstance.loadContent(new Scatter(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
-        .toEqual(disableCalibrationInput.axis.x.upperLimit);
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
-        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+      expect(graphInstance.config.axis.x.domain.upperLimit)
+        .toEqual(graphConfig.axis.x.upperLimit);
+      expect(graphInstance.config.axis.x.domain.lowerLimit)
+        .toEqual(graphConfig.axis.x.lowerLimit);
     });
     it('does not update x axis range by default if allowCalibration is undefined', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.allowCalibration = undefined;
-      disableCalibrationInput.axis.x.lowerLimit = 50;
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = undefined;
+      const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
-      disableCalibrationGraph.loadContent(new Scatter(input));
+      graphInstance.loadContent(new Scatter(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit)
-        .toEqual(disableCalibrationInput.axis.x.upperLimit);
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit)
-        .toEqual(disableCalibrationInput.axis.x.lowerLimit);
+      expect(graphInstance.config.axis.x.domain.upperLimit)
+        .toEqual(graphConfig.axis.x.upperLimit);
+      expect(graphInstance.config.axis.x.domain.lowerLimit)
+        .toEqual(graphConfig.axis.x.lowerLimit);
     });
     it('does not x axis range if allowCalibration is true and datapoints are within limits', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.allowCalibration = true;
-      disableCalibrationInput.axis.x.lowerLimit = 20;
-      disableCalibrationInput.axis.x.upperLimit = 70;
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 20;
+      graphConfig.axis.x.upperLimit = 70;
 
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
-      disableCalibrationGraph.loadContent(new Scatter(input));
+      graphInstance.loadContent(new Scatter(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(20);
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(70);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(20);
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(70);
     });
     it('updates x axis range if allowCalibration is true and datapoints exceed or are equal to limits', () => {
-      const disableCalibrationInput = getAxes(axisDefault);
-      disableCalibrationInput.axis.x.allowCalibration = true;
-      disableCalibrationInput.axis.x.lowerLimit = 30;
-      disableCalibrationInput.axis.x.upperLimit = 45;
+      const graphConfig = getAxes(axisDefault);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = 30;
+      graphConfig.axis.x.upperLimit = 45;
 
-      const disableCalibrationGraph = new Graph(disableCalibrationInput);
+      const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
-      disableCalibrationGraph.loadContent(new Scatter(input));
+      graphInstance.loadContent(new Scatter(input));
 
-      expect(disableCalibrationGraph.config.axis.x.domain.lowerLimit).toEqual(24);
-      expect(disableCalibrationGraph.config.axis.x.domain.upperLimit).toEqual(46);
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(24);
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(46);
     });
     it('does not update the timeseries x axis range if allowCalibration is true and datapoints are within limits', () => {
       const expectedDateLowerLimit = new Date(2016, 1, 1);
