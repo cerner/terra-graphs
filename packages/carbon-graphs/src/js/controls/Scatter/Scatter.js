@@ -68,7 +68,7 @@ const calculateValuesRangeYAxis = (values) => {
  *
  * @private
  * @param {Array} values - Datapoint values
- * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
+ * @returns {object} - Contains min and max values for the data points for x-axis
  */
 const calculateValuesRangeXAxis = (values) => {
   const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
@@ -266,7 +266,7 @@ class Scatter extends GraphContent {
       .remove();
 
     updateShapesDuringReflow(graph, graphData, this);
-    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(this.config.values, this.config.yAxis);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(this.config.values);
   }
 
   /**
