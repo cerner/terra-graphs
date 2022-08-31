@@ -428,6 +428,48 @@ describe('Paired Result - Load', () => {
       expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(491.25);
       expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(23.75);
     });
+    it('does not update the timeseries x axis range if allowCalibration is true and datapoints are within limits', () => {
+      const expectedDateLowerLimit = new Date(2016, 7, 1);
+      const expectedDateUpperLimit = new Date(2016, 10, 1);
+
+      const graphConfig = getAxes(axisTimeSeries);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = expectedDateLowerLimit.toISOString();
+      graphConfig.axis.x.upperLimit = expectedDateUpperLimit.toISOString();
+
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesTimeSeries, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(expectedDateLowerLimit);
+      expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(expectedDateUpperLimit);
+    });
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints exceed limits', () => {
+      const graphConfig = getAxes(axisTimeSeries);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = new Date(2016, 8, 1).toISOString();
+      graphConfig.axis.x.upperLimit = new Date(2016, 9, 1).toISOString();
+
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesTimeSeries, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-08-14T07:57:00.000Z');
+      expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-10-23T01:03:00.000Z');
+    });
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints are equal to limits', () => {
+      const graphConfig = getAxes(axisTimeSeries);
+      graphConfig.axis.x.allowCalibration = true;
+      graphConfig.axis.x.lowerLimit = '2016-08-17T12:00:00Z';
+      graphConfig.axis.x.upperLimit = '2016-10-17T09:00:00Z';
+
+      const graphInstance = new Graph(graphConfig);
+      input = getInput(valuesTimeSeries, false, false);
+      graphInstance.loadContent(new PairedResult(input));
+
+      expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-08-14T07:57:00.000Z');
+      expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-10-23T01:03:00.000Z');
+    });
     describe('when invalid data is passed', () => {
       describe('for paired result high,', () => {
         it('should remove datapoint when undefined is passed', () => {

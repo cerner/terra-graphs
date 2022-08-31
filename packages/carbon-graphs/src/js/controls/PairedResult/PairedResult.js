@@ -78,7 +78,14 @@ const calculateValuesRangeYAxis = (values) => {
  * @returns {object} - Contains min and max values for the data points
  */
 const calculateValuesRangeXAxis = (values) => {
-  const xAxisValuesList = values.map((i) => Object.keys(i).map((j) => i[j].x));
+  const xAxisValuesList = values.map((i) => Object.keys(i).map((j) => {
+    // if the x-axis is a timeseries, then convert it to an epoc int
+    // for easier calculations
+    if (typeof i[j].x === 'string' || i[j].x instanceof Date) {
+      return utils.getEpocFromDateString(i[j].x);
+    }
+    return i[j].x;
+  }));
   return {
     min: Math.min(
       ...xAxisValuesList.map((i) => Math.min(...i)),
