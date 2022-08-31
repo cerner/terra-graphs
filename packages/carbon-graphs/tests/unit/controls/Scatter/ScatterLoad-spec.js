@@ -320,7 +320,7 @@ describe('Scatter - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit)
         .toEqual(graphConfig.axis.x.lowerLimit);
     });
-    it('does not x axis range if allowCalibration is true and datapoints are within limits', () => {
+    it('does not update x axis range if allowCalibration is true and datapoints are within limits', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = true;
       graphConfig.axis.x.lowerLimit = 20;
