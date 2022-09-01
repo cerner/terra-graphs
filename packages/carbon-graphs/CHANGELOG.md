@@ -5,6 +5,7 @@
 * Added
   * Added allowCalibration support for the x-axis on a line graph.
   * Finished implementation for `config.axis.x.allowCalibration` for a paired result graph with a numerical and timeseries x-axis.
+  * Finished implementation for `config.axis.x.allowCalibration` for a scatter graph with a numerical and timeseries x-axis.
 
 ## 2.21.0 - (February 15, 2022)
 
@@ -28,7 +29,7 @@
 
 * Changed
   * Updated logic for displaying multiple zeros on Y and Y2 axis ticks.
-  
+
 ## 2.20.0 - (November 16, 2021)
 
 * Changed
@@ -65,7 +66,7 @@
 * Changed
   * Fixed bug causing the goal line element to prevent clicking on the bar graph underneath.
 
-  
+
 ## 2.17.1 - (May 11, 2021)
 
 * Changed
@@ -76,14 +77,14 @@
 
 ## 2.17.0 - (April 27, 2021)
 
-* Changed 
+* Changed
   * Fixed rendering of timeline graph when it is rendered below another graph.
   * Fixed Y-axis and y2-axis icons not updating during reflow.
   * Updated `packages/carbon-graphs/README.md` so that links point to updated documentation path.
 
 * Added
   * Added datasets for building graphs in terra-graphs package.
-  
+
 ## 2.16.3 - (March 16, 2021)
 
 * Changed
@@ -94,7 +95,7 @@
 
 * Added
   * Added `reflowMultipleDatasets` to allow users to send in multiple datasets per graph instance.
-  
+
 * Changed
   * Fixed axis label bug occuring with reflow.
   * Added deprecation warning for `reflow`.
