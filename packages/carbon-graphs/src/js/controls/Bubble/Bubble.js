@@ -28,6 +28,8 @@ import {
   getDataPointValues,
   drawBubbles,
   calculateValuesRange,
+  calculateValuesRangeX,
+  calculateValuesRangeY,
   loadInput,
 } from './helpers/helpers';
 
@@ -56,10 +58,14 @@ class Bubble extends GraphContent {
       this.config.yAxis,
       constants.Y_AXIS,
     );
-    this.valuesRange = calculateValuesRange(
-      this.config.values,
-      this.config.yAxis,
-    );
+    // this.valuesRange = calculateValuesRange(
+    //   this.config.values,
+    //   this.config.yAxis,
+    // );
+    this.valuesRange = {};
+    this.valuesRange.x = calculateValuesRangeX(this.config.values);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeY(this.config.values);
+
     this.dataTarget = {};
   }
 
@@ -207,10 +213,13 @@ class Bubble extends GraphContent {
       )
       .remove();
 
-    this.valuesRange = calculateValuesRange(
-      this.config.values,
-      this.config.yAxis,
-    );
+    // this.valuesRange = calculateValuesRange(
+    //   this.config.values,
+    //   this.config.yAxis,
+    // );
+    this.valuesRange.x = calculateValuesRangeX(this.config.values);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeY(this.config.values);
+    
   }
 
   /**

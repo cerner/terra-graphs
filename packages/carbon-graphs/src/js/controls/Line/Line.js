@@ -306,7 +306,7 @@ class Line extends GraphContent {
         )
         .remove();
     }
-    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(this.config.values, this.config.yAxis);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(this.config.values);
   }
 
   /**
