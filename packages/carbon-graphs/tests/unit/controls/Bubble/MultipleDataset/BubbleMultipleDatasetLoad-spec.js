@@ -300,7 +300,7 @@ describe('Bubble Multiple Dataset - Load', () => {
         input.key,
       );
     });
-    fit('does not update x axis range if allow calibration is disabled', () => {
+    it('does not update x axis range if allow calibration is disabled', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = false;
       graphConfig.axis.x.lowerLimit = 50;
@@ -314,7 +314,7 @@ describe('Bubble Multiple Dataset - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit)
         .toEqual(graphConfig.axis.x.lowerLimit);
     });
-    fit('does not update x axis range by default if allowCalibration is undefined', () => {
+    it('does not update x axis range by default if allowCalibration is undefined', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = undefined;
       graphConfig.axis.x.lowerLimit = 50;
@@ -328,7 +328,7 @@ describe('Bubble Multiple Dataset - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit)
         .toEqual(graphConfig.axis.x.lowerLimit);
     });
-    fit('does not update x axis range if allowCalibration is true and datapoints are within limits', () => {
+    it('does not update x axis range if allowCalibration is true and datapoints are within limits', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = true;
       graphConfig.axis.x.lowerLimit = 20;
@@ -341,7 +341,7 @@ describe('Bubble Multiple Dataset - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(20);
       expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(70);
     });
-    fit('updates x axis range if allowCalibration is true and datapoints exceed limits', () => {
+    it('updates x axis range if allowCalibration is true and datapoints exceed limits', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = true;
       graphConfig.axis.x.lowerLimit = 30;
@@ -354,7 +354,7 @@ describe('Bubble Multiple Dataset - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(24);
       expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(46);
     });
-    fit('updates x axis range if allowCalibration is true and datapoints are equal to limits', () => {
+    it('updates x axis range if allowCalibration is true and datapoints are equal to limits', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = true;
       graphConfig.axis.x.lowerLimit = 25;
@@ -367,7 +367,7 @@ describe('Bubble Multiple Dataset - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(24);
       expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(46);
     });
-    fit('does not update the timeseries x axis range if allowCalibration is true and datapoints are within limits', () => {
+    it('does not update the timeseries x axis range if allowCalibration is true and datapoints are within limits', () => {
       const expectedDateLowerLimit = new Date(2016, 1, 1);
       const expectedDateUpperLimit = new Date(2016, 5, 15);
 
@@ -383,7 +383,7 @@ describe('Bubble Multiple Dataset - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(expectedDateLowerLimit);
       expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(expectedDateUpperLimit);
     });
-    fit('updates the timeseries x axis range if allowCalibration is true and datapoints exceed limits', () => {
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints exceed limits', () => {
       const graphConfig = getAxes(axisTimeSeries);
       graphConfig.axis.x.allowCalibration = true;
       graphConfig.axis.x.lowerLimit = new Date(2016, 3, 10).toISOString();
@@ -396,7 +396,7 @@ describe('Bubble Multiple Dataset - Load', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-01-28T10:48:00.000Z');
       expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-06-09T13:12:00.000Z');
     });
-    fit('updates the timeseries x axis range if allowCalibration is true and datapoints are equal to limits', () => {
+    it('updates the timeseries x axis range if allowCalibration is true and datapoints are equal to limits', () => {
       const graphConfig = getAxes(axisTimeSeries);
       graphConfig.axis.x.allowCalibration = true;
       graphConfig.axis.x.lowerLimit = '2016-02-03T12:00:00Z';
