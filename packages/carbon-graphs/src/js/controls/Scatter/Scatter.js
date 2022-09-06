@@ -37,40 +37,16 @@ import { validateData } from '../../helpers/constructUtils';
  * @typedef {object} GraphContent
  * @typedef {object} ScatterConfig
  */
-/**
- * Calculates the min and max values for Y Axis or Y2 Axis.
- * First we filter out values that are `null`, this is a result of
- * datapoint being part of being in a non-contiguous series and then we
- * get the min and max values for the Y or Y2 axis domain.
- *
- * @private
- * @param {Array} values - Datapoint values
- * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
- */
-const calculateValuesRangeYAxis = (values) => {
-  const yAxisValuesList = values.filter((i) => i.y !== null).map((i) => i.y);
-  return {
-    min: Math.min(...yAxisValuesList),
-    max: Math.max(...yAxisValuesList),
-  };
-};
 
 /**
- * @typedef {object} Scatter
- * @typedef {object} GraphContent
- * @typedef {object} ScatterConfig
- */
-/**
- * Calculates the min and max values for X-axis.
- * First we filter out values that are `null`, this is a result of
- * datapoint being part of being in a non-contiguous series and then we
- * get the min and max values for the X-axis domain.
+ * Calculates the min and max values for the x axis.
  *
  * @private
  * @param {Array} values - Datapoint values
- * @returns {object} - Contains min and max values for the data points for x-axis
+ * @returns {object} - Contains min and max values for the data points for the x
  */
-const calculateValuesRangeXAxis = (values) => {
+ const calculateValuesRangeXAxis = (values) => {
+  // null values are filtered out first
   const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
     // if the x-axis is a timeseries, then convert it to an epoc int
     // for easier calculations
@@ -82,6 +58,21 @@ const calculateValuesRangeXAxis = (values) => {
   return {
     min: Math.min(...xAxisValuesList),
     max: Math.max(...xAxisValuesList),
+  };
+};
+/**
+ * Calculates the min and max values for the y or y2 axis.
+ *
+ * @private
+ * @param {Array} values - Datapoint values
+ * @returns {object} - Contains min and max values for the data points for the y or y2 axis
+ */
+const calculateValuesRangeYAxis = (values) => {
+  // null values are filtered out first
+  const yAxisValuesList = values.filter((i) => i.y !== null && i.y !== undefined).map((i) => i.y);
+  return {
+    min: Math.min(...yAxisValuesList),
+    max: Math.max(...yAxisValuesList),
   };
 };
 
