@@ -315,6 +315,7 @@ describe('Line - Load', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = false;
       graphConfig.axis.x.lowerLimit = 50;
+      graphConfig.axis.x.upperLimit = 100;
       const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
       graphInstance.loadContent(new Line(input));
@@ -328,6 +329,7 @@ describe('Line - Load', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = undefined;
       graphConfig.axis.x.lowerLimit = 50;
+      graphConfig.axis.x.upperLimit = 100;
       const graphInstance = new Graph(graphConfig);
       input = getInput(valuesDefault, false, false);
       graphInstance.loadContent(new Line(input));

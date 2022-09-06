@@ -11,16 +11,15 @@ import {
 import styles from '../../helpers/styles';
 import utils from '../../helpers/utils';
 import {
+  calculateValuesRangeXAxis,
+  calculateValuesRangeYAxes,
   clear,
   clickHandler,
+  getDataPointValues,
   hoverHandler,
   prepareLegendItems,
   processDataPoints,
   translateBubbleGraph,
-  getDataPointValues,
-  calculateValuesRange,
-  calculateValuesRangeX,
-  calculateValuesRangeY
 } from './helpers/helpers';
 import { draw, drawBubbles } from './helpers/helpersSingleDataset';
 import Bubble from './Bubble';
@@ -179,12 +178,8 @@ class BubbleSingleDataset extends Bubble {
       )
       .remove();
 
-    // this.valuesRange = calculateValuesRange(
-    //   this.config.values,
-    //   this.config.yAxis,
-    // );
-    this.valuesRange.x = calculateValuesRangeX(this.config.values);
-    this.valuesRange[this.config.yAxis] = calculateValuesRangeY(this.config.values);
+    this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
   }
 
   /**

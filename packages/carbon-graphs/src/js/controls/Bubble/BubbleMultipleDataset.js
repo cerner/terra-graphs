@@ -7,12 +7,13 @@ import { createRegion } from '../../helpers/region';
 import styles from '../../helpers/styles';
 import utils from '../../helpers/utils';
 import {
+  calculateValuesRangeXAxis,
+  calculateValuesRangeYAxes,
   clickHandler,
   hoverHandler,
+  getDataPointValues,
   prepareLegendItems,
   processDataPoints,
-  getDataPointValues,
-  calculateValuesRange,
 } from './helpers/helpers';
 import { draw, drawBubbles } from './helpers/helpersMultipleDataset';
 import Bubble from './Bubble';
@@ -147,10 +148,8 @@ class BubbleMultipleDataset extends Bubble {
       )
       .remove();
 
-    this.valuesRange = calculateValuesRange(
-      this.config.values,
-      this.config.yAxis,
-    );
+      this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
+      this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
   }
 
   // /**
