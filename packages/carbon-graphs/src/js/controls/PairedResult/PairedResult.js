@@ -46,14 +46,34 @@ import { validatePairedResultData } from '../../helpers/constructUtils';
  * @typedef {object} GraphContent
  * @typedef {object} PairedResultConfig
  */
+
 /**
- * Calculates the min and max values for Y Axis or Y2 Axis
+ * Calculates the min and max values for the x axis.
  *
  * @private
  * @param {Array} values - Datapoint values
  * @returns {object} - Contains min and max values for the data points
  */
-const calculateValuesRangeYAxis = (values) => {
+const calculateValuesRangeXAxis = (values) => {
+  const xAxisValuesList = values.map((i) => Object.keys(i).map((j) => i[j].x));
+  return {
+    min: Math.min(
+      ...xAxisValuesList.map((i) => Math.min(...i)),
+    ),
+    max: Math.max(
+      ...xAxisValuesList.map((i) => Math.max(...i)),
+    ),
+  };
+};
+
+/**
+ * Calculates the min and max values for the y or y2 axis.
+ *
+ * @private
+ * @param {Array} values - Datapoint values
+ * @returns {object} - Contains min and max values for the data points
+ */
+ const calculateValuesRangeYAxis = (values) => {
   const yAxisValuesList = values.map((i) => Object.keys(i).map((j) => i[j].y));
   return {
     min: Math.min(
@@ -65,36 +85,6 @@ const calculateValuesRangeYAxis = (values) => {
   };
 };
 
-/**
- * @typedef {object} PairedResult
- * @typedef {object} GraphContent
- * @typedef {object} PairedResultConfig
- */
-/**
- * Calculates the min and max values for X Axis
- *
- * @private
- * @param {Array} values - Datapoint values
- * @returns {object} - Contains min and max values for the data points
- */
-const calculateValuesRangeXAxis = (values) => {
-  const xAxisValuesList = values.map((i) => Object.keys(i).map((j) => {
-    // if the x-axis is a timeseries, then convert it to an epoc int
-    // for easier calculations
-    if (typeof i[j].x === 'string' || i[j].x instanceof Date) {
-      return utils.getEpocFromDateString(i[j].x);
-    }
-    return i[j].x;
-  }));
-  return {
-    min: Math.min(
-      ...xAxisValuesList.map((i) => Math.min(...i)),
-    ),
-    max: Math.max(
-      ...xAxisValuesList.map((i) => Math.max(...i)),
-    ),
-  };
-};
 
 /**
  * Data point sets can be loaded using this function.

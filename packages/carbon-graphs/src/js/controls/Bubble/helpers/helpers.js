@@ -529,40 +529,33 @@ const calculateValuesRange = (values, axis = constants.Y_AXIS) => {
 };
 
 /**
- * Calculates the min and max values for Y Axis or Y2 Axis.
- * First we filter out values that are `null`, this is a result of
- * datapoint being part of being in a non-contiguous series and then we
- * get the min and max values for the Y or Y2 axis domain.
- *
+ * Calculates the min and max values for the x axis.
  * @private
  * @param {Array} values - Datapoint values
  * @param {string} axis - y or y2
- * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
- */
- const calculateValuesRangeY = (values, axis = constants.Y_AXIS) => {
-  const yAxisValuesList = values.filter((i) => i.y !== null).map((i) => i.y);
-  return {
-      min: Math.min(...yAxisValuesList),
-      max: Math.max(...yAxisValuesList),
-  };
-};
-
-/**
- * Calculates the min and max values for Y Axis or Y2 Axis.
- * First we filter out values that are `null`, this is a result of
- * datapoint being part of being in a non-contiguous series and then we
- * get the min and max values for the Y or Y2 axis domain.
- *
- * @private
- * @param {Array} values - Datapoint values
- * @param {string} axis - y or y2
- * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
+ * @returns {object} - Contains min and max values for the data points for the x axis
  */
  const calculateValuesRangeX = (values, axis = constants.Y_AXIS) => {
   const xAxisValuesList = values.filter((i) => i.x !== null).map((i) => i.x);
   return {
       min: Math.min(...xAxisValuesList),
       max: Math.max(...xAxisValuesList),
+  };
+};
+
+/**
+ * Calculates the min and max values for the y or y2 axis.
+ * @private
+ * @param {Array} values - Datapoint values
+ * @param {string} axis - y or y2
+ * @returns {object} - Contains min and max values for the data points for the y or y2 axis
+ */
+ const calculateValuesRangeY = (values, axis = constants.Y_AXIS) => {
+  // null values are filtered out first
+  const yAxisValuesList = values.filter((i) => i.y !== null).map((i) => i.y);
+  return {
+      min: Math.min(...yAxisValuesList),
+      max: Math.max(...yAxisValuesList),
   };
 };
 
@@ -579,7 +572,6 @@ const loadInput = (inputJSON) => new BubbleConfig().setInput(inputJSON).validate
 
 export {
   areWeightsDefined,
-  calculateValuesRange,
   calculateValuesRangeX,
   calculateValuesRangeY,
   clear,
