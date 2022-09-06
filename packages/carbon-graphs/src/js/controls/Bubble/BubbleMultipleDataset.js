@@ -148,8 +148,8 @@ class BubbleMultipleDataset extends Bubble {
       )
       .remove();
 
-      this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
-      this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
+    this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
   }
 
   // /**

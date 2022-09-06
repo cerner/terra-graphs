@@ -80,7 +80,7 @@ const calculateValuesRangeXAxis = (values) => {
  * @param {Array} values - Datapoint values
  * @returns {object} - Contains min and max values for the data points
  */
- const calculateValuesRangeYAxis = (values) => {
+const calculateValuesRangeYAxis = (values) => {
   const yAxisValuesList = values.map((i) => Object.keys(i).map((j) => i[j].y));
   return {
     min: Math.min(
@@ -91,7 +91,6 @@ const calculateValuesRangeXAxis = (values) => {
     ),
   };
 };
-
 
 /**
  * Data point sets can be loaded using this function.

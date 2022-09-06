@@ -527,7 +527,7 @@ const calculateValuesRangeXAxis = (values) => {
     min: Math.min(...xAxisValuesList),
     max: Math.max(...xAxisValuesList),
   };
-}
+};
 
 /**
  * Calculates the min and max values for the y or y2 axis.
@@ -535,12 +535,12 @@ const calculateValuesRangeXAxis = (values) => {
  * @param {Array} values - Datapoint values
  * @returns {object} - Contains min and max values for the data points for the y or y2 axis
  */
- const calculateValuesRangeYAxes = (values, axis = constants.Y_AXIS) => {
+const calculateValuesRangeYAxes = (values) => {
   // null values are filtered out first
   const yAxisValuesList = values.filter((i) => i.y !== null).map((i) => i.y);
   return {
-      min: Math.min(...yAxisValuesList),
-      max: Math.max(...yAxisValuesList),
+    min: Math.min(...yAxisValuesList),
+    max: Math.max(...yAxisValuesList),
   };
 };
 

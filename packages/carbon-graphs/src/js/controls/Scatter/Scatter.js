@@ -45,7 +45,7 @@ import { validateData } from '../../helpers/constructUtils';
  * @param {Array} values - Datapoint values
  * @returns {object} - Contains min and max values for the data points for the x
  */
- const calculateValuesRangeXAxis = (values) => {
+const calculateValuesRangeXAxis = (values) => {
   // null values are filtered out first
   const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
     // if the x-axis is a timeseries, then convert it to an epoc int

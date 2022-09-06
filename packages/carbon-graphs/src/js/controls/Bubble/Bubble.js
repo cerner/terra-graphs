@@ -57,10 +57,7 @@ class Bubble extends GraphContent {
       this.config.yAxis,
       constants.Y_AXIS,
     );
-    // this.valuesRange = calculateValuesRange(
-    //   this.config.values,
-    //   this.config.yAxis,
-    // );
+
     this.valuesRange = {};
     this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
     this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
@@ -213,7 +210,7 @@ class Bubble extends GraphContent {
       .remove();
 
     this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
-    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);   
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
   }
 
   /**
