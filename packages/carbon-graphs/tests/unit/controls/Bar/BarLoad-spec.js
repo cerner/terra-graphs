@@ -569,7 +569,7 @@ describe('Bar - Load lifecycle', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit).toEqual(0);
       expect(graphInstance.config.axis.x.domain.upperLimit).toEqual(6);
     });
-    fit('updates x axis range if allowCalibration is true and datapoints exceed or are equal to limits', () => {
+    it('updates x axis range if allowCalibration is true and datapoints exceed or are equal to limits', () => {
       const graphConfig = getAxes(axisDefault);
       graphConfig.axis.x.allowCalibration = true;
       graphConfig.axis.x.lowerLimit = 2;
