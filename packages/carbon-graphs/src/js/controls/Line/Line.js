@@ -45,7 +45,7 @@ import LineConfig from './LineConfig';
  *
  * @private
  * @param {Array} values - Datapoint values
- * @returns {object} - Contains min and max values for the data points for the x
+ * @returns {object} - Contains min and max values for the data points for the x axis
  */
 const calculateValuesRangeXAxis = (values) => {
   // null values are filtered out first
