@@ -1564,9 +1564,7 @@ const getAxesDataRange = (
   if (utils.isEmpty(input) || utils.isEmpty(input.valuesRange)) {
     return;
   }
-
   const curRange = getCurMinMaxValueRange(input, content, axis);
-
   const prevMin = config.axis[axis].dataRange.oldMin;
   const prevMax = config.axis[axis].dataRange.oldMax;
   let isRangeModified;

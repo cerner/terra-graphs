@@ -508,23 +508,39 @@ const prepareLegendItems = (config, eventHandlers, dataTarget, legendSVG) => {
 const clear = (canvasSVG, dataTarget) => d3RemoveElement(canvasSVG, `g[aria-describedby="${dataTarget.key}"]`);
 
 /**
- * Calculates the min and max values for Y Axis or Y2 Axis.
- * First we filter out values that are `null`, this is a result of
- * datapoint being part of being in a non-contiguous series and then we
- * get the min and max values for the Y or Y2 axis domain.
- *
+ * Calculates the min and max values for the x axis.
  * @private
  * @param {Array} values - Datapoint values
- * @param {string} axis - y or y2
- * @returns {object} - Contains min and max values for the data points for Y and Y2 axis
+ * @returns {object} - Contains min and max values for the data points for the x axis
  */
-const calculateValuesRange = (values, axis = constants.Y_AXIS) => {
+const calculateValuesRangeXAxis = (values) => {
+  // null values are filtered out first
+  const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
+    // if the x-axis is a timeseries, then convert it to an epoc int
+    // for easier calculations
+    if (typeof i.x === 'string' || i.x instanceof Date) {
+      return utils.getEpocFromDateString(i.x);
+    }
+    return i.x;
+  });
+  return {
+    min: Math.min(...xAxisValuesList),
+    max: Math.max(...xAxisValuesList),
+  };
+};
+
+/**
+ * Calculates the min and max values for the y or y2 axis.
+ * @private
+ * @param {Array} values - Datapoint values
+ * @returns {object} - Contains min and max values for the data points for the y or y2 axis
+ */
+const calculateValuesRangeYAxes = (values) => {
+  // null values are filtered out first
   const yAxisValuesList = values.filter((i) => i.y !== null).map((i) => i.y);
   return {
-    [axis]: {
-      min: Math.min(...yAxisValuesList),
-      max: Math.max(...yAxisValuesList),
-    },
+    min: Math.min(...yAxisValuesList),
+    max: Math.max(...yAxisValuesList),
   };
 };
 
@@ -541,7 +557,8 @@ const loadInput = (inputJSON) => new BubbleConfig().setInput(inputJSON).validate
 
 export {
   areWeightsDefined,
-  calculateValuesRange,
+  calculateValuesRangeXAxis,
+  calculateValuesRangeYAxes,
   clear,
   clickHandler,
   dataPointActionHandler,
