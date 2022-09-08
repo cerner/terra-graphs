@@ -35,21 +35,45 @@ import {
 } from './helpers/translateHelpers';
 
 /**
+ * @typedef {object} Bar
+ * @typedef {object} GraphContent
+ * @typedef {object} BarConfig
+ */
+/**
  * Calculates the min and max values for Y Axis or Y2 Axis
  *
  * @private
  * @param {Array} values - Datapoint values
- * @param {string} axis - y or y2
  * @returns {object} - Contains min and max values for the data points
  */
-const calculateValuesRange = (values, axis = constants.Y_AXIS) => {
+const calculateValuesRangeYAxis = (values) => {
   const min = Math.min(...values.map((i) => i.y));
   const max = Math.max(...values.map((i) => i.y));
   return {
-    [axis]: {
-      min: min < 0 ? min : 0,
-      max: max > 0 ? max : 0,
-    },
+    min: min < 0 ? min : 0,
+    max: max > 0 ? max : 0,
+  };
+};
+
+/**
+ * Calculates the min and max values for the x axis.
+ * @private
+ * @param {Array} values - Datapoint values
+ * @returns {object} - Contains min and max values for the data points for the x axis
+ */
+const calculateValuesRangeXAxis = (values) => {
+  // null values are filtered out first
+  const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
+    // if the x-axis is a timeseries, then convert it to an epoc int
+    // for easier calculations
+    if (typeof i.x === 'string' || i.x instanceof Date) {
+      return utils.getEpocFromDateString(i.x);
+    }
+    return i.x;
+  });
+  return {
+    min: Math.min(...xAxisValuesList),
+    max: Math.max(...xAxisValuesList),
   };
 };
 
@@ -109,9 +133,14 @@ class Bar extends GraphContent {
       constants.Y_AXIS,
     );
     this.config.axisPadding = false;
-    this.valuesRange = calculateValuesRange(
+    this.valuesRange = {};
+
+    this.valuesRange.x = calculateValuesRangeXAxis(
       this.config.values,
-      this.config.yAxis,
+    );
+
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(
+      this.config.values,
     );
   }
 
@@ -308,10 +337,7 @@ class Bar extends GraphContent {
       this.dataTarget.axisInfoRow,
     );
     this.resize(graph);
-    this.valuesRange = calculateValuesRange(
-      this.config.values,
-      this.config.yAxis,
-    );
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxis(this.config.values);
     this.resize(graph);
   }
 

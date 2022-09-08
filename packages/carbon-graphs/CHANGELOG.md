@@ -6,6 +6,7 @@
   * Added support for `config.axis.x.allowCalibration` for a line graph with a numerical and timeseries x-axis.
   * Added support for `config.axis.x.allowCalibration` for a paired result graph with a numerical and timeseries x-axis.
   * Added support for `config.axis.x.allowCalibration` for a scatter graph with a numerical and timeseries x-axis.
+  * Added support for `config.axis.x.allowCalibration` for a bar graph with a numerical and timeseries x-axis.
 
 ## 2.21.0 - (February 15, 2022)
 
