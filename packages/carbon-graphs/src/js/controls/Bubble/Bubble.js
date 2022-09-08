@@ -18,17 +18,18 @@ import {
 import styles from '../../helpers/styles';
 import utils from '../../helpers/utils';
 import {
+  calculateValuesRangeXAxis,
+  calculateValuesRangeYAxes,
   clear,
   clickHandler,
   draw,
+  drawBubbles,
+  getDataPointValues,
   hoverHandler,
+  loadInput,
   prepareLegendItems,
   processDataPoints,
   translateBubbleGraph,
-  getDataPointValues,
-  drawBubbles,
-  calculateValuesRange,
-  loadInput,
 } from './helpers/helpers';
 
 /**
@@ -56,10 +57,11 @@ class Bubble extends GraphContent {
       this.config.yAxis,
       constants.Y_AXIS,
     );
-    this.valuesRange = calculateValuesRange(
-      this.config.values,
-      this.config.yAxis,
-    );
+
+    this.valuesRange = {};
+    this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
+
     this.dataTarget = {};
   }
 
@@ -207,10 +209,8 @@ class Bubble extends GraphContent {
       )
       .remove();
 
-    this.valuesRange = calculateValuesRange(
-      this.config.values,
-      this.config.yAxis,
-    );
+    this.valuesRange.x = calculateValuesRangeXAxis(this.config.values);
+    this.valuesRange[this.config.yAxis] = calculateValuesRangeYAxes(this.config.values);
   }
 
   /**
