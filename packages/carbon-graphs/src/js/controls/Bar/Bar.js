@@ -56,21 +56,13 @@ const calculateValuesRangeYAxis = (values) => {
 };
 
 /**
- * @typedef {object} Bar
- * @typedef {object} GraphContent
- * @typedef {object} BarConfig
- */
-/**
- * Calculates the min and max values for X-axis.
- * First we filter out values that are `null`, this is a result of
- * datapoint being part of being in a non-contiguous series and then we
- * get the min and max values for the X-axis domain.
- *
+ * Calculates the min and max values for the x axis.
  * @private
  * @param {Array} values - Datapoint values
- * @returns {object} - Contains min and max values for the data points for x-axis
+ * @returns {object} - Contains min and max values for the data points for the x axis
  */
 const calculateValuesRangeXAxis = (values) => {
+  // null values are filtered out first
   const xAxisValuesList = values.filter((i) => i.x !== null && i.x !== undefined).map((i) => {
     // if the x-axis is a timeseries, then convert it to an epoc int
     // for easier calculations
