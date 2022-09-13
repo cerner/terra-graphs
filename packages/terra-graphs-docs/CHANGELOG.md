@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.3.0 - (September 13, 2022)
+
 * Added
   * Added examples for the `allowCalibration` props.
 
