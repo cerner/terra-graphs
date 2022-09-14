@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.22.0 - (September 13, 2022)
+
 * Added
   * Added support for `config.axis.x.allowCalibration` for a line graph with a numerical and timeseries x-axis.
   * Added support for `config.axis.x.allowCalibration` for a paired result graph with a numerical and timeseries x-axis.
