@@ -31,6 +31,11 @@ const coreConfig = (env = {}) => ({
       }],
     }),
   ],
+  resolve: {
+    fallback: {
+      util: require.resolve('util/'),
+    },
+  },
 });
 
 const mergedConfig = (env, argv) => (
