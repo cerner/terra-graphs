@@ -32,5 +32,8 @@
   * Updated Bar graph snapshots.
   * Updated General example snapshots.
   * Updated Scater Graph snapshots.
+  * Changed 'karma' version
+  * Changed 'karma-jasmine' version
+  * Changed 'karma-webpack' version
 
 * Initial stable release
