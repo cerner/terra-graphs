@@ -2,34 +2,34 @@ Terra.describeViewports('ScatterGraph ', ['tiny', 'medium', 'large'], () => {
   describe('Basic Scatter graphs', () => {
     it('validates simple scatter graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/scatter-graph/basic-scatter-graphs/simple-scatter');
-      Terra.validates.screenshot('simple_scatter', { selector: '.carbon-graph-container' });
+      Terra.validates.screenshot('simple_scatter');
     });
 
     it('validates timeseries graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/scatter-graph/basic-scatter-graphs/timeseries');
-      Terra.validates.screenshot('timeseries', { selector: '.carbon-graph-container' });
+      Terra.validates.screenshot('timeseries');
     });
 
     it('validates timeseries with dateline graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/scatter-graph/basic-scatter-graphs/timeseries-with-dateline');
-      Terra.validates.screenshot('timeseries_with_dateline', { selector: '.carbon-graph-container' });
+      Terra.validates.screenshot('timeseries_with_dateline');
     });
 
     it('validates timeseries with eventline graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/scatter-graph/basic-scatter-graphs/timeseries-with-eventline');
-      Terra.validates.screenshot('timeseries_with_eventline', { selector: '.carbon-graph-container' });
+      Terra.validates.screenshot('timeseries_with_eventline');
     });
 
     it('validates y2-axis graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/scatter-graph/basic-scatter-graphs/y-2-axis');
-      Terra.validates.screenshot('y2-axis', { selector: '.carbon-graph-container' });
+      Terra.validates.screenshot('y2-axis');
     });
   });
 
   describe('Criticality', () => {
     it('validates criticality simple scatter graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/scatter-graph/criticality/simple');
-      Terra.validates.screenshot('criticality_simple_scatter', { selector: '.carbon-graph-container' });
+      Terra.validates.screenshot('criticality_simple_scatter');
     });
   });
 
@@ -43,20 +43,20 @@ Terra.describeViewports('ScatterGraph ', ['tiny', 'medium', 'large'], () => {
       it('validates panning left', () => {
         panningBtn = $('.button-pan-left');
         panningBtn.click();
-        Terra.validates.screenshot('simple_panning_left_1', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('simple_panning_left_1');
         panningBtn.click();
-        Terra.validates.screenshot('simple_panning_left_2', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('simple_panning_left_2');
         panningBtn.click();
-        Terra.validates.screenshot('simple_panning_left_3', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('simple_panning_left_3');
       });
       it('validates panning right', () => {
         panningBtn = $('.button-pan-right');
         panningBtn.click();
-        Terra.validates.screenshot('simple_panning_right_1', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('simple_panning_right_1');
         panningBtn.click();
-        Terra.validates.screenshot('simple_panning_right_2', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('simple_panning_right_2');
         panningBtn.click();
-        Terra.validates.screenshot('simple_panning_right_3', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('simple_panning_right_3');
       });
     });
 
@@ -69,9 +69,9 @@ Terra.describeViewports('ScatterGraph ', ['tiny', 'medium', 'large'], () => {
       it('validates dynaimcally updating of a dataset', () => {
         panningBtn = $('.button-pan-right');
         panningBtn.click();
-        Terra.validates.screenshot('dynamic_data_1', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('dynamic_data_1');
         panningBtn.click();
-        Terra.validates.screenshot('dynamic_data_2', { selector: '.carbon-graph-container' });
+        Terra.validates.screenshot('dynamic_data_2');
       });
     });
   });
