@@ -98,3 +98,22 @@ export const loadCustomJasmineMatcher = () => {
     },
   });
 };
+
+/**
+ * In previous Jasmine versions a callback-based async function could call its done callback any number of times,
+ * and only the first call did anything.
+ * This was done to prevent Jasmine from corrupting its internal state when done was called more than once.
+ *
+ * @param {Function} [fn] callback function that needs to be executed
+ * @returns {undefined} returns nothing
+ */
+export const allowUnsafeMultipleDone = (fn) => (done) => {
+  let doneCalled = false;
+
+  fn((err) => {
+    if (!doneCalled) {
+      done(err);
+      doneCalled = true;
+    }
+  });
+};

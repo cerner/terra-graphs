@@ -12,6 +12,7 @@ import {
 } from '../../../../src/js/helpers/transformUtils';
 import utils from '../../../../src/js/helpers/utils';
 import {
+  allowUnsafeMultipleDone,
   loadCustomJasmineMatcher,
   toNumber,
   triggerEvent,
@@ -137,7 +138,7 @@ describe('Stacked Bar', () => {
       );
       expect(barsContainer.length).toEqual(0);
     });
-    it('Hides Bar content on single click', (done) => {
+    it('Hides Bar content on single click', allowUnsafeMultipleDone((done) => {
       const legendItem = fetchAllElementsByClass(
         barGraphContainer,
         styles.legendItem,
@@ -162,7 +163,7 @@ describe('Stacked Bar', () => {
         );
         done();
       });
-    });
+    }));
     it('Displays Bar content on double click', (done) => {
       const legendItem = fetchAllElementsByClass(
         barGraphContainer,

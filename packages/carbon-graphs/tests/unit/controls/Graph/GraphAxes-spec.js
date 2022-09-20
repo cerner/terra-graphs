@@ -12,6 +12,7 @@ import { getCurrentTransform, getSVGAnimatedTransformList } from '../../../../sr
 import utils from '../../../../src/js/helpers/utils';
 import LOCALE from '../../../../src/js/locale/index';
 import {
+  allowUnsafeMultipleDone,
   loadCustomJasmineMatcher,
   triggerEvent,
 } from '../../helpers/commonHelpers';
@@ -33,7 +34,7 @@ describe('Graph - Axes', () => {
   let graph = null;
   let graphContainer;
   const largeLabel = 'Project long display value which is only for testing, Project long display value which is only for testing '
-        + 'Project long display value which is only for testing, Project long display value which is only for testing';
+    + 'Project long display value which is only for testing, Project long display value which is only for testing';
   const smallLabel = 'hello!';
   beforeAll(() => {
     loadCustomJasmineMatcher();
@@ -55,14 +56,14 @@ describe('Graph - Axes', () => {
     graph = new Graph(getAxes(axisDefault));
     const xAxisElement = fetchElementByClass(styles.axisX);
     expect(xAxisElement.getAttribute('class')).toBe(
-            `${styles.axis} ${styles.axisX}`,
+      `${styles.axis} ${styles.axisX}`,
     );
   });
   it('Creates the y axis markup', () => {
     graph = new Graph(getAxes(axisDefault));
     const yAxisElement = fetchElementByClass(styles.axisY);
     expect(yAxisElement.getAttribute('class')).toBe(
-            `${styles.axis} ${styles.axisY}`,
+      `${styles.axis} ${styles.axisY}`,
     );
   });
   it('Creates the y axis reference line markup', () => {
@@ -91,7 +92,7 @@ describe('Graph - Axes', () => {
       }),
     );
     const referenceElement = document.querySelector(
-            `.${styles.axisReferenceLine}.${styles.axisY2}`,
+      `.${styles.axisReferenceLine}.${styles.axisY2}`,
     );
     expect(referenceElement.classList.contains(styles.axis)).toBeTruthy();
     expect(
@@ -114,7 +115,7 @@ describe('Graph - Axes', () => {
       }),
     );
     const referenceElement = document.querySelector(
-            `.${styles.axisReferenceLine}.${styles.axisY}`,
+      `.${styles.axisReferenceLine}.${styles.axisY}`,
     );
     expect(
       referenceElement.classList.contains(styles.axisReferenceLine),
@@ -134,7 +135,7 @@ describe('Graph - Axes', () => {
       }),
     );
     const referenceElement = document.querySelector(
-            `.${styles.axisReferenceLine}.${styles.axisY}`,
+      `.${styles.axisReferenceLine}.${styles.axisY}`,
     );
     expect(
       referenceElement.classList.contains(styles.axisReferenceLine),
@@ -154,7 +155,7 @@ describe('Graph - Axes', () => {
       }),
     );
     const referenceElement = document.querySelector(
-            `.${styles.axisReferenceLine}.${styles.axisY}`,
+      `.${styles.axisReferenceLine}.${styles.axisY}`,
     );
     expect(
       referenceElement.classList.contains(styles.axisReferenceLine),
@@ -174,7 +175,7 @@ describe('Graph - Axes', () => {
       }),
     );
     const referenceElement = document.querySelector(
-            `.${styles.axisReferenceLine}.${styles.axisY}`,
+      `.${styles.axisReferenceLine}.${styles.axisY}`,
     );
     expect(
       referenceElement.classList.contains(styles.axisReferenceLine),
@@ -194,7 +195,7 @@ describe('Graph - Axes', () => {
       }),
     );
     const referenceElement = document.querySelector(
-            `.${styles.axisReferenceLine}.${styles.axisY}`,
+      `.${styles.axisReferenceLine}.${styles.axisY}`,
     );
     expect(
       referenceElement.classList.contains(styles.axisReferenceLine),
@@ -236,7 +237,7 @@ describe('Graph - Axes', () => {
     graph = new Graph(getAxes(hiddenAxisObj));
     const xAxisElement = fetchElementByClass(styles.axisX);
     expect(xAxisElement.getAttribute('class')).toBe(
-            `${styles.axis} ${styles.axisX}`,
+      `${styles.axis} ${styles.axisX}`,
     );
     expect(xAxisElement.getAttribute('aria-hidden')).toBe('true');
   });
@@ -246,7 +247,7 @@ describe('Graph - Axes', () => {
     graph = new Graph(getAxes(hiddenAxisObj));
     const yAxisElement = fetchElementByClass(styles.axisY);
     expect(yAxisElement.getAttribute('class')).toBe(
-            `${styles.axis} ${styles.axisY}`,
+      `${styles.axis} ${styles.axisY}`,
     );
     expect(yAxisElement.getAttribute('aria-hidden')).toBe('true');
   });
@@ -307,10 +308,10 @@ describe('Graph - Axes', () => {
     hiddenAxisObj.y.show = false;
     graph = new Graph(getAxes(hiddenAxisObj));
     expect(fetchElementByClass(styles.axisY).getAttribute('class')).toBe(
-            `${styles.axis} ${styles.axisY}`,
+      `${styles.axis} ${styles.axisY}`,
     );
     expect(fetchElementByClass(styles.axisX).getAttribute('class')).toBe(
-            `${styles.axis} ${styles.axisX}`,
+      `${styles.axis} ${styles.axisX}`,
     );
     expect(
       fetchElementByClass(styles.axisY).getAttribute('aria-hidden'),
@@ -1070,7 +1071,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       const NumberOfTicks = allYAxisElements[0].childNodes.length;
       expect(
@@ -1098,7 +1099,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
 
       const yTicks = [];
@@ -1226,7 +1227,7 @@ describe('Graph - Axes', () => {
       };
       graph = new Graph({ ...getAxes(localeAxisObj) });
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
 
       const yTicks = [];
@@ -1254,7 +1255,7 @@ describe('Graph - Axes', () => {
               'transform',
             ),
           ).translate[0],
-        ).toBe(67.125);
+        ).toBe(68.734375);
       });
       it('check transform position of y-axis when y2-axis is false', () => {
         const axisObj = utils.deepClone(axisDefault);
@@ -1272,7 +1273,7 @@ describe('Graph - Axes', () => {
               'transform',
             ),
           ).translate[0],
-        ).toBe(67.125);
+        ).toBe(68.734375);
       });
     });
   });
@@ -1307,10 +1308,10 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       const allY2AxisElements = document.querySelectorAll(
-                `.${styles.axisY2}`,
+        `.${styles.axisY2}`,
       );
       const NumberOfTicks = allYAxisElements[0].childNodes.length;
       expect(
@@ -1353,10 +1354,10 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       const allY2AxisElements = document.querySelectorAll(
-                `.${styles.axisY2}`,
+        `.${styles.axisY2}`,
       );
 
       const yTicks = [];
@@ -1386,10 +1387,10 @@ describe('Graph - Axes', () => {
       };
       graph = new Graph({ ...getAxes(localeAxisObj) });
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       const allY2AxisElements = document.querySelectorAll(
-                `.${styles.axisY2}`,
+        `.${styles.axisY2}`,
       );
 
       const expectedYTicks = [0, 3, 5, 8, 10];
@@ -1762,7 +1763,7 @@ describe('Graph - Axes', () => {
       };
       graph = new Graph(getAxes(localeAxisObj));
       const allXAxisElements = document.querySelectorAll(
-                `.${styles.axisX}`,
+        `.${styles.axisX}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       expect(
@@ -1802,7 +1803,7 @@ describe('Graph - Axes', () => {
       };
       graph = new Graph(getAxes(localeAxisObj));
       const allXAxisElements = document.querySelectorAll(
-                `.${styles.axisX}`,
+        `.${styles.axisX}`,
       );
       const start = allXAxisElements[0].childNodes[1].querySelector(
         'text',
@@ -1846,7 +1847,7 @@ describe('Graph - Axes', () => {
       graph = new Graph(getAxes(localeAxisObj));
 
       const allXAxisElements = document.querySelectorAll(
-                `.${styles.axisX}`,
+        `.${styles.axisX}`,
       );
       const lowerAxis = allXAxisElements[0].childNodes[1].querySelector(
         'text',
@@ -2012,7 +2013,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allXAxisElements = document.querySelectorAll(
-                `.${styles.axisX}`,
+        `.${styles.axisX}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const xTicks = [];
@@ -2044,7 +2045,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allXAxisElements = document.querySelectorAll(
-                `.${styles.axisX}`,
+        `.${styles.axisX}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const xTicks = [];
@@ -2074,7 +2075,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const yTicks = [];
@@ -2104,7 +2105,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const yTicks = [];
@@ -2136,7 +2137,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const yTicks = [];
@@ -2168,7 +2169,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allYAxisElements = document.querySelectorAll(
-                `.${styles.axisY}`,
+        `.${styles.axisY}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const yTicks = [];
@@ -2199,7 +2200,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allY2AxisElements = document.querySelectorAll(
-                `.${styles.axisY2}`,
+        `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const y2Ticks = [];
@@ -2230,7 +2231,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allY2AxisElements = document.querySelectorAll(
-                `.${styles.axisY2}`,
+        `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const y2Ticks = [];
@@ -2263,7 +2264,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allY2AxisElements = document.querySelectorAll(
-                `.${styles.axisY2}`,
+        `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const y2Ticks = [];
@@ -2296,7 +2297,7 @@ describe('Graph - Axes', () => {
         }),
       );
       const allY2AxisElements = document.querySelectorAll(
-                `.${styles.axisY2}`,
+        `.${styles.axisY2}`,
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       const y2Ticks = [];
@@ -2334,7 +2335,7 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelX).querySelector('text')
           .textContent,
       ).toBe(
-        'Project long display value which is only for testing, Project long display value which is only for testing Project lon...',
+        'Project long display value which is only for testing, Project long display value which is only for testing Project lo...',
       );
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
@@ -2389,7 +2390,7 @@ describe('Graph - Axes', () => {
       expect(
         fetchElementByClass(styles.axisLabelX).querySelector('text')
           .textContent,
-      ).toBe('Project long d...');
+      ).toBe('Project long di...');
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
           .textContent,
@@ -2449,7 +2450,7 @@ describe('Graph - Axes', () => {
       expect(
         fetchElementByClass(styles.axisLabelX).querySelector('text')
           .textContent,
-      ).toBe('Project long display value which ...');
+      ).toBe('Project long display value which...');
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
           .textContent,
@@ -2614,7 +2615,7 @@ describe('Graph - Axes', () => {
       axisDefault.y2 = '';
     });
     describe('when small label is provided and onLabelClick function is not provided', () => {
-      it('should disable click functionality for label', (done) => {
+      it('should disable click functionality for label', allowUnsafeMultipleDone((done) => {
         const onClickPrimaryFunctionSpy = sinon.spy();
         graph = new Graph(getAxes(axisDefault));
         triggerEvent(
@@ -2647,10 +2648,10 @@ describe('Graph - Axes', () => {
             done();
           },
         );
-      });
+      }));
     });
     describe('when small label and onLabelClick function is provided', () => {
-      it('should disable click functionality for label', (done) => {
+      it('should disable click functionality for label', allowUnsafeMultipleDone((done) => {
         const onClickPrimaryFunctionSpy = sinon.spy();
         const onClickSecondaryFunctionSpy = sinon.spy();
         const onClickThirdFunctionSpy = sinon.spy();
@@ -2690,10 +2691,10 @@ describe('Graph - Axes', () => {
             done();
           },
         );
-      });
+      }));
     });
     describe('when large label and onLabelClick function is provided', () => {
-      it('should enable click functionality for truncated label', (done) => {
+      it('should enable click functionality for truncated label', allowUnsafeMultipleDone((done) => {
         const onClickSecondaryFunctionSpy = sinon.spy();
         const onClickThirdFunctionSpy = sinon.spy();
         const onClickFourthFunctionSpy = sinon.spy();
@@ -2743,10 +2744,10 @@ describe('Graph - Axes', () => {
             done();
           },
         );
-      });
+      }));
     });
     describe('when large label is provided and onLabelClick function is not provided', () => {
-      it('should enable click functionality for truncated label', (done) => {
+      it('should enable click functionality for truncated label', allowUnsafeMultipleDone((done) => {
         const onClickSecondaryFunctionSpy = sinon.spy();
         const onClickThirdFunctionSpy = sinon.spy();
         const onClickFourthFunctionSpy = sinon.spy();
@@ -2807,7 +2808,7 @@ describe('Graph - Axes', () => {
             done();
           },
         );
-      });
+      }));
     });
   });
   describe('when graph is loaded', () => {
@@ -2855,7 +2856,7 @@ describe('Graph - Axes', () => {
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),
           ).translate[0],
-        ).toBe(991.375);
+        ).toBe(989.765625);
         expect(
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),

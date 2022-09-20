@@ -7,6 +7,7 @@ import styles from '../../../../src/js/helpers/styles';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import utils from '../../../../src/js/helpers/utils';
 import {
+  allowUnsafeMultipleDone,
   delay,
   loadCustomJasmineMatcher,
   PADDING_BOTTOM,
@@ -31,7 +32,7 @@ describe('PairedResult', () => {
     loadCustomJasmineMatcher();
     // to supress warnings
     consolewarn = console.warn;
-    console.warn = () => {};
+    console.warn = () => { };
   });
   afterAll(() => {
     console.warn = consolewarn;
@@ -73,7 +74,7 @@ describe('PairedResult', () => {
     });
     it('translates DatelineGroup properly when panning is enabled', (done) => {
       const datelineGroup = document.querySelector(
-                `.${styles.datelineGroup}`,
+        `.${styles.datelineGroup}`,
       );
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -376,7 +377,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -407,7 +408,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -439,7 +440,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -472,7 +473,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -503,7 +504,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -518,7 +519,7 @@ describe('PairedResult', () => {
                       x: '2016-09-18T12:00:00Z',
                       y: 70,
                     },
-                    mid: { },
+                    mid: {},
                     low: {
                       x: '2016-09-19T02:00:00Z',
                       y: 30,
@@ -534,7 +535,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -567,7 +568,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -598,7 +599,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -617,7 +618,7 @@ describe('PairedResult', () => {
                       x: '2016-09-19T02:00:00Z',
                       y: 30,
                     },
-                    low: { },
+                    low: {},
                   },
                 ],
               },
@@ -629,7 +630,7 @@ describe('PairedResult', () => {
             styles.pairedBox,
           );
           const pointGroup = pair.querySelectorAll(
-              `.${styles.pointGroup}`,
+            `.${styles.pointGroup}`,
           );
           expect(pointGroup.length).toEqual(2);
         });
@@ -650,7 +651,7 @@ describe('PairedResult', () => {
           styles.pairedBox,
         );
         const legendItem = document.body.querySelector(
-                    `.${styles.legendItem}`,
+          `.${styles.legendItem}`,
         );
         expect(pairedContent.length).toEqual(2);
         graphDefault.reflowMultipleDatasets(graphData);
@@ -1028,7 +1029,7 @@ describe('PairedResult', () => {
       });
     });
     describe('when there is no data state with reflow', () => {
-      it('should carry legend state on click of panning button', (done) => {
+      it('should carry legend state on click of panning button', allowUnsafeMultipleDone((done) => {
         graphDefault.destroy();
         const axisData = utils.deepClone(getAxes(axisTimeSeries));
 
@@ -1113,7 +1114,7 @@ describe('PairedResult', () => {
         expect(legendItemMid.getAttribute('aria-current')).toBe(
           'true',
         );
-      });
+      }));
     });
   });
   describe('When pan is disabled', () => {
@@ -1137,7 +1138,7 @@ describe('PairedResult', () => {
     });
     it('translates DatelineGroup properly after some delay when panning is disabled', (done) => {
       const datelineGroup = document.querySelector(
-                `.${styles.datelineGroup}`,
+        `.${styles.datelineGroup}`,
       );
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -1198,7 +1199,7 @@ describe('PairedResult', () => {
           styles.pairedBox,
         );
         const legendItem = document.body.querySelector(
-                    `.${styles.legendItem}`,
+          `.${styles.legendItem}`,
         );
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');
         expect(legendItem.getAttribute('aria-current')).toBe('true');

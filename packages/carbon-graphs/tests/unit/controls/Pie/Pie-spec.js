@@ -115,7 +115,7 @@ describe('Pie', () => {
       });
       it('Sets defs element properties correctly', () => {
         const defsElement = fetchElementByClass(
-                    `${styles.pieChartCanvas} defs`,
+          `${styles.pieChartCanvas} defs`,
         );
         expect(defsElement.childNodes[0].nodeName).toBe('clipPath');
         expect(defsElement.childNodes[0].id).toBeDefined();
@@ -181,11 +181,11 @@ describe('Pie', () => {
     it('Throws no error', () => {
       expect(() => pieInstance.destroy()).not.toThrowError();
     });
-    it('Throws no error on resize', (done) => {
+    it('Throws no error on resize', () => {
       graphContainer.setAttribute('style', 'width: 600px; height: 200px');
       pieInstance.destroy();
       expect(() => {
-        triggerEvent(window, 'resize', done);
+        triggerEvent(window, 'resize');
       }).not.toThrowError();
     });
     it('Resets instance properties', () => {
@@ -235,7 +235,7 @@ describe('Pie', () => {
       expect(legendItemElement.getAttribute('role')).toBe('listitem');
       expect(legendItemElement.getAttribute('tabindex')).toBe('0');
       expect(legendItemElement.getAttribute('aria-labelledby')).toBe(
-                `${dataPrimary.label.display}: ${dataPrimary.value}`,
+        `${dataPrimary.label.display}: ${dataPrimary.value}`,
       );
       expect(legendItemElement.getAttribute('aria-describedby')).toBe(
         dataPrimary.key,
@@ -244,7 +244,7 @@ describe('Pie', () => {
     it('Legend icon has correct attributes', () => {
       pieInstance.loadContent(dataPrimary);
       const legendItemSVGElement = fetchElementByClass(
-                `${styles.pieLegendItem} svg`,
+        `${styles.pieLegendItem} svg`,
       );
       expect(legendItemSVGElement.nodeName).toBe('svg');
       expect(legendItemSVGElement.getAttribute('class')).toContain(
@@ -264,7 +264,7 @@ describe('Pie', () => {
     it('Legend text has correct attributes', () => {
       pieInstance.loadContent(dataPrimary);
       const legendItemTextElement = fetchElementByClass(
-                `${styles.pieLegendItem} label`,
+        `${styles.pieLegendItem} label`,
       );
       expect(legendItemTextElement.nodeName).toBe('LABEL');
       expect(legendItemTextElement.getAttribute('class')).toBe(
@@ -279,10 +279,10 @@ describe('Pie', () => {
       _input.label.format = (display, value) => `${display} has a value of ${value}`;
       pieInstance.loadContent(_input);
       const legendItemTextElement = fetchElementByClass(
-                `${styles.pieLegendItem} label`,
+        `${styles.pieLegendItem} label`,
       );
       expect(legendItemTextElement.innerText).toBe(
-                `${dataPrimary.label.display} has a value of ${dataPrimary.value}`,
+        `${dataPrimary.label.display} has a value of ${dataPrimary.value}`,
       );
     });
     describe('On legend action', () => {
@@ -316,21 +316,21 @@ describe('Pie', () => {
               expect(
                 document
                   .querySelector(
-                                        `g[aria-describedby="${dataPrimary.key}"]`,
+                    `g[aria-describedby="${dataPrimary.key}"]`,
                   )
                   .classList.contains(styles.blur),
               ).toBeFalsy();
               expect(
                 document
                   .querySelector(
-                                        `g[aria-describedby="${dataSecondary.key}"]`,
+                    `g[aria-describedby="${dataSecondary.key}"]`,
                   )
                   .classList.contains(styles.blur),
               ).toBeTruthy();
               expect(
                 document
                   .querySelector(
-                                        `g[aria-describedby="${dataTertiary.key}"]`,
+                    `g[aria-describedby="${dataTertiary.key}"]`,
                   )
                   .classList.contains(styles.blur),
               ).toBeTruthy();
@@ -363,7 +363,7 @@ describe('Pie', () => {
                 expect(
                   document
                     .querySelector(
-                                            `g[aria-describedby="${dataSecondary.key}"]`,
+                      `g[aria-describedby="${dataSecondary.key}"]`,
                     )
                     .classList.contains(styles.blur),
                 ).toBeFalsy();

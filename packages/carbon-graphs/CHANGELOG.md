@@ -1,7 +1,10 @@
 # ChangeLog
 
 ## Unreleased
-
+  * Changed 'karma' version to ^6.4.0
+  * Changed 'karma-jasmine' version to ^5.1.0
+  * Changed 'karma-webpack' version to ^5.0.0
+  * Changed 'puppeteer' version to ^14.1.2
 ## 2.22.0 - (September 13, 2022)
 
 * Added
