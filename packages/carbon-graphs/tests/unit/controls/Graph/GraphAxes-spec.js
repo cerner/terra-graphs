@@ -1255,7 +1255,7 @@ describe('Graph - Axes', () => {
               'transform',
             ),
           ).translate[0],
-        ).toBe(68.734375);
+        ).toBe(67.125);
       });
       it('check transform position of y-axis when y2-axis is false', () => {
         const axisObj = utils.deepClone(axisDefault);
@@ -1273,7 +1273,7 @@ describe('Graph - Axes', () => {
               'transform',
             ),
           ).translate[0],
-        ).toBe(68.734375);
+        ).toBe(67.125);
       });
     });
   });
@@ -2335,7 +2335,7 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelX).querySelector('text')
           .textContent,
       ).toBe(
-        'Project long display value which is only for testing, Project long display value which is only for testing Project lo...',
+        'Project long display value which is only for testing, Project long display value which is only for testing Project lon...',
       );
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
@@ -2390,7 +2390,7 @@ describe('Graph - Axes', () => {
       expect(
         fetchElementByClass(styles.axisLabelX).querySelector('text')
           .textContent,
-      ).toBe('Project long di...');
+      ).toBe('Project long d...');
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
           .textContent,
@@ -2450,7 +2450,7 @@ describe('Graph - Axes', () => {
       expect(
         fetchElementByClass(styles.axisLabelX).querySelector('text')
           .textContent,
-      ).toBe('Project long display value which...');
+      ).toBe('Project long display value which ...');
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
           .textContent,
@@ -2856,7 +2856,7 @@ describe('Graph - Axes', () => {
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),
           ).translate[0],
-        ).toBe(989.765625);
+        ).toBe(991.375);
         expect(
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),
