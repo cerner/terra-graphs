@@ -1,6 +1,9 @@
 # ChangeLog
 
 ## Unreleased
+  * Changed 'webpack' to version ^5.28.0",
+  * Changed 'webpack-cli' to version 4.6.0",
+  * Changed 'webpack-dev-server' to version ^4.0.0",
   * Changed 'karma' version to ^6.4.0
   * Changed 'karma-jasmine' version to ^5.1.0
   * Changed 'karma-webpack' version to ^5.0.0
