@@ -1094,7 +1094,7 @@ describe('PairedResult', () => {
           done();
         };
 
-        triggerLegendItems();       
+        triggerLegendItems();
 
         graphDefault.reflowMultipleDatasets(graphData);
         graphDefault.reflowMultipleDatasets(graphData1);
