@@ -1082,13 +1082,11 @@ describe('PairedResult', () => {
           expect(legendItemHigh.getAttribute('aria-current')).toBe(
             'false',
           );
-          done();
         });
         triggerEvent(legendItemLow, 'click', () => {
           expect(legendItemLow.getAttribute('aria-current')).toBe(
             'false',
           );
-          done();
         });
 
         graphDefault.reflowMultipleDatasets(graphData);

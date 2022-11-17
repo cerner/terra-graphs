@@ -2624,7 +2624,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2634,7 +2633,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2644,9 +2642,9 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
+        done();
       });
     });
     describe('when small label and onLabelClick function is provided', () => {
@@ -2667,7 +2665,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2677,7 +2674,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2687,9 +2683,9 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
+        done();
       });
     });
     describe('when large label and onLabelClick function is provided', () => {
@@ -2716,7 +2712,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         triggerEvent(
@@ -2729,7 +2724,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickFourthFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         triggerEvent(
@@ -2740,9 +2734,9 @@ describe('Graph - Axes', () => {
             expect(onClickThirdFunctionSpy.getCall(0).args[0]).toBe(
               largeLabel,
             );
-            done();
           },
         );
+        done();
       });
     });
     describe('when large label is provided and onLabelClick function is not provided', () => {
@@ -2770,7 +2764,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         d3.select(fetchElementByClass(`${styles.axisLabelY} text`)).on(
@@ -2787,7 +2780,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         d3.select(fetchElementByClass(`${styles.axisLabelY2} text`)).on(
@@ -2804,9 +2796,9 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
+        done();
       });
     });
   });
