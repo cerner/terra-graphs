@@ -155,6 +155,5 @@
     "wdio:pie": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/PieChart/pie-chart-spec.js",
     "wdio:scatter": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/ScatterGraph/scatter-graph-spec.js",
     "wdio:timeline": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/Timeline/timeline-spec.js"
-
   }
 }
