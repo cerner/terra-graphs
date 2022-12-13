@@ -1104,7 +1104,7 @@ describe('Line - Load', () => {
       expect(iconPath.getAttribute('d')).not.toBeNull();
     });
     describe('when showShapes is true', () => {
-      it('loads  shape and line if user sets showLine to be true  and showShape to be true', () => {
+      it('loads shape and line if user sets showLine to be true and showShape to be true', () => {
         const input = getInput(valuesDefault, false, false);
         input.legendOptions = {
           showShape: true,
@@ -1121,7 +1121,7 @@ describe('Line - Load', () => {
         expect(SVGElements.length).toBe(2);
 
         expect(iconSVG).not.toBeNull();
-        expect(iconSVG.classList).toContain(styles.legendItemIcon);
+        expect(iconSVG.classList).toContain(styles.legendItemIconWithLine);
         expect(iconPath).not.toBeNull();
         expect(iconPath.getAttribute('d')).not.toBeNull();
 
@@ -1154,7 +1154,7 @@ describe('Line - Load', () => {
         expect(SVGElements.length).toBe(2);
 
         expect(iconSVG).not.toBeNull();
-        expect(iconSVG.classList).toContain(styles.legendItemIcon);
+        expect(iconSVG.classList).toContain(styles.legendItemIconWithLine);
         expect(iconPath).not.toBeNull();
         expect(iconPath.getAttribute('d')).not.toBeNull();
 
