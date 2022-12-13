@@ -144,6 +144,17 @@
     "wdio-default": "terra wdio",
     "wdio-lowlight": "NODE_OPTIONS=--max-old-space-size=2048 terra wdio --themes clinical-lowlight-theme",
     "wdio-fusion": "terra wdio --themes orion-fusion-theme",
-    "wdio": "terra wdio --themes terra-default-theme"
+    "wdio": "terra wdio --themes terra-default-theme",
+    "wdio:bar": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/BarGraph/bar-graph-spec.js",
+    "wdio:bubble": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/BubbleGraph/bubbleGraphs-spec.js",
+    "wdio:combination": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/CombinationGraph/combination-graph-spec.js",
+    "wdio:gantt": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/GanttChart/gantt-chart-spec.js",
+    "wdio:general": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/General/general-spec.js",
+    "wdio:line": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/LineGraph/line-graph-spec.js",
+    "wdio:pairedresult": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/PairedResultGraph/paired-result-graph-spec.js",
+    "wdio:pie": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/PieChart/pie-chart-spec.js",
+    "wdio:scatter": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/ScatterGraph/scatter-graph-spec.js",
+    "wdio:timeline": "terra wdio --themes terra-default-theme --spec packages/terra-graphs/tests/wdio/Graphs/Timeline/timeline-spec.js"
+
   }
 }
