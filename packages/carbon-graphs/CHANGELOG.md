@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added logic to increase legend icon size when an icon is used in the legend without a line.
+
 ## 2.22.0 - (September 13, 2022)
 
 * Added
