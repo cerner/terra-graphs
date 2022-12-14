@@ -66,8 +66,8 @@ const legendDisplayStyle = (input) => (input.legendOptions
 const createLegendIcon = (buttonPath, input) => buttonPath.append(() => new Shape(getShapeForTarget(input)).getShapeElement(
   getDefaultSVGProps({
     svgClassNames: (input.legendOptions && input.legendOptions.showLine)
-                    ? styles.legendItemIconWithLine
-                    : styles.legendItemIcon,
+      ? styles.legendItemIconWithLine
+      : styles.legendItemIcon,
     svgStyles: `fill: ${getColorForTarget(input)};`,
   }),
   true,
