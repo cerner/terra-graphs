@@ -7,6 +7,7 @@ svg:not(:root) {
 }
 
 .carbon-svg-icon {
+
     width: 0.625rem;
     height: 0.625rem;
     display: inline-block;
@@ -151,8 +152,20 @@ svg:not(:root) {
             }
         }
 
+        // refers to the icon itself IF there is no line next to it
         & .carbon-legend-item-icon {
             display: block;
+            height: 0.857rem;
+            width: 0.857rem;
+            stroke: @white;
+            stroke-width: 5px;
+        }
+
+        // refers to the icon IF there is a line next to it
+        & .carbon-legend-item-icon-with-line {
+            display: block;
+            height: 0.625rem;
+            width: 0.625rem;
             stroke: @white;
             stroke-width: 5px;
         }
@@ -164,12 +177,14 @@ svg:not(:root) {
             align-items: center;
         }
 
+        // refers to the line itself IF there is no icon next to it
         & .carbon-legend-item-line {
             height: 5px;
             width: 28px;
             padding-top: 1px;
         }
 
+        // refers to the line IF there is an icon next to it
         & .carbon-legend-item-line-with-icon {
             height: 5px;
             width: 18px;
