@@ -65,7 +65,9 @@ const legendDisplayStyle = (input) => (input.legendOptions
  */
 const createLegendIcon = (buttonPath, input) => buttonPath.append(() => new Shape(getShapeForTarget(input)).getShapeElement(
   getDefaultSVGProps({
-    svgClassNames: styles.legendItemIcon,
+    svgClassNames: (input.legendOptions && input.legendOptions.showLine)
+      ? styles.legendItemIconWithLine
+      : styles.legendItemIcon,
     svgStyles: `fill: ${getColorForTarget(input)};`,
   }),
   true,
@@ -75,14 +77,13 @@ const createLegendIcon = (buttonPath, input) => buttonPath.append(() => new Shap
  *
  * @private
  * @param {object} buttonPath - d3 svg object
- * @param {object} t - input item object processed from the input JSON
+ * @param {object} input - input item object processed from the input JSON
  */
-const createLegendLine = (buttonPath, t) => {
-  const { legendOptions } = t;
+const createLegendLine = (buttonPath, input) => {
   const svg = buttonPath
     .append('svg')
     .classed(
-      legendOptions.showShape
+      input.legendOptions.showShape
         ? styles.legendItemLineWithIcon
         : styles.legendItemLine,
       true,
@@ -94,7 +95,7 @@ const createLegendLine = (buttonPath, t) => {
     .attr('x1', 1)
     .attr(
       'x2',
-      legendOptions.showShape
+      input.legendOptions.showShape
         ? constants.DEFAULT_LEGEND_LINE_WIDTH_WITH_SYMBOL - 1
         : constants.DEFAULT_LEGEND_LINE_WIDTH - 1,
     )
@@ -102,8 +103,8 @@ const createLegendLine = (buttonPath, t) => {
     .attr('y2', constants.LEGEND_LINE_POSITION)
     .attr(
       'style',
-      `stroke: ${getColorForTarget(t)};
-            stroke-dasharray: ${legendOptions.style.strokeDashArray};
+      `stroke: ${getColorForTarget(input)};
+            stroke-dasharray: ${input.legendOptions.style.strokeDashArray};
             stroke-width: 1px;`,
     );
 };
@@ -117,10 +118,8 @@ const createLegendLine = (buttonPath, t) => {
 const processLegendOptions = (buttonPath, input) => {
   if (input.legendOptions) {
     // Create a legend icon only if the showShape is true
-    if (input.showShapes || input.showShapes === undefined) {
-      if (input.legendOptions.showShape) {
-        createLegendIcon(buttonPath, input);
-      }
+    if ((input.showShapes || input.showShapes === undefined) && input.legendOptions.showShape) {
+      createLegendIcon(buttonPath, input);
     }
     if (input.legendOptions.showLine) {
       createLegendLine(buttonPath, input);

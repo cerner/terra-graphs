@@ -1533,7 +1533,7 @@ describe('Paired Result - Load', () => {
         const lineSVG = svgElements[1];
         expect(svgElements.length).toBe(2);
         expect(iconSVG).not.toBeNull();
-        expect(iconSVG.classList).toContain(styles.legendItemIcon);
+        expect(iconSVG.classList).toContain(styles.legendItemIconWithLine);
         expect(lineSVG).not.toBeNull();
         expect(lineSVG.classList).toContain(
           styles.legendItemLineWithIcon,

@@ -39,6 +39,7 @@ export default {
   legendItem: 'carbon-legend-item',
   legendItemBtn: 'carbon-legend-item-btn',
   legendItemIcon: 'carbon-legend-item-icon',
+  legendItemIconWithLine: 'carbon-legend-item-icon-with-line',
   legendItemLine: 'carbon-legend-item-line',
   legendItemLineWithIcon: 'carbon-legend-item-line-with-icon',
   legendItemSpan: 'carbon-legend-item-span',
