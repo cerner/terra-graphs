@@ -1,7 +1,7 @@
 {
   "name": "@cerner/carbon-graphs",
   "main": "lib/Graphs.js",
-  "version": "2.22.0",
+  "version": "2.23.0",
   "description": "A graphing library built using d3 based on Cerner design standards",
   "repository": {
     "type": "git",
