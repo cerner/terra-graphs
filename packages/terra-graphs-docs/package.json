@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-graphs-docs",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A react based dev-site that has documentation and example graphs",
   "repository": {
     "type": "git",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
   "dependencies": {
-    "@cerner/carbon-graphs": "^2.22.0",
+    "@cerner/carbon-graphs": "^2.23.0",
     "classnames": "^2.2.5",
     "details-polyfill": "^1.2.0",
     "prop-types": "^15.5.8",
