@@ -1078,18 +1078,23 @@ describe('PairedResult', () => {
         const legendItemMid = pairedResultGraphContainer.querySelector(
           `.${styles.legendItem}[aria-describedby="${input.key}_mid"]`,
         );
-        triggerEvent(legendItemHigh, 'click', () => {
-          expect(legendItemHigh.getAttribute('aria-current')).toBe(
-            'false',
-          );
+
+        const triggerLegendItems = () => {
+          triggerEvent(legendItemHigh, 'click', () => {
+            expect(legendItemHigh.getAttribute('aria-current')).toBe(
+              'false',
+            );
+          });
+          triggerEvent(legendItemLow, 'click', () => {
+            expect(legendItemLow.getAttribute('aria-current')).toBe(
+              'false',
+            );
+          });
+
           done();
-        });
-        triggerEvent(legendItemLow, 'click', () => {
-          expect(legendItemLow.getAttribute('aria-current')).toBe(
-            'false',
-          );
-          done();
-        });
+        };
+
+        triggerLegendItems();
 
         graphDefault.reflowMultipleDatasets(graphData);
         graphDefault.reflowMultipleDatasets(graphData1);

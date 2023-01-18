@@ -151,7 +151,6 @@ describe('Grouped Bar', () => {
             .querySelector(`.${styles.taskBar}`)
             .getAttribute('aria-hidden'),
         ).toBe('true');
-        done();
       });
       triggerEvent(legendItem[1], 'click', () => {
         fetchAllElementsByClass(
@@ -161,8 +160,8 @@ describe('Grouped Bar', () => {
         expect(barsContainer[0].getAttribute('aria-hidden')).toBe(
           'true',
         );
-        done();
       });
+      done();
     });
     it('Displays Bar content on double click', (done) => {
       const legendItem = fetchAllElementsByClass(

@@ -153,15 +153,14 @@ describe('Stacked Bar', () => {
             .querySelector(`.${styles.taskBar}`)
             .getAttribute('aria-hidden'),
         ).toBe('true');
-        done();
       });
       triggerEvent(legendItem[1], 'click', () => {
         barsContainer;
         expect(barsContainer[0].getAttribute('aria-hidden')).toBe(
           'true',
         );
-        done();
       });
+      done();
     });
     it('Displays Bar content on double click', (done) => {
       const legendItem = fetchAllElementsByClass(
