@@ -147,10 +147,22 @@
       }
     }
 
+    // refers to the icon itself IF there is no line next to it
     .carbon-legend-item-icon {
       display: block;
+      height: 0.857rem;
       stroke: var(--terra-graphs-white);
       stroke-width: 5px;
+      width: 0.857rem;
+    }
+
+    // refers to the icon IF there is a line next to it
+    .carbon-legend-item-icon-with-line {
+      display: block;
+      height: 0.857rem;
+      stroke: var(--terra-graphs-white);
+      stroke-width: 5px;
+      width: 0.857rem;
     }
 
     .carbon-legend-item-span {
@@ -160,12 +172,14 @@
       justify-content: center;
     }
 
+    // refers to the line itself IF there is no icon next to it
     .carbon-legend-item-line {
       height: 5px;
       padding-top: 1px;
       width: 28px;
     }
 
+    // refers to the line IF there is an icon next to it
     .carbon-legend-item-line-with-icon {
       height: 5px;
       padding-top: 1px;
