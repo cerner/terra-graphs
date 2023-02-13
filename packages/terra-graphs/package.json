@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "d3": "^5.16.0",
+    "d3": "^7.0.0",
     "prop-types": "^15.5.8",
     "terra-theme-context": "^1.0.0"
   },

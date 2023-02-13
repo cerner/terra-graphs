@@ -32,7 +32,7 @@ const createTrackItem = (pair, label, items) => {
         });
     }
 };
-const renderPopup = (fn) => {
+const renderPopup = (event, fn) => {
     const tip = document.querySelector("#tooltip");
     const clickHandler = () => {
         d3.select(tip).attr("style", "display:none;").selectAll("g").remove();
@@ -52,10 +52,10 @@ const renderPopup = (fn) => {
     // Position popup
     return d3
         .select("#tooltip")
-        .style("left", `${d3.event.pageX + 5}px`)
-        .style("top", `${d3.event.pageY + 5}px`);
+        .style("left", `${event.pageX + 5}px`)
+        .style("top", `${event.pageY + 5}px`);
 };
-const renderY2Popup = (fn) => {
+const renderY2Popup = (event, fn) => {
     const tip = document.querySelector("#tooltip");
     const clickHandler = () => {
         d3.select(tip).attr("style", "display:none;").selectAll("g").remove();
@@ -75,8 +75,8 @@ const renderY2Popup = (fn) => {
     // Position popup
     return d3
         .select("#tooltip")
-        .style("left", `${d3.event.pageX - 250}px`)
-        .style("top", `${d3.event.pageY + 5}px`);
+        .style("left", `${event.pageX - 250}px`)
+        .style("top", `${event.pageY + 5}px`);
 };
 const removeOldPopup = () => {
     // Remove old popup
@@ -86,9 +86,9 @@ const removeOldPopup = () => {
     }
     d3.select("#tooltip").attr("style", "").selectAll("g").remove();
 };
-export const loadPopup = (onCloseCB, key, index, value) => {
+export const loadPopup = (event, onCloseCB, key, index, value) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     if (value.x) {
         // Line
@@ -124,9 +124,9 @@ export const loadPopup = (onCloseCB, key, index, value) => {
         }
     }
 };
-export const loadBubblePopup = (onCloseCB, key, index, value) => {
+export const loadBubblePopup = (event, onCloseCB, key, index, value) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     if (value.x) {
         // Line
@@ -141,17 +141,17 @@ export const loadBubblePopup = (onCloseCB, key, index, value) => {
         createItem(pair, `${value.label.display}`, `${value.weight}`);
     }
 };
-export const loadBarPopup = (onCloseCB, key, index, values) => {
+export const loadBarPopup = (event, onCloseCB, key, index, values) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     values.forEach((value) =>
         createItem(pair, `${value.label.display}`, `${value.y}`)
     );
 };
-export const loadTextLabelPopup = (onCloseCB, value, index) => {
+export const loadTextLabelPopup = (event, onCloseCB, value, index) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path
         .append("g")
         .classed("popup-item", true)
@@ -182,9 +182,9 @@ export const loadTextLabelPopup = (onCloseCB, value, index) => {
             .text(` ${value.label.secondaryDisplay}`);
     }
 };
-export const loadXAndYAxisLabelPopup = (d) => {
+export const loadXAndYAxisLabelPopup = (event, d) => {
     removeOldPopup();
-    const path = renderPopup();
+    const path = renderPopup(event);
     path.append("g")
         .append("g")
         .classed("popup-item", true)
@@ -192,9 +192,9 @@ export const loadXAndYAxisLabelPopup = (d) => {
         .classed("popup-text", true)
         .text(d);
 };
-export const loadY2AxisLabelPopup = (d) => {
+export const loadY2AxisLabelPopup = (event, d) => {
     removeOldPopup();
-    const path = renderY2Popup();
+    const path = renderY2Popup(event);
     path.append("g")
         .append("g")
         .classed("popup-item", true)
@@ -202,9 +202,9 @@ export const loadY2AxisLabelPopup = (d) => {
         .classed("popup-text", true)
         .text(d);
 };
-export const loadTrackPopup = (onCloseCB, key, value) => {
+export const loadTrackPopup = (event, onCloseCB, key, value) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     if (value.tasks && value.tasks.length > 0) {
         const tasks = [];
@@ -249,9 +249,9 @@ export const loadTrackPopup = (onCloseCB, key, value) => {
         createTrackItem(pair, "Actions", actions);
     }
 };
-export const loadTaskPopup = (onCloseCB, key, index, value) => {
+export const loadTaskPopup = (event, onCloseCB, key, index, value) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     if (value.label) {
         createItem(pair, "Task Name", value.label.display);
@@ -263,18 +263,18 @@ export const loadTaskPopup = (onCloseCB, key, index, value) => {
         createItem(pair, "Percentage", value.percentage);
     }
 };
-export const loadDatelinePopup = (onCloseCB, payload) => {
+export const loadDatelinePopup = (event, onCloseCB, payload) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     if (payload.label) {
         createItem(pair, "Milestone", payload.label.display);
     }
     createItem(pair, "Date", getDate(payload.value));
 };
-export const loadTimelinePopup = (onCloseCB, key, index, value) => {
+export const loadTimelinePopup = (event, onCloseCB, key, index, value) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     createItem(
         pair,
@@ -283,9 +283,9 @@ export const loadTimelinePopup = (onCloseCB, key, index, value) => {
     );
     createItem(pair, `${value.label.display}`, value.content);
 };
-export const loadPiePopup = (onCloseCB, key, index, val) => {
+export const loadPiePopup = (event, onCloseCB, key, index, val) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(event, onCloseCB);
     const pair = path.append("g");
     createItem(pair, val.label.display, val.value);
 };

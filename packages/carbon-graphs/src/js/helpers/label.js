@@ -68,7 +68,7 @@ const removeOldPopup = () => {
  * @param {string} axisType - type of axis
  * @returns {object} d3 svg path
  */
-const renderPopup = (axisType) => {
+const renderPopup = (event, axisType) => {
   const tip = document.querySelector(`#${styles.labelPopupTooltip}`);
   const clickHandler = () => {
     d3.select(tip).attr('style', 'display:none;').selectAll('g').remove();
@@ -87,12 +87,12 @@ const renderPopup = (axisType) => {
     // Since y2 axis will be on the right side of the page, we should make popup move a bit left when clicked on y2-axis label.
     ? d3
       .select(`#${styles.labelPopupTooltip}`)
-      .style('left', `${d3.event.pageX - 250}px`)
-      .style('top', `${d3.event.pageY + 5}px`)
+      .style('left', `${event.pageX - 250}px`)
+      .style('top', `${event.pageY + 5}px`)
     : d3
       .select(`#${styles.labelPopupTooltip}`)
-      .style('left', `${d3.event.pageX + 5}px`)
-      .style('top', `${d3.event.pageY + 5}px`);
+      .style('left', `${event.pageX + 5}px`)
+      .style('top', `${event.pageY + 5}px`);
 };
 /**
  * Create popup for the label.
@@ -101,9 +101,9 @@ const renderPopup = (axisType) => {
  * @param {string} axisType - type of axis.
  * @returns {object} popup with axis label in it.
  */
-export const loadLabelPopup = (axisLabel, axisType) => {
+export const loadLabelPopup = (event, axisLabel, axisType) => {
   removeOldPopup();
-  const path = renderPopup(axisType);
+  const path = renderPopup(event, axisType);
   return path
     .append('g')
     .append('g')

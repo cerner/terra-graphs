@@ -7,8 +7,9 @@ const { version } = require('../../package.json');
 const postCssLoader = {
   loader: 'postcss-loader',
   options: {
-    ident: 'postcss',
-    plugins: () => [autoprefixer(), cssnano()],
+    postcssOptions: {
+      plugins: () => [autoprefixer(), cssnano()],
+    },
   },
 };
 
