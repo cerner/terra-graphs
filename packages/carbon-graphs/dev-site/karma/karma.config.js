@@ -32,7 +32,7 @@ module.exports = function (config) {
       '../../node_modules/@babel/polyfill/dist/polyfill.js',
       '../webpack/tests.webpack.js',
     ],
-    frameworks: ['parallel', 'jasmine'],
+    frameworks: ['parallel', 'jasmine', 'webpack'],
     preprocessors: {
       '../webpack/tests.webpack.js': ['webpack', 'sourcemap'],
     },
