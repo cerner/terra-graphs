@@ -10,7 +10,7 @@
 
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
 [![License](https://badgen.net/github/license/cerner/terra-graphs)](https://github.com/cerner/terra-graphs/blob/main/LICENSE)
-[![Build Status](https://travis-ci.com/cerner/terra-graphs.svg?branch=main)](https://travis-ci.com/cerner/terra-graphs)
+[![Build Status](https://github.com/cerner/terra-graphs/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/cerner/terra-graphs/actions/workflows/ci-cd.yml)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/cerner/terra-graphs)
 [![bugs](https://img.shields.io/github/issues/cerner/terra-graphs/bug?label=bugs)](https://github.com/cerner/terra-graphs/labels/bug)
