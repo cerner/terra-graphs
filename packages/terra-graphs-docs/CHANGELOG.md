@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.4.0 - (March 29, 2023)
+
 * Changed
   * Updated css for examples to increase size of a legend icon without a line.
 
