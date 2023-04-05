@@ -1,7 +1,5 @@
 'use strict';
 
-// test  change
-
 import sinon from 'sinon';
 import { Shape } from '../../../../src/js/core';
 import { getDefaultSVGProps } from '../../../../src/js/core/Shape';
