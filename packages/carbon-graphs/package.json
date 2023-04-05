@@ -70,6 +70,7 @@
     "sinon": "^9.2.0"
   },
   "scripts": {
+    "compile": "babel --root-mode upward src --out-dir lib --copy-files",
     "lint": "npm run lint:js",
     "lint:js": "eslint --ext .js . --ignore-path ../../.eslintignore",
     "lint:scss": "stylelint src/**/*.scss",
