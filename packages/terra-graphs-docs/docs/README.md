@@ -1,7 +1,5 @@
 # Consumer documentation
 
-test change
-
 For documentation on code: [**JSDocs**](https://engineering.cerner.com/carbon-graphs/docs/)
 
 -   [Consumer documentation](#consumer-documentation)
