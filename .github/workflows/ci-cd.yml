@@ -82,7 +82,7 @@ jobs:
         env:
           TERRA_DEV_SITE_NEW_RELIC_LICENSE_KEY: ${{ secrets.TERRA_DEV_SITE_NEW_RELIC_LICENSE_KEY }}
           TERRA_DEV_SITE_NEW_RELIC_APPLICATION_ID: "144458769"
-          TERRA_DEV_SITE_PUBLIC_PATH: /terra-framework/
+          TERRA_DEV_SITE_PUBLIC_PATH: /terra-graphs/
         run: npm run compile:prod
       - name: Release
         env:
@@ -94,7 +94,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'chore(docs): Regenerate docs'
