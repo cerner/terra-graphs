@@ -32,7 +32,7 @@ const createTrackItem = (pair, label, items) => {
         });
     }
 };
-const renderPopup = (fn) => {
+const renderPopup = (fn, event) => {
     const tip = document.querySelector("#tooltip");
     const clickHandler = () => {
         d3.select(tip).attr("style", "display:none;").selectAll("g").remove();
@@ -52,10 +52,11 @@ const renderPopup = (fn) => {
     // Position popup
     return d3
         .select("#tooltip")
-        .style("left", `${d3.event.pageX + 5}px`)
-        .style("top", `${d3.event.pageY + 5}px`);
+        .style("left", `${event.pageX + 5}px`)
+        .style("top", `${event.pageY + 5}px`);
 };
-const renderY2Popup = (fn) => {
+// TODO - pass local event
+const renderY2Popup = (fn, event) => {
     const tip = document.querySelector("#tooltip");
     const clickHandler = () => {
         d3.select(tip).attr("style", "display:none;").selectAll("g").remove();
@@ -75,8 +76,8 @@ const renderY2Popup = (fn) => {
     // Position popup
     return d3
         .select("#tooltip")
-        .style("left", `${d3.event.pageX - 250}px`)
-        .style("top", `${d3.event.pageY + 5}px`);
+        .style("left", `${event.pageX - 250}px`)
+        .style("top", `${event.pageY + 5}px`);
 };
 const removeOldPopup = () => {
     // Remove old popup
@@ -86,9 +87,10 @@ const removeOldPopup = () => {
     }
     d3.select("#tooltip").attr("style", "").selectAll("g").remove();
 };
-export const loadPopup = (onCloseCB, key, index, value) => {
+// TODO - pass local event
+export const loadPopup = (onCloseCB, key, index, value, selectedTarget, event) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     const { x, y, label, high, mid, low } = value;
     if (x) {
@@ -125,9 +127,10 @@ export const loadPopup = (onCloseCB, key, index, value) => {
         }
     }
 };
-export const loadBubblePopup = (onCloseCB, key, index, value) => {
+// TODO - pass local event
+export const loadBubblePopup = (onCloseCB, key, index, value, selectedTarget, event) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     const { x, y, label, weight} = value;
     if (x) {
@@ -143,17 +146,19 @@ export const loadBubblePopup = (onCloseCB, key, index, value) => {
         createItem(pair, `${label.display}`, `${weight}`);
     }
 };
-export const loadBarPopup = (onCloseCB, key, index, values) => {
+// TODO - pass local event
+export const loadBarPopup = (onCloseCB, key, index, values, selectedTarget, event) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     values.forEach((value) =>
         createItem(pair, `${value.label.display}`, `${value.y}`)
     );
 };
-export const loadTextLabelPopup = (onCloseCB, value, index) => {
+// TODO - pass local event
+export const loadTextLabelPopup = (onCloseCB, value, index, values, selectedTarget, event) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path
         .append("g")
         .classed("popup-item", true)
@@ -185,8 +190,10 @@ export const loadTextLabelPopup = (onCloseCB, value, index) => {
             .text(` ${label.secondaryDisplay}`);
     }
 };
+// TODO - pass local event 
 export const loadXAndYAxisLabelPopup = (d) => {
     removeOldPopup();
+    // TODO - pass local event to renderPopup method
     const path = renderPopup();
     path.append("g")
         .append("g")
@@ -195,8 +202,10 @@ export const loadXAndYAxisLabelPopup = (d) => {
         .classed("popup-text", true)
         .text(d);
 };
+// TODO - pass local event 
 export const loadY2AxisLabelPopup = (d) => {
     removeOldPopup();
+    // TODO - pass local event 
     const path = renderY2Popup();
     path.append("g")
         .append("g")
@@ -205,8 +214,10 @@ export const loadY2AxisLabelPopup = (d) => {
         .classed("popup-text", true)
         .text(d);
 };
+// TODO - pass local event 
 export const loadTrackPopup = (onCloseCB, key, value) => {
     removeOldPopup();
+    // TODO - pass local event 
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
     const { tasks, activities, events, actions } = value;
@@ -253,8 +264,10 @@ export const loadTrackPopup = (onCloseCB, key, value) => {
         createTrackItem(pair, "Actions", valueActions);
     }
 };
+// TODO - pass local event 
 export const loadTaskPopup = (onCloseCB, key, index, value) => {
     removeOldPopup();
+    // TODO - pass local event 
     const path = renderPopup(onCloseCB);
     const pair = path.append("g");
     const { label, display, y, startDate, endDate, percentage} = value;
@@ -280,9 +293,10 @@ export const loadDatelinePopup = (onCloseCB, payload) => {
     }
     createItem(pair, "Date", getDate(value));
 };
-export const loadTimelinePopup = (onCloseCB, key, index, value) => {
+// TODO - pass local event 
+export const loadTimelinePopup = (onCloseCB, key, index, value, selectedTarget, event) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     const { x, y, label, content} = value;
     createItem(
