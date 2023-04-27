@@ -155,7 +155,7 @@ const toggleDataPointSelection = (target) => {
  * @param {object} target - DOM object of the clicked point
  * @returns {undefined} - returns nothing
  */
-const dataPointActionHandler = (value, index, target) => {
+const dataPointActionHandler = (value, index, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -167,6 +167,7 @@ const dataPointActionHandler = (value, index, target) => {
     index,
     value,
     selectedTarget,
+    event,
   ));
 };
 /**
@@ -230,8 +231,8 @@ const drawDataPoints = (scale, config, pointGroupPath, legendSVG) => {
       svgClassNames: styles.point,
       svgStyles: `fill: ${getColorForTarget(value)};`,
       transformFn: transformPoint(scale)(value),
-      onClickFn() {
-        dataPointActionHandler(value, index, this);
+      onClickFn(event) {
+        dataPointActionHandler(value, index, this, event);
       },
       a11yAttributes: {
         'aria-hidden': legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${value.key}']`)?.attr('aria-current') === 'false' : 'false',
@@ -249,8 +250,8 @@ const drawDataPoints = (scale, config, pointGroupPath, legendSVG) => {
     getDefaultSVGProps({
       svgClassNames: styles.dataPointSelection,
       transformFn: transformPoint(scale)(value),
-      onClickFn() {
-        dataPointActionHandler(value, index, this);
+      onClickFn(event) {
+        dataPointActionHandler(value, index, this, event);
       },
       a11yAttributes: {
         'aria-hidden': true,
@@ -263,8 +264,8 @@ const drawDataPoints = (scale, config, pointGroupPath, legendSVG) => {
     getDefaultSVGProps({
       svgClassNames: `${styles.point} ${cls}`,
       transformFn: transformPoint(scale)(value),
-      onClickFn() {
-        dataPointActionHandler(value, index, this);
+      onClickFn(event) {
+        dataPointActionHandler(value, index, this, event);
       },
       a11yAttributes: {
         'aria-hidden':

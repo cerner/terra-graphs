@@ -292,12 +292,12 @@ const addLabelEventHandler = (
     ? d3
       .select(this)
       .style('cursor', 'pointer')
-      .on('click', () => {
+      .on('click', (event) => {
         // eslint-disable-next-line no-unused-expressions
         utils.isDefined(axisObj.onLabelClick)
             && utils.isFunction(axisObj.onLabelClick)
-          ? axisObj.onLabelClick(axisObj.label, d3.select(this))
-          : loadLabelPopup(axisObj.label, axisType);
+          ? axisObj.onLabelClick(axisObj.label, d3.select(this), event)
+          : loadLabelPopup(axisObj.label, axisType, event);
       })
     : (null);
 });

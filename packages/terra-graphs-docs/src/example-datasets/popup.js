@@ -87,7 +87,6 @@ const removeOldPopup = () => {
     }
     d3.select("#tooltip").attr("style", "").selectAll("g").remove();
 };
-// TODO - pass local event
 export const loadPopup = (onCloseCB, key, index, value, selectedTarget, event) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB, event);
@@ -127,7 +126,6 @@ export const loadPopup = (onCloseCB, key, index, value, selectedTarget, event) =
         }
     }
 };
-// TODO - pass local event
 export const loadBubblePopup = (onCloseCB, key, index, value, selectedTarget, event) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB, event);
@@ -146,7 +144,6 @@ export const loadBubblePopup = (onCloseCB, key, index, value, selectedTarget, ev
         createItem(pair, `${label.display}`, `${weight}`);
     }
 };
-// TODO - pass local event
 export const loadBarPopup = (onCloseCB, key, index, values, selectedTarget, event) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB, event);
@@ -155,7 +152,6 @@ export const loadBarPopup = (onCloseCB, key, index, values, selectedTarget, even
         createItem(pair, `${value.label.display}`, `${value.y}`)
     );
 };
-// TODO - pass local event
 export const loadTextLabelPopup = (onCloseCB, value, index, values, selectedTarget, event) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB, event);
@@ -214,11 +210,9 @@ export const loadY2AxisLabelPopup = (d) => {
         .classed("popup-text", true)
         .text(d);
 };
-// TODO - pass local event 
-export const loadTrackPopup = (onCloseCB, key, value) => {
+export const loadTrackPopup = (onCloseCB, key, value, selectedTarget, event) => {
     removeOldPopup();
-    // TODO - pass local event 
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     const { tasks, activities, events, actions } = value;
     if (tasks && tasks.length > 0) {
@@ -264,11 +258,9 @@ export const loadTrackPopup = (onCloseCB, key, value) => {
         createTrackItem(pair, "Actions", valueActions);
     }
 };
-// TODO - pass local event 
-export const loadTaskPopup = (onCloseCB, key, index, value) => {
+export const loadTaskPopup = (onCloseCB, key, index, value, selectedTarget, event) => {
     removeOldPopup();
-    // TODO - pass local event 
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     const { label, display, y, startDate, endDate, percentage} = value;
 
@@ -282,9 +274,9 @@ export const loadTaskPopup = (onCloseCB, key, index, value) => {
         createItem(pair, "Percentage", percentage);
     }
 };
-export const loadDatelinePopup = (onCloseCB, payload) => {
+export const loadDatelinePopup = (onCloseCB, payload, selectedTarget, event) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     const { label, value } = payload;
 
@@ -293,7 +285,6 @@ export const loadDatelinePopup = (onCloseCB, payload) => {
     }
     createItem(pair, "Date", getDate(value));
 };
-// TODO - pass local event 
 export const loadTimelinePopup = (onCloseCB, key, index, value, selectedTarget, event) => {
     removeOldPopup();
     const path = renderPopup(onCloseCB, event);

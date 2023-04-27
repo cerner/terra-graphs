@@ -77,7 +77,7 @@ const toggleDataPointSelection = (target) => {
  * @param {object} target - DOM object of the clicked point
  * @returns {undefined} - returns nothing
  */
-const datelineClickHandler = (value, target) => {
+const datelineClickHandler = (value, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -87,6 +87,7 @@ const datelineClickHandler = (value, target) => {
     },
     value,
     d3.select(target),
+    event,
   ));
 };
 /**
@@ -154,8 +155,8 @@ const createDateline = (scale, config, canvasSVG) => {
         svgClassNames: styles.datelinePoint,
         svgStyles: `fill: ${d.color}; stroke: ${d.color}`,
         transformFn: (s) => `scale(${s})`,
-        onClickFn() {
-          datelineClickHandler(d, this);
+        onClickFn(event) {
+          datelineClickHandler(d, this, event);
         },
         a11yAttributes: {
           'aria-hidden': !dateline.showDatelineIndicator,
