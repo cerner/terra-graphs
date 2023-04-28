@@ -55,7 +55,6 @@ const renderPopup = (fn, event) => {
         .style("left", `${event.pageX + 5}px`)
         .style("top", `${event.pageY + 5}px`);
 };
-// TODO - pass local event
 const renderY2Popup = (fn, event) => {
     const tip = document.querySelector("#tooltip");
     const clickHandler = () => {
@@ -186,11 +185,9 @@ export const loadTextLabelPopup = (onCloseCB, value, index, values, selectedTarg
             .text(` ${label.secondaryDisplay}`);
     }
 };
-// TODO - pass local event 
-export const loadXAndYAxisLabelPopup = (d) => {
+export const loadXAndYAxisLabelPopup = (d, selectedTarget, event) => {
     removeOldPopup();
-    // TODO - pass local event to renderPopup method
-    const path = renderPopup();
+    const path = renderPopup(undefined, event);
     path.append("g")
         .append("g")
         .classed("popup-item", true)
@@ -198,11 +195,9 @@ export const loadXAndYAxisLabelPopup = (d) => {
         .classed("popup-text", true)
         .text(d);
 };
-// TODO - pass local event 
-export const loadY2AxisLabelPopup = (d) => {
+export const loadY2AxisLabelPopup = (d, selectedTarget, event) => {
     removeOldPopup();
-    // TODO - pass local event 
-    const path = renderY2Popup();
+    const path = renderY2Popup(undefined, event);
     path.append("g")
         .append("g")
         .classed("popup-item", true)
@@ -297,9 +292,9 @@ export const loadTimelinePopup = (onCloseCB, key, index, value, selectedTarget, 
     );
     createItem(pair, `${label.display}`, content);
 };
-export const loadPiePopup = (onCloseCB, key, index, val) => {
+export const loadPiePopup = (onCloseCB, key, index, val, selectedTarget, event) => {
     removeOldPopup();
-    const path = renderPopup(onCloseCB);
+    const path = renderPopup(onCloseCB, event);
     const pair = path.append("g");
     const { label, value } = val;
     createItem(pair, label.display, value);
