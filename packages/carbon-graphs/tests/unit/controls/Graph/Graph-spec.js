@@ -1,6 +1,6 @@
 'use strict';
 
-import { rgb } from 'd3';
+import { rgb } from '../../../../src/js/d3Import';
 import Graph from '../../../../src/js/controls/Graph/index';
 import Line from '../../../../src/js/controls/Line/Line';
 import constants, {
