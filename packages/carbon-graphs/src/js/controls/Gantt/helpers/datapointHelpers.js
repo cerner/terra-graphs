@@ -1,4 +1,4 @@
-import * as d3 from 'd3';
+import * as d3 from '../../../d3Import';
 import { Shape } from '../../../core';
 import { getDefaultSVGProps } from '../../../core/Shape';
 import { getXAxisXPosition } from '../../../helpers/axis';

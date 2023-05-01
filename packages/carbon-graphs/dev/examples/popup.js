@@ -1,5 +1,5 @@
 /* eslint-disable */
-import * as d3 from "d3";
+import * as d3 from "../../src/js/d3Import.js";
 import constants from "../../src/js/helpers/constants";
 import utils from "../../src/js/helpers/utils";
 

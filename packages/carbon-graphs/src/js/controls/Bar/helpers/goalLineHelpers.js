@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from 'd3';
+import * as d3 from '../../../d3Import.js';
 import { parseTypedValue } from '../../../core/BaseConfig';
 import { isValidAxisType } from '../../../helpers/axis';
 import constants from '../../../helpers/constants';

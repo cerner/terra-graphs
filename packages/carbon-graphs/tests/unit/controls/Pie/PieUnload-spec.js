@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from 'd3';
+import * as d3 from '../../../../src/js/d3Import.js';
 import Pie from '../../../../src/js/controls/Pie';
 import errors from '../../../../src/js/helpers/errors';
 import styles from '../../../../src/js/helpers/styles';

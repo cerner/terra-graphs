@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from 'd3';
+import * as d3 from '../../../d3Import';
 import { Shape } from '../../../core';
 import { parseTypedValue } from '../../../core/BaseConfig';
 import { getDefaultSVGProps } from '../../../core/Shape';

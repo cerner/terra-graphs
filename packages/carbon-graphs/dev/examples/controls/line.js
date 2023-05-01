@@ -1,4 +1,4 @@
-import * as d3 from 'd3';
+import * as d3 from '../../../src/js/d3Import.js';
 import Carbon from '../../../src/js/carbon';
 import utils from '../../../src/js/helpers/utils';
 

@@ -5,7 +5,7 @@
  * @typedef {object} GraphContent
  * @typedef {object} GanttConfig
  */
-import * as d3 from 'd3';
+import * as d3 from '../../d3Import';
 import { GraphContent } from '../../core';
 import errors from '../../helpers/errors';
 import { loadLabelPopup, shouldTruncateLabel } from '../../helpers/label';
