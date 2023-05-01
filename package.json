@@ -24,9 +24,6 @@
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
   ],
-  "dependencies": {
-    "d3": "^5.16.0"
-  },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
     "@babel/core": "^7.5.0",
