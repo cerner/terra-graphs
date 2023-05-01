@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../../src/js/d3Import.js';
+import * as d3 from '../../../../src/js/d3Import';
 import Gantt from '../../../../src/js/controls/Gantt';
 import { COLORS } from '../../../../src/js/helpers/constants';
 import errors from '../../../../src/js/helpers/errors';

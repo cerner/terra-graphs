@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../d3Import.js';
+import * as d3 from '../d3Import';
 
 /**
  * @module constants

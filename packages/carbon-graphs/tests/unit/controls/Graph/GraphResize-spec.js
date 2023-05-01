@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../../src/js/d3Import.js';
+import * as d3 from '../../../../src/js/d3Import';
 import Graph from '../../../../src/js/controls/Graph/index';
 import Line from '../../../../src/js/controls/Line/Line';
 import { getXAxisWidth } from '../../../../src/js/helpers/axis';
