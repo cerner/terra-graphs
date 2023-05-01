@@ -1,4 +1,4 @@
-import * as d3 from '../../../src/js/d3Import';
+import * as d3 from '../../../src/js/d3Modules';
 
 /**
  * Returns the current d3 transform attribute object from context object

@@ -1,4 +1,4 @@
-import * as d3 from '../../../d3Import';
+import * as d3 from '../../../d3Modules';
 import { Shape } from '../../../core';
 import { getDefaultSVGProps } from '../../../core/Shape';
 import constants, { SHAPES } from '../../../helpers/constants';

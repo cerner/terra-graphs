@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../../src/js/d3Import';
+import * as d3 from '../../../../src/js/d3Modules';
 import sinon from 'sinon';
 import Gantt from '../../../../src/js/controls/Gantt';
 import constants, {

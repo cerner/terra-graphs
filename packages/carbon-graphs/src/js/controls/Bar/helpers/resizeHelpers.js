@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Import';
+import * as d3 from '../../../d3Modules';
 import { getXAxisRange } from '../../../helpers/axis';
 import constants from '../../../helpers/constants';
 import utils from '../../../helpers/utils';

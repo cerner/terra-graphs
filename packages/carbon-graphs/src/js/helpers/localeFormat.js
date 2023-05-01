@@ -1,4 +1,4 @@
-import * as d3 from '../../../src/js/d3Import';
+import * as d3 from '../../../src/js/d3Modules';
 
 /**
  * Creates format for locales like Spanish(es_ES), Portuguese(pt_BR) and Dutch(nl_NL).

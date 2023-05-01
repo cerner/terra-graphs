@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../../src/js/d3Import';
+import * as d3 from '../../../../src/js/d3Modules';
 import sinon from 'sinon';
 import Carbon from '../../../../src/js/carbon';
 import Pie from '../../../../src/js/controls/Pie';
