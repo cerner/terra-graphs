@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+* Changed
+  * Updated d3 dependencies to only pull in the necessary modules.
+  * Removed dependency on `d3-color@1` which has a known CVE issue. 
+
 ## 2.23.0 - (March 29, 2023)
 
 * Added

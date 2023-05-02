@@ -30,6 +30,7 @@
   "dependencies": {
     "@cerner/carbon-graphs": "^2.23.0",
     "classnames": "^2.2.5",
+    "d3-selection": "1",
     "details-polyfill": "^1.2.0",
     "prop-types": "^15.5.8",
     "terra-theme-context": "^1.0.0"

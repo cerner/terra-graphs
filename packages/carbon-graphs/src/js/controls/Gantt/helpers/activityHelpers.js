@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from 'd3';
+import * as d3 from '../../../d3Modules';
 import { getXAxisXPosition } from '../../../helpers/axis';
 import { getRect } from '../../../helpers/barType';
 import constants, { COLORS } from '../../../helpers/constants';

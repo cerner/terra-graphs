@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from 'd3';
+import * as d3 from '../../../d3Modules';
 import { Shape } from '../../../core';
 import {
   getInterpolationType,

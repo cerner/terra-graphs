@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from 'd3';
+import * as d3 from '../../../d3Modules';
 import constants from '../../../helpers/constants';
 import { loadPieLegendItem } from '../../../helpers/legend';
 import styles from '../../../helpers/styles';

@@ -1,6 +1,5 @@
 'use strict';
 
-import { rgb } from 'd3';
 import Graph from '../../../../src/js/controls/Graph/index';
 import Line from '../../../../src/js/controls/Line/Line';
 import constants, {
@@ -820,7 +819,7 @@ describe('Graph', () => {
         fetchElementByClass(
           styles.container,
         ).style.backgroundColor.toString(),
-      ).toEqual(rgb(255, 255, 255).toString());
+      ).toEqual('rgb(255, 255, 255)');
     });
     it('sets background as transparent when opaqueBackground is set to false', () => {
       const input = getAxes(axisDefault);

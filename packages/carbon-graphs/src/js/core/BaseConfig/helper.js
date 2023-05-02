@@ -1,7 +1,7 @@
 'use strict';
 
-import * as d3 from 'd3';
 import uuidv4 from 'uuid/v4';
+import * as d3 from '../../d3Modules';
 import { AXIS_TYPE, LINE_TYPE } from '../../helpers/constants';
 import errors from '../../helpers/errors';
 import utils from '../../helpers/utils';

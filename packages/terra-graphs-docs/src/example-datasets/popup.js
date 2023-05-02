@@ -1,5 +1,5 @@
 /* eslint-disable */
-import * as d3 from "d3";
+import * as d3 from "d3-selection";
 import constants from '@cerner/carbon-graphs/lib/js/helpers/constants';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 

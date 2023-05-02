@@ -1,7 +1,7 @@
 'use strict';
 
-import * as d3 from 'd3';
 import sinon from 'sinon';
+import * as d3 from '../../../../src/js/d3Modules';
 import Gantt from '../../../../src/js/controls/Gantt';
 import { getActivityStyle } from '../../../../src/js/controls/Gantt/helpers/durationHelpers';
 import constants, { COLORS } from '../../../../src/js/helpers/constants';

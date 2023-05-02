@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from 'd3';
+import * as d3 from '../../../../src/js/d3Modules';
 import Graph from '../../../../src/js/controls/Graph/index';
 import styles from '../../../../src/js/helpers/styles';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
