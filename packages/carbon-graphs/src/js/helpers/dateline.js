@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../src/js/d3Modules';
+import * as d3 from '../d3Modules';
 import utils from './utils';
 import errors from './errors';
 import styles from './styles';

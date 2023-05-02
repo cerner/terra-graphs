@@ -1,7 +1,7 @@
 'use strict';
 
-import * as d3 from '../../../../src/js/d3Modules';
 import sinon from 'sinon';
+import * as d3 from '../../../../src/js/d3Modules';
 import Timeline from '../../../../src/js/controls/Timeline';
 import {
   getShapeForTarget,

@@ -3,7 +3,7 @@
  * @alias module:legend
  */
 
-import * as d3 from '../../../src/js/d3Modules';
+import * as d3 from '../d3Modules';
 import {
   d3RemoveElement,
   getColorForTarget,
