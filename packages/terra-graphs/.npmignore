@@ -1,8 +1,0 @@
-*.log
-aggregate_translations
-dev-site-config
-errorScreenshots
-reports
-screenshots
-target
-tests/**/__snapshots__/

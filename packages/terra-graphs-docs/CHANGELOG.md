@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Changed
+  * Corrected some path mistakes in examples.
   * Updated d3 dependencies to only pull in `d3-selection` as the other modules are not needed.
 
 ## 1.4.0 - (March 29, 2023)

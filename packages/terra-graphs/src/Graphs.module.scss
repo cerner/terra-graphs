@@ -1,9 +1,0 @@
-//Themes
-@import './clinical-lowlight-theme/Graphs.module';
-@import './orion-fusion-theme/Graphs.module';
-
-:local {
-  .graphs {
-    background-color: var(--terra-graphs-graphs-background-color, #0079be);
-  }
-}

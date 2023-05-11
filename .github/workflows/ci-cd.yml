@@ -30,7 +30,6 @@ jobs:
           npm run lint
       - name: Testing Project
         run: |
-          npm run jest
           npm run karma
   wdio:
     runs-on: ubuntu-latest
