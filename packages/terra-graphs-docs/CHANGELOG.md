@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added examples for the Xaxis Overflow tick values.
+
 * Changed
   * Corrected some path mistakes in examples.
   * Updated d3 dependencies to only pull in `d3-selection` as the other modules are not needed.

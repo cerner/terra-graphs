@@ -168,7 +168,7 @@ const translateVerticalGrid = (axis, config) => {
   if (utils.notEmpty(config.axis.x.ticks.values)) {
     const ticks = config.axis.x.ticks.values;
     xAxisGrid = axis.x
-      .tickValues(processTickValues(ticks))
+      .tickValues(processTickValues(ticks.filter((value) => value >= axis.lowerLimit || value <= axis.upperLimit)))
       .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
       .tickFormat('');
   } else {
