@@ -167,10 +167,17 @@ const translateVerticalGrid = (axis, config) => {
     : constants.TICK_ORIENTATION.BOTTOM;
   if (utils.notEmpty(config.axis.x.ticks.values)) {
     const ticks = config.axis.x.ticks.values;
-    xAxisGrid = axis.x
-      .tickValues(processTickValues(ticks.filter((value) => value >= axis.lowerLimit || value <= axis.upperLimit)))
-      .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
-      .tickFormat('');
+    if (config.axis.x.domain === undefined) {
+      xAxisGrid = axis.x
+        .tickValues(processTickValues(ticks))
+        .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
+        .tickFormat('');
+    } else {
+      xAxisGrid = axis.x
+        .tickValues(processTickValues(ticks.filter((value) => value >= config.axis.x.domain.lowerLimit && value <= config.axis.x.domain.upperLimit)))
+        .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
+        .tickFormat('');
+    }
   } else {
     xAxisGrid = axis.x
       .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)

@@ -127,17 +127,28 @@ const prepareXAxis = (
   width,
   format,
   orientation = AXES_ORIENTATION.X.BOTTOM,
+  lowerLimit = null,
+  upperLimit = null,
 ) => {
   let d3Axis = d3.axisBottom(scale);
   if (isXAxisOrientationTop(orientation)) {
     d3Axis = d3.axisTop(scale);
   }
-  d3Axis
-    .ticks(
-      Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
-    )
-    .tickValues(processTickValues(tickValues))
-    .tickFormat(format);
+  if (tickValues === undefined) {
+    d3Axis
+      .ticks(
+        Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
+      )
+      .tickValues(processTickValues(tickValues))
+      .tickFormat(format);
+  } else {
+    d3Axis
+      .ticks(
+        Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
+      )
+      .tickValues(processTickValues(tickValues.filter((value) => value >= lowerLimit && value <= upperLimit)))
+      .tickFormat(format);
+  }
   return d3Axis;
 };
 
@@ -426,6 +437,8 @@ const getAxesScale = (axis, scale, config) => {
       config.axis.x.type,
     ),
     config.axis.x.orientation,
+    config.axis.x.domain.lowerLimit,
+    config.axis.x.domain.upperLimit,
   );
 
   // Reset the tickFormatToTrimTrailingZeros to null, so that
