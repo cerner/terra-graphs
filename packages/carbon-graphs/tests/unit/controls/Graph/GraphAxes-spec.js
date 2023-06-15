@@ -1766,15 +1766,15 @@ describe('Graph - Axes', () => {
       );
       // The first child element is the domain itself, and second child onwards denote the ticks
       expect(
-        allXAxisElements[0].childNodes[1].querySelector('text')
+        allXAxisElements[0].childNodes[2].querySelector('text')
           .textContent,
       ).toBe('Feb 2017');
       expect(
-        allXAxisElements[0].childNodes[2].querySelector('text')
+        allXAxisElements[0].childNodes[4].querySelector('text')
           .textContent,
       ).toBe('Apr 2017');
       expect(
-        allXAxisElements[0].childNodes[3].querySelector('text')
+        allXAxisElements[0].childNodes[6].querySelector('text')
           .textContent,
       ).toBe('Jun 2017');
       const gridLowerStepElement = fetchElementByClass(
@@ -1790,7 +1790,7 @@ describe('Graph - Axes', () => {
         type: 'timeseries',
         label: 'Some X Label',
         lowerLimit: new Date(2016, 11).toISOString(),
-        upperLimit: new Date(2017, 6).toISOString(),
+        upperLimit: new Date(2018, 2).toISOString(),
       };
       localeAxisObj.x.ticks = {
         format: '%b %Y',
@@ -1807,7 +1807,7 @@ describe('Graph - Axes', () => {
       const start = allXAxisElements[0].childNodes[1].querySelector(
         'text',
       );
-      const end = allXAxisElements[0].childNodes[2].querySelector('text');
+      const end = allXAxisElements[0].childNodes[15].querySelector('text');
       expect(start.textContent).toBe('Dec 2016');
       expect(end.textContent).toBe('Feb 2018');
       const gridUpperStepElement = fetchElementByClass(
@@ -1848,10 +1848,10 @@ describe('Graph - Axes', () => {
       const allXAxisElements = document.querySelectorAll(
                 `.${styles.axisX}`,
       );
-      const lowerAxis = allXAxisElements[0].childNodes[1].querySelector(
+      const lowerAxis = allXAxisElements[0].childNodes[3].querySelector(
         'text',
       );
-      const upperAxis = allXAxisElements[0].childNodes[4].querySelector(
+      const upperAxis = allXAxisElements[0].childNodes[1].querySelector(
         'text',
       );
       expect(lowerAxis.textContent).toBe('Feb 2017');

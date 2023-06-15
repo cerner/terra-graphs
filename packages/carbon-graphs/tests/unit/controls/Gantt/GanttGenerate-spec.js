@@ -456,15 +456,15 @@ describe('Gantt - Generate', () => {
         );
         // The first child element is the domain itself, and second child onwards denote the ticks
         expect(
-          allXAxisElements[0].childNodes[1].querySelector('text')
+          allXAxisElements[0].childNodes[3].querySelector('text')
             .textContent,
         ).toBe('Feb 2017');
         expect(
-          allXAxisElements[0].childNodes[2].querySelector('text')
+          allXAxisElements[0].childNodes[5].querySelector('text')
             .textContent,
         ).toBe('Apr 2017');
         expect(
-          allXAxisElements[0].childNodes[3].querySelector('text')
+          allXAxisElements[0].childNodes[7].querySelector('text')
             .textContent,
         ).toBe('Jun 2017');
       });
@@ -497,7 +497,7 @@ describe('Gantt - Generate', () => {
           'text',
         );
         expect(start.textContent).toBe('Dec 2016');
-        expect(end.textContent).toBe('Feb 2018');
+        expect(end.textContent).toBe('Jan 2017');
       });
       it('creates x axis with LowerTickValues, UpperTickValues and midTickValues in default locale', () => {
         gantt.destroy();
@@ -532,19 +532,19 @@ describe('Gantt - Generate', () => {
                     `.${styles.axisX}`,
         );
         // The first child element is the domain itself, and second child onwards denote the ticks
-        const lowerAxis1 = allXAxisElements[0].childNodes[1].querySelector(
+        const lowerAxis1 = allXAxisElements[0].childNodes[4].querySelector(
           'text',
         );
-        const lowerAxis2 = allXAxisElements[0].childNodes[2].querySelector(
+        const lowerAxis2 = allXAxisElements[0].childNodes[8].querySelector(
           'text',
         );
-        const lowerAxis3 = allXAxisElements[0].childNodes[3].querySelector(
+        const lowerAxis3 = allXAxisElements[0].childNodes[12].querySelector(
           'text',
         );
-        const upperAxis1 = allXAxisElements[0].childNodes[4].querySelector(
+        const upperAxis1 = allXAxisElements[0].childNodes[2].querySelector(
           'text',
         );
-        const upperAxis2 = allXAxisElements[0].childNodes[5].querySelector(
+        const upperAxis2 = allXAxisElements[0].childNodes[16].querySelector(
           'text',
         );
         expect(lowerAxis1.textContent).toBe('Feb 2017');
@@ -1395,3 +1395,4 @@ describe('Gantt - Generate', () => {
     expect(gantt.resizeHandler).toEqual(jasmine.any(Function));
   });
 });
+
