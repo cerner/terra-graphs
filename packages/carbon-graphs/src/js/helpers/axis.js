@@ -143,9 +143,6 @@ const prepareXAxis = (
       .tickFormat(format);
   } else {
     d3Axis
-      .ticks(
-        Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
-      )
       .tickValues(processTickValues(tickValues.filter((value) => value >= lowerLimit && value <= upperLimit)))
       .tickFormat(format);
   }
