@@ -43,7 +43,6 @@ const getDefaultConfigOverflow = (id) => ({
           216,
           222,
         ],
-        // ].filter(value => value >= '40' && value <= '168'),
       },
     },
     y: {
