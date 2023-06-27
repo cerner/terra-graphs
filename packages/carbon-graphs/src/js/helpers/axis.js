@@ -108,6 +108,12 @@ const processTickValues = (ticks) => {
   return ticks.map((t) => (utils.isDate(t) ? utils.parseDateTime(t) : t));
 };
 
+const hasDateValues = (array) => {
+  if (utils.isDate(array)) {
+    return true;
+  }
+  return false;
+};
 /**
  * Creates the axis using the scale provided for X Axis using d3 svg axis.
  * If tickValues are provided then they are reserved precedence over ticks/tick counts.
@@ -127,22 +133,33 @@ const prepareXAxis = (
   width,
   format,
   orientation = AXES_ORIENTATION.X.BOTTOM,
-  lowerLimit = null,
-  upperLimit = null,
+  lowerLimit,
+  upperLimit,
 ) => {
   let d3Axis = d3.axisBottom(scale);
   if (isXAxisOrientationTop(orientation)) {
     d3Axis = d3.axisTop(scale);
   }
-  if (tickValues === undefined) {
+  if (!tickValues || tickValues.length === 0) {
     d3Axis
       .ticks(
         Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
       )
       .tickValues(processTickValues(tickValues))
       .tickFormat(format);
+  } else if (hasDateValues(tickValues)) {
+    const filteredTickValues = tickValues.filter((value) => {
+      const date = new Date(value);
+      return date >= lowerLimit && date <= upperLimit;
+    });
+    d3Axis
+      .tickValues(processTickValues(filteredTickValues))
+      .tickFormat(d3.timeFormat(format));
   } else {
     d3Axis
+      .ticks(
+        Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
+      )
       .tickValues(processTickValues(tickValues.filter((value) => value >= lowerLimit && value <= upperLimit)))
       .tickFormat(format);
   }

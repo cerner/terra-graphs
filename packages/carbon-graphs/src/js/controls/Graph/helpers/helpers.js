@@ -167,7 +167,7 @@ const translateVerticalGrid = (axis, config) => {
     : constants.TICK_ORIENTATION.BOTTOM;
   if (utils.notEmpty(config.axis.x.ticks.values)) {
     const ticks = config.axis.x.ticks.values;
-    if (config.axis.x.domain === undefined) {
+    if (utils.isUndefined(config.axis.x.domain)) {
       xAxisGrid = axis.x
         .tickValues(processTickValues(ticks))
         .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
