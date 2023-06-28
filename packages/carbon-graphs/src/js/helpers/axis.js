@@ -148,13 +148,22 @@ const prepareXAxis = (
       .tickValues(processTickValues(tickValues))
       .tickFormat(format);
   } else if (hasDateValues(tickValues)) {
-    const filteredTickValues = tickValues.filter((value) => {
-      const date = new Date(value);
-      return date >= lowerLimit && date <= upperLimit;
-    });
-    d3Axis
-      .tickValues(processTickValues(filteredTickValues))
-      .tickFormat(d3.timeFormat(format));
+    if (utils.isUndefined(lowerLimit) || utils.isUndefined(upperLimit)) {
+      d3Axis
+        .ticks(
+          Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
+        )
+        .tickValues(processTickValues(tickValues))
+        .tickFormat(format);
+    } else {
+      const filteredTickValues = tickValues.filter((value) => {
+        const date = new Date(value);
+        return date >= lowerLimit && date <= upperLimit;
+      });
+      d3Axis
+        .tickValues(processTickValues(filteredTickValues))
+        .tickFormat(d3.timeFormat(format));
+    }
   } else {
     d3Axis
       .ticks(
