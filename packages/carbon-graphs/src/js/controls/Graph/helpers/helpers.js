@@ -172,6 +172,22 @@ const translateVerticalGrid = (axis, config) => {
         .tickValues(processTickValues(ticks))
         .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
         .tickFormat('');
+    } else if (utils.isDate(ticks)) {
+      if (utils.isUndefined(config.axis.x.domain.lowerLimit) || utils.isUndefined(config.axis.x.domain.upperLimit)) {
+        xAxisGrid = axis.x
+          .tickValues(processTickValues(ticks))
+          .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
+          .tickFormat('');
+      } else {
+        const filteredTickValues = ticks.filter((value) => {
+          const date = new Date(value);
+          return date >= config.axis.x.domain.lowerLimit && date <= config.axis.x.domain.upperLimit;
+        });
+        xAxisGrid = axis.x
+          .tickValues(processTickValues(filteredTickValues))
+          .tickSize(getYAxisHeight(config) * tickSizeMultiplicand, 0, 0)
+          .tickFormat('');
+      }
     } else {
       xAxisGrid = axis.x
         .tickValues(processTickValues(ticks.filter((value) => value >= config.axis.x.domain.lowerLimit && value <= config.axis.x.domain.upperLimit)))
