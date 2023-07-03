@@ -1395,4 +1395,3 @@ describe('Gantt - Generate', () => {
     expect(gantt.resizeHandler).toEqual(jasmine.any(Function));
   });
 });
-
