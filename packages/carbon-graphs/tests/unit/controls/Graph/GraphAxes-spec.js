@@ -1215,7 +1215,7 @@ describe('Graph - Axes', () => {
       expect(y2Ticks).toEqual(expectedY2Ticks);
     });
 
-    it('tesing filter method for numeric', () => {
+    it('filters out numeric axis values exceeding upper and lower limits', () => {
       const localeAxisObj = utils.deepClone(axisTicks);
       localeAxisObj.allowCallibration = false;
       localeAxisObj.x = {
@@ -1237,17 +1237,16 @@ describe('Graph - Axes', () => {
       graph = new Graph({ ...getAxes(localeAxisObj) });
 
       const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
-      const xTicks = [];
       const expectedXTicks = [2, 3, 4, 5, 6, 7, 8];
 
-      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
-        xTicks.push(parseInt(allXAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
-      }
-
+      // using slice method to avoid null ERROR with 'textContent'.
+      const xTicks = Array.from(allXAxisElements[0].childNodes)
+        .slice(1)
+        .map((node) => parseInt(node.querySelector('text').textContent, 10));
       expect(xTicks).toEqual(expectedXTicks);
     });
 
-    it('tesing filter method for DateTicks', () => {
+    it('filters out datetime axis values exceeding upper and lower limits', () => {
       const localeAxisObj = utils.deepClone(axisDateTicks);
       localeAxisObj.allowCallibration = false;
       localeAxisObj.y = {
@@ -1265,17 +1264,19 @@ describe('Graph - Axes', () => {
 
       const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
 
-      const xTicks = [];
       const expectedXTicks = [
         new Date(2016, 2).toISOString(),
         new Date(2016, 3).toISOString(),
         new Date(2016, 4).toISOString(),
       ];
-      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
-        const { textContent } = allXAxisElements[0].childNodes[i].querySelector('text');
-        const dateTimeValue = new Date(textContent).toISOString();
-        xTicks.push(dateTimeValue);
-      }
+      // using slice method to avoid null ERROR with 'textContent'.
+      const xTicks = Array.from(allXAxisElements[0].childNodes)
+        .slice(1)
+        .map((childNode) => {
+          const { textContent } = childNode.querySelector('text');
+          const dateTimeValue = new Date(textContent).toISOString();
+          return dateTimeValue;
+        });
       expect(xTicks).toEqual(expectedXTicks);
     });
     it('uses default method for Y ans Y2 tick values when custom ticks and ticksCount are not provided', () => {
