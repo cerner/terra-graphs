@@ -16,7 +16,9 @@ import {
   triggerEvent,
 } from '../../helpers/commonHelpers';
 import {
+  axisDateTicks,
   axisDefault,
+  axisTicks,
   axisTimeSeries,
   dimension,
   fetchElementByClass,
@@ -1211,6 +1213,70 @@ describe('Graph - Axes', () => {
 
       expect(yTicks).toEqual(expectedYTicks);
       expect(y2Ticks).toEqual(expectedY2Ticks);
+    });
+
+    it('tesing filter method for numeric', () => {
+      const localeAxisObj = utils.deepClone(axisTicks);
+      localeAxisObj.allowCallibration = false;
+      localeAxisObj.x = {
+        label: 'x axis',
+        lowerLimit: 2,
+        upperLimit: 8,
+      };
+      localeAxisObj.y = {
+        label: 'y axis',
+        lowerLimit: 0,
+        upperLimit: 30,
+      };
+      localeAxisObj.y2 = {
+        show: true,
+        label: 'y2 axis',
+        lowerLimit: 0,
+        upperLimit: 120,
+      };
+      graph = new Graph({ ...getAxes(localeAxisObj) });
+
+      const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
+      const xTicks = [];
+      const expectedXTicks = [2, 3, 4, 5, 6, 7, 8];
+
+      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
+        xTicks.push(parseInt(allXAxisElements[0].childNodes[i].querySelector('text').textContent, 10));
+      }
+
+      expect(xTicks).toEqual(expectedXTicks);
+    });
+
+    it('tesing filter method for DateTicks', () => {
+      const localeAxisObj = utils.deepClone(axisDateTicks);
+      localeAxisObj.allowCallibration = false;
+      localeAxisObj.y = {
+        label: 'y axis',
+        lowerLimit: 0,
+        upperLimit: 30,
+      };
+      localeAxisObj.y2 = {
+        show: true,
+        label: 'y2 axis',
+        lowerLimit: 0,
+        upperLimit: 120,
+      };
+      graph = new Graph(getAxes(localeAxisObj));
+
+      const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
+
+      const xTicks = [];
+      const expectedXTicks = [
+        new Date(2016, 2).toISOString(),
+        new Date(2016, 3).toISOString(),
+        new Date(2016, 4).toISOString(),
+      ];
+      for (let i = 1; i < allXAxisElements[0].childNodes.length; i += 1) {
+        const { textContent } = allXAxisElements[0].childNodes[i].querySelector('text');
+        const dateTimeValue = new Date(textContent).toISOString();
+        xTicks.push(dateTimeValue);
+      }
+      expect(xTicks).toEqual(expectedXTicks);
     });
     it('uses default method for Y ans Y2 tick values when custom ticks and ticksCount are not provided', () => {
       const localeAxisObj = utils.deepClone(axisDefault);
