@@ -127,17 +127,39 @@ const prepareXAxis = (
   width,
   format,
   orientation = AXES_ORIENTATION.X.BOTTOM,
+  lowerLimit,
+  upperLimit,
 ) => {
   let d3Axis = d3.axisBottom(scale);
   if (isXAxisOrientationTop(orientation)) {
     d3Axis = d3.axisTop(scale);
   }
-  d3Axis
-    .ticks(
-      Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS),
-    )
-    .tickValues(processTickValues(tickValues))
-    .tickFormat(format);
+  if (!tickValues || tickValues.length === 0) {
+    d3Axis
+      .ticks(Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS))
+      .tickValues(processTickValues(tickValues))
+      .tickFormat(format);
+  } else if (utils.isDate(tickValues)) {
+    if (utils.isUndefined(lowerLimit) || utils.isUndefined(upperLimit)) {
+      d3Axis
+        .ticks(Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS))
+        .tickValues(processTickValues(tickValues))
+        .tickFormat(format);
+    } else {
+      const filteredTickValues = tickValues.filter((value) => {
+        const date = new Date(value);
+        return date >= lowerLimit && date <= upperLimit;
+      });
+      d3Axis
+        .tickValues(processTickValues(filteredTickValues))
+        .tickFormat(d3.timeFormat(format));
+    }
+  } else {
+    d3Axis
+      .ticks(Math.max(width / constants.MAX_TICK_VARIANCE, constants.MIN_TICKS))
+      .tickValues(processTickValues(tickValues.filter((value) => value >= lowerLimit && value <= upperLimit)))
+      .tickFormat(format);
+  }
   return d3Axis;
 };
 
@@ -426,6 +448,8 @@ const getAxesScale = (axis, scale, config) => {
       config.axis.x.type,
     ),
     config.axis.x.orientation,
+    config.axis.x.domain.lowerLimit,
+    config.axis.x.domain.upperLimit,
   );
 
   // Reset the tickFormatToTrimTrailingZeros to null, so that

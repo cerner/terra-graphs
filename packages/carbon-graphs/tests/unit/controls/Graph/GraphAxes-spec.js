@@ -16,7 +16,9 @@ import {
   triggerEvent,
 } from '../../helpers/commonHelpers';
 import {
+  axisDateTicks,
   axisDefault,
+  axisTicks,
   axisTimeSeries,
   dimension,
   fetchElementByClass,
@@ -1211,6 +1213,71 @@ describe('Graph - Axes', () => {
 
       expect(yTicks).toEqual(expectedYTicks);
       expect(y2Ticks).toEqual(expectedY2Ticks);
+    });
+
+    it('filters out numeric axis values exceeding upper and lower limits', () => {
+      const localeAxisObj = utils.deepClone(axisTicks);
+      localeAxisObj.allowCallibration = false;
+      localeAxisObj.x = {
+        label: 'x axis',
+        lowerLimit: 2,
+        upperLimit: 8,
+      };
+      localeAxisObj.y = {
+        label: 'y axis',
+        lowerLimit: 0,
+        upperLimit: 30,
+      };
+      localeAxisObj.y2 = {
+        show: true,
+        label: 'y2 axis',
+        lowerLimit: 0,
+        upperLimit: 120,
+      };
+      graph = new Graph({ ...getAxes(localeAxisObj) });
+
+      const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
+      const expectedXTicks = [2, 3, 4, 5, 6, 7, 8];
+
+      // using slice method to avoid null ERROR with 'textContent'.
+      const xTicks = Array.from(allXAxisElements[0].childNodes)
+        .slice(1)
+        .map((node) => parseInt(node.querySelector('text').textContent, 10));
+      expect(xTicks).toEqual(expectedXTicks);
+    });
+
+    it('filters out datetime axis values exceeding upper and lower limits', () => {
+      const localeAxisObj = utils.deepClone(axisDateTicks);
+      localeAxisObj.allowCallibration = false;
+      localeAxisObj.y = {
+        label: 'y axis',
+        lowerLimit: 0,
+        upperLimit: 30,
+      };
+      localeAxisObj.y2 = {
+        show: true,
+        label: 'y2 axis',
+        lowerLimit: 0,
+        upperLimit: 120,
+      };
+      graph = new Graph(getAxes(localeAxisObj));
+
+      const allXAxisElements = document.querySelectorAll(`.${styles.axisX}`);
+
+      const expectedXTicks = [
+        new Date(2016, 2).toISOString(),
+        new Date(2016, 3).toISOString(),
+        new Date(2016, 4).toISOString(),
+      ];
+      // using slice method to avoid null ERROR with 'textContent'.
+      const xTicks = Array.from(allXAxisElements[0].childNodes)
+        .slice(1)
+        .map((childNode) => {
+          const { textContent } = childNode.querySelector('text');
+          const dateTimeValue = new Date(textContent).toISOString();
+          return dateTimeValue;
+        });
+      expect(xTicks).toEqual(expectedXTicks);
     });
     it('uses default method for Y ans Y2 tick values when custom ticks and ticksCount are not provided', () => {
       const localeAxisObj = utils.deepClone(axisDefault);

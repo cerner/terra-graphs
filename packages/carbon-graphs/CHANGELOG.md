@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixed
+  * Fixed tick lines overflowing outside the grid container when using custom tick values.
+
 * Changed
   * Updated d3 dependencies to only pull in the necessary modules.
   * Removed dependency on `d3-color@1` which has a known CVE issue. 

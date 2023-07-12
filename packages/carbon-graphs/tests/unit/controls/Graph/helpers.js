@@ -105,6 +105,54 @@ export const axisDefault = {
     upperLimit: 20,
   },
 };
+export const axisTicks = {
+  x: {
+    label: 'Some X Label',
+    lowerLimit: 2,
+    upperLimit: 9,
+    ticks: {
+      values: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+      ],
+    },
+  },
+  y: {
+    label: 'Some Y Label',
+    lowerLimit: 0,
+    upperLimit: 20,
+  },
+};
+export const axisDateTicks = {
+  x: {
+    show: true,
+    type: AXIS_TYPE.TIME_SERIES,
+    label: 'Data',
+    lowerLimit: new Date(2016, 2).toISOString(),
+    upperLimit: new Date(2016, 4).toISOString(),
+    ticks: {
+      values: [
+        new Date(2016, 1).toISOString(),
+        new Date(2016, 2).toISOString(),
+        new Date(2016, 3).toISOString(),
+        new Date(2016, 4).toISOString(),
+        new Date(2016, 5).toISOString(),
+      ],
+      format: '%b %Y',
+    },
+  },
+  y: {
+    label: 'Some Y Label',
+    lowerLimit: 0,
+    upperLimit: 20,
+  },
+  y2: {
+    show: true,
+    label: 'y2 axis',
+    lowerLimit: 0,
+    upperLimit: 120,
+  },
+};
+
 export const valuesDefault = [
   {
     x: 35,
