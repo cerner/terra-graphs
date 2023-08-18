@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Fixed
+  * Fix infinite padding in line graphs reflow where maximum y axis value is zero
   * Fixed tick lines overflowing outside the grid container when using custom tick values.
 
 * Changed
