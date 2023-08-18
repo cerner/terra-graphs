@@ -1593,7 +1593,7 @@ const getAxesDataRange = (
   const prevMax = config.axis[axis].dataRange.oldMax;
   let isRangeModified;
 
-  if (prevMin === 0) {
+  if (prevMin === 0 || prevMax === 0) {
     isRangeModified = !(prevMin <= curRange.min || prevMax >= curRange.max);
   } else {
     isRangeModified = !(prevMin && prevMax)
