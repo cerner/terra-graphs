@@ -1,5 +1,5 @@
-const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
+const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 const { jsOptions, cssOptions } = require('./helpers/rules');
 
