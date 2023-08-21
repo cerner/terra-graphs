@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.23.1 - (August 21, 2023)
+
 * Fixed
   * Fixed infinite padding in line graphs on multiple unload/load where maximum datapoint is zero.
   * Fixed tick lines overflowing outside the grid container when using custom tick values.
