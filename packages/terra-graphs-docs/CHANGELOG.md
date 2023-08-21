@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.4.1 - (August 21, 2023)
+
 * Added
   * Added examples for the Xaxis Overflow tick values.
 
