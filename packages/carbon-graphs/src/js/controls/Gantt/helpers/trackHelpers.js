@@ -69,7 +69,7 @@ const toggleTrackSelection = (target, key) => {
  * @param {object} trackConfig - Config of the track derived from
  * @returns {undefined} - returns nothing
  */
-const trackClickActionHandler = (path, trackConfig) => {
+const trackClickActionHandler = (path, trackConfig, event) => {
   if (utils.isEmpty(trackConfig.onClick)) {
     return;
   }
@@ -81,6 +81,7 @@ const trackClickActionHandler = (path, trackConfig) => {
     trackConfig.key,
     trackConfig,
     d3TargetNode,
+    event,
   ));
 };
 
@@ -104,7 +105,7 @@ const renderSelectionIndicator = (indicatorArgs, trackConfig) => {
     .classed(styles.ganttTrackBarSelection, true)
     .attr('aria-describedby', trackConfig.key)
     .attr('aria-disabled', !utils.isFunction(trackConfig.onClick))
-    .on('click', () => trackClickActionHandler(indicatorArgs.path, trackConfig));
+    .on('click', (event) => trackClickActionHandler(indicatorArgs.path, trackConfig, event));
 };
 
 /**

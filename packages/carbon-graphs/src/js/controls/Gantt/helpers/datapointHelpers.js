@@ -93,7 +93,7 @@ const toggleDataPointSelection = (target) => {
  * @param {object} target - DOM object of the clicked point
  * @returns {undefined} - returns nothing
  */
-export const dataPointActionHandler = (value, index, target) => {
+export const dataPointActionHandler = (value, index, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -103,6 +103,7 @@ export const dataPointActionHandler = (value, index, target) => {
     index,
     value,
     selectedTarget,
+    event,
   ));
 };
 
@@ -125,8 +126,8 @@ export const renderSelectionPath = (scale, config, path, dataPoint, index) => pa
     svgClassNames: styles.dataPointSelection,
     svgStyles: '',
     transformFn: transformPoint(scale, config)(dataPoint),
-    onClickFn() {
-      dataPointActionHandler(dataPoint, index, this);
+    onClickFn(event) {
+      dataPointActionHandler(dataPoint, index, this, event);
     },
     a11yAttributes: {
       'aria-hidden': true,
@@ -164,8 +165,8 @@ export const renderSelectionPathForEvents = (
     svgClassNames: styles.dataPointSelection,
     svgStyles: '',
     transformFn: transformPoint(scale, config)(dataPoint),
-    onClickFn() {
-      dataPointActionHandler(dataPoint, index, this);
+    onClickFn(event) {
+      dataPointActionHandler(dataPoint, index, this, event);
     },
     a11yAttributes: {
       'aria-hidden': true,

@@ -186,7 +186,7 @@ const removeSliceSelection = (nodes) => nodes.each(function () {
  * @param {HTMLElement} target - DOM object of the clicked point
  * @returns {undefined} - returns nothing
  */
-const sliceClickActionHandler = (legendPath, value, index, target) => {
+const sliceClickActionHandler = (legendPath, value, index, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -199,6 +199,7 @@ const sliceClickActionHandler = (legendPath, value, index, target) => {
     index,
     value,
     selectedTarget,
+    event,
   ));
 };
 /**
@@ -251,10 +252,10 @@ const createPieContentGroup = (
   .attr('aria-describedby', contentConfig.key)
   .attr('aria-disabled', !utils.isFunction(dataTarget.onClick))
   .attr('aria-selected', false)
-  .on('click', function (value, index) {
-    sliceClickActionHandler(legendPath, value, index, this);
+  .on('click', function (event, value, index) {
+    sliceClickActionHandler(legendPath, value, index, this, event);
   })
-  .on('mouseenter', function (value) {
+  .on('mouseenter', function (event, value) {
     sliceHoverActionHandler(
       legendPath,
       this,
@@ -262,7 +263,7 @@ const createPieContentGroup = (
       constants.HOVER_EVENT.MOUSE_ENTER,
     );
   })
-  .on('mouseleave', function (value) {
+  .on('mouseleave', function (event, value) {
     sliceHoverActionHandler(
       legendPath,
       this,

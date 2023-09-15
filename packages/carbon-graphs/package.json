@@ -50,7 +50,7 @@
     "access": "public"
   },
   "dependencies": {
-    "d3": "^5.16.0"
+    "d3": "^7.0.0"
   },
   "devDependencies": {
     "@cerner/carbon-site-helpers": "^1.11.3",
@@ -67,7 +67,8 @@
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "puppeteer": "^5.3.1",
-    "sinon": "^9.2.0"
+    "sinon": "^9.2.0",
+    "rimraf": "^4.4.1"
   },
   "scripts": {
     "clean:install": "rm -rf ./node_modules && time npm install",

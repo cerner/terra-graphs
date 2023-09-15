@@ -57,8 +57,8 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget) => {
           )
           ?.getAttribute('aria-current') === 'false',
       )
-      .on('click', function () {
-        dataPointActionHandler(value, index, this);
+      .on('click', function (event) {
+        dataPointActionHandler(value, index, this, event);
       });
 
     bubblePoint
@@ -77,8 +77,8 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget) => {
       .attr('aria-disabled', utils.isDefined(value.onClick))
       .attr('aria-hidden', true)
       .attr('aria-describedby', value.key)
-      .on('click', function () {
-        dataPointActionHandler(value, index, this);
+      .on('click', function (event) {
+        dataPointActionHandler(value, index, this, event);
       })
       .append('circle')
       .attr(
