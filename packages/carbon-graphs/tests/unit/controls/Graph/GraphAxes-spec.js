@@ -1,7 +1,7 @@
 'use strict';
 
 import sinon from 'sinon';
-import * as d3 from '../../../../src/js/d3Modules';
+import * as d3 from 'd3';
 import Graph from '../../../../src/js/controls/Graph/index';
 import Line from '../../../../src/js/controls/Line/Line';
 import constants, {

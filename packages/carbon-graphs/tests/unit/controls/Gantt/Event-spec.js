@@ -1,7 +1,7 @@
 'use strict';
 
 import sinon from 'sinon';
-import * as d3 from '../../../../src/js/d3Modules';
+import * as d3 from 'd3';
 import Gantt from '../../../../src/js/controls/Gantt';
 import constants, {
   COLORS,

@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../d3Modules';
+import * as d3 from 'd3';
 import Bar from '../controls/Bar/Bar';
 import { getScale, getType, getXAxisDomain } from '../core/BaseConfig';
 import constants, { AXES_ORIENTATION, AXIS_TYPE } from './constants';

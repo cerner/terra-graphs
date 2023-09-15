@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../d3Modules';
+import * as d3 from 'd3';
 import { d3RemoveElement } from '../controls/Graph/helpers/helpers';
 import {
   calculateVerticalPadding,

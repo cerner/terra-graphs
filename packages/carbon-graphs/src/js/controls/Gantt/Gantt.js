@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../d3Modules';
+import * as d3 from 'd3';
 import Construct from '../../core/Construct';
 import { getYAxisHeight, setXAxisDomain } from '../../helpers/axis';
 import constants from '../../helpers/constants';

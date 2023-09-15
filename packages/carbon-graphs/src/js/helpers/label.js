@@ -5,7 +5,7 @@
  * @alias module:label
  */
 
-import * as d3 from '../d3Modules';
+import * as d3 from 'd3';
 import {
   d3RemoveElement,
   getColorForTarget,
