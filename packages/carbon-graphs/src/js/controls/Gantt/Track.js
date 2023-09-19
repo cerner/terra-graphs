@@ -5,7 +5,7 @@
  * @typedef {object} GraphContent
  * @typedef {object} GanttConfig
  */
-import * as d3 from '../../d3Modules';
+import * as d3 from 'd3';
 import { GraphContent } from '../../core';
 import errors from '../../helpers/errors';
 import { loadLabelPopup, shouldTruncateLabel } from '../../helpers/label';
@@ -100,7 +100,7 @@ const addTrackLabelEventHandler = (canvasSVG, labelObj) => canvasSVG
         ? d3
           .select(this)
           .style('cursor', 'pointer')
-          .on('click', () => {
+          .on('click', (event) => {
             // If the consumer provides onclick function, it will override default onClick functionality provided by Carbon-graphs
             // eslint-disable-next-line no-unused-expressions
             utils.isDefined(labelObj.onClick)
@@ -108,8 +108,9 @@ const addTrackLabelEventHandler = (canvasSVG, labelObj) => canvasSVG
               ? labelObj.onClick(
                 labelObj.display,
                 d3.select(this),
+                event,
               )
-              : loadLabelPopup(labelObj.display, 'y');
+              : loadLabelPopup(labelObj.display, 'y', event);
           })
         : null;
     }

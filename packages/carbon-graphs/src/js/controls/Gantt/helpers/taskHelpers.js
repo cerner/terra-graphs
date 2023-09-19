@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { getXAxisXPosition } from '../../../helpers/axis';
 import {
   getBar,
@@ -58,7 +58,7 @@ const toggleTaskSelection = (target) => {
  * @param {object} target - DOM object of the clicked point
  * @returns {undefined} - returns nothing
  */
-const taskClickActionHandler = (value, index, target) => {
+const taskClickActionHandler = (value, index, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -77,6 +77,7 @@ const taskClickActionHandler = (value, index, target) => {
     index,
     value,
     d3TargetNode,
+    event,
   ));
 };
 
@@ -191,7 +192,7 @@ const renderPercentageBarGroup = (scale, taskData, index, taskPath) => {
     .attr('pointer-events', () => (taskData.clickPassThrough && !utils.isFunction(taskData.onClick)
       ? 'none'
       : 'auto'))
-    .on('click', () => taskClickActionHandler(taskData, index, taskPath));
+    .on('click', (event) => taskClickActionHandler(taskData, index, taskPath, event));
 };
 /**
  * Based on startDate and endDate, we either render a chunk or a normal bar.
@@ -219,7 +220,7 @@ const renderTaskGroup = (scale, taskData, index, taskPath) => {
     .attr('pointer-events', () => (taskData.clickPassThrough && !utils.isFunction(taskData.onClick)
       ? 'none'
       : 'auto'))
-    .on('click', () => taskClickActionHandler(taskData, index, taskPath));
+    .on('click', (event) => taskClickActionHandler(taskData, index, taskPath, event));
 };
 
 /**
@@ -249,7 +250,7 @@ const renderHashedTaskGroup = (canvasSVG, scale, data, index, path) => {
     .attr('pointer-events', () => (data.clickPassThrough && !utils.isFunction(data.onClick)
       ? 'none'
       : 'auto'))
-    .on('click', () => taskClickActionHandler(data, index, path));
+    .on('click', (event) => taskClickActionHandler(data, index, path, event));
 };
 
 /**

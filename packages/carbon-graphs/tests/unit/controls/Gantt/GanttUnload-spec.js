@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../../src/js/d3Modules';
+import * as d3 from 'd3';
 import Gantt from '../../../../src/js/controls/Gantt';
 import { getXAxisWidth } from '../../../../src/js/controls/Gantt/helpers/creationHelpers';
 import Track from '../../../../src/js/controls/Gantt/Track';

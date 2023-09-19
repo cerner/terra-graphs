@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated for compatibility with d3 v7.
+
 ## 2.23.1 - (August 21, 2023)
 
 * Fixed

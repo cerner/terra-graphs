@@ -1,7 +1,7 @@
 'use strict';
 
 import sinon from 'sinon';
-import * as d3 from '../../../../src/js/d3Modules';
+import * as d3 from 'd3';
 import Carbon from '../../../../src/js/carbon';
 import Pie from '../../../../src/js/controls/Pie';
 import { getSlicePercentage } from '../../../../src/js/controls/Pie/helpers/translateHelpers';

@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../d3Modules';
+import * as d3 from 'd3';
 import Construct from '../../core/Construct';
 import errors from '../../helpers/errors';
 import { createLegend } from '../../helpers/legend';

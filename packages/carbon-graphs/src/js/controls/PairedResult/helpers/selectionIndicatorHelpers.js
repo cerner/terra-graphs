@@ -1,4 +1,4 @@
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import Shape, { getDefaultSVGProps } from '../../../core/Shape';
 import constants, { SHAPES } from '../../../helpers/constants';
 import styles from '../../../helpers/styles';
@@ -142,7 +142,7 @@ const toggleDataPointSelection = (config, value, target) => {
  * @param {object} target - DOM object of the clicked point
  * @returns {undefined} - returns nothing
  */
-export const dataPointActionHandler = (config, value, index, target) => {
+export const dataPointActionHandler = (config, value, index, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -159,6 +159,7 @@ export const dataPointActionHandler = (config, value, index, target) => {
     index,
     value,
     selectedTarget,
+    event,
   ));
 };
 /**

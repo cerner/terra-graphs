@@ -1,7 +1,7 @@
 'use strict';
 
 import sinon from 'sinon';
-import * as d3 from '../../../../src/js/d3Modules';
+import * as d3 from 'd3';
 import Graph from '../../../../src/js/controls/Graph/index';
 import Line from '../../../../src/js/controls/Line/Line';
 import constants, {
@@ -1321,7 +1321,7 @@ describe('Graph - Axes', () => {
               'transform',
             ),
           ).translate[0],
-        ).toBe(67.125);
+        ).toBe(66.625);
       });
       it('check transform position of y-axis when y2-axis is false', () => {
         const axisObj = utils.deepClone(axisDefault);
@@ -1339,7 +1339,7 @@ describe('Graph - Axes', () => {
               'transform',
             ),
           ).translate[0],
-        ).toBe(67.125);
+        ).toBe(66.625);
       });
     });
   });
@@ -2571,7 +2571,7 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelX).querySelector('text')
           .textContent,
       ).toBe(
-        'Project long display value which is only for testing, Project long display value which ...',
+        'Project long display value which is only for testing, Project long display value which i...',
       );
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
@@ -2922,7 +2922,7 @@ describe('Graph - Axes', () => {
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),
           ).translate[0],
-        ).toBe(991.375);
+        ).toBe(991.875);
         expect(
           getSVGAnimatedTransformList(
             getCurrentTransform(fetchElementByClass(styles.axisLabelY2ShapeContainer)),

@@ -1,4 +1,4 @@
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { Shape } from '../../../core';
 import { getDefaultSVGProps } from '../../../core/Shape';
 import constants, { SHAPES } from '../../../helpers/constants';
@@ -222,8 +222,8 @@ const renderDataPointPath = (scale, config, path, dataPoint, index, legendSVG) =
     svgClassNames: styles.point,
     svgStyles: `fill: ${getColorForTarget(dataPoint)};`,
     transformFn: transformPoint(scale, config)(dataPoint),
-    onClickFn() {
-      dataPointActionHandler(dataPoint, index, this);
+    onClickFn(event) {
+      dataPointActionHandler(dataPoint, index, this, event);
     },
     a11yAttributes: {
       'aria-hidden': legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${dataPoint.key}']`)?.attr('aria-current') === 'false' : 'false',

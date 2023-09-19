@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { parseTypedValue } from '../../../core/BaseConfig';
 import {
   calculateVerticalPadding,
@@ -143,9 +143,10 @@ const removeBubbleBlur = () => d3
  * @param {object} value - data point object
  * @param {number} index - data point index for the set
  * @param {object} target - DOM object of the clicked point
+ * @param {object} event - global click event
  * @returns {undefined} - returns nothing
  */
-const dataPointActionHandler = (value, index, target) => {
+const dataPointActionHandler = (value, index, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -158,6 +159,7 @@ const dataPointActionHandler = (value, index, target) => {
     index,
     value,
     selectedTarget,
+    event,
   ));
 };
 /**
@@ -273,8 +275,8 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget, legendSVG) => {
       .attr(
         'aria-hidden', legendSVG ? legendSVG.select(`.${styles.legendItem}[aria-describedby='${value.key}']`)?.attr('aria-current') === 'false' : 'false',
       )
-      .on('click', function () {
-        dataPointActionHandler(value, index, this);
+      .on('click', function (event) {
+        dataPointActionHandler(value, index, this, event);
       });
 
     bubblePoint
@@ -293,8 +295,8 @@ const drawBubbles = (scale, config, pointGroupPath, dataTarget, legendSVG) => {
       .attr('aria-disabled', utils.isDefined(value.onClick))
       .attr('aria-hidden', true)
       .attr('aria-describedby', value.key)
-      .on('click', function () {
-        dataPointActionHandler(value, index, this);
+      .on('click', function (event) {
+        dataPointActionHandler(value, index, this, event);
       })
       .append('circle')
       .attr(

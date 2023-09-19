@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../../src/js/d3Modules';
+import * as d3 from 'd3';
 
 import Timeline from '../../../../src/js/controls/Timeline';
 import { getXAxisYPosition } from '../../../../src/js/controls/Timeline/helpers/creationHelpers';

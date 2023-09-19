@@ -1,4 +1,4 @@
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import {
   legendClickHandler,
   legendHoverHandler,

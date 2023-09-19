@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { getRotationForAxis, getYAxisHeight } from '../../../helpers/axis';
 import constants from '../../../helpers/constants';
 import styles from '../../../helpers/styles';

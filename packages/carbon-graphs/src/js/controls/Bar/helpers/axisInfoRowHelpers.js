@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { Shape } from '../../../core';
 import { getDefaultSVGProps } from '../../../core/Shape';
 import {
@@ -112,7 +112,7 @@ const toggleDataPointSelection = (value, canvasSVG, type, uniqueKey, index) => {
  * @param {string} uniqueKey - unique id of the content loaded in graph
  * @returns {undefined} - returns nothing
  */
-const axisInfoRowActionHandler = (value, index, canvasSVG, type, uniqueKey) => {
+const axisInfoRowActionHandler = (value, index, canvasSVG, type, uniqueKey, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -125,6 +125,7 @@ const axisInfoRowActionHandler = (value, index, canvasSVG, type, uniqueKey) => {
       index,
       uniqueKey,
       selectedTarget,
+      event,
     ),
   );
 };
@@ -238,13 +239,14 @@ const createAxisInfoRowLabel = (
         'aria-disabled',
         !utils.isFunction(textLabelList.value.onClick),
       )
-      .on('click', (value) => {
+      .on('click', (event, value) => {
         axisInfoRowActionHandler(
           value,
           index,
           canvasSVG,
           config.axis.x.type,
           uniqueKey,
+          event,
         );
       });
   }

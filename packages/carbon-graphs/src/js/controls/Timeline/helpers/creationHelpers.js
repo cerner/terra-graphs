@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { Shape } from '../../../core';
 import { getDefaultSVGProps } from '../../../core/Shape';
 import {
@@ -299,9 +299,10 @@ const toggleDataPointSelection = (target) => {
  * @param {object} value - data point object
  * @param {number} index - data point index for the set
  * @param {object} target - DOM object of the clicked point
+ * @param {object} event - global click event
  * @returns {undefined} - returns nothing
  */
-const dataPointActionHandler = (value, index, target) => {
+const dataPointActionHandler = (value, index, target, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -313,6 +314,7 @@ const dataPointActionHandler = (value, index, target) => {
     index,
     value,
     selectedTarget,
+    event,
   ));
 };
 /**
@@ -346,8 +348,8 @@ const renderPointPath = (
       svgClassNames: `${pointStyle} ${cls}`,
       svgStyles: `fill: ${fillStyle};`,
       transformFn: transformPoint(scale, config)(value),
-      onClickFn() {
-        dataPointActionHandler(value, index, this);
+      onClickFn(event) {
+        dataPointActionHandler(value, index, this, event);
       },
       a11yAttributes: {
         'aria-describedby': value.key,

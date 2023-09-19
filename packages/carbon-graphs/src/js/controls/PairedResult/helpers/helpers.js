@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { Shape } from '../../../core';
 import { parseTypedValue } from '../../../core/BaseConfig';
 import { getDefaultSVGProps } from '../../../core/Shape';
@@ -185,8 +185,8 @@ const drawLine = (scale, config, boxPath) => boxPath.each(function (value, index
     .attr('aria-hidden', (d) => !shouldCreateLine(d))
     .attr('aria-disabled', !utils.isFunction(value.onClick))
     .attr('d', value.high && value.low ? createLine(scale, value) : '')
-    .on('click', function () {
-      dataPointActionHandler(config, value, index, this.parentNode);
+    .on('click', function (event) {
+      dataPointActionHandler(config, value, index, this.parentNode, event);
     });
 });
 /**
@@ -214,12 +214,13 @@ const drawCriticalityPoints = (
     getDefaultSVGProps({
       svgClassNames: `${cls}`,
       transformFn: transformPoint(scale, t)(v),
-      onClickFn() {
+      onClickFn(event) {
         dataPointActionHandler(
           config,
           v,
           i,
           this.parentNode.parentNode,
+          event,
         );
       },
       a11yAttributes: {
@@ -278,12 +279,13 @@ const drawPoints = (scale, config, canvasSVG, legendSVG) => {
         getValue(value, type),
       )};`,
       transformFn: transformPoint(scale, type)(value),
-      onClickFn() {
+      onClickFn(event) {
         dataPointActionHandler(
           config,
           value,
           index,
           this.parentNode.parentNode,
+          event,
         );
       },
       a11yAttributes: {

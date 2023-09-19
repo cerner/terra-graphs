@@ -1,6 +1,6 @@
 'use strict';
 
-import * as d3 from '../../../d3Modules';
+import * as d3 from 'd3';
 import { getType } from '../../../core/BaseConfig';
 import {
   calculateVerticalPadding,
@@ -238,7 +238,7 @@ const toggleDataPointSelection = (value, canvasSVG, type, tickValues) => {
  * @param {Array} datum - selected bar data to be passed to onclick function
  * @returns {undefined} - returns nothing
  */
-const barActionHandler = (value, index, canvasSVG, type, tickValues, datum) => {
+const barActionHandler = (value, index, canvasSVG, type, tickValues, datum, event) => {
   if (utils.isEmpty(value.onClick)) {
     return;
   }
@@ -251,6 +251,7 @@ const barActionHandler = (value, index, canvasSVG, type, tickValues, datum) => {
       index,
       datum,
       selectedTarget,
+      event,
     ),
   );
 };
@@ -341,7 +342,7 @@ const drawDataBars = (
           config.shownTargets.indexOf(dataPoint.key) < 0,
         )
         .attr('aria-disabled', !utils.isFunction(dataPoint.onClick))
-        .on('click', (value) => {
+        .on('click', (event, value) => {
           barActionHandler(
             value,
             index,
@@ -349,6 +350,7 @@ const drawDataBars = (
             config.axis.x.type,
             config.axis.x.ticks.values,
             getSelectedData(canvasSVG, value, config),
+            event,
           );
         });
       if (utils.notEmpty(regionList)) {
