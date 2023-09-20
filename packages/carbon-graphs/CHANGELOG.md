@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixed
+  * Fixed transition reference error by adding the missing `d3-dispatch` dependency.
+
 ## 2.23.1 - (August 21, 2023)
 
 * Fixed
