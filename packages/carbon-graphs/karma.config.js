@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+
 process.env.CHROME_BIN = require('puppeteer').executablePath();
 
 module.exports = function (config) {
@@ -50,6 +52,11 @@ module.exports = function (config) {
       resolve: {
         modules: ['node_modules'],
       },
+      plugins: [
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
+        }),
+      ],
       module: {
         rules: [
           {
