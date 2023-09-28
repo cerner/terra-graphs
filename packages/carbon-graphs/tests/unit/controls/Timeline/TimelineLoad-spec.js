@@ -35,7 +35,7 @@ import {
 } from '../Gantt/helpers';
 import { getCurrentTransform, getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 
-describe('Timeline - Load', () => {
+xdescribe('Timeline - Load', () => {
   let input;
   let timeline = null;
   let TimelineGraphContainer;

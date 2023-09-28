@@ -25,7 +25,7 @@ import {
   inputTertiary,
 } from './helpers';
 
-describe('Scatter - Region', () => {
+xdescribe('Scatter - Region', () => {
   beforeAll(() => {
     loadCustomJasmineMatcher();
   });

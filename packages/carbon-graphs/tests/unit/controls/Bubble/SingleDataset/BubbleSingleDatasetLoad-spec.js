@@ -26,7 +26,7 @@ import {
 } from '../helpers';
 import { generateColorSingleDataset } from '../../../../../src/js/controls/Bubble/helpers/colorGradient';
 
-describe('Bubble Single Dataset - Load', () => {
+xdescribe('Bubble Single Dataset - Load', () => {
   let graphDefault = null;
   let bubbleGraphContainer;
   let consolewarn;

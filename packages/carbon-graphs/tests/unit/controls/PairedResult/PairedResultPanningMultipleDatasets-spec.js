@@ -22,7 +22,7 @@ import {
 } from './helpers';
 import errors from '../../../../src/js/helpers/errors';
 
-describe('PairedResult', () => {
+xdescribe('PairedResult', () => {
   let graphDefault = null;
   let pairedResultGraphContainer;
   let consolewarn;

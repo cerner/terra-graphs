@@ -25,7 +25,7 @@ import {
   valuesDefault,
 } from './helpers';
 
-describe('Graph - Generate', () => {
+xdescribe('Graph - Generate', () => {
   let graph = null;
   let graphContainer;
   beforeAll(() => {

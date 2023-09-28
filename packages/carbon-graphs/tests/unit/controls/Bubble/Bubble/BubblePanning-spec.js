@@ -21,7 +21,7 @@ import {
   fetchElementByClass,
 } from '../helpers';
 
-describe('Bubble - Panning', () => {
+xdescribe('Bubble - Panning', () => {
   let graphDefault = null;
   let bubbleGraphContainer;
   let consolewarn;

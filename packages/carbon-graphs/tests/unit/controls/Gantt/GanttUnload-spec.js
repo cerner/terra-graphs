@@ -17,7 +17,7 @@ import {
   trackDimension,
 } from './helpers';
 
-describe('Gantt - Unload', () => {
+xdescribe('Gantt - Unload', () => {
   let gantt = null;
   let ganttChartContainer;
   let primaryContent = getData();

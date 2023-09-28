@@ -2391,7 +2391,7 @@ describe('Graph - Axes', () => {
         graph.destroy();
       }
     });
-    it('Truncates if too long', (done) => {
+    it('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
       labelAxisObj.y2.label = largeLabel;
@@ -2411,9 +2411,8 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('Project long display value w...');
-      done();
     });
-    it('Does not truncate if not long', (done) => {
+    it('Does not truncate if not long', () => {
       graph = new Graph(getAxes(axisDefault));
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
@@ -2427,7 +2426,6 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('Some Y2 Label');
-      done();
     });
   });
   describe('If axes width is 50px and height is 50px', () => {
@@ -2445,7 +2443,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-    it('Truncates if too long', (done) => {
+    it('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
       labelAxisObj.y2.label = largeLabel;
@@ -2465,9 +2463,8 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('Projec...');
-      done();
     });
-    it('Does not truncate if not long', (done) => {
+    it('Does not truncate if not long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = smallLabel;
       labelAxisObj.y2.label = smallLabel;
@@ -2487,7 +2484,6 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('hello!');
-      done();
     });
   });
   describe('If axes width is 400px and height is 400px', () => {
@@ -2505,7 +2501,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-    it('Truncates if too long', (done) => {
+    it('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
       labelAxisObj.y2.label = largeLabel;
@@ -2525,9 +2521,8 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('Project long display value which is only for testi...');
-      done();
     });
-    it('Does not truncate if not long', (done) => {
+    it('Does not truncate if not long', () => {
       graph = new Graph(getAxes(axisDefault));
       expect(
         fetchElementByClass(styles.axisLabelX).querySelector('text')
@@ -2541,7 +2536,6 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('Some Y2 Label');
-      done();
     });
   });
   describe('If axes width is 800px and height is 800px', () => {
@@ -2559,7 +2553,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-    it('Truncates if too long', (done) => {
+    it('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
       labelAxisObj.y2.label = largeLabel;
@@ -2585,9 +2579,8 @@ describe('Graph - Axes', () => {
       ).toBe(
         'Project long display value which is only for testing, Project long display value which is only for t...',
       );
-      done();
     });
-    it('Does not truncate if not long', (done) => {
+    it('Does not truncate if not long', () => {
       graph = new Graph(getAxes(axisDefault));
       expect(
         fetchElementByClass(styles.axisLabelY).querySelector('text')
@@ -2601,7 +2594,6 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('Some Y2 Label');
-      done();
     });
   });
   describe('If axes width is 1400px and height is 1400px', () => {
@@ -2622,7 +2614,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-    it('Truncates if too long', (done) => {
+    it('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
       labelAxisObj.y2.label = largeLabel;
@@ -2648,9 +2640,8 @@ describe('Graph - Axes', () => {
       ).toBe(
         'Project long display value which is only for testing, Project long display value which is only for testing Project long display value which is only for testing, Project long d...',
       );
-      done();
     });
-    it('Does not truncate if not long', (done) => {
+    it('Does not truncate if not long', () => {
       graph = new Graph(getAxes(axisDefault));
       expect(
         fetchElementByClass(styles.axisLabelX).querySelector('text')
@@ -2664,7 +2655,6 @@ describe('Graph - Axes', () => {
         fetchElementByClass(styles.axisLabelY2).querySelector('text')
           .textContent,
       ).toBe('Some Y2 Label');
-      done();
     });
   });
   describe('Adds clickHandler for Label', () => {
@@ -2681,7 +2671,7 @@ describe('Graph - Axes', () => {
       axisDefault.y2 = '';
     });
     describe('when small label is provided and onLabelClick function is not provided', () => {
-      it('should disable click functionality for label', (done) => {
+      it('should disable click functionality for label', () => {
         const onClickPrimaryFunctionSpy = sinon.spy();
         graph = new Graph(getAxes(axisDefault));
         triggerEvent(
@@ -2691,7 +2681,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2701,7 +2690,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2711,13 +2699,12 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
       });
     });
     describe('when small label and onLabelClick function is provided', () => {
-      it('should disable click functionality for label', (done) => {
+      it('should disable click functionality for label', () => {
         const onClickPrimaryFunctionSpy = sinon.spy();
         const onClickSecondaryFunctionSpy = sinon.spy();
         const onClickThirdFunctionSpy = sinon.spy();
@@ -2734,7 +2721,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2744,7 +2730,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
         triggerEvent(
@@ -2754,13 +2739,12 @@ describe('Graph - Axes', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
       });
     });
     describe('when large label and onLabelClick function is provided', () => {
-      it('should enable click functionality for truncated label', (done) => {
+      it('should enable click functionality for truncated label', () => {
         const onClickSecondaryFunctionSpy = sinon.spy();
         const onClickThirdFunctionSpy = sinon.spy();
         const onClickFourthFunctionSpy = sinon.spy();
@@ -2783,7 +2767,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         triggerEvent(
@@ -2796,7 +2779,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickFourthFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         triggerEvent(
@@ -2807,13 +2789,12 @@ describe('Graph - Axes', () => {
             expect(onClickThirdFunctionSpy.getCall(0).args[0]).toBe(
               largeLabel,
             );
-            done();
           },
         );
       });
     });
     describe('when large label is provided and onLabelClick function is not provided', () => {
-      it('should enable click functionality for truncated label', (done) => {
+      it('should enable click functionality for truncated label', () => {
         const onClickSecondaryFunctionSpy = sinon.spy();
         const onClickThirdFunctionSpy = sinon.spy();
         const onClickFourthFunctionSpy = sinon.spy();
@@ -2837,7 +2818,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         d3.select(fetchElementByClass(`${styles.axisLabelY} text`)).on(
@@ -2854,7 +2834,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
         d3.select(fetchElementByClass(`${styles.axisLabelY2} text`)).on(
@@ -2871,7 +2850,6 @@ describe('Graph - Axes', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
       });

@@ -102,7 +102,7 @@ module.exports = function (config) {
           },
         ],
       },
-      stats: 'errors-only',
+      // stats: 'errors-only',
     },
   });
 };

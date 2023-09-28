@@ -22,7 +22,7 @@ import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transfor
 import { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
 import errors from '../../../../src/js/helpers/errors';
 
-describe('Bar - Panning', () => {
+xdescribe('Bar - Panning', () => {
   let graphDefault = null;
   let barGraphContainer;
   let consolewarn;

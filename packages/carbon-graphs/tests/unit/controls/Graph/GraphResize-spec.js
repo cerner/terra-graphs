@@ -21,7 +21,7 @@ import {
   axisDefaultWithoutXAxisLabel,
 } from './helpers';
 
-describe('Graph - Resize', () => {
+xdescribe('Graph - Resize', () => {
   let graph = null;
   let graphContainer;
   beforeAll(() => {

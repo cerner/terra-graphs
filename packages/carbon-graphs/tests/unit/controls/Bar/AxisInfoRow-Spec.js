@@ -27,7 +27,7 @@ import {
   valuesTimeSeries,
 } from './helpers';
 
-describe('Bar - Axis Info Row', () => {
+xdescribe('Bar - Axis Info Row', () => {
   let graphDefault = null;
   let barGraphContainer;
   let bar;

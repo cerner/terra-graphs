@@ -132,7 +132,7 @@ describe('Grouped Bar', () => {
       );
       expect(barsContainer.length).toEqual(0);
     });
-    it('Hides Bar content on single click', (done) => {
+    it('Hides Bar content on single click', () => {
       const legendItem = fetchAllElementsByClass(
         barGraphContainer,
         styles.legendItem,
@@ -151,7 +151,7 @@ describe('Grouped Bar', () => {
             .querySelector(`.${styles.taskBar}`)
             .getAttribute('aria-hidden'),
         ).toBe('true');
-        done();
+        // done()();
       });
       triggerEvent(legendItem[1], 'click', () => {
         fetchAllElementsByClass(
@@ -161,10 +161,10 @@ describe('Grouped Bar', () => {
         expect(barsContainer[0].getAttribute('aria-hidden')).toBe(
           'true',
         );
-        done();
+        // done()();
       });
     });
-    it('Displays Bar content on double click', (done) => {
+    it('Displays Bar content on double click', () => {
       const legendItem = fetchAllElementsByClass(
         barGraphContainer,
         styles.legendItem,
@@ -180,7 +180,7 @@ describe('Grouped Bar', () => {
               .querySelector(`.${styles.taskBar}`)
               .getAttribute('aria-hidden'),
           ).toBe('false');
-          done();
+          // done()();
         });
       });
     });

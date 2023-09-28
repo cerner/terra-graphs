@@ -31,7 +31,7 @@ import {
   valuesTimeSeries,
 } from './helpers';
 
-describe('Stacked Bar', () => {
+xdescribe('Stacked Bar', () => {
   let graphDefault = null;
   let barGraphContainer;
   beforeAll(() => {

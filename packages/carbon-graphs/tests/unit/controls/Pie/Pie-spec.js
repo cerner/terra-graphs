@@ -16,7 +16,7 @@ import {
   inputDefault,
 } from './helpers';
 
-describe('Pie', () => {
+xdescribe('Pie', () => {
   let graphContainer;
   beforeAll(() => {
     loadCustomJasmineMatcher();

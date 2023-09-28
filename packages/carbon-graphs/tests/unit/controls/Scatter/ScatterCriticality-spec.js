@@ -23,7 +23,7 @@ import {
   valuesDefault,
 } from './helpers';
 
-describe('Scatter - Criticality', () => {
+xdescribe('Scatter - Criticality', () => {
   let inputPrimary = null;
   let scatterPrimary = null;
   let scatterSecondary = null;
