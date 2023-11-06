@@ -1,6 +1,9 @@
 # ChangeLog
 
 ## Unreleased
+* Added
+  * Added a Prop `rotateAngle` for overlapping X-axis tick values.
+  * Added examples for the Xaxis Overlapping tick values.
 
 ## 1.6.0 - (September 25, 2023)
 
