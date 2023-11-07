@@ -2,7 +2,6 @@ import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
 
 const getLineTimeseriesConfig = (id) => ({
   bindTo: id,
-  rotateAngle: true,
   axis: {
     x: {
       type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
@@ -23,6 +22,7 @@ const getLineTimeseriesConfig = (id) => ({
           new Date(2016, 0, 10).toISOString(),
           new Date(2016, 0, 11).toISOString(),
         ],
+        rotateAngle: -45,
         format: '%Y, %X',
       },
     },

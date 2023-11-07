@@ -2,7 +2,7 @@
 
 ## Unreleased
 * Fixed
-  * Fixed tick values overlapping on X-axis by rotating 15,30,45.
+  * Added prop `rotateAngle` to allow rotation of x-axis tick labels to prevent overlap.
 
 ## 2.23.3 - (September 25, 2023)
 

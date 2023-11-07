@@ -28,7 +28,6 @@ It is required for the following graphs:
 const graphConfig = {
     axis: <Axis object>,
     bindTo: <string>,
-    rotateAngle: false,
     allowCalibration: <bool>,
     bindLegendTo: <string>,
     clickPassThrough: {
@@ -71,7 +70,6 @@ const graphConfig = {
 |------------------------|----------|------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | axis                   | object   | -                                              | yes      | See [Axis](./Axes).                                                                                                                                                                         |
 | bindTo                 | string   | -                                              | yes      | DOM ID to bind the graph container to.                                                                                                                                                      |
-| rotateAngle            | boolean  | `false`                                        | no       | To rotate tickvalues anticlockwise `15`,`30`,`45` degrees with respect to the width of the x-axis.                                                                                          |
 | allowCalibration       | boolean  | `true`                                         | no       | Toggle to allow calibration to adjust the y axis.                                                                                                                                           |
 | bindLegendTo           | string   | `null`                                         | no       | If DOM id provided, binds legend into that container (Example: `"#legendContainer"`).                                                                                                       |
 | clickPassThrough       | object   | `{}`                                           | no       | See [clickPassThrough](#clickpassthrough).                                                                                                                                                  |

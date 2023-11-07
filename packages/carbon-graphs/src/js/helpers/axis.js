@@ -881,8 +881,6 @@ const getY2AxisYPosition = (config) => calculateVerticalPadding(config);
 const createAxes = (axis, scale, config, canvasSVG) => {
   getAxesScale(axis, scale, config);
   prepareHAxis(scale, axis, config, prepareHorizontalAxis);
-  // eslint-disable-next-line no-use-before-define
-  const rotateAngle = config.rotateAngle ? calculateRotateAngleBasedOnWidth(config) : undefined;
   canvasSVG
     .append('g')
     .classed(styles.axis, true)
@@ -898,8 +896,13 @@ const createAxes = (axis, scale, config, canvasSVG) => {
     .call(resetD3FontSize)
     .attr('id', 'x')
     .selectAll('text')
-    .style('text-anchor', config.rotateAngle ? 'end' : 'middle')
-    .attr('transform', () => `rotate(${rotateAngle})`);
+    .style('text-anchor', () => {
+      if (config.axis.x.ticks.rotateAngle !== undefined) {
+        return config.axis.x.ticks.rotateAngle >= 0 ? 'start' : 'end';
+      }
+      return 'middle';
+    })
+    .attr('transform', () => `rotate(${config.axis.x.ticks.rotateAngle})`);
   canvasSVG
     .append('g')
     .classed(styles.axis, true)
@@ -927,18 +930,6 @@ const createAxes = (axis, scale, config, canvasSVG) => {
       .call(axis.y2)
       .call(resetD3FontSize);
   }
-};
-const calculateRotateAngleBasedOnWidth = (config) => {
-  const containerWidth = config.canvasWidth;
-  // Define thresholds for rotation based on container width
-  const thresholdSmall = 400;
-  const thresholdMedium = 800;
-  if (containerWidth < thresholdSmall) {
-    return -45; // rotate by -45 degrees for small screens
-  } if (containerWidth < thresholdMedium) {
-    return -30; // rotate by -30 degrees for medium screens
-  }
-  return -15; // rotate by -15 degrees for larger screens
 };
 /**
  * X Axis's position vertically relative to the canvas
