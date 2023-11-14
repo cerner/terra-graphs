@@ -217,6 +217,15 @@ const getEpocFromDateString = (dateISO) => parseInt(new Date(dateISO).getTime(),
  * @returns {object typeof Date} - Date object based on epoc
  */
 const getDateFromEpoc = (epocDate) => new Date(epocDate);
+/**
+ * Enum for tick label rotations.
+ * @readonly
+ * @enum {number}
+ */
+const TickLabelRotations = {
+  DEFAULT: 0,
+  NEGATIVE_45: -45,
+};
 
 /**
  * @enum {Function}
@@ -242,4 +251,5 @@ export default {
   notEmpty,
   parseDateTime,
   sanitize,
+  TickLabelRotations,
 };

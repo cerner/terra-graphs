@@ -897,12 +897,19 @@ const createAxes = (axis, scale, config, canvasSVG) => {
     .attr('id', 'x')
     .selectAll('text')
     .style('text-anchor', () => {
-      if (config.axis.x.ticks.rotateAngle !== undefined) {
-        return config.axis.x.ticks.rotateAngle >= 0 ? 'start' : 'end';
+      const validRotations = Object.values(utils.TickLabelRotations);
+      if (
+        utils.isDefined(config.axis.x.ticks.TickLabelRotations)
+        && validRotations.includes(config.axis.x.ticks.TickLabelRotations)
+      ) {
+        const rotation = config.axis.x.ticks.TickLabelRotations;
+        console.warn(`tickLabelsRotation Using ${rotation} rotation for x-axis labels to avoid overlapping.`);
+        return rotation === utils.TickLabelRotations.NEGATIVE_45 ? 'end' : 'middle';
       }
+      console.warn('Warning: Invalid tickLabelsRotation angle. Using default rotation (0 or -45) for x-axis labels.');
       return 'middle';
     })
-    .attr('transform', () => `rotate(${config.axis.x.ticks.rotateAngle})`);
+    .attr('transform', () => `rotate(${config.axis.x.ticks.TickLabelRotations})`);
   canvasSVG
     .append('g')
     .classed(styles.axis, true)
@@ -1130,6 +1137,14 @@ const getXAxisHeight = (config) => {
   const dummy = d3.select('body').append('div');
   const svg = dummy.append('svg');
   const group = svg.append('g').call(axis);
+  if (config.axis.x.ticks && config.axis.x.ticks.TickLabelRotations === -45) {
+    // Add extra padding for rotated tick labels
+    const extraPadding = 5;
+    group.selectAll('.tick text').attr('transform', `rotate(${config.axis.x.ticks.TickLabelRotations})`);
+    const rotatedHeight = group.node().getBoundingClientRect().height;
+    dummy.remove();
+    return rotatedHeight + extraPadding;
+  }
   const { height } = group.node().getBoundingClientRect();
   dummy.remove();
   return height;
@@ -1213,10 +1228,16 @@ const getAxisLabelWidth = (label, axis, config) => {
  * @param {string} label - Label text
  * @returns {number} label height
  */
-const getAxisLabelHeight = (label) => {
+const getAxisLabelHeight = (label, TickLabelRotations) => {
   const dummy = d3.select('body').append('div');
   const svg = dummy.append('svg');
   const grouper = svg.append('g');
+
+  if (TickLabelRotations && TickLabelRotations === -45) {
+    // Adding extra padding for rotated labels
+    grouper.attr('transform', `rotate(${TickLabelRotations})`);
+  }
+
   buildAxisLabel(grouper, label);
   const { height } = grouper.node().getBoundingClientRect();
   dummy.remove();
@@ -1301,7 +1322,8 @@ const calculateAxesLabelSize = (config) => {
   config.axisLabelWidths.y2 = 0;
   if (config.showLabel) {
     if (config.axis.x.label) {
-      config.axisLabelHeights.x = getAxisLabelHeight(config.axis.x.label);
+      const TickLabelRotations = config.axis.x.ticks && config.axis.x.ticks.TickLabelRotations;
+      config.axisLabelHeights.x = getAxisLabelHeight(config.axis.x.label, TickLabelRotations);
     }
     if (config.axis.y.label) {
       config.axisLabelWidths.y = constants.DEFAULT_CHARACTER_SVG_ELEMENT_WIDTH;

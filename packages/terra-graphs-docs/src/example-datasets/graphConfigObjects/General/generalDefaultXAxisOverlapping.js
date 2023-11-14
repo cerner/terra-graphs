@@ -22,7 +22,7 @@ const getLineTimeseriesConfig = (id) => ({
           new Date(2016, 0, 10).toISOString(),
           new Date(2016, 0, 11).toISOString(),
         ],
-        rotateAngle: -45,
+        TickLabelRotations: -45,
         format: '%Y, %X',
       },
     },
