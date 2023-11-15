@@ -22,7 +22,7 @@ const getLineTimeseriesConfig = (id) => ({
           new Date(2016, 0, 10).toISOString(),
           new Date(2016, 0, 11).toISOString(),
         ],
-        TickLabelRotations: -45,
+        tickLabelsRotation: -45,
         format: '%Y, %X',
       },
     },
@@ -43,7 +43,7 @@ const getLineTimeseriesConfig = (id) => ({
   showShapes: true,
   showVGrid: true,
   showHGrid: true,
-  locale: Carbon.helpers.LOCALE.de_DE,
+  locale: Carbon.helpers.LOCALE.es_ES,
 });
 
 export default getLineTimeseriesConfig;

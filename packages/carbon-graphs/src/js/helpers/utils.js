@@ -222,10 +222,7 @@ const getDateFromEpoc = (epocDate) => new Date(epocDate);
  * @readonly
  * @enum {number}
  */
-const TickLabelRotations = {
-  DEFAULT: 0,
-  NEGATIVE_45: -45,
-};
+const validTickLabelRotations = new Set([0, -45]);
 
 /**
  * @enum {Function}
@@ -251,5 +248,5 @@ export default {
   notEmpty,
   parseDateTime,
   sanitize,
-  TickLabelRotations,
+  validTickLabelRotations,
 };

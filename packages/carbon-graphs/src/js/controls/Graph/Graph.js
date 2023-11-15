@@ -120,6 +120,13 @@ const beforeInit = (control) => {
     console.warn('allowCalibration for x-axis is a new feature that is currently a work in progress and may have stability issues. Use it at your own risk.');
     getAxesDataRange({}, constants.X_AXIS, control.config);
   }
+  if (
+    utils.isDefined(control.config.axis.x.ticks.tickLabelsRotation)
+    && utils.validTickLabelRotations.has(control.config.axis.x.ticks.tickLabelsRotation)
+  ) {
+    const rotation = control.config.axis.x.ticks.tickLabelsRotation;
+    console.warn(`tickLabelsRotation Using ${rotation} rotation for x-axis labels to avoid overlapping.`);
+  }
 
   updateAxesDomain(control.config);
   updateXAxisDomain(control.config);
