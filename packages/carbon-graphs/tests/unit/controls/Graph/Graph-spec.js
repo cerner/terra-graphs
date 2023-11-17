@@ -361,15 +361,13 @@ describe('Graph', () => {
       expect(graph.config.showVGrid).toEqual(true);
       expect(graph.config.dimension).toEqual({});
       expect(graph.config.axis.x.type).toEqual(AXIS_TYPE.DEFAULT);
-      expect(graph.config.axis.x.ticks).toEqual({});
+      expect(graph.config.axis.x.ticks).toEqual({ tickLabelsRotation: 0 });
       expect(graph.config.axis.x.rangeRounding).toEqual(true);
       expect(graph.config.axis.y.ticks).toEqual({});
       expect(graph.config.axis.y.rangeRounding).toEqual(true);
       expect(graph.config.axis.x.show).toEqual(true);
       expect(graph.config.axis.y.show).toEqual(true);
-      expect(graph.config.axis.x.orientation).toEqual(
-        AXES_ORIENTATION.X.BOTTOM,
-      );
+      expect(graph.config.axis.x.orientation).toEqual(AXES_ORIENTATION.X.BOTTOM);
       expect(graph.config.axisPadding.y).toEqual(true);
       expect(graph.config.axisInfoRowLabelHeight).toEqual(0);
     });
@@ -454,7 +452,7 @@ describe('Graph', () => {
       expect(graph.config.dimension).toEqual({});
       expect(graph.config.axis.x.type).toEqual(AXIS_TYPE.TIME_SERIES);
       expect(graph.config.axis.x.rangeRounding).toEqual(true);
-      expect(graph.config.axis.x.ticks).toEqual({});
+      expect(graph.config.axis.x.ticks).toEqual({ tickLabelsRotation: 0 });
       expect(graph.config.axis.y.ticks).toEqual({});
       expect(graph.config.axis.y.rangeRounding).toEqual(true);
       expect(graph.config.axis.x.show).toEqual(true);
@@ -857,7 +855,7 @@ describe('Graph', () => {
       expect(graph.config.showVGrid).toEqual(true);
       expect(graph.config.dimension).toEqual({});
       expect(graph.config.axis.x.type).toEqual(AXIS_TYPE.DEFAULT);
-      expect(graph.config.axis.x.ticks).toEqual({});
+      expect(graph.config.axis.x.ticks).toEqual({ tickLabelsRotation: 0 });
       expect(graph.config.axis.y.ticks).toEqual({});
       expect(graph.config.axis.x.show).toEqual(true);
       expect(graph.config.axis.y.show).toEqual(true);

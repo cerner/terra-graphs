@@ -897,17 +897,21 @@ const createAxes = (axis, scale, config, canvasSVG) => {
     .attr('id', 'x')
     .selectAll('text')
     .style('text-anchor', () => {
-      if (
-        utils.isDefined(config.axis.x.ticks.tickLabelsRotation)
-        && utils.validTickLabelRotations.has(config.axis.x.ticks.tickLabelsRotation)
-      ) {
-        const rotation = config.axis.x.ticks.tickLabelsRotation;
-        return rotation === -45 ? 'end' : 'middle';
+      if (!utils.isDefined(config.axis.x.ticks.tickLabelsRotation)) {
+        config.axis.x.ticks.tickLabelsRotation = 0;
+        return 'middle';
       }
-      console.warn('Warning: Invalid tickLabelsRotation angle. Valid values are (0 or -45) for x-axis labels.');
+      const rotation = config.axis.x.ticks.tickLabelsRotation;
+      if (rotation === 0) {
+        return 'middle';
+      } if (rotation === -45) {
+        return 'end';
+      } if (!utils.validTickLabelRotations.has(rotation)) {
+        return 'middle';
+      }
       return 'middle';
     })
-    .attr('transform', () => `rotate(${config.axis.x.ticks.tickLabelsRotation})`);
+    .attr('transform', () => `rotate(${config.axis.x.ticks.tickLabelsRotation === -45 ? -45 : 0})`);
   canvasSVG
     .append('g')
     .classed(styles.axis, true)
@@ -1230,7 +1234,7 @@ const getAxisLabelHeight = (label, tickLabelsRotation) => {
   const svg = dummy.append('svg');
   const grouper = svg.append('g');
 
-  if (tickLabelsRotation === -45) {
+  if (tickLabelsRotation !== 0) {
     // Adding extra padding for rotated labels
     grouper.attr('transform', `rotate(${tickLabelsRotation})`);
   }
