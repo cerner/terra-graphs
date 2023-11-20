@@ -2932,7 +2932,7 @@ describe('Graph - Axes', () => {
     });
   });
   describe('Tick Labels Rotation', () => {
-    fit('tickLabelsRotation values will be 0 or -45', () => {
+    it('tickLabelsRotation values will be 0 or -45', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
       localeAxisObj.x = {
         type: 'timeseries',
@@ -2965,8 +2965,6 @@ describe('Graph - Axes', () => {
       localeAxisObj.x.ticks = {
         tickLabelsRotation: 23,
       };
-      // Spy on console.warn
-      spyOn(console, 'warn');
       graph = new Graph(getAxes(localeAxisObj));
 
       expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
