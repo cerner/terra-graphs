@@ -904,14 +904,14 @@ const createAxes = (axis, scale, config, canvasSVG) => {
       const rotation = config.axis.x.ticks.tickLabelsRotation;
       if (rotation === 0) {
         return 'middle';
-      } if (rotation === -45) {
+      } if (rotation < 0) {
         return 'end';
       } if (!utils.validTickLabelRotations.has(rotation)) {
         return 'middle';
       }
       return 'middle';
     })
-    .attr('transform', () => `rotate(${config.axis.x.ticks.tickLabelsRotation === -45 ? -45 : 0})`);
+    .attr('transform', () => `rotate(${config.axis.x.ticks.tickLabelsRotation})`);
   canvasSVG
     .append('g')
     .classed(styles.axis, true)
@@ -1139,7 +1139,7 @@ const getXAxisHeight = (config) => {
   const dummy = d3.select('body').append('div');
   const svg = dummy.append('svg');
   const group = svg.append('g').call(axis);
-  if (config.axis.x.ticks && config.axis.x.ticks.tickLabelsRotation === -45) {
+  if (config.axis.x.ticks && config.axis.x.ticks.tickLabelsRotation !== 0) {
     // Add extra padding for rotated tick labels
     group.selectAll('.tick text').attr('transform', `rotate(${config.axis.x.ticks.tickLabelsRotation})`);
     const rotatedTickLabelsHeight = group.node().getBoundingClientRect().height;

@@ -2941,28 +2941,12 @@ describe('Graph - Axes', () => {
         upperLimit: new Date(2017, 6).toISOString(),
       };
       localeAxisObj.x.ticks = {
-        format: '%b %Y',
-        show: true,
-        lowerStepTickValues: [
-          new Date(2017, 1).toISOString(),
-          new Date(2017, 5).toISOString(),
-          new Date(2017, 9).toISOString(),
-        ],
-        midpointTickValues: [
-          new Date(2017, 3).toISOString(),
-          new Date(2017, 7).toISOString(),
-          new Date(2017, 11).toISOString(),
-        ],
-        upperStepTickValues: [
-          new Date(2016, 11).toISOString(),
-          new Date(2018, 1).toISOString(),
-        ],
         tickLabelsRotation: 0,
       };
       graph = new Graph(getAxes(localeAxisObj));
-      expect(localeAxisObj.x.ticks.tickLabelsRotation).toBe(0);
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
     });
-    fit('tickLabelsRotation values will be 0 or -45', () => {
+    it('tickLabelsRotation values will be 0 or -45', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
       localeAxisObj.x = {
         type: 'timeseries',
@@ -2971,60 +2955,30 @@ describe('Graph - Axes', () => {
         upperLimit: new Date(2017, 6).toISOString(),
       };
       localeAxisObj.x.ticks = {
-        format: '%b %Y',
-        show: true,
-        lowerStepTickValues: [
-          new Date(2017, 1).toISOString(),
-          new Date(2017, 5).toISOString(),
-          new Date(2017, 9).toISOString(),
-        ],
-        midpointTickValues: [
-          new Date(2017, 3).toISOString(),
-          new Date(2017, 7).toISOString(),
-          new Date(2017, 11).toISOString(),
-        ],
-        upperStepTickValues: [
-          new Date(2016, 11).toISOString(),
-          new Date(2018, 1).toISOString(),
-        ],
         tickLabelsRotation: -45,
       };
       graph = new Graph(getAxes(localeAxisObj));
-      expect(localeAxisObj.x.ticks.tickLabelsRotation).toBe(-45);
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(-45);
     });
-    fit('tickLabelsRotation default zero', () => {
+    it('uses the default value of zero if tickLabelsRotation it is invalid', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
-      localeAxisObj.x = {
-        type: 'timeseries',
-        label: 'Some X Label',
-        lowerLimit: new Date(2017, 0).toISOString(),
-        upperLimit: new Date(2017, 6).toISOString(),
-      };
       localeAxisObj.x.ticks = {
-        format: '%b %Y',
-        show: true,
-        lowerStepTickValues: [
-          new Date(2017, 1).toISOString(),
-          new Date(2017, 5).toISOString(),
-          new Date(2017, 9).toISOString(),
-        ],
-        midpointTickValues: [
-          new Date(2017, 3).toISOString(),
-          new Date(2017, 7).toISOString(),
-          new Date(2017, 11).toISOString(),
-        ],
-        upperStepTickValues: [
-          new Date(2016, 11).toISOString(),
-          new Date(2018, 1).toISOString(),
-        ],
         tickLabelsRotation: 23,
       };
       // Spy on console.warn
       spyOn(console, 'warn');
-      // Call the code that logs the warning
       graph = new Graph(getAxes(localeAxisObj));
 
-      expect(console.warn).toHaveBeenCalledWith('23 is an invalid value for tickLabelsRotation. Valid values are: 0, -45. Resorting to the default value of 0');
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
+    });
+    it('uses the default value of zero if tickLabelsRotation it is undefind', () => {
+      const localeAxisObj = utils.deepClone(axisTimeSeries);
+      localeAxisObj.x.ticks = {
+        // tickLabelsRotation is undefind
+      };
+      graph = new Graph(getAxes(localeAxisObj));
+
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
     });
   });
   describe('when graph is destroyed', () => {
