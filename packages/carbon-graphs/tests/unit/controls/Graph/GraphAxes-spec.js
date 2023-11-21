@@ -2932,7 +2932,7 @@ describe('Graph - Axes', () => {
     });
   });
   describe('Tick Labels Rotation', () => {
-    it('tickLabelsRotation values will be 0 or -45', () => {
+    it('tickLabelsRotation values will be 0', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
       localeAxisObj.x = {
         type: 'timeseries',
@@ -2946,7 +2946,7 @@ describe('Graph - Axes', () => {
       graph = new Graph(getAxes(localeAxisObj));
       expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
     });
-    it('tickLabelsRotation values will be 0 or -45', () => {
+    it('tickLabelsRotation values will be -45', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
       localeAxisObj.x = {
         type: 'timeseries',
@@ -2960,7 +2960,7 @@ describe('Graph - Axes', () => {
       graph = new Graph(getAxes(localeAxisObj));
       expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(-45);
     });
-    it('uses the default value of zero if tickLabelsRotation it is invalid', () => {
+    it('uses the default value of zero of tickLabelsRotation it is invalid', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
       localeAxisObj.x.ticks = {
         tickLabelsRotation: 23,
@@ -2969,7 +2969,7 @@ describe('Graph - Axes', () => {
 
       expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
     });
-    it('uses the default value of zero if tickLabelsRotation it is undefind', () => {
+    it('uses the default value of zero if tickLabelsRotation is undefind', () => {
       const localeAxisObj = utils.deepClone(axisTimeSeries);
       localeAxisObj.x.ticks = {
         // tickLabelsRotation is undefind

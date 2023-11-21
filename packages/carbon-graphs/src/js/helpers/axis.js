@@ -904,7 +904,7 @@ const createAxes = (axis, scale, config, canvasSVG) => {
       const rotation = config.axis.x.ticks.tickLabelsRotation;
       if (rotation === 0) {
         return 'middle';
-      } if (rotation < 0) {
+      } if (rotation !== 0) {
         return 'end';
       } if (!utils.validTickLabelRotations.has(rotation)) {
         return 'middle';
