@@ -1144,7 +1144,7 @@ const getXAxisHeight = (config) => {
     group.selectAll('.tick text').attr('transform', `rotate(${config.axis.x.ticks.tickLabelsRotation})`);
     const rotatedTickLabelsHeight = group.node().getBoundingClientRect().height;
     dummy.remove();
-    return rotatedTickLabelsHeight + constants.DEFAULT_OVERLAPPING_PADDING;
+    return rotatedTickLabelsHeight;
   }
   const { height } = group.node().getBoundingClientRect();
   dummy.remove();
@@ -1234,7 +1234,7 @@ const getAxisLabelHeight = (label, tickLabelsRotation) => {
   const svg = dummy.append('svg');
   const grouper = svg.append('g');
 
-  if (tickLabelsRotation !== 0) {
+  if (tickLabelsRotation) {
     // Adding extra padding for rotated labels
     grouper.attr('transform', `rotate(${tickLabelsRotation})`);
   }

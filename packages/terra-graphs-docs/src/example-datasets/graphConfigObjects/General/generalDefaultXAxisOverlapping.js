@@ -43,7 +43,7 @@ const getLineTimeseriesConfig = (id) => ({
   showShapes: true,
   showVGrid: true,
   showHGrid: true,
-  locale: Carbon.helpers.LOCALE.es_ES,
+  locale: Carbon.helpers.LOCALE.en_US,
 });
 
 export default getLineTimeseriesConfig;
