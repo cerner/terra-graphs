@@ -1236,7 +1236,7 @@ const getAxisLabelHeight = (label, tickLabelsRotation) => {
 
   if (tickLabelsRotation) {
     // Adding extra padding for rotated labels
-    grouper.attr('transform', `rotate(${tickLabelsRotation})`);
+    grouper.attr('transform', `rotate(${tickLabelsRotation * constants.DEFAULT_OVERLAPPING_PADDING})`);
   }
 
   buildAxisLabel(grouper, label);
