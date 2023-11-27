@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.7.0 - (November 27, 2023)
+
 * Added
   * Added examples for the Xaxis Overlapping tick values.
 
