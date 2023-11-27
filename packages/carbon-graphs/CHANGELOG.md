@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.24.0 - (November 27, 2023)
+
 * Added
   * Added prop `tickLabelsRotation` to allow rotation of x-axis tick labels to prevent overlap.
 
