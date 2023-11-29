@@ -34,6 +34,7 @@ axis: {
         suppressingTrailingZeros: <bool>,
         ticks: <Ticks object>,
         type: <string>
+        rotateAngle: <integer>,
     },
     y: {
         lowerLimit: <number> or <Date>,
@@ -80,7 +81,8 @@ axis: {
 | show                  | boolean        | `true`                     | no       | Toggle for showing the axis.                                                                                                                                                                                                                                          |
 | suppressTrailingZeros | boolean        | `false`                    | no       | Toggle to suppress tick values's trailing zeros when default d3 tick formatting is used. For X axis, this property works only when X axis type is set to AXIS_TYPE.DEFAULT. Specifying `~` in the tick format takes precedence over `suppressTrailingZeros` property. |
 | ticks                 | object         | `null`                     | no       | See [Ticks](./Ticks).                                                                                                                                                                                                                                                 |
-| type                  | string         | `AXIS_TYPE.DEFAULT`        | no       | See [type](#type). Normal number value or time-based. Only for x-axis.                                                                                                                                                                                                |
+| type                  | string         | `AXIS_TYPE.DEFAULT`        | no       | See [type](#type). Normal number value or time-based. Only for x-axis.                                                                                                                                                                                                |    
+| tickLabelsRotation    | integer        | -                          | no       | Sets the rotation of the x-axis tick labels to `0º` or `-45º`. Accepted values: 0 or -45. Only for x-axis.                                                                                                                                                            |
 
 - ### `allowCalibration`
     Set calibration for the axis. 

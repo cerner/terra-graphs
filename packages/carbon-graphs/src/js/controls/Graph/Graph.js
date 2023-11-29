@@ -120,6 +120,11 @@ const beforeInit = (control) => {
     console.warn('allowCalibration for x-axis is a new feature that is currently a work in progress and may have stability issues. Use it at your own risk.');
     getAxesDataRange({}, constants.X_AXIS, control.config);
   }
+  const isInvalidTickLabelRotations = !utils.isDefined(control.config.axis.x.ticks.tickLabelsRotation) || !utils.validTickLabelRotations.has(control.config.axis.x.ticks.tickLabelsRotation);
+  if (isInvalidTickLabelRotations) {
+    control.config.axis.x.ticks.tickLabelsRotation = 0;
+    console.warn(`${control.config.axis.x.ticks.tickLabelsRotation} is an invalid value for tickLabelsRotation. Valid values are: 0, -45. Resorting to the default value of 0`);
+  }
 
   updateAxesDomain(control.config);
   updateXAxisDomain(control.config);

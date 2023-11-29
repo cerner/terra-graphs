@@ -2931,6 +2931,54 @@ describe('Graph - Axes', () => {
       });
     });
   });
+  describe('Tick Labels Rotation', () => {
+    it('tickLabelsRotation values will be 0', () => {
+      const localeAxisObj = utils.deepClone(axisTimeSeries);
+      localeAxisObj.x = {
+        type: 'timeseries',
+        label: 'Some X Label',
+        lowerLimit: new Date(2017, 0).toISOString(),
+        upperLimit: new Date(2017, 6).toISOString(),
+      };
+      localeAxisObj.x.ticks = {
+        tickLabelsRotation: 0,
+      };
+      graph = new Graph(getAxes(localeAxisObj));
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
+    });
+    it('tickLabelsRotation values will be -45', () => {
+      const localeAxisObj = utils.deepClone(axisTimeSeries);
+      localeAxisObj.x = {
+        type: 'timeseries',
+        label: 'Some X Label',
+        lowerLimit: new Date(2017, 0).toISOString(),
+        upperLimit: new Date(2017, 6).toISOString(),
+      };
+      localeAxisObj.x.ticks = {
+        tickLabelsRotation: -45,
+      };
+      graph = new Graph(getAxes(localeAxisObj));
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(-45);
+    });
+    it('uses the default value of zero of tickLabelsRotation it is invalid', () => {
+      const localeAxisObj = utils.deepClone(axisTimeSeries);
+      localeAxisObj.x.ticks = {
+        tickLabelsRotation: 23,
+      };
+      graph = new Graph(getAxes(localeAxisObj));
+
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
+    });
+    it('uses the default value of zero if tickLabelsRotation is undefind', () => {
+      const localeAxisObj = utils.deepClone(axisTimeSeries);
+      localeAxisObj.x.ticks = {
+        // tickLabelsRotation is undefind
+      };
+      graph = new Graph(getAxes(localeAxisObj));
+
+      expect(graph.config.axis.x.ticks.tickLabelsRotation).toBe(0);
+    });
+  });
   describe('when graph is destroyed', () => {
     it('should remove div element for the popup tooltip', () => {
       if (graph !== null) {
