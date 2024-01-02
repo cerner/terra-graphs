@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "terra-graphs",
   "engines": {
-    "node": "^10.0.0 || ^12.0.0 || ^14.0.0"
+    "node": "10 || 12 || 14"
   },
   "repository": {
     "type": "git",
@@ -84,6 +84,7 @@
     "postcss-loader": "^3.0.0",
     "prettier": "^2.0.5",
     "prop-types": "^15.5.8",
+    "puppeteer": "19",
     "raf": "^3.4.1",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
@@ -120,7 +121,7 @@
     "danger": "danger ci",
     "dev": "node packages/carbon-graphs/webpack/dev-server.js",
     "heroku-postbuild": "npm install --only=dev && npm run compile:prod",
-    "jest": "jest",
+    "jest": "jest --no-coverage",
     "jest:coverage": "jest --coverage",
     "link-parent-bin": "link-parent-bin",
     "lint": "npm run lint:js && npm run lint:scss",
