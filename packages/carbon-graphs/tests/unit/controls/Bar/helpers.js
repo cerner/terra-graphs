@@ -87,7 +87,7 @@ export const getInput = (
 ) => ({
   key,
   color: !isDefaultColor ? COLORS[Object.keys(COLORS)[1]] : '',
-  onClick: sinon.spy(),
+  onClick: jest.fn(),
   yAxis: isY2Axis ? 'y2' : 'y',
   label: {
     display: 'Data Label A',
