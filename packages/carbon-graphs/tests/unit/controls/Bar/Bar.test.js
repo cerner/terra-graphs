@@ -20,9 +20,6 @@ import {
 describe('Bar', () => {
   let graphDefault = null;
   let barGraphContainer;
-  beforeAll(() => {
-    loadCustomJasmineMatcher();
-  });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
@@ -282,7 +279,7 @@ describe('Bar', () => {
       expect(bar.config.color).toBe(input.color);
       expect(bar.config.shape).toBe(input.shape);
       expect(bar.config.label).toEqual(input.label);
-      expect(bar.config.onClick).toEqual(jasmine.any(Function));
+      expect(typeof bar.config.onClick).toBe("function");
       expect(bar.config.values.length).toBe(3);
       expect(
         bar.config.values.every(
@@ -309,7 +306,7 @@ describe('Bar', () => {
       expect(bar.config.color).not.toBe(input.color);
       expect(bar.config.shape).not.toBe(input.shape);
       expect(bar.config.label).not.toEqual(input.label);
-      expect(bar.config.onClick).toEqual(jasmine.any(Function));
+      expect(typeof bar.config.onClick).toBe("function");
       expect(bar.config.values).not.toBe(input.values);
       expect(bar.config.values.length).toBe(3);
     });
