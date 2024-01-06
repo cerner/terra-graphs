@@ -30,12 +30,9 @@ describe('Bar Styles', () => {
     document.body.innerHTML = '';
   });
   describe('Hashed Bar', () => {
-    describe('when graph is loaded with input', () => {
       let bar1;
       beforeEach(() => {
-        const input = utils.deepClone(
-          getInput(valuesDefault, false, false, false, 'uid_2'),
-        );
+        const input = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
         input.style = {
           isHashed: true,
         };
@@ -47,39 +44,24 @@ describe('Bar Styles', () => {
         graphDefault.destroy();
       });
       it('Hashed bars are loaded', () => {
-        const barContentContainer = fetchAllElementsByClass(
-          barGraphContainer,
-          styles.taskBar,
-        );
+        const barContentContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
         expect(barContentContainer).not.toBeNull();
         expect(barContentContainer[0].nodeName).toBe('rect');
-        expect(barContentContainer[0].getAttribute('style')).toContain(
-                    `fill: ${COLORS.GREEN};`,
-        );
-
+        expect(barContentContainer[0].getAttribute('style')).toContain(`fill: ${COLORS.GREEN};`);
         expect(barContentContainer[1].nodeName).toBe('rect');
-        expect(barContentContainer[1].getAttribute('style')).toContain(
-          'url',
-        );
+        expect(barContentContainer[1].getAttribute('style')).toContain('url');
       });
 
       it('when graph is unloaded off input, unloads hashed bars', () => {
         graphDefault.unloadContent(bar1);
-        const barsContainer = fetchAllElementsByClass(
-          barGraphContainer,
-          styles.taskBar,
-        );
+        const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
         expect(barsContainer.length).toEqual(0);
       });
-    });
   });
   describe('Hollow Bar', () => {
-    describe('when graph is loaded with input', () => {
       let bar1;
       beforeEach(() => {
-        const input = utils.deepClone(
-          getInput(valuesDefault, false, false, false, 'uid_2'),
-        );
+        const input = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
         input.style = {
           isHollow: true,
         };
@@ -91,34 +73,22 @@ describe('Bar Styles', () => {
         graphDefault.destroy();
       });
       it('Hollow bars are loaded', () => {
-        const barContentContainer = fetchAllElementsByClass(
-          barGraphContainer,
-          styles.taskBar,
-        );
+        const barContentContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
         expect(barContentContainer).not.toBeNull();
         expect(barContentContainer[0].nodeName).toBe('rect');
-        expect(barContentContainer[0].getAttribute('style')).toContain(
-          'fill: #ffffff;',
-        );
+        expect(barContentContainer[0].getAttribute('style')).toContain('fill: #ffffff;');
       });
 
       it('when graph is unloaded off input, unloads hollow bars', () => {
         graphDefault.unloadContent(bar1);
-        const barsContainer = fetchAllElementsByClass(
-          barGraphContainer,
-          styles.taskBar,
-        );
+        const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
         expect(barsContainer.length).toEqual(0);
       });
-    });
   });
   describe('Dotted Hollow Bar', () => {
-    describe('when graph is loaded with input', () => {
       let bar1;
       beforeEach(() => {
-        const input = utils.deepClone(
-          getInput(valuesDefault, false, false, false, 'uid_2'),
-        );
+        const input = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
         input.style = {
           isHollow: true,
           isDotted: true,
@@ -131,25 +101,16 @@ describe('Bar Styles', () => {
         graphDefault.destroy();
       });
       it('Dotted bars are loaded', () => {
-        const barContentContainer = fetchAllElementsByClass(
-          barGraphContainer,
-          styles.taskBar,
-        );
+        const barContentContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
         expect(barContentContainer).not.toBeNull();
         expect(barContentContainer[0].nodeName).toBe('rect');
-        expect(barContentContainer[0].getAttribute('style')).toContain(
-          'stroke-dasharray: 2, 2; fill: #ffffff;',
-        );
+        expect(barContentContainer[0].getAttribute('style')).toContain('stroke-dasharray: 2, 2; fill: #ffffff;');
       });
 
       it('when graph is unloaded off input, unloads dotted bars', () => {
         graphDefault.unloadContent(bar1);
-        const barsContainer = fetchAllElementsByClass(
-          barGraphContainer,
-          styles.taskBar,
-        );
+        const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
         expect(barsContainer.length).toEqual(0);
       });
-    });
   });
 });
