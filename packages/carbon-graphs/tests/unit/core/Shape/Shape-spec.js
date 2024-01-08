@@ -18,9 +18,7 @@ describe('Shape', () => {
       const groupSVG = shapeSVG.firstChild;
       const shapePath = groupSVG.firstChild;
       expect(shapeSVG.nodeName === 'svg').toBeTruthy();
-      expect(
-        toNumber(shapeSVG.getAttribute('x')) === SHAPES[i].options.x,
-      ).toBeTruthy();
+      expect(toNumber(shapeSVG.getAttribute('x')) === SHAPES[i].options.x).toBeTruthy();
       expect(
         toNumber(shapeSVG.getAttribute('y')) === SHAPES[i].options.y,
       ).toBeTruthy();
@@ -38,14 +36,8 @@ describe('Shape', () => {
       const groupSVG = shapeSVG.firstChild;
       const shapePath = groupSVG.firstChild;
       expect(shapeSVG.nodeName === 'svg').toBeTruthy();
-      expect(
-        toNumber(shapeSVG.getAttribute('x'))
-                    === SHAPES_LIGHT[i].options.x,
-      ).toBeTruthy();
-      expect(
-        toNumber(shapeSVG.getAttribute('y'))
-                    === SHAPES_LIGHT[i].options.y,
-      ).toBeTruthy();
+      expect(toNumber(shapeSVG.getAttribute('x')) === SHAPES_LIGHT[i].options.x).toBeTruthy();
+      expect(toNumber(shapeSVG.getAttribute('y')) === SHAPES_LIGHT[i].options.y).toBeTruthy();
       expect(shapeSVG.classList.contains(styles.svgIcon)).toBeTruthy();
       expect(shapeSVG.getAttribute('role') === 'img').toBeTruthy();
       expect(shapePath.nodeName).toBeDefined();
@@ -65,12 +57,8 @@ describe('Shape', () => {
     const groupSVG = shapeSVG.firstChild;
     const shapePath = groupSVG.firstChild;
     expect(shapeSVG.nodeName === 'svg').toBeTruthy();
-    expect(
-      toNumber(shapeSVG.getAttribute('x')) === customShape.options.x,
-    ).toBeTruthy();
-    expect(
-      toNumber(shapeSVG.getAttribute('y')) === customShape.options.y,
-    ).toBeTruthy();
+    expect(toNumber(shapeSVG.getAttribute('x')) === customShape.options.x).toBeTruthy();
+    expect(toNumber(shapeSVG.getAttribute('y')) === customShape.options.y).toBeTruthy();
     expect(shapeSVG.classList.contains(styles.svgIcon)).toBeTruthy();
     expect(shapeSVG.getAttribute('role') === 'img').toBeTruthy();
     expect(shapePath.nodeName === 'path').toBeTruthy();
@@ -114,28 +102,16 @@ describe('Shape', () => {
     const shapePathObj1 = groupSVG.childNodes[0];
     const shapePathObj2 = groupSVG.childNodes[1];
     expect(shapeSVG.nodeName === 'svg').toBeTruthy();
-    expect(
-      toNumber(shapeSVG.getAttribute('x')) === customShape.options.x,
-    ).toBeTruthy();
-    expect(
-      toNumber(shapeSVG.getAttribute('y')) === customShape.options.y,
-    ).toBeTruthy();
+    expect(toNumber(shapeSVG.getAttribute('x')) === customShape.options.x).toBeTruthy();
+    expect(toNumber(shapeSVG.getAttribute('y')) === customShape.options.y).toBeTruthy();
     expect(shapeSVG.classList.contains(styles.svgIcon)).toBeTruthy();
     expect(shapeSVG.getAttribute('role') === 'img').toBeTruthy();
     expect(shapePathObj1.nodeName === 'path').toBeTruthy();
-    expect(
-      shapePathObj1.getAttribute('d') === customShape.path[0].d,
-    ).toBeTruthy();
-    expect(
-      shapePathObj1.getAttribute('fill') === customShape.path[0].fill,
-    ).toBeTruthy();
+    expect(shapePathObj1.getAttribute('d') === customShape.path[0].d).toBeTruthy();
+    expect(shapePathObj1.getAttribute('fill') === customShape.path[0].fill).toBeTruthy();
     expect(shapePathObj2.nodeName === 'path').toBeTruthy();
-    expect(
-      shapePathObj2.getAttribute('d') === customShape.path[1].d,
-    ).toBeTruthy();
-    expect(
-      shapePathObj2.getAttribute('fill') === customShape.path[1].fill,
-    ).toBeTruthy();
+    expect(shapePathObj2.getAttribute('d') === customShape.path[1].d).toBeTruthy();
+    expect(shapePathObj2.getAttribute('fill') === customShape.path[1].fill).toBeTruthy();
   });
   it('applies a11y attributes to SVG', () => {
     const customShape = {

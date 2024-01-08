@@ -1,0 +1,463 @@
+'use strict';
+
+import * as d3 from '../../../../src/js/d3Modules';
+import Gantt from '../../../../src/js/controls/Gantt';
+import styles from '../../../../src/js/helpers/styles';
+import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
+import {
+  axisJSON,
+  eventlineJSON,
+  fetchElementByClass,
+  getAxes,
+  getData,
+  datelineAlt,
+  datelineJSON,
+  fetchAllElementsByClass,
+  taskValuesJSON,
+  activityValuesJSON,
+  eventValuesJson,
+  actionValuesJson,
+  legendJSON,
+} from './helpers';
+import utils from '../../../../src/js/helpers/utils';
+import { delay, toNumber, PADDING_BOTTOM } from '../../helpers/commonHelpers';
+import {
+  COLORS,
+} from '../../../../src/js/helpers/constants';
+
+describe('Panning', () => {
+  let gantt = null;
+  let ganttChartContainer;
+  let consolewarn;
+
+  beforeEach(() => {
+    ganttChartContainer = document.createElement('div');
+    ganttChartContainer.id = 'testCarbonGantt';
+    ganttChartContainer.setAttribute(
+      'style',
+      'width: 1024px; height: 400px;',
+    );
+    ganttChartContainer.setAttribute('class', 'carbon-test-class');
+    document.body.appendChild(ganttChartContainer);
+  });
+  beforeAll(() => {
+    // to supress warnings
+    consolewarn = console.warn;
+    console.warn = () => {};
+  });
+  afterAll(() => {
+    console.warn = consolewarn;
+  });
+  afterEach(() => {
+    document.body.innerHTML = '';
+  });
+
+  describe('When enabled', () => {
+    beforeEach(() => {
+      const axisData = Object.assign(getAxes(axisJSON), {
+        showActionLegend: true,
+        actionLegend: legendJSON,
+      });
+      axisData.dateline = datelineJSON;
+      axisData.pan = { enabled: true };
+      gantt = new Gantt(axisData);
+    });
+    it('Checks if clamp is false when pan is enabled', () => {
+      expect(gantt.scale.x.clamp()).toEqual(false);
+    });
+    it('Check if different clipPath for dateline is created', () => {
+      const defsElement = fetchElementByClass(styles.canvas).firstChild;
+      expect(defsElement.childElementCount).toBe(2);
+      expect(defsElement.nodeName).toBe('defs');
+      expect(defsElement.lastChild.nodeName).toBe('clipPath');
+      expect(defsElement.lastChild.firstChild.nodeName).toBe('rect');
+      expect(defsElement.lastChild.id).toContain('-dateline-clip');
+    });
+    it('Check the height for dateline defs is proper', () => {
+      const defsElement = fetchElementByClass(styles.canvas).firstChild;
+      const shapeHeightArr = [];
+      d3.selectAll(`.${styles.datelinePoint}`).each(function () {
+        const shapeHeight = this.getBBox().height;
+        shapeHeightArr.push(shapeHeight);
+      });
+      const datelineIndicatorHeight = Math.max(...shapeHeightArr);
+      const datelineDefsHeight = gantt.config.height + Math.floor(datelineIndicatorHeight / 2);
+      expect(
+        defsElement.lastChild.firstChild.getAttribute('height'),
+      ).toBe(datelineDefsHeight.toString());
+    });
+    it('Dateline group translates properly when pan is enabled', () => {
+      const datelineGroupElement = fetchElementByClass(
+        styles.datelineGroup,
+      );
+      expect(d3.select(datelineGroupElement).datum().value).toBe(
+        datelineAlt.value,
+      );
+      expect(datelineGroupElement.getAttribute('aria-selected')).toBe(
+        'false',
+      );
+      delay(() => {
+        const { translate } = getSVGAnimatedTransformList(
+          datelineGroupElement.getAttribute('transform'),
+        );
+        expect(toNumber(translate[0], 10)).toBeCloseTo(106);
+        expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
+      });
+    });
+    it('Dynamic Data is updated correctly when key matches', () => {
+      const primaryContent = getData(
+        taskValuesJSON,
+        activityValuesJSON,
+        eventValuesJson,
+        actionValuesJson,
+      );
+      const graphData = {
+        panData: [
+          {
+            key: 'track 1',
+            tasks: [
+              {
+                key: 'taskNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+              {
+                key: 'taskChunk',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            activities: [
+              {
+                key: 'activityNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            events: [
+              {
+                key: 'uid_event_1',
+                values: [new Date(2018, 3, 5).toISOString()],
+              },
+            ],
+            actions: [
+              {
+                key: 'uid_action_1',
+                values: [new Date(2018, 2, 1, 6, 15).toISOString()],
+              },
+            ],
+          },
+        ],
+      };
+      gantt.loadContent(primaryContent);
+      let tasksContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.task,
+      );
+      expect(tasksContent.length).toEqual(4);
+      let activitiesContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.activity,
+      );
+      expect(activitiesContent.length).toEqual(2);
+      let eventsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="true"]`,
+      );
+      expect(eventsContent.length).toEqual(2);
+      let actionsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="false"]`,
+      );
+      expect(actionsContent.length).toEqual(2);
+
+      gantt.reflowMultipleDatasets(graphData);
+
+      tasksContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.task,
+      );
+      expect(tasksContent.length).toEqual(2);
+      activitiesContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.activity,
+      );
+      expect(activitiesContent.length).toEqual(1);
+      eventsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="true"]`,
+      );
+      expect(eventsContent.length).toEqual(1);
+      actionsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="false"]`,
+      );
+      expect(actionsContent.length).toEqual(1);
+    });
+    it('does not update dynamic data when key does not match', () => {
+      const primaryContent = getData(
+        taskValuesJSON,
+        activityValuesJSON,
+        eventValuesJson,
+        actionValuesJson,
+      );
+      const graphData = {
+        panData: [
+          {
+            key: 'track 0',
+            tasks: [
+              {
+                key: 'taskNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+              {
+                key: 'taskChunk',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            activities: [
+              {
+                key: 'activityNormal',
+                startDate: new Date(2018, 3, 1).toISOString(),
+                endDate: new Date(2018, 6, 10).toISOString(),
+              },
+            ],
+            events: [
+              {
+                key: 'uid_event_1',
+                values: [new Date(2018, 3, 5).toISOString()],
+              },
+            ],
+            actions: [
+              {
+                key: 'uid_action_1',
+                values: [new Date(2018, 2, 1, 6, 15).toISOString()],
+              },
+            ],
+          },
+        ],
+      };
+      gantt.loadContent(primaryContent);
+      let tasksContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.task,
+      );
+      expect(tasksContent.length).toEqual(4);
+      let activitiesContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.activity,
+      );
+      expect(activitiesContent.length).toEqual(2);
+      let eventsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="true"]`,
+      );
+      expect(eventsContent.length).toEqual(2);
+      let actionsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="false"]`,
+      );
+      expect(actionsContent.length).toEqual(2);
+
+      gantt.reflowMultipleDatasets(graphData);
+
+      tasksContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.task,
+      );
+      expect(tasksContent.length).toEqual(4);
+      activitiesContent = fetchAllElementsByClass(
+        ganttChartContainer,
+        styles.activity,
+      );
+      expect(activitiesContent.length).toEqual(2);
+      eventsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="true"]`,
+      );
+      expect(eventsContent.length).toEqual(2);
+      actionsContent = fetchAllElementsByClass(
+        ganttChartContainer,
+                `${styles.currentPointsGroup}[event="false"]`,
+      );
+      expect(actionsContent.length).toEqual(2);
+    });
+    it('EventlineGroup translates properly when panning is enabled', () => {
+      if (gantt) {
+        gantt.destroy();
+      }
+      const axisObj = utils.deepClone(getAxes(axisJSON));
+      axisObj.eventline = utils.deepClone(eventlineJSON);
+      gantt = new Gantt(axisObj);
+      const eventlineGroup = fetchElementByClass(styles.eventlineGroup);
+      delay(() => {
+        const { translate } = getSVGAnimatedTransformList(
+          eventlineGroup.getAttribute('transform'),
+        );
+        expect(toNumber(translate[0], 10)).toBeCloseTo(106);
+        expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
+      });
+    });
+    describe('Should update the eventline', () => {
+      beforeEach(() => {
+        if (gantt) {
+          gantt.destroy();
+        }
+        const axisObj = utils.deepClone(getAxes(axisJSON));
+        axisObj.eventline = utils.deepClone(eventlineJSON);
+        gantt = new Gantt(axisObj);
+      });
+      it('When eventline is passed, when creating the gantt chart', () => {
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+        const panData = {
+          eventline: [
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: '4,4',
+              },
+              value: new Date(2018, 9, 28).toISOString(),
+            },
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: '4,4',
+              },
+              value: new Date(2018, 10, 28).toISOString(),
+            },
+          ],
+        };
+        gantt.reflowMultipleDatasets(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(2);
+      });
+      it('Removes the eventline when empty dataset is passed', () => {
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+        const panData = {
+          eventline: [],
+        };
+        gantt.reflowMultipleDatasets(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(0);
+      });
+    });
+    describe('Should not update the eventline', () => {
+      beforeEach(() => {
+        if (gantt) {
+          gantt.destroy();
+        }
+      });
+      it('When eventline attribute is not passed or passed as null to reflow data', () => {
+        const axisObj = utils.deepClone(getAxes(axisJSON));
+        axisObj.eventline = utils.deepClone(eventlineJSON);
+        gantt = new Gantt(axisObj);
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+        const panData = {
+          eventline: null,
+        };
+        gantt.reflowMultipleDatasets(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(1);
+      });
+      it('When eventline is not passed while creating the gantt chart', () => {
+        gantt = new Gantt(utils.deepClone(getAxes(axisJSON)));
+        let eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(0);
+        const panData = {
+          eventline: [
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: '4,4',
+              },
+              value: new Date(2016, 9, 28).toISOString(),
+            },
+            {
+              color: COLORS.GREY,
+              style: {
+                strokeDashArray: '4,4',
+              },
+              value: new Date(2016, 10, 28).toISOString(),
+            },
+          ],
+        };
+        gantt.reflowMultipleDatasets(panData);
+        eventlines = document.querySelectorAll(`.${styles.eventline}`);
+        expect(eventlines.length).toBe(0);
+      });
+    });
+  });
+  describe('When disabled', () => {
+    beforeEach(() => {
+      const axisData = utils.deepClone(getAxes(axisJSON));
+      axisData.dateline = datelineJSON;
+      axisData.pan = { enabled: false };
+      gantt = new Gantt(axisData);
+    });
+    it('Check if different clipPath for dateline is not created', () => {
+      const defsElement = fetchElementByClass(styles.canvas).firstChild;
+      expect(defsElement.childElementCount).toBe(1);
+      expect(defsElement.nodeName).toBe('defs');
+      expect(defsElement.lastChild.nodeName).toBe('clipPath');
+      expect(defsElement.lastChild.firstChild.nodeName).toBe('rect');
+    });
+    it('Dateline group translates properly when panning is disabled', () => {
+      const datelineGroupElement = fetchElementByClass(
+        styles.datelineGroup,
+      );
+      expect(d3.select(datelineGroupElement).datum().value).toBe(
+        datelineAlt.value,
+      );
+      expect(datelineGroupElement.getAttribute('aria-selected')).toBe(
+        'false',
+      );
+      delay(() => {
+        const { translate } = getSVGAnimatedTransformList(
+          datelineGroupElement.getAttribute('transform'),
+        );
+        expect(toNumber(translate[0], 10)).toBeCloseTo(106);
+        expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
+      });
+    });
+  });
+  describe('When undefined', () => {
+    beforeEach(() => {
+      const axisData = utils.deepClone(getAxes(axisJSON));
+      axisData.dateline = datelineJSON;
+      gantt = new Gantt(axisData);
+    });
+    it('Check if clamp is false if pan is undefined', () => {
+      expect(gantt.scale.x.clamp()).toEqual(true);
+    });
+    it('Check if different clipPath for dateline is not created', () => {
+      const defsElement = fetchElementByClass(styles.canvas).firstChild;
+      expect(defsElement.childElementCount).toBe(1);
+      expect(defsElement.nodeName).toBe('defs');
+      expect(defsElement.lastChild.nodeName).toBe('clipPath');
+      expect(defsElement.lastChild.firstChild.nodeName).toBe('rect');
+    });
+    it('Dateline group translates properly when panning is undefined', () => {
+      const datelineGroupElement = fetchElementByClass(
+        styles.datelineGroup,
+      );
+      expect(d3.select(datelineGroupElement).datum().value).toBe(
+        datelineAlt.value,
+      );
+      expect(datelineGroupElement.getAttribute('aria-selected')).toBe(
+        'false',
+      );
+      delay(() => {
+        const { translate } = getSVGAnimatedTransformList(
+          datelineGroupElement.getAttribute('transform'),
+        );
+        expect(toNumber(translate[0], 10)).toBeCloseTo(106);
+        expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
+      });
+    });
+  });
+});
