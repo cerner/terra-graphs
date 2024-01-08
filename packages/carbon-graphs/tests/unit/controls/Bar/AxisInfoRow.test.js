@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 
 import Carbon from '../../../../src/js/carbon';
 import Bar from '../../../../src/js/controls/Bar/Bar';
