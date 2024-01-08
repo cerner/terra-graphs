@@ -24,17 +24,14 @@ import errors from '../../../../src/js/helpers/errors';
 
 // TODO: fix failing tests
 describe.skip('Bar - Panning', () => {
-  let graphDefault = null;
+  let graphDefault;
   let barGraphContainer;
-  let consolewarn;
 
   beforeAll(() => {
-    // to supress warnings
-    consolewarn = console.warn;
-    console.warn = () => {};
+    jest.spyOn(console, 'warn').mockImplementation();
   });
   afterAll(() => {
-    console.warn = consolewarn;
+    jest.restoreAllMocks();
   });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
@@ -67,6 +64,10 @@ describe.skip('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
+    afterEach(() => {
+      graphDefault.destroy();
+    });
+
     it('sets clamp to false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
@@ -114,7 +115,6 @@ describe.skip('Bar - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     describe('when key matches', () => {
@@ -329,7 +329,6 @@ describe.skip('Bar - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });
@@ -377,9 +376,9 @@ describe.skip('Bar - Panning', () => {
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
         expect(barContent.length).toEqual(0);
-        
+
         graphDefault.reflow(panData);
-        barContent = fetchAllElementsByClass(barGraphContainer,styles.bar);
+        barContent = fetchAllElementsByClass(barGraphContainer, styles.bar);
 
         expect(barContent.length).toEqual(2);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');

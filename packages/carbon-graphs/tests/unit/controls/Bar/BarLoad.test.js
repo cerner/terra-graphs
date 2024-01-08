@@ -3,17 +3,10 @@
 import Carbon from '../../../../src/js/carbon';
 import Bar from '../../../../src/js/controls/Bar/Bar';
 import Graph from '../../../../src/js/controls/Graph/Graph';
-import constants, {
-  COLORS,
-  SHAPES,
-} from '../../../../src/js/helpers/constants';
+import constants, { COLORS, SHAPES } from '../../../../src/js/helpers/constants';
 import styles from '../../../../src/js/helpers/styles';
 import utils from '../../../../src/js/helpers/utils';
-import {
-  loadCustomJasmineMatcher,
-  toNumber,
-  triggerEvent,
-} from '../../helpers/commonHelpers';
+import { toNumber, triggerEvent } from '../../helpers/commonHelpers';
 import {
   axisDefault,
   axisTimeSeries,
@@ -27,165 +20,168 @@ import {
 import errors from '../../../../src/js/helpers/errors';
 
 describe('Bar - Load Lifecycle', () => {
-
   let barGraphContainer;
+
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
+
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
-    barGraphContainer.setAttribute(
-      'style',
-      'width: 1024px; height: 400px;',
-    );
+    barGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     document.body.appendChild(barGraphContainer);
   });
   afterEach(() => {
     document.body.innerHTML = '';
   });
 
-  describe("Initialization",()=>{
+  describe('Initialization', () => {
     let graphDefault = null;
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
     });
     afterEach(() => {
-      if(graphDefault)
       graphDefault.destroy();
     });
 
-  it('returns the graph instance', () => {
-    const loadedBar = new Bar(getInput(valuesDefault, false, false));
-    loadedBar.load(graphDefault);
-    expect(loadedBar).toBeInstanceOf(Bar);
-  });
-  it('throws an error when null value is passed as y', () => {
-    let input = null;
-    expect(() => {
-      const data = utils.deepClone(valuesDefault);
-      data[0].y = null;
-      input = getInput(data);
-      graphDefault.loadContent(new Bar(input));
-    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
-  });
-  it('throws an error when undefined value is passed as y', () => {
-    let input = null;
-    expect(() => {
-      const data = utils.deepClone(valuesDefault);
-      data[0].y = undefined;
-      input = getInput(data);
-      graphDefault.loadContent(new Bar(input));
-    }).toThrowError(errors.THROW_MSG_INVALID_DATA);
-  });
-  it('correctly creates internal subsets for each data point', () => {
-    const graph = graphDefault.loadContent(
-      new Bar(getInput(valuesDefault, false, false)),
-    );
-    const data = graph.content[0].dataTarget;
-    expect(
-      data.internalValuesSubset.every(
-        (j) => j.onClick !== null
+    it('returns the graph instance', () => {
+      const loadedBar = new Bar(getInput(valuesDefault, false, false));
+      loadedBar.load(graphDefault);
+      expect(loadedBar).toBeInstanceOf(Bar);
+    });
+    it('throws an error when null value is passed as y', () => {
+      let input = null;
+      expect(() => {
+        const data = utils.deepClone(valuesDefault);
+        data[0].y = null;
+        input = getInput(data);
+        graphDefault.loadContent(new Bar(input));
+      }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+    });
+    it('throws an error when undefined value is passed as y', () => {
+      let input = null;
+      expect(() => {
+        const data = utils.deepClone(valuesDefault);
+        data[0].y = undefined;
+        input = getInput(data);
+        graphDefault.loadContent(new Bar(input));
+      }).toThrowError(errors.THROW_MSG_INVALID_DATA);
+    });
+    it('correctly creates internal subsets for each data point', () => {
+      const graph = graphDefault.loadContent(
+        new Bar(getInput(valuesDefault, false, false)),
+      );
+      const data = graph.content[0].dataTarget;
+      expect(
+        data.internalValuesSubset.every(
+          (j) => j.onClick !== null
                     && j.x !== null
                     && j.y !== null
                     && j.label !== null
                     && j.color
                     && j.yAxis
                     && j.key === data.key,
-      ),
-    ).toBeTruthy();
-    expect(graph.config.shownTargets.length).toBe(1);
-  });
-  it('successfully creates internal subsets for time series', () => {
-    const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
-    const graph = graphTimeSeries.loadContent(
-      new Bar(getInput(valuesTimeSeries, false, false)),
-    );
-    const data = graph.content[0].dataTarget;
-    expect(
-      data.internalValuesSubset.every(
-        (j) => typeof j.x === 'object' && j.x instanceof Date,
-      ),
-    ).toBeTruthy();
-  });
-  it('defaults color to blue when not provided', () => {
-    const graph = graphDefault.loadContent(
-      new Bar(getInput(valuesDefault)),
-    );
-    const data = graph.content[0].dataTarget;
-    expect(
-      data.internalValuesSubset.every((j) => j.color === COLORS.BLUE),
-    ).toBeTruthy();
-  });
-  it('defaults axis to Y axis when not provided', () => {
-    const graph = graphDefault.loadContent(
-      new Bar(getInput(valuesDefault)),
-    );
-    const data = graph.content[0].dataTarget;
-    expect(
-      data.internalValuesSubset.every((j) => j.yAxis === constants.Y_AXIS),
-    ).toBeTruthy();
-  });
-  it('defaults bar content cascade group to key value if no group is provided', () => {
-    const input = getInput(valuesDefault);
-    const graph = graphDefault.loadContent(new Bar(input));
-    const data = graph.content[0].dataTarget;
-    expect(data.group).toEqual(input.key);
-  });
-  it('sets axis info row group to respective bar group', () => {
-    const data = utils.deepClone(getInput(valuesDefault, false, false));
-    data.axisInfoRow = [
-      {
-        axis: 'x',
-        x: 1,
-        value: {
-          onClick: () => {},
-          characterCount: 9,
-          color: Carbon.helpers.COLORS.ORANGE,
-          shape: {},
-          label: {
-            display: '51',
-            secondaryDisplay: 'ICU',
+        ),
+      ).toBeTruthy();
+      expect(graph.config.shownTargets.length).toBe(1);
+    });
+    it('successfully creates internal subsets for time series', () => {
+      const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
+      const graph = graphTimeSeries.loadContent(
+        new Bar(getInput(valuesTimeSeries, false, false)),
+      );
+      const data = graph.content[0].dataTarget;
+      expect(
+        data.internalValuesSubset.every(
+          (j) => typeof j.x === 'object' && j.x instanceof Date,
+        ),
+      ).toBeTruthy();
+    });
+    it('defaults color to blue when not provided', () => {
+      const graph = graphDefault.loadContent(
+        new Bar(getInput(valuesDefault)),
+      );
+      const data = graph.content[0].dataTarget;
+      expect(
+        data.internalValuesSubset.every((j) => j.color === COLORS.BLUE),
+      ).toBeTruthy();
+    });
+    it('defaults axis to Y axis when not provided', () => {
+      const graph = graphDefault.loadContent(
+        new Bar(getInput(valuesDefault)),
+      );
+      const data = graph.content[0].dataTarget;
+      expect(
+        data.internalValuesSubset.every((j) => j.yAxis === constants.Y_AXIS),
+      ).toBeTruthy();
+    });
+    it('defaults bar content cascade group to key value if no group is provided', () => {
+      const input = getInput(valuesDefault);
+      const graph = graphDefault.loadContent(new Bar(input));
+      const data = graph.content[0].dataTarget;
+      expect(data.group).toEqual(input.key);
+    });
+    it('sets axis info row group to respective bar group', () => {
+      const data = utils.deepClone(getInput(valuesDefault, false, false));
+      data.axisInfoRow = [
+        {
+          axis: 'x',
+          x: 1,
+          value: {
+            onClick: () => {},
+            characterCount: 9,
+            color: Carbon.helpers.COLORS.ORANGE,
+            shape: {},
+            label: {
+              display: '51',
+              secondaryDisplay: 'ICU',
+            },
           },
         },
-      },
-    ];
-    const bar = new Bar(data);
-    const graph = graphDefault.loadContent(bar);
-    expect(graph.content[0].dataTarget.axisInfoRow[0].group).toEqual(
-      graph.content[0].dataTarget.group,
-    );
-  });
+      ];
+      const bar = new Bar(data);
+      const graph = graphDefault.loadContent(bar);
+      expect(graph.content[0].dataTarget.axisInfoRow[0].group).toEqual(
+        graph.content[0].dataTarget.group,
+      );
+    });
 
-//  TODO: fix failing test
-  it.skip('adds axis info row label height to bottom padding when axis info row is used', () => {
-    const initialBottomPadding = graphDefault.config.padding.bottom;
-    const initialAxisInfoRowLabelHeight = graphDefault.config.axisInfoRowLabelHeight;
-    const data = utils.deepClone(getInput(valuesDefault, false, false));
-    data.axisInfoRow = [
-      {
-        axis: 'x',
-        x: 1,
-        value: {
-          onClick: () => {},
-          characterCount: 9,
-          color: Carbon.helpers.COLORS.ORANGE,
-          shape: {},
-          label: {
-            display: '51',
-            secondaryDisplay: 'ICU',
+    //  TODO: fix failing test
+    it.skip('adds axis info row label height to bottom padding when axis info row is used', () => {
+      const initialBottomPadding = graphDefault.config.padding.bottom;
+      const initialAxisInfoRowLabelHeight = graphDefault.config.axisInfoRowLabelHeight;
+      const data = utils.deepClone(getInput(valuesDefault, false, false));
+      data.axisInfoRow = [
+        {
+          axis: 'x',
+          x: 1,
+          value: {
+            onClick: () => {},
+            characterCount: 9,
+            color: Carbon.helpers.COLORS.ORANGE,
+            shape: {},
+            label: {
+              display: '51',
+              secondaryDisplay: 'ICU',
+            },
           },
         },
-      },
-    ];
-    const bar = new Bar(data);
-    const graph = graphDefault.loadContent(bar);
-    const finalBottomPadding = graph.config.padding.bottom;
-    const finalAxisInfoRowLabelHeight = graph.config.axisInfoRowLabelHeight;
+      ];
+      const bar = new Bar(data);
+      const graph = graphDefault.loadContent(bar);
+      const finalBottomPadding = graph.config.padding.bottom;
+      const finalAxisInfoRowLabelHeight = graph.config.axisInfoRowLabelHeight;
 
-    expect(initialBottomPadding).toEqual(constants.PADDING.bottom);
-    expect(initialAxisInfoRowLabelHeight).toEqual(0);
-    expect(finalBottomPadding).toBeGreaterThan(initialBottomPadding);
-    expect(finalAxisInfoRowLabelHeight).not.toEqual(0);
-    expect(finalBottomPadding).toEqual(initialBottomPadding + finalAxisInfoRowLabelHeight);
-  });
+      expect(initialBottomPadding).toEqual(constants.PADDING.bottom);
+      expect(initialAxisInfoRowLabelHeight).toEqual(0);
+      expect(finalBottomPadding).toBeGreaterThan(initialBottomPadding);
+      expect(finalAxisInfoRowLabelHeight).not.toEqual(0);
+      expect(finalBottomPadding).toEqual(initialBottomPadding + finalAxisInfoRowLabelHeight);
+    });
   });
 
   describe('draws the graph', () => {
@@ -198,7 +194,6 @@ describe('Bar - Load Lifecycle', () => {
       graphDefault.loadContent(new Bar(input));
     });
     afterEach(() => {
-      if(graphDefault)
       graphDefault.destroy();
     });
 
@@ -235,8 +230,8 @@ describe('Bar - Load Lifecycle', () => {
       expect(legendItem.getAttribute('aria-disabled')).toBe('true');
     });
     it('adds bar group for bar content', () => {
-      const barContentContainer = fetchElementByClass(barGraphContainer,styles.barGraphContent);
-      const barGroup = fetchElementByClass(barContentContainer,styles.currentBarsGroup);
+      const barContentContainer = fetchElementByClass(barGraphContainer, styles.barGraphContent);
+      const barGroup = fetchElementByClass(barContentContainer, styles.currentBarsGroup);
       expect(barGroup).not.toBeNull();
       expect(barGroup.tagName).toBe('g');
       expect(barGroup.getAttribute('transform')).not.toBeNull();
@@ -401,7 +396,6 @@ describe('Bar - Load Lifecycle', () => {
       expect(graphInstance.config.axis.x.domain.lowerLimit.toISOString()).toEqual('2016-01-28T10:48:00.000Z');
       expect(graphInstance.config.axis.x.domain.upperLimit.toISOString()).toEqual('2016-06-09T13:12:00.000Z');
     });
-
   });
   describe('selection bar translates to 0 x-axis range', () => {
     it('when graph has no bar contents', () => {
@@ -414,7 +408,7 @@ describe('Bar - Load Lifecycle', () => {
       const selectionPoint = fetchElementByClass(
         barGraphContainer,
         styles.taskBarSelection,
-        );
+      );
       expect(toNumber(selectionPoint.getAttribute('x'))).toEqual(0);
     });
   });
@@ -422,20 +416,19 @@ describe('Bar - Load Lifecycle', () => {
     let graphDefault;
     let input;
     afterEach(() => {
-      if(graphDefault)
       graphDefault.destroy();
     });
     it('correctly sets attributes for simple bar', () => {
       graphDefault = new Graph(getAxes(axisDefault));
 
       input = getInput(valuesDefault, false, false);
-      input.onClick = (clearSelectionCallback) => {clearSelectionCallback()};
+      input.onClick = (clearSelectionCallback) => { clearSelectionCallback(); };
 
       const bar = new Bar(input);
       graphDefault.loadContent(bar);
       bar.redraw(graphDefault);
-      const selectionPoint = fetchElementByClass(barGraphContainer,styles.taskBarSelection);
-      const point = fetchElementByClass(barGraphContainer,styles.taskBar);
+      const selectionPoint = fetchElementByClass(barGraphContainer, styles.taskBarSelection);
+      const point = fetchElementByClass(barGraphContainer, styles.taskBar);
       triggerEvent(point, 'click', () => {
         expect(toNumber(selectionPoint.getAttribute('x')))
           .toBeCloserTo(toNumber(point.getAttribute('x')) - 5);
@@ -445,7 +438,6 @@ describe('Bar - Load Lifecycle', () => {
           .toBeCloserTo(toNumber(point.getAttribute('height')) + 10);
         expect(toNumber(selectionPoint.getAttribute('width')))
           .toBeCloserTo(toNumber(point.getAttribute('width')) + 10);
-        done();
       });
     });
     it('correctly sets attributes for grouped bar', () => {
@@ -458,7 +450,7 @@ describe('Bar - Load Lifecycle', () => {
       graphDefault.loadContent(bar);
       const input2 = utils.deepClone(
         getInput(valuesDefault, false, false),
-        );
+      );
       input2.key = 'uid_2';
       input2.onClick = (clearSelectionCallback) => {
         clearSelectionCallback();
@@ -470,15 +462,15 @@ describe('Bar - Load Lifecycle', () => {
       const selectionPoint = fetchElementByClass(
         barGraphContainer,
         styles.taskBarSelection,
-        );
+      );
       const point = fetchElementByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       const points = fetchAllElementsByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       triggerEvent(point, 'click', () => {
         expect(toNumber(selectionPoint.getAttribute('x')))
           .toBeCloserTo(toNumber(points[0].getAttribute('x')) - 5);
@@ -492,8 +484,7 @@ describe('Bar - Load Lifecycle', () => {
                             - toNumber(points[0].getAttribute('x'))
                             + toNumber(points[1].getAttribute('width'))
                             + 10,
-                            );
-        done();
+          );
       });
     });
     it('correctly sets attributes for stacked bar', () => {
@@ -506,7 +497,7 @@ describe('Bar - Load Lifecycle', () => {
       graphDefault.loadContent(bar);
       const input2 = utils.deepClone(
         getInput(valuesDefault, false, false),
-        );
+      );
       input2.key = 'uid_2';
       input2.group = 'uid_1';
       input2.onClick = (clearSelectionCallback) => {
@@ -519,15 +510,15 @@ describe('Bar - Load Lifecycle', () => {
       const selectionPoint = fetchElementByClass(
         barGraphContainer,
         styles.taskBarSelection,
-        );
+      );
       const point = fetchElementByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       const points = fetchAllElementsByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       triggerEvent(point, 'click', () => {
         expect(toNumber(selectionPoint.getAttribute('x')))
           .toBeCloserTo(toNumber(points[0].getAttribute('x')) - 5);
@@ -538,12 +529,11 @@ describe('Bar - Load Lifecycle', () => {
             toNumber(points[0].getAttribute('height'))
                             + toNumber(points[3].getAttribute('height'))
                             + 10,
-                            );
+          );
         expect(toNumber(selectionPoint.getAttribute('width')))
           .toBeCloserTo(
             toNumber(points[0].getAttribute('width')) + 10,
-            );
-        done();
+          );
       });
     });
     it('correctly sets attributes for mixed type bar', () => {
@@ -557,14 +547,14 @@ describe('Bar - Load Lifecycle', () => {
       graphDefault.loadContent(bar);
       const input2 = utils.deepClone(
         getInput(valuesDefault, false, false),
-        );
+      );
       input2.key = 'uid_2';
       input2.onClick = (clearSelectionCallback) => {
         clearSelectionCallback();
       };
       const input3 = utils.deepClone(
         getInput(valuesDefault, false, false),
-        );
+      );
       input3.key = 'uid_3';
       input3.group = 'uid_1';
       input3.onClick = (clearSelectionCallback) => {
@@ -580,45 +570,43 @@ describe('Bar - Load Lifecycle', () => {
       const selectionPoint = fetchElementByClass(
         barGraphContainer,
         styles.taskBarSelection,
-        );
+      );
       const point = fetchElementByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       const points = fetchAllElementsByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       triggerEvent(point, 'click', () => {
-expect(toNumber(selectionPoint.getAttribute('x')))
+        expect(toNumber(selectionPoint.getAttribute('x')))
           .toBeCloserTo(toNumber(points[0].getAttribute('x')) - 5);
-expect(toNumber(selectionPoint.getAttribute('y')))
+        expect(toNumber(selectionPoint.getAttribute('y')))
           .toBeCloserTo(toNumber(points[0].getAttribute('y')) - 5);
-expect(toNumber(selectionPoint.getAttribute('height')))
+        expect(toNumber(selectionPoint.getAttribute('height')))
           .toBeCloserTo(
             toNumber(points[0].getAttribute('height'))
                             + toNumber(points[6].getAttribute('height'))
                             + 10,
-                            );
-expect(toNumber(selectionPoint.getAttribute('width')))
+          );
+        expect(toNumber(selectionPoint.getAttribute('width')))
           .toBeCloserTo(
             toNumber(points[3].getAttribute('x'))
                             - toNumber(points[0].getAttribute('x'))
                             + toNumber(points[1].getAttribute('width'))
                             + 10,
-                            );
-        done();
+          );
       });
     });
   });
   describe('when clicked on a data point', () => {
     let graphDefault;
     let input;
-    beforeEach(()=>{
+    beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
-    })
+    });
     afterEach(() => {
-      if(graphDefault)
       graphDefault.destroy();
     });
     it('does not do anything if no onClick callback is provided', () => {
@@ -628,10 +616,9 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       const bar = fetchElementByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       triggerEvent(bar, 'click', () => {
         expect(bar.getAttribute('aria-disabled')).toBe('true');
-        done();
       });
     });
     it('hides data point selection when parameter callback is called', () => {
@@ -643,49 +630,46 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       const point = fetchElementByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       triggerEvent(point, 'click', () => {
         const selectionPoint = fetchElementByClass(
           barGraphContainer,
           styles.taskBarSelection,
-          );
+        );
         expect(selectionPoint.getAttribute('aria-hidden')).toBe(
           'true',
-          );
-        done();
+        );
       });
     });
     it('highlights the data point', () => {
       const selectionPoint = fetchElementByClass(
         barGraphContainer,
         styles.taskBarSelection,
-        );
+      );
       const point = fetchElementByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       triggerEvent(point, 'click', () => {
         expect(selectionPoint.getAttribute('aria-hidden')).toBe(
           'false',
-          );
-        done();
+        );
       });
     });
     it('removes highlight when data point is clicked again', () => {
       const selectionPoint = fetchElementByClass(
         barGraphContainer,
         styles.taskBarSelection,
-        );
+      );
       const point = fetchElementByClass(
         barGraphContainer,
         styles.taskBar,
-        );
+      );
       triggerEvent(point, 'click', () => {
         triggerEvent(point, 'click', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'true',
-            );
-          done();
+          );
         });
       });
     });
@@ -703,14 +687,13 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       graphDefault.loadContent(new Bar(input));
       const selectionPoint = barGraphContainer.querySelectorAll(
         `.${styles.taskBar}`,
-        )[1];
+      )[1];
       triggerEvent(selectionPoint, 'click', () => {
         expect(args).not.toBeNull();
         expect(args.cb).toEqual(jasmine.any(Function));
         expect(args.key).toBe('uid_1');
         expect(args.vals).not.toBeNull();
         expect(args.vals.length).toEqual(1);
-        done();
       });
     });
     it('onClick callback will get an array of all content that belongs to that tick group', () => {
@@ -727,7 +710,7 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       graphDefault.loadContent(new Bar(input));
       const input2 = utils.deepClone(
         getInput(valuesDefault, false, false),
-        );
+      );
       input2.key = 'uid_2';
       input2.onClick = (cb, key, index, vals) => {
         args = {
@@ -740,13 +723,12 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       graphDefault.loadContent(new Bar(input2));
       const selectionPoint = barGraphContainer.querySelectorAll(
         `.${styles.taskBar}`,
-        )[1];
+      )[1];
       triggerEvent(selectionPoint, 'click', () => {
         expect(args.key).toBe('uid_1');
         expect(args.vals.length).toEqual(2);
         expect(args.vals[0].key).toBe('uid_1');
         expect(args.vals[1].key).toBe('uid_2');
-        done();
       });
     });
     it('unload content will remove content data from selection bar datum', () => {
@@ -763,7 +745,7 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       graphDefault.loadContent(new Bar(input));
       const input2 = utils.deepClone(
         getInput(valuesDefault, false, false),
-        );
+      );
       input2.key = 'uid_2';
       input2.onClick = (cb, key, index, vals) => {
         args = {
@@ -779,12 +761,11 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       graphDefault.unloadContent(barContent);
       const selectionPoint2 = barGraphContainer.querySelectorAll(
         `.${styles.taskBar}`,
-        )[1];
+      )[1];
       triggerEvent(selectionPoint2, 'click', () => {
         expect(args.key).toBe('uid_1');
         expect(args.vals.length).toEqual(1);
         expect(args.vals[0].key).toBe('uid_1');
-        done();
       });
     });
     it('onClick callback will get selection bar datum in order which input was loaded', () => {
@@ -800,7 +781,7 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       };
       const input2 = utils.deepClone(
         getInput(valuesDefault, false, false),
-        );
+      );
       input2.key = 'uid_2';
       input2.onClick = (cb, key, index, vals) => {
         args = {
@@ -814,25 +795,23 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       graphDefault.loadContent(new Bar(input));
       const selectionPoint2 = barGraphContainer.querySelectorAll(
         `.${styles.taskBar}`,
-        )[1];
+      )[1];
       triggerEvent(selectionPoint2, 'click', () => {
         expect(args.vals.length).toEqual(2);
         expect(args.vals[0].key).toBe('uid_2');
         expect(args.vals[1].key).toBe('uid_1');
-        done();
       });
     });
   });
   describe('prepares to load legend item', () => {
     let graphDefault;
-    beforeEach(()=>{
+    beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
-    })
+    });
     afterEach(() => {
-      if(graphDefault)
       graphDefault.destroy();
     });
-//    TODO: fix failing test
+    //    TODO: fix failing test
     it.skip('does not load if legend is opted to be hidden', () => {
       const input = getAxes(axisDefault);
       input.showLegend = false;
@@ -920,7 +899,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       );
       triggerEvent(legendItem, 'click', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('false');
-        done();
       });
     });
     it('on click hides the bars', () => {
@@ -944,7 +922,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
             ).firstChild.getAttribute('aria-hidden'),
           ).toBe('true');
           rafSpy.calls.reset();
-          done();
         },
       );
     });
@@ -986,7 +963,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
               styles.bar,
             ).firstChild.getAttribute('aria-hidden'),
           ).toBe('false');
-          done();
         },
       );
     });
@@ -1012,7 +988,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
               .firstChild.style.display,
           ).toBe('');
           rafSpy.calls.reset();
-          done();
         });
       });
     });
@@ -1024,7 +999,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
         'click',
         () => {
           expect(graph.config.shownTargets.length).toBe(0);
-          done();
         },
       );
     });
@@ -1038,7 +1012,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       triggerEvent(legendItem, 'click', () => {
         triggerEvent(legendItem, 'click', () => {
           expect(graph.config.shownTargets.length).toBe(1);
-          done();
         });
       });
     });
@@ -1067,7 +1040,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
             )
             .classList.contains(styles.blur),
         ).toBeTruthy();
-        done();
       });
     });
     it('attaches mouse leave event handlers correctly', () => {
@@ -1102,7 +1074,6 @@ expect(toNumber(selectionPoint.getAttribute('width')))
             )
             .classList.contains(styles.blur),
         ).toBeFalsy();
-        done();
       });
     });
   });
@@ -1116,10 +1087,9 @@ expect(toNumber(selectionPoint.getAttribute('width')))
       graph.loadContent(new Bar(barPrimary));
       graph.loadContent(new Bar(barSecondary));
     });
-    afterEach(()=>{
-      if(graph)
-      graph.destroy();
-    })
+    afterEach(() => {
+      if (graph) graph.destroy();
+    });
     it('Does not load shape if Y2 axis is not loaded', () => {
       const axes = utils.deepClone(getAxes(axisDefault));
       axes.axis.y2.show = false;
@@ -1189,8 +1159,7 @@ expect(toNumber(selectionPoint.getAttribute('width')))
     });
   });
   describe('When legend item is clicked', () => {
-
-//    TODO: fix failing test
+    //    TODO: fix failing test
     it.skip('Preserves the DOM order', () => {
       const graph = new Graph(getAxes(axisDefault));
       const barPrimary = getInput(valuesDefault, true, true, true);

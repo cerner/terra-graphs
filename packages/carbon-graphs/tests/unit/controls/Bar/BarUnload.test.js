@@ -16,19 +16,25 @@ import {
 describe('Bar - unload', () => {
   let barGraphContainer;
 
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
-    barGraphContainer.setAttribute('style','width: 1024px; height: 400px;');
+    barGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     document.body.appendChild(barGraphContainer);
   });
   afterEach(() => {
     document.body.innerHTML = '';
   });
 
-  describe("When graph is unloaded off input", ()=>{
+  describe('When graph is unloaded off input', () => {
     let graphDefault;
-      let bar;
+    let bar;
 
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
@@ -45,13 +51,13 @@ describe('Bar - unload', () => {
     });
     it('clears the graph', () => {
       graphDefault.unloadContent(bar);
-      const barContentContainer = fetchElementByClass(barGraphContainer,styles.barGraphContent);
+      const barContentContainer = fetchElementByClass(barGraphContainer, styles.barGraphContent);
       expect(barContentContainer).toBeNull();
     });
     it('removes the legend from graph', () => {
       graphDefault.unloadContent(bar);
       const graphLegend = fetchElementByClass(barGraphContainer, styles.legend);
-      const barLegendItem = fetchElementByClass(barGraphContainer,styles.legendItem);
+      const barLegendItem = fetchElementByClass(barGraphContainer, styles.legendItem);
       expect(graphLegend).not.toBeNull();
       expect(barLegendItem).toBeNull();
     });
@@ -68,7 +74,7 @@ describe('Bar - unload', () => {
     let barSecondary;
     let graphDefault;
     let bar;
-    
+
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
       graph = new Graph(getAxes(axisDefault));
@@ -77,7 +83,7 @@ describe('Bar - unload', () => {
       graph.loadContent(barPrimary);
       graph.loadContent(barSecondary);
     });
-    afterEach(()=>{
+    afterEach(() => {
       graphDefault.destroy();
     });
 
@@ -97,7 +103,7 @@ describe('Bar - unload', () => {
         new Bar(getInput(valuesDefault, true, true, false, 'uid_3')),
       );
       graph.unloadContent(barSecondary);
-      const labelShapeContainer = fetchElementByClass( barGraphContainer, styles.axisLabelYShapeContainer);
+      const labelShapeContainer = fetchElementByClass(barGraphContainer, styles.axisLabelYShapeContainer);
       expect(labelShapeContainer.children.length).toBe(1);
       expect(labelShapeContainer.children[0].tagName).toBe('svg');
       expect(labelShapeContainer.children[0].getAttribute('x')).toBe('0');
@@ -111,11 +117,11 @@ describe('Bar - unload', () => {
       expect(labelShapeContainer.children.length).toBe(0);
     });
 
-// TODO: fix failing test
+    // TODO: fix failing test
     it.skip('removes label shape for Y2 axis with multiple data sets', () => {
-      graph.loadContent( new Bar(getInput(valuesDefault, true, true, true, 'uid_4')));
+      graph.loadContent(new Bar(getInput(valuesDefault, true, true, true, 'uid_4')));
       graph.unloadContent(barPrimary);
-      const labelShapeContainer = fetchElementByClass( barGraphContainer, styles.axisLabelY2ShapeContainer);
+      const labelShapeContainer = fetchElementByClass(barGraphContainer, styles.axisLabelY2ShapeContainer);
       expect(labelShapeContainer.children.length).toBe(1);
       expect(labelShapeContainer.children[0].tagName).toBe('svg');
       expect(labelShapeContainer.children[0].getAttribute('x')).toBe('0');

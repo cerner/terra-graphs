@@ -1,4 +1,4 @@
-//'use strict';
+// 'use strict';
 
 import Carbon from '../../../../src/js/carbon';
 import Bar from '../../../../src/js/controls/Bar/Bar';
@@ -27,11 +27,14 @@ import {
 } from './helpers';
 
 describe('Bar - Axis Info Row', () => {
-  let graphDefault;
   let barGraphContainer;
-  let bar;
-  let data;
 
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(async () => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
@@ -40,28 +43,28 @@ describe('Bar - Axis Info Row', () => {
       'width: 1024px; height: 400px;',
     );
     document.body.appendChild(barGraphContainer);
-    graphDefault = new Graph(utils.deepClone(getAxes(axisDefault)));
   });
   afterEach(async () => {
     document.body.innerHTML = '';
   });
 
   describe('On load', () => {
+    let bar;
+    let data;
+    let graphDefault;
+
     beforeEach(() => {
       data = utils.deepClone(getInput(valuesDefault, false, false));
+      graphDefault = new Graph(utils.deepClone(getAxes(axisDefault)));
     });
     afterEach(() => {
-      if(graphDefault)
-        graphDefault.destroy();
+      graphDefault.destroy();
     });
 
     it('creates text labels only if present', () => {
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const axisInfoRowElement = fetchElementByClass(
-        barGraphContainer,
-                `${styles.axisInfoRowItem}`,
-      );
+      const axisInfoRowElement = fetchElementByClass(barGraphContainer, `${styles.axisInfoRowItem}`);
       expect(axisInfoRowElement).toBeNull();
     });
     it('creates text labels when present', () => {
@@ -115,15 +118,9 @@ describe('Bar - Axis Info Row', () => {
       expect(primaryDisplayElement.nodeName).toBe('text');
       expect(secondaryDisplay.nodeName).toBe('text');
 
-      expect(iconElement.getAttribute('class')).toBe(
-        styles.axisInfoRowIcon,
-      );
-      expect(primaryDisplayElement.getAttribute('class')).toBe(
-        styles.axisInfoRowDisplay,
-      );
-      expect(secondaryDisplay.getAttribute('class')).toBe(
-        styles.axisInfoRowSecondaryDisplay,
-      );
+      expect(iconElement.getAttribute('class')).toBe(styles.axisInfoRowIcon);
+      expect(primaryDisplayElement.getAttribute('class')).toBe(styles.axisInfoRowDisplay);
+      expect(secondaryDisplay.getAttribute('class')).toBe(styles.axisInfoRowSecondaryDisplay);
     });
     it('creates text label correctly when character Count is not provided', () => {
       data.axisInfoRow = [
@@ -143,10 +140,7 @@ describe('Bar - Axis Info Row', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
@@ -168,10 +162,7 @@ describe('Bar - Axis Info Row', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
@@ -192,10 +183,7 @@ describe('Bar - Axis Info Row', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
@@ -217,10 +205,7 @@ describe('Bar - Axis Info Row', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
@@ -248,10 +233,7 @@ describe('Bar - Axis Info Row', () => {
       ];
       bar = new Bar(data);
       graph.loadContent(bar);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
@@ -274,22 +256,13 @@ describe('Bar - Axis Info Row', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
-      expect(
-        axisInfoRowElement[0].querySelectorAll(
-                    `.${styles.axisInfoRowDisplay}`,
-        )[0].textContent,
-      ).toBe('1234...');
-      expect(
-        axisInfoRowElement[0].querySelectorAll(
-                    `.${styles.axisInfoRowSecondaryDisplay}`,
-        )[0].textContent,
-      ).toBe('ICU');
+      expect(axisInfoRowElement[0].querySelectorAll(`.${styles.axisInfoRowDisplay}`)[0].textContent)
+        .toBe('1234...');
+      expect(axisInfoRowElement[0].querySelectorAll(`.${styles.axisInfoRowSecondaryDisplay}`)[0].textContent)
+        .toBe('ICU');
     });
     it('truncates both primary and secondary display if the provided character count is less than their respective lengths', () => {
       data.axisInfoRow = [
@@ -316,42 +289,30 @@ describe('Bar - Axis Info Row', () => {
       );
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
-      expect(
-        axisInfoRowElement[0].querySelectorAll(
-                    `.${styles.axisInfoRowDisplay}`,
-        )[0].textContent,
-      ).toBe('12...');
-      expect(
-        axisInfoRowElement[0].querySelectorAll(
-                    `.${styles.axisInfoRowSecondaryDisplay}`,
-        )[0].textContent,
-      ).toBe('IC...');
+      expect(axisInfoRowElement[0].querySelectorAll(`.${styles.axisInfoRowDisplay}`)[0].textContent)
+        .toBe('12...');
+      expect(axisInfoRowElement[0].querySelectorAll(`.${styles.axisInfoRowSecondaryDisplay}`)[0].textContent)
+        .toBe('IC...');
     });
     it('shows text labels by default and sets attributes correctly', () => {
       data.axisInfoRow = axisInfoRowDefault;
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const axisInfoRowElement = fetchElementByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
-      expect(axisInfoRowElement.getAttribute('class')).toBe(
-                `${styles.axisInfoRowItem}`,
-      );
-      expect(axisInfoRowElement.getAttribute('aria-hidden')).toBe(
-        'false',
-      );
+      const axisInfoRowElement = fetchElementByClass(barGraphContainer, styles.axisInfoRowItem);
+      expect(axisInfoRowElement.getAttribute('class')).toBe(`${styles.axisInfoRowItem}`);
+      expect(axisInfoRowElement.getAttribute('aria-hidden')).toBe('false');
       expect(axisInfoRowElement.getAttribute('aria-disabled')).toBe(null);
-      expect(axisInfoRowElement.getAttribute('text-anchor')).toBe(
-        'middle',
-      );
-      expect(axisInfoRowElement.getAttribute('aria-describedby')).toBe(
-                `text_label_${data.key}`,
-      );
+      expect(axisInfoRowElement.getAttribute('text-anchor')).toBe('middle');
+      expect(axisInfoRowElement.getAttribute('aria-describedby')).toBe(`text_label_${data.key}`);
     });
   });
   describe('Creates text labels when there are multiple text labels', () => {
+    let data;
+    let bar;
+    let graphDefault;
+
     beforeEach(() => {
+      graphDefault = new Graph(utils.deepClone(getAxes(axisDefault)));
       data = utils.deepClone(getInput(valuesDefault, false, false));
       data.axisInfoRow = axisInfoRowDefault;
       bar = new Bar(data);
@@ -360,44 +321,35 @@ describe('Bar - Axis Info Row', () => {
     afterEach(() => {
       graphDefault.destroy();
     });
+
     it('renders all text labels', () => {
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(3);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
     it('shows all text labels face-up by default', () => {
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       expect(axisInfoRowElement.length).toBe(3);
       axisInfoRowElement.forEach((i) => {
         expect(i.getAttribute('aria-hidden') === 'false').toBeTruthy();
-        expect(
-          i.getAttribute('aria-describedby')
-                        === `text_label_${data.key}`,
-        ).toBeTruthy();
+        expect(i.getAttribute('aria-describedby') === `text_label_${data.key}`).toBeTruthy();
       });
     });
   });
   describe('When clicked on data point', () => {
+    let graphDefault;
+    let data;
+    let bar;
+
     beforeEach(() => {
-//      data = utils.deepClone(getInput(valuesDefault, false, false));
-//      data = null;
-//      data = utils.deepClone(getInput(valuesDefault, false, false));
-//      data.axisInfoRow = axisInfoRowDefault;
-//      bar = new Bar(data);
-//      graphDefault.loadContent(bar);
+      data = utils.deepClone(getInput(valuesDefault, false, false));
+      graphDefault = new Graph(utils.deepClone(getAxes(axisDefault)));
     });
     afterEach(() => {
-//      graphDefault.destroy();
+      graphDefault.destroy();
     });
+
     it('does not do anything if no onClick callback is provided', () => {
-      console.log("tesfd");
-//      const onClickFunctionSpy = sinon.spy();
       const onClickFunctionSpy = jest.fn();
       data.axisInfoRow = [
         {
@@ -415,13 +367,9 @@ describe('Bar - Axis Info Row', () => {
       bar = new Bar(data);
       graphDefault.loadContent(bar);
       bar.redraw(graphDefault);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       triggerEvent(axisInfoRowElement[0], 'click', () => {
         expect(onClickFunctionSpy).toHaveBeenCalled();
-        done();
       });
     });
     it('hides data point selection when parameter callback is called', () => {
@@ -442,18 +390,12 @@ describe('Bar - Axis Info Row', () => {
       bar = new Bar(data);
       graphDefault.loadContent(bar);
       bar.redraw(graphDefault);
-      const axisInfoRowElement = fetchAllElementsByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
       triggerEvent(
         axisInfoRowElement[0],
         'click',
         () => {
-          expect(
-            axisInfoRowElement[0].getAttribute('aria-selected'),
-          ).toBe('false');
-          done();
+          expect(axisInfoRowElement[0].getAttribute('aria-selected')).toBe('false');
         },
         TRANSITION_DELAY,
       );
@@ -465,19 +407,9 @@ describe('Bar - Axis Info Row', () => {
           axis: 'x',
           x: 1,
           value: {
-            onClick: (
-              cb,
-              value,
-              index,
-              uniqueKey,
-              selectedTarget,
-            ) => {
+            onClick: (cb, value, index, uniqueKey, selectedTarget) => {
               args = {
-                cb,
-                value,
-                index,
-                uniqueKey,
-                selectedTarget,
+                cb, value, index, uniqueKey, selectedTarget,
               };
             },
             characterCount: 9,
@@ -502,7 +434,6 @@ describe('Bar - Axis Info Row', () => {
         expect(args.index).toBe(0);
         expect(args.uniqueKey).toBe('uid_1');
         expect(args.selectedTarget).not.toBeNull();
-        done();
       });
     });
     it('enables OnClick only when secondaryDisplay is truncated but not primary display', () => {
@@ -541,7 +472,6 @@ describe('Bar - Axis Info Row', () => {
         expect(args.cb).toEqual(jasmine.any(Function));
         expect(args.value).not.toBeNull();
         expect(args.index).toBe(0);
-        done();
       });
     });
     it('sets svg as disabled when onClick is not provided', () => {
@@ -572,45 +502,62 @@ describe('Bar - Axis Info Row', () => {
     });
   });
 
-
   describe('On unload', () => {
+    let graphDefault;
+    let data;
+    let bar;
+    beforeEach(() => {
+      data = utils.deepClone(getInput(valuesDefault, false, false));
+      graphDefault = new Graph(utils.deepClone(getAxes(axisDefault)));
+    });
     afterEach(() => {
       graphDefault.destroy();
     });
-    it('removes all axisInfoRow', () => {
-      data = utils.deepClone(getInput(valuesDefault));
-      data.axisInfoRow = [
-        {
-          axis: 'x',
-          x: 1,
-          value: {
-            onClick: () => {},
-            color: Carbon.helpers.COLORS.ORANGE,
-            shape: {},
-            label: {
-              display: '51',
-              secondaryDisplay: 'ICU',
+    afterEach(() => {
+      graphDefault.destroy();
+      it('removes all axisInfoRow', () => {
+        data = utils.deepClone(getInput(valuesDefault));
+        data.axisInfoRow = [
+          {
+            axis: 'x',
+            x: 1,
+            value: {
+              onClick: () => {},
+              color: Carbon.helpers.COLORS.ORANGE,
+              shape: {},
+              label: {
+                display: '51',
+                secondaryDisplay: 'ICU',
+              },
             },
           },
-        },
-      ];
-      bar = new Bar(data);
-      graphDefault.loadContent(bar);
-      graphDefault.unloadContent(bar);
-      const axisInfoRow = fetchElementByClass(
-        barGraphContainer,
-        styles.axisInfoRow,
-      );
-      const axisInfoRowElement = fetchElementByClass(
-        barGraphContainer,
-        styles.axisInfoRowItem,
-      );
-      expect(axisInfoRow.children.length).toBe(1);
-      expect(axisInfoRow.children[0].nodeName).toBe('path');
-      expect(axisInfoRowElement).toBe(null);
+        ];
+        bar = new Bar(data);
+        graphDefault.loadContent(bar);
+        graphDefault.unloadContent(bar);
+        const axisInfoRow = fetchElementByClass(
+          barGraphContainer,
+          styles.axisInfoRow,
+        );
+        const axisInfoRowElement = fetchElementByClass(
+          barGraphContainer,
+          styles.axisInfoRowItem,
+        );
+        expect(axisInfoRow.children.length).toBe(1);
+        expect(axisInfoRow.children[0].nodeName).toBe('path');
+        expect(axisInfoRowElement).toBe(null);
+      });
     });
   });
   describe('On resize', () => {
+    let graphDefault;
+    let data;
+    let bar;
+
+    beforeEach(() => {
+      data = utils.deepClone(getInput(valuesDefault, false, false));
+      graphDefault = new Graph(utils.deepClone(getAxes(axisDefault)));
+    });
     afterEach(() => {
       graphDefault.destroy();
     });

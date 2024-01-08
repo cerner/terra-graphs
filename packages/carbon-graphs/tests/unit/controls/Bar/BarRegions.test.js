@@ -26,6 +26,12 @@ import {
 describe('Bar - Region', () => {
   let barGraphContainer;
 
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
@@ -59,13 +65,12 @@ describe('Bar - Region', () => {
       expect(regionElement[0].nodeName).toBe('rect');
     });
     it('shows region by default', () => {
-
       data = utils.deepClone(getInput(valuesDefault, false, false));
       data.regions = regionsDefault;
       bar = new Bar(data);
       graphDefault.loadContent(bar);
 
-      const regionElement = fetchElementByClass(barGraphContainer,styles.region);
+      const regionElement = fetchElementByClass(barGraphContainer, styles.region);
       expect(regionElement.getAttribute('class')).toBe(`${styles.region} ${styles.barGoalLine}`);
       expect(regionElement.getAttribute('aria-hidden')).toBe('false');
       expect(regionElement.getAttribute('aria-describedby')).toBe(`region_${data.key}`);
@@ -80,7 +85,7 @@ describe('Bar - Region', () => {
       const regionGroupElement = fetchElementByClass(
         barGraphContainer,
         `${styles.goalGroup}-${data.key}`,
-        );
+      );
       expect(regionGroupElement).toBeNull();
     });
     it('translates region correctly', () => {
@@ -95,7 +100,7 @@ describe('Bar - Region', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const regionElement = fetchElementByClass(barGraphContainer,styles.region);
+      const regionElement = fetchElementByClass(barGraphContainer, styles.region);
       expect(regionElement.nodeName).toBe('rect');
       expect(toNumber(regionElement.getAttribute('y'), 10)).toBe(toNumber(graphDefault.scale.y(15), 10));
     });
@@ -121,7 +126,7 @@ describe('Bar - Region', () => {
       const barContent = new Bar(inputSecondary);
       graphDefault.loadContent(bar);
       graphDefault.loadContent(barContent);
-      const regionGroupElement = fetchAllElementsByClass(barGraphContainer,styles.region);
+      const regionGroupElement = fetchAllElementsByClass(barGraphContainer, styles.region);
       expect(regionGroupElement.length).toBe(2);
       expect(regionGroupElement[0].getAttribute('aria-describedby')).toBe(`region_${data.key}`);
       expect(regionGroupElement[1].getAttribute('aria-describedby')).toBe(`region_${inputSecondary.key}`);
@@ -140,7 +145,7 @@ describe('Bar - Region', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const regionElement = fetchElementByClass(barGraphContainer,styles.region);
+      const regionElement = fetchElementByClass(barGraphContainer, styles.region);
       expect(toNumber(regionElement.getAttribute('height'))).toBeGreaterThan(constants.PADDING.top);
     });
     it('sets region height correctly, when start and end are same', () => {
@@ -155,7 +160,7 @@ describe('Bar - Region', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const regionElement = fetchElementByClass(barGraphContainer,styles.region);
+      const regionElement = fetchElementByClass(barGraphContainer, styles.region);
       expect(toNumber(regionElement.getAttribute('height'))).toBe(5);
     });
     it('creates a goal bar when start and end are same', () => {
@@ -200,7 +205,7 @@ describe('Bar - Region', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const regionElement = fetchElementByClass(barGraphContainer,styles.region);
+      const regionElement = fetchElementByClass(barGraphContainer, styles.region);
       expect(toNumber(regionElement.getAttribute('y'))).toBe(0);
     });
     it('creates region with correct, color if provided', () => {
@@ -215,11 +220,11 @@ describe('Bar - Region', () => {
       ];
       bar = new Bar(data);
       graphDefault.loadContent(bar);
-      const regionElement = fetchElementByClass(barGraphContainer,styles.region);
+      const regionElement = fetchElementByClass(barGraphContainer, styles.region);
       expect(regionElement.getAttribute('style')).toBe('fill: #f44444; pointer-events: none');
     });
 
-// TODO: fix failing test
+    // TODO: fix failing test
     it.skip('sets width correctly', () => {
       data = utils.deepClone(getInput(valuesDefault));
       data.regions = [
@@ -233,9 +238,9 @@ describe('Bar - Region', () => {
       bar = new Bar(data);
       const graph = graphDefault.loadContent(bar);
       bar.redraw(graph);
-      const regionWidth = fetchElementByClass(barGraphContainer,styles.region).getAttribute('width');
-      const barWidth = fetchElementByClass(barGraphContainer,styles.taskBar).getAttribute('width');
-      expect(toNumber(regionWidth)).toBeCloseTo(toNumber(barWidth) * 1.25,0);
+      const regionWidth = fetchElementByClass(barGraphContainer, styles.region).getAttribute('width');
+      const barWidth = fetchElementByClass(barGraphContainer, styles.taskBar).getAttribute('width');
+      expect(toNumber(regionWidth)).toBeCloseTo(toNumber(barWidth) * 1.25, 0);
     });
   });
 
@@ -258,7 +263,7 @@ describe('Bar - Region', () => {
     });
 
     it('renders multiple regions', () => {
-      const regionElement = fetchAllElementsByClass(barGraphContainer,styles.region);
+      const regionElement = fetchAllElementsByClass(barGraphContainer, styles.region);
       expect(regionElement.length).toBe(2);
       expect(regionElement[0].nodeName).toBe('rect');
     });
@@ -298,9 +303,9 @@ describe('Bar - Region', () => {
           start: null,
           end: null,
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_REGION_START_END_MISSING);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_REGION_START_END_MISSING);
     });
     it('throws an error when axis info is invalid', () => {
       data.regions = [
@@ -309,36 +314,36 @@ describe('Bar - Region', () => {
           start: 10,
           end: 10,
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_REGION_INVALID_AXIS_PROVIDED);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_REGION_INVALID_AXIS_PROVIDED);
     });
     it('throws an error when axis provided is different than data-set axis', () => {
       data = utils.deepClone(
         getInput(valuesDefault, false, false, true),
-        );
+      );
       data.regions = [
         {
           axis: constants.Y_AXIS,
           start: 10,
           end: 20,
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_REGION_INVALID_AXIS_PROVIDED);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_REGION_INVALID_AXIS_PROVIDED);
     });
     it('throws an error when axis is not and data-set axis is Y2', () => {
       data = utils.deepClone(
         getInput(valuesDefault, false, false, true),
-        );
+      );
       data.regions = [
         {
           start: 10,
           end: 20,
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_REGION_INVALID_AXIS_PROVIDED);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_REGION_INVALID_AXIS_PROVIDED);
     });
     it('throws an error when start value is invalid', () => {
       data.regions = [
@@ -347,9 +352,9 @@ describe('Bar - Region', () => {
           start: '10',
           end: 20,
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_REGION_INVALID_VALUE_TYPE_PROVIDED );
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_REGION_INVALID_VALUE_TYPE_PROVIDED);
     });
     it('throws an error when end value is invalid', () => {
       data.regions = [
@@ -358,9 +363,9 @@ describe('Bar - Region', () => {
           start: 10,
           end: '20',
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_REGION_INVALID_VALUE_TYPE_PROVIDED);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_REGION_INVALID_VALUE_TYPE_PROVIDED);
     });
     it('throws an error when start is more than end', () => {
       data.regions = [
@@ -369,7 +374,7 @@ describe('Bar - Region', () => {
           start: 20,
           end: 10,
         },
-        ];
+      ];
       bar = new Bar(data);
       expect(() => {
         graphDefault.loadContent(bar);
@@ -382,14 +387,14 @@ describe('Bar - Region', () => {
           start: 10,
           end: 15,
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_BAR_REGION_EMPTY_X_VALUE);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_BAR_REGION_EMPTY_X_VALUE);
     });
     it('throws an error when x type is invalid', () => {
       const timeData = utils.deepClone(
         getInput(valuesTimeSeries, false, false),
-        );
+      );
       graphDefault.destroy();
       graphDefault = new Graph(getAxes(axisTimeSeries));
       timeData.regions = [
@@ -399,9 +404,9 @@ describe('Bar - Region', () => {
           end: 15,
           x: 2,
         },
-        ];
+      ];
       bar = new Bar(timeData);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_REGION_INVALID_FORMAT);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_REGION_INVALID_FORMAT);
     });
     it('throws an error when x value provided is not in x axis ticks', () => {
       data.regions = [
@@ -411,9 +416,9 @@ describe('Bar - Region', () => {
           end: 15,
           x: 10,
         },
-        ];
+      ];
       bar = new Bar(data);
-      expect(() => {graphDefault.loadContent(bar)}).toThrowError(errors.THROW_MSG_INVALID_REGION_X_AXIS_TICK);
+      expect(() => { graphDefault.loadContent(bar); }).toThrowError(errors.THROW_MSG_INVALID_REGION_X_AXIS_TICK);
     });
     it('correctly passes validation', () => {
       data.regions = [
@@ -423,14 +428,13 @@ describe('Bar - Region', () => {
           end: 15,
           x: 2,
         },
-        ];
+      ];
       bar = new Bar(data);
       expect(() => {
         graphDefault.loadContent(bar);
       }).not.toThrow();
     });
   });
-
 
   describe('On unload', () => {
     let bar;
@@ -473,78 +477,74 @@ describe('Bar - Region', () => {
     afterEach(() => {
       graphDefault.destroy();
     });
-      let inputPrimary = null;
-      let inputSecondary = null;
-      let barPrimary = null;
-      let barSecondary = null;
-      beforeEach(() => {
-        inputPrimary = getInput(valuesDefault, false, false);
-        inputPrimary.regions = [
-          {
-            start: 1,
-            end: 5,
-            x: 1,
-          },
-        ];
-        inputSecondary = utils.deepClone(
-          getInput(valuesDefault, false, false),
-        );
-        inputSecondary.key = 'uid_2';
-        inputSecondary.regions = [
-          {
-            start: 1,
-            end: 5,
-            x: 1,
-          },
-        ];
-        barPrimary = new Bar(inputPrimary);
-        barSecondary = new Bar(inputSecondary);
-        graphDefault.loadContent(barPrimary);
-        graphDefault.loadContent(barSecondary);
+    let inputPrimary = null;
+    let inputSecondary = null;
+    let barPrimary = null;
+    let barSecondary = null;
+    beforeEach(() => {
+      inputPrimary = getInput(valuesDefault, false, false);
+      inputPrimary.regions = [
+        {
+          start: 1,
+          end: 5,
+          x: 1,
+        },
+      ];
+      inputSecondary = utils.deepClone(
+        getInput(valuesDefault, false, false),
+      );
+      inputSecondary.key = 'uid_2';
+      inputSecondary.regions = [
+        {
+          start: 1,
+          end: 5,
+          x: 1,
+        },
+      ];
+      barPrimary = new Bar(inputPrimary);
+      barSecondary = new Bar(inputSecondary);
+      graphDefault.loadContent(barPrimary);
+      graphDefault.loadContent(barSecondary);
+    });
+    afterEach(() => {
+      graphDefault.destroy();
+    });
+    it('hides all the regions except current on mouse hover', () => {
+      const legendItem = fetchElementByClass(barGraphContainer, styles.legendItem);
+      triggerEvent(legendItem, 'mouseenter', () => {
+        const regionElements = fetchAllElementsByClass(barGraphContainer, styles.region);
+        expect(regionElements[0].getAttribute('aria-hidden')).toBe('false');
+        expect(regionElements[1].getAttribute('aria-hidden')).toBe('true');
       });
-      afterEach(() => {
-        graphDefault.destroy();
-      });
-      it('hides all the regions except current on mouse hover', () =>{
-        const legendItem = fetchElementByClass(barGraphContainer,styles.legendItem);
-        triggerEvent(legendItem, 'mouseenter', () => {
-          const regionElements = fetchAllElementsByClass(barGraphContainer,styles.region);
+    });
+    it('shows all the regions on mouse leave', () => {
+      const legendItem = fetchElementByClass(barGraphContainer, styles.legendItem);
+      triggerEvent(legendItem, 'mouseenter', () => {
+        triggerEvent(legendItem, 'mouseleave', () => {
+          const regionElements = fetchAllElementsByClass(barGraphContainer, styles.region);
           expect(regionElements[0].getAttribute('aria-hidden')).toBe('false');
-          expect(regionElements[1].getAttribute('aria-hidden')).toBe('true');
-          done();
+          expect(regionElements[1].getAttribute('aria-hidden')).toBe('false');
         });
       });
-      it('shows all the regions on mouse leave', () =>{
-        const legendItem = fetchElementByClass(barGraphContainer,styles.legendItem);
-        triggerEvent(legendItem, 'mouseenter', () => {
-          triggerEvent(legendItem, 'mouseleave', () => {
-            const regionElements = fetchAllElementsByClass(barGraphContainer,styles.region);
-            expect(regionElements[0].getAttribute('aria-hidden')).toBe('false');
-            expect(regionElements[1].getAttribute('aria-hidden')).toBe('false');
-            done();
-          });
-        });
+    });
+    it('hides region on single legend click', () => {
+      const legendItem = fetchAllElementsByClass(barGraphContainer, styles.legendItem);
+      triggerEvent(legendItem[0], 'click', () => {
+        const regionElements = fetchAllElementsByClass(barGraphContainer, styles.region);
+        expect(regionElements[0].getAttribute('aria-hidden')).toBe('true');
+        expect(regionElements[1].getAttribute('aria-hidden')).toBe('false');
       });
-      it('hides region on single legend click', () =>{
-        const legendItem = fetchAllElementsByClass(barGraphContainer,styles.legendItem);
+    });
+    it('display region on legend Double click', () => {
+      const legendItem = fetchAllElementsByClass(barGraphContainer, styles.legendItem);
+      triggerEvent(legendItem[0], 'click', () => {
         triggerEvent(legendItem[0], 'click', () => {
           const regionElements = fetchAllElementsByClass(barGraphContainer, styles.region);
-          expect(regionElements[0].getAttribute('aria-hidden')).toBe('true');
+          expect(regionElements[0].getAttribute('aria-hidden')).toBe('false');
           expect(regionElements[1].getAttribute('aria-hidden')).toBe('false');
-          done();
         });
       });
-      it('display region on legend Double click', () =>{
-        const legendItem = fetchAllElementsByClass(barGraphContainer,styles.legendItem);
-        triggerEvent(legendItem[0], 'click', () => {
-          triggerEvent(legendItem[0], 'click', () => {
-            const regionElements = fetchAllElementsByClass(barGraphContainer,styles.region);
-            expect(regionElements[0].getAttribute('aria-hidden')).toBe('false');
-            expect(regionElements[1].getAttribute('aria-hidden')).toBe('false');
-            done();
-          });
-        });
-      });
+    });
   });
   describe('On clicking bar element under region', () => {
     let bar;
@@ -563,7 +563,7 @@ describe('Bar - Region', () => {
     });
 
     it('should display tooltip of bar', () => {
-      const regionElement = fetchAllElementsByClass(barGraphContainer,styles.region);
+      const regionElement = fetchAllElementsByClass(barGraphContainer, styles.region);
       const pointerEventsValue = regionElement[0].style.getPropertyValue('pointer-events');
       expect(pointerEventsValue).toBe('none');
     });

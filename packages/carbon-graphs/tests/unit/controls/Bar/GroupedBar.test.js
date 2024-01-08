@@ -28,6 +28,13 @@ import {
 describe('Grouped Bar', () => {
   let graphDefault;
   let barGraphContainer;
+
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
@@ -74,7 +81,7 @@ describe('Grouped Bar', () => {
       ).toBe('uid_1');
     });
 
-// TODO: fix the failing test
+    // TODO: fix the failing test
     it.skip('groups the second input with first content', () => {
       let barsContainer = fetchAllElementsByClass(
         barGraphContainer,
@@ -143,7 +150,6 @@ describe('Grouped Bar', () => {
             .querySelector(`.${styles.taskBar}`)
             .getAttribute('aria-hidden'),
         ).toBe('true');
-        done();
       });
       triggerEvent(legendItem[1], 'click', () => {
         fetchAllElementsByClass(
@@ -153,7 +159,6 @@ describe('Grouped Bar', () => {
         expect(barsContainer[0].getAttribute('aria-hidden')).toBe(
           'true',
         );
-        done();
       });
     });
     it('displays Bar content on double click', () => {
@@ -169,7 +174,6 @@ describe('Grouped Bar', () => {
               .querySelector(`.${styles.taskBar}`)
               .getAttribute('aria-hidden'),
           ).toBe('false');
-          done();
         });
       });
     });
@@ -200,9 +204,9 @@ describe('Grouped Bar', () => {
       expect(barContentContainer[0].getAttribute('aria-describedby')).toBe('uid_2');
       expect(barContentContainer[1].getAttribute('aria-describedby')).toBe('uid_1');
     });
-// TODO: fix the failing test
+    // TODO: fix the failing test
     it.skip('groups the second input with first content', () => {
-      let barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      let barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const yInput2 = toNumber(barsContainer[0].getAttribute('y'));
       graphDefault.resize();
       barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
@@ -240,37 +244,37 @@ describe('Grouped Bar', () => {
     let graphDefault;
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
-        const input1 = getInput(valuesNegativeDefault, false, false);
-        input1.regions = regionsDefault;
-        bar1 = new Bar(input1);
-        let graph = graphDefault.loadContent(bar1);
-        bar1.redraw(graph);
-        const input2 = utils.deepClone(
-          getInput(
-            valuesNegativeDefault,
-            false,
-            false,
-            false,
-            'uid_2',
-          ),
-        );
-        input2.key = 'uid_11';
-        input2.regions = regionsDefault;
-        bar2 = new Bar(input2);
-        graph = graphDefault.loadContent(bar2);
-        bar2.redraw(graph);
-        bar1.redraw(graph);
-      });
-      afterEach(() => {
-        graphDefault.destroy();
-      });
+      const input1 = getInput(valuesNegativeDefault, false, false);
+      input1.regions = regionsDefault;
+      bar1 = new Bar(input1);
+      let graph = graphDefault.loadContent(bar1);
+      bar1.redraw(graph);
+      const input2 = utils.deepClone(
+        getInput(
+          valuesNegativeDefault,
+          false,
+          false,
+          false,
+          'uid_2',
+        ),
+      );
+      input2.key = 'uid_11';
+      input2.regions = regionsDefault;
+      bar2 = new Bar(input2);
+      graph = graphDefault.loadContent(bar2);
+      bar2.redraw(graph);
+      bar1.redraw(graph);
+    });
+    afterEach(() => {
+      graphDefault.destroy();
+    });
 
-// TODO: fix the failing test
-      it.skip('translates the region correctly on load', () => {
-        const regionElement = fetchAllElementsByClass(barGraphContainer, styles.region );
-        expect(regionElement[0].getAttribute('y')).toBe(regionElement[2].getAttribute('y'));
-        expect(regionElement[0].getAttribute('x')).not.toBe(regionElement[2].getAttribute('x'));
-      });
+    // TODO: fix the failing test
+    it.skip('translates the region correctly on load', () => {
+      const regionElement = fetchAllElementsByClass(barGraphContainer, styles.region);
+      expect(regionElement[0].getAttribute('y')).toBe(regionElement[2].getAttribute('y'));
+      expect(regionElement[0].getAttribute('x')).not.toBe(regionElement[2].getAttribute('x'));
+    });
   });
   describe('Axis Info Row', () => {
     let bar1;
@@ -278,89 +282,89 @@ describe('Grouped Bar', () => {
     let graphDefault;
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
-        const input1 = getInput(valuesDefault, false, false);
-        input1.axisInfoRow = axisInfoRowDefault;
-        bar1 = new Bar(input1);
-        let graph = graphDefault.loadContent(bar1);
-        bar1.redraw(graph);
-        const input2 = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
-        input2.group = 'uid_11';
-        input2.axisInfoRow = axisInfoRowDefault;
-        bar2 = new Bar(input2);
-        graph = graphDefault.loadContent(bar2);
-        bar2.redraw(graph);
-        bar1.redraw(graph);
-      });
-      afterEach(() => {
-        graphDefault.destroy();
-      });
-
-      // TODO: fix the failing test
-      it.skip('translates axis info row labels correctly on load', () => {
-        const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
-        expect(axisInfoRowElement.length).toBeCloserTo(6);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[0]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(169);
-        expect(
-          round2Decimals(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[0]),
-            ).translate[1],
-          ),
-        ).toBeCloserTo(-10);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[1]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(320);
-        expect(
-          round2Decimals(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[1]),
-            ).translate[1],
-          ),
-        ).toBeCloserTo(-10);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[2]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(453);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[3]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(112);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[4]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(254);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[5]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(396);
-      });
+      const input1 = getInput(valuesDefault, false, false);
+      input1.axisInfoRow = axisInfoRowDefault;
+      bar1 = new Bar(input1);
+      let graph = graphDefault.loadContent(bar1);
+      bar1.redraw(graph);
+      const input2 = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
+      input2.group = 'uid_11';
+      input2.axisInfoRow = axisInfoRowDefault;
+      bar2 = new Bar(input2);
+      graph = graphDefault.loadContent(bar2);
+      bar2.redraw(graph);
+      bar1.redraw(graph);
     });
+    afterEach(() => {
+      graphDefault.destroy();
+    });
+
+    // TODO: fix the failing test
+    it.skip('translates axis info row labels correctly on load', () => {
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
+      expect(axisInfoRowElement.length).toBeCloserTo(6);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[0]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(169);
+      expect(
+        round2Decimals(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[0]),
+          ).translate[1],
+        ),
+      ).toBeCloserTo(-10);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[1]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(320);
+      expect(
+        round2Decimals(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[1]),
+          ).translate[1],
+        ),
+      ).toBeCloserTo(-10);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[2]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(453);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[3]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(112);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[4]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(254);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[5]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(396);
+    });
+  });
 });

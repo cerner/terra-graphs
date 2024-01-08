@@ -34,10 +34,16 @@ import {
 describe('Stacked Bar', () => {
   let barGraphContainer;
 
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
-    barGraphContainer.setAttribute('style','width: 1024px; height: 400px;');
+    barGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     document.body.appendChild(barGraphContainer);
   });
   afterEach(() => {
@@ -69,17 +75,17 @@ describe('Stacked Bar', () => {
       graphDefault.destroy();
     });
     it('Both inputs are loaded', () => {
-      const barContentContainer = fetchAllElementsByClass(barGraphContainer,styles.barGraphContent);
+      const barContentContainer = fetchAllElementsByClass(barGraphContainer, styles.barGraphContent);
       expect(barContentContainer).not.toBeNull();
       expect(barContentContainer[0].getAttribute('aria-describedby')).toBe('uid_2');
       expect(barContentContainer[1].getAttribute('aria-describedby')).toBe('uid_1');
     });
 
     it('first input gets stacked on top of second input', () => {
-      let barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      let barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const yInput2 = toNumber(barsContainer[0].getAttribute('y'));
       graphDefault.resize();
-      barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const heightInput1 = toNumber(
         barsContainer[0].getAttribute('height'),
       );
@@ -92,25 +98,25 @@ describe('Stacked Bar', () => {
 
     it('when graph is unloaded off input1, unloads first content from graph', () => {
       graphDefault.unloadContent(bar1);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('when graph is unloaded off input2, unloads second content from graph', () => {
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('when graph is unloaded off both inputs, unloads both content from graph', () => {
       graphDefault.unloadContent(bar1);
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(0);
     });
     it('Hides Bar content on single click', () => {
-      const legendItem = fetchAllElementsByClass(barGraphContainer,styles.legendItem);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.barGraphContent,);
+      const legendItem = fetchAllElementsByClass(barGraphContainer, styles.legendItem);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.barGraphContent);
       triggerEvent(legendItem[0], 'click', () => {
         barsContainer;
         expect(
@@ -118,16 +124,14 @@ describe('Stacked Bar', () => {
             .querySelector(`.${styles.taskBar}`)
             .getAttribute('aria-hidden'),
         ).toBe('true');
-        done();
       });
       triggerEvent(legendItem[1], 'click', () => {
         barsContainer;
         expect(barsContainer[0].getAttribute('aria-hidden')).toBe('true');
-        done();
       });
     });
     it('Displays Bar content on double click', () => {
-      const legendItem = fetchAllElementsByClass(barGraphContainer,styles.legendItem);
+      const legendItem = fetchAllElementsByClass(barGraphContainer, styles.legendItem);
       triggerEvent(legendItem[0], 'click', () => {
         triggerEvent(legendItem[0], 'click', () => {
           const barsContainer = fetchAllElementsByClass(
@@ -139,7 +143,6 @@ describe('Stacked Bar', () => {
               .querySelector(`.${styles.taskBar}`)
               .getAttribute('aria-hidden'),
           ).toBe('false');
-          done();
         });
       });
     });
@@ -169,14 +172,14 @@ describe('Stacked Bar', () => {
       graphDefault.destroy();
     });
     it('Both inputs are loaded', () => {
-      const barContentContainer = fetchAllElementsByClass(barGraphContainer,styles.barGraphContent);
+      const barContentContainer = fetchAllElementsByClass(barGraphContainer, styles.barGraphContent);
       expect(barContentContainer).not.toBeNull();
       expect(barContentContainer[0].getAttribute('aria-describedby')).toBe('uid_1');
       expect(barContentContainer[1].getAttribute('aria-describedby')).toBe('uid_2');
     });
 
     it('first input gets stacked on top of second input', () => {
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const yInput2 = toNumber(barsContainer[0].getAttribute('y'));
       const heightInput1 = toNumber(barsContainer[0].getAttribute('height'));
       // y Range of second input should be yRange of first input + height of first input
@@ -187,20 +190,20 @@ describe('Stacked Bar', () => {
 
     it('when graph is unloaded off input1, unloads first content from graph', () => {
       graphDefault.unloadContent(bar1);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('when graph is unloaded off input2, unloads second content from graph', () => {
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('when graph is unloaded off both inputs, unloads both content from graph', () => {
       graphDefault.unloadContent(bar1);
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(0);
     });
   });
@@ -231,17 +234,17 @@ describe('Stacked Bar', () => {
       graphDefault.destroy();
     });
     it('loads both inputs', () => {
-      const barContentContainer = fetchAllElementsByClass(barGraphContainer,styles.barGraphContent);
+      const barContentContainer = fetchAllElementsByClass(barGraphContainer, styles.barGraphContent);
       expect(barContentContainer).not.toBeNull();
       expect(barContentContainer[0].getAttribute('aria-describedby')).toBe('uid_2');
       expect(barContentContainer[1].getAttribute('aria-describedby')).toBe('uid_1');
     });
 
     it('stacks the first input below the second input', () => {
-      let barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      let barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const yInput2 = toNumber(barsContainer[0].getAttribute('y'));
       graphDefault.resize();
-      barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const heightInput2 = toNumber(barsContainer[0].getAttribute('height'));
 
       // y Range of first input should be hRange of second input - height of first input (offset)
@@ -254,20 +257,20 @@ describe('Stacked Bar', () => {
 
     it('unloads unloads first content from graph when it is unloaded off input1', () => {
       graphDefault.unloadContent(bar1);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('unloads unloads second content from graph when it is unloaded off input2', () => {
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('unloads both content from graph when it is unloaded off of both inputs', () => {
       graphDefault.unloadContent(bar1);
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(0);
     });
   });
@@ -305,12 +308,12 @@ describe('Stacked Bar', () => {
       expect(barContentContainer[1].getAttribute('aria-describedby')).toBe('uid_1');
     });
 
-// TODO: fix failing test
+    // TODO: fix failing test
     it.skip('does not stack second input and groups it with the first content', () => {
       let barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const yInput2 = toNumber(barsContainer[0].getAttribute('y'));
       graphDefault.resize();
-      barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       const heightInput1 = toNumber(barsContainer[0].getAttribute('height'));
 
       // y Range of first input should be equal to yRange of second input (because both have same y values)
@@ -325,20 +328,20 @@ describe('Stacked Bar', () => {
 
     it('when graph is unloaded off input1, unloads first content from graph', () => {
       graphDefault.unloadContent(bar1);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('when graph is unloaded off input2, unloads second content from graph', () => {
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(3);
     });
 
     it('when graph is unloaded off both inputs, unloads both content from graph', () => {
       graphDefault.unloadContent(bar1);
       graphDefault.unloadContent(bar2);
-      const barsContainer = fetchAllElementsByClass(barGraphContainer,styles.taskBar);
+      const barsContainer = fetchAllElementsByClass(barGraphContainer, styles.taskBar);
       expect(barsContainer.length).toEqual(0);
     });
   });
@@ -359,7 +362,7 @@ describe('Stacked Bar', () => {
     });
 
     it('y-axis label position stays the same', () => {
-      const yLabel1 = fetchElementByClass(barGraphContainer,styles.axisLabelY).getAttribute('transform');
+      const yLabel1 = fetchElementByClass(barGraphContainer, styles.axisLabelY).getAttribute('transform');
 
       const input = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
       input.group = 'uid_1';
@@ -370,7 +373,7 @@ describe('Stacked Bar', () => {
       bar2.redraw(graph);
       bar1.redraw(graph);
 
-      const yLabel2 = fetchElementByClass(barGraphContainer,styles.axisLabelY);
+      const yLabel2 = fetchElementByClass(barGraphContainer, styles.axisLabelY);
       expect(yLabel1).toEqual(yLabel2.getAttribute('transform'));
     });
   });
@@ -379,115 +382,115 @@ describe('Stacked Bar', () => {
     let bar2;
     let graphDefault;
 
-      beforeEach(() => {
-        graphDefault = new Graph(getAxes(axisDefault));
+    beforeEach(() => {
+      graphDefault = new Graph(getAxes(axisDefault));
 
-        const input1 = getInput(valuesNegativeDefault, false, false);
-        input1.regions = regionsDefault;
+      const input1 = getInput(valuesNegativeDefault, false, false);
+      input1.regions = regionsDefault;
 
-        bar1 = new Bar(input1);
-        let graphContent = graphDefault.loadContent(bar1);
-        bar1.redraw(graphContent);
+      bar1 = new Bar(input1);
+      let graphContent = graphDefault.loadContent(bar1);
+      bar1.redraw(graphContent);
 
-        const input2 = utils.deepClone(
-          getInput(
-            valuesNegativeDefault,
-            false,
-            false,
-            false,
-            'uid_2',
-          ),
-        );
-        input2.group = 'uid_1';
-        input2.regions = regionsDefault;
-        bar2 = new Bar(input2);
+      const input2 = utils.deepClone(
+        getInput(
+          valuesNegativeDefault,
+          false,
+          false,
+          false,
+          'uid_2',
+        ),
+      );
+      input2.group = 'uid_1';
+      input2.regions = regionsDefault;
+      bar2 = new Bar(input2);
 
-        graphContent = graphDefault.loadContent(bar2);
+      graphContent = graphDefault.loadContent(bar2);
 
-        bar2.redraw(graphContent);
-        bar1.redraw(graphContent);
-      });
-      afterEach(() => {
-        graphDefault.destroy();
-      });
+      bar2.redraw(graphContent);
+      bar1.redraw(graphContent);
+    });
+    afterEach(() => {
+      graphDefault.destroy();
+    });
 
-      it('Translates region correctly', () => {
-        const regionElement = fetchAllElementsByClass(barGraphContainer, styles.region);
+    it('Translates region correctly', () => {
+      const regionElement = fetchAllElementsByClass(barGraphContainer, styles.region);
 
-        expect(regionElement[0].getAttribute('x')).toBe(regionElement[2].getAttribute('x'));
-        expect(regionElement[0].getAttribute('y')).toBe(regionElement[2].getAttribute('y'));
-      });
+      expect(regionElement[0].getAttribute('x')).toBe(regionElement[2].getAttribute('x'));
+      expect(regionElement[0].getAttribute('y')).toBe(regionElement[2].getAttribute('y'));
+    });
   });
   describe('Axis Info Row - on load', () => {
     let bar1;
     let bar2;
     let graphDefault;
 
-      beforeEach(() => {
-        graphDefault = new Graph(getAxes(axisDefault));
+    beforeEach(() => {
+      graphDefault = new Graph(getAxes(axisDefault));
 
-        const input1 = getInput(valuesDefault, false, false);
-        input1.axisInfoRow = axisInfoRowDefault;
+      const input1 = getInput(valuesDefault, false, false);
+      input1.axisInfoRow = axisInfoRowDefault;
 
-        bar1 = new Bar(input1);
-        let graph = graphDefault.loadContent(bar1);
-        bar1.redraw(graph);
+      bar1 = new Bar(input1);
+      let graph = graphDefault.loadContent(bar1);
+      bar1.redraw(graph);
 
-        const input2 = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
-        input2.group = 'uid_1';
+      const input2 = utils.deepClone(getInput(valuesDefault, false, false, false, 'uid_2'));
+      input2.group = 'uid_1';
 
-        bar2 = new Bar(input2);
-        graph = graphDefault.loadContent(bar2);
+      bar2 = new Bar(input2);
+      graph = graphDefault.loadContent(bar2);
 
-        bar2.redraw(graph);
-        bar1.redraw(graph);
-      });
-      afterEach(() => {
-        graphDefault.destroy();
-      });
-
-// TODO: fix failing tests
-      it.skip('translates axis info row labels correctly', () => {
-        const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer,styles.axisInfoRowItem);
-        expect(axisInfoRowElement.length).toBe(3);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[0]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(140);
-        expect(
-          round2Decimals(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[0]),
-            ).translate[1],
-          ),
-        ).toBeCloserTo(-10);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[1]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(282);
-        expect(
-          round2Decimals(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[1]),
-            ).translate[1],
-          ),
-        ).toBeCloserTo(-10);
-        expect(
-          toNumber(
-            getSVGAnimatedTransformList(
-              getCurrentTransform(axisInfoRowElement[2]),
-            ).translate[0],
-            10,
-          ),
-        ).toBeCloserTo(425);
-      });
+      bar2.redraw(graph);
+      bar1.redraw(graph);
     });
+    afterEach(() => {
+      graphDefault.destroy();
+    });
+
+    // TODO: fix failing tests
+    it.skip('translates axis info row labels correctly', () => {
+      const axisInfoRowElement = fetchAllElementsByClass(barGraphContainer, styles.axisInfoRowItem);
+      expect(axisInfoRowElement.length).toBe(3);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[0]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(140);
+      expect(
+        round2Decimals(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[0]),
+          ).translate[1],
+        ),
+      ).toBeCloserTo(-10);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[1]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(282);
+      expect(
+        round2Decimals(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[1]),
+          ).translate[1],
+        ),
+      ).toBeCloserTo(-10);
+      expect(
+        toNumber(
+          getSVGAnimatedTransformList(
+            getCurrentTransform(axisInfoRowElement[2]),
+          ).translate[0],
+          10,
+        ),
+      ).toBeCloserTo(425);
+    });
+  });
 });

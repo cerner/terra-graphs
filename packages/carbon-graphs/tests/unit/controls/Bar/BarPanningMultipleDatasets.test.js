@@ -24,17 +24,14 @@ import errors from '../../../../src/js/helpers/errors';
 
 // TODO: fix failing tests
 describe.skip('Bar - Panning', () => {
-  let graphDefault = null;
+  let graphDefault;
   let barGraphContainer;
-  let consolewarn;
 
   beforeAll(() => {
-    // to supress warnings
-    consolewarn = console.warn;
-    console.warn = () => {};
+    jest.spyOn(console, 'warn').mockImplementation();
   });
   afterAll(() => {
-    console.warn = consolewarn;
+    jest.restoreAllMocks();
   });
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
@@ -48,6 +45,7 @@ describe.skip('Bar - Panning', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
+
   describe('When enabled', () => {
     beforeEach(() => {
       const axisData = utils.deepClone(getAxes(axisTimeSeries));
@@ -67,6 +65,7 @@ describe.skip('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
+    
     it('Checks if clamp is false when pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
@@ -120,7 +119,6 @@ describe.skip('Bar - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     describe('when key matches', () => {
@@ -405,16 +403,12 @@ describe.skip('Bar - Panning', () => {
           barGraphContainer,
           styles.axisLabelY2ShapeContainer,
         );
-        expect(barShapeContentY[0].querySelectorAll('svg').length,
-        ).toEqual(1);
-        expect(barShapeContentY2[0].querySelectorAll('svg').length,
-        ).toEqual(1);
+        expect(barShapeContentY[0].querySelectorAll('svg').length).toEqual(1);
+        expect(barShapeContentY2[0].querySelectorAll('svg').length).toEqual(1);
 
         graphDefault.reflowMultipleDatasets(graphData1);
-        expect(barShapeContentY[0].querySelectorAll('svg').length,
-        ).toEqual(1);
-        expect(barShapeContentY2[0].querySelectorAll('svg').length,
-        ).toEqual(1);
+        expect(barShapeContentY[0].querySelectorAll('svg').length).toEqual(1);
+        expect(barShapeContentY2[0].querySelectorAll('svg').length).toEqual(1);
       });
     });
     describe('when there is more than one data set in single axis', () => {
@@ -477,20 +471,15 @@ describe.skip('Bar - Panning', () => {
           barGraphContainer,
           styles.axisLabelYShapeContainer,
         );
-        expect(barShapeContentY[0].querySelectorAll('svg').length,
-        ).toEqual(2);
+        expect(barShapeContentY[0].querySelectorAll('svg').length).toEqual(2);
 
         graphDefault.reflowMultipleDatasets(graphData);
-        expect(barShapeContentY[0].querySelectorAll('svg').length,
-        ).toEqual(1);
-        expect(barShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0],
-        ).toEqual(undefined);
+        expect(barShapeContentY[0].querySelectorAll('svg').length).toEqual(1);
+        expect(barShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0]).toEqual(undefined);
 
         graphDefault.reflowMultipleDatasets(graphData1);
-        expect(barShapeContentY[0].querySelectorAll('svg').length,
-        ).toEqual(2);
-        expect(barShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0],
-        ).not.toBeNull();
+        expect(barShapeContentY[0].querySelectorAll('svg').length).toEqual(2);
+        expect(barShapeContentY[0].querySelectorAll('svg[aria-describedby="uid_2"]')[0]).not.toBeNull();
       });
       it('should add and remove one shape in y2-axis successfully during reflow', () => {
         graphDefault.destroy();
@@ -549,7 +538,6 @@ describe.skip('Bar - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });
