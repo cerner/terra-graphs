@@ -590,7 +590,7 @@ describe('Scatter - Region', () => {
         graphDefault.loadContent(scatterPrimary);
         graphDefault.loadContent(scatterSecondary);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -603,10 +603,9 @@ describe('Scatter - Region', () => {
               )
               .classList.contains(styles.regionHighlight),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides region on mouse exit', (done) => {
+      it('Hides region on mouse exit', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -627,7 +626,6 @@ describe('Scatter - Region', () => {
                 )
                 .getAttribute('aria-hidden'),
             ).toBeTruthy();
-            done();
           });
         });
       });
@@ -653,7 +651,7 @@ describe('Scatter - Region', () => {
         graphDefault.loadContent(scatterPrimary);
         graphDefault.loadContent(scatterSecondary);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -672,10 +670,9 @@ describe('Scatter - Region', () => {
               styles.regionHighlight,
             ),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides all the regions except current', (done) => {
+      it('Hides all the regions except current', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -695,7 +692,6 @@ describe('Scatter - Region', () => {
                 styles.regionHighlight,
               ),
             ).toBeFalsy();
-            done();
           });
         });
       });
@@ -817,7 +813,7 @@ describe('Scatter - Region', () => {
       graphDefault.loadContent(scatterPrimary);
     });
     describe('When single-scatter', () => {
-      it('Hides region on toggle', (done) => {
+      it('Hides region on toggle', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -829,10 +825,9 @@ describe('Scatter - Region', () => {
           expect(regionElement.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Hides regions on toggle', (done) => {
+      it('Hides regions on toggle', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -847,10 +842,9 @@ describe('Scatter - Region', () => {
           expect(regionElements[1].getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Shows region on re-toggle', (done) => {
+      it('Shows region on re-toggle', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -869,7 +863,6 @@ describe('Scatter - Region', () => {
               expect(
                 regionElements[1].getAttribute('aria-hidden'),
               ).toBe('false');
-              done();
             },
             200,
           );
@@ -877,7 +870,7 @@ describe('Scatter - Region', () => {
       });
     });
     describe('When multi-scatter', () => {
-      it('Shows when data-sets shown === 1', (done) => {
+      it('Shows when data-sets shown === 1', () => {
         scatterSecondary = new Scatter(inputSecondary);
         graphDefault.loadContent(scatterSecondary);
         const legendItem = scatterGraphContainer.querySelectorAll(
@@ -892,7 +885,6 @@ describe('Scatter - Region', () => {
               .getAttribute('aria-hidden'),
           ).toBe('false');
           graphDefault.unloadContent(scatterSecondary);
-          done();
         });
       });
     });

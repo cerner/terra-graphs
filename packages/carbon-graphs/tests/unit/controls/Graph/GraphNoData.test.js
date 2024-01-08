@@ -95,7 +95,7 @@ describe('Graph - No Data', () => {
     });
   });
   describe('On Resize', () => {
-    it('No data view aligns correctly', (done) => {
+    it('No data view aligns correctly', () => {
       graphContainer.setAttribute('style', 'width: 800px; height: 200px');
       graph = new Graph(getAxes(axisDefault));
       graph.resize();
@@ -119,7 +119,6 @@ describe('Graph - No Data', () => {
           getYAxisLabelYPosition(graph.config)
                         + constants.NO_DATA_LABEL_PADDING,
         );
-        done();
       });
     });
   });

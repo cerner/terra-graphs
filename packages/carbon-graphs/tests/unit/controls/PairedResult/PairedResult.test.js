@@ -449,7 +449,7 @@ describe('PairedResult', () => {
       graphDefault.loadContent(pairedResultSecondaryContent);
     });
     describe('When Multiple-paired result', () => {
-      it('Show region on legend click if regions are same', (done) => {
+      it('Show region on legend click if regions are same', () => {
         const legendItem = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}_low"]`,
         );
@@ -460,7 +460,6 @@ describe('PairedResult', () => {
           expect(regionElement.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
     });

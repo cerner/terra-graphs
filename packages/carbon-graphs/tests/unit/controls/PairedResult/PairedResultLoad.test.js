@@ -1039,7 +1039,7 @@ describe('Paired Result - Load', () => {
       });
     });
     describe('when clicked on a data point', () => {
-      it('does not do anything if no onClick callback is provided', (done) => {
+      it('does not do anything if no onClick callback is provided', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
@@ -1051,10 +1051,9 @@ describe('Paired Result - Load', () => {
         );
         triggerEvent(point, 'click', () => {
           expect(point.getAttribute('aria-disabled')).toBe('true');
-          done();
         });
       });
-      it('hides data point selection when parameter callback is called', (done) => {
+      it('hides data point selection when parameter callback is called', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
@@ -1075,11 +1074,10 @@ describe('Paired Result - Load', () => {
                 styles.pairedBox,
               ).getAttribute('aria-selected'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('calls onClick callback', (done) => {
+      it('calls onClick callback', () => {
         const dataPointClickHandlerSpy = sinon.spy();
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -1097,11 +1095,10 @@ describe('Paired Result - Load', () => {
             expect(
               dataPointClickHandlerSpy.calledOnce,
             ).toBeTruthy();
-            done();
           },
         );
       });
-      it('calls onClick callback with parameters', (done) => {
+      it('calls onClick callback with parameters', () => {
         let args = {};
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -1134,11 +1131,10 @@ describe('Paired Result - Load', () => {
             expect(args.val.mid.x).toBe(input.values[1].mid.x);
             expect(args.val.mid.y).toBe(input.values[1].mid.y);
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         triggerEvent(
           fetchElementByClass(
             pairedResultGraphContainer,
@@ -1152,11 +1148,10 @@ describe('Paired Result - Load', () => {
                 styles.pairedBox,
               ).getAttribute('aria-selected'),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('creates a rectangle highlight for data point', (done) => {
+      it('creates a rectangle highlight for data point', () => {
         const point = fetchElementByClass(
           pairedResultGraphContainer,
           styles.pairedPoint,
@@ -1171,10 +1166,9 @@ describe('Paired Result - Load', () => {
           expect(selectionElement.classList).toContain(
             styles.dataPointSelection,
           );
-          done();
         });
       });
-      it('removes highlight when data point is clicked again', (done) => {
+      it('removes highlight when data point is clicked again', () => {
         const point = fetchElementByClass(
           pairedResultGraphContainer,
           styles.pairedPoint,
@@ -1190,7 +1184,6 @@ describe('Paired Result - Load', () => {
                   styles.pairedBox,
                 ).getAttribute('aria-selected'),
               ).toBe('false');
-              done();
             },
             TRANSITION_DELAY,
           );
@@ -1198,7 +1191,7 @@ describe('Paired Result - Load', () => {
       });
     });
     describe('when clicked on a pair data point', () => {
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         triggerEvent(
           fetchElementByClass(
             pairedResultGraphContainer,
@@ -1212,11 +1205,10 @@ describe('Paired Result - Load', () => {
                 styles.pairedBox,
               ).getAttribute('aria-selected'),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('removes highlight when clicked again', (done) => {
+      it('removes highlight when clicked again', () => {
         const point = fetchElementByClass(
           pairedResultGraphContainer,
           styles.pairedPoint,
@@ -1229,13 +1221,12 @@ describe('Paired Result - Load', () => {
                 styles.pairedBox,
               ).getAttribute('aria-selected'),
             ).toBe('false');
-            done();
           });
         });
       });
     });
     describe('when clicked on a paired line', () => {
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         triggerEvent(
           fetchElementByClass(
             pairedResultGraphContainer,
@@ -1249,11 +1240,10 @@ describe('Paired Result - Load', () => {
                 styles.pairedBox,
               ).getAttribute('aria-selected'),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('removes highlight when clicked again', (done) => {
+      it('removes highlight when clicked again', () => {
         const line = fetchElementByClass(
           pairedResultGraphContainer,
           styles.pairedLine,
@@ -1266,11 +1256,10 @@ describe('Paired Result - Load', () => {
                 styles.pairedBox,
               ).getAttribute('aria-selected'),
             ).toBe('false');
-            done();
           });
         });
       });
-      it('emits correct parameters', (done) => {
+      it('emits correct parameters', () => {
         let args = {};
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -1303,7 +1292,6 @@ describe('Paired Result - Load', () => {
             expect(args.val.mid.x).toBe(input.values[1].mid.x);
             expect(args.val.mid.y).toBe(input.values[1].mid.y);
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
@@ -1557,7 +1545,7 @@ describe('Paired Result - Load', () => {
         expect(svgElements.length).toBe(0);
       });
     });
-    it('attaches click event handlers correctly', (done) => {
+    it('attaches click event handlers correctly', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new PairedResult(input));
       const legendItem = fetchElementByClass(
@@ -1567,11 +1555,10 @@ describe('Paired Result - Load', () => {
       triggerEvent(legendItem, 'click', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('false');
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
-        done();
       });
     });
     describe('on click', () => {
-      it('hides the points', (done) => {
+      it('hides the points', () => {
         const rafSpy = spyOn(
           window,
           'requestAnimationFrame',
@@ -1603,11 +1590,10 @@ describe('Paired Result - Load', () => {
             expect(mid.getAttribute('aria-hidden')).toBe('false');
             expect(low.getAttribute('aria-hidden')).toBe('false');
             rafSpy.calls.reset();
-            done();
           },
         );
       });
-      it('hides the line and points, if the point is high', (done) => {
+      it('hides the line and points, if the point is high', () => {
         const input = getInput(valuesDefault, false, false);
         const prContent = new PairedResult(input);
         const graph = graphDefault.loadContent(prContent);
@@ -1624,11 +1610,10 @@ describe('Paired Result - Load', () => {
                 .querySelector(`.${styles.pairedLine}`)
                 .getAttribute('aria-hidden'),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('hides the line and points, if the point is low', (done) => {
+      it('hides the line and points, if the point is low', () => {
         const input = getInput(valuesDefault, false, false);
         const prContent = new PairedResult(input);
         const graph = graphDefault.loadContent(prContent);
@@ -1648,11 +1633,10 @@ describe('Paired Result - Load', () => {
                 .querySelector(`.${styles.pairedLine}`)
                 .getAttribute('aria-hidden'),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('does not hide the line and points, if the point is mid', (done) => {
+      it('does not hide the line and points, if the point is mid', () => {
         const input = getInput(valuesDefault, false, false);
         const prContent = new PairedResult(input);
         const graph = graphDefault.loadContent(prContent);
@@ -1671,11 +1655,10 @@ describe('Paired Result - Load', () => {
                             `.${styles.pairedLine}`,
             );
             expect(line.getAttribute('d')).not.toBeNull();
-            done();
           },
         );
       });
-      it('removes the point but keeps the rest for multiple data sets', (done) => {
+      it('removes the point but keeps the rest for multiple data sets', () => {
         const inputPrimary = getInput(valuesDefault, false, false);
         const primaryPRContent = new PairedResult(inputPrimary);
         const secondaryPRContent = new PairedResult(inputSecondary);
@@ -1709,11 +1692,10 @@ describe('Paired Result - Load', () => {
                 styles.pairedPoint,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('on clicking twice toggles the points back to visible', (done) => {
+      it('on clicking twice toggles the points back to visible', () => {
         const rafSpy = spyOn(
           window,
           'requestAnimationFrame',
@@ -1739,7 +1721,6 @@ describe('Paired Result - Load', () => {
               ).getAttribute('aria-hidden'),
             ).toBe('false');
             rafSpy.calls.reset();
-            done();
           });
         });
       });
@@ -1751,7 +1732,7 @@ describe('Paired Result - Load', () => {
           prContent = new PairedResult(input);
           graph = graphDefault.loadContent(prContent);
         });
-        it('box is set as selected', (done) => {
+        it('box is set as selected', () => {
           const legendItem = fetchElementByClass(
             pairedResultGraphContainer,
             styles.legendItem,
@@ -1770,11 +1751,10 @@ describe('Paired Result - Load', () => {
               expect(box.getAttribute('aria-selected')).toBe(
                 'true',
               );
-              done();
             });
           });
         });
-        it('selection element is displayed - Line', (done) => {
+        it('selection element is displayed - Line', () => {
           const legendItem = fetchElementByClass(
             pairedResultGraphContainer,
             styles.legendItem,
@@ -1801,11 +1781,10 @@ describe('Paired Result - Load', () => {
                   styles.pairedBox,
                 ).getAttribute('aria-selected'),
               ).toBe('true');
-              done();
             });
           });
         });
-        it('selection element is displayed - Point', (done) => {
+        it('selection element is displayed - Point', () => {
           const legendItem = fetchElementByClass(
             pairedResultGraphContainer,
             styles.legendItem,
@@ -1832,11 +1811,10 @@ describe('Paired Result - Load', () => {
                   styles.pairedBox,
                 ).getAttribute('aria-selected'),
               ).toBe('true');
-              done();
             });
           });
         });
-        it('line is displayed to connect the pair', (done) => {
+        it('line is displayed to connect the pair', () => {
           const legendItem = fetchElementByClass(
             pairedResultGraphContainer,
             styles.legendItem,
@@ -1865,11 +1843,10 @@ describe('Paired Result - Load', () => {
                   styles.pairedBox,
                 ).getAttribute('aria-selected'),
               ).toBe('true');
-              done();
             });
           });
         });
-        it('points are displayed even if they are hidden', (done) => {
+        it('points are displayed even if they are hidden', () => {
           const legendItem = fetchElementByClass(
             pairedResultGraphContainer,
             styles.legendItem,
@@ -1901,7 +1878,6 @@ describe('Paired Result - Load', () => {
                   styles.pairedBox,
                 ).getAttribute('aria-selected'),
               ).toBe('true');
-              done();
             });
           });
         });
@@ -1923,7 +1899,7 @@ describe('Paired Result - Load', () => {
             styles.legendItem,
           );
         });
-        it('box is set as unselected', (done) => {
+        it('box is set as unselected', () => {
           triggerEvent(legendItem, 'click', () => {
             prContent.redraw(graph);
             const line = fetchElementByClass(
@@ -1938,12 +1914,11 @@ describe('Paired Result - Load', () => {
                     styles.pairedBox,
                   ).getAttribute('aria-selected'),
                 ).toBe('false');
-                done();
               });
             });
           });
         });
-        it('selection element is hidden - Line', (done) => {
+        it('selection element is hidden - Line', () => {
           triggerEvent(legendItem, 'click', () => {
             prContent.redraw(graph);
             const line = fetchElementByClass(
@@ -1967,12 +1942,11 @@ describe('Paired Result - Load', () => {
                     styles.pairedBox,
                   ).getAttribute('aria-selected'),
                 ).toBe('false');
-                done();
               });
             });
           });
         });
-        it('selection element is hidden - Point', (done) => {
+        it('selection element is hidden - Point', () => {
           triggerEvent(legendItem, 'click', () => {
             prContent.redraw(graph);
             const point = fetchElementByClass(
@@ -1996,12 +1970,11 @@ describe('Paired Result - Load', () => {
                     styles.pairedBox,
                   ).getAttribute('aria-selected'),
                 ).toBe('false');
-                done();
               });
             });
           });
         });
-        it('line between the pair is hidden', (done) => {
+        it('line between the pair is hidden', () => {
           triggerEvent(legendItem, 'click', () => {
             prContent.redraw(graph);
             const line = fetchElementByClass(
@@ -2027,12 +2000,11 @@ describe('Paired Result - Load', () => {
                     styles.pairedBox,
                   ).getAttribute('aria-selected'),
                 ).toBe('false');
-                done();
               });
             });
           });
         });
-        it('points are hidden that were toggled off', (done) => {
+        it('points are hidden that were toggled off', () => {
           triggerEvent(legendItem, 'click', () => {
             prContent.redraw(graph);
             const line = fetchElementByClass(
@@ -2064,14 +2036,13 @@ describe('Paired Result - Load', () => {
                     styles.pairedBox,
                   ).getAttribute('aria-selected'),
                 ).toBe('false');
-                done();
               });
             });
           });
         });
       });
     });
-    it('shown targets are removed from Graph', (done) => {
+    it('shown targets are removed from Graph', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(new PairedResult(input));
       triggerEvent(
@@ -2082,11 +2053,10 @@ describe('Paired Result - Load', () => {
         'click',
         () => {
           expect(graph.config.shownTargets.length).toBe(2);
-          done();
         },
       );
     });
-    it('shown targets are updated back when toggled', (done) => {
+    it('shown targets are updated back when toggled', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(new PairedResult(input));
       const legendItem = fetchElementByClass(
@@ -2096,11 +2066,10 @@ describe('Paired Result - Load', () => {
       triggerEvent(legendItem, 'click', () => {
         triggerEvent(legendItem, 'click', () => {
           expect(graph.config.shownTargets.length).toBe(3);
-          done();
         });
       });
     });
-    it('attaches mouse enter event handlers correctly', (done) => {
+    it('attaches mouse enter event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new PairedResult(inputPrimary));
       graphDefault.loadContent(new PairedResult(inputSecondary));
@@ -2144,10 +2113,9 @@ describe('Paired Result - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeTruthy();
-        done();
       });
     });
-    it('attaches mouse leave event handlers correctly', (done) => {
+    it('attaches mouse leave event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new PairedResult(inputPrimary));
       graphDefault.loadContent(new PairedResult(inputSecondary));
@@ -2184,7 +2152,6 @@ describe('Paired Result - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeFalsy();
-        done();
       });
     });
   });

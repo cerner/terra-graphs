@@ -357,7 +357,7 @@ describe('Gantt - Generate', () => {
                 `${styles.axis} ${styles.axisY} ${styles.axisYTrackLabel}`,
       );
     });
-    it('Creates correct text for each track', (done) => {
+    it('Creates correct text for each track', () => {
       gantt.destroy();
       gantt = new Gantt(getAxes(axisJSON));
       gantt.loadContent(getData());
@@ -372,7 +372,6 @@ describe('Gantt - Generate', () => {
           textElementList[0].getAttribute('transform'),
         ).not.toBeNull(); // Project A
         expect(textElementList[0].innerHTML).toBe('Project A'); // Project A
-        done();
       });
     });
     it('Hides x axis when not enabled', () => {
@@ -1119,7 +1118,7 @@ describe('Gantt - Generate', () => {
       });
     });
 
-    it('Creates dateline group element', (done) => {
+    it('Creates dateline group element', () => {
       axisObj.dateline = utils.deepClone(datelineJSON);
       gantt = new Gantt(axisObj);
       const datelineGroupElement = fetchElementByClass(
@@ -1137,11 +1136,10 @@ describe('Gantt - Generate', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloseTo(106);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
       expect(datelineGroupElement.childNodes.length).toBe(2);
     });
-    it('Creates dateline correctly', (done) => {
+    it('Creates dateline correctly', () => {
       axisObj.dateline = utils.deepClone(datelineJSON);
       gantt = new Gantt(axisObj);
       const dateline = fetchElementByClass(styles.dateline);
@@ -1161,7 +1159,6 @@ describe('Gantt - Generate', () => {
         expect(
           toNumber(datelineElement.getAttribute('y2'), 10),
         ).toBeCloseTo(0);
-        done();
       });
     });
     it('creates multiple datelines correctly', () => {
@@ -1203,7 +1200,7 @@ describe('Gantt - Generate', () => {
         'M24 0l12 24-12 24-12-24L24 0z',
       );
     });
-    it('Creates dateline point correctly', (done) => {
+    it('Creates dateline point correctly', () => {
       let datelinePointGroupElement;
       axisObj.dateline = utils.deepClone(datelineJSON);
       gantt = new Gantt(axisObj);
@@ -1224,7 +1221,6 @@ describe('Gantt - Generate', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloseTo(334);
         expect(toNumber(translate[1], 10)).toBeCloseTo(0);
-        done();
       });
     });
     it('Hides dateline point on consumer disable', () => {
@@ -1255,7 +1251,7 @@ describe('Gantt - Generate', () => {
       expect(datelinePoint.getAttribute('aria-hidden')).toBe('true');
     });
     describe('when clicked on dateline', () => {
-      it('Does not do anything if no onClick callback is provided', (done) => {
+      it('Does not do anything if no onClick callback is provided', () => {
         axisObj.dateline = utils.deepClone(datelineJSON);
         gantt = new Gantt(axisObj);
         const datelinePointElement = fetchElementByClass(
@@ -1265,10 +1261,9 @@ describe('Gantt - Generate', () => {
           expect(
             datelinePointElement.getAttribute('aria-disabled'),
           ).toBe('true');
-          done();
         });
       });
-      it('Calls onClick callback', (done) => {
+      it('Calls onClick callback', () => {
         const onClickFunctionSpy = sinon.spy();
         axisObj.dateline = utils.deepClone(datelineJSON);
         axisObj.dateline[0].onClick = onClickFunctionSpy;
@@ -1286,10 +1281,9 @@ describe('Gantt - Generate', () => {
           expect(
             datelinePointElement.getAttribute('aria-disabled'),
           ).toBe('false');
-          done();
         });
       });
-      it('Removes selection when dateline is clicked again', (done) => {
+      it('Removes selection when dateline is clicked again', () => {
         const onClickFunctionSpy = sinon.spy();
         axisObj.dateline = utils.deepClone(datelineJSON);
         axisObj.dateline[0].onClick = onClickFunctionSpy;
@@ -1302,11 +1296,10 @@ describe('Gantt - Generate', () => {
                 styles.datelineGroup,
               ).getAttribute('aria-selected'),
             ).toBe('false');
-            done();
           });
         });
       });
-      it('Removes dateline selection when parameter callback is called', (done) => {
+      it('Removes dateline selection when parameter callback is called', () => {
         axisObj.dateline = utils.deepClone(datelineJSON);
         axisObj.dateline[0].onClick = (clearSelectionCallback) => clearSelectionCallback();
         gantt = new Gantt(axisObj);
@@ -1317,7 +1310,6 @@ describe('Gantt - Generate', () => {
               'aria-selected',
             ),
           ).toBe('false');
-          done();
         });
       });
     });

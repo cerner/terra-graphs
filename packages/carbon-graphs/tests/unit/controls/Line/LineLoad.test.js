@@ -623,7 +623,7 @@ describe('Line - Load', () => {
     });
     it('adds line with correct stroke-dasharray', () => {});
     describe('when clicked on a data point', () => {
-      it('does not do anything if no onClick callback is provided', (done) => {
+      it('does not do anything if no onClick callback is provided', () => {
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.onClick = null;
@@ -634,10 +634,9 @@ describe('Line - Load', () => {
         );
         triggerEvent(point, 'click', () => {
           expect(point.getAttribute('aria-disabled')).toBe('true');
-          done();
         });
       });
-      it('hides data point selection when parameter callback is called', (done) => {
+      it('hides data point selection when parameter callback is called', () => {
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
         input.onClick = (clearSelectionCallback) => {
@@ -656,10 +655,9 @@ describe('Line - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('calls onClick callback', (done) => {
+      it('calls onClick callback', () => {
         const dataPointClickHandlerSpy = sinon.spy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
@@ -671,10 +669,9 @@ describe('Line - Load', () => {
         );
         triggerEvent(point, 'click', () => {
           expect(dataPointClickHandlerSpy.calledOnce).toBeTruthy();
-          done();
         });
       });
-      it('calls onClick callback with parameters', (done) => {
+      it('calls onClick callback with parameters', () => {
         let args = {};
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
@@ -700,10 +697,9 @@ describe('Line - Load', () => {
           expect(args.val.x).toBe(input.values[1].x);
           expect(args.val.y).toBe(input.values[1].y);
           expect(args.target).not.toBeNull();
-          done();
         });
       });
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
@@ -719,10 +715,9 @@ describe('Line - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('removes highlight when data point is clicked again', (done) => {
+      it('removes highlight when data point is clicked again', () => {
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
@@ -739,13 +734,12 @@ describe('Line - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
     });
     describe("when clicked on a data point's near surrounding area", () => {
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
@@ -757,10 +751,9 @@ describe('Line - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('calls onClick callback with parameters', (done) => {
+      it('calls onClick callback with parameters', () => {
         let args = {};
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
@@ -786,10 +779,9 @@ describe('Line - Load', () => {
           expect(args.val.x).toBe(input.values[1].x);
           expect(args.val.y).toBe(input.values[1].y);
           expect(args.target).not.toBeNull();
-          done();
         });
       });
-      it('removes highlight when clicked again', (done) => {
+      it('removes highlight when clicked again', () => {
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
@@ -802,7 +794,6 @@ describe('Line - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
@@ -1341,7 +1332,7 @@ describe('Line - Load', () => {
         lineSVG.children[1].attributes.getNamedItem('style').value,
       ).toContain('stroke-dasharray: 2,2;');
     });
-    it('attaches click event handlers correctly', (done) => {
+    it('attaches click event handlers correctly', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
       const legendItem = fetchElementByClass(
@@ -1350,10 +1341,9 @@ describe('Line - Load', () => {
       );
       triggerEvent(legendItem, 'click', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('false');
-        done();
       });
     });
-    it('on click hides the line and points', (done) => {
+    it('on click hides the line and points', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -1387,11 +1377,10 @@ describe('Line - Load', () => {
             ).firstChild.getAttribute('aria-hidden'),
           ).toBe('true');
           rafSpy.calls.reset();
-          done();
         },
       );
     });
-    it('on click, removes the first line but keeps the rest', (done) => {
+    it('on click, removes the first line but keeps the rest', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -1451,11 +1440,10 @@ describe('Line - Load', () => {
               styles.line,
             ).firstChild.getAttribute('aria-hidden'),
           ).toBe('false');
-          done();
         },
       );
     });
-    it('on clicking twice toggles the line and points back to visible', (done) => {
+    it('on clicking twice toggles the line and points back to visible', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -1493,11 +1481,10 @@ describe('Line - Load', () => {
             ).firstChild.getAttribute('aria-hidden'),
           ).toBe('false');
           rafSpy.calls.reset();
-          done();
         });
       });
     });
-    it('shown targets are removed from Graph', (done) => {
+    it('shown targets are removed from Graph', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(new Line(input));
       triggerEvent(
@@ -1505,11 +1492,10 @@ describe('Line - Load', () => {
         'click',
         () => {
           expect(graph.config.shownTargets.length).toBe(0);
-          done();
         },
       );
     });
-    it('shown targets are updated back when toggled', (done) => {
+    it('shown targets are updated back when toggled', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(new Line(input));
       const legendItem = fetchElementByClass(
@@ -1519,11 +1505,10 @@ describe('Line - Load', () => {
       triggerEvent(legendItem, 'click', () => {
         triggerEvent(legendItem, 'click', () => {
           expect(graph.config.shownTargets.length).toBe(1);
-          done();
         });
       });
     });
-    it('attaches mouse enter event handlers correctly', (done) => {
+    it('attaches mouse enter event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -1567,10 +1552,9 @@ describe('Line - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeTruthy();
-        done();
       });
     });
-    it('attaches mouse leave event handlers correctly', (done) => {
+    it('attaches mouse leave event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -1614,7 +1598,6 @@ describe('Line - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeFalsy();
-        done();
       });
     });
     describe('when the legend has no data', () => {

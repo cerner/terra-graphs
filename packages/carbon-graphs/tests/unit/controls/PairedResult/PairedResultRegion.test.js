@@ -829,7 +829,7 @@ describe('Paired Result - Region', () => {
         graphDefault.loadContent(pairedResultPrimaryContent);
         graphDefault.loadContent(pairedResultSecondaryContent);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -863,10 +863,9 @@ describe('Paired Result - Region', () => {
               )
               .classList.contains(styles.regionBlur),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides region on mouse exit', (done) => {
+      it('Hides region on mouse exit', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -887,7 +886,6 @@ describe('Paired Result - Region', () => {
                 )
                 .classList.contains(styles.regionBlur),
             ).toBeFalsy();
-            done();
           });
         });
       });
@@ -903,7 +901,7 @@ describe('Paired Result - Region', () => {
         graphDefault.loadContent(pairedResultPrimaryContent);
         graphDefault.loadContent(pairedResultSecondaryContent);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -922,10 +920,9 @@ describe('Paired Result - Region', () => {
               styles.regionHighlight,
             ),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides all the regions except current', (done) => {
+      it('Hides all the regions except current', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -945,7 +942,6 @@ describe('Paired Result - Region', () => {
                 styles.regionHighlight,
               ),
             ).toBeFalsy();
-            done();
           });
         });
       });
@@ -1072,7 +1068,7 @@ describe('Paired Result - Region', () => {
       graphDefault.loadContent(pairedResultPrimaryContent);
     });
     describe('When single-paired result', () => {
-      it('Hides region on toggle', (done) => {
+      it('Hides region on toggle', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -1084,10 +1080,9 @@ describe('Paired Result - Region', () => {
           expect(regionElement.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Hides regions on toggle', (done) => {
+      it('Hides regions on toggle', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -1102,10 +1097,9 @@ describe('Paired Result - Region', () => {
           expect(regionElements[1].getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Shows region on re-toggle', (done) => {
+      it('Shows region on re-toggle', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -1121,7 +1115,6 @@ describe('Paired Result - Region', () => {
             expect(
               regionElements[1].getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           });
         });
       });
@@ -1150,7 +1143,7 @@ describe('Paired Result - Region', () => {
         });
       });
 
-      it('Primary regions are displayed when it is the only pair result content displayed', (done) => {
+      it('Primary regions are displayed when it is the only pair result content displayed', () => {
         let regionsElement = null;
         const legendItemHigh = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputSecondary.key}_high"]`,
@@ -1196,7 +1189,6 @@ describe('Paired Result - Region', () => {
                   element.getAttribute('aria-hidden'),
                 ).toBe('false');
               });
-              done();
             });
           });
         });

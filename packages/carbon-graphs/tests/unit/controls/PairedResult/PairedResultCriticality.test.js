@@ -347,7 +347,7 @@ describe('Paired Result - Criticality', () => {
         styles.criticalityInnerPoint,
       );
     });
-    it('selects data point when clicked on outer indicator', (done) => {
+    it('selects data point when clicked on outer indicator', () => {
       const criticalOuterPointSpy = sinon.spy();
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[0].high.isCritical = true;
@@ -363,10 +363,9 @@ describe('Paired Result - Criticality', () => {
       );
       triggerEvent(point, 'click', () => {
         expect(criticalOuterPointSpy.calledOnce).toBeTruthy();
-        done();
       });
     });
-    it('emits correct parameters when clicked on outer indicator', (done) => {
+    it('emits correct parameters when clicked on outer indicator', () => {
       let args = {};
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[1].high.isCritical = true;
@@ -401,11 +400,10 @@ describe('Paired Result - Criticality', () => {
           expect(args.val.mid.x).toBe(inputPrimary.values[1].mid.x);
           expect(args.val.mid.y).toBe(inputPrimary.values[1].mid.y);
           expect(args.target).not.toBeNull();
-          done();
         },
       );
     });
-    it('selects data point when clicked on inner indicator', (done) => {
+    it('selects data point when clicked on inner indicator', () => {
       const criticalInnerPointSpy = sinon.spy();
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[0].high.isCritical = true;
@@ -421,10 +419,9 @@ describe('Paired Result - Criticality', () => {
       );
       triggerEvent(point, 'click', () => {
         expect(criticalInnerPointSpy.calledOnce).toBeTruthy();
-        done();
       });
     });
-    it('emits correct parameters when clicked on inner indicator', (done) => {
+    it('emits correct parameters when clicked on inner indicator', () => {
       let args = {};
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[1].high.isCritical = true;
@@ -459,7 +456,6 @@ describe('Paired Result - Criticality', () => {
           expect(args.val.mid.x).toBe(inputPrimary.values[1].mid.x);
           expect(args.val.mid.y).toBe(inputPrimary.values[1].mid.y);
           expect(args.target).not.toBeNull();
-          done();
         },
       );
     });
@@ -501,7 +497,7 @@ describe('Paired Result - Criticality', () => {
         pairedResultPrimaryContent = new PairedResult(inputPrimary);
         graphDefault.loadContent(pairedResultPrimaryContent);
       });
-      it('Highlights the indicators on mouse-enter', (done) => {
+      it('Highlights the indicators on mouse-enter', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -519,10 +515,9 @@ describe('Paired Result - Criticality', () => {
           expect(criticalInnerElement.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Removes highlights for indicators on mouse-leave', (done) => {
+      it('Removes highlights for indicators on mouse-leave', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -541,11 +536,10 @@ describe('Paired Result - Criticality', () => {
             expect(criticalInnerElement.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
-      it('Highlights the indicators on mouse-enter', (done) => {
+      it('Highlights the indicators on mouse-enter', () => {
         const legendItem = pairedResultGraphContainer.querySelectorAll(
                     `.${styles.legendItem}`,
         )[1];
@@ -562,10 +556,9 @@ describe('Paired Result - Criticality', () => {
           expect(criticalInnerElement.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Removes highlights for indicators on mouse-leave', (done) => {
+      it('Removes highlights for indicators on mouse-leave', () => {
         const legendItem = pairedResultGraphContainer.querySelectorAll(
                     `.${styles.legendItem}`,
         )[1];
@@ -583,11 +576,10 @@ describe('Paired Result - Criticality', () => {
             expect(criticalInnerElement.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
-      it('Highlights the indicators on mouse-enter', (done) => {
+      it('Highlights the indicators on mouse-enter', () => {
         const legendItem = pairedResultGraphContainer.querySelectorAll(
                     `.${styles.legendItem}`,
         )[2];
@@ -604,10 +596,9 @@ describe('Paired Result - Criticality', () => {
           expect(criticalInnerElement.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Removes highlights for indicators on mouse-leave', (done) => {
+      it('Removes highlights for indicators on mouse-leave', () => {
         const legendItem = pairedResultGraphContainer.querySelectorAll(
                     `.${styles.legendItem}`,
         )[2];
@@ -625,7 +616,6 @@ describe('Paired Result - Criticality', () => {
             expect(criticalInnerElement.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
@@ -645,7 +635,7 @@ describe('Paired Result - Criticality', () => {
         graphDefault.loadContent(pairedResultPrimaryContent);
         graphDefault.loadContent(pairedResultSecondaryContent);
       });
-      it('Highlights only the current indicator', (done) => {
+      it('Highlights only the current indicator', () => {
         const legendItem = fetchElementByClass(
           pairedResultGraphContainer,
           styles.legendItem,
@@ -663,10 +653,9 @@ describe('Paired Result - Criticality', () => {
           expect(criticalInnerElement.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Blurs other indicators', (done) => {
+      it('Blurs other indicators', () => {
         const legendItem = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputSecondary.key}_high"]`,
         );
@@ -695,10 +684,9 @@ describe('Paired Result - Criticality', () => {
           expect(criticalInnerElementAlt.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Removes highlights on mouse-leave', (done) => {
+      it('Removes highlights on mouse-leave', () => {
         const legendItem = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}_high"]`,
         );
@@ -716,11 +704,10 @@ describe('Paired Result - Criticality', () => {
             expect(criticalInnerElement.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
-      it('Removes blur for other data points on mouse-leave', (done) => {
+      it('Removes blur for other data points on mouse-leave', () => {
         const legendItem = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputSecondary.key}_high"]`,
         );
@@ -750,7 +737,6 @@ describe('Paired Result - Criticality', () => {
             expect(criticalInnerElementAlt.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
@@ -767,7 +753,7 @@ describe('Paired Result - Criticality', () => {
       graphDefault.loadContent(pairedResultPrimaryContent);
     });
     describe('On single data-set', () => {
-      it('Hides indicators on toggle', (done) => {
+      it('Hides indicators on toggle', () => {
         const legendItem = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}_high"]`,
         );
@@ -784,10 +770,9 @@ describe('Paired Result - Criticality', () => {
           expect(
             criticalInnerElement.getAttribute('aria-hidden'),
           ).toBe('true');
-          done();
         });
       });
-      it('Shows indicators on re-toggle', (done) => {
+      it('Shows indicators on re-toggle', () => {
         const legendItem = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}_high"]`,
         );
@@ -805,11 +790,10 @@ describe('Paired Result - Criticality', () => {
             expect(
               criticalInnerElement.getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           });
         });
       });
-      it('Shows indicators on re-toggle low', (done) => {
+      it('Shows indicators on re-toggle low', () => {
         const legendItem = pairedResultGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}_low"]`,
         );
@@ -839,7 +823,6 @@ describe('Paired Result - Criticality', () => {
             expect(
               criticalInnerElement.getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           });
         });
       });

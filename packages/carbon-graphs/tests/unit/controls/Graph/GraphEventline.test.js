@@ -187,7 +187,7 @@ describe('Graph - Eventline', () => {
       input.eventline = eventlineJSON;
       graph = new Graph(input);
     });
-    it('EventlineGroup translates properly', (done) => {
+    it('EventlineGroup translates properly', () => {
       const eventlineGroup = fetchElementByClass(styles.eventlineGroup);
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -195,10 +195,9 @@ describe('Graph - Eventline', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(73);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
-    it('Check Eventline coordinate attributes', (done) => {
+    it('Check Eventline coordinate attributes', () => {
       delay(() => {
         const eventlineElement = fetchElementByClass(styles.eventline);
         expect(
@@ -213,7 +212,6 @@ describe('Graph - Eventline', () => {
         expect(
           toNumber(eventlineElement.getAttribute('y2'), 10),
         ).toBeCloserTo(235);
-        done();
       });
     });
   });

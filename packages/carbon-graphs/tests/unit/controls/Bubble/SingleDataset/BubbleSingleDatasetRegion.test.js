@@ -593,7 +593,7 @@ describe('Bubble Single Dataset - Region', () => {
         graphDefault.loadContent(bubblePrimary);
         graphDefault.loadContent(bubbleSecondary);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           bubbleGraphContainer,
           styles.legendItem,
@@ -606,10 +606,9 @@ describe('Bubble Single Dataset - Region', () => {
               )
               .classList.contains(styles.regionHighlight),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides region on mouse exit', (done) => {
+      it('Hides region on mouse exit', () => {
         const legendItem = fetchElementByClass(
           bubbleGraphContainer,
           styles.legendItem,
@@ -630,7 +629,6 @@ describe('Bubble Single Dataset - Region', () => {
                 )
                 .getAttribute('aria-hidden'),
             ).toBeTruthy();
-            done();
           });
         });
       });
@@ -656,7 +654,7 @@ describe('Bubble Single Dataset - Region', () => {
         graphDefault.loadContent(bubblePrimary);
         graphDefault.loadContent(bubbleSecondary);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           bubbleGraphContainer,
           styles.legendItem,
@@ -675,10 +673,9 @@ describe('Bubble Single Dataset - Region', () => {
               styles.regionHighlight,
             ),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides all the regions except current', (done) => {
+      it('Hides all the regions except current', () => {
         const legendItem = fetchElementByClass(
           bubbleGraphContainer,
           styles.legendItem,
@@ -698,7 +695,6 @@ describe('Bubble Single Dataset - Region', () => {
                 styles.regionHighlight,
               ),
             ).toBeFalsy();
-            done();
           });
         });
       });
@@ -723,7 +719,7 @@ describe('Bubble Single Dataset - Region', () => {
       graphDefault.loadContent(bubblePrimary);
     });
     describe('When single-bubble', () => {
-      it('Hides region on toggle', (done) => {
+      it('Hides region on toggle', () => {
         const legendItem = fetchElementByClass(
           bubbleGraphContainer,
           styles.legendItem,
@@ -735,10 +731,9 @@ describe('Bubble Single Dataset - Region', () => {
           expect(regionElement.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Hides regions on toggle', (done) => {
+      it('Hides regions on toggle', () => {
         const legendItem = fetchElementByClass(
           bubbleGraphContainer,
           styles.legendItem,
@@ -753,10 +748,9 @@ describe('Bubble Single Dataset - Region', () => {
           expect(regionElements[1].getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Shows region on re-toggle', (done) => {
+      it('Shows region on re-toggle', () => {
         const legendItem = fetchElementByClass(
           bubbleGraphContainer,
           styles.legendItem,
@@ -775,7 +769,6 @@ describe('Bubble Single Dataset - Region', () => {
               expect(
                 regionElements[1].getAttribute('aria-hidden'),
               ).toBe('false');
-              done();
             },
             200,
           );

@@ -33,16 +33,14 @@ describe('Bubble - Load', () => {
   beforeEach(() => {
     bubbleGraphContainer = document.createElement('div');
     bubbleGraphContainer.id = 'testBubble_carbon';
-    bubbleGraphContainer.setAttribute(
-      'style',
-      'width: 1024px; height: 400px;',
-    );
+    bubbleGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     document.body.appendChild(bubbleGraphContainer);
     graphDefault = new Graph(getAxes(axisDefault));
   });
   afterEach(() => {
     document.body.innerHTML = '';
   });
+
   beforeAll(() => {
     // to supress warnings
     consolewarn = console.warn;
@@ -122,6 +120,7 @@ describe('Bubble - Load', () => {
       data.internalValuesSubset.every((j) => j.yAxis === constants.Y_AXIS),
     ).toBeTruthy();
   });
+
   describe('draws the graph', () => {
     let input = null;
     beforeEach(() => {
@@ -277,42 +276,41 @@ describe('Bubble - Load', () => {
       expect(selectedPoints.firstChild.tagName).toBe('circle');
     });
     it('selected data point has correct unique key assigned', () => {
-      const selectedPoints = fetchElementByClass(
-        bubbleGraphContainer,
-        styles.dataPointSelection,
-      );
-      expect(selectedPoints.getAttribute('aria-describedby')).toBe(
-        input.key,
-      );
+      const selectedPoints = fetchElementByClass(bubbleGraphContainer, styles.dataPointSelection);
+      expect(selectedPoints.getAttribute('aria-describedby')).toBe(input.key);
     });
     describe('draw bubble different size', () => {
       it('bubble of custom size', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
+
         input = getInput(valuesDefault, false, false);
         input.weight = {
           maxRadius: 12,
         };
+
         const bubble = new Bubble(input);
         graphDefault.loadContent(bubble);
+
         const points = fetchElementByClass(
           bubbleGraphContainer,
           styles.point,
         );
+
         expect(points.tagName).toBe('g');
         expect(points.firstChild.tagName).toBe('circle');
-        expect(
-          points.firstChild.attributes.getNamedItem('r').value,
-        ).toBe('12');
+        expect(points.firstChild.attributes.getNamedItem('r').value).toBe('12');
       });
       it('weight based bubbles', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
+
         input = getInput(valuesDefaultWeightBased, false, false);
         input.weight = {
           min: 10,
           max: 100,
         };
+
         const bubble = new Bubble(input);
         graphDefault.loadContent(bubble);
 
@@ -322,12 +320,8 @@ describe('Bubble - Load', () => {
         bubblePoint.forEach((points) => {
           expect(points.tagName).toBe('g');
           expect(points.firstChild.tagName).toBe('circle');
-          expect(
-            points.firstChild.attributes.getNamedItem('r').value,
-          ).toBeGreaterThanOrEqual(3);
-          expect(
-            points.firstChild.attributes.getNamedItem('r').value,
-          ).toBeLessThanOrEqual(30);
+          expect(points.firstChild.attributes.getNamedItem('r').value).toBeGreaterThanOrEqual(3);
+          expect(points.firstChild.attributes.getNamedItem('r').value).toBeLessThanOrEqual(30);
         });
       });
       it('weight and color based', () => {
@@ -342,12 +336,12 @@ describe('Bubble - Load', () => {
           lowerShade: '#ffff00',
           upperShade: '#ff0000',
         };
+
         const bubble = new Bubble(input);
         graphDefault.loadContent(bubble);
 
-        const bubblePoint = document.querySelectorAll(
-                    `.${styles.point}`,
-        );
+        const bubblePoint = document.querySelectorAll(`.${styles.point}`);
+
         bubblePoint.forEach((point) => {
           const radiusValue = parseInt(
             point.firstChild.attributes.getNamedItem('r').value,
@@ -362,17 +356,17 @@ describe('Bubble - Load', () => {
       it('color based bubble', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
+
         input = getInput(valuesDefault, false, false);
         input.hue = {
           lowerShade: '#ffff00',
           upperShade: '#ff0000',
         };
+
         const bubble = new Bubble(input);
         graphDefault.loadContent(bubble);
 
-        const bubblePoint = document.querySelectorAll(
-                    `.${styles.point}`,
-        );
+        const bubblePoint = document.querySelectorAll(`.${styles.point}`);
         bubblePoint.forEach((points) => {
           // eslint-disable-next-line no-underscore-dangle
           const yValue = points.__data__.y;
@@ -384,7 +378,7 @@ describe('Bubble - Load', () => {
       });
     });
     describe('when clicked on a data point', () => {
-      it('does not do anything if no onClick callback is provided', (done) => {
+      it('does not do anything if no onClick callback is provided', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getNoOnClickInput(valuesDefault, false, false);
@@ -395,10 +389,9 @@ describe('Bubble - Load', () => {
         );
         triggerEvent(point, 'click', () => {
           expect(point.getAttribute('aria-disabled')).toBe('true');
-          done();
         });
       });
-      it('hides data point selection when parameter callback is called', (done) => {
+      it('hides data point selection when parameter callback is called', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
@@ -418,10 +411,9 @@ describe('Bubble - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('calls onClick callback', (done) => {
+      it('calls onClick callback', () => {
         const dataPointClickHandlerSpy = sinon.spy();
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -434,10 +426,9 @@ describe('Bubble - Load', () => {
         );
         triggerEvent(point, 'click', () => {
           expect(dataPointClickHandlerSpy.calledOnce).toBeTruthy();
-          done();
         });
       });
-      it('calls onClick callback with parameters', (done) => {
+      it('calls onClick callback with parameters', () => {
         let args = {};
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -464,10 +455,9 @@ describe('Bubble - Load', () => {
           expect(args.val.x).toBe(input.values[1].x);
           expect(args.val.y).toBe(input.values[1].y);
           expect(args.target).not.toBeNull();
-          done();
         });
       });
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -480,10 +470,9 @@ describe('Bubble - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('removes highlight when data point is clicked again', (done) => {
+      it('removes highlight when data point is clicked again', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -497,13 +486,12 @@ describe('Bubble - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
     });
     describe("when clicked on a data point's near surrounding area", () => {
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -512,10 +500,9 @@ describe('Bubble - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('calls onClick callback with parameters', (done) => {
+      it('calls onClick callback with parameters', () => {
         let args = {};
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -542,10 +529,9 @@ describe('Bubble - Load', () => {
           expect(args.val.x).toBe(input.values[1].x);
           expect(args.val.y).toBe(input.values[1].y);
           expect(args.target).not.toBeNull();
-          done();
         });
       });
-      it('removes highlight when clicked again', (done) => {
+      it('removes highlight when clicked again', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -555,7 +541,6 @@ describe('Bubble - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
@@ -800,7 +785,7 @@ describe('Bubble - Load', () => {
       expect(iconPath).not.toBeNull();
       expect(iconPath.getAttribute('d')).not.toBeNull();
     });
-    it('attaches click event handlers correctly', (done) => {
+    it('attaches click event handlers correctly', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Bubble(input));
       const legendItem = fetchElementByClass(
@@ -809,10 +794,9 @@ describe('Bubble - Load', () => {
       );
       triggerEvent(legendItem, 'click', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('false');
-        done();
       });
     });
-    it('on click hides the bubbles', (done) => {
+    it('on click hides the bubbles', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -840,11 +824,10 @@ describe('Bubble - Load', () => {
             ).getAttribute('aria-hidden'),
           ).toBe('true');
           rafSpy.calls.reset();
-          done();
         },
       );
     });
-    it('on click, removes the first bubble set but keeps the rest', (done) => {
+    it('on click, removes the first bubble set but keeps the rest', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -892,11 +875,10 @@ describe('Bubble - Load', () => {
               styles.dataPointSelection,
             ).getAttribute('aria-hidden'),
           ).toBe('true');
-          done();
         },
       );
     });
-    it('on clicking twice toggles the bubbles back to visible', (done) => {
+    it('on clicking twice toggles the bubbles back to visible', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -928,11 +910,10 @@ describe('Bubble - Load', () => {
             ).getAttribute('aria-hidden'),
           ).toBe('true');
           rafSpy.calls.reset();
-          done();
         });
       });
     });
-    it('shown targets are removed from Graph', (done) => {
+    it('shown targets are removed from Graph', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(new Bubble(input));
       triggerEvent(
@@ -940,11 +921,10 @@ describe('Bubble - Load', () => {
         'click',
         () => {
           expect(graph.config.shownTargets.length).toBe(0);
-          done();
         },
       );
     });
-    it('shown targets are updated back when toggled', (done) => {
+    it('shown targets are updated back when toggled', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(new Bubble(input));
       const legendItem = fetchElementByClass(
@@ -954,11 +934,10 @@ describe('Bubble - Load', () => {
       triggerEvent(legendItem, 'click', () => {
         triggerEvent(legendItem, 'click', () => {
           expect(graph.config.shownTargets.length).toBe(1);
-          done();
         });
       });
     });
-    it('attaches mouse enter event handlers correctly', (done) => {
+    it('attaches mouse enter event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -988,10 +967,9 @@ describe('Bubble - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeTruthy();
-        done();
       });
     });
-    it('attaches mouse leave event handlers correctly', (done) => {
+    it('attaches mouse leave event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -1021,7 +999,6 @@ describe('Bubble - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeFalsy();
-        done();
       });
     });
   });
@@ -1113,7 +1090,7 @@ describe('Bubble - Load', () => {
       graph.loadContent(new Bubble(input));
     });
     describe('On click', () => {
-      it('Highlight respective bubble', (done) => {
+      it('Highlight respective bubble', () => {
         const bubblePoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.point,
@@ -1123,10 +1100,9 @@ describe('Bubble - Load', () => {
           expect(bubbleCircle.classList.length.toString()).toEqual(
             '0',
           );
-          done();
         });
       });
-      it('Blurs all other bubbles', (done) => {
+      it('Blurs all other bubbles', () => {
         const bubblePoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.point,
@@ -1144,7 +1120,6 @@ describe('Bubble - Load', () => {
               ).toEqual(true);
             }
           });
-          done();
         });
       });
     });

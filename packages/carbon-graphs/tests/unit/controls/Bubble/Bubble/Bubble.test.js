@@ -22,10 +22,7 @@ describe('Bubble', () => {
   beforeEach(() => {
     bubbleGraphContainer = document.createElement('div');
     bubbleGraphContainer.id = 'testBubble_carbon';
-    bubbleGraphContainer.setAttribute(
-      'style',
-      'width: 1024px; height: 400px;',
-    );
+    bubbleGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     document.body.appendChild(bubbleGraphContainer);
     graphDefault = new Graph(getAxes(axisDefault));
   });
@@ -48,9 +45,7 @@ describe('Bubble', () => {
       expect(bubble.dataTarget).toEqual({});
     });
     it('throws error when no input is provided', () => {
-      expect(() => {
-        graphDefault.loadContent(new Bubble());
-      }).toThrowError(errors.THROW_MSG_NO_CONTENT_DATA_LOADED);
+      expect(() => { graphDefault.loadContent(new Bubble()); }).toThrowError(errors.THROW_MSG_NO_CONTENT_DATA_LOADED);
     });
     it('throws error when invalid input is provided', () => {
       expect(() => {
@@ -59,25 +54,18 @@ describe('Bubble', () => {
     });
     it('throws error when no values are provided', () => {
       expect(() => {
-        graphDefault.loadContent(
-          new Bubble(getInput(undefined, false, false)),
-        );
+        graphDefault.loadContent(new Bubble(getInput(undefined, false, false)));
       }).toThrowError(errors.THROW_MSG_NO_DATA_POINTS);
     });
     it('display the legend when values are provided', () => {
       const input = getInput(valuesDefault);
       graphDefault.loadContent(new Bubble(input));
-      const legendContainer = fetchElementByClass(
-        bubbleGraphContainer,
-        styles.legend,
-      );
+      const legendContainer = fetchElementByClass(bubbleGraphContainer, styles.legend);
       const legendItems = legendContainer.children;
       expect(legendContainer).not.toBeNull();
       expect(legendContainer.tagName).toBe('UL');
       expect(legendItems.length).toBe(1);
-      const legendItem = document.body.querySelector(
-                `.${styles.legendItem}`,
-      );
+      const legendItem = document.body.querySelector(`.${styles.legendItem}`);
       expect(legendItem.getAttribute('aria-disabled')).toBe('false');
     });
     it('does not throw error when empty array is provided', () => {

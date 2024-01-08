@@ -362,7 +362,7 @@ describe('Pie - Load', () => {
           dataTertiary,
         ]);
       });
-      it('Blurs other slices', (done) => {
+      it('Blurs other slices', () => {
         // Hover over the first slice
         triggerEvent(
           fetchElementByClass(styles.pieContentGroup),
@@ -389,11 +389,10 @@ describe('Pie - Load', () => {
                 )
                 .classList.contains(styles.blur),
             ).toBeTruthy();
-            done();
           },
         );
       });
-      it('Highlights corresponding legend item', (done) => {
+      it('Highlights corresponding legend item', () => {
         // Legend item of first slice
         const pieLegendItem = fetchElementByClass(styles.pieLegendItem);
         triggerEvent(
@@ -405,11 +404,10 @@ describe('Pie - Load', () => {
                 styles.pieLegendItemSliceHover,
               ),
             ).toBeTruthy();
-            done();
           },
         );
       });
-      it('Un-blurs all slices on mouseleave', (done) => {
+      it('Un-blurs all slices on mouseleave', () => {
         const firstSliceElement = fetchElementByClass(
           styles.pieContentGroup,
         );
@@ -422,11 +420,10 @@ describe('Pie - Load', () => {
                 )
                 .classList.contains(styles.blur),
             ).toBeFalsy();
-            done();
           });
         });
       });
-      it('Un-highlights legend item on mouseleave', (done) => {
+      it('Un-highlights legend item on mouseleave', () => {
         const pieLegendItem = fetchElementByClass(styles.pieLegendItem);
         const firstSliceElement = fetchElementByClass(
           styles.pieContentGroup,
@@ -438,13 +435,12 @@ describe('Pie - Load', () => {
                 styles.pieLegendItemSliceHover,
               ),
             ).toBeFalsy();
-            done();
           });
         });
       });
     });
     describe('On click', () => {
-      it('Calls consumer provided callback', (done) => {
+      it('Calls consumer provided callback', () => {
         const onClickFunctionSpy = sinon.spy();
         const _input = utils.deepClone(dataPrimary);
         _input.onClick = onClickFunctionSpy;
@@ -457,10 +453,9 @@ describe('Pie - Load', () => {
             firstSliceElement.getAttribute('aria-selected'),
           ).toBeTruthy();
           expect(onClickFunctionSpy.calledOnce).toBeTruthy();
-          done();
         });
       });
-      it('Resets selection on re-clicking', (done) => {
+      it('Resets selection on re-clicking', () => {
         const _input = utils.deepClone(dataPrimary);
         _input.onClick = (cb) => cb();
         pieInstance.loadContent([_input, dataSecondary, dataTertiary]);
@@ -472,11 +467,10 @@ describe('Pie - Load', () => {
             expect(
               firstSliceElement.getAttribute('aria-selected'),
             ).toBe('false');
-            done();
           });
         });
       });
-      it('Doesnt enable selection if no click function is provided', (done) => {
+      it('Doesnt enable selection if no click function is provided', () => {
         const _input = utils.deepClone(dataPrimary);
         _input.onClick = null;
         pieInstance.loadContent([_input, dataSecondary, dataTertiary]);
@@ -488,11 +482,10 @@ describe('Pie - Load', () => {
             expect(
               firstSliceElement.getAttribute('aria-selected'),
             ).toBe('false');
-            done();
           });
         });
       });
-      it('Maintains blur on other slices even if clicked on a slice', (done) => {
+      it('Maintains blur on other slices even if clicked on a slice', () => {
         pieInstance.loadContent([
           dataPrimary,
           dataSecondary,
@@ -511,7 +504,6 @@ describe('Pie - Load', () => {
                   )
                   .classList.contains(styles.blur),
               ).toBeTruthy();
-              done();
             });
           });
         });

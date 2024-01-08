@@ -238,7 +238,7 @@ describe('Graph - Dateline', () => {
     expect(datelinePoint.getAttribute('aria-hidden')).toBe('true');
   });
   describe('When clicked on dateline', () => {
-    it('Does not do anything if no onClick callback is provided', (done) => {
+    it('Does not do anything if no onClick callback is provided', () => {
       const input = utils.deepClone(getAxes(axisTimeSeries));
       input.dateline = utils.deepClone(datelineJSON);
       graph = new Graph(input);
@@ -249,10 +249,9 @@ describe('Graph - Dateline', () => {
         expect(datelinePointElement.getAttribute('aria-disabled')).toBe(
           'true',
         );
-        done();
       });
     });
-    it('Calls onClick callback', (done) => {
+    it('Calls onClick callback', () => {
       const input = utils.deepClone(getAxes(axisTimeSeries));
       const onClickFunctionSpy = sinon.spy();
       input.dateline = utils.deepClone(datelineJSON);
@@ -271,10 +270,9 @@ describe('Graph - Dateline', () => {
         expect(datelinePointElement.getAttribute('aria-disabled')).toBe(
           'false',
         );
-        done();
       });
     });
-    it('Removes selection when dateline is clicked again', (done) => {
+    it('Removes selection when dateline is clicked again', () => {
       const input = utils.deepClone(getAxes(axisTimeSeries));
       const onClickFunctionSpy = sinon.spy();
       input.dateline = utils.deepClone(datelineJSON);
@@ -288,11 +286,10 @@ describe('Graph - Dateline', () => {
               'aria-selected',
             ),
           ).toBe('false');
-          done();
         });
       });
     });
-    it('Removes dateline selection when parameter callback is called', (done) => {
+    it('Removes dateline selection when parameter callback is called', () => {
       const input = utils.deepClone(getAxes(axisTimeSeries));
       input.dateline = utils.deepClone(datelineJSON);
       input.dateline[0].onClick = (clearSelectionCallback) => clearSelectionCallback();
@@ -304,7 +301,6 @@ describe('Graph - Dateline', () => {
             'aria-selected',
           ),
         ).toBe('false');
-        done();
       });
     });
   });
@@ -354,7 +350,7 @@ describe('Graph - Dateline', () => {
       input.dateline = datelineJSON;
       graph = new Graph(input);
     });
-    it('DatelineGroup translates properly', (done) => {
+    it('DatelineGroup translates properly', () => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -362,10 +358,9 @@ describe('Graph - Dateline', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
-    it('Transform dateline Point correctly', (done) => {
+    it('Transform dateline Point correctly', () => {
       const datelinePoint = fetchElementByClass(styles.datelinePoint);
       delay(() => {
         const datelinePointPath = datelinePoint.firstChild;
@@ -374,10 +369,9 @@ describe('Graph - Dateline', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(541);
         expect(toNumber(translate[1], 10)).toBeCloserTo(0);
-        done();
       });
     });
-    it('Check Dateline coordinate attributes', (done) => {
+    it('Check Dateline coordinate attributes', () => {
       delay(() => {
         const datelineElement = fetchElementByClass(styles.dateline);
         expect(
@@ -392,7 +386,6 @@ describe('Graph - Dateline', () => {
         expect(
           toNumber(datelineElement.getAttribute('y2'), 10),
         ).toBeCloserTo(235);
-        done();
       });
     });
   });

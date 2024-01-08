@@ -177,7 +177,7 @@ describe('Graph - Generate', () => {
       ).toBeCloserTo(-16);
       expect(getYAxisHeight(graph.config)).toBeCloserTo(267);
     });
-    it('Resizes correctly after rendering', (done) => {
+    it('Resizes correctly after rendering', () => {
       graph.destroy();
       const graphConfig = getAxes(axisDefault);
       graphConfig.padding = {
@@ -198,7 +198,6 @@ describe('Graph - Generate', () => {
                             + graph.config.padding.top)
                             * 2,
         );
-        done();
       });
     });
     it('Renders correctly with X Axis orientation - Top', () => {

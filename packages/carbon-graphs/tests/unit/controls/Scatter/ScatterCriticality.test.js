@@ -245,7 +245,7 @@ describe('Scatter - Criticality', () => {
         'false',
       );
     });
-    it('Selects data point when clicked on outer indicator', (done) => {
+    it('Selects data point when clicked on outer indicator', () => {
       const criticalOuterPointSpy = sinon.spy();
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[0].isCritical = true;
@@ -259,10 +259,9 @@ describe('Scatter - Criticality', () => {
       );
       triggerEvent(point, 'click', () => {
         expect(criticalOuterPointSpy.calledOnce).toBeTruthy();
-        done();
       });
     });
-    it('Emits correct parameters when clicked on outer indicator', (done) => {
+    it('Emits correct parameters when clicked on outer indicator', () => {
       let args = {};
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[1].isCritical = true;
@@ -289,10 +288,9 @@ describe('Scatter - Criticality', () => {
         expect(args.val.x).toBe(inputPrimary.values[1].x);
         expect(args.val.y).toBe(inputPrimary.values[1].y);
         expect(args.target).not.toBeNull();
-        done();
       });
     });
-    it('Selects data point when clicked on inner indicator', (done) => {
+    it('Selects data point when clicked on inner indicator', () => {
       const criticalInnerPointSpy = sinon.spy();
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[0].isCritical = true;
@@ -306,10 +304,9 @@ describe('Scatter - Criticality', () => {
       );
       triggerEvent(point, 'click', () => {
         expect(criticalInnerPointSpy.calledOnce).toBeTruthy();
-        done();
       });
     });
-    it('Emits correct parameters when clicked on inner point', (done) => {
+    it('Emits correct parameters when clicked on inner point', () => {
       let args = {};
       const valuesMutated = utils.deepClone(valuesDefault);
       valuesMutated[1].isCritical = true;
@@ -336,7 +333,6 @@ describe('Scatter - Criticality', () => {
         expect(args.val.x).toBe(inputPrimary.values[1].x);
         expect(args.val.y).toBe(inputPrimary.values[1].y);
         expect(args.target).not.toBeNull();
-        done();
       });
     });
   });
@@ -373,7 +369,7 @@ describe('Scatter - Criticality', () => {
         scatterPrimary = new Scatter(inputPrimary);
         graphDefault.loadContent(scatterPrimary);
       });
-      it('Highlights the indicators on mouse-enter', (done) => {
+      it('Highlights the indicators on mouse-enter', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -397,10 +393,9 @@ describe('Scatter - Criticality', () => {
           expect(criticalInnerElement.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Removes highlights for indicators on mouse-leave', (done) => {
+      it('Removes highlights for indicators on mouse-leave', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -425,7 +420,6 @@ describe('Scatter - Criticality', () => {
             expect(criticalInnerElement.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
@@ -449,7 +443,7 @@ describe('Scatter - Criticality', () => {
         graphDefault.loadContent(scatterPrimary);
         graphDefault.loadContent(scatterSecondary);
       });
-      it('Highlights the current indicator', (done) => {
+      it('Highlights the current indicator', () => {
         const legendItem = fetchElementByClass(
           scatterGraphContainer,
           styles.legendItem,
@@ -473,10 +467,9 @@ describe('Scatter - Criticality', () => {
           expect(criticalInnerElement.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Blurs other indicators', (done) => {
+      it('Blurs other indicators', () => {
         const legendItem = scatterGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${secondaryInput.key}"]`,
         );
@@ -505,10 +498,9 @@ describe('Scatter - Criticality', () => {
           expect(criticalInnerElementAlt.classList).toContain(
             styles.highlight,
           );
-          done();
         });
       });
-      it('Removes highlights on mouse-leave', (done) => {
+      it('Removes highlights on mouse-leave', () => {
         const legendItem = scatterGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}"]`,
         );
@@ -526,11 +518,10 @@ describe('Scatter - Criticality', () => {
             expect(criticalInnerElement.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
-      it('Removes blur for other data points on mouse-leave', (done) => {
+      it('Removes blur for other data points on mouse-leave', () => {
         const legendItem = scatterGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${secondaryInput.key}"]`,
         );
@@ -560,7 +551,6 @@ describe('Scatter - Criticality', () => {
             expect(criticalInnerElementAlt.classList).not.toContain(
               styles.highlight,
             );
-            done();
           });
         });
       });
@@ -581,7 +571,7 @@ describe('Scatter - Criticality', () => {
       graphDefault.loadContent(scatterPrimary);
     });
     describe('On single data-set', () => {
-      it('Hides indicators on toggle', (done) => {
+      it('Hides indicators on toggle', () => {
         const legendItem = scatterGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}"]`,
         );
@@ -598,10 +588,9 @@ describe('Scatter - Criticality', () => {
           expect(
             criticalInnerElement.getAttribute('aria-hidden'),
           ).toBe('true');
-          done();
         });
       });
-      it('Shows indicators on re-toggle', (done) => {
+      it('Shows indicators on re-toggle', () => {
         const legendItem = scatterGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}"]`,
         );
@@ -622,7 +611,6 @@ describe('Scatter - Criticality', () => {
               expect(
                 criticalInnerElement.getAttribute('aria-hidden'),
               ).toBe('false');
-              done();
             },
             200,
           );
@@ -630,7 +618,7 @@ describe('Scatter - Criticality', () => {
       });
     });
     describe('On multiple data-set', () => {
-      it('Shows when data-sets shown === 1', (done) => {
+      it('Shows when data-sets shown === 1', () => {
         const valuesMutatedAlt = utils.deepClone(valuesDefault);
         valuesMutatedAlt[1].isCritical = true;
         secondaryInput.values = utils.deepClone(valuesMutatedAlt);
@@ -665,7 +653,6 @@ describe('Scatter - Criticality', () => {
             criticalInnerElementAlt.getAttribute('aria-hidden'),
           ).toBe('true');
           graphDefault.unloadContent(scatterSecondary);
-          done();
         });
       });
     });

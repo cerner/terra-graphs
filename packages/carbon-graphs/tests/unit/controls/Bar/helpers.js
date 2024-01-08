@@ -1,4 +1,3 @@
-import sinon from 'sinon';
 import Carbon from '../../../../src/js/carbon';
 import { AXIS_TYPE, COLORS } from '../../../../src/js/helpers/constants';
 import utils from '../../../../src/js/helpers/utils';

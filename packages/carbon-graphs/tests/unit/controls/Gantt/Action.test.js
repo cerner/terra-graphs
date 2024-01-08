@@ -344,7 +344,7 @@ describe('Gantt -> Track -> Action', () => {
       );
     });
     describe('When clicked on a data point', () => {
-      it('Does not do anything if no onClick callback is provided', (done) => {
+      it('Does not do anything if no onClick callback is provided', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             actions: [
@@ -360,10 +360,9 @@ describe('Gantt -> Track -> Action', () => {
           expect(pointElement.getAttribute('aria-disabled')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Removes highlight when data point is clicked again', (done) => {
+      it('Removes highlight when data point is clicked again', () => {
         const onClickFunctionSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -389,11 +388,10 @@ describe('Gantt -> Track -> Action', () => {
                 styles.dataPointSelection,
               ).getAttribute('aria-disabled'),
             ).toBe('false');
-            done();
           });
         });
       });
-      it('Hides data point selection when parameter callback is called', (done) => {
+      it('Hides data point selection when parameter callback is called', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             actions: [
@@ -421,12 +419,11 @@ describe('Gantt -> Track -> Action', () => {
             expect(
               pointElement.getAttribute('aria-describedby'),
             ).toBe('uid_action_1');
-            done();
           },
           TRANSITION_DELAY,
         );
       });
-      it('Calls onClick callback', (done) => {
+      it('Calls onClick callback', () => {
         const onClickFunctionSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -446,10 +443,9 @@ describe('Gantt -> Track -> Action', () => {
               'aria-disabled',
             ),
           ).toBe('false');
-          done();
         });
       });
-      it('Emits correct parameters', (done) => {
+      it('Emits correct parameters', () => {
         let args = {};
         gantt.loadContent(
           Object.assign(getData(), {
@@ -481,11 +477,10 @@ describe('Gantt -> Track -> Action', () => {
             expect(args.val).not.toBeNull();
             expect(args.val.x).toEqual(new Date(xValAlt));
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
-      it('Highlights the data point', (done) => {
+      it('Highlights the data point', () => {
         const onClickFunctionSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -504,12 +499,11 @@ describe('Gantt -> Track -> Action', () => {
               styles.dataPointSelection,
             ).getAttribute('aria-hidden'),
           ).toBe('false');
-          done();
         });
       });
     });
     describe('When clicked on a selection point', () => {
-      it('Hides data point selection when parameter callback is called', (done) => {
+      it('Hides data point selection when parameter callback is called', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             actions: [
@@ -537,12 +531,11 @@ describe('Gantt -> Track -> Action', () => {
             expect(
               pointElement.getAttribute('aria-describedby'),
             ).toBe('uid_action_1');
-            done();
           },
           TRANSITION_DELAY,
         );
       });
-      it('Doesnt calls onClick callback on selection indicator if onClick is not provided', (done) => {
+      it('Doesnt calls onClick callback on selection indicator if onClick is not provided', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             actions: [
@@ -562,11 +555,10 @@ describe('Gantt -> Track -> Action', () => {
                 styles.dataPointSelection,
               ).getAttribute('aria-disabled'),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('Calls onClick callback', (done) => {
+      it('Calls onClick callback', () => {
         const onClickFunctionSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -589,11 +581,10 @@ describe('Gantt -> Track -> Action', () => {
                 styles.dataPointSelection,
               ).getAttribute('aria-disabled'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Highlights the data point', (done) => {
+      it('Highlights the data point', () => {
         const onClickFunctionSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -615,11 +606,10 @@ describe('Gantt -> Track -> Action', () => {
                 styles.dataPointSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Emits correct parameters', (done) => {
+      it('Emits correct parameters', () => {
         let args = {};
         gantt.loadContent(
           Object.assign(getData(), {
@@ -653,7 +643,6 @@ describe('Gantt -> Track -> Action', () => {
             expect(args.val).not.toBeNull();
             expect(args.val.x).toEqual(new Date(xValAlt));
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
@@ -813,7 +802,7 @@ describe('Gantt -> Track -> Action', () => {
     beforeEach(() => {
       loadData(gantt);
     });
-    it('Translates points correctly', (done) => {
+    it('Translates points correctly', () => {
       const currentPointPos = getTranslate(
         fetchElementByClass(styles.point).firstChild,
       );
@@ -837,12 +826,11 @@ describe('Gantt -> Track -> Action', () => {
               fetchElementByClass(styles.point).firstChild,
             )[1],
           ).toEqual(currentPointPos[1]);
-          done();
         },
         TRANSITION_DELAY,
       );
     });
-    it('Translates selection points correctly', (done) => {
+    it('Translates selection points correctly', () => {
       const currentPointPos = getTranslate(
         fetchElementByClass(styles.dataPointSelection).firstChild,
       );
@@ -868,7 +856,6 @@ describe('Gantt -> Track -> Action', () => {
                 .firstChild,
             )[1],
           ).toEqual(currentPointPos[1]);
-          done();
         },
         TRANSITION_DELAY,
       );
@@ -879,7 +866,7 @@ describe('Gantt -> Track -> Action', () => {
       spyOn(window, 'requestAnimationFrame');
       loadData(gantt);
     });
-    it('On click hides the points', (done) => {
+    it('On click hides the points', () => {
       triggerEvent(
         fetchElementByClass(styles.legendItem),
         'click',
@@ -900,12 +887,11 @@ describe('Gantt -> Track -> Action', () => {
           expect(
             secondaryPointElement.getAttribute('aria-hidden'),
           ).toBe('false');
-          done();
         },
         TRANSITION_DELAY,
       );
     });
-    it('On toggle displays the points again', (done) => {
+    it('On toggle displays the points again', () => {
       triggerEvent(
         fetchElementByClass(styles.legendItem),
         'click',
@@ -923,7 +909,6 @@ describe('Gantt -> Track -> Action', () => {
               expect(
                 pointElement.getAttribute('aria-hidden'),
               ).toBe('false');
-              done();
             },
             TRANSITION_DELAY,
           );
@@ -931,7 +916,7 @@ describe('Gantt -> Track -> Action', () => {
         TRANSITION_DELAY,
       );
     });
-    it('On click hides the selection points', (done) => {
+    it('On click hides the selection points', () => {
       triggerEvent(
         fetchElementByClass(styles.legendItem),
         'click',
@@ -954,12 +939,11 @@ describe('Gantt -> Track -> Action', () => {
           expect(
             secondaryPointElement.getAttribute('aria-hidden'),
           ).toBe('true');
-          done();
         },
         TRANSITION_DELAY,
       );
     });
-    it('On hover blurs other points', (done) => {
+    it('On hover blurs other points', () => {
       triggerEvent(
         fetchElementByClass(styles.legendItem),
         'mouseenter',
@@ -983,7 +967,6 @@ describe('Gantt -> Track -> Action', () => {
           expect(secondaryPointElement.classList).toContain(
             styles.blur,
           );
-          done();
         },
         TRANSITION_DELAY,
       );

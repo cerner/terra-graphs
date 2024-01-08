@@ -86,7 +86,7 @@ describe('Panning', () => {
         defsElement.lastChild.firstChild.getAttribute('height'),
       ).toBe(datelineDefsHeight.toString());
     });
-    it('Dateline group translates properly when pan is enabled', (done) => {
+    it('Dateline group translates properly when pan is enabled', () => {
       const datelineGroupElement = fetchElementByClass(
         styles.datelineGroup,
       );
@@ -102,7 +102,6 @@ describe('Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloseTo(106);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     it('Dynamic Data is updated correctly when key matches', () => {
@@ -285,7 +284,7 @@ describe('Panning', () => {
       );
       expect(actionsContent.length).toEqual(2);
     });
-    it('EventlineGroup translates properly when panning is enabled', (done) => {
+    it('EventlineGroup translates properly when panning is enabled', () => {
       if (gantt) {
         gantt.destroy();
       }
@@ -299,7 +298,6 @@ describe('Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloseTo(106);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     describe('Should update the eventline', () => {
@@ -408,7 +406,7 @@ describe('Panning', () => {
       expect(defsElement.lastChild.nodeName).toBe('clipPath');
       expect(defsElement.lastChild.firstChild.nodeName).toBe('rect');
     });
-    it('Dateline group translates properly when panning is disabled', (done) => {
+    it('Dateline group translates properly when panning is disabled', () => {
       const datelineGroupElement = fetchElementByClass(
         styles.datelineGroup,
       );
@@ -424,7 +422,6 @@ describe('Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloseTo(106);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });
@@ -444,7 +441,7 @@ describe('Panning', () => {
       expect(defsElement.lastChild.nodeName).toBe('clipPath');
       expect(defsElement.lastChild.firstChild.nodeName).toBe('rect');
     });
-    it('Dateline group translates properly when panning is undefined', (done) => {
+    it('Dateline group translates properly when panning is undefined', () => {
       const datelineGroupElement = fetchElementByClass(
         styles.datelineGroup,
       );
@@ -460,7 +457,6 @@ describe('Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloseTo(106);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });

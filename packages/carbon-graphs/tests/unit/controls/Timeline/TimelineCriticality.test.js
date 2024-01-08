@@ -148,7 +148,7 @@ describe('Timeline - Criticality', () => {
         currentShapeGroupElement.firstChild.getAttribute('d'),
       );
     });
-    it('Resizes properly', (done) => {
+    it('Resizes properly', () => {
       const valuesMutated = utils.deepClone(valuesJSON);
       valuesMutated[0].isCritical = true;
       inputPrimary = getData(valuesMutated, false, false);
@@ -197,7 +197,6 @@ describe('Timeline - Criticality', () => {
         expect(dataPointElementAfter.getAttribute('y')).toEqual(
           criticalOuterElementAfter.getAttribute('y'),
         );
-        done();
       });
     });
     it('Translates properly', () => {
@@ -297,7 +296,7 @@ describe('Timeline - Criticality', () => {
         'fill: undefined;',
       );
     });
-    it('Selects data point when clicked on outer indicator', (done) => {
+    it('Selects data point when clicked on outer indicator', () => {
       const criticalOuterPointSpy = sinon.spy();
       const valuesMutated = utils.deepClone(valuesJSON);
       valuesMutated[0].isCritical = true;
@@ -310,10 +309,9 @@ describe('Timeline - Criticality', () => {
       );
       triggerEvent(point, 'click', () => {
         expect(criticalOuterPointSpy.calledOnce).toBeTruthy();
-        done();
       });
     });
-    it('Emits correct parameters when clicked on outer indicator', (done) => {
+    it('Emits correct parameters when clicked on outer indicator', () => {
       let args = {};
       const valuesMutated = utils.deepClone(valuesJSON);
       valuesMutated[1].isCritical = true;
@@ -341,10 +339,9 @@ describe('Timeline - Criticality', () => {
         expect(args.val).not.toBeNull();
         expect(args.val.x).toEqual(new Date(inputPrimary.values[1].x));
         expect(args.target).not.toBeNull();
-        done();
       });
     });
-    it('Selects data point when clicked on inner indicator', (done) => {
+    it('Selects data point when clicked on inner indicator', () => {
       const criticalInnerPointSpy = sinon.spy();
       const valuesMutated = utils.deepClone(valuesJSON);
       valuesMutated[0].isCritical = true;
@@ -357,10 +354,9 @@ describe('Timeline - Criticality', () => {
       );
       triggerEvent(point, 'click', () => {
         expect(criticalInnerPointSpy.calledOnce).toBeTruthy();
-        done();
       });
     });
-    it('Emits correct parameters when clicked on inner indicator', (done) => {
+    it('Emits correct parameters when clicked on inner indicator', () => {
       let args = {};
       const valuesMutated = utils.deepClone(valuesJSON);
       valuesMutated[1].isCritical = true;
@@ -387,7 +383,6 @@ describe('Timeline - Criticality', () => {
         expect(args.val).not.toBeNull();
         expect(args.val.x).toEqual(new Date(inputPrimary.values[1].x));
         expect(args.target).not.toBeNull();
-        done();
       });
     });
   });
@@ -432,7 +427,7 @@ describe('Timeline - Criticality', () => {
         timeline.loadContent(inputPrimary);
         timeline.loadContent(inputSecondary);
       });
-      it('Blurs other indicators', (done) => {
+      it('Blurs other indicators', () => {
         const legendItem = TimelineGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputSecondary.key}"]`,
         );
@@ -461,10 +456,9 @@ describe('Timeline - Criticality', () => {
           expect(criticalInnerElementAlt.classList).not.toContain(
             styles.blur,
           );
-          done();
         });
       });
-      it('Removes blur for other data points on mouse-leave', (done) => {
+      it('Removes blur for other data points on mouse-leave', () => {
         const legendItem = TimelineGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputSecondary.key}"]`,
         );
@@ -494,7 +488,6 @@ describe('Timeline - Criticality', () => {
             expect(criticalInnerElementAlt.classList).not.toContain(
               styles.blur,
             );
-            done();
           });
         });
       });
@@ -519,7 +512,7 @@ describe('Timeline - Criticality', () => {
       timeline.loadContent(inputSecondary);
     });
     describe('On single data-set', () => {
-      it('Hides indicators on toggle', (done) => {
+      it('Hides indicators on toggle', () => {
         const legendItem = TimelineGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}"]`,
         );
@@ -537,11 +530,10 @@ describe('Timeline - Criticality', () => {
             expect(criticalInnerElement.getAttribute('style')).toBe(
               'fill: undefined;',
             );
-            done();
           });
         });
       });
-      it('Shows indicators on re-toggle', (done) => {
+      it('Shows indicators on re-toggle', () => {
         const legendItem = TimelineGraphContainer.querySelector(
                     `.${styles.legendItem}[aria-describedby="${inputPrimary.key}"]`,
         );
@@ -562,7 +554,6 @@ describe('Timeline - Criticality', () => {
               expect(
                 criticalInnerElement.getAttribute('style'),
               ).toBe('fill: undefined;');
-              done();
             },
             200,
           );
@@ -570,7 +561,7 @@ describe('Timeline - Criticality', () => {
       });
     });
     describe('On multiple data-set', () => {
-      it('Shows when data-sets shown === 1', (done) => {
+      it('Shows when data-sets shown === 1', () => {
         const valuesMutatedAlt = utils.deepClone(valuesJSON);
         valuesMutatedAlt[1].isCritical = true;
         inputSecondary.values = utils.deepClone(valuesMutatedAlt);
@@ -604,7 +595,6 @@ describe('Timeline - Criticality', () => {
           expect(criticalInnerElementAlt.getAttribute('style')).toBe(
             'fill: undefined;',
           );
-          done();
         });
       });
     });
@@ -617,7 +607,7 @@ describe('Timeline - Criticality', () => {
       inputPrimary = getData(valuesMutated);
       timeline.loadContent(inputPrimary);
     });
-    it('Sets the canvas width correctly', (done) => {
+    it('Sets the canvas width correctly', () => {
       const rafSpy = spyOn(window, 'requestAnimationFrame');
       const currentWidth = timeline.config.canvasWidth;
       expect(currentWidth).toBe(1024);
@@ -630,11 +620,10 @@ describe('Timeline - Criticality', () => {
         delay(() => {
           expect(timeline.config.canvasWidth).toBe(800);
           rafSpy.calls.reset();
-          done();
         }, TRANSITION_DELAY);
       });
     });
-    it('Sets the defs clipPath width and height correctly', (done) => {
+    it('Sets the defs clipPath width and height correctly', () => {
       TimelineGraphContainer.setAttribute(
         'style',
         'width: 800px; height: 200px',
@@ -650,7 +639,6 @@ describe('Timeline - Criticality', () => {
         expect(+clipPathRect.getAttribute('width')).toBe(
           getXAxisWidth(timeline.config),
         );
-        done();
       });
     });
   });

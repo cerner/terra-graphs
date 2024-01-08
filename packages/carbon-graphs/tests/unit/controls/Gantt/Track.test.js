@@ -111,7 +111,7 @@ describe('Gantt -> Track', () => {
         },
       });
     });
-    it('Truncates if too long', (done) => {
+    it('Truncates if too long', () => {
       delay(() => {
         expect(
           document.querySelectorAll(
@@ -125,17 +125,15 @@ describe('Gantt -> Track', () => {
             )[0]
             .getAttribute('aria-disabled'),
         ).toBe(null);
-        done();
       });
     });
-    it('Does not truncate if not long', (done) => {
+    it('Does not truncate if not long', () => {
       delay(() => {
         expect(
           document.querySelectorAll(
                         `.${styles.axisYTrackLabel} .tick text`,
           )[1].textContent,
         ).toBe('Project A');
-        done();
       });
     });
   });
@@ -161,7 +159,7 @@ describe('Gantt -> Track', () => {
       });
     });
     describe('when small label and onClick function is provided', () => {
-      it('should disable click functionality for label', (done) => {
+      it('should disable click functionality for label', () => {
         triggerEvent(
           fetchElementByClass(`${styles.axisYTrackLabel} .tick text`),
           'click',
@@ -175,13 +173,12 @@ describe('Gantt -> Track', () => {
             expect(
               onClickPrimaryFunctionSpy.calledOnce,
             ).toBeFalsy();
-            done();
           },
         );
       });
     });
     describe('when small label is provided and onClick function is not provided', () => {
-      it('should disable click functionality for label', (done) => {
+      it('should disable click functionality for label', () => {
         const onClickThirdFunctionSpy = sinon.spy();
         gantt.loadContent({
           key: 'track 3',
@@ -200,13 +197,12 @@ describe('Gantt -> Track', () => {
               labelPath.getAttribute('aria-disabled'),
             ).toBeFalsy();
             expect(onClickThirdFunctionSpy.calledOnce).toBeFalsy();
-            done();
           },
         );
       });
     });
     describe('when large label and onClick function is provided', () => {
-      it('should enable click functionality for truncated label', (done) => {
+      it('should enable click functionality for truncated label', () => {
         triggerEvent(
           document.querySelectorAll(
                         `.${styles.axisYTrackLabel} .tick text`,
@@ -219,13 +215,12 @@ describe('Gantt -> Track', () => {
             expect(
               onClickSecondaryFunctionSpy.getCall(0).args[0],
             ).toBe(largeLabel);
-            done();
           },
         );
       });
     });
     describe('when large label is provided and onClick function is not provided', () => {
-      it('should enable click functionality for truncated label', (done) => {
+      it('should enable click functionality for truncated label', () => {
         const onClickThirdFunctionSpy = sinon.spy();
         gantt.loadContent({
           key: 'track 3',
@@ -246,12 +241,11 @@ describe('Gantt -> Track', () => {
             expect(onClickThirdFunctionSpy.getCall(0).args[0]).toBe(
               largeLabel,
             );
-            done();
           },
         );
       });
     });
-    it('Truncates label on exceeding max length', (done) => {
+    it('Truncates label on exceeding max length', () => {
       delay(() => {
         const truncatedLabelElement = document.querySelectorAll(
                     `.${styles.axisYTrackLabel} .tick text`,
@@ -259,7 +253,6 @@ describe('Gantt -> Track', () => {
         expect(truncatedLabelElement.textContent).toBe(
           'Project long...',
         );
-        done();
       });
     });
   });
@@ -327,7 +320,7 @@ describe('Gantt -> Track', () => {
       afterEach(() => {
         document.body.innerHTML = '';
       });
-      it('Selection Bar is not selected', () => {
+      it('verifies that the Selection Bar is not selected', () => {
         const selectionBar = d3.select(
                     `.${styles.ganttTrackBarSelection}`,
         );
@@ -337,7 +330,7 @@ describe('Gantt -> Track', () => {
         );
         expect(selectionBar.attr('aria-disabled')).toEqual('false');
       });
-      it('Selection Bar is selected', (done) => {
+      it('verifies that the Selection Bar is selected', () => {
         expect(
           fetchElementByClass(
                         `${styles.ganttTrackBarSelection}`,
@@ -356,7 +349,6 @@ describe('Gantt -> Track', () => {
                   'aria-selected',
                 ),
               ).toBe('true');
-              done();
             });
           },
         );
@@ -364,7 +356,7 @@ describe('Gantt -> Track', () => {
       /**
              * BF01142019.09 - Verify upon the selection, the system displays an outline (border) inset within the track.
              */
-      it('Selection Bar is inside the track', (done) => {
+      it('verifies that the Selection Bar is inside the track', () => {
         triggerEvent(
           fetchElementByClass(`${styles.ganttTrackBarSelection}`),
           'click',
@@ -406,14 +398,13 @@ describe('Gantt -> Track', () => {
                 .trackHeight
                                 - constants.DEFAULT_GANTT_TRACK_SELECTION.height,
             );
-            done();
           },
         );
       });
       /**
              * BF01142019.09 - Verify upon selection, the system will execute the operation established by the consumer.
              */
-      it('Callback function is called', (done) => {
+      it('Callback function is called', () => {
         triggerEvent(
           fetchElementByClass(`${styles.ganttTrackBarSelection}`),
           'click',
@@ -424,14 +415,13 @@ describe('Gantt -> Track', () => {
               ).getAttribute('aria-selected'),
             ).toBe('true');
             expect(onClickFunctionSpy.called).toBe(true);
-            done();
           },
         );
       });
       /**
              * BF01142019.09 - Verify upon selection, the data store within the track will be provided by the consumer.
              */
-      it('Right values are passed for callback function', (done) => {
+      it('Right values are passed for callback function', () => {
         gantt.destroy();
         let args = {};
         gantt = new Gantt(getAxes(axisJSON));
@@ -473,11 +463,10 @@ describe('Gantt -> Track', () => {
             expect(args.val.tasks).toEqual([]);
             expect(args.val.activities).toEqual([]);
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
-      it('Translates selection bars', (done) => {
+      it('translates selection bars', () => {
         ganttChartContainer.setAttribute(
           'style',
           'width: 800px; height: 400px;',
@@ -488,22 +477,18 @@ describe('Gantt -> Track', () => {
           window,
           'resize',
           () => {
-            const selectionBar = d3.select(
-                            `.${styles.ganttTrackBarSelection}`,
-            );
+            const selectionBar = d3.select(`.${styles.ganttTrackBarSelection}`);
             expect(toNumber(selectionBar.attr('width'))).toEqual(
               getXAxisWidth(gantt.config)
                                 - constants.DEFAULT_GANTT_TRACK_SELECTION.width,
             );
-            expect(
-              Number.parseFloat(selectionBar.attr('height')),
-            ).toEqual(
-              gantt.config.axis.y.trackList['track 1']
-                .trackHeight
+            expect(Number.parseFloat(selectionBar.attr('height')))
+              .toEqual(
+                gantt.config.axis.y.trackList['track 1']
+                  .trackHeight
                                 - constants.DEFAULT_GANTT_TRACK_SELECTION.height,
-            );
+              );
             rafSpy.calls.reset();
-            done();
           },
           TRANSITION_DELAY,
         );
@@ -527,20 +512,14 @@ describe('Gantt -> Track', () => {
       afterEach(() => {
         document.body.innerHTML = '';
       });
-      it('Selection Bar is inside the track', (done) => {
+      it('Selection Bar is inside the track', () => {
         triggerEvent(
           fetchElementByClass(`${styles.ganttTrackBarSelection}`),
           'click',
           () => {
-            const selectionBar = d3.select(
-                            `.${styles.ganttTrackBarSelection}`,
-            );
-            const container = d3.select(
-                            `.${styles.contentContainer}`,
-            );
-            expect(toNumber(selectionBar.attr('x'))).toEqual(
-              constants.DEFAULT_GANTT_TRACK_SELECTION.x,
-            );
+            const selectionBar = d3.select(`.${styles.ganttTrackBarSelection}`);
+            const container = d3.select(`.${styles.contentContainer}`);
+            expect(toNumber(selectionBar.attr('x'))).toEqual(constants.DEFAULT_GANTT_TRACK_SELECTION.x);
             expect(toNumber(selectionBar.attr('y'))).toEqual(
               constants.DEFAULT_GANTT_TRACK_SELECTION.y,
             );
@@ -569,12 +548,11 @@ describe('Gantt -> Track', () => {
                 .trackHeight
                                 - constants.DEFAULT_GANTT_TRACK_SELECTION.height,
             );
-            done();
           },
           TRANSITION_DELAY,
         );
       });
-      it('Translates selection bars', (done) => {
+      it('Translates selection bars', () => {
         const rafSpy = spyOn(window, 'requestAnimationFrame');
         ganttChartContainer.setAttribute(
           'style',
@@ -600,7 +578,6 @@ describe('Gantt -> Track', () => {
                                 - constants.DEFAULT_GANTT_TRACK_SELECTION.height,
             );
             rafSpy.calls.reset();
-            done();
           },
           TRANSITION_DELAY,
         );
@@ -630,7 +607,7 @@ describe('Gantt -> Track', () => {
           fetchElementByClass(`${styles.ganttTrackBarSelection}`),
         ).toBe(null);
       });
-      it('Translates to new location when one of the tracks is unloaded', (done) => {
+      it('Translates to new location when one of the tracks is unloaded', () => {
         gantt.loadContent({
           key: 'track 1',
           trackLabel: {
@@ -687,7 +664,6 @@ describe('Gantt -> Track', () => {
           expect(
             afterUnload[0].getAttribute('aria-describedby'),
           ).toBe('track 2');
-          done();
         }, TRANSITION_DELAY);
       });
     });

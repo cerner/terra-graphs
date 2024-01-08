@@ -37,7 +37,7 @@ describe('Gantt - Resize', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
-  it('Sets the canvas width correctly', (done) => {
+  it('Sets the canvas width correctly', () => {
     const currentWidth = gantt.config.canvasWidth;
     expect(currentWidth).toBe(1024);
     ganttChartContainer.setAttribute(
@@ -50,12 +50,11 @@ describe('Gantt - Resize', () => {
       'resize',
       () => {
         expect(gantt.config.canvasWidth).toBe(800);
-        done();
       },
       TRANSITION_DELAY,
     );
   });
-  it('Sets the defs clipPath width and height correctly', (done) => {
+  it('Sets the defs clipPath width and height correctly', () => {
     ganttChartContainer.setAttribute(
       'style',
       'width: 800px; height: 200px',
@@ -70,18 +69,16 @@ describe('Gantt - Resize', () => {
       expect(+clipPathRect.getAttribute('width')).toBe(
         getXAxisWidth(gantt.config),
       );
-      done();
     });
   });
-  it('Calculates X axis d3 scale using domain and range', (done) => {
+  it('Calculates X axis d3 scale using domain and range', () => {
     gantt.resize();
     triggerEvent(window, 'resize', () => {
       expect(gantt.scale.x).not.toBeNull();
       expect(gantt.scale.x).toEqual(jasmine.any(Function));
-      done();
     });
   });
-  it('Calculates Y axis d3 scale using domain and range', (done) => {
+  it('Calculates Y axis d3 scale using domain and range', () => {
     gantt.resize();
     triggerEvent(
       window,
@@ -89,12 +86,11 @@ describe('Gantt - Resize', () => {
       () => {
         expect(gantt.scale.y).not.toBeNull();
         expect(gantt.scale.y).toEqual(jasmine.any(Function));
-        done();
       },
       TRANSITION_DELAY,
     );
   });
-  it('Translates the canvas', (done) => {
+  it('Translates the canvas', () => {
     ganttChartContainer.setAttribute(
       'style',
       'width: 800px; height: 200px',
@@ -110,12 +106,11 @@ describe('Gantt - Resize', () => {
         expect(
           +fetchElementByClass(styles.canvas).getAttribute('width'),
         ).toBe(790);
-        done();
       },
       TRANSITION_DELAY,
     );
   });
-  it('Sets the content container width and height correctly', (done) => {
+  it('Sets the content container width and height correctly', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     ganttChartContainer.setAttribute(
       'style',
@@ -136,7 +131,6 @@ describe('Gantt - Resize', () => {
           getXAxisWidth(gantt.config),
         );
         rafSpy.calls.reset();
-        done();
       },
       TRANSITION_DELAY,
     );
@@ -156,7 +150,7 @@ describe('Gantt - Resize', () => {
     expect(gantt.config.throttle).toEqual(400);
     expect(gantt.config.throttle).not.toEqual(constants.RESIZE_THROTTLE);
   });
-  it('Throttles based on delay', (done) => {
+  it('Throttles based on delay', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     const throttledInput = getAxes(axisJSON);
     throttledInput.throttle = undefined;
@@ -173,12 +167,11 @@ describe('Gantt - Resize', () => {
       () => {
         expect(window.requestAnimationFrame).toHaveBeenCalled();
         rafSpy.calls.reset();
-        done();
       },
       constants.RESIZE_THROTTLE,
     );
   });
-  it('Throttles based on delay provided in the input', (done) => {
+  it('Throttles based on delay provided in the input', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     const throttledInput = getAxes(axisJSON);
     throttledInput.throttle = 500;
@@ -195,12 +188,11 @@ describe('Gantt - Resize', () => {
       () => {
         expect(window.requestAnimationFrame).toHaveBeenCalled();
         rafSpy.calls.reset();
-        done();
       },
       throttledInput.throttle,
     );
   });
-  it('When custom padding is used', (done) => {
+  it('When custom padding is used', () => {
     gantt.destroy();
     const ganttConfig = getAxes(axisJSON);
     ganttConfig.padding = {
@@ -229,19 +221,10 @@ describe('Gantt - Resize', () => {
         const contentContainer = d3.select(
                     `.${styles.contentContainer}`,
         );
-        expect(gantt.config.height).toEqual(
-          toNumber(canvas.attr('height'), 10),
-        );
-        expect(getXAxisWidth(gantt.config)).toEqual(
-          toNumber(canvas.attr('width'), 10),
-        );
-        expect(toNumber(contentContainer.attr('x'), 10)).toEqual(
-          gantt.config.axisSizes.y + gantt.config.axisLabelWidths.y,
-        );
-        expect(toNumber(contentContainer.attr('y'), 10)).toEqual(
-          (ganttConfig.padding.top + ganttConfig.padding.bottom) * 2,
-        );
-        done();
+        expect(gantt.config.height).toEqual(toNumber(canvas.attr('height'), 10));
+        expect(getXAxisWidth(gantt.config)).toEqual(toNumber(canvas.attr('width'), 10));
+        expect(toNumber(contentContainer.attr('x'), 10)).toEqual(gantt.config.axisSizes.y + gantt.config.axisLabelWidths.y);
+        expect(toNumber(contentContainer.attr('y'), 10)).toEqual((ganttConfig.padding.top + ganttConfig.padding.bottom) * 2);
       },
       TRANSITION_DELAY,
     );

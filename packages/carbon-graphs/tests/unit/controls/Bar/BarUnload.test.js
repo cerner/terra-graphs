@@ -4,7 +4,6 @@ import Bar from '../../../../src/js/controls/Bar/Bar';
 import Graph from '../../../../src/js/controls/Graph/Graph';
 import styles from '../../../../src/js/helpers/styles';
 import constants from '../../../../src/js/helpers/constants';
-import { loadCustomJasmineMatcher } from '../../helpers/commonHelpers';
 import {
   axisDefault,
   fetchElementByClass,
@@ -73,7 +72,6 @@ describe('Bar - unload', () => {
     let barPrimary;
     let barSecondary;
     let graphDefault;
-    let bar;
 
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));

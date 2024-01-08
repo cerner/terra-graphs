@@ -37,7 +37,7 @@ describe('Timeline - Resize', () => {
     document.body.innerHTML = '';
   });
 
-  it('Sets the canvas width correctly', (done) => {
+  it('Sets the canvas width correctly', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     const currentWidth = timeline.config.canvasWidth;
     expect(currentWidth).toBe(1024);
@@ -49,10 +49,9 @@ describe('Timeline - Resize', () => {
     triggerEvent(window, 'resize', () => {
       expect(timeline.config.canvasWidth).toBe(800);
       rafSpy.calls.reset();
-      done();
     });
   });
-  it('Sets the defs clipPath width and height correctly', (done) => {
+  it('Sets the defs clipPath width and height correctly', () => {
     TimelineGraphContainer.setAttribute(
       'style',
       'width: 800px; height: 200px',
@@ -67,15 +66,13 @@ describe('Timeline - Resize', () => {
       expect(+clipPathRect.getAttribute('width')).toBe(
         getXAxisWidth(timeline.config),
       );
-      done();
     });
   });
-  it('Calculates X axis d3 scale using domain and range', (done) => {
+  it('Calculates X axis d3 scale using domain and range', () => {
     timeline.resize();
     triggerEvent(window, 'resize', () => {
       expect(timeline.scale.x).not.toBeNull();
       expect(timeline.scale.x).toEqual(jasmine.any(Function));
-      done();
     });
   });
   it('Sets the throttle correctly, if undefined', () => {
@@ -93,7 +90,7 @@ describe('Timeline - Resize', () => {
     expect(timeline.config.throttle).toEqual(400);
     expect(timeline.config.throttle).not.toEqual(constants.RESIZE_THROTTLE);
   });
-  it('Throttles based on delay', (done) => {
+  it('Throttles based on delay', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     const throttledInput = getAxes(axisJSON);
     throttledInput.throttle = undefined;
@@ -110,12 +107,11 @@ describe('Timeline - Resize', () => {
       () => {
         expect(window.requestAnimationFrame).toHaveBeenCalled();
         rafSpy.calls.reset();
-        done();
       },
       constants.RESIZE_THROTTLE,
     );
   });
-  it('Throttles based on delay provided in the input', (done) => {
+  it('Throttles based on delay provided in the input', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     const throttledInput = getAxes(axisJSON);
     throttledInput.throttle = 500;
@@ -132,7 +128,6 @@ describe('Timeline - Resize', () => {
       () => {
         expect(window.requestAnimationFrame).toHaveBeenCalled();
         rafSpy.calls.reset();
-        done();
       },
       throttledInput.throttle,
     );
@@ -140,7 +135,7 @@ describe('Timeline - Resize', () => {
   /**
      * BF12182018.01 - Verify the consumer has the option to provide custom padding for the graph-container.
      */
-  it('when custom padding is used', (done) => {
+  it('when custom padding is used', () => {
     timeline.destroy();
     const input = getData(valuesJSON);
     const config = getAxes(axisJSON);
@@ -171,7 +166,6 @@ describe('Timeline - Resize', () => {
         expect(getXAxisYPosition(timeline.config)).toEqual(
           (config.padding.top + config.padding.bottom) * 2,
         );
-        done();
       },
       config.throttle,
     );

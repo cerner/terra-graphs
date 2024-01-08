@@ -70,7 +70,7 @@ describe('Bubble Single Dataset - Panning', () => {
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
-    it('DatelineGroup translates properly when panning is enabled', (done) => {
+    it('DatelineGroup translates properly when panning is enabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -80,7 +80,6 @@ describe('Bubble Single Dataset - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     it('throws error when null value is passed as y', () => {
@@ -278,7 +277,7 @@ describe('Bubble Single Dataset - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new BubbleSingleDataset(input));
     });
-    it('DatelineGroup translates properly after some delay when panning is disabled', (done) => {
+    it('DatelineGroup translates properly after some delay when panning is disabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -288,7 +287,6 @@ describe('Bubble Single Dataset - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });

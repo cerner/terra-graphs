@@ -5,7 +5,6 @@ import Graph from '../../../../src/js/controls/Graph/Graph';
 import styles from '../../../../src/js/helpers/styles';
 import utils from '../../../../src/js/helpers/utils';
 import {
-  loadCustomJasmineMatcher,
   toNumber,
   PADDING_BOTTOM,
   delay,
@@ -65,7 +64,7 @@ describe.skip('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
-    
+
     it('Checks if clamp is false when pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
@@ -109,7 +108,7 @@ describe.skip('Bar - Panning', () => {
 
       expect(() => { graphDefault.reflowMultipleDatasets(graphData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
-    it('translates DatelineGroup properly when panning is enabled', (done) => {
+    it('translates DatelineGroup properly when panning is enabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -528,7 +527,7 @@ describe.skip('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
-    it('translates DatelineGroup properly after some delay when panning is disabled', (done) => {
+    it('translates DatelineGroup properly after some delay when panning is disabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );

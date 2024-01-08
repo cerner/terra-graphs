@@ -71,7 +71,7 @@ describe('PairedResult', () => {
     it('Checks if clamp is false when pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
-    it('translates DatelineGroup properly when panning is enabled', (done) => {
+    it('translates DatelineGroup properly when panning is enabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -81,7 +81,6 @@ describe('PairedResult', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(80);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     describe('For paired result high', () => {
@@ -1028,7 +1027,7 @@ describe('PairedResult', () => {
       });
     });
     describe('when there is no data state with reflow', () => {
-      it('should carry legend state on click of panning button', (done) => {
+      it('should carry legend state on click of panning button', () => {
         graphDefault.destroy();
         const axisData = utils.deepClone(getAxes(axisTimeSeries));
 
@@ -1082,13 +1081,11 @@ describe('PairedResult', () => {
           expect(legendItemHigh.getAttribute('aria-current')).toBe(
             'false',
           );
-          done();
         });
         triggerEvent(legendItemLow, 'click', () => {
           expect(legendItemLow.getAttribute('aria-current')).toBe(
             'false',
           );
-          done();
         });
 
         graphDefault.reflowMultipleDatasets(graphData);
@@ -1135,7 +1132,7 @@ describe('PairedResult', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new PairedResult(input));
     });
-    it('translates DatelineGroup properly after some delay when panning is disabled', (done) => {
+    it('translates DatelineGroup properly after some delay when panning is disabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -1145,7 +1142,6 @@ describe('PairedResult', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(80);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });

@@ -74,7 +74,7 @@ describe('Graph - Panning', () => {
         defsElement.lastChild.firstChild.getAttribute('height'),
       ).toBe(datelineDefsHeight.toString());
     });
-    it('translates DatelineGroup properly when panning is enabled', (done) => {
+    it('translates DatelineGroup properly when panning is enabled', () => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -82,10 +82,9 @@ describe('Graph - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
-    it('EventlineGroup translates properly when panning is enabled', (done) => {
+    it('EventlineGroup translates properly when panning is enabled', () => {
       if (graph) {
         graph.destroy();
       }
@@ -97,7 +96,6 @@ describe('Graph - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     describe('should update the eventline', () => {
@@ -199,7 +197,7 @@ describe('Graph - Panning', () => {
       expect(defsElement.lastChild.nodeName).toBe('clipPath');
       expect(defsElement.lastChild.firstChild.nodeName).toBe('rect');
     });
-    it('Dateline group translates properly when pan is disabled', (done) => {
+    it('Dateline group translates properly when pan is disabled', () => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -207,7 +205,6 @@ describe('Graph - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });
@@ -222,7 +219,7 @@ describe('Graph - Panning', () => {
       expect(defsElement.lastChild.nodeName).toBe('clipPath');
       expect(defsElement.lastChild.firstChild.nodeName).toBe('rect');
     });
-    it('Dateline group translates properly when pan is undefined', (done) => {
+    it('Dateline group translates properly when pan is undefined', () => {
       const datelineGroup = fetchElementByClass(styles.datelineGroup);
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
@@ -230,7 +227,6 @@ describe('Graph - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(72);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });

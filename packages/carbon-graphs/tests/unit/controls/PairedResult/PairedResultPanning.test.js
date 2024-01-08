@@ -73,7 +73,7 @@ describe('PairedResult', () => {
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
-    it('DatelineGroup translates properly when panning is enabled', (done) => {
+    it('DatelineGroup translates properly when panning is enabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -83,7 +83,6 @@ describe('PairedResult', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(80);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     describe('For paired result high', () => {
@@ -671,7 +670,7 @@ describe('PairedResult', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new PairedResult(input));
     });
-    it('DatelineGroup translates properly after some delay when panning is disabled', (done) => {
+    it('DatelineGroup translates properly after some delay when panning is disabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -681,7 +680,6 @@ describe('PairedResult', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(80);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
   });

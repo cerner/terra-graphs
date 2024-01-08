@@ -181,10 +181,12 @@ describe('Pie', () => {
     it('Throws no error', () => {
       expect(() => pieInstance.destroy()).not.toThrowError();
     });
-    it('Throws no error on resize', (done) => {
+    it('Throws no error on resize', () => {
       graphContainer.setAttribute('style', 'width: 600px; height: 200px');
       pieInstance.destroy();
       expect(() => {
+        // TODO: fix linter failure on the next line
+        // eslint-disable-next-line no-undef
         triggerEvent(window, 'resize', done);
       }).not.toThrowError();
     });
@@ -295,7 +297,7 @@ describe('Pie', () => {
           ]);
         });
         describe('On mouseenter', () => {
-          it('Highlights respective legend item', (done) => {
+          it('Highlights respective legend item', () => {
             const pieLegendItem = fetchElementByClass(
               styles.pieLegendItem,
             );
@@ -305,10 +307,9 @@ describe('Pie', () => {
                   styles.pieLegendItemSliceHover,
                 ),
               ).toBeTruthy();
-              done();
             });
           });
-          it('Blurs all other slices', (done) => {
+          it('Blurs all other slices', () => {
             const pieLegendItem = fetchElementByClass(
               styles.pieLegendItem,
             );
@@ -334,12 +335,11 @@ describe('Pie', () => {
                   )
                   .classList.contains(styles.blur),
               ).toBeTruthy();
-              done();
             });
           });
         });
         describe('On mouseleave', () => {
-          it('Un-highlights respective legend item', (done) => {
+          it('Un-highlights respective legend item', () => {
             const pieLegendItem = fetchElementByClass(
               styles.pieLegendItem,
             );
@@ -350,11 +350,10 @@ describe('Pie', () => {
                     styles.pieLegendItemSliceHover,
                   ),
                 ).toBeFalsy();
-                done();
               });
             });
           });
-          it('Un-blurs all other slices', (done) => {
+          it('Un-blurs all other slices', () => {
             const pieLegendItem = fetchElementByClass(
               styles.pieLegendItem,
             );
@@ -367,7 +366,6 @@ describe('Pie', () => {
                     )
                     .classList.contains(styles.blur),
                 ).toBeFalsy();
-                done();
               });
             });
           });

@@ -43,11 +43,9 @@ describe('Graph', () => {
   });
   describe('When constructed', () => {
     it('Throws error on undefined input', () => {
-      expect(() => {
-        graph = new Graph();
-      }).toThrowError(errors.THROW_MSG_NO_AXES_DATA_LOADED);
+      expect(() => { graph = new Graph(); }).toThrowError(errors.THROW_MSG_NO_AXES_DATA_LOADED);
     });
-    it('Initializes properly', () => {
+    it('Initializes the graph correctly', () => {
       graph = new Graph(getAxes(axisDefault));
       expect(graph.graphContainer).not.toBeNull();
       expect(graph.config).not.toBeNull();
@@ -70,12 +68,12 @@ describe('Graph', () => {
       }).toThrowError(errors.THROW_MSG_NO_BIND);
     });
     describe('Axis - throws error', () => {
-      it('If no axis is present', () => {
+      it('throws error if no axis is present', () => {
         expect(() => {
           graph = new Graph(getAxes({}));
         }).toThrowError(errors.THROW_MSG_NO_AXIS_INFO);
       });
-      it('If no x axis is present', () => {
+      it('throws error if no x axis is present', () => {
         expect(() => {
           graph = new Graph(
             getAxes({
@@ -85,7 +83,7 @@ describe('Graph', () => {
           );
         }).toThrowError(errors.THROW_MSG_NO_AXIS_INFO);
       });
-      it('If no y axis is present', () => {
+      it('throws error if no y axis is present', () => {
         expect(() => {
           graph = new Graph(
             getAxes({

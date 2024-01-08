@@ -265,7 +265,7 @@ describe('Gantt - Load', () => {
         );
       });
     });
-    it('Inserts at head, if index is 0', (done) => {
+    it('Inserts at head, if index is 0', () => {
       const content = utils.deepClone(primaryContent);
       content.key = 'track 2';
       content.trackLabel.display = 'Project B';
@@ -289,10 +289,9 @@ describe('Gantt - Load', () => {
         expect(
           trackGroups[1].childNodes[0].childNodes[0].getAttribute('y'),
         ).toBe('1');
-        done();
       }, TRANSITION_DELAY);
     });
-    it('Inserts in between, if index is less than trackLength', (done) => {
+    it('Inserts in between, if index is less than trackLength', () => {
       const secondaryData = utils.deepClone(primaryContent);
       secondaryData.key = 'track 2';
       secondaryData.trackLabel.display = 'Project B';
@@ -325,10 +324,9 @@ describe('Gantt - Load', () => {
         expect(
           trackGroups[2].childNodes[0].childNodes[0].getAttribute('y'),
         ).toBe('42');
-        done();
       }, TRANSITION_DELAY);
     });
-    it('Inserts at end, if index is equal to trackLength', (done) => {
+    it('Inserts at end, if index is equal to trackLength', () => {
       const secondaryData = utils.deepClone(primaryContent);
       secondaryData.key = 'track 2';
       secondaryData.trackLabel.display = 'Project B';
@@ -361,10 +359,9 @@ describe('Gantt - Load', () => {
         expect(
           trackGroups[2].childNodes[0].childNodes[0].getAttribute('y'),
         ).toBe('83');
-        done();
       }, TRANSITION_DELAY);
     });
-    it('Inserts at end, if index is too big than trackLength', (done) => {
+    it('Inserts at end, if index is too big than trackLength', () => {
       const secondaryData = utils.deepClone(primaryContent);
       secondaryData.key = 'track 2';
       secondaryData.trackLabel.display = 'Project B';
@@ -397,7 +394,6 @@ describe('Gantt - Load', () => {
         expect(
           trackGroups[2].childNodes[0].childNodes[0].getAttribute('y'),
         ).toBe('83');
-        done();
       }, TRANSITION_DELAY);
     });
   });
@@ -420,17 +416,16 @@ describe('Gantt - Load', () => {
     });
   });
   describe('Content container', () => {
-    it('Increases the height when content is loaded dynamically', (done) => {
+    it('Increases the height when content is loaded dynamically', () => {
       const canvasElement = fetchElementByClass(styles.canvas);
       delay(() => {
         const containerElement = canvasElement.querySelector(
                     `.${styles.contentContainer}`,
         );
         expect(+containerElement.getAttribute('height')).toBe(41);
-        done();
       }, TRANSITION_DELAY);
     });
-    it('Increases the height when content is loaded dynamically with different height', (done) => {
+    it('Increases the height when content is loaded dynamically with different height', () => {
       gantt.destroy();
       gantt = new Gantt(getAxes(axisJSON));
       const data = utils.deepClone(getData());
@@ -442,7 +437,6 @@ describe('Gantt - Load', () => {
                     `.${styles.contentContainer}`,
         );
         expect(+containerElement.getAttribute('height')).toBe(100);
-        done();
       }, TRANSITION_DELAY);
     });
   });

@@ -323,7 +323,7 @@ describe('Timeline - Load', () => {
       );
     });
     describe('When clicked on a data point', () => {
-      it('Does not do anything if no onClick callback is provided', (done) => {
+      it('Does not do anything if no onClick callback is provided', () => {
         const onClickFunctionSpy = sinon.spy();
         timeline.destroy();
         timeline = new Timeline(getAxes(axisJSON));
@@ -334,10 +334,9 @@ describe('Timeline - Load', () => {
         triggerEvent(point, 'click', () => {
           expect(onClickFunctionSpy.calledOnce).toBeFalsy();
           expect(point.getAttribute('aria-disabled')).toBe('true');
-          done();
         });
       });
-      it('Hides data point selection when parameter callback is called', (done) => {
+      it('Hides data point selection when parameter callback is called', () => {
         timeline.destroy();
         timeline = new Timeline(getAxes(axisJSON));
         input = getData(valuesJSON, false, false);
@@ -353,10 +352,9 @@ describe('Timeline - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Calls onClick callback', (done) => {
+      it('Calls onClick callback', () => {
         const onClickFunctionSpy = sinon.spy();
         timeline.destroy();
         timeline = new Timeline(getAxes(axisJSON));
@@ -366,10 +364,9 @@ describe('Timeline - Load', () => {
         const point = fetchElementByClass(styles.point);
         triggerEvent(point, 'click', () => {
           expect(onClickFunctionSpy.calledOnce).toBeTruthy();
-          done();
         });
       });
-      it('Emits correct parameters', (done) => {
+      it('Emits correct parameters', () => {
         let args = {};
         timeline.destroy();
         timeline = new Timeline(getAxes(axisJSON));
@@ -393,10 +390,9 @@ describe('Timeline - Load', () => {
           expect(args.val).not.toBeNull();
           expect(args.val.x).toEqual(new Date(valuesJSON[1].x));
           expect(args.target).not.toBeNull();
-          done();
         });
       });
-      it('Highlights the data point', (done) => {
+      it('Highlights the data point', () => {
         const selectionPoint = fetchElementByClass(
           styles.dataPointSelection,
         );
@@ -405,10 +401,9 @@ describe('Timeline - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('Removes highlight when data point is clicked again', (done) => {
+      it('Removes highlight when data point is clicked again', () => {
         const selectionPoint = fetchElementByClass(
           styles.dataPointSelection,
         );
@@ -418,13 +413,12 @@ describe('Timeline - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
     });
     describe("When clicked on a data point's near surrounding area", () => {
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         const selectionPoint = fetchElementByClass(
           styles.dataPointSelection,
         );
@@ -432,10 +426,9 @@ describe('Timeline - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('removes highlight when clicked again', (done) => {
+      it('removes highlight when clicked again', () => {
         const selectionPoint = fetchElementByClass(
           styles.dataPointSelection,
         );
@@ -444,11 +437,10 @@ describe('Timeline - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
-      it('Emits correct parameters', (done) => {
+      it('Emits correct parameters', () => {
         let args = {};
         timeline.destroy();
         timeline = new Timeline(getAxes(axisJSON));
@@ -474,7 +466,6 @@ describe('Timeline - Load', () => {
           expect(args.val).not.toBeNull();
           expect(args.val.x).toEqual(new Date(valuesJSON[1].x));
           expect(args.target).not.toBeNull();
-          done();
         });
       });
     });
@@ -546,16 +537,15 @@ describe('Timeline - Load', () => {
                 `fill: ${COLORS.GREEN};`,
       );
     });
-    it('Attaches click event handlers correctly', (done) => {
+    it('Attaches click event handlers correctly', () => {
       input = getData(valuesJSON, false, false);
       timeline.loadContent(input);
       const legendItem = fetchElementByClass(styles.legendItem);
       triggerEvent(legendItem, 'click', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('false');
-        done();
       });
     });
-    it('On click hides data points', (done) => {
+    it('On click hides data points', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -581,12 +571,11 @@ describe('Timeline - Load', () => {
               ).getAttribute('aria-hidden'),
             ).toBe('true');
             rafSpy.calls.reset();
-            done();
           }, TRANSITION_DELAY);
         },
       );
     });
-    it('On click, removes the first data point set but keeps the rest', (done) => {
+    it('On click, removes the first data point set but keeps the rest', () => {
       const inputPrimary = getData(valuesJSON, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -630,12 +619,11 @@ describe('Timeline - Load', () => {
                 .querySelector(`.${styles.dataPointSelection}`)
                 .getAttribute('aria-hidden'),
             ).toBe('true');
-            done();
           }, TRANSITION_DELAY);
         },
       );
     });
-    it('On clicking twice toggles points back to visible', (done) => {
+    it('On clicking twice toggles points back to visible', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -661,33 +649,30 @@ describe('Timeline - Load', () => {
               ).getAttribute('aria-hidden'),
             ).toBe('true');
             rafSpy.calls.reset();
-            done();
           }, TRANSITION_DELAY);
         });
       });
     });
-    it('Shown targets are removed from Graph', (done) => {
+    it('Shown targets are removed from Graph', () => {
       timeline.loadContent(getData(valuesJSON, false, false));
       triggerEvent(
         fetchElementByClass(styles.legendItem),
         'click',
         () => {
           expect(timeline.config.shownTargets.length).toBe(0);
-          done();
         },
       );
     });
-    it('Shown targets are updated back when toggled', (done) => {
+    it('Shown targets are updated back when toggled', () => {
       timeline.loadContent(getData(valuesJSON, false, false));
       const legendItem = fetchElementByClass(styles.legendItem);
       triggerEvent(legendItem, 'click', () => {
         triggerEvent(legendItem, 'click', () => {
           expect(timeline.config.shownTargets.length).toBe(1);
-          done();
         });
       });
     });
-    it('Attaches mouse enter event handlers correctly', (done) => {
+    it('Attaches mouse enter event handlers correctly', () => {
       const inputPrimary = getData(valuesJSON, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -707,10 +692,9 @@ describe('Timeline - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeTruthy();
-        done();
       });
     });
-    it('Attaches mouse leave event handlers correctly', (done) => {
+    it('Attaches mouse leave event handlers correctly', () => {
       const inputPrimary = getData(valuesJSON, false, false);
       const inputSecondary = {
         key: 'uid_2',
@@ -730,7 +714,6 @@ describe('Timeline - Load', () => {
             )
             .classList.contains(styles.blur),
         ).toBeFalsy();
-        done();
       });
     });
   });

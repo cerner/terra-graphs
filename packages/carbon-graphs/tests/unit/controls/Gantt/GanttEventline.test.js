@@ -82,7 +82,7 @@ describe('Eventline', () => {
     });
   });
 
-  it('Creates eventline group element', (done) => {
+  it('Creates eventline group element', () => {
     axisObj.eventline = utils.deepClone(eventlineJSON);
     gantt = new Gantt(axisObj);
     const eventlineGroupElement = fetchElementByClass(
@@ -100,11 +100,10 @@ describe('Eventline', () => {
       );
       expect(toNumber(translate[0], 10)).toBeCloseTo(106);
       expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-      done();
     });
     expect(eventlineGroupElement.childNodes.length).toBe(1);
   });
-  it('Creates eventline correctly', (done) => {
+  it('Creates eventline correctly', () => {
     axisObj.eventline = utils.deepClone(eventlineJSON);
     gantt = new Gantt(axisObj);
     const eventline = fetchElementByClass(styles.eventline);
@@ -124,7 +123,6 @@ describe('Eventline', () => {
       expect(
         toNumber(eventlineElement.getAttribute('y2'), 10),
       ).toBeCloseTo(0);
-      done();
     });
   });
   it('creates multiple eventlines correctly', () => {

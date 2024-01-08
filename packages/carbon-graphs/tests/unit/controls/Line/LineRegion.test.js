@@ -765,7 +765,7 @@ describe('Line - Region', () => {
         graphDefault.loadContent(linePrimary);
         graphDefault.loadContent(lineSecondary);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           lineGraphContainer,
           styles.legendItem,
@@ -778,10 +778,9 @@ describe('Line - Region', () => {
               )
               .classList.contains(styles.regionHighlight),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides region on mouse exit', (done) => {
+      it('Hides region on mouse exit', () => {
         const legendItem = fetchElementByClass(
           lineGraphContainer,
           styles.legendItem,
@@ -802,7 +801,6 @@ describe('Line - Region', () => {
                 )
                 .getAttribute('aria-hidden'),
             ).toBeTruthy();
-            done();
           });
         });
       });
@@ -828,7 +826,7 @@ describe('Line - Region', () => {
         graphDefault.loadContent(linePrimary);
         graphDefault.loadContent(lineSecondary);
       });
-      it('Shows region on mouse enter', (done) => {
+      it('Shows region on mouse enter', () => {
         const legendItem = fetchElementByClass(
           lineGraphContainer,
           styles.legendItem,
@@ -847,10 +845,9 @@ describe('Line - Region', () => {
               styles.regionHighlight,
             ),
           ).toBeTruthy();
-          done();
         });
       });
-      it('Hides all the regions except current', (done) => {
+      it('Hides all the regions except current', () => {
         const legendItem = fetchElementByClass(
           lineGraphContainer,
           styles.legendItem,
@@ -870,7 +867,6 @@ describe('Line - Region', () => {
                 styles.regionHighlight,
               ),
             ).toBeFalsy();
-            done();
           });
         });
       });
@@ -992,7 +988,7 @@ describe('Line - Region', () => {
       graphDefault.loadContent(linePrimary);
     });
     describe('When single-line', () => {
-      it('Hides region on toggle', (done) => {
+      it('Hides region on toggle', () => {
         const legendItem = fetchElementByClass(
           lineGraphContainer,
           styles.legendItem,
@@ -1004,10 +1000,9 @@ describe('Line - Region', () => {
           expect(regionElement.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Hides regions on toggle', (done) => {
+      it('Hides regions on toggle', () => {
         const legendItem = fetchElementByClass(
           lineGraphContainer,
           styles.legendItem,
@@ -1022,10 +1017,9 @@ describe('Line - Region', () => {
           expect(regionElements[1].getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('Shows region on re-toggle', (done) => {
+      it('Shows region on re-toggle', () => {
         const legendItem = fetchElementByClass(
           lineGraphContainer,
           styles.legendItem,
@@ -1044,7 +1038,6 @@ describe('Line - Region', () => {
               expect(
                 regionElements[1].getAttribute('aria-hidden'),
               ).toBe('false');
-              done();
             },
             200,
           );
@@ -1052,7 +1045,7 @@ describe('Line - Region', () => {
       });
     });
     describe('When multi-line', () => {
-      it('Shows when data-sets shown === 1', (done) => {
+      it('Shows when data-sets shown === 1', () => {
         lineSecondary = new Line(inputSecondary);
         graphDefault.loadContent(lineSecondary);
         const legendItem = lineGraphContainer.querySelectorAll(
@@ -1067,7 +1060,6 @@ describe('Line - Region', () => {
               .getAttribute('aria-hidden'),
           ).toBe('false');
           graphDefault.unloadContent(lineSecondary);
-          done();
         });
       });
     });

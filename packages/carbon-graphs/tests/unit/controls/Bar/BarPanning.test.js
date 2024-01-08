@@ -5,7 +5,6 @@ import Graph from '../../../../src/js/controls/Graph/Graph';
 import styles from '../../../../src/js/helpers/styles';
 import utils from '../../../../src/js/helpers/utils';
 import {
-  loadCustomJasmineMatcher,
   toNumber,
   PADDING_BOTTOM,
   delay,

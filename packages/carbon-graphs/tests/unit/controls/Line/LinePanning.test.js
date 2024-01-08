@@ -70,7 +70,7 @@ describe('Line - Panning', () => {
     it('Check if clamp is false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
-    it('DatelineGroup translates properly when panning is enabled', (done) => {
+    it('DatelineGroup translates properly when panning is enabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -80,7 +80,6 @@ describe('Line - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeGreaterThanOrEqual(67);
         expect(toNumber(translate[1], 10)).toBeCloseTo(PADDING_BOTTOM);
-        done();
       });
     });
     describe('when key matches', () => {
@@ -361,7 +360,7 @@ describe('Line - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Line(input));
     });
-    it('DatelineGroup translates properly after some delay when panning is disabled', (done) => {
+    it('DatelineGroup translates properly after some delay when panning is disabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -371,7 +370,6 @@ describe('Line - Panning', () => {
         );
         expect(toNumber(translate[0], 10)).toBeCloserTo(67);
         expect(toNumber(translate[1], 10)).toBeCloserTo(PADDING_BOTTOM);
-        done();
       });
     });
   });

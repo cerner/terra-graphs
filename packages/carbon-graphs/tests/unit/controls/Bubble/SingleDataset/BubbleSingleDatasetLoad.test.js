@@ -526,7 +526,7 @@ describe('Bubble Single Dataset - Load', () => {
       });
     });
     describe('when clicked on a data point', () => {
-      it('does not do anything if no onClick callback is provided', (done) => {
+      it('does not do anything if no onClick callback is provided', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getNoOnClickInput(valuesDefault, false, false);
@@ -537,10 +537,9 @@ describe('Bubble Single Dataset - Load', () => {
         );
         triggerEvent(point, 'click', () => {
           expect(point.getAttribute('aria-disabled')).toBe('true');
-          done();
         });
       });
-      it('hides data point selection when parameter callback is called', (done) => {
+      it('hides data point selection when parameter callback is called', () => {
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault, false, false);
@@ -560,10 +559,9 @@ describe('Bubble Single Dataset - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'true',
           );
-          done();
         });
       });
-      it('calls onClick callback', (done) => {
+      it('calls onClick callback', () => {
         const dataPointClickHandlerSpy = sinon.spy();
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -576,10 +574,9 @@ describe('Bubble Single Dataset - Load', () => {
         );
         triggerEvent(point, 'click', () => {
           expect(dataPointClickHandlerSpy.calledOnce).toBeTruthy();
-          done();
         });
       });
-      it('calls onClick callback with parameters', (done) => {
+      it('calls onClick callback with parameters', () => {
         let args = {};
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -606,10 +603,9 @@ describe('Bubble Single Dataset - Load', () => {
           expect(args.val.x).toBe(input.values[1].x);
           expect(args.val.y).toBe(input.values[1].y);
           expect(args.target).not.toBeNull();
-          done();
         });
       });
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -622,10 +618,9 @@ describe('Bubble Single Dataset - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('removes highlight when data point is clicked again', (done) => {
+      it('removes highlight when data point is clicked again', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -639,13 +634,12 @@ describe('Bubble Single Dataset - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
     });
     describe("when clicked on a data point's near surrounding area", () => {
-      it('highlights the data point', (done) => {
+      it('highlights the data point', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -654,10 +648,9 @@ describe('Bubble Single Dataset - Load', () => {
           expect(selectionPoint.getAttribute('aria-hidden')).toBe(
             'false',
           );
-          done();
         });
       });
-      it('calls onClick callback with parameters', (done) => {
+      it('calls onClick callback with parameters', () => {
         let args = {};
         graphDefault.destroy();
         graphDefault = new Graph(getAxes(axisDefault));
@@ -684,10 +677,9 @@ describe('Bubble Single Dataset - Load', () => {
           expect(args.val.x).toBe(input.values[1].x);
           expect(args.val.y).toBe(input.values[1].y);
           expect(args.target).not.toBeNull();
-          done();
         });
       });
-      it('removes highlight when clicked again', (done) => {
+      it('removes highlight when clicked again', () => {
         const selectionPoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.dataPointSelection,
@@ -697,7 +689,6 @@ describe('Bubble Single Dataset - Load', () => {
             expect(selectionPoint.getAttribute('aria-hidden')).toBe(
               'true',
             );
-            done();
           });
         });
       });
@@ -842,7 +833,7 @@ describe('Bubble Single Dataset - Load', () => {
       expect(iconPath).not.toBeNull();
       expect(iconPath.getAttribute('d')).not.toBeNull();
     });
-    it('attaches click event handlers correctly', (done) => {
+    it('attaches click event handlers correctly', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault = new Graph(getAxes(axisDefault));
       graphDefault.loadContent(new BubbleSingleDataset(input));
@@ -852,10 +843,9 @@ describe('Bubble Single Dataset - Load', () => {
       );
       triggerEvent(legendItem, 'click', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('false');
-        done();
       });
     });
-    it('on click hides the bubbles', (done) => {
+    it('on click hides the bubbles', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -884,11 +874,10 @@ describe('Bubble Single Dataset - Load', () => {
             ).getAttribute('aria-hidden'),
           ).toBe('true');
           rafSpy.calls.reset();
-          done();
         },
       );
     });
-    it('on click, removes the first bubble set but keeps the rest', (done) => {
+    it('on click, removes the first bubble set but keeps the rest', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       const primaryBubble = new BubbleSingleDataset(inputPrimary);
       graphDefault.loadContent(primaryBubble);
@@ -911,11 +900,10 @@ describe('Bubble Single Dataset - Load', () => {
               styles.dataPointSelection,
             ).getAttribute('aria-hidden'),
           ).toBe('true');
-          done();
         },
       );
     });
-    it('on clicking twice toggles the bubbles back to visible', (done) => {
+    it('on clicking twice toggles the bubbles back to visible', () => {
       const rafSpy = spyOn(
         window,
         'requestAnimationFrame',
@@ -947,11 +935,10 @@ describe('Bubble Single Dataset - Load', () => {
             ).getAttribute('aria-hidden'),
           ).toBe('true');
           rafSpy.calls.reset();
-          done();
         });
       });
     });
-    it('shown targets are removed from Graph', (done) => {
+    it('shown targets are removed from Graph', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(
         new BubbleSingleDataset(input),
@@ -961,11 +948,10 @@ describe('Bubble Single Dataset - Load', () => {
         'click',
         () => {
           expect(graph.config.shownTargets.length).toBe(0);
-          done();
         },
       );
     });
-    it('shown targets are updated back when toggled', (done) => {
+    it('shown targets are updated back when toggled', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(
         new BubbleSingleDataset(input),
@@ -977,11 +963,10 @@ describe('Bubble Single Dataset - Load', () => {
       triggerEvent(legendItem, 'click', () => {
         triggerEvent(legendItem, 'click', () => {
           expect(graph.config.shownTargets.length).toBe(1);
-          done();
         });
       });
     });
-    it('attaches mouse enter event handlers correctly', (done) => {
+    it('attaches mouse enter event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
       // const inputSecondary = {
       //     key: `uid_2`,
@@ -1011,10 +996,9 @@ describe('Bubble Single Dataset - Load', () => {
         //         )
         //         .classList.contains(styles.blur)
         // ).toBeTruthy();
-        done();
       });
     });
-    it('attaches mouse leave event handlers correctly', (done) => {
+    it('attaches mouse leave event handlers correctly', () => {
       const inputPrimary = getInput(valuesDefault, false, false);
 
       graphDefault.loadContent(new BubbleSingleDataset(inputPrimary));
@@ -1030,7 +1014,6 @@ describe('Bubble Single Dataset - Load', () => {
             )
             .classList.contains(styles.highlight),
         ).toBeFalsy();
-        done();
       });
     });
   });
@@ -1042,7 +1025,7 @@ describe('Bubble Single Dataset - Load', () => {
       graph.loadContent(new BubbleSingleDataset(input));
     });
     describe('On click', () => {
-      it('Highlight respective bubble', (done) => {
+      it('Highlight respective bubble', () => {
         const bubblePoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.point,
@@ -1052,10 +1035,9 @@ describe('Bubble Single Dataset - Load', () => {
           expect(bubbleCircle.classList.length.toString()).toEqual(
             '0',
           );
-          done();
         });
       });
-      it('Blurs all other bubbles', (done) => {
+      it('Blurs all other bubbles', () => {
         const bubblePoint = fetchElementByClass(
           bubbleGraphContainer,
           styles.point,
@@ -1073,7 +1055,6 @@ describe('Bubble Single Dataset - Load', () => {
               ).toEqual(true);
             }
           });
-          done();
         });
       });
     });

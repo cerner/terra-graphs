@@ -46,7 +46,7 @@ describe('Gantt - Unload', () => {
       gantt.unloadContent(secondaryContent);
     }).toThrowError(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
   });
-  it('Removes the content successfully', (done) => {
+  it('Removes the content successfully', () => {
     gantt.unloadContent(primaryContent);
     delay(() => {
       expect(gantt.tracks).toEqual([]);
@@ -57,10 +57,9 @@ describe('Gantt - Unload', () => {
       expect(gantt.config.axis.y.domain.lowerLimit).toBe(0);
       expect(gantt.config.axis.y.domain.upperLimit).toBe(1);
       expect(gantt.config.canvasHeight).toBe(BASE_CANVAS_HEIGHT_PADDING);
-      done();
     }, TRANSITION_DELAY);
   });
-  it('Removes multiple content successfully', (done) => {
+  it('Removes multiple content successfully', () => {
     gantt.destroy();
     gantt = new Gantt(getAxes(axisJSON));
     const multipleContents = [primaryContent, secondaryContent];
@@ -76,46 +75,41 @@ describe('Gantt - Unload', () => {
       expect(gantt.config.axis.y.domain.lowerLimit).toBe(0);
       expect(gantt.config.axis.y.domain.upperLimit).toBe(1);
       expect(gantt.config.canvasHeight).toBe(BASE_CANVAS_HEIGHT_PADDING);
-      done();
     }, TRANSITION_DELAY);
   });
-  it('Removes the grid and track', (done) => {
+  it('Removes the grid and track', () => {
     gantt.unloadContent(primaryContent);
     delay(() => {
       expect(gantt.tracks).toEqual([]);
       expect(gantt.trackConfig).toEqual([]);
       expect(gantt.scale.y.range()).toEqual([0]);
-      done();
     }, TRANSITION_DELAY);
   });
-  it('Adjusts the defs height', (done) => {
+  it('Adjusts the defs height', () => {
     gantt.unloadContent(primaryContent);
     delay(() => {
       const defsContainerElement = document.querySelector(
                 `clipPath#${gantt.config.clipPathId}`,
       );
       expect(+defsContainerElement.getAttribute('height')).toBe(0);
-      done();
     }, TRANSITION_DELAY);
   });
-  it('Adjusts the content container height', (done) => {
+  it('Adjusts the content container height', () => {
     gantt.unloadContent(primaryContent);
     delay(() => {
       const contentContainerElement = fetchElementByClass(
         styles.contentContainer,
       );
       expect(+contentContainerElement.getAttribute('height')).toBe(0);
-      done();
     }, TRANSITION_DELAY);
   });
-  it('Updates track props', (done) => {
+  it('Updates track props', () => {
     gantt.unloadContent(primaryContent);
     delay(() => {
       expect(gantt.config.axis.y.trackCount).toBe(0);
       expect(
         gantt.config.axis.y.trackList[primaryContent.key],
       ).toBeUndefined();
-      done();
     }, TRANSITION_DELAY);
   });
   it('Unloads content correctly with different heights', () => {

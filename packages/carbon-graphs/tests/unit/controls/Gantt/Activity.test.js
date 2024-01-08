@@ -516,7 +516,7 @@ describe('Gantt -> Track -> Activity', () => {
          * CH05012018.31    Verify a foreground bar that is centered within a background bar is selectable
          * CH07252018.04    Verify the foreground bar displays centered within the background bar
          */
-    it('Calls onClick function for foreground bar when foreground and background overlap and foreground is selectable', (done) => {
+    it('Calls onClick function for foreground bar when foreground and background overlap and foreground is selectable', () => {
       const onClickSpy = sinon.spy();
       gantt.loadContent(
         Object.assign(getData(), {
@@ -569,7 +569,6 @@ describe('Gantt -> Track -> Activity', () => {
             'aria-disabled',
           ),
         ).toBe('false');
-        done();
       });
     });
   });
@@ -608,7 +607,7 @@ describe('Gantt -> Track -> Activity', () => {
     beforeEach(() => {
       loadData(gantt);
     });
-    it('Translates activities correctly', (done) => {
+    it('Translates activities correctly', () => {
       const activityElement = fetchElementByClass(styles.activity);
       const barElement = activityElement.querySelector('rect');
       const currentTaskPosX = barElement.getAttribute('x');
@@ -631,7 +630,6 @@ describe('Gantt -> Track -> Activity', () => {
           expect(resizedBarElement.getAttribute('width')).not.toEqual(
             currentTaskPosWidth,
           );
-          done();
         },
         TRANSITION_DELAY,
       );

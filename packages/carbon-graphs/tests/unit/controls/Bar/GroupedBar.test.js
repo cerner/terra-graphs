@@ -9,11 +9,7 @@ import {
   round2Decimals,
 } from '../../../../src/js/helpers/transformUtils';
 import utils from '../../../../src/js/helpers/utils';
-import {
-  loadCustomJasmineMatcher,
-  toNumber,
-  triggerEvent,
-} from '../../helpers/commonHelpers';
+import { toNumber, triggerEvent } from '../../helpers/commonHelpers';
 import {
   axisDefault,
   axisInfoRowDefault,
@@ -26,7 +22,6 @@ import {
 } from './helpers';
 
 describe('Grouped Bar', () => {
-  let graphDefault;
   let barGraphContainer;
 
   beforeAll(() => {

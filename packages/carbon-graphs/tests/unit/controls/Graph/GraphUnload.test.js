@@ -100,7 +100,7 @@ describe('Graph - Unload', () => {
       ).toBeCloserTo(-16);
       expect(getYAxisHeight(graph.config)).toBeCloserTo(267);
     });
-    it('Renders correctly on another resize', (done) => {
+    it('Renders correctly on another resize', () => {
       graphContainer.setAttribute('style', 'width: 800px; height: 200px');
       graph.resize();
       triggerEvent(window, 'resize', () => {
@@ -113,7 +113,6 @@ describe('Graph - Unload', () => {
         expect(
           toNumber(contentContainer.attr('height'), 10),
         ).toBeLessThan(400);
-        done();
       });
     });
   });

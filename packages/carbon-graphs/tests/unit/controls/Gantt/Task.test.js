@@ -269,7 +269,7 @@ describe('Gantt -> Track -> Task', () => {
         }).not.toThrowError();
       });
     });
-    it('Renders task group correctly', (done) => {
+    it('Renders task group correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskGroup = document.querySelectorAll(
@@ -278,10 +278,9 @@ describe('Gantt -> Track -> Task', () => {
         expect(taskGroup.length).toBe(1);
         expect(taskGroup[0].childNodes.length).toBe(4);
         expect(taskGroup[0].getAttribute('transform')).not.toBeNull();
-        done();
       });
     });
-    it('Adds data to each task correctly', (done) => {
+    it('Adds data to each task correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskGroupElement = document.querySelectorAll(
@@ -290,10 +289,9 @@ describe('Gantt -> Track -> Task', () => {
         taskGroupElement.forEach((t) => {
           expect(d3.select(t).datum()).not.toBeUndefined();
         });
-        done();
       });
     });
-    it('Prepares task', (done) => {
+    it('Prepares task', () => {
       loadData(gantt);
       delay(() => {
         const d3TaskElement = d3.select(`.${styles.task}`);
@@ -319,10 +317,9 @@ describe('Gantt -> Track -> Task', () => {
         expect(taskData.style).toContain(COLORS.BLUE);
         expect(taskData.style).toContain('stroke');
         expect(taskData.clickPassThrough).toEqual(false);
-        done();
       });
     });
-    it('Renders bar correctly', (done) => {
+    it('Renders bar correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskElement = fetchElementByClass(styles.task);
@@ -360,10 +357,9 @@ describe('Gantt -> Track -> Task', () => {
         expect(
           toNumber(taskElement.childNodes[1].getAttribute('height')),
         ).toBeGreaterThan(0);
-        done();
       });
     });
-    it('Renders chunk correctly', (done) => {
+    it('Renders chunk correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskElement = document.querySelectorAll(
@@ -403,10 +399,9 @@ describe('Gantt -> Track -> Task', () => {
         expect(
           toNumber(taskElement.childNodes[1].getAttribute('height')),
         ).toBeGreaterThan(0);
-        done();
       });
     });
-    it('Renders percentage bar correctly', (done) => {
+    it('Renders percentage bar correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskElement = document.querySelectorAll(
@@ -491,10 +486,9 @@ describe('Gantt -> Track -> Task', () => {
             10,
           ),
         );
-        done();
       });
     });
-    it('Renders selection for bar correctly', (done) => {
+    it('Renders selection for bar correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskElement = fetchElementByClass(styles.task);
@@ -527,10 +521,9 @@ describe('Gantt -> Track -> Task', () => {
         ).toBeGreaterThan(
           toNumber(taskBarElement.getAttribute('height')),
         );
-        done();
       }, TRANSITION_DELAY);
     });
-    it('Renders selection for chunk correctly', (done) => {
+    it('Renders selection for chunk correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskElement = document.querySelectorAll(
@@ -565,10 +558,9 @@ describe('Gantt -> Track -> Task', () => {
         ).toBeGreaterThan(
           toNumber(taskBarElement.getAttribute('height')),
         );
-        done();
       }, TRANSITION_DELAY);
     });
-    it('Renders selection for percentage bar correctly', (done) => {
+    it('Renders selection for percentage bar correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskElement = document.querySelectorAll(
@@ -603,10 +595,9 @@ describe('Gantt -> Track -> Task', () => {
         ).toBeGreaterThan(
           toNumber(taskBarElement.getAttribute('height')),
         );
-        done();
       }, TRANSITION_DELAY);
     });
-    it('Renders selection for hashed tasks correctly', (done) => {
+    it('Renders selection for hashed tasks correctly', () => {
       loadData(gantt);
       delay(() => {
         const taskElement = document.querySelectorAll(
@@ -641,11 +632,10 @@ describe('Gantt -> Track -> Task', () => {
         ).toBeGreaterThan(
           toNumber(taskBarElement.getAttribute('height')),
         );
-        done();
       }, TRANSITION_DELAY);
     });
     describe('When clicked on a task', () => {
-      it('Does not do anything if no onClick callback is provided - Normal', (done) => {
+      it('Does not do anything if no onClick callback is provided - Normal', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             trackLabel: {
@@ -672,11 +662,10 @@ describe('Gantt -> Track -> Task', () => {
                 'aria-disabled',
               ),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('Does not do anything if invalid onClick callback is provided', (done) => {
+      it('Does not do anything if invalid onClick callback is provided', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             trackLabel: {
@@ -704,11 +693,10 @@ describe('Gantt -> Track -> Task', () => {
                 'aria-disabled',
               ),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('Does not do anything if no onClick callback is provided - Chunk', (done) => {
+      it('Does not do anything if no onClick callback is provided - Chunk', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             trackLabel: {
@@ -735,11 +723,10 @@ describe('Gantt -> Track -> Task', () => {
                 'aria-disabled',
               ),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('Does not do anything if no onClick callback is provided - Percentage', (done) => {
+      it('Does not do anything if no onClick callback is provided - Percentage', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             trackLabel: {
@@ -767,11 +754,10 @@ describe('Gantt -> Track -> Task', () => {
                 'aria-disabled',
               ),
             ).toBe('true');
-            done();
           },
         );
       });
-      it('Calls onClick callback for a normal bar', (done) => {
+      it('Calls onClick callback for a normal bar', () => {
         const onClickSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -811,11 +797,10 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Emits correct parameters for a normal bar', (done) => {
+      it('Emits correct parameters for a normal bar', () => {
         let args = {};
         gantt.loadContent(
           Object.assign(getData(), {
@@ -862,11 +847,10 @@ describe('Gantt -> Track -> Task', () => {
             expect(args.val).not.toBeNull();
             expect(args.val.label.display).toEqual('Story Beta');
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
-      it('Calls onClick callback for a chunk', (done) => {
+      it('Calls onClick callback for a chunk', () => {
         const onClickSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -906,11 +890,10 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Emits correct parameters for a chunk', (done) => {
+      it('Emits correct parameters for a chunk', () => {
         let args = {};
         gantt.loadContent(
           Object.assign(getData(), {
@@ -957,11 +940,10 @@ describe('Gantt -> Track -> Task', () => {
             expect(args.val).not.toBeNull();
             expect(args.val.label.display).toEqual('Story Beta');
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
-      it('Calls onClick callback for a percentage bar', (done) => {
+      it('Calls onClick callback for a percentage bar', () => {
         const onClickSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -1002,11 +984,10 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Calls onClick callback for hashed bar', (done) => {
+      it('Calls onClick callback for hashed bar', () => {
         const onClickSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -1049,11 +1030,10 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Emits correct parameters for a percentage bar', (done) => {
+      it('Emits correct parameters for a percentage bar', () => {
         let args = {};
         gantt.loadContent(
           Object.assign(getData(), {
@@ -1101,11 +1081,10 @@ describe('Gantt -> Track -> Task', () => {
             expect(args.val).not.toBeNull();
             expect(args.val.label.display).toEqual('Story Beta');
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
-      it('Calls onClick callback for a percentage bar when clicked on completion bar', (done) => {
+      it('Calls onClick callback for a percentage bar when clicked on completion bar', () => {
         const onClickSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -1146,11 +1125,10 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Emits correct parameters for a hashed task bar', (done) => {
+      it('Emits correct parameters for a hashed task bar', () => {
         let args = {};
         gantt.loadContent(
           Object.assign(getData(), {
@@ -1202,14 +1180,13 @@ describe('Gantt -> Track -> Task', () => {
             expect(args.val).not.toBeNull();
             expect(args.val.label.display).toEqual('Story Beta');
             expect(args.target).not.toBeNull();
-            done();
           },
         );
       });
       /**
              * CH05012018.31    Verify the hashed foreground bar is selectable
              */
-      it('Calls onClick callback for a hashed task bar when clicked on completion bar', (done) => {
+      it('Calls onClick callback for a hashed task bar when clicked on completion bar', () => {
         const onClickSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -1253,11 +1230,10 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('false');
-            done();
           },
         );
       });
-      it('Removes selection when task bar is clicked again', (done) => {
+      it('Removes selection when task bar is clicked again', () => {
         const onClickSpy = sinon.spy();
         gantt.loadContent(
           Object.assign(getData(), {
@@ -1290,11 +1266,10 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('true');
-            done();
           });
         });
       });
-      it('Removes task bar selection when parameter callback is called', (done) => {
+      it('Removes task bar selection when parameter callback is called', () => {
         gantt.loadContent(
           Object.assign(getData(), {
             tasks: [
@@ -1326,7 +1301,6 @@ describe('Gantt -> Track -> Task', () => {
                 styles.taskBarSelection,
               ).getAttribute('aria-hidden'),
             ).toBe('true');
-            done();
           },
           TRANSITION_DELAY,
         );
@@ -1364,7 +1338,7 @@ describe('Gantt -> Track -> Task', () => {
     beforeEach(() => {
       loadData(gantt);
     });
-    it('Translates tasks correctly', (done) => {
+    it('Translates tasks correctly', () => {
       const taskElement = fetchElementByClass(styles.task);
       const barElement = taskElement.querySelector('rect');
       const currentTaskPosX = barElement.getAttribute('x');
@@ -1387,12 +1361,11 @@ describe('Gantt -> Track -> Task', () => {
           expect(resizedBarElement.getAttribute('width')).not.toEqual(
             currentTaskPosWidth,
           );
-          done();
         },
         TRANSITION_DELAY,
       );
     });
-    it('Translates percentage bar correctly', (done) => {
+    it('Translates percentage bar correctly', () => {
       const percentageBar = document.querySelectorAll(
                 `.${styles.task} rect`,
       )[2];
@@ -1428,7 +1401,6 @@ describe('Gantt -> Track -> Task', () => {
           expect(
             resizedCompletionBarElement.getAttribute('width'),
           ).not.toEqual(completionTaskPosWidth);
-          done();
         },
         TRANSITION_DELAY,
       );

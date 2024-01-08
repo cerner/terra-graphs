@@ -39,16 +39,15 @@ describe('Graph - Resize', () => {
     document.body.innerHTML = '';
   });
 
-  it('Sets the canvas width correctly', (done) => {
+  it('Sets the canvas width correctly', () => {
     expect(graph.config.canvasWidth).toBe(1024);
     graphContainer.setAttribute('style', 'width: 800px; height: 200px');
     graph.resize();
     triggerEvent(window, 'resize', () => {
       expect(graph.config.canvasWidth).toBe(800);
-      done();
     });
   });
-  it('Sets the defs clipPath width and height correctly', (done) => {
+  it('Sets the defs clipPath width and height correctly', () => {
     graphContainer.setAttribute('style', 'width: 800px; height: 200px');
     graph.resize();
     triggerEvent(window, 'resize', () => {
@@ -60,26 +59,23 @@ describe('Graph - Resize', () => {
       expect(toNumber(clipPathRect.getAttribute('width'))).toBe(
         getXAxisWidth(graph.config),
       );
-      done();
     });
   });
-  it('Calculates X axis d3 scale using domain and range', (done) => {
+  it('Calculates X axis d3 scale using domain and range', () => {
     graph.resize();
     triggerEvent(window, 'resize', () => {
       expect(graph.scale.x).not.toBeNull();
       expect(graph.scale.x).toEqual(jasmine.any(Function));
-      done();
     });
   });
-  it('Calculates Y axis d3 scale using domain and range', (done) => {
+  it('Calculates Y axis d3 scale using domain and range', () => {
     graph.resize();
     triggerEvent(window, 'resize', () => {
       expect(graph.scale.y).not.toBeNull();
       expect(graph.scale.y).toEqual(jasmine.any(Function));
-      done();
     });
   });
-  it('Translates the canvas', (done) => {
+  it('Translates the canvas', () => {
     const canvasElement = fetchElementByClass(styles.canvas);
     graphContainer.setAttribute('style', 'width: 800px; height: 200px');
     graph.resize();
@@ -89,10 +85,9 @@ describe('Graph - Resize', () => {
         toNumber(canvasElement.getAttribute('height')),
       ).toBeGreaterThan(0);
       expect(toNumber(canvasElement.getAttribute('width'))).toBe(790);
-      done();
     });
   });
-  it('Sets the content container width and height correctly', (done) => {
+  it('Sets the content container width and height correctly', () => {
     graphContainer.setAttribute('style', 'width: 800px; height: 200px');
     graph.resize();
     triggerEvent(window, 'resize', () => {
@@ -105,7 +100,6 @@ describe('Graph - Resize', () => {
       expect(toNumber(contentContainer.getAttribute('width'))).toBe(
         getXAxisWidth(graph.config),
       );
-      done();
     });
   });
   it('Sets the throttle correctly, if undefined', () => {
@@ -123,7 +117,7 @@ describe('Graph - Resize', () => {
     expect(graph.config.throttle).toEqual(400);
     expect(graph.config.throttle).not.toEqual(constants.RESIZE_THROTTLE);
   });
-  it('Throttles based on delay', (done) => {
+  it('Throttles based on delay', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     const throttledInput = utils.deepClone(getAxes(axisDefault));
     throttledInput.throttle = undefined;
@@ -137,12 +131,11 @@ describe('Graph - Resize', () => {
       () => {
         expect(window.requestAnimationFrame).toHaveBeenCalled();
         rafSpy.calls.reset();
-        done();
       },
       constants.RESIZE_THROTTLE,
     );
   });
-  it('Throttles based on delay provided in the input', (done) => {
+  it('Throttles based on delay provided in the input', () => {
     const rafSpy = spyOn(window, 'requestAnimationFrame');
     const throttledInput = utils.deepClone(getAxes(axisDefault));
     throttledInput.throttle = 500;
@@ -156,12 +149,11 @@ describe('Graph - Resize', () => {
       () => {
         expect(window.requestAnimationFrame).toHaveBeenCalled();
         rafSpy.calls.reset();
-        done();
       },
       throttledInput.throttle,
     );
   });
-  it('Translates label shape container when Y2 axis is provided', (done) => {
+  it('Translates label shape container when Y2 axis is provided', () => {
     graph.destroy();
     graph = new Graph(
       utils.deepClone(
@@ -199,7 +191,6 @@ describe('Graph - Resize', () => {
       expect(y2AxisShapeContainer.getAttribute('transform')).toContain(
         'rotate(90)',
       );
-      done();
     });
   });
   /**
@@ -235,7 +226,7 @@ describe('Graph - Resize', () => {
       };
       expect(graph.config.padding).toEqual(expectedOutput);
     });
-    it('Position of content container starts where canvas starts', (done) => {
+    it('Position of content container starts where canvas starts', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.padding = {
         top: 0,
@@ -257,10 +248,9 @@ describe('Graph - Resize', () => {
         expect(
           toNumber(contentContainer.getAttribute('y'), 10),
         ).toBeCloserTo(0);
-        done();
       });
     });
-    it('Position of content container shifts right, when left padding is applied', (done) => {
+    it('Position of content container shifts right, when left padding is applied', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.padding = {
         top: 0,
@@ -280,10 +270,9 @@ describe('Graph - Resize', () => {
           toNumber(contentContainer.getAttribute('x')),
         ).toBeGreaterThan(0);
         expect(toNumber(contentContainer.getAttribute('y'))).toBe(0);
-        done();
       });
     });
-    it('Position of content container shifts right, when left padding is applied', (done) => {
+    it('Position of content container shifts right, when left padding is applied', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.padding = {
         top: 0,
@@ -303,10 +292,9 @@ describe('Graph - Resize', () => {
           toNumber(contentContainer.getAttribute('x')),
         ).toBeGreaterThan(0);
         expect(toNumber(contentContainer.getAttribute('y'))).toBe(0);
-        done();
       });
     });
-    it('Position of content container shifts left, when right padding is applied', (done) => {
+    it('Position of content container shifts left, when right padding is applied', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.padding = {
         top: 0,
@@ -329,10 +317,9 @@ describe('Graph - Resize', () => {
         expect(toNumber(contentContainer.attr('height'))).toBeCloserTo(
           250,
         );
-        done();
       });
     });
-    it('Position of content container shifts top, when bottom padding is applied', (done) => {
+    it('Position of content container shifts top, when bottom padding is applied', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.padding = {
         top: 0,
@@ -357,10 +344,9 @@ describe('Graph - Resize', () => {
             ),
           ),
         );
-        done();
       });
     });
-    it('Position of content container shifts bottom, when top padding is applied', (done) => {
+    it('Position of content container shifts bottom, when top padding is applied', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.padding = {
         top: 20,
@@ -385,7 +371,6 @@ describe('Graph - Resize', () => {
             ),
           ),
         );
-        done();
       });
     });
   });
@@ -531,7 +516,7 @@ describe('Graph - Resize', () => {
     });
   });
   describe('When the graph container is present', () => {
-    it('Should resize the graph', (done) => {
+    it('Should resize the graph', () => {
       expect(graph.config.canvasWidth).toBe(1024);
       const canvasElement = fetchElementByClass(styles.canvas);
       graphContainer.setAttribute('style', 'width: 800px; height: 200px');
@@ -549,7 +534,6 @@ describe('Graph - Resize', () => {
           toNumber(canvasElement.getAttribute('height')),
         ).toBeGreaterThan(0);
         expect(toNumber(canvasElement.getAttribute('width'))).toBe(790);
-        done();
       });
     });
   });
