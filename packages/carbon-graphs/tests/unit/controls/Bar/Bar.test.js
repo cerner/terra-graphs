@@ -17,9 +17,10 @@ import {
   valuesTimeSeries,
 } from './helpers';
 
-describe('Bar', () => {
+describe('Bar - When constructed', () => {
   let graphDefault = null;
   let barGraphContainer;
+
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
@@ -33,19 +34,19 @@ describe('Bar', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
-  describe('When constructed', () => {
+
     it('initializes properly', () => {
       const bar = new Bar(getInput(valuesDefault));
       expect(bar.config).not.toBeNull();
       expect(bar.valuesRange).not.toBeNull();
       expect(bar.dataTarget).toEqual({});
     });
-    it('throws error when no input is provided', () => {
+    it('throws an error when no input is provided', () => {
       expect(() => {
         graphDefault.loadContent(new Bar());
       }).toThrowError(errors.THROW_MSG_NO_CONTENT_DATA_LOADED);
     });
-    it('throws error when invalid input is provided', () => {
+    it('throws an error when invalid input is provided', () => {
       expect(() => {
         graphDefault.loadContent(
           new Bar({
@@ -55,7 +56,7 @@ describe('Bar', () => {
         );
       }).toThrowError(errors.THROW_MSG_UNIQUE_KEY_NOT_PROVIDED);
     });
-    it('throws error when no values are provided', () => {
+    it('throws an error when no values are provided', () => {
       const input = utils.deepClone(getInput(valuesDefault));
       input.values = undefined;
       expect(() => {
@@ -85,7 +86,7 @@ describe('Bar', () => {
       expect(legendItem.getAttribute('aria-disabled')).toBe('true');
       expect(legendItem.getAttribute('aria-current')).toBe('true');
     });
-    it('throws error when no ticks are provided for x-axis', () => {
+    it('throws an error when no ticks are provided for x-axis', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.axis.x.ticks = {};
       const graphNoTicks = new Graph(axisData);
@@ -94,14 +95,14 @@ describe('Bar', () => {
       }).toThrowError(errors.THROW_MSG_EMPTY_X_AXIS_TICK_VALUES);
       graphNoTicks.destroy();
     });
-    it("throws error when x-axis type doesn't match with input type", () => {
+    it("throws an error when x-axis type doesn't match with input type", () => {
       const graph = new Graph(getAxes(axisDefault));
       expect(() => {
         graph.loadContent(new Bar(getInput(valuesTimeSeries)));
       }).toThrowError(errors.THROW_MSG_INVALID_FORMAT_TYPE);
       graph.destroy();
     });
-    it('throws error when x-axis ticks are missing for input values', () => {
+    it('throws an error when x-axis ticks are missing for input values', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.axis.x.ticks = {
         values: [1, 2, 4, 5],
@@ -112,7 +113,7 @@ describe('Bar', () => {
       }).toThrowError(errors.THROW_MSG_INVALID_X_AXIS_TICK_VALUES);
       graphNoTicks.destroy();
     });
-    it('throws error when x-axis ticks are missing for input axis info row', () => {
+    it('throws an error when x-axis ticks are missing for input axis info row', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       axisData.axis.x.ticks = {
         values: [1, 2],
@@ -136,7 +137,7 @@ describe('Bar', () => {
       }).toThrowError(errors.THROW_MSG_AXIS_INFO_ROW_INVALID_TICK_VALUES);
       graphNoTicks.destroy();
     });
-    it('throws error when input axis info row is empty', () => {
+    it('throws an error when input axis info row is empty', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       const graphNoTicks = new Graph(axisData);
       const data = utils.deepClone(getInput(valuesDefault, false, false));
@@ -147,7 +148,7 @@ describe('Bar', () => {
       }).toThrowError(errors.THROW_MSG_AXIS_INFO_ROW_EMPTY_TICK_VALUES);
       graphNoTicks.destroy();
     });
-    it('throws error when input axis info row tick values do not match with X Axis tick values', () => {
+    it('throws an error when input axis info row tick values do not match with X Axis tick values', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       const graphNoTicks = new Graph(axisData);
       const data = utils.deepClone(getInput(valuesDefault, false, false));
@@ -183,7 +184,7 @@ describe('Bar', () => {
       }).toThrowError(errors.THROW_MSG_AXIS_INFO_ROW_INVALID_TICK_VALUES);
       graphNoTicks.destroy();
     });
-    it('throws error when input axis info row does not have value property', () => {
+    it('throws an error when input axis info row does not have value property', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       const graphNoTicks = new Graph(axisData);
       const data = utils.deepClone(getInput(valuesDefault, false, false));
@@ -223,7 +224,7 @@ describe('Bar', () => {
       }).toThrowError(errors.THROW_MSG_AXIS_INFO_ROW_VALUE_NOT_PROVIDED);
       graphNoTicks.destroy();
     });
-    it('throws error when input axis info row label property is not provided', () => {
+    it('throws an error when input axis info row label property is not provided', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       const graphNoTicks = new Graph(axisData);
       const data = utils.deepClone(getInput(valuesDefault, false, false));
@@ -247,7 +248,7 @@ describe('Bar', () => {
       );
       graphNoTicks.destroy();
     });
-    it('throws error when input axis info row label property does not have display', () => {
+    it('throws an error when input axis info row label property does not have display', () => {
       const axisData = utils.deepClone(getAxes(axisDefault));
       const graphNoTicks = new Graph(axisData);
       const data = utils.deepClone(getInput(valuesDefault, false, false));
@@ -265,9 +266,8 @@ describe('Bar', () => {
         },
       ];
       const bar = new Bar(data);
-      expect(() => {
-        graphNoTicks.loadContent(bar);
-      }).toThrowError(
+      expect(() => {graphNoTicks.loadContent(bar)})
+        .toThrowError(
         errors.THROW_MSG_AXIS_INFO_ROW_LABEL_DISPLAY_NOT_PROVIDED,
       );
       graphNoTicks.destroy();
@@ -292,7 +292,7 @@ describe('Bar', () => {
         ),
       ).toBeTruthy();
     });
-    it("any changes to input object doesn't affect the config", () => {
+    it("doesn't update the config after changing the input object", () => {
       const input = getInput(valuesDefault, false, false);
       const bar = new Bar(input);
       input.key = '';
@@ -318,5 +318,4 @@ describe('Bar', () => {
       expect(bar.valuesRange.y2).toBeUndefined();
       expect(bar.valuesRange.y2).toBeUndefined();
     });
-  });
 });

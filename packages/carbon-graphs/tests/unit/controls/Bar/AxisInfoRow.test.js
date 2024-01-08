@@ -55,7 +55,7 @@ describe('Bar - Axis Info Row', () => {
         graphDefault.destroy();
     });
 
-    it('Creates text labels only if present', () => {
+    it('creates text labels only if present', () => {
       bar = new Bar(data);
       graphDefault.loadContent(bar);
       const axisInfoRowElement = fetchElementByClass(
@@ -64,7 +64,7 @@ describe('Bar - Axis Info Row', () => {
       );
       expect(axisInfoRowElement).toBeNull();
     });
-    it('Creates text labels when present', () => {
+    it('creates text labels when present', () => {
       data.axisInfoRow = axisInfoRowDefault;
       bar = new Bar(data);
       graphDefault.loadContent(bar);
@@ -77,7 +77,7 @@ describe('Bar - Axis Info Row', () => {
         expect(i.nodeName === 'g').toBeTruthy();
       });
     });
-    it('Creates text label correctly for time series axis type', () => {
+    it('creates text label correctly for time series axis type', () => {
       graphDefault = new Graph(utils.deepClone(getAxes(axisTimeSeries)));
       data = getInput(valuesTimeSeries, false, false);
       data.axisInfoRow = axisInfoRowTimeSeries;
@@ -125,7 +125,7 @@ describe('Bar - Axis Info Row', () => {
         styles.axisInfoRowSecondaryDisplay,
       );
     });
-    it('Creates text label correctly when character Count is not provided', () => {
+    it('creates text label correctly when character Count is not provided', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -150,7 +150,7 @@ describe('Bar - Axis Info Row', () => {
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
-    it('Creates text label correctly when secondary display is not provided', () => {
+    it('creates text label correctly when secondary display is not provided', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -175,7 +175,7 @@ describe('Bar - Axis Info Row', () => {
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
-    it('Creates text label correctly when color is not provided', () => {
+    it('creates text label correctly when color is not provided', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -199,7 +199,7 @@ describe('Bar - Axis Info Row', () => {
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
-    it('Creates text label correctly when on click function is not provided', () => {
+    it('creates text label correctly when on click function is not provided', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -224,7 +224,7 @@ describe('Bar - Axis Info Row', () => {
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
-    it('Creates text label correctly when X Axis Orientation is set to top', () => {
+    it('creates text label correctly when X Axis Orientation is set to top', () => {
       const xAxisTopOrientation = utils.deepClone(axisDefault);
       xAxisTopOrientation.x.orientation = AXES_ORIENTATION.X.TOP;
       const input = utils.deepClone(getAxes(xAxisTopOrientation));
@@ -255,7 +255,7 @@ describe('Bar - Axis Info Row', () => {
       expect(axisInfoRowElement.length).toBe(1);
       expect(axisInfoRowElement[0].nodeName).toBe('g');
     });
-    it('Truncates only primary display if the provided character count is less than primary display length ', () => {
+    it('truncates only the primary display if the provided character count is less than primary display length', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -291,7 +291,7 @@ describe('Bar - Axis Info Row', () => {
         )[0].textContent,
       ).toBe('ICU');
     });
-    it('Truncates both primary and secondary display if the provided character count is less than their resp. lengths ', () => {
+    it('truncates both primary and secondary display if the provided character count is less than their respective lengths', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -360,7 +360,7 @@ describe('Bar - Axis Info Row', () => {
     afterEach(() => {
       graphDefault.destroy();
     });
-    it('Renders all text labels', () => {
+    it('renders all text labels', () => {
       const axisInfoRowElement = fetchAllElementsByClass(
         barGraphContainer,
         styles.axisInfoRowItem,
@@ -395,7 +395,7 @@ describe('Bar - Axis Info Row', () => {
     afterEach(() => {
 //      graphDefault.destroy();
     });
-    it('Does not do anything if no onClick callback is provided', () => {
+    it('does not do anything if no onClick callback is provided', () => {
       console.log("tesfd");
 //      const onClickFunctionSpy = sinon.spy();
       const onClickFunctionSpy = jest.fn();
@@ -424,7 +424,7 @@ describe('Bar - Axis Info Row', () => {
         done();
       });
     });
-    it('Hides data point selection when parameter callback is called', () => {
+    it('hides data point selection when parameter callback is called', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -458,7 +458,7 @@ describe('Bar - Axis Info Row', () => {
         TRANSITION_DELAY,
       );
     });
-    it('Emits correct parameters', () => {
+    it('emits correct parameters', () => {
       let args = {};
       data.axisInfoRow = [
         {
@@ -505,7 +505,7 @@ describe('Bar - Axis Info Row', () => {
         done();
       });
     });
-    it('Onclick enabled when only secondaryDisplay is truncated but not primary display ', () => {
+    it('enables OnClick only when secondaryDisplay is truncated but not primary display', () => {
       let args = {};
       data.axisInfoRow = [
         {
@@ -544,7 +544,7 @@ describe('Bar - Axis Info Row', () => {
         done();
       });
     });
-    it('Sets svg as disabled when onClick is not provided', () => {
+    it('sets svg as disabled when onClick is not provided', () => {
       data.axisInfoRow = [
         {
           axis: 'x',
@@ -577,7 +577,7 @@ describe('Bar - Axis Info Row', () => {
     afterEach(() => {
       graphDefault.destroy();
     });
-    it('Removes all axisInfoRow', () => {
+    it('removes all axisInfoRow', () => {
       data = utils.deepClone(getInput(valuesDefault));
       data.axisInfoRow = [
         {
@@ -616,7 +616,7 @@ describe('Bar - Axis Info Row', () => {
     });
 
     // TODO: fix failing test
-    it.skip('Translates Text Labels correctly', () => {
+    it.skip('translates Text Labels correctly', () => {
       data = utils.deepClone(getInput(valuesDefault));
       data.axisInfoRow = [
         {

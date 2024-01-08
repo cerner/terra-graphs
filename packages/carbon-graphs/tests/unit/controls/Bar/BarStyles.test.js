@@ -19,16 +19,14 @@ describe('Bar Styles', () => {
   beforeEach(() => {
     barGraphContainer = document.createElement('div');
     barGraphContainer.id = 'testBar_carbon';
-    barGraphContainer.setAttribute(
-      'style',
-      'width: 1024px; height: 400px;',
-    );
+    barGraphContainer.setAttribute('style','width: 1024px; height: 400px;');
     document.body.appendChild(barGraphContainer);
     graphDefault = new Graph(getAxes(axisDefault));
   });
   afterEach(() => {
     document.body.innerHTML = '';
   });
+  
   describe('Hashed Bar', () => {
       let bar1;
       beforeEach(() => {

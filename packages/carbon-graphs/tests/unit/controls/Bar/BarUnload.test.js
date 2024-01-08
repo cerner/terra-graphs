@@ -27,8 +27,9 @@ describe('Bar - unload', () => {
   });
 
   describe("When graph is unloaded off input", ()=>{
-    let graphDefault = null;
+    let graphDefault;
       let bar;
+
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
       bar = new Bar(getInput(valuesDefault, false, false));
@@ -37,6 +38,7 @@ describe('Bar - unload', () => {
     afterEach(() => {
       document.body.innerHTML = '';
     });
+
     it('returns the bar instance', () => {
       const unloadedBar = bar.unload(graphDefault);
       expect(unloadedBar).toBeInstanceOf(Bar);
@@ -66,6 +68,7 @@ describe('Bar - unload', () => {
     let barSecondary;
     let graphDefault;
     let bar;
+    
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
       graph = new Graph(getAxes(axisDefault));
@@ -77,6 +80,7 @@ describe('Bar - unload', () => {
     afterEach(()=>{
       graphDefault.destroy();
     });
+
     it('verifies content is present', () => {
       expect(graph.axesLabelShapeGroup[constants.Y_AXIS]).not.toBeUndefined();
       expect(graph.axesLabelShapeGroup[constants.Y2_AXIS]).not.toBeUndefined();

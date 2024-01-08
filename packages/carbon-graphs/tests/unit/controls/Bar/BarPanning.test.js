@@ -67,7 +67,7 @@ describe.skip('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
-    it('Check if clamp is false if pan is enabled', () => {
+    it('sets clamp to false if pan is enabled', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
     it('throws error when null value is passed as y', () => {
@@ -87,7 +87,7 @@ describe.skip('Bar - Panning', () => {
 
       expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
-    it('throws error when undefined value is passed as y', () => {
+    it('throws aan error when y is passed as undefined', () => {
       const panData = {
         key: 'uid_1',
         values: [
@@ -104,7 +104,7 @@ describe.skip('Bar - Panning', () => {
 
       expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
-    it('DatelineGroup translates properly when panning is enabled', () => {
+    it('translates DatelineGroup properly when panning is enabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -319,7 +319,7 @@ describe.skip('Bar - Panning', () => {
       graphDefault = new Graph(axisData);
       graphDefault.loadContent(new Bar(input));
     });
-    it('DatelineGroup translates properly after some delay when panning is disabled', () => {
+    it('translates DatelineGroup properly after some delay when panning is disabled', () => {
       const datelineGroup = document.querySelector(
                 `.${styles.datelineGroup}`,
       );
@@ -377,11 +377,10 @@ describe.skip('Bar - Panning', () => {
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
         expect(barContent.length).toEqual(0);
+        
         graphDefault.reflow(panData);
-        barContent = fetchAllElementsByClass(
-          barGraphContainer,
-          styles.bar,
-        );
+        barContent = fetchAllElementsByClass(barGraphContainer,styles.bar);
+
         expect(barContent.length).toEqual(2);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');

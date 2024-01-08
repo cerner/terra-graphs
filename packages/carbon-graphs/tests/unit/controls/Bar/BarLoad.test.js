@@ -57,7 +57,7 @@ describe('Bar - Load Lifecycle', () => {
     loadedBar.load(graphDefault);
     expect(loadedBar).toBeInstanceOf(Bar);
   });
-  it('throws error when null value is passed as y', () => {
+  it('throws an error when null value is passed as y', () => {
     let input = null;
     expect(() => {
       const data = utils.deepClone(valuesDefault);
@@ -66,7 +66,7 @@ describe('Bar - Load Lifecycle', () => {
       graphDefault.loadContent(new Bar(input));
     }).toThrowError(errors.THROW_MSG_INVALID_DATA);
   });
-  it('throws error when undefined value is passed as y', () => {
+  it('throws an error when undefined value is passed as y', () => {
     let input = null;
     expect(() => {
       const data = utils.deepClone(valuesDefault);
@@ -75,7 +75,7 @@ describe('Bar - Load Lifecycle', () => {
       graphDefault.loadContent(new Bar(input));
     }).toThrowError(errors.THROW_MSG_INVALID_DATA);
   });
-  it('internal subsets gets created correctly for each data point', () => {
+  it('correctly creates internal subsets for each data point', () => {
     const graph = graphDefault.loadContent(
       new Bar(getInput(valuesDefault, false, false)),
     );
@@ -93,7 +93,7 @@ describe('Bar - Load Lifecycle', () => {
     ).toBeTruthy();
     expect(graph.config.shownTargets.length).toBe(1);
   });
-  it('internal subsets gets created successfully for time series', () => {
+  it('successfully creates internal subsets for time series', () => {
     const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
     const graph = graphTimeSeries.loadContent(
       new Bar(getInput(valuesTimeSeries, false, false)),
@@ -155,7 +155,7 @@ describe('Bar - Load Lifecycle', () => {
   });
 
 //  TODO: fix failing test
-  it.skip('Adds axis info row label height to bottom padding when axis info row is used', () => {
+  it.skip('adds axis info row label height to bottom padding when axis info row is used', () => {
     const initialBottomPadding = graphDefault.config.padding.bottom;
     const initialAxisInfoRowLabelHeight = graphDefault.config.axisInfoRowLabelHeight;
     const data = utils.deepClone(getInput(valuesDefault, false, false));
@@ -179,13 +179,12 @@ describe('Bar - Load Lifecycle', () => {
     const graph = graphDefault.loadContent(bar);
     const finalBottomPadding = graph.config.padding.bottom;
     const finalAxisInfoRowLabelHeight = graph.config.axisInfoRowLabelHeight;
+
     expect(initialBottomPadding).toEqual(constants.PADDING.bottom);
     expect(initialAxisInfoRowLabelHeight).toEqual(0);
     expect(finalBottomPadding).toBeGreaterThan(initialBottomPadding);
     expect(finalAxisInfoRowLabelHeight).not.toEqual(0);
-    expect(finalBottomPadding).toEqual(
-      initialBottomPadding + finalAxisInfoRowLabelHeight,
-    );
+    expect(finalBottomPadding).toEqual(initialBottomPadding + finalAxisInfoRowLabelHeight);
   });
   });
 
@@ -215,34 +214,29 @@ describe('Bar - Load Lifecycle', () => {
       );
     });
     it('adds legend for each bar content', () => {
-      const secInput = utils.deepClone(input);
-      secInput.key = 'uid_2';
-      graphDefault.loadContent(new Bar(secInput));
-      const legendItems = document.body.querySelectorAll(
-                `.${styles.legendItem}`,
-      );
+      const input2 = utils.deepClone(input);
+      input2.key = 'uid_2';
+
+      graphDefault.loadContent(new Bar(input2));
+
+      const legendItems = document.body.querySelectorAll(`.${styles.legendItem}`);
       expect(legendItems.length).toBe(2);
     });
     it('disables legend when disabled flag is set', () => {
       graphDefault.destroy();
       graphDefault = new Graph(getAxes(axisTimeSeries));
+
       input = getInput(valuesTimeSeries, false, false);
       input.label.isDisabled = true;
+
       graphDefault.loadContent(new Bar(input));
-      const legendItem = document.body.querySelector(
-                `.${styles.legendItem}`,
-      );
+
+      const legendItem = document.body.querySelector(`.${styles.legendItem}`);
       expect(legendItem.getAttribute('aria-disabled')).toBe('true');
     });
-    it('add bar group for bar content', () => {
-      const barContentContainer = fetchElementByClass(
-        barGraphContainer,
-        styles.barGraphContent,
-      );
-      const barGroup = fetchElementByClass(
-        barContentContainer,
-        styles.currentBarsGroup,
-      );
+    it('adds bar group for bar content', () => {
+      const barContentContainer = fetchElementByClass(barGraphContainer,styles.barGraphContent);
+      const barGroup = fetchElementByClass(barContentContainer,styles.currentBarsGroup);
       expect(barGroup).not.toBeNull();
       expect(barGroup.tagName).toBe('g');
       expect(barGroup.getAttribute('transform')).not.toBeNull();
@@ -431,23 +425,17 @@ describe('Bar - Load Lifecycle', () => {
       if(graphDefault)
       graphDefault.destroy();
     });
-    it('for simple bar', () => {
+    it('correctly sets attributes for simple bar', () => {
       graphDefault = new Graph(getAxes(axisDefault));
+
       input = getInput(valuesDefault, false, false);
-      input.onClick = (clearSelectionCallback) => {
-        clearSelectionCallback();
-      };
+      input.onClick = (clearSelectionCallback) => {clearSelectionCallback()};
+
       const bar = new Bar(input);
       graphDefault.loadContent(bar);
       bar.redraw(graphDefault);
-      const selectionPoint = fetchElementByClass(
-        barGraphContainer,
-        styles.taskBarSelection,
-        );
-      const point = fetchElementByClass(
-        barGraphContainer,
-        styles.taskBar,
-        );
+      const selectionPoint = fetchElementByClass(barGraphContainer,styles.taskBarSelection);
+      const point = fetchElementByClass(barGraphContainer,styles.taskBar);
       triggerEvent(point, 'click', () => {
         expect(toNumber(selectionPoint.getAttribute('x')))
           .toBeCloserTo(toNumber(point.getAttribute('x')) - 5);
@@ -460,7 +448,7 @@ describe('Bar - Load Lifecycle', () => {
         done();
       });
     });
-    it('for grouped bar', () => {
+    it('correctly sets attributes for grouped bar', () => {
       graphDefault = new Graph(getAxes(axisDefault));
       input = getInput(valuesDefault, false, false);
       input.onClick = (clearSelectionCallback) => {
@@ -508,7 +496,7 @@ describe('Bar - Load Lifecycle', () => {
         done();
       });
     });
-    it('for stacked bar', () => {
+    it('correctly sets attributes for stacked bar', () => {
       graphDefault = new Graph(getAxes(axisDefault));
       input = getInput(valuesDefault, false, false);
       input.onClick = (clearSelectionCallback) => {
@@ -558,7 +546,7 @@ describe('Bar - Load Lifecycle', () => {
         done();
       });
     });
-    it('for mixed type bar', () => {
+    it('correctly sets attributes for mixed type bar', () => {
       graphDefault.destroy();
       graphDefault = new Graph(getAxes(axisDefault));
       input = getInput(valuesDefault, false, false);
