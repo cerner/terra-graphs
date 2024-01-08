@@ -1,21 +1,12 @@
 const jestConfig = require('@cerner/jest-config-terra');
 
 module.exports = {
-//  ...jestConfig,
-  globals: { testURL: 'http://localhost:3000/tests/unit/helpers/static.html' },
-//  preset: 'jest-puppeteer',
+    ...jestConfig,
   testMatch: [
-    '**/tests/unit/**/(*.)(test.js)',
-    '**/tests/unit/**/**/(*.)(test.js)',
-  ],
-  testEnvironment: 'jsdom',
-//    setupFiles: [
-//      './jest.enzymeSetup.js',
-//    ],
-  verbose: true,
-//  globalSetup: './global-setup.js',
-//  globalTeardown: './global-teardown.js',
-  //  snapshotSerializers: [
-  //    'enzyme-to-json/serializer',
-  //  ],
+    '**/tests/unit/controls/Bar/(*.)(test.js)',
+// The patterns below are temporarily commented out as only not all tests are updated to work with Jest.
+    // Updating them is currently a work in progress.
+    // '**/tests/unit/**/(*.)(test.js)',
+    // '**/tests/unit/**/**/(*.)(test.js)',
+    ],
 };

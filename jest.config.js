@@ -1,15 +1,16 @@
 const jestConfig = require('@cerner/jest-config-terra');
 
 module.exports = {
-  ...jestConfig,
+    ...jestConfig,
   testMatch: [
-    '**/carbon-graphs/tests/unit/**/(*.)(test.js)',
-    '**/carbon-graphs/tests/unit/**/**/(*.)(test.js)',
-  ],
-//  setupFiles: [
-//    './jest.enzymeSetup.js',
-//  ],
-//  snapshotSerializers: [
-//    'enzyme-to-json/serializer',
-//  ],
+    '**/carbon-graphs/tests/unit/controls/Bar/(*.)(test.js)',
+// The patterns below are temporarily commented out as only not all tests are updated to work with Jest.
+// Updating them is currently a work in progress.
+// '**/tests/unit/**/(*.)(test.js)',
+// '**/tests/unit/**/**/(*.)(test.js)',
+    ],
 };
+
+
+
+
