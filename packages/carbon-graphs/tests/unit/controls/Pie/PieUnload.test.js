@@ -121,7 +121,7 @@ describe('Pie - Unload', () => {
       });
     }).not.toThrowError();
   });
-  it('removed legend item correctly', () => {
+  it('removes legend item correctly', () => {
     pieInstance.unloadContent({
       key: 'uid_1',
       label: dataPrimary.label,
