@@ -19,9 +19,6 @@ import {
 } from './helpers';
 
 describe('Pie - Load', () => {
-//  let pieInstance;
-//  let loadedPieInstance;
-//  let input;
   let graphContainer;
 
   beforeEach(() => {
@@ -30,9 +27,6 @@ describe('Pie - Load', () => {
     graphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     graphContainer.setAttribute('class', 'carbon-test-class');
     document.body.appendChild(graphContainer);
-
-    //    input = inputDefault(graphContainer.id);
-    //    pieInstance = new Pie(input);
   });
   afterEach(() => {
     document.body.innerHTML = '';
@@ -41,6 +35,7 @@ describe('Pie - Load', () => {
   describe('Throws error', () => {
     let pieInstance;
     let input;
+    
     beforeEach(() => {
       input = inputDefault(graphContainer.id);
       pieInstance = new Pie(input);
