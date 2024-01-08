@@ -87,7 +87,7 @@ describe.skip('Bar - Panning', () => {
 
       expect(() => { graphDefault.reflow(panData); }).toThrowError(errors.THROW_MSG_INVALID_DATA);
     });
-    it('throws aan error when y is passed as undefined', () => {
+    it('throws an error when y is passed as undefined', () => {
       const panData = {
         key: 'uid_1',
         values: [
