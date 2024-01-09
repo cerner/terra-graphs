@@ -1,6 +1,5 @@
 'use strict';
 
-import sinon from 'sinon';
 import * as d3 from '../../../../src/js/d3Modules';
 import Carbon from '../../../../src/js/carbon';
 import Pie from '../../../../src/js/controls/Pie';
@@ -35,7 +34,7 @@ describe('Pie - Load', () => {
   describe('Throws error', () => {
     let pieInstance;
     let input;
-    
+
     beforeEach(() => {
       input = inputDefault(graphContainer.id);
       pieInstance = new Pie(input);

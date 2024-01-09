@@ -117,7 +117,7 @@ describe('Carbon', () => {
     expect(gantt).toBeInstanceOf(Gantt);
   });
 
-  // TODO: fix failing test  
+  // TODO: fix failing test
   it.skip('registers Timeline', () => {
     const timeline = Carbon.api.timeline(timelineInput);
     expect(typeof Carbon.api.timeline).toEqual('function');
@@ -196,7 +196,7 @@ describe('Carbon', () => {
 
     const bubbleSingleDataset = Carbon.api.bubbleSingleDataset(data);
     expect(typeof Carbon.api.bubbleSingleDataset).toBe('function');
-    expect(bubbleSingleDataset).toBeInstanceOf(BubbleSingleDataset)
+    expect(bubbleSingleDataset).toBeInstanceOf(BubbleSingleDataset);
   });
   it('registers BubbleMultipleDataset', () => {
     const data = {

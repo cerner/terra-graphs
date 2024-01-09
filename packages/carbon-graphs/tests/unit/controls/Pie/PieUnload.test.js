@@ -4,7 +4,6 @@ import * as d3 from '../../../../src/js/d3Modules';
 import Pie from '../../../../src/js/controls/Pie';
 import errors from '../../../../src/js/helpers/errors';
 import styles from '../../../../src/js/helpers/styles';
-import { loadCustomJasmineMatcher } from '../../helpers/commonHelpers';
 import {
   dataPrimary,
   dataSecondary,

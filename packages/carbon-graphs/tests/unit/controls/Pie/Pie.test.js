@@ -1,3 +1,5 @@
+/* eslint-disable no-new */
+
 'use strict';
 
 import Pie from '../../../../src/js/controls/Pie';
