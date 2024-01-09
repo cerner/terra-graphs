@@ -4,7 +4,6 @@ import * as d3 from '../../../../src/js/d3Modules';
 import Pie from '../../../../src/js/controls/Pie';
 import errors from '../../../../src/js/helpers/errors';
 import styles from '../../../../src/js/helpers/styles';
-import { loadCustomJasmineMatcher } from '../../helpers/commonHelpers';
 import {
   dataPrimary,
   dataSecondary,
@@ -17,9 +16,7 @@ describe('Pie - Unload', () => {
   let unloadedPieInstance;
   let input;
   let graphContainer;
-  beforeAll(() => {
-    loadCustomJasmineMatcher();
-  });
+
   beforeEach(() => {
     graphContainer = document.createElement('div');
     graphContainer.id = 'testPie_carbon';
@@ -35,28 +32,29 @@ describe('Pie - Unload', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
-  it('Throws error if key is not of a loaded content', () => {
+
+  it('throws error if key is not of a loaded content', () => {
     expect(() => {
       pieInstance.unloadContent({
         key: 'uid_2',
       });
     }).toThrowError(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
   });
-  it('Throws error if key is invalid', () => {
+  it('throws error if key is invalid', () => {
     expect(() => {
       pieInstance.unloadContent({
         key: null,
       });
     }).toThrowError(errors.THROW_MSG_INVALID_OBJECT_PROVIDED);
   });
-  it('Returns the instance', () => {
+  it('returns the instance', () => {
     unloadedPieInstance = pieInstance.unloadContent({
       key: 'uid_1',
       label: dataPrimary.label,
     });
     expect(unloadedPieInstance instanceof Pie).toBeTruthy();
   });
-  it('Generates the graph correctly', () => {
+  it('generates the graph correctly', () => {
     pieInstance.unloadContent({
       key: 'uid_1',
       label: dataPrimary.label,
@@ -64,11 +62,9 @@ describe('Pie - Unload', () => {
     const graphElement = fetchElementByClass(styles.container);
     expect(graphElement.childNodes.length).toBe(2);
     expect(graphElement.firstChild.nodeName).toBe('svg');
-    expect(
-      fetchElementByClass(styles.pieChartContent).childNodes.length,
-    ).toBe(0);
+    expect(fetchElementByClass(styles.pieChartContent).childNodes.length).toBe(0);
   });
-  it('Calls unload correctly', () => {
+  it('calls unload correctly', () => {
     pieInstance.loadContent(dataSecondary);
     pieInstance.unloadContent({
       key: 'uid_2',
@@ -80,7 +76,7 @@ describe('Pie - Unload', () => {
     expect(pieContentElement.childNodes.length).toBe(1);
     expect(pieGroupElementData.key).toBe(dataPrimary.key);
   });
-  it('Updates content correctly when called out of order', () => {
+  it('updates content correctly when called out of order', () => {
     pieInstance.loadContent(dataSecondary);
     expect(pieInstance.content.length).toBe(2);
     expect(pieInstance.content).toEqual([
@@ -98,7 +94,7 @@ describe('Pie - Unload', () => {
     expect(pieInstance.content.length).toBe(0);
     expect(pieInstance.content).toEqual([]);
   });
-  it('Updates content correctly when called in order', () => {
+  it('updates content correctly when called in order', () => {
     pieInstance.loadContent(dataSecondary);
     expect(pieInstance.content.length).toBe(2);
     expect(pieInstance.content).toEqual([
@@ -116,7 +112,7 @@ describe('Pie - Unload', () => {
     expect(pieInstance.content.length).toBe(0);
     expect(pieInstance.content).toEqual([]);
   });
-  it('Does not throw error when valid input', () => {
+  it('does not throw error when valid input', () => {
     expect(() => {
       pieInstance.unloadContent({
         key: 'uid_1',
@@ -124,7 +120,7 @@ describe('Pie - Unload', () => {
       });
     }).not.toThrowError();
   });
-  it('Removed legend item correctly', () => {
+  it('removes legend item correctly', () => {
     pieInstance.unloadContent({
       key: 'uid_1',
       label: dataPrimary.label,
