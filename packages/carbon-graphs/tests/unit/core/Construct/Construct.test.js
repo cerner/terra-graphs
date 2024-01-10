@@ -9,12 +9,12 @@ describe('Construct', () => {
     content = new Construct();
   });
   describe('when consumed', () => {
-    it('creates interfaces', () => {
-      expect(content.generate).toEqual(jasmine.any(Function));
-      expect(content.loadContent).toEqual(jasmine.any(Function));
-      expect(content.unloadContent).toEqual(jasmine.any(Function));
-      expect(content.resize).toEqual(jasmine.any(Function));
-      expect(content.destroy).toEqual(jasmine.any(Function));
+    it('creates interfaces when consumed', () => {
+      expect(typeof content.generate).toEqual('function');
+      expect(typeof content.loadContent).toEqual('function');
+      expect(typeof content.unloadContent).toEqual('function');
+      expect(typeof content.resize).toEqual('function');
+      expect(typeof content.destroy).toEqual('function');
     });
     it('throws error when generate is called without being implemented', () => {
       expect(() => {

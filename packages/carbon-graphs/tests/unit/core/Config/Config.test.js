@@ -8,13 +8,11 @@ describe('BaseConfig', () => {
   beforeEach(() => {
     config = new BaseConfig();
   });
-  describe('when consumed', () => {
-    it('creates interfaces', () => {
-      expect(config.getConfig).toEqual(jasmine.any(Function));
-      expect(config.setInput).toEqual(jasmine.any(Function));
-      expect(config.validateInput).toEqual(jasmine.any(Function));
-      expect(config.clone).toEqual(jasmine.any(Function));
-    });
+  it('creates interfaces when consumed', () => {
+    expect(typeof config.getConfig).toEqual('function');
+    expect(typeof config.setInput).toEqual('function');
+    expect(typeof config.validateInput).toEqual('function');
+    expect(typeof config.clone).toEqual('function');
   });
   it('throws error when getInput is called without being implemented', () => {
     expect(() => {
