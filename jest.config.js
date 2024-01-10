@@ -5,6 +5,7 @@ module.exports = {
   testMatch: [
     '**/carbon-graphs/tests/unit/controls/Bar/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/controls/Carbon/(*.)(test.js)',
+    '**/carbon-graphs/tests/unit/controls/Line/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/controls/Pie/(*.)(test.js)',
     // The patterns below are temporarily commented out as not all tests are updated to work with Jest.
     // Updating them is currently a work in progress.
