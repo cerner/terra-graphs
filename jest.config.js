@@ -1,7 +1,16 @@
-const jestConfig = require('@cerner/jest-config-terra');
+// const jestConfig = require('@cerner/jest-config-terra');
 
 module.exports = {
-  ...jestConfig,
+//  ...jestConfig,
+  preset: 'jest-puppeteer',
+  //    testEnvironment:"jsdom",
+  testEnvironmentOptions: {
+    browsers: [
+      'chrome',
+      'firefox',
+      'safari',
+    ],
+  },
   testMatch: [
     '**/carbon-graphs/tests/unit/controls/Bar/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/controls/Carbon/(*.)(test.js)',
@@ -13,4 +22,3 @@ module.exports = {
     // '**/tests/unit/**/**/(*.)(test.js)',
   ],
 };
-

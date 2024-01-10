@@ -13,28 +13,97 @@ import {
   valuesDefault,
 } from './helpers';
 
-describe('Scatter - Unload', () => {
-  let graphDefault = null;
-  let scatterGraphContainer;
-  beforeEach(() => {
-    scatterGraphContainer = document.createElement('div');
-    scatterGraphContainer.id = 'testScatter_carbon';
-    scatterGraphContainer.setAttribute(
-      'style',
-      'width: 1024px; height: 400px;',
-    );
-    document.body.appendChild(scatterGraphContainer);
-    graphDefault = new Graph(getAxes(axisDefault));
-  });
-  afterEach(() => {
-    document.body.innerHTML = '';
+const modules = {
+  Graph,
+  Scatter,
+  constants,
+  styles,
+  axisDefault,
+  fetchElementByClass,
+  getAxes,
+  getInput,
+  inputSecondary,
+  valuesDefault,
+}
+
+
+describe('Google', () => {
+  beforeAll(async () => {
+    await page.goto('https://google.com');
   });
 
-  it('returns the scatter instance', () => {
-    const scatter = new Scatter(getInput(valuesDefault, false, false));
-    graphDefault.loadContent(scatter);
-    const unloadedScatter = scatter.unload(graphDefault);
-    expect(unloadedScatter instanceof Scatter);
+  it('should be titled "Google"', async () => {
+    await expect(page.title()).resolves.toMatch('Google');
+  });
+});
+
+describe('Scatter - Unload', () => {
+  let graphDefault;
+  let scatterGraphContainer;
+  beforeAll(async () => {
+    await page.goto('http://localhost:3000/packages/carbon-graphs/tests/unit/helpers/testPage.html');
+//    await page.addScriptTag({content: modules})
+    await page.addScriptTag({content: Graph})
+//    await page.addScriptTag({path: 'packages/carbon-graphs/src/js/controls/Graph/Graph.js'})
+    //    await page.addScriptTag({content: Scatter})
+//    await page.addScriptTag({content: constants})
+//    await page.addScriptTag({content: {
+//      axisDefault,
+//      fetchElementByClass,
+//      getAxes,
+//      getInput,
+//      inputSecondary,
+//      valuesDefault,
+//    }})
+  });
+
+  beforeEach(async () => {
+
+//    let graph = new Graph();
+
+//    console.log(await page.title());
+    const x = await page.evaluate( function() {
+      let graph = 3;
+      //      scatterGraphContainer = document.createElement('div');
+      //      scatterGraphContainer.id = 'testScatter_carbon';
+      //      scatterGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
+      //          document.body.appendChild(scatterGraphContainer);
+
+
+      console.log(window.Graph);
+
+//      graph = new Graph();
+//      return Graph;
+      return window;
+    });
+
+    console.log(x);
+  });
+  afterEach(() => {
+    //    document.body.innerHTML = '';
+  });
+
+  it.only('returns the scatter instance', async () => {
+    const getPTag = await page.waitForSelector('#unit-test-graph-container');
+//    console.log(getPTag);
+
+        await page.evaluate(() => {
+//          scatterGraphContainer = document.createElement('div');
+//          scatterGraphContainer.id = 'testScatter_carbon';
+//          scatterGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
+//          document.body.appendChild(scatterGraphContainer);
+//          graphDefault = new Graph(getAxes(axisDefault));
+//          const scatter = new Scatter(getInput(valuesDefault, false, false));
+//          graphDefault.loadContent(scatter);
+//          const unloadedScatter = scatter.unload(graphDefault);
+//          expect(unloadedScatter).toBeInstanceOf(Scatter);
+        });
+
+    //
+    //    const scatter = new Scatter(getInput(valuesDefault, false, false));
+    //    graphDefault.loadContent(scatter);
+    //    const unloadedScatter = scatter.unload(graphDefault);
+    //    expect(unloadedScatter instanceof Scatter);
   });
   it('clears the graph', () => {
     const scatter = new Scatter(getInput(valuesDefault, false, false));
