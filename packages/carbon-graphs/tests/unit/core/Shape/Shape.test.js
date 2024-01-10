@@ -19,15 +19,11 @@ describe('Shape', () => {
       const shapePath = groupSVG.firstChild;
       expect(shapeSVG.nodeName === 'svg').toBeTruthy();
       expect(toNumber(shapeSVG.getAttribute('x')) === SHAPES[i].options.x).toBeTruthy();
-      expect(
-        toNumber(shapeSVG.getAttribute('y')) === SHAPES[i].options.y,
-      ).toBeTruthy();
+      expect(toNumber(shapeSVG.getAttribute('y')) === SHAPES[i].options.y).toBeTruthy();
       expect(shapeSVG.classList.contains(styles.svgIcon)).toBeTruthy();
       expect(shapeSVG.getAttribute('role') === 'img').toBeTruthy();
       expect(shapePath.nodeName === 'path').toBeTruthy();
-      expect(
-        shapePath.getAttribute('d') === SHAPES[i].path.d,
-      ).toBeTruthy();
+      expect(shapePath.getAttribute('d') === SHAPES[i].path.d).toBeTruthy();
     });
   });
   it('returns path for Carbon Native shapes - Light', () => {
@@ -41,9 +37,7 @@ describe('Shape', () => {
       expect(shapeSVG.classList.contains(styles.svgIcon)).toBeTruthy();
       expect(shapeSVG.getAttribute('role') === 'img').toBeTruthy();
       expect(shapePath.nodeName).toBeDefined();
-      expect(shapeSVG.querySelector('[fill]').getAttribute('fill')).toBe(
-        '#FFF',
-      );
+      expect(shapeSVG.querySelector('[fill]').getAttribute('fill')).toBe('#FFF');
     });
   });
   it('returns path for custom shape', () => {
@@ -159,9 +153,7 @@ describe('Shape', () => {
       ],
       options: { x: -15, y: -15, scale: 0.28 },
     };
-    const shapeSVG = new Shape(customShape).getShapeElement(
-      getDefaultSVGProps({ transformFn: transformHandlerSpy }),
-    );
+    const shapeSVG = new Shape(customShape).getShapeElement(getDefaultSVGProps({ transformFn: transformHandlerSpy }));
     expect(shapeSVG.nodeName === 'svg').toBeTruthy();
     expect(shapeSVG.firstChild.getAttribute('transform')).toBeDefined();
     expect(transformHandlerSpy.calledOnce).toBeTruthy();
@@ -170,30 +162,22 @@ describe('Shape', () => {
     it('tear drop', () => {
       const shapeSVG = new Shape(SHAPES.TEAR_DROP).getShapeElement();
       const groupSVG = shapeSVG.firstChild;
-      expect(groupSVG.firstChild.getAttribute('d')).toBe(
-        SHAPES.TEAR_DROP.path.d,
-      );
+      expect(groupSVG.firstChild.getAttribute('d')).toBe(SHAPES.TEAR_DROP.path.d);
     });
     it('tear drop alternate', () => {
       const shapeSVG = new Shape(SHAPES.TEAR_ALT).getShapeElement();
       const groupSVG = shapeSVG.firstChild;
-      expect(groupSVG.firstChild.getAttribute('d')).toBe(
-        SHAPES.TEAR_ALT.path.d,
-      );
+      expect(groupSVG.firstChild.getAttribute('d')).toBe(SHAPES.TEAR_ALT.path.d);
     });
     it('triangle alternate', () => {
       const shapeSVG = new Shape(SHAPES.TRIANGLE_DOWN).getShapeElement();
       const groupSVG = shapeSVG.firstChild;
-      expect(groupSVG.firstChild.getAttribute('d')).toBe(
-        SHAPES.TRIANGLE_DOWN.path.d,
-      );
+      expect(groupSVG.firstChild.getAttribute('d')).toBe(SHAPES.TRIANGLE_DOWN.path.d);
     });
     it('triangle', () => {
       const shapeSVG = new Shape(SHAPES.TRIANGLE).getShapeElement();
       const groupSVG = shapeSVG.firstChild;
-      expect(groupSVG.firstChild.getAttribute('d')).toBe(
-        SHAPES.TRIANGLE.path.d,
-      );
+      expect(groupSVG.firstChild.getAttribute('d')).toBe(SHAPES.TRIANGLE.path.d);
     });
     it('x shape', () => {
       const shapeSVG = new Shape(SHAPES.X).getShapeElement();
@@ -203,23 +187,17 @@ describe('Shape', () => {
     it('rhombus shape', () => {
       const shapeSVG = new Shape(SHAPES.RHOMBUS).getShapeElement();
       const groupSVG = shapeSVG.firstChild;
-      expect(groupSVG.firstChild.getAttribute('d')).toBe(
-        SHAPES.RHOMBUS.path.d,
-      );
+      expect(groupSVG.firstChild.getAttribute('d')).toBe(SHAPES.RHOMBUS.path.d);
     });
     it('vertical bar shape', () => {
       const shapeSVG = new Shape(SHAPES.VERTICAL_BAR).getShapeElement();
       const groupSVG = shapeSVG.firstChild;
-      expect(groupSVG.firstChild.getAttribute('d')).toBe(
-        SHAPES.VERTICAL_BAR.path.d,
-      );
+      expect(groupSVG.firstChild.getAttribute('d')).toBe(SHAPES.VERTICAL_BAR.path.d);
     });
     it('square shape', () => {
       const shapeSVG = new Shape(SHAPES.SQUARE).getShapeElement();
       const groupSVG = shapeSVG.firstChild;
-      expect(groupSVG.firstChild.getAttribute('d')).toBe(
-        SHAPES.SQUARE.path.d,
-      );
+      expect(groupSVG.firstChild.getAttribute('d')).toBe(SHAPES.SQUARE.path.d);
     });
   });
   describe('Validates a shape', () => {
