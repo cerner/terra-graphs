@@ -34,13 +34,13 @@ describe('Line - Load', () => {
   beforeEach(() => {
     lineGraphContainer = document.createElement('div');
     lineGraphContainer.id = 'testLine_carbon';
-    lineGraphContainer.setAttribute( 'style', 'width: 1024px; height: 400px;');
+    lineGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     document.body.appendChild(lineGraphContainer);
     graphDefault = new Graph(getAxes(axisDefault));
   });
   afterEach(() => {
     document.body.innerHTML = '';
-      graphDefault.destroy();
+    graphDefault.destroy();
   });
   it('returns the graph instance', () => {
     const loadedLine = new Line(getInput(valuesDefault, false, false));
@@ -135,16 +135,16 @@ describe('Line - Load', () => {
     beforeEach(() => {
     });
     afterEach(() => {
-        graphDefault.destroy();
+      graphDefault.destroy();
     });
     it('adds content container for each line', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const lineContentContainer = fetchElementByClass( lineGraphContainer, styles.lineGraphContent);
+      const lineContentContainer = fetchElementByClass(lineGraphContainer, styles.lineGraphContent);
       expect(lineContentContainer).not.toBeNull();
       expect(lineContentContainer.tagName).toBe('g');
-      expect(lineContentContainer.getAttribute('aria-describedby')).toBe( input.key);
+      expect(lineContentContainer.getAttribute('aria-describedby')).toBe(input.key);
     });
     it('adds container for each data points sets for each line', () => {
       input = getInput(valuesDefault, false, false);
@@ -153,7 +153,7 @@ describe('Line - Load', () => {
       const secInput = utils.deepClone(input);
       secInput.key = 'uid_2';
       graphDefault.loadContent(new Line(secInput));
-      const graphContent = document.body.querySelectorAll( `.${styles.lineGraphContent}`);
+      const graphContent = document.body.querySelectorAll(`.${styles.lineGraphContent}`);
       expect(graphContent.length).toBe(2);
     });
     it('adds legend for each data points sets for each line', () => {
@@ -163,7 +163,7 @@ describe('Line - Load', () => {
       const secInput = utils.deepClone(input);
       secInput.key = 'uid_2';
       graphDefault.loadContent(new Line(secInput));
-      const legendItems = document.body.querySelectorAll( `.${styles.legendItem}`);
+      const legendItems = document.body.querySelectorAll(`.${styles.legendItem}`);
       expect(legendItems.length).toBe(2);
     });
     it('disables legend when disabled flag is set', () => {
@@ -172,7 +172,7 @@ describe('Line - Load', () => {
       input = getInput(data);
       input.label.isDisabled = true;
       graph.loadContent(new Line(input));
-      const legendItem = document.body.querySelector( `.${styles.legendItem}`);
+      const legendItem = document.body.querySelector(`.${styles.legendItem}`);
       expect(legendItem.getAttribute('aria-disabled')).toBe('true');
     });
     it('disabled legend item is not tab-able', () => {
@@ -181,15 +181,15 @@ describe('Line - Load', () => {
       input = getInput(data);
       input.label.isDisabled = true;
       graph.loadContent(new Line(input));
-      const legendItem = document.body.querySelector( `.${styles.legendItemBtn}`);
+      const legendItem = document.body.querySelector(`.${styles.legendItemBtn}`);
       expect(legendItem.getAttribute('tabindex')).toBe('-1');
     });
     it('add line group for line', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const lineContentContainer = fetchElementByClass( lineGraphContainer, styles.lineGraphContent);
-      const lineGroup = fetchElementByClass( lineContentContainer, styles.currentLinesGroup);
+      const lineContentContainer = fetchElementByClass(lineGraphContainer, styles.lineGraphContent);
+      const lineGroup = fetchElementByClass(lineContentContainer, styles.currentLinesGroup);
       expect(lineGroup).not.toBeNull();
       expect(lineGroup.tagName).toBe('g');
       expect(lineGroup.getAttribute('transform')).not.toBeNull();
@@ -198,16 +198,16 @@ describe('Line - Load', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const lineContentContainer = fetchElementByClass( lineGraphContainer, styles.lineGraphContent); 
-      const lineGroup = fetchElementByClass( lineContentContainer, styles.currentLinesGroup);
+      const lineContentContainer = fetchElementByClass(lineGraphContainer, styles.lineGraphContent);
+      const lineGroup = fetchElementByClass(lineContentContainer, styles.currentLinesGroup);
       expect(lineGroup.firstChild.tagName).toBe('g');
-      expect( lineGroup.firstChild.classList.contains(styles.line)).toBeTruthy();
+      expect(lineGroup.firstChild.classList.contains(styles.line)).toBeTruthy();
     });
     it('adds line with correct color with default stroke-dasharray to 0', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const lineElement = fetchElementByClass( lineGraphContainer, styles.line);
+      const lineElement = fetchElementByClass(lineGraphContainer, styles.line);
       expect(lineElement.firstChild.tagName).toBe('path');
       expect(
         lineElement.firstChild.attributes.getNamedItem('style').value,
@@ -217,8 +217,8 @@ describe('Line - Load', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const lineElement = fetchElementByClass( lineGraphContainer, styles.line);
-      expect( lineElement.firstChild.attributes.getNamedItem( 'aria-describedby').value).toBe(input.key);
+      const lineElement = fetchElementByClass(lineGraphContainer, styles.line);
+      expect(lineElement.firstChild.attributes.getNamedItem('aria-describedby').value).toBe(input.key);
     });
     it('does not render data point if data point is null', () => {
       const graph = new Graph(getAxes(axisDefault));
@@ -226,8 +226,8 @@ describe('Line - Load', () => {
       data[0].y = null;
       input = getInput(data);
       graph.loadContent(new Line(input));
-      const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPointsGroup);
-      const selectedPoint = fetchElementByClass( pointsGroup, styles.dataPointSelection);
+      const pointsGroup = fetchElementByClass(lineGraphContainer, styles.currentPointsGroup);
+      const selectedPoint = fetchElementByClass(pointsGroup, styles.dataPointSelection);
       expect(pointsGroup.children.length).toBe(valuesDefault.length - 1);
       expect(selectedPoint.getAttribute('aria-hidden')).toContain('true');
     });
@@ -237,8 +237,8 @@ describe('Line - Load', () => {
       data[0].y = undefined;
       input = getInput(data);
       graph.loadContent(new Line(input));
-      const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPointsGroup);
-      const selectedPoint = fetchElementByClass( pointsGroup, styles.dataPointSelection);
+      const pointsGroup = fetchElementByClass(lineGraphContainer, styles.currentPointsGroup);
+      const selectedPoint = fetchElementByClass(pointsGroup, styles.dataPointSelection);
       expect(pointsGroup.children.length).toBe(valuesDefault.length - 1);
       expect(selectedPoint.getAttribute('aria-hidden')).toContain('true');
     });
@@ -249,7 +249,7 @@ describe('Line - Load', () => {
       input = getInput(valuesDefault, false, false);
       hiddenShapeGraph.loadContent(new Line(input));
       expect(
-        fetchElementByClass( lineGraphContainer, styles.currentPointsGroup),
+        fetchElementByClass(lineGraphContainer, styles.currentPointsGroup),
       ).toBeNull();
     });
     it('does not update x axis range if allow calibration is disabled', () => {
@@ -399,7 +399,7 @@ describe('Line - Load', () => {
     it('adds points for each data point', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
-const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPointsGroup);
+      const pointsGroup = fetchElementByClass(lineGraphContainer, styles.currentPointsGroup);
       const points = pointsGroup.querySelectorAll(`.${styles.point}`);
       expect(points.length).toBe(valuesDefault.length);
     });
@@ -407,15 +407,15 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPointsGroup);
+      const pointsGroup = fetchElementByClass(lineGraphContainer, styles.currentPointsGroup);
       const points = fetchElementByClass(pointsGroup, styles.point);
-      expect(points.attributes.getNamedItem('style').value).toBe( `fill: ${COLORS.GREEN};`);
+      expect(points.attributes.getNamedItem('style').value).toBe(`fill: ${COLORS.GREEN};`);
     });
     it('points have correct shape', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPointsGroup);
+      const pointsGroup = fetchElementByClass(lineGraphContainer, styles.currentPointsGroup);
       const points = fetchElementByClass(pointsGroup, styles.point);
       expect(
         points.firstChild.firstChild.attributes.getNamedItem('d').value,
@@ -425,7 +425,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPointsGroup);
+      const pointsGroup = fetchElementByClass(lineGraphContainer, styles.currentPointsGroup);
       const points = fetchElementByClass(pointsGroup, styles.point);
       expect(points.getAttribute('aria-describedby')).toBe(input.key);
     });
@@ -433,22 +433,22 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPointsGroup);
-      const selectedPoints = pointsGroup.querySelectorAll( `.${styles.dataPointSelection}`);
+      const pointsGroup = fetchElementByClass(lineGraphContainer, styles.currentPointsGroup);
+      const selectedPoints = pointsGroup.querySelectorAll(`.${styles.dataPointSelection}`);
       expect(selectedPoints.length).toBe(valuesDefault.length);
     });
     it('selected data point is hidden by default', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const selectedPoints = fetchElementByClass( lineGraphContainer, styles.dataPointSelection);
+      const selectedPoints = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
       expect(selectedPoints.getAttribute('aria-hidden')).toBe('true');
     });
     it('selected data point has circle as shape', () => {
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const selectedPoints = fetchElementByClass( lineGraphContainer, styles.dataPointSelection);
+      const selectedPoints = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
       expect(selectedPoints.tagName).toBe('svg');
       expect(selectedPoints.firstChild.firstChild.getAttribute('d')).toBe(
         SHAPES.CIRCLE.path.d,
@@ -458,8 +458,8 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
 
-      const selectedPoints = fetchElementByClass( lineGraphContainer, styles.dataPointSelection);
-      expect(selectedPoints.getAttribute('aria-describedby')).toBe( input.key);
+      const selectedPoints = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
+      expect(selectedPoints.getAttribute('aria-describedby')).toBe(input.key);
     });
     it('does not render points if shapes are hidden per data set', () => {
       const hiddenShapeInput = getAxes(axisDefault);
@@ -468,7 +468,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       input = getInput(valuesDefault, false, false);
       input.showShapes = false;
       hiddenShapeGraph.loadContent(new Line(input));
-      expect( fetchElementByClass( lineGraphContainer, styles.currentPointsGroup)).toBeNull();
+      expect(fetchElementByClass(lineGraphContainer, styles.currentPointsGroup)).toBeNull();
     });
     describe('adds line with stroke-dasharray as provided by consumer with', () => {
       it('comma seperated values', () => {
@@ -479,10 +479,10 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         };
         const line = new Line(input);
         graphDefault.loadContent(line);
-        const lineElement = fetchElementByClass( lineGraphContainer, styles.line);
+        const lineElement = fetchElementByClass(lineGraphContainer, styles.line);
         expect(lineElement.firstChild.tagName).toBe('path');
-        expect( lineElement.firstChild.attributes.getNamedItem('style') .value)
-        .toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2,2;`);
+        expect(lineElement.firstChild.attributes.getNamedItem('style').value)
+          .toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2,2;`);
       });
       it('space seperated values', () => {
         graphDefault = new Graph(getAxes(axisDefault));
@@ -492,10 +492,10 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         };
         const line = new Line(input);
         graphDefault.loadContent(line);
-        const lineElement = fetchElementByClass( lineGraphContainer, styles.line);
+        const lineElement = fetchElementByClass(lineGraphContainer, styles.line);
         expect(lineElement.firstChild.tagName).toBe('path');
-        expect( lineElement.firstChild.attributes.getNamedItem('style') .value)
-        .toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2 2;`);
+        expect(lineElement.firstChild.attributes.getNamedItem('style').value)
+          .toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2 2;`);
       });
       it('just a single value', () => {
         graphDefault = new Graph(getAxes(axisDefault));
@@ -505,10 +505,10 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         };
         const line = new Line(input);
         graphDefault.loadContent(line);
-        const lineElement = fetchElementByClass( lineGraphContainer, styles.line);
+        const lineElement = fetchElementByClass(lineGraphContainer, styles.line);
         expect(lineElement.firstChild.tagName).toBe('path');
-        expect( lineElement.firstChild.attributes.getNamedItem('style') .value)
-        .toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2;`);
+        expect(lineElement.firstChild.attributes.getNamedItem('style').value)
+          .toBe(`stroke: ${COLORS.GREEN}; stroke-dasharray: 2;`);
       });
     });
     it('adds line with correct stroke-dasharray', () => {});
@@ -518,7 +518,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         input = getInput(valuesDefault, false, false);
         input.onClick = null;
         graphDefault.loadContent(new Line(input));
-        const point = fetchElementByClass( lineGraphContainer, styles.point);
+        const point = fetchElementByClass(lineGraphContainer, styles.point);
         triggerEvent(point, 'click', () => {
           expect(point.getAttribute('aria-disabled')).toBe('true');
         });
@@ -530,10 +530,10 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           clearSelectionCallback();
         };
         graphDefault.loadContent(new Line(input));
-        const point = fetchElementByClass( lineGraphContainer, styles.point);
+        const point = fetchElementByClass(lineGraphContainer, styles.point);
         triggerEvent(point, 'click', () => {
-          const selectionPoint = fetchElementByClass( lineGraphContainer, styles.dataPointSelection);
-          expect(selectionPoint.getAttribute('aria-hidden')).toBe( 'true');
+          const selectionPoint = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
+          expect(selectionPoint.getAttribute('aria-hidden')).toBe('true');
         });
       });
       it('calls onClick callback', () => {
@@ -542,7 +542,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         input = getInput(valuesDefault, false, false);
         input.onClick = dataPointClickHandlerSpy;
         graphDefault.loadContent(new Line(input));
-        const point = fetchElementByClass( lineGraphContainer, styles.point);
+        const point = fetchElementByClass(lineGraphContainer, styles.point);
         triggerEvent(point, 'click', () => {
           expect(dataPointClickHandlerSpy.calledOnce).toBeTruthy();
         });
@@ -561,7 +561,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           };
         };
         graphDefault.loadContent(new Line(input));
-        const point = lineGraphContainer.querySelectorAll( `.${styles.point}`)[1];
+        const point = lineGraphContainer.querySelectorAll(`.${styles.point}`)[1];
         triggerEvent(point, 'click', () => {
           expect(args).not.toBeNull();
           expect(args.cb).toEqual(jasmine.any(Function));
@@ -577,21 +577,21 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
-        const selectionPoint = fetchElementByClass( lineGraphContainer, styles.dataPointSelection); 
-        const point = fetchElementByClass( lineGraphContainer, styles.point);
+        const selectionPoint = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
+        const point = fetchElementByClass(lineGraphContainer, styles.point);
         triggerEvent(point, 'click', () => {
-          expect(selectionPoint.getAttribute('aria-hidden')).toBe( 'false');
+          expect(selectionPoint.getAttribute('aria-hidden')).toBe('false');
         });
       });
       it('removes highlight when data point is clicked again', () => {
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
-        const selectionPoint = fetchElementByClass( lineGraphContainer, styles.dataPointSelection); 
-        const point = fetchElementByClass( lineGraphContainer, styles.point);
+        const selectionPoint = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
+        const point = fetchElementByClass(lineGraphContainer, styles.point);
         triggerEvent(point, 'click', () => {
           triggerEvent(point, 'click', () => {
-            expect(selectionPoint.getAttribute('aria-hidden')).toBe( 'true');
+            expect(selectionPoint.getAttribute('aria-hidden')).toBe('true');
           });
         });
       });
@@ -601,9 +601,9 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
-        const selectionPoint = fetchElementByClass( lineGraphContainer, styles.dataPointSelection);
+        const selectionPoint = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
         triggerEvent(selectionPoint, 'click', () => {
-          expect(selectionPoint.getAttribute('aria-hidden')).toBe( 'false');
+          expect(selectionPoint.getAttribute('aria-hidden')).toBe('false');
         });
       });
       it('calls onClick callback with parameters', () => {
@@ -620,7 +620,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           };
         };
         graphDefault.loadContent(new Line(input));
-        const selectionPoint = lineGraphContainer.querySelectorAll( `.${styles.dataPointSelection}`)[1];
+        const selectionPoint = lineGraphContainer.querySelectorAll(`.${styles.dataPointSelection}`)[1];
         triggerEvent(selectionPoint, 'click', () => {
           expect(args).not.toBeNull();
           expect(args.cb).toEqual(jasmine.any(Function));
@@ -636,16 +636,16 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         input = getInput(valuesDefault, false, false);
         graphDefault.loadContent(new Line(input));
 
-        const selectionPoint = fetchElementByClass( lineGraphContainer, styles.dataPointSelection);
+        const selectionPoint = fetchElementByClass(lineGraphContainer, styles.dataPointSelection);
         triggerEvent(selectionPoint, 'click', () => {
           triggerEvent(selectionPoint, 'click', () => {
-            expect(selectionPoint.getAttribute('aria-hidden')).toBe( 'true');
+            expect(selectionPoint.getAttribute('aria-hidden')).toBe('true');
           });
         });
       });
     });
     describe('When interpolation type is provided', () => {
-      it('Displays graph properly', () => {
+      it('displays graph properly', () => {
         const graph = new Graph(getAxes(axisDefault));
         input = getInput(valuesDefault);
         input.type = LINE_TYPE.SPLINE;
@@ -681,19 +681,19 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         { x: 45, y: 150 },
       ];
       describe('In Y Axis', () => {
-        it('Displays graph properly', () => {
+        it('displays graph properly', () => {
           const graph = new Graph(getAxes(axis));
           input = getInput(values, true, true, false);
           input.values = values;
           graph.loadContent(new Line(input));
           graph.resize();
-          const lineGroup = lineGraphContainer.querySelectorAll( `.${styles.currentLinesGroup}`);
+          const lineGroup = lineGraphContainer.querySelectorAll(`.${styles.currentLinesGroup}`);
           expect(lineGroup.length).toBe(1);
-          expect( lineGraphContainer.querySelectorAll(`.${styles.point}`) .length).toEqual(values.length - 1);
+          expect(lineGraphContainer.querySelectorAll(`.${styles.point}`).length).toEqual(values.length - 1);
           expect(graph.config.axis.y.domain.lowerLimit).toBe(11);
           expect(graph.config.axis.y.domain.upperLimit).toBe(209);
         });
-        it('Displays graph properly without domain padding', () => {
+        it('displays graph properly without domain padding', () => {
           const data = getAxes(axis);
           data.axis.y.padDomain = false;
           const graph = new Graph(data);
@@ -701,26 +701,26 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           input.values = values;
           graph.loadContent(new Line(input));
           graph.resize();
-          const lineGroup = lineGraphContainer.querySelectorAll( `.${styles.currentLinesGroup}`);
+          const lineGroup = lineGraphContainer.querySelectorAll(`.${styles.currentLinesGroup}`);
           expect(lineGroup.length).toBe(1);
-          expect( lineGraphContainer.querySelectorAll(`.${styles.point}`) .length).toEqual(values.length - 1);
+          expect(lineGraphContainer.querySelectorAll(`.${styles.point}`).length).toEqual(values.length - 1);
           expect(graph.config.axis.y.domain.lowerLimit).toBe(20);
           expect(graph.config.axis.y.domain.upperLimit).toBe(200);
         });
       });
       describe('In Y2 Axis', () => {
-        it('Displays graph properly', () => {
+        it('displays graph properly', () => {
           const graph = new Graph(getAxes(axis));
           input = getInput(values, true, true, true);
           graph.loadContent(new Line(input));
           graph.resize();
-          const lineGroup = lineGraphContainer.querySelectorAll( `.${styles.currentLinesGroup}`);
+          const lineGroup = lineGraphContainer.querySelectorAll(`.${styles.currentLinesGroup}`);
           expect(lineGroup.length).toBe(1);
-          expect( lineGraphContainer.querySelectorAll(`.${styles.point}`) .length).toEqual(values.length - 1);
+          expect(lineGraphContainer.querySelectorAll(`.${styles.point}`).length).toEqual(values.length - 1);
           expect(graph.config.axis.y2.domain.lowerLimit).toBe(11);
           expect(graph.config.axis.y2.domain.upperLimit).toBe(209);
         });
-        it('Displays graph properly without domain padding', () => {
+        it('displays graph properly without domain padding', () => {
           const data = getAxes(axis);
           data.axis.y2.padDomain = false;
           const graph = new Graph(data);
@@ -731,7 +731,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
                         `.${styles.currentLinesGroup}`,
           );
           expect(lineGroup.length).toBe(1);
-          expect( lineGraphContainer.querySelectorAll(`.${styles.point}`) .length).toEqual(values.length - 1);
+          expect(lineGraphContainer.querySelectorAll(`.${styles.point}`).length).toEqual(values.length - 1);
           expect(graph.config.axis.y2.domain.lowerLimit).toBe(20);
           expect(graph.config.axis.y2.domain.upperLimit).toBe(200);
         });
@@ -741,12 +741,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
   describe('prepares to load legend item', () => {
     it('display the legend when empty array is provided as input', () => {
       graphDefault.loadContent(new Line(getInput([], false, true)));
-      const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend);
+      const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
       const legendItems = legendContainer.children;
       expect(legendContainer).not.toBeNull();
       expect(legendContainer.tagName).toBe('UL');
       expect(legendItems.length).toBe(1);
-      const legendItem = document.body.querySelector( `.${styles.legendItem}`);
+      const legendItem = document.body.querySelector(`.${styles.legendItem}`);
       expect(legendItem.getAttribute('aria-disabled')).toBe('true');
       expect(legendItem.getAttribute('aria-current')).toBe('true');
     });
@@ -756,7 +756,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       input.showLegend = false;
       const noLegendGraph = new Graph(input);
       noLegendGraph.loadContent(new Line(getInput(valuesDefault)));
-      const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend);
+      const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
       expect(legendContainer).toBeNull();
       noLegendGraph.destroy();
     });
@@ -764,7 +764,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       const input = getInput(valuesDefault);
       input.label = null;
       graphDefault.loadContent(new Line(input));
-      const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend);
+      const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
       const legendItems = legendContainer.children;
       expect(legendContainer).not.toBeNull();
       expect(legendContainer.tagName).toBe('UL');
@@ -774,7 +774,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       const input = getInput(valuesDefault);
       input.label = {};
       graphDefault.loadContent(new Line(input));
-      const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend);
+      const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
       const legendItems = legendContainer.children;
       expect(legendContainer).not.toBeNull();
       expect(legendContainer.tagName).toBe('UL');
@@ -784,7 +784,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       const input = getInput(valuesDefault);
       input.label.display = '';
       graphDefault.loadContent(new Line(input));
-      const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend);
+      const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
       const legendItems = legendContainer.children;
       expect(legendContainer).not.toBeNull();
       expect(legendContainer.tagName).toBe('UL');
@@ -794,7 +794,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       const input = getInput(valuesDefault);
       input.label.display = '<HELLO DUMMY X LABEL>';
       graphDefault.loadContent(new Line(input));
-      const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend);
+      const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
       const legendItems = legendContainer.children;
       expect(legendContainer).not.toBeNull();
       expect(legendContainer.tagName).toBe('UL');
@@ -803,24 +803,24 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
     it('loads item with a shape and text', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
-      const legendItemBtn = fetchElementByClass( lineGraphContainer, styles.legendItemBtn);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
+      const legendItemBtn = fetchElementByClass(lineGraphContainer, styles.legendItemBtn);
       const iconSVG = legendItemBtn.children[0].firstChild;
       expect(legendItem).not.toBeNull();
       expect(legendItem.getAttribute('aria-current')).toBe('true');
       expect(legendItem.getAttribute('aria-disabled')).toBe('false');
-      expect(legendItem.children[1].className).toBe( styles.legendItemText);
+      expect(legendItem.children[1].className).toBe(styles.legendItemText);
       expect(legendItem.children[1].tagName).toBe('LABEL');
-      expect(legendItem.children[1].textContent).toBe( input.label.display);
+      expect(legendItem.children[1].textContent).toBe(input.label.display);
       expect(legendItemBtn).not.toBeNull();
-      expect(legendItemBtn.getAttribute('class')).toBe( styles.legendItemBtn);
+      expect(legendItemBtn.getAttribute('class')).toBe(styles.legendItemBtn);
       expect(iconSVG.tagName).toBe('svg');
-      expect( iconSVG.classList.contains(styles.legendItemIcon)).toBeTruthy();
+      expect(iconSVG.classList.contains(styles.legendItemIcon)).toBeTruthy();
     });
     it('loads the correct shape', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       const svgElements = legendItem.querySelectorAll('svg');
       const iconSVG = svgElements[0];
       const iconPath = legendItem.querySelector('path');
@@ -833,13 +833,13 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
     it('loads the correct color', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       const svgElements = legendItem.querySelectorAll('svg');
       const iconSVG = svgElements[0];
       const iconPath = legendItem.querySelector('path');
       expect(iconSVG).not.toBeNull();
       expect(iconSVG.classList).toContain(styles.legendItemIcon);
-      expect(iconSVG.getAttribute('style')).toBe( `fill: ${COLORS.GREEN};`);
+      expect(iconSVG.getAttribute('style')).toBe(`fill: ${COLORS.GREEN};`);
       expect(iconPath).not.toBeNull();
       expect(iconPath.getAttribute('d')).not.toBeNull();
     });
@@ -850,7 +850,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         showLine: true,
       };
       graphDefault.loadContent(new Line(input));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       const svgElements = legendItem.querySelectorAll('svg');
       const lineSVG = svgElements[0];
       expect(svgElements.length).toBe(1);
@@ -864,7 +864,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         showLine: false,
       };
       graphDefault.loadContent(new Line(input));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       const svgElements = legendItem.querySelectorAll('svg');
       const iconPath = legendItem.querySelector('path');
       const iconSVG = svgElements[0];
@@ -898,8 +898,8 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
 
         const lineSVG = SVGElements[1];
         expect(lineSVG).not.toBeNull();
-        expect(lineSVG.classList).toContain( styles.legendItemLineWithIcon);
-        expect( lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 0;');
+        expect(lineSVG.classList).toContain(styles.legendItemLineWithIcon);
+        expect(lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 0;');
       });
       it('loads line with legendOptions style, when legend options style is provided', () => {
         const input = getInput(valuesDefault, false, false);
@@ -911,7 +911,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           },
         };
         graphDefault.loadContent(new Line(input));
-        const legendItem = fetchAllElementsByClass( lineGraphContainer, styles.legendItem);
+        const legendItem = fetchAllElementsByClass(lineGraphContainer, styles.legendItem);
         const SVGElements = legendItem[0].querySelectorAll('svg');
         const iconPath = legendItem[0].querySelector('path');
         const iconSVG = SVGElements[0];
@@ -924,15 +924,15 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
 
         const lineSVG = SVGElements[1];
         expect(lineSVG).not.toBeNull();
-        expect(lineSVG.classList).toContain( styles.legendItemLineWithIcon);
-        expect( lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
+        expect(lineSVG.classList).toContain(styles.legendItemLineWithIcon);
+        expect(lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
       });
       it('loads correct shape on axis', () => {
         const input = getInput(valuesDefault, false, false);
         input.showShapes = true;
         graphDefault.loadContent(new Line(input));
-        const axisLabelShapeItem = fetchElementByClass( lineGraphContainer, styles.axisLabelYShapeContainer);
-        expect( axisLabelShapeItem.querySelector('path').getAttribute('d')).toBe(SHAPES.RHOMBUS.path.d);
+        const axisLabelShapeItem = fetchElementByClass(lineGraphContainer, styles.axisLabelYShapeContainer);
+        expect(axisLabelShapeItem.querySelector('path').getAttribute('d')).toBe(SHAPES.RHOMBUS.path.d);
       });
     });
     describe('when showShapes is false', () => {
@@ -940,12 +940,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         const input = getInput(valuesDefault, false, false);
         input.showShapes = false;
         graphDefault.loadContent(new Line(input));
-        const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
         const svgElements = legendItem.querySelectorAll('svg');
         const lineSVG = svgElements[0];
         expect(lineSVG).not.toBeNull();
         expect(lineSVG.classList).toContain(styles.legendItemLine);
-        expect( lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 0;');
+        expect(lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 0;');
       });
       it('loads line as default even though showShape in legend options set to be true ', () => {
         const input = getInput(valuesDefault, false, false);
@@ -955,13 +955,13 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         };
         input.showShapes = false;
         graphDefault.loadContent(new Line(input));
-        const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
         const svgElements = legendItem.querySelectorAll('svg');
         const lineSVG = svgElements[0];
         expect(lineSVG).not.toBeNull();
         expect(lineSVG.classList).toContain(styles.legendItemLine);
         expect(lineSVG.classList).not.toContain(styles.legendItemIcon);
-        expect( lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 0;');
+        expect(lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 0;');
       });
       it('loads nothing when showShape and showLine in legend options set to be false ', () => {
         const input = getInput(valuesDefault, false, false);
@@ -971,7 +971,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         };
         input.showShapes = false;
         graphDefault.loadContent(new Line(input));
-        const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
         const svgElements = legendItem.querySelectorAll('svg');
         expect(svgElements[0]).not.toBeDefined();
       });
@@ -986,12 +986,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           },
         };
         graphDefault.loadContent(new Line(input));
-        const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
         const svgElements = legendItem.querySelectorAll('svg');
         const lineSVG = svgElements[0];
         expect(lineSVG).not.toBeNull();
         expect(lineSVG.classList).toContain(styles.legendItemLine);
-        expect( lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
+        expect(lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
       });
       it('loads line with line style , when legend options style is not provided', () => {
         const input = getInput(valuesDefault, false, false);
@@ -1003,19 +1003,19 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           showShape: true,
           showLine: true,
         };
-        graphDefault.loadContent(new Line(input)); const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        graphDefault.loadContent(new Line(input)); const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
         const svgElements = legendItem.querySelectorAll('svg');
         const lineSVG = svgElements[0];
         expect(lineSVG).not.toBeNull();
         expect(lineSVG.classList).toContain(styles.legendItemLine);
-        expect( lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
+        expect(lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
       });
       it('loads correct shape on axis', () => {
         const input = getInput(valuesDefault, false, false);
         input.showShapes = false;
         graphDefault.loadContent(new Line(input));
-        const axisLabelShapeItem = fetchElementByClass( lineGraphContainer, styles.axisLabelYShapeContainer);
-        expect( axisLabelShapeItem.querySelector('path').getAttribute('d')).toBe(LINE.path.d);
+        const axisLabelShapeItem = fetchElementByClass(lineGraphContainer, styles.axisLabelYShapeContainer);
+        expect(axisLabelShapeItem.querySelector('path').getAttribute('d')).toBe(LINE.path.d);
       });
       it('loads correct shape on axis when stroke dash array is present', () => {
         const input = getInput(valuesDefault, false, false);
@@ -1024,10 +1024,10 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         };
         input.showShapes = false;
         graphDefault.loadContent(new Line(input));
-        const axisLabelShapeItem = fetchAllElementsByClass( lineGraphContainer, styles.axisLabelYShapeContainer);
-        expect( axisLabelShapeItem[0] .querySelectorAll('path')[0] .getAttribute('d')).toBe(LINE_DASHED.path[0].d);
-        expect( axisLabelShapeItem[0] .querySelectorAll('path')[1] .getAttribute('d')).toBe(LINE_DASHED.path[1].d);
-        expect( axisLabelShapeItem[0] .querySelectorAll('path')[2] .getAttribute('d')).toBe(LINE_DASHED.path[2].d);
+        const axisLabelShapeItem = fetchAllElementsByClass(lineGraphContainer, styles.axisLabelYShapeContainer);
+        expect(axisLabelShapeItem[0].querySelectorAll('path')[0].getAttribute('d')).toBe(LINE_DASHED.path[0].d);
+        expect(axisLabelShapeItem[0].querySelectorAll('path')[1].getAttribute('d')).toBe(LINE_DASHED.path[1].d);
+        expect(axisLabelShapeItem[0].querySelectorAll('path')[2].getAttribute('d')).toBe(LINE_DASHED.path[2].d);
       });
     });
     it('loads the line with provided stroke dashArray', () => {
@@ -1048,18 +1048,18 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       const lineSVG = svgElements[0];
       expect(lineSVG).not.toBeNull();
       expect(lineSVG.classList).toContain(styles.legendItemLine);
-      expect( lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
+      expect(lineSVG.children[1].attributes.getNamedItem('style').value).toContain('stroke-dasharray: 2,2;');
     });
     it('attaches click event handlers correctly', () => {
       const input = getInput(valuesDefault, false, false);
       graphDefault.loadContent(new Line(input));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       triggerEvent(legendItem, 'click', () => {
         expect(legendItem.getAttribute('aria-current')).toBe('false');
       });
     });
     it('on click hides the line and points', () => {
-      const rafSpy = jest.spyOn( window, 'requestAnimationFrame')
+      jest.spyOn(window, 'requestAnimationFrame');
       const input = getInput(valuesDefault, false, false);
       const line = new Line(input);
       graphDefault.loadContent(line);
@@ -1067,10 +1067,10 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         fetchElementByClass(lineGraphContainer, styles.legendItem),
         'click',
         () => {
-          expect(window.requestAnimationFrame).toHaveBeenCalledTimes( 1);
-          expect( fetchElementByClass( lineGraphContainer, styles.point).getAttribute('aria-hidden')).toBe('true');
-          expect( fetchElementByClass( lineGraphContainer, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
-          expect( fetchElementByClass( lineGraphContainer, styles.line).firstChild.getAttribute('aria-hidden')).toBe('true');
+          expect(window.requestAnimationFrame).toHaveBeenCalledTimes(1);
+          expect(fetchElementByClass(lineGraphContainer, styles.point).getAttribute('aria-hidden')).toBe('true');
+          expect(fetchElementByClass(lineGraphContainer, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
+          expect(fetchElementByClass(lineGraphContainer, styles.line).firstChild.getAttribute('aria-hidden')).toBe('true');
         },
       );
     });
@@ -1091,32 +1091,32 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         fetchElementByClass(lineGraphContainer, styles.legendItem),
         'click',
         () => {
-          const primaryLineElement = lineGraphContainer.querySelector( `.${styles.lineGraphContent}[aria-describedby="${inputPrimary.key}"]`);
-          const secondaryLineElement = lineGraphContainer.querySelector( `.${styles.lineGraphContent}[aria-describedby="${inputSecondary.key}"]`);
+          const primaryLineElement = lineGraphContainer.querySelector(`.${styles.lineGraphContent}[aria-describedby="${inputPrimary.key}"]`);
+          const secondaryLineElement = lineGraphContainer.querySelector(`.${styles.lineGraphContent}[aria-describedby="${inputSecondary.key}"]`);
           expect(graph.config.shownTargets.length).toBe(1);
-          expect( fetchElementByClass( primaryLineElement, styles.point).getAttribute('aria-hidden')).toBe('true');
-          expect( fetchElementByClass( primaryLineElement, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
-          expect( fetchElementByClass( primaryLineElement, styles.line).firstChild.getAttribute('aria-hidden')).toBe('true');
-          expect( fetchElementByClass( secondaryLineElement, styles.point).getAttribute('aria-hidden')).toBe('false');
-          expect( fetchElementByClass( secondaryLineElement, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
-          expect( fetchElementByClass( secondaryLineElement, styles.line).firstChild.getAttribute('aria-hidden')).toBe('false');
+          expect(fetchElementByClass(primaryLineElement, styles.point).getAttribute('aria-hidden')).toBe('true');
+          expect(fetchElementByClass(primaryLineElement, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
+          expect(fetchElementByClass(primaryLineElement, styles.line).firstChild.getAttribute('aria-hidden')).toBe('true');
+          expect(fetchElementByClass(secondaryLineElement, styles.point).getAttribute('aria-hidden')).toBe('false');
+          expect(fetchElementByClass(secondaryLineElement, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
+          expect(fetchElementByClass(secondaryLineElement, styles.line).firstChild.getAttribute('aria-hidden')).toBe('false');
         },
       );
     });
     it('on clicking twice toggles the line and points back to visible', () => {
-      const rafSpy = jest.spyOn( window, 'requestAnimationFrame')
+      jest.spyOn(window, 'requestAnimationFrame');
       const input = getInput(valuesDefault, false, false);
       const line = new Line(input);
       const graph = graphDefault.loadContent(line);
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       triggerEvent(legendItem, 'click', () => {
         line.redraw(graph);
         triggerEvent(legendItem, 'click', () => {
           line.redraw(graph);
-          expect(window.requestAnimationFrame).toHaveBeenCalledTimes( 2);
-          expect( fetchElementByClass( lineGraphContainer, styles.point).getAttribute('aria-hidden')).toBe('false');
-          expect( fetchElementByClass( lineGraphContainer, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
-          expect( fetchElementByClass( lineGraphContainer, styles.line).firstChild.getAttribute('aria-hidden')).toBe('false');
+          expect(window.requestAnimationFrame).toHaveBeenCalledTimes(2);
+          expect(fetchElementByClass(lineGraphContainer, styles.point).getAttribute('aria-hidden')).toBe('false');
+          expect(fetchElementByClass(lineGraphContainer, styles.dataPointSelection).getAttribute('aria-hidden')).toBe('true');
+          expect(fetchElementByClass(lineGraphContainer, styles.line).firstChild.getAttribute('aria-hidden')).toBe('false');
         });
       });
     });
@@ -1134,7 +1134,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
     it('shown targets are updated back when toggled', () => {
       const input = getInput(valuesDefault, false, false);
       const graph = graphDefault.loadContent(new Line(input));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       triggerEvent(legendItem, 'click', () => {
         triggerEvent(legendItem, 'click', () => {
           expect(graph.config.shownTargets.length).toBe(1);
@@ -1152,12 +1152,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       };
       graphDefault.loadContent(new Line(inputPrimary));
       graphDefault.loadContent(new Line(inputSecondary));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       triggerEvent(legendItem, 'mouseenter', () => {
-        expect( document .querySelector( `path[aria-describedby="${inputPrimary.key}"]`) .classList.contains(styles.highlight)).toBeTruthy();
-        expect( document .querySelector( `.${styles.point}[aria-describedby="${inputPrimary.key}"]`) .classList.contains(styles.highlight)).toBeTruthy();
-        expect( document .querySelector( `path[aria-describedby="${inputSecondary.key}"]`) .classList.contains(styles.blur)).toBeTruthy();
-        expect( document .querySelector( `.${styles.point}[aria-describedby="${inputSecondary.key}"]`) .classList.contains(styles.blur)).toBeTruthy();
+        expect(document.querySelector(`path[aria-describedby="${inputPrimary.key}"]`).classList.contains(styles.highlight)).toBeTruthy();
+        expect(document.querySelector(`.${styles.point}[aria-describedby="${inputPrimary.key}"]`).classList.contains(styles.highlight)).toBeTruthy();
+        expect(document.querySelector(`path[aria-describedby="${inputSecondary.key}"]`).classList.contains(styles.blur)).toBeTruthy();
+        expect(document.querySelector(`.${styles.point}[aria-describedby="${inputSecondary.key}"]`).classList.contains(styles.blur)).toBeTruthy();
       });
     });
     it('attaches mouse leave event handlers correctly', () => {
@@ -1171,12 +1171,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       };
       graphDefault.loadContent(new Line(inputPrimary));
       graphDefault.loadContent(new Line(inputSecondary));
-      const legendItem = fetchElementByClass( lineGraphContainer, styles.legendItem);
+      const legendItem = fetchElementByClass(lineGraphContainer, styles.legendItem);
       triggerEvent(legendItem, 'mouseleave', () => {
-        expect( document .querySelector( `path[aria-describedby="${inputPrimary.key}"]`) .classList.contains(styles.highlight)).toBeFalsy();
-        expect( document .querySelector( `.${styles.point}[aria-describedby="${inputPrimary.key}"]`) .classList.contains(styles.highlight)).toBeFalsy();
-        expect( document .querySelector( `path[aria-describedby="${inputSecondary.key}"]`) .classList.contains(styles.blur)).toBeFalsy();
-        expect( document .querySelector( `.${styles.point}[aria-describedby="${inputSecondary.key}"]`) .classList.contains(styles.blur)).toBeFalsy();
+        expect(document.querySelector(`path[aria-describedby="${inputPrimary.key}"]`).classList.contains(styles.highlight)).toBeFalsy();
+        expect(document.querySelector(`.${styles.point}[aria-describedby="${inputPrimary.key}"]`).classList.contains(styles.highlight)).toBeFalsy();
+        expect(document.querySelector(`path[aria-describedby="${inputSecondary.key}"]`).classList.contains(styles.blur)).toBeFalsy();
+        expect(document.querySelector(`.${styles.point}[aria-describedby="${inputSecondary.key}"]`).classList.contains(styles.blur)).toBeFalsy();
       });
     });
     describe('when the legend has no data', () => {
@@ -1186,11 +1186,11 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           showElement: false,
         };
         graphDefault.loadContent(new Line(input));
-        const legendContainer = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        const legendContainer = fetchElementByClass(lineGraphContainer, styles.legendItem);
         expect(legendContainer).not.toBeNull();
         expect(legendContainer.tagName).toBe('LI');
-        const legendItem = document.body.querySelector( `.${styles.legendItem}`);
-        expect(legendItem.getAttribute('style')).toBe( 'display: none; padding: 4px 8px;');
+        const legendItem = document.body.querySelector(`.${styles.legendItem}`);
+        expect(legendItem.getAttribute('style')).toBe('display: none; padding: 4px 8px;');
       });
       it('should show the legend if showElement is true', () => {
         const input = getInput([], false, false);
@@ -1198,12 +1198,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           showElement: true,
         };
         graphDefault.loadContent(new Line(input));
-        const legendContainer = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        const legendContainer = fetchElementByClass(lineGraphContainer, styles.legendItem);
         const legendItems = legendContainer.children;
         expect(legendContainer).not.toBeNull();
         expect(legendContainer.tagName).toBe('LI');
         expect(legendItems.length).toBe(2);
-        const legendItem = document.body.querySelector( `.${styles.legendItem}`);
+        const legendItem = document.body.querySelector(`.${styles.legendItem}`);
         expect(legendItem.getAttribute('aria-disabled')).toBe('true');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
       });
@@ -1215,12 +1215,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           showElement: true,
         };
         graphDefault.loadContent(new Line(input));
-        const legendContainer = fetchElementByClass( lineGraphContainer, styles.legendItem);
+        const legendContainer = fetchElementByClass(lineGraphContainer, styles.legendItem);
         const legendItems = legendContainer.children;
         expect(legendContainer).not.toBeNull();
         expect(legendContainer.tagName).toBe('LI');
         expect(legendItems.length).toBe(2);
-        const legendItem = document.body.querySelector( `.${styles.legendItem}`);
+        const legendItem = document.body.querySelector(`.${styles.legendItem}`);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
       });
@@ -1230,12 +1230,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
           showElement: true,
         };
         graphDefault.loadContent(new Line(input));
-        const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend);
+        const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
         const legendItems = legendContainer.children;
         expect(legendContainer).not.toBeNull();
         expect(legendContainer.tagName).toBe('UL');
         expect(legendItems.length).toBe(1);
-        const legendItem = document.body.querySelector( `.${styles.legendItem}`);
+        const legendItem = document.body.querySelector(`.${styles.legendItem}`);
         expect(legendItem.getAttribute('aria-disabled')).toBe('false');
         expect(legendItem.getAttribute('aria-current')).toBe('true');
       });
@@ -1260,12 +1260,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       const input = getInput(valuesDefault, true, true, false);
       graph.loadContent(new Line(input));
       expect(graph.axesLabelShapeGroup[constants.Y_AXIS]).toBeUndefined();
-      expect( graph.axesLabelShapeGroup[constants.Y2_AXIS]).toBeUndefined();
+      expect(graph.axesLabelShapeGroup[constants.Y2_AXIS]).toBeUndefined();
     });
     it('loads shape in Y Axis', () => {
-      const labelShapeContainer = fetchElementByClass( lineGraphContainer, styles.axisLabelYShapeContainer);
+      const labelShapeContainer = fetchElementByClass(lineGraphContainer, styles.axisLabelYShapeContainer);
       const svgPath = labelShapeContainer.children[0];
-      expect( graph.axesLabelShapeGroup[constants.Y_AXIS]).not.toBeUndefined();
+      expect(graph.axesLabelShapeGroup[constants.Y_AXIS]).not.toBeUndefined();
       expect(labelShapeContainer.children.length).toBe(1);
       expect(svgPath.tagName).toBe('svg');
       expect(svgPath.getAttribute('x')).toBe('0');
@@ -1275,7 +1275,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       const lineTertiary = getInput(valuesDefault, true, true, false);
       lineTertiary.key = 'uid_3';
       graph.loadContent(new Line(lineTertiary));
-      const labelShapeContainer = fetchElementByClass( lineGraphContainer, styles.axisLabelYShapeContainer);
+      const labelShapeContainer = fetchElementByClass(lineGraphContainer, styles.axisLabelYShapeContainer);
       const svgPath = labelShapeContainer.children[1];
       expect(labelShapeContainer.children.length).toBe(2);
       expect(svgPath.tagName).toBe('svg');
@@ -1288,7 +1288,7 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
         styles.axisLabelY2ShapeContainer,
       );
       const svgPath = labelShapeContainer.children[0];
-      expect( graph.axesLabelShapeGroup[constants.Y2_AXIS]).not.toBeUndefined();
+      expect(graph.axesLabelShapeGroup[constants.Y2_AXIS]).not.toBeUndefined();
       expect(labelShapeContainer.children.length).toBe(1);
       expect(svgPath.tagName).toBe('svg');
       expect(svgPath.getAttribute('x')).toBe('0');
@@ -1319,12 +1319,12 @@ const pointsGroup = fetchElementByClass( lineGraphContainer, styles.currentPoint
       lineSecondary.key = 'uid_2';
       graph.loadContent(new Line(linePrimary));
       graph.loadContent(new Line(lineSecondary));
-      const legendItem = document.querySelector( `.${styles.legendItem}[aria-describedby="${linePrimary.key}"]`);
+      const legendItem = document.querySelector(`.${styles.legendItem}[aria-describedby="${linePrimary.key}"]`);
       expect(graph.config.shownTargets).toEqual(['uid_1', 'uid_2']);
       triggerEvent(legendItem, 'click');
       triggerEvent(legendItem, 'click');
       expect(graph.config.shownTargets).toEqual(['uid_2', 'uid_1']);
-      expect( document .querySelector(`.${styles.lineGraphContent}`) .getAttribute('aria-describedby')).toEqual(linePrimary.key);
+      expect(document.querySelector(`.${styles.lineGraphContent}`).getAttribute('aria-describedby')).toEqual(linePrimary.key);
     });
   });
 });

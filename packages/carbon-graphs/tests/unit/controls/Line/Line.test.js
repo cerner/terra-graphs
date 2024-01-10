@@ -65,9 +65,7 @@ describe('Line', () => {
       expect(legendContainer).not.toBeNull();
       expect(legendContainer.tagName).toBe('UL');
       expect(legendItems.length).toBe(1);
-      const legendItem = document.body.querySelector(
-                `.${styles.legendItem}`,
-      );
+      const legendItem = document.body.querySelector( `.${styles.legendItem}`, );
       expect(legendItem.getAttribute('aria-disabled')).toBe('false');
     });
     it('does not throw error when empty array is provided', () => {
@@ -130,8 +128,8 @@ describe('Line', () => {
         );
       }).not.toThrow();
     });
-    describe('throws error when values have datetime in a different ISO8601 format', () => {
-      it('on invalid millisecond value', () => {
+    describe('when values have datetime in a different ISO8601 format', () => {
+      it('throws error on invalid millisecond value', () => {
         expect(() => {
           const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
           graphTimeSeries.loadContent(
@@ -150,7 +148,7 @@ describe('Line', () => {
           );
         }).toThrow();
       });
-      it('on invalid second value', () => {
+      it('throws error on invalid second value', () => {
         expect(() => {
           const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
           graphTimeSeries.loadContent(
@@ -169,7 +167,7 @@ describe('Line', () => {
           );
         }).toThrow();
       });
-      it('on no second value but with millisecond value', () => {
+      it('throws error on no second value but with millisecond value', () => {
         expect(() => {
           const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
           graphTimeSeries.loadContent(
@@ -188,7 +186,7 @@ describe('Line', () => {
           );
         }).toThrow();
       });
-      it('on no minute or second but with Zulu time stamp', () => {
+      it('throws error on no minute or second but with Zulu time stamp', () => {
         expect(() => {
           const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
           graphTimeSeries.loadContent(
@@ -207,7 +205,7 @@ describe('Line', () => {
           );
         }).toThrow();
       });
-      it('on no hour, minute or second value but with Zulu timestamp', () => {
+      it('throws error on no hour, minute or second value but with Zulu timestamp', () => {
         expect(() => {
           const graphTimeSeries = new Graph(getAxes(axisTimeSeries));
           graphTimeSeries.loadContent(
