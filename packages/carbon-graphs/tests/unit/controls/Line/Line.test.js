@@ -34,7 +34,7 @@ describe('Line', () => {
       graphDefault = new Graph(getAxes(axisDefault));
     });
     afterEach(() => {
-      graphDefault.destroy()
+      graphDefault.destroy();
     });
 
     it('initializes properly', () => {
@@ -65,7 +65,7 @@ describe('Line', () => {
     it.skip('display the legend when values are provided', () => {
       const input = getInput(valuesDefault);
       graphDefault.loadContent(new Line(input));
-      const legendContainer = fetchElementByClass( lineGraphContainer, styles.legend, );
+      const legendContainer = fetchElementByClass(lineGraphContainer, styles.legend);
 
       const legendItems = legendContainer.children;
       expect(legendContainer).not.toBeNull();

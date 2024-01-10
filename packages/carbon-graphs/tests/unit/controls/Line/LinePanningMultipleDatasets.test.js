@@ -92,14 +92,14 @@ describe.skip('Line - Panning', () => {
               },
             ],
           };
-          let lineContent = fetchAllElementsByClass( lineGraphContainer, styles.pointGroup);
+          let lineContent = fetchAllElementsByClass(lineGraphContainer, styles.pointGroup);
           expect(lineContent.length).toEqual(3);
           graphDefault.reflowMultipleDatasets(graphData);
-          lineContent = fetchAllElementsByClass( lineGraphContainer, styles.pointGroup);
+          lineContent = fetchAllElementsByClass(lineGraphContainer, styles.pointGroup);
           expect(lineContent.length).toEqual(2);
-          const axisLabelX = fetchElementByClass( lineGraphContainer, styles.axisLabelX);
-          const axisLabelY = fetchElementByClass( lineGraphContainer, styles.axisLabelY);
-          const axisLabelY2 = fetchElementByClass( lineGraphContainer, styles.axisLabelY2);
+          const axisLabelX = fetchElementByClass(lineGraphContainer, styles.axisLabelX);
+          const axisLabelY = fetchElementByClass(lineGraphContainer, styles.axisLabelY);
+          const axisLabelY2 = fetchElementByClass(lineGraphContainer, styles.axisLabelY2);
           expect(axisLabelX.querySelector('text').textContent).toBe('X Label');
           expect(axisLabelY.querySelector('text').textContent).toBe('Y Label');
           expect(axisLabelY2.querySelector('text').textContent).toBe('Y2 Label');
@@ -155,10 +155,10 @@ describe.skip('Line - Panning', () => {
           },
         ],
       };
-      let lineContent = fetchAllElementsByClass( lineGraphContainer, styles.pointGroup);
+      let lineContent = fetchAllElementsByClass(lineGraphContainer, styles.pointGroup);
       expect(lineContent.length).toEqual(3);
       graphDefault.reflowMultipleDatasets(graphData);
-      lineContent = fetchAllElementsByClass( lineGraphContainer, styles.pointGroup);
+      lineContent = fetchAllElementsByClass(lineGraphContainer, styles.pointGroup);
       expect(lineContent.length).toEqual(3);
     });
     describe('when there is no data', () => {

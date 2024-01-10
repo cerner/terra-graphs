@@ -98,7 +98,6 @@ describe.skip('Line - Region', () => {
         expect(regionElement.getAttribute('aria-hidden')).toBe('false');
       });
       it('gives value region precedence over legend level regions', () => {
-        let regionGroupElement = null;
         data = utils.deepClone(getInput(values, false, false));
         data.regions = [
           {
@@ -110,7 +109,7 @@ describe.skip('Line - Region', () => {
         ];
         line = new Line(data);
         graphDefault.loadContent(line);
-        regionGroupElement = fetchElementByClass(lineGraphContainer, styles.regionGroup);
+        const regionGroupElement = fetchElementByClass(lineGraphContainer, styles.regionGroup);
         const regionElement = fetchElementByClass(regionGroupElement, styles.region);
         expect(regionGroupElement.childNodes.length).toBe(1);
         expect(regionElement.nodeName).toBe('path');
@@ -126,7 +125,7 @@ describe.skip('Line - Region', () => {
         };
         line = new Line(getInput(values, false, false));
         graphDefault.loadContent(line);
-        regionGroupElement = fetchElementByClass(lineGraphContainer, styles.regionGroup);
+        const regionGroupElement = fetchElementByClass(lineGraphContainer, styles.regionGroup);
         expect(regionGroupElement.childNodes.length).toBe(2);
       });
       it('splits to multiple area if there is a region with different color', () => {
@@ -137,7 +136,7 @@ describe.skip('Line - Region', () => {
         };
         line = new Line(getInput(values, false, false));
         graphDefault.loadContent(line);
-        regionGroupElement = fetchElementByClass(lineGraphContainer, styles.regionGroup);
+        const regionGroupElement = fetchElementByClass(lineGraphContainer, styles.regionGroup);
         expect(regionGroupElement.childNodes.length).toBe(2);
       });
     });
