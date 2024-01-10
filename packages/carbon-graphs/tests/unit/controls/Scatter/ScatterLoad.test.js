@@ -27,10 +27,7 @@ describe('Scatter - Load', () => {
   beforeEach(() => {
     scatterGraphContainer = document.createElement('div');
     scatterGraphContainer.id = 'testScatter_carbon';
-    scatterGraphContainer.setAttribute(
-      'style',
-      'width: 1024px; height: 400px;',
-    );
+    scatterGraphContainer.setAttribute('style', 'width: 1024px; height: 400px;');
     document.body.appendChild(scatterGraphContainer);
   });
   afterEach(() => {
