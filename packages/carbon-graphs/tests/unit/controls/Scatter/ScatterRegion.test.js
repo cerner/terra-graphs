@@ -24,10 +24,6 @@ import {
   inputTertiary,
 } from './helpers';
 
-
-
-
-
 // TODO: fix failing tests
 describe.skip('Scatter - Region', () => {
 

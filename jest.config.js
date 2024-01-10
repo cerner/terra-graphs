@@ -1,9 +1,7 @@
-// const jestConfig = require('@cerner/jest-config-terra');
+ const jestConfig = require('@cerner/jest-config-terra');
 
 module.exports = {
-//  ...jestConfig,
-  preset: 'jest-puppeteer',
-  //    testEnvironment:"jsdom",
+  ...jestConfig,
   testEnvironmentOptions: {
     browsers: [
       'chrome',

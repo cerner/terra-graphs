@@ -1,4 +1,3 @@
-import sinon from 'sinon';
 import {
   AXIS_TYPE,
   COLORS,
@@ -6,7 +5,7 @@ import {
 } from '../../../../src/js/helpers/constants';
 import utils from '../../../../src/js/helpers/utils';
 
-export const dataPointClickHandlerSpy = sinon.spy();
+export const dataPointClickHandlerMock = jest.fn();
 /**
  * Creates and returns an example input with data point values
  *
@@ -25,7 +24,7 @@ export const getInput = (
   key: 'uid_1',
   color: !isDefaultColor ? COLORS[Object.keys(COLORS)[1]] : '',
   shape: !isDefaultShape ? SHAPES.RHOMBUS : '',
-  onClick: dataPointClickHandlerSpy,
+  onClick: dataPointClickHandlerMock,
   yAxis: isY2Axis ? 'y2' : 'y',
   label: {
     display: 'Data Label A',
