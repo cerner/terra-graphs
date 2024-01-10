@@ -26,7 +26,6 @@ import {
 
 // TODO: fix failing tests
 describe.skip('Scatter - Region', () => {
-
   let scatter;
   let data;
   let graphDefault;
@@ -85,7 +84,7 @@ describe.skip('Scatter - Region', () => {
     });
     it('Creates region only if present', () => {
       data = utils.deepClone(getInput(valuesDefault, false, false));
-      data.regions;
+      data.regions = null;
       scatter = new Scatter(data);
       graphDefault.loadContent(scatter);
       const regionGroupElement = fetchElementByClass(scatterGraphContainer, styles.regionGroup);
@@ -131,7 +130,7 @@ describe.skip('Scatter - Region', () => {
         data = utils.deepClone(getInput(valuesDefault, false, false));
       });
       afterEach(() => {
-        data;
+        data = null;
       });
 
       it('Throws error when empty', () => {
@@ -609,7 +608,7 @@ describe.skip('Scatter - Region', () => {
       expect(regionElement.nodeName).toBe('rect');
     });
     it('Hides region if one or more is missing', () => {
-      inputTertiary.regions;
+      inputTertiary.regions = null;
       scatterThird = new Scatter(inputTertiary);
       graphDefault.loadContent(scatterThird);
       const regionsElement = document.querySelectorAll(`.${styles.region}`);

@@ -267,7 +267,6 @@ describe.skip('Scatter - Criticality', () => {
     let graphDefault;
     let inputPrimary;
     let scatterPrimary;
-    let scatterSecondary;
 
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
@@ -298,7 +297,6 @@ describe.skip('Scatter - Criticality', () => {
     let graphDefault;
     let inputPrimary;
     let scatterPrimary;
-    let scatterSecondary;
 
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
@@ -428,7 +426,6 @@ describe.skip('Scatter - Criticality', () => {
     let graphDefault;
     let inputPrimary;
     let scatterPrimary;
-    let scatterSecondary;
 
     beforeEach(() => {
       graphDefault = new Graph(getAxes(axisDefault));
