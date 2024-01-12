@@ -19,17 +19,13 @@ import {
 describe('Bubble Multiple Dataset - Unload', () => {
   let graphDefault = null;
   let bubbleGraphContainer;
-  let consolewarn;
 
   beforeAll(() => {
-    // to supress warnings
-    consolewarn = console.warn;
-    console.warn = () => {};
+    jest.spyOn(console, 'warn').mockImplementation();
   });
   afterAll(() => {
-    console.warn = consolewarn;
+    jest.restoreAllMocks();
   });
-
   beforeEach(() => {
     bubbleGraphContainer = document.createElement('div');
     bubbleGraphContainer.id = 'testBubble_carbon';

@@ -17,8 +17,13 @@ import {
 describe('Bubble', () => {
   let graphDefault = null;
   let bubbleGraphContainer;
-  let consolewarn;
 
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     bubbleGraphContainer = document.createElement('div');
     bubbleGraphContainer.id = 'testBubble_carbon';
@@ -29,14 +34,7 @@ describe('Bubble', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
-  beforeAll(() => {
-    // to supress warnings
-    consolewarn = console.warn;
-    console.warn = () => {};
-  });
-  afterAll(() => {
-    console.warn = consolewarn;
-  });
+
   describe('When constructed', () => {
     it('initializes properly', () => {
       const bubble = new Bubble(getInput(valuesDefault));
@@ -232,7 +230,7 @@ describe('Bubble', () => {
       expect(bubble.config.key).toBe(input.key);
       expect(bubble.config.color).toBe(input.color);
       expect(bubble.config.label).toEqual(input.label);
-      expect(bubble.config.onClick).toEqual(jasmine.any(Function));
+      expect(typeof bubble.config.onClick).toEqual('function');
       expect(bubble.config.values.length).toBe(3);
       expect(
         bubble.config.values.every(
@@ -257,7 +255,7 @@ describe('Bubble', () => {
       expect(bubble.config.key).not.toBe(input.key);
       expect(bubble.config.color).not.toBe(input.color);
       expect(bubble.config.label).not.toEqual(input.label);
-      expect(bubble.config.onClick).toEqual(jasmine.any(Function));
+      expect(typeof bubble.config.onClick).toEqual('function');
       expect(bubble.config.values).not.toBe(input.values);
       expect(bubble.config.values.length).toBe(3);
     });
