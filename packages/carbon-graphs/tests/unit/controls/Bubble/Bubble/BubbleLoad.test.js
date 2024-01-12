@@ -311,7 +311,7 @@ describe('Bubble - Load', () => {
         const bubble = new Bubble(input);
         graphDefault.loadContent(bubble);
 
-        const bubblePoint = document.querySelectorAll( `.${styles.point}` );
+        const bubblePoint = document.querySelectorAll(`.${styles.point}`);
         bubblePoint.forEach((points) => {
           expect(points.tagName).toBe('g');
           expect(points.firstChild.tagName).toBe('circle');

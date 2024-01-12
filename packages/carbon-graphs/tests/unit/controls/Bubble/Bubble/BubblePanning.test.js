@@ -67,7 +67,7 @@ describe.skip('Bubble - Panning', () => {
       expect(graphDefault.scale.x.clamp()).toEqual(false);
     });
     it('DatelineGroup translates properly when panning is enabled', () => {
-      const datelineGroup = document.querySelector( `.${styles.datelineGroup}`, );
+      const datelineGroup = document.querySelector(`.${styles.datelineGroup}`);
       delay(() => {
         const { translate } = getSVGAnimatedTransformList(
           datelineGroup.getAttribute('transform'),

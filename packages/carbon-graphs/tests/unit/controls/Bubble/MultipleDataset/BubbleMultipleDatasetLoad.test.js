@@ -438,12 +438,12 @@ describe('Bubble Multiple Dataset - Load', () => {
         const bubble = new BubbleMultipleDataset(input);
         graphDefault.loadContent(bubble);
 
-        const bubblePoint = document.querySelectorAll( `.${styles.point}` );
+        const bubblePoint = document.querySelectorAll(`.${styles.point}`);
         bubblePoint.forEach((points) => {
           expect(points.tagName).toBe('g');
           expect(points.firstChild.tagName).toBe('circle');
-          expect( toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeGreaterThanOrEqual(3);
-          expect( toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeLessThanOrEqual(30);
+          expect(toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeGreaterThanOrEqual(3);
+          expect(toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeLessThanOrEqual(30);
         });
       });
     });

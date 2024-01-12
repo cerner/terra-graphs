@@ -10,11 +10,7 @@ import constants from '../../../../../src/js/helpers/constants';
 import errors from '../../../../../src/js/helpers/errors';
 import styles from '../../../../../src/js/helpers/styles';
 import utils from '../../../../../src/js/helpers/utils';
-import {
-  loadCustomJasmineMatcher,
-  toNumber,
-  triggerEvent,
-} from '../../../helpers/commonHelpers';
+import { toNumber, triggerEvent } from '../../../helpers/commonHelpers';
 import {
   axisDefault,
   fetchElementByClass,

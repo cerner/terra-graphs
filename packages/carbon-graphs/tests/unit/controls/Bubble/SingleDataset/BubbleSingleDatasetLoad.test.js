@@ -467,8 +467,8 @@ describe('Bubble Single Dataset - Load', () => {
         bubblePoint.forEach((points) => {
           expect(points.tagName).toBe('g');
           expect(points.firstChild.tagName).toBe('circle');
-          expect( toNumber(points.firstChild.attributes.getNamedItem('r').value) ).toBeGreaterThanOrEqual(3);
-          expect( toNumber(points.firstChild.attributes.getNamedItem('r').value) ).toBeLessThanOrEqual(30);
+          expect(toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeGreaterThanOrEqual(3);
+          expect(toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeLessThanOrEqual(30);
         });
       });
       it('weight and color based', () => {

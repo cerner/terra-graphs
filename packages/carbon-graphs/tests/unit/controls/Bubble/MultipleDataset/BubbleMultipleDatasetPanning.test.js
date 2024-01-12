@@ -8,7 +8,6 @@ import { getSVGAnimatedTransformList } from '../../../../../src/js/helpers/trans
 import utils from '../../../../../src/js/helpers/utils';
 import {
   delay,
-  loadCustomJasmineMatcher,
   PADDING_BOTTOM,
   toNumber,
 } from '../../../helpers/commonHelpers';
