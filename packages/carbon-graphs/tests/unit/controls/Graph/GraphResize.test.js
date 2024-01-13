@@ -21,7 +21,7 @@ import {
 } from './helpers';
 
 // TODO: fix failing test
-    describe.skip('Graph - Resize', () => {
+describe.skip('Graph - Resize', () => {
   let graph = null;
   let graphContainer;
 

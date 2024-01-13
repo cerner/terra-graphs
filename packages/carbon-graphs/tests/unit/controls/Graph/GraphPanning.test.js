@@ -28,7 +28,7 @@ import {
 import utils from '../../../../src/js/helpers/utils';
 
 // TODO: fix failing test
-    describe.skip('Graph - Panning', () => {
+describe.skip('Graph - Panning', () => {
   let graph = null;
   let graphContainer;
   const largeLabel = 'Project long display value which is only for testing, Project long display value which is only for testing '

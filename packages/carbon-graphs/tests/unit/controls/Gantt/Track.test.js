@@ -23,7 +23,7 @@ import {
 } from './helpers';
 
 // TODO: fix failing test
-    describe.skip('Gantt -> Track', () => {
+describe.skip('Gantt -> Track', () => {
   let gantt = null;
   let ganttChartContainer;
   beforeEach(() => {

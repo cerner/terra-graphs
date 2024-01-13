@@ -24,7 +24,7 @@ import {
 } from './helpers';
 
 // TODO: fix jest tests
-    describe.skip('Paired Result - Criticality', () => {
+describe.skip('Paired Result - Criticality', () => {
   let inputPrimary = null;
   let pairedResultPrimaryContent = null;
   let pairedResultSecondaryContent = null;

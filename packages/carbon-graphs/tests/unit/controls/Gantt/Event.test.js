@@ -23,7 +23,7 @@ import {
  * BF11272018.02 - Verify the system will allow consumers to utilize events within the Gantt Chart.
  */
 // TODO: fix failing test
-    describe.skip('Gantt -> Track -> Event', () => {
+describe.skip('Gantt -> Track -> Event', () => {
   let gantt = null;
   let ganttChartContainer;
   const axisData = getAxes(axisJSON);

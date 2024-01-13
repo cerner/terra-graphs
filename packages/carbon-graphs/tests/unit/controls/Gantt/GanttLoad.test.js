@@ -237,7 +237,7 @@ describe('Gantt - Load', () => {
      * CH02152019.01 - Verify when the track is loading, the system positions the track according to the index position.
      */
   // TODO: fix failing test
-    describe.skip('Track loading at a index', () => {
+  describe.skip('Track loading at a index', () => {
     describe('Validation', () => {
       it('Throws error if input index is not valid', () => {
         const content = utils.deepClone(primaryContent);

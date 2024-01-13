@@ -7,7 +7,6 @@ import styles from '../../../../src/js/helpers/styles';
 import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transformUtils';
 import utils from '../../../../src/js/helpers/utils';
 import {
-  loadCustomJasmineMatcher,
   PADDING_BOTTOM,
   toNumber,
   delay,
@@ -42,7 +41,6 @@ describe('Graph - Eventline', () => {
   });
 
   describe('Validates input props', () => {
-
     // TODO: fix failing test
     it('Process the default input with eventline throw error', () => {
       expect(() => {

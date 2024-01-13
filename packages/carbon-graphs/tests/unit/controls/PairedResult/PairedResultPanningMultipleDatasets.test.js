@@ -8,7 +8,6 @@ import { getSVGAnimatedTransformList } from '../../../../src/js/helpers/transfor
 import utils from '../../../../src/js/helpers/utils';
 import {
   delay,
-  loadCustomJasmineMatcher,
   PADDING_BOTTOM,
   toNumber, triggerEvent,
 } from '../../helpers/commonHelpers';
@@ -23,7 +22,7 @@ import {
 import errors from '../../../../src/js/helpers/errors';
 
 // TODO: fix jest tests
-    describe.skip('PairedResult', () => {
+describe.skip('PairedResult', () => {
   let graphDefault = null;
   let pairedResultGraphContainer;
 

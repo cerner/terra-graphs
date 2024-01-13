@@ -25,7 +25,7 @@ import {
 } from './helpers';
 
 // TODO: fix jest tests
-    describe.skip('Paired Result - Load', () => {
+describe.skip('Paired Result - Load', () => {
   let graphDefault = null;
   let pairedResultGraphContainer;
   beforeEach(() => {

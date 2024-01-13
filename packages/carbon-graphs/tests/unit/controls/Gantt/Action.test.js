@@ -17,7 +17,7 @@ import {
 } from './helpers';
 
 // TODO: fix failing test
-    describe.skip('Gantt -> Track -> Action', () => {
+describe.skip('Gantt -> Track -> Action', () => {
   let gantt = null;
   let ganttChartContainer;
   const axisData = Object.assign(getAxes(axisJSON), {

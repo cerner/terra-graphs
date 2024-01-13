@@ -22,7 +22,7 @@ import {
 } from '../../../../src/js/helpers/constants';
 
 // TODO: fix failing test
-    describe.skip('Graph - Panning', () => {
+describe.skip('Graph - Panning', () => {
   let graph = null;
   let graphContainer;
   let consolewarn;

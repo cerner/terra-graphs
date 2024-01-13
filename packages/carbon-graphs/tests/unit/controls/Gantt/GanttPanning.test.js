@@ -26,7 +26,7 @@ import {
 } from '../../../../src/js/helpers/constants';
 
 // TODO: fix failing test
-    describe.skip('Panning', () => {
+describe.skip('Panning', () => {
   let gantt = null;
   let ganttChartContainer;
   let consolewarn;

@@ -14,7 +14,7 @@ import {
 } from './helpers';
 
 // TODO: fix jest tests
-    describe.skip('Paired Result - Unload', () => {
+describe.skip('Paired Result - Unload', () => {
   let graphDefault = null;
   let pairedResultGraphContainer;
   beforeEach(() => {

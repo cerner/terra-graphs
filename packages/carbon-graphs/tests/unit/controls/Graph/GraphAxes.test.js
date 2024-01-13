@@ -2458,7 +2458,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-        // TODO: fix failing test
+    // TODO: fix failing test
     it.skip('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
@@ -2517,7 +2517,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-        // TODO: fix failing test
+    // TODO: fix failing test
     it.skip('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
@@ -2570,7 +2570,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-        // TODO: fix failing test
+    // TODO: fix failing test
     it.skip('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;
@@ -2632,7 +2632,7 @@ describe('Graph - Axes', () => {
       graph.destroy();
       axisDefault.y2 = '';
     });
-        // TODO: fix failing test
+    // TODO: fix failing test
     it.skip('Truncates if too long', () => {
       const labelAxisObj = utils.deepClone(axisDefault);
       labelAxisObj.y.label = largeLabel;

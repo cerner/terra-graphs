@@ -16,7 +16,7 @@ import {
 } from './helpers';
 
 // TODO: fix failing test
-    describe.skip('Graph - Unload', () => {
+describe.skip('Graph - Unload', () => {
   let graph = null;
   let graphContainer;
   let primaryContent;

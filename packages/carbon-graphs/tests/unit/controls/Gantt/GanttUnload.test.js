@@ -18,7 +18,7 @@ import {
 } from './helpers';
 
 // TODO: fix failing test
-    describe.skip('Gantt - Unload', () => {
+describe.skip('Gantt - Unload', () => {
   let gantt = null;
   let ganttChartContainer;
   let primaryContent = getData();

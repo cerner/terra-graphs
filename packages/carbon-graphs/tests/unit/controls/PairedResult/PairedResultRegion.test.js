@@ -28,7 +28,7 @@ import {
 } from './helpers';
 
 // TODO: fix jest tests
-    describe.skip('Paired Result - Region', () => {
+describe.skip('Paired Result - Region', () => {
   let pairedResultPrimaryContent = null;
   let data = null;
   const inputSecondary = {

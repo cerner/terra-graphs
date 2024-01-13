@@ -22,7 +22,7 @@ import {
 import errors from '../../../../src/js/helpers/errors';
 
 // TODO: fix jest tests
-    describe.skip('PairedResult', () => {
+describe.skip('PairedResult', () => {
   let graphDefault = null;
   let pairedResultGraphContainer;
 
