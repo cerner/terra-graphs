@@ -17,8 +17,13 @@ import {
 describe('Bubble Multiple Dataset', () => {
   let graphDefault = null;
   let bubbleGraphContainer;
-  let consolewarn;
 
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     bubbleGraphContainer = document.createElement('div');
     bubbleGraphContainer.id = 'testBubble_carbon';
@@ -32,14 +37,7 @@ describe('Bubble Multiple Dataset', () => {
   afterEach(() => {
     document.body.innerHTML = '';
   });
-  beforeAll(() => {
-    // to supress warnings
-    consolewarn = console.warn;
-    console.warn = () => {};
-  });
-  afterAll(() => {
-    console.warn = consolewarn;
-  });
+
   describe('When constructed', () => {
     it('initializes properly', () => {
       const bubble = new BubbleMultipleDataset(getInput(valuesDefault));

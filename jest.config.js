@@ -11,8 +11,12 @@ module.exports = {
   },
   testMatch: [
     '**/carbon-graphs/tests/unit/controls/Bar/(*.)(test.js)',
+    '**/carbon-graphs/tests/unit/controls/Bubble/**/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/controls/Carbon/(*.)(test.js)',
+    '**/carbon-graphs/tests/unit/controls/Gantt/(*.)(test.js)',
+    '**/carbon-graphs/tests/unit/controls/Graph/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/controls/Line/(*.)(test.js)',
+    '**/carbon-graphs/tests/unit/controls/PairedResult/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/controls/Pie/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/controls/Scatter/(*.)(test.js)',
     '**/carbon-graphs/tests/unit/core/**/(*.)(test.js)',

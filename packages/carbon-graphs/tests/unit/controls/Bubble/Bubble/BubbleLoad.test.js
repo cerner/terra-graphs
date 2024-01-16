@@ -10,7 +10,7 @@ import constants, {
 import errors from '../../../../../src/js/helpers/errors';
 import styles from '../../../../../src/js/helpers/styles';
 import utils from '../../../../../src/js/helpers/utils';
-import { triggerEvent } from '../../../helpers/commonHelpers';
+import { toNumber, triggerEvent } from '../../../helpers/commonHelpers';
 import {
   axisDefault,
   axisTimeSeries,
@@ -26,10 +26,15 @@ import {
 import { generateColor } from '../../../../../src/js/controls/Bubble/helpers/colorGradient';
 
 describe('Bubble - Load', () => {
-  let graphDefault = null;
+  let graphDefault;
   let bubbleGraphContainer;
-  let consolewarn;
 
+  beforeAll(() => {
+    jest.spyOn(console, 'warn').mockImplementation();
+  });
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   beforeEach(() => {
     bubbleGraphContainer = document.createElement('div');
     bubbleGraphContainer.id = 'testBubble_carbon';
@@ -41,14 +46,6 @@ describe('Bubble - Load', () => {
     document.body.innerHTML = '';
   });
 
-  beforeAll(() => {
-    // to supress warnings
-    consolewarn = console.warn;
-    console.warn = () => {};
-  });
-  afterAll(() => {
-    console.warn = consolewarn;
-  });
   it('returns the graph instance', () => {
     const loadedBubble = new Bubble(getInput(valuesDefault, false));
     loadedBubble.load(graphDefault);
@@ -314,14 +311,12 @@ describe('Bubble - Load', () => {
         const bubble = new Bubble(input);
         graphDefault.loadContent(bubble);
 
-        const bubblePoint = document.querySelectorAll(
-                    `.${styles.point}`,
-        );
+        const bubblePoint = document.querySelectorAll(`.${styles.point}`);
         bubblePoint.forEach((points) => {
           expect(points.tagName).toBe('g');
           expect(points.firstChild.tagName).toBe('circle');
-          expect(points.firstChild.attributes.getNamedItem('r').value).toBeGreaterThanOrEqual(3);
-          expect(points.firstChild.attributes.getNamedItem('r').value).toBeLessThanOrEqual(30);
+          expect(toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeGreaterThanOrEqual(3);
+          expect(toNumber(points.firstChild.attributes.getNamedItem('r').value)).toBeLessThanOrEqual(30);
         });
       });
       it('weight and color based', () => {
