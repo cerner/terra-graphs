@@ -487,7 +487,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   justify-content: center;
   line-height: 1.429;
   line-height: var(--terra-button-line-height, 1.429);
-  margin: 0; /* Reset margin for Safari. Safari defaults to 2px. */
+  margin: 2px;
   max-width: 100%; /* Need to help with overflow-wrap */
   min-height: 2.14285rem;
   min-height: var(--terra-button-min-height, 2.14285rem);
@@ -8840,7 +8840,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-form-select-native-border-radius: 3px;
   --terra-form-select-native-color: #1c1f21;
   --terra-form-select-native-font-size: 1rem;
-  --terra-form-select-native-height: 2rem;
+  --terra-form-select-native-height: 2.16667rem;
   --terra-form-select-native-line-height: 1.75;
   --terra-form-select-native-placeholder-color: #707070;
   --terra-form-select-native-placeholder-font-style: normal;
@@ -9051,7 +9051,11 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   line-height: var(--terra-form-select-native-select-line-height, 1.75);
   opacity: 0;
   outline: none;
-  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0.4286rem;
+  padding-left: var(--terra-form-select-native-frame-padding-left, 0.4286rem);
+  padding-right: 0;
+  padding-top: 0;
   top: 0;
   width: 100%;
   z-index: 1;
@@ -10009,6 +10013,12 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   box-shadow: none;
   box-shadow: var(--terra-search-field-input-focus-box-shadow, none);
   color: var(--terra-search-field-input-focus-color);
+}
+@media (max-width: 320px), (max-height: 256px) {
+  .SearchField-module__search-field___3aG0W {
+    width: 14.5rem;
+    width: var(--terra-search-field-resize-max-width, 14.5rem);
+  }
 }
 .SearchModal-module__clinical-lowlight-theme___2Zk-F {
   --terra-dev-site-search-field-background-color: #1e2529;
