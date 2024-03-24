@@ -562,6 +562,9 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   color: #fff;
   color: var(--terra-button-selected-and-hover-color, #fff);
 }
+.Button-module__button___3afIE.Button-module__is-left-aligned___31tNT {
+  justify-content: start;
+}
 .Button-module__button-label-mac___3ziTE {
   display: inline-block;
 }
