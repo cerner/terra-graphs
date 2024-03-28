@@ -1,0 +1,12 @@
+.Graphs-module__clinical-lowlight-theme___2Zddy {
+  --terra-graphs-graphs-background-color: #ffa500;
+}
+
+.Graphs-module__orion-fusion-theme___1cHDB {
+  --terra-graphs-graphs-background-color: #9400d3;
+}
+
+.Graphs-module__graphs___3nsHL {
+  background-color: #0079be;
+  background-color: var(--terra-graphs-graphs-background-color, #0079be);
+}
