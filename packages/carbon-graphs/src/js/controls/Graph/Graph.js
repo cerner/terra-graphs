@@ -293,7 +293,9 @@ class Graph extends Construct {
     createRegionContainer(this.config, this.svg);
     createGrid(this.axis, this.scale, this.config, this.svg);
     createContentContainer(this.config, this.svg);
-    createAxes(this.axis, this.scale, this.config, this.svg);
+    if (utils.isUndefined(this.config.axis.x.allowCalibration) || !this.config.axis.x.allowCalibration) {
+      createAxes(this.axis, this.scale, this.config, this.svg);
+    }
     createXAxisInfoRow(this.axis, this.scale, this.config, this.svg);
     createLabel(this.config, this.svg, this);
     createAxisReferenceLine(this.axis, this.scale, this.config, this.svg);
@@ -416,6 +418,9 @@ class Graph extends Construct {
     });
 
     this.resize();
+    if (utils.isDefined(this.config.axis.x.allowCalibration) && this.config.axis.x.allowCalibration) {
+      createAxes(this.axis, this.scale, this.config, this.svg);
+    }
     return this;
   }
 
