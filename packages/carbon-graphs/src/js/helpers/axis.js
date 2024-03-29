@@ -1474,7 +1474,24 @@ const translateAxes = (axis, scale, config, canvasSVG) => {
         config,
       )})`,
     )
-    .call(axis.x);
+    .call(axis.x)
+    .selectAll('text')
+    .style('text-anchor', () => {
+      if (!utils.isDefined(config.axis.x.ticks.tickLabelsRotation)) {
+        config.axis.x.ticks.tickLabelsRotation = 0;
+        return 'middle';
+      }
+      const rotation = config.axis.x.ticks.tickLabelsRotation;
+      if (rotation === 0) {
+        return 'middle';
+      } if (rotation !== 0) {
+        return 'end';
+      } if (!utils.validTickLabelRotations.has(rotation)) {
+        return 'middle';
+      }
+      return 'middle';
+    })
+    .attr('transform', () => `rotate(${config.axis.x.ticks.tickLabelsRotation})`);
   canvasSVG
     .select(`.${styles.axisY}`)
     .transition()
