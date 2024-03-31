@@ -2815,6 +2815,9 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   top: 0;
   z-index: 7001;
 }
+[dir=ltr] .HookshotContent-module__fixed-position___oxaAy, [dir=rtl] .HookshotContent-module__fixed-position___oxaAy {
+  position: fixed;
+}
 /* stylelint-disable scss/at-mixin-pattern  */
 /* stylelint-enable scss/at-mixin-pattern  */
 .PopupContent-module__clinical-lowlight-theme___2UkYq {
@@ -10187,12 +10190,15 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   color: #006fc3;
   color: var(--terra-hyperlink-color, #006fc3);
   cursor: pointer;
-  display: inline-block;
   outline: none;
   text-decoration: underline;
   text-decoration: var(--terra-hyperlink-text-decoration, underline);
   touch-action: manipulation;
   vertical-align: baseline;
+  display: inline-flex;
+  align-items: baseline;
+  max-width: min-content;
+  width: 100%;
 }
 .Hyperlink-module__hyperlink___1XVZg:visited, .Hyperlink-module__hyperlink___1XVZg.Hyperlink-module__is-visited___3I0or {
   color: #006fc3;
@@ -10302,7 +10308,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   line-height: inherit;
   margin: 0;
   outline: none;
-  overflow: visible;
+  overflow: hidden;
   padding: 0;
   pointer-events: auto;
   position: relative;
@@ -10310,6 +10316,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   top: 0;
   touch-action: manipulation;
   vertical-align: baseline;
+  width: 100%;
 }
 .Hyperlink-module__button-reset___2GSEU .Hyperlink-module__button-inner___rWs23 {
   font-family: inherit;
@@ -10318,6 +10325,14 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   min-width: 0;
   position: relative;
   top: 0;
+  display: flex;
+  min-width: 0;
+  max-width: min-content;
+}
+.Hyperlink-module__inner-text___edLtv {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .CollapsingNavigationMenu-module__clinical-lowlight-theme___3a9iT {
   --terra-dev-site-collapsing-navigation-menu-item-background-color: #1c2326;
