@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.24.1 - (April 1, 2024)
+
 * Fixed
   * Fixed inconsistent ticks rotation when allowCalibration for x-axis is true.
 

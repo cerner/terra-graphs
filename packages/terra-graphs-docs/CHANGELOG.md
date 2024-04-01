@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.8.0 - (April 1, 2024)
+
 * Added
   * Added examples for the Xaxis calibration enabled with rotated ticks. 
 
