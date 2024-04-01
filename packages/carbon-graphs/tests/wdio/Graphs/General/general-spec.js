@@ -80,6 +80,11 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('x-axis_timeseries_allowcalibration_enabled', { selector: '.carbon-graph-container' });
     });
 
+    it('validates timeseries x-axis allowCalibration enabled graph container with ticks rotated', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-enabled-timeseries-x-axis-ticks-rotated');
+      Terra.validates.screenshot('x-axis_timeseries_allowcalibration_enabled_ticks_rotated', { selector: '.carbon-graph-container' });
+    });
+
     it('validates x-axis allowCalibration enabled graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-enabled-x-axis');
       Terra.validates.screenshot('x-axis_allowcalibration_enabled', { selector: '.carbon-graph-container' });
