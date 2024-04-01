@@ -1,4 +1,4 @@
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import Carbon from '@cerner/carbon-graphs';
 
 const getPairedResultEventlineTimeseriesConfig = (id) => ({
   bindTo: id,

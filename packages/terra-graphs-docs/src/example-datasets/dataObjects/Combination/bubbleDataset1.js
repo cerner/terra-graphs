@@ -1,4 +1,4 @@
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import Carbon from '@cerner/carbon-graphs';
 import { loadPopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const data = {

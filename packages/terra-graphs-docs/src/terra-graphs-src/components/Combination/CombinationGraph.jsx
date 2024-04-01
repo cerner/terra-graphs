@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import Carbon from '@cerner/carbon-graphs';
 import '../Graph.module.scss';
 import '../Line/LineGraph.module.scss';
 import '../Bar/BarGraph.module.scss';
