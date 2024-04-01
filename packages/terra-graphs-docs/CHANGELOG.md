@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated documentation to use new named export. 
+
 ## 1.8.0 - (April 1, 2024)
 
 * Added

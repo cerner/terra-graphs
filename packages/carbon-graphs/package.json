@@ -25,6 +25,7 @@
     "url": "https://github.com/cerner/terra-graphs/issues"
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
+  "main": "lib/js/index.js",
   "files": [
     "dist",
     "lib",

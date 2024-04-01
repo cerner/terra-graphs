@@ -1,5 +1,5 @@
 import React from 'react';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import Carbon from '@cerner/carbon-graphs';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Pie/PieChart.module.scss';
