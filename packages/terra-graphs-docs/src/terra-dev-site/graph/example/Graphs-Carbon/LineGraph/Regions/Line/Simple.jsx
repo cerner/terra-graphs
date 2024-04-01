@@ -1,6 +1,6 @@
 import React from 'react';
 import utils from '@cerner/carbon-graphs/lib/js/helpers/utils';
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import Carbon from '@cerner/carbon-graphs';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
 import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Line/LineGraph.module.scss';
 import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';

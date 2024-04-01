@@ -1,4 +1,4 @@
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import Carbon from '@cerner/carbon-graphs';
 
 const daysToMilliseconds = (d) => 24 * 60 * 60 * 1000 * d;
 const getGanttPanningConfig = (id) => ({

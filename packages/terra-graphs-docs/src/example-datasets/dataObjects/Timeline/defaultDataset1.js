@@ -1,4 +1,4 @@
-import Carbon from '@cerner/carbon-graphs/lib/js/carbon';
+import Carbon from '@cerner/carbon-graphs';
 import { loadTimelinePopup } from '@cerner/terra-graphs-docs/lib/example-datasets/popup';
 
 const bobRossIpsum = 'Just use the old one inch brush. It is so important to do something every day that will make you happy.'
