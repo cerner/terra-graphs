@@ -13,10 +13,10 @@ const graphConfig = utils.deepClone(getGraphConfig('#noData'));
 const NoDataGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
-    }, []);
+  }, []);
   return (
     <ExampleGraphContainer id="noData" />
-    );
+  );
 };
 
 export default NoDataGeneralExample;

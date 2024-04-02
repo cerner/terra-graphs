@@ -1,4 +1,4 @@
 import Carbon from './js/carbon';
-import './less/carbon.less';
+import '../dist/css/carbon-graphs.css';
 
 export default Carbon;
