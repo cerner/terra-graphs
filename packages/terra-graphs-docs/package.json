@@ -28,20 +28,20 @@
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
   "dependencies": {
-    "@cerner/carbon-graphs": "^2.24.1",
-    "classnames": "^2.2.5",
+    "@cerner/carbon-graphs": "2",
+    "classnames": "2",
     "d3-selection": "1",
-    "details-polyfill": "^1.2.0",
-    "prop-types": "^15.5.8",
-    "terra-theme-context": "^1.0.0"
+    "details-polyfill": "1",
+    "prop-types": "15",
+    "terra-theme-context": "1"
   },
   "devDependencies": {
-    "@cerner/terra-dev-site": "^8.0.0",
-    "terra-button": "^3.55.0"
+    "@cerner/terra-dev-site": "8",
+    "terra-button": "3"
   },
   "peerDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5"
+    "react": "16",
+    "react-dom": "16"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",
