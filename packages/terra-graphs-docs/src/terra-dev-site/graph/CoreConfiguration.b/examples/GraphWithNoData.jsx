@@ -18,11 +18,6 @@ const graphConfig = {
       upperLimit: 18,
     },
   },
-  showLabel: true,
-  showLegend: true,
-  showShapes: true,
-  showVGrid: true,
-  showHGrid: true,
 };
 
 const NoDataGeneralExample = () => {
