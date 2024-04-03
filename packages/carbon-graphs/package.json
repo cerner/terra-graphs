@@ -27,7 +27,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "lib/js/index.js",
+  "main": "lib/index.js",
   "files": [
     "dist",
     "lib",
