@@ -1,5 +1,3 @@
-const themeConfig = {
-  scoped: ['clinical-lowlight-theme', 'orion-fusion-theme'],
-};
+const themeConfig = {};
 
 module.exports = themeConfig;

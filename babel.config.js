@@ -8,7 +8,6 @@ module.exports = (api) => {
   ];
 
   const plugins = [
-    '@babel/plugin-transform-object-rest-spread',
     '@babel/plugin-transform-object-assign',
     '@babel/plugin-transform-runtime',
   ];
