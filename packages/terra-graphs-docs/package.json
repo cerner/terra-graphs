@@ -26,6 +26,12 @@
   "publishConfig": {
     "access": "public"
   },
+  "files":[
+    "lib",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "homepage": "https://github.com/cerner/terra-graphs#readme",
   "dependencies": {
     "@cerner/carbon-graphs": "2",
@@ -36,10 +42,10 @@
     "terra-theme-context": "1"
   },
   "devDependencies": {
-    "@cerner/terra-dev-site": "8",
     "terra-button": "3"
   },
   "peerDependencies": {
+    "@cerner/terra-dev-site": "8",
     "react": "16",
     "react-dom": "16"
   },
