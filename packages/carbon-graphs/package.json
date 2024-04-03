@@ -27,7 +27,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/cerner/terra-graphs#readme",
   "main": "lib/index.js",
   "files": [
     "dist",
