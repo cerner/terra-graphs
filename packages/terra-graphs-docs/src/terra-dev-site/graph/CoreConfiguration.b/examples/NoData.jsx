@@ -1,32 +1,21 @@
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs';
-import '@cerner/terra-graphs-docs/lib/terra-graphs-src/components/Graph.module.scss';
-
-import ExampleGraphContainer from '@cerner/terra-graphs-docs/lib/terra-dev-site/ExampleGraphContainer/ExampleGraphContainer';
-
-const id = 'no-data';
 
 const graphConfig = {
-  bindTo: `#${id}`,
+  bindTo: '#no-data-example',
   bindLegendTo: null,
   axis: {
     x: {
       show: true,
-      label: 'Data',
+      label: 'x axis',
       lowerLimit: 80,
       upperLimit: 280,
     },
     y: {
       show: true,
-      label: 'Line Set A',
+      label: 'y axis',
       lowerLimit: -18,
       upperLimit: 18,
-    },
-    y2: {
-      show: false,
-      label: 'Line Set B',
-      lowerLimit: 0,
-      upperLimit: 250,
     },
   },
   showLabel: true,
@@ -40,7 +29,7 @@ const NoDataGeneralExample = () => {
   React.useEffect(() => {
     Carbon.api.graph(graphConfig);
   }, []);
-  return <ExampleGraphContainer id={id} />;
+  return <div id="no-data-example" />;
 };
 
 export default NoDataGeneralExample;
