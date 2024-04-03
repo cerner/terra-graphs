@@ -2,46 +2,52 @@
   "name": "@cerner/terra-graphs-docs",
   "version": "1.8.0",
   "description": "A react based dev-site that has documentation and example graphs",
+  "author": "Cerner Corporation",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-graphs.git",
     "directory": "packages/terra-graphs-docs"
   },
-  "keywords": [
-    "Cerner",
-    "Terra",
-    "terra-graphs",
-    "carbon",
-    "graphs",
-    "UI",
-    "d3",
-    "d3-module",
-    "graphing"
-  ],
-  "author": "Cerner Corporation",
-  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/cerner/terra-graphs/issues"
   },
+  "homepage": "https://github.com/cerner/terra-graphs#readme",
+  "license": "Apache-2.0",
+  "keywords": [
+    "carbon",
+    "Cerner",
+    "d3",
+    "d3-module",
+    "graphing",
+    "graphs",
+    "Terra",
+    "terra-graphs",
+    "UI"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/cerner/terra-graphs#readme",
+  "files": [
+    "lib",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "dependencies": {
-    "@cerner/carbon-graphs": "^2.24.1",
-    "classnames": "^2.2.5",
+    "@cerner/carbon-graphs": "2",
+    "classnames": "2",
     "d3-selection": "1",
-    "details-polyfill": "^1.2.0",
-    "prop-types": "^15.5.8",
-    "terra-theme-context": "^1.0.0"
-  },
-  "devDependencies": {
-    "@cerner/terra-dev-site": "^8.0.0",
-    "terra-button": "^3.55.0"
+    "details-polyfill": "1",
+    "prop-types": "15",
+    "terra-theme-context": "1"
   },
   "peerDependencies": {
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5"
+    "@cerner/terra-dev-site": "8",
+    "react": "16",
+    "react-dom": "16"
+  },
+  "devDependencies": {
+    "terra-button": "3"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",
