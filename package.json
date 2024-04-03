@@ -1,25 +1,25 @@
 {
   "name": "terra-graphs",
-  "private": true,
   "version": "0.1.0",
   "description": "terra-graphs",
-  "engines": {
-    "node": "10 || 12 || 14"
-  },
+  "author": "Cerner Corporation",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-graphs.git"
   },
+  "bugs": {
+    "url": "https://github.com/cerner/terra-graphs/issues"
+  },
+  "license": "Apache-2.0",
   "keywords": [
     "Cerner",
     "Terra",
     "Terra Graphs",
     "terra-graphs"
   ],
-  "author": "Cerner Corporation",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/cerner/terra-graphs/issues"
+  "private": true,
+  "engines": {
+    "node": "10 || 12 || 14"
   },
   "browserslist": [
     "extends @cerner/browserslist-config-terra"

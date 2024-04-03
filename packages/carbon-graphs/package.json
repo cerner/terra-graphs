@@ -1,30 +1,32 @@
 {
   "name": "@cerner/carbon-graphs",
-  "main": "lib/Graphs.js",
   "version": "2.24.1",
   "description": "A graphing library built using d3 based on Cerner design standards",
+  "author": "Cerner Corporation",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-graphs.git",
     "directory": "packages/carbon-graphs"
   },
-  "keywords": [
-    "Cerner",
-    "Terra",
-    "carbon-graphs",
-    "carbon",
-    "graphs",
-    "UI",
-    "d3",
-    "d3-module",
-    "graphing"
-  ],
-  "author": "Cerner Corporation",
-  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/cerner/terra-graphs/issues"
   },
   "homepage": "https://github.com/cerner/terra-graphs#readme",
+  "license": "Apache-2.0",
+  "keywords": [
+    "carbon",
+    "carbon-graphs",
+    "Cerner",
+    "d3",
+    "d3-module",
+    "graphing",
+    "graphs",
+    "Terra",
+    "UI"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "lib/js/index.js",
   "files": [
     "dist",
@@ -46,9 +48,6 @@
         }
       }
     ]
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "d3-array": "1",
