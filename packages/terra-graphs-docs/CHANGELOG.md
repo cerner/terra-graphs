@@ -10,7 +10,7 @@
 ## 1.8.0 - (April 1, 2024)
 
 * Added
-  * Added examples for the Xaxis calibration enabled with rotated ticks. 
+  * Added examples for the x-axis calibration enabled with rotated ticks.
 
 ## 1.7.0 - (November 27, 2023)
 
@@ -20,17 +20,17 @@
 ## 1.6.0 - (September 25, 2023)
 
 * Changed
-  * Minor dependency version bump
+  * Minor dependency version bump.
 
 ## 1.5.0 - (September 20, 2023)
 
 * Changed
-  * Minor dependency version bump
+  * Minor dependency version bump.
 
 ## 1.4.1 - (August 21, 2023)
 
 * Added
-  * Added examples for the Xaxis Overflow tick values.
+  * Added examples for the x-axis overflow tick values.
 
 * Changed
   * Corrected some path mistakes in examples.
