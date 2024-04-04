@@ -5,7 +5,7 @@ import Carbon from '@cerner/carbon-graphs';
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#custom-legend-example',
+  bindTo: '#custom-legend-graph',
   bindLegendTo: '#custom-legend-node',
   axis: {
     x: {
@@ -49,10 +49,10 @@ const NoDataGeneralExample = () => {
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
   return (
-    <div style={{ display: 'flex', width: '100%' }}>
+    <div id="custom-legend-example" style={{ display: 'flex', width: '100%' }}>
       <div id="custom-legend-node" style={{ width: '20%' }} />
       <div style={{ width: '80%' }}>
-        <div id="custom-legend-example" />
+        <div id="custom-legend-graph" />
       </div>
     </div>
   );
