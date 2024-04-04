@@ -144,7 +144,7 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
   describe('Legend', () => {
     it('validates custom legend placement graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/padding/custom-legend-placement');
-      Terra.validates.screenshot('custom_legend_placement', { selector: '.bindto-container' });
+      Terra.validates.screenshot('custom_legend_placement', { selector: '#custom-legend-example' });
     });
 
     it('validates graph and legend padding reduced graph container', () => {
