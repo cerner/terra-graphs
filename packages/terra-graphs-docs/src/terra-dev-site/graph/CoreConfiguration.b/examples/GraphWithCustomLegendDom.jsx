@@ -2,6 +2,8 @@
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs';
 
+//  graph configuration object
+
 const graphConfig = {
   bindTo: '#custom-legend-example',
   bindLegendTo: '#custom-legend-node',
@@ -21,6 +23,8 @@ const graphConfig = {
   },
 };
 
+//  graph dataset
+
 const dataset1 = {
   key: 'uid_1',
   label: {
@@ -36,6 +40,8 @@ const dataset1 = {
     { x: 246, y: 1 },
   ],
 };
+
+// graph rendering
 
 const NoDataGeneralExample = () => {
   React.useEffect(() => {

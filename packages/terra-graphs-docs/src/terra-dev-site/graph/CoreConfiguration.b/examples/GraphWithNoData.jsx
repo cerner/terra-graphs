@@ -1,6 +1,8 @@
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs';
 
+//  graph configuration object
+
 const graphConfig = {
   bindTo: '#no-data-example',
   bindLegendTo: null,
@@ -19,6 +21,8 @@ const graphConfig = {
     },
   },
 };
+
+// graph rendering
 
 const NoDataGeneralExample = () => {
   React.useEffect(() => {
