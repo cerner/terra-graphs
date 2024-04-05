@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.25.0 - (April 5, 2024)
+
 * Added
   * Added named export for Carbon. It can now be imported as `import Carbon from '@cerner/carbon-graphs';`.
 

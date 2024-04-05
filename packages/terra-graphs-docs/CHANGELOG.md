@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.9.0 - (April 5, 2024)
+
 * Changed
   * Updated order of core-configuration documentation.
   * Updated core-configuration/graph-config-object documentation and examples.
