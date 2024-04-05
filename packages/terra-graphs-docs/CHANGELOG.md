@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Changed
+  * Updated core-configuration/graph-config-object documentation and examples.
   * Optimized published package size by removing unecessary files.
   * Moved Core Configuration documentation up one level out of its subfolder.
   * Updated documentation to use new named export. 
