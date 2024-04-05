@@ -1,3 +1,6 @@
+import AllowCalibrationXAxisDisabledExample from './examples/AllowCalibrationXAxisDisabled';
+import AllowCalibrationXAxisEnabledExample from './examples/AllowCalibrationXAxisEnabled';
+
 # Axes
 
 Any graph that inherits from `Graph` API will inherit the following `Axis` and `Tick` properties as well.
@@ -84,6 +87,7 @@ axis: {
 | type                  | string         | `AXIS_TYPE.DEFAULT`        | no       | See [type](#type). Normal number value or time-based. Only for x-axis.                                                                                                                                                                                                |    
 | tickLabelsRotation    | integer        | -                          | no       | Sets the rotation of the x-axis tick labels to `0º` or `-45º`. Accepted values: 0 or -45. Only for x-axis.                                                                                                                                                            |
 
+
 - ### `allowCalibration`
     Set calibration for the axis. 
     If `true`, then the axis upper and lower limits will update to fit the entire graph on the x-axis. 
@@ -91,7 +95,10 @@ axis: {
     If panning is enabled then this property will be ignored if `true`.
 
     NOTE: This property is only implemented for the x-axis (`config.axis.x.allowCalibration`). 
-    Please refer to [config.allowCalibration](./Graph/##configuration-properties) for calibrating the y-axes.
+    Please refer to [config.allowCalibration](./graph-configuration-object/#allowcalibration) for calibrating the y-axes.
+
+    <AllowCalibrationXAxisDisabledExample/>
+    <AllowCalibrationXAxisEnabledExample/>
 
 
 - ### `type`
@@ -138,4 +145,4 @@ const datetime = padXAxisLimits(
         /* Array containing all the datetime in RFC3339 format*/
     ])
 );
-```
+```./examples/AllowCalibrationXAxisDisabled
