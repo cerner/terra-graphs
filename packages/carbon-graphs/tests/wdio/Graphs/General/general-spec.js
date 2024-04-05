@@ -70,9 +70,9 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-disabled-x-axis');
       Terra.validates.screenshot('x-axis_allowcalibration_disabled', { selector: '.carbon-graph-container' });
     });
-    it('validates y-axis allowCalibration disabled graph container', () => {
-      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-disabled-y-axis');
-      Terra.validates.screenshot('y-axis_allowcalibration_disabled', { selector: '.carbon-graph-container' });
+    it('validates y-axis allowCalibration disabled graph', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/allow-calibration');
+      Terra.validates.screenshot('y-axis_allowcalibration_disabled', { selector: '#allow-calibration-disabled-example' });
     });
 
     it('validates timeseries x-axis allowCalibration enabled graph container', () => {
@@ -90,8 +90,8 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('x-axis_allowcalibration_enabled', { selector: '.carbon-graph-container' });
     });
     it('validates y-axis allowCalibration enabled graph container', () => {
-      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-enabled-y-axis');
-      Terra.validates.screenshot('y-axis_allowcalibration_enabled', { selector: '.carbon-graph-container' });
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/allow-calibration');
+      Terra.validates.screenshot('y-axis_allowcalibration_enabled', { selector: '#allow-calibration-enabled-example' });
     });
 
     it('validates Y-axis hidden graph container', () => {
@@ -144,7 +144,7 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
   describe('Legend', () => {
     it('validates custom legend placement graph container', () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/padding/custom-legend-placement');
-      Terra.validates.screenshot('custom_legend_placement', { selector: '.bindto-container' });
+      Terra.validates.screenshot('custom_legend_placement', { selector: '#custom-legend-example' });
     });
 
     it('validates graph and legend padding reduced graph container', () => {
