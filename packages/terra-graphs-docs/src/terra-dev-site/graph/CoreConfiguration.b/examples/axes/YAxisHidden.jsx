@@ -4,20 +4,23 @@ import Carbon from '@cerner/carbon-graphs';
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#allow-calibration-disabled-example',
+  bindTo: '#y-axis-hidden-example',
   axis: {
     x: {
+      // show is true by default
+      // show: true,
       label: 'x-axis',
-      lowerLimit: 80,
-      upperLimit: 280,
+      lowerLimit: 100,
+      upperLimit: 200,
+      allowCalibration: true,
     },
     y: {
+      show: false,
       label: 'y-axis',
       lowerLimit: -5,
       upperLimit: 20,
     },
   },
-  allowCalibration: false,
 };
 
 //  graph dataset
@@ -47,12 +50,12 @@ const dataset1 = {
 
 // graph rendering
 
-const AllowCalibrationDisabledExample = () => {
+const YAxisHiddenExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
-  return <div id="allow-calibration-disabled-example" />;
+  return <div id="y-axis-hidden-example" />;
 };
 
-export default AllowCalibrationDisabledExample;
+export default YAxisHiddenExample;

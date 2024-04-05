@@ -8,13 +8,11 @@ const graphConfig = {
   bindLegendTo: null,
   axis: {
     x: {
-      show: true,
       label: 'x axis',
       lowerLimit: 80,
       upperLimit: 280,
     },
     y: {
-      show: true,
       label: 'y axis',
       lowerLimit: -18,
       upperLimit: 18,

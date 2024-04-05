@@ -1,0 +1,178 @@
+import AllowCalibrationXAxisDisabledExample from './examples/axes/AllowCalibrationXAxisDisabled?dev-site-example';
+import AllowCalibrationXAxisEnabledExample from './examples/axes/AllowCalibrationXAxisEnabled?dev-site-example';
+
+import RangeRoundingDisabledExample from './examples/axes/RangeRoundingYAxisDisabled?dev-site-example';
+import RangeRoundingEnabledExample from './examples/axes/RangeRoundingYAxisEnabled?dev-site-example';
+
+import XAxisOrientationTopExample from './examples/axes/XAxisOrientationTop?dev-site-example';
+
+import YAxisHiddenExample from './examples/axes/YAxisHidden?dev-site-example';
+
+
+
+# Axes
+
+Any graph that inherits from `Graph` API will inherit the following `Axis` and `Tick` properties as well.
+
+-   [Structure](#structure)
+-   [Properties Summary](#properties-summary)
+-   [Properties Details](#properties-details)
+    -   [allowCalibration](#allowCalibration)
+    -   [label](#label)
+    -   [orientation](#orientation)
+    -   [rangeRounding](#rangerounding)
+    -   [show](#show)
+    -   [type](#type)
+    -   [Notes](#notes)
+-   [X Axis Domain Padding](#x-axis-domain-padding)
+
+
+## Structure
+
+```json
+axis: {
+    x: <x-axis object>,
+    y: <y-axis object>,
+    y2: <y2-axis object>,
+}
+
+
+axis: {
+    x: {
+        lowerLimit: <number> or <Date>,
+        upperLimit: <number> or <Date>,
+        label: <string>,
+        allowCalibration: <bool>
+        onLabelClick: <Function>,
+        orientation: <string>
+        rangeRounding: <bool>,
+        show: <boolean>,
+        suppressingTrailingZeros: <bool>,
+        ticks: <Ticks object>,
+        type: <string>
+        rotateAngle: <integer>,
+    },
+    y: {
+        lowerLimit: <number> or <Date>,
+        upperLimit: <number> or <Date>,
+        label: <string>,
+        onLabelClick: <Function>,
+        padDomain: <bool>,
+        rangeRounding: <bool>,
+        show: <boolean>,
+        suppressingTrailingZeros: <bool>,
+        ticks: <Ticks object>,
+        type: <string>
+    },
+    y2:{
+        lowerLimit: <number> or <Date>,
+        upperLimit: <number> or <Date>,
+        label: <string>,
+        onLabelClick: <Function>,
+        padDomain: <bool>,
+        rangeRounding: <bool>,
+        show: <boolean>,
+        suppressingTrailingZeros: <bool>,
+        ticks: <Ticks object>,
+        type: <string>
+    }
+
+}
+
+```
+## Properties Summary
+
+|     Property Name     |      Type      |       Default       | Required |                                                                                                                              Description                                                                                                                              |
+| --------------------- | -------------- | ------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| lowerLimit            | number or Date | -                   | yes      | Lower bound for the axis. This is inclusive.                                                                                                                                                                                                                          |
+| upperLimit            | number or Date | -                   | yes      | Upper bound for the axis. This is inclusive.                                                                                                                                                                                                                          |
+| label                 | string         | -                   | yes      | Axis label value. Will not be rendered if nothing is provided.                                                                                                                                                                                                        |
+| allowCalibration      | bool           | `false`             | no       | See [allowCalibration](#allowCalibration).                                                                                                                                                                                                                            |
+| onLabelClick          | Function       | `undefined`         | no       | Any action that can be performed when clicking on label.                                                                                                                                                                                                              |
+| orientation           | Function       | BOTTOM (for x-axis) | no       | See [orientation](#orientation).                                                                                                                                                                                                                                      |
+| padDomain             | boolean        | `true`              | no       | Toggle for disabling the padding (only for Y and Y2 axes).                                                                                                                                                                                                            |
+| rangeRounding         | boolean        | `true`              | no       | Toggle for range rounding.                                                                                                                                                                                                                                            |
+| show                  | boolean        | `true`              | no       | Toggle for showing the axis.                                                                                                                                                                                                                                          |
+| suppressTrailingZeros | boolean        | `false`             | no       | Toggle to suppress tick values's trailing zeros when default d3 tick formatting is used. For X axis, this property works only when X axis type is set to AXIS_TYPE.DEFAULT. Specifying `~` in the tick format takes precedence over `suppressTrailingZeros` property. |
+| ticks                 | object         | `null`              | no       | See [Ticks](./Ticks).                                                                                                                                                                                                                                                 |
+| type                  | string         | `AXIS_TYPE.DEFAULT` | no       | See [type](#type). Normal number value or time-based. Only for x-axis.                                                                                                                                                                                                |
+| tickLabelsRotation    | integer        | -                   | no       | Sets the rotation of the x-axis tick labels to `0º` or `-45º`. Accepted values: 0 or -45. Only for x-axis.                                                                                                                                                            |
+
+## Properties Details
+
+- ### `allowCalibration`
+  Set calibration for the axis. 
+  If `true`, then the axis upper and lower limits will update to fit the entire graph on the x-axis. 
+  This feature can _not_ be used in conjunction with panning. 
+  If panning is enabled then this property will be ignored if it is `true`.
+
+  NOTE: This property is only implemented for the x-axis (`config.axis.x.allowCalibration`). 
+  Refer to [`config.allowCalibration`](./graph-configuration-object/#allowcalibration) for calibrating the y-axes.
+
+  <AllowCalibrationXAxisDisabledExample/>
+  <AllowCalibrationXAxisEnabledExample/>
+
+
+- ### `label`
+
+  Axis label value. Will not be rendered if nothing is provided. 
+
+- ### `orientation`
+
+  Sets the orientation for the x-axis.
+  Can be accessed through `AXES_ORIENTATION`.
+  Valid values are:
+  - `AXES_ORIENTATION.X.TOP`
+  - `AXES_ORIENTATION.X.BOTTOM`
+
+  <XAxisOrientationTopExample/>
+
+
+- ### `rangeRounding`
+  `rangeRounding` property extends the domain so that it starts and ends on nice round values.
+  This method typically modifies the scale's domain, and may only extend the bounds to the nearest round value.
+  <RangeRoundingDisabledExample/>
+  <RangeRoundingEnabledExample/>
+
+
+- ### `show`
+  Toggle for showing the axis ticks. 
+  <YAxisHiddenExample/>
+
+
+- ### `type`
+  Property to set the type of the axis.
+
+  | Constant                | Value                                                          |
+  |-------------------------|----------------------------------------------------------------|
+  | `AXIS_TYPE.DEFAULT`     | Numeric based x-axis. Will take a `<number>` for tick values.  |
+  | `AXIS_TYPE.TIME_SERIES` | Timeseries based x-axis. Will take a `<Date>` for tick values. |
+
+
+  #### Notes:
+
+  -   y2 axis is mandatory if **y2.show** is enabled.
+  -   Ticks are mandatory for Bar graphs.
+  -   `rangeRounding` property extends the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value.
+  -   `padDomain` property is only for Y and Y2 axes.
+  -   `onLabelClick` property will override default onClick functionality provided by Carbon-graphs.
+  -   For Bar Graphs, `padDomain` property will be overridden to false.
+
+## X Axis Domain Padding
+
+Unlike Y Axis, X Axis can have different types of values as ticks namely numeric, datetime etc. By design, domain padding has not been provided for this reason. Consumers however who are more acquainted with their dataset can judge how much value padding is necessary and achieve similar results as Y Axis.
+
+Example:
+
+```js
+const padXAxisLimits = (extent) => {
+    const range = extent[1] - extent[0];
+    return [extent[0] - range * 0.05, extent[1] + range * 0.05];
+};
+
+const datetime = padXAxisLimits(
+    d3.extent([
+        /* Array containing all the datetime in RFC3339 format*/
+    ])
+);
+```

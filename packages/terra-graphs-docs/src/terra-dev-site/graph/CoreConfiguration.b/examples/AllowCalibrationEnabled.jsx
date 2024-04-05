@@ -27,13 +27,11 @@ const graphConfig2 = {
   bindTo: '#allow-calibration-enabled-example2',
   axis: {
     x: {
-      show: true,
       label: 'x-axis',
       lowerLimit: 80,
       upperLimit: 130,
     },
     y: {
-      show: true,
       label: 'y-axis',
       lowerLimit: -5,
       upperLimit: 20,
@@ -70,7 +68,7 @@ const dataset1 = {
 
 // graph rendering
 
-const NoDataGeneralExample = () => {
+const AllowCalibrationEnabledExample = () => {
   React.useEffect(() => {
     const graph1 = Carbon.api.graph(graphConfig1);
     graph1.loadContent(Carbon.api.line(dataset1));
@@ -87,4 +85,4 @@ const NoDataGeneralExample = () => {
   );
 };
 
-export default NoDataGeneralExample;
+export default AllowCalibrationEnabledExample;
