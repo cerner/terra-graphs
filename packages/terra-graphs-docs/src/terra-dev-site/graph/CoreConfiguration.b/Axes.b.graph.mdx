@@ -101,31 +101,31 @@ axis: {
 ## Properties Details
 
 - ### `allowCalibration`
-    Set calibration for the axis. 
-    If `true`, then the axis upper and lower limits will update to fit the entire graph on the x-axis. 
-    This feature can _not_ be used in conjunction with panning. 
-    If panning is enabled then this property will be ignored if it is `true`.
+  Set calibration for the axis. 
+  If `true`, then the axis upper and lower limits will update to fit the entire graph on the x-axis. 
+  This feature can _not_ be used in conjunction with panning. 
+  If panning is enabled then this property will be ignored if it is `true`.
 
-    NOTE: This property is only implemented for the x-axis (`config.axis.x.allowCalibration`). 
-    Refer to [`config.allowCalibration`](./graph-configuration-object/#allowcalibration) for calibrating the y-axes.
+  NOTE: This property is only implemented for the x-axis (`config.axis.x.allowCalibration`). 
+  Refer to [`config.allowCalibration`](./graph-configuration-object/#allowcalibration) for calibrating the y-axes.
 
-    <AllowCalibrationXAxisDisabledExample/>
-    <AllowCalibrationXAxisEnabledExample/>
+  <AllowCalibrationXAxisDisabledExample/>
+  <AllowCalibrationXAxisEnabledExample/>
 
 
 - ### `label`
 
-Axis label value. Will not be rendered if nothing is provided. 
+  Axis label value. Will not be rendered if nothing is provided. 
 
 - ### `orientation`
 
-    Sets the orientation for the x-axis.
-    Can be accessed through `AXES_ORIENTATION`.
-    Valid values are:
-    - `AXES_ORIENTATION.X.TOP`
-    - `AXES_ORIENTATION.X.BOTTOM`
+  Sets the orientation for the x-axis.
+  Can be accessed through `AXES_ORIENTATION`.
+  Valid values are:
+  - `AXES_ORIENTATION.X.TOP`
+  - `AXES_ORIENTATION.X.BOTTOM`
 
-    <XAxisOrientationTopExample/>
+  <XAxisOrientationTopExample/>
 
 
 - ### `rangeRounding`
@@ -141,15 +141,12 @@ Axis label value. Will not be rendered if nothing is provided.
 
 
 - ### `type`
-    Property to set the type of the axis.
+  Property to set the type of the axis.
 
-    | Constant                | Value                                                          |
-    |-------------------------|----------------------------------------------------------------|
-    | `AXIS_TYPE.DEFAULT`     | Numeric based x-axis. Will take a `<number>` for tick values.  |
-    | `AXIS_TYPE.TIME_SERIES` | Timeseries based x-axis. Will take a `<Date>` for tick values. |
-
-
-
+  | Constant                | Value                                                          |
+  |-------------------------|----------------------------------------------------------------|
+  | `AXIS_TYPE.DEFAULT`     | Numeric based x-axis. Will take a `<number>` for tick values.  |
+  | `AXIS_TYPE.TIME_SERIES` | Timeseries based x-axis. Will take a `<Date>` for tick values. |
 
 
   #### Notes:
@@ -179,5 +176,3 @@ const datetime = padXAxisLimits(
     ])
 );
 ```
-import { jsx } from "react/jsx-runtime"
-
