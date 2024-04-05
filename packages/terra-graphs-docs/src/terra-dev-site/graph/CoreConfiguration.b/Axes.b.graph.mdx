@@ -1,5 +1,7 @@
-import AllowCalibrationXAxisDisabledExample from './examples/AllowCalibrationXAxisDisabled';
-import AllowCalibrationXAxisEnabledExample from './examples/AllowCalibrationXAxisEnabled';
+import AllowCalibrationXAxisDisabledExample from './examples/AllowCalibrationXAxisDisabled?dev-site-example';
+import AllowCalibrationXAxisEnabledExample from './examples/AllowCalibrationXAxisEnabled?dev-site-example';
+import RangeRoundingDisabledExample from './examples/RangeRoundingYAxisDisabled?dev-site-example';
+
 
 # Axes
 
@@ -94,7 +96,7 @@ axis: {
     If panning is enabled then this property will be ignored if it is `true`.
 
     NOTE: This property is only implemented for the x-axis (`config.axis.x.allowCalibration`). 
-    Please refer to [config.allowCalibration](./graph-configuration-object/#allowcalibration) for calibrating the y-axes.
+    Refer to [`config.allowCalibration`](./graph-configuration-object/#allowcalibration) for calibrating the y-axes.
 
     <AllowCalibrationXAxisDisabledExample/>
     <AllowCalibrationXAxisEnabledExample/>
@@ -109,6 +111,7 @@ Axis label value. Will not be rendered if nothing is provided.
 - ### `rangeRounding`
   `rangeRounding` property extends the domain so that it starts and ends on nice round values.
   This method typically modifies the scale's domain, and may only extend the bounds to the nearest round value.
+  <RangeRoundingDisabledExample/>
 
 - ### `show`
 

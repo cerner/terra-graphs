@@ -30,7 +30,7 @@ It is required for the following graphs:
 - [Paired Result](../paired-result-graph/about)
 - [Scatter](../scatter-graph/about)
 
-Without a dataset, the above graphs will render as follows:
+Without a dataset, the above graphs will render as:
 
 <NoDataGeneralExample />
 
@@ -108,7 +108,7 @@ const graphConfig = {
 - ### `allowCalibration`
   **type:** boolean
 
-The `allowCalibration` prop allows the y-axes to be automatically updated based on the dataset.
+The `allowCalibration` prop allows the y-axes to be automatically updated based on the dataset. For calibrating the x-axis, see [`axis.x.allowCalibration`](./axes#allowcalibration).
 <AllowCalibrationDisabledExample/>
 
 When enabled, the maximum and minimum points of the dataset are used to determine the new limits, regardless of if the datapoints are visible in the viewport.
