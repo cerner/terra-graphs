@@ -1,26 +1,25 @@
-/* eslint-disable react/forbid-dom-props */
 import React from 'react';
 import Carbon from '@cerner/carbon-graphs';
 
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#custom-legend-graph',
-  bindLegendTo: '#custom-legend-node',
+  bindTo: '#allow-calibration-disabled-example',
   axis: {
     x: {
       show: true,
-      label: 'x axis',
+      label: 'x-axis',
       lowerLimit: 80,
       upperLimit: 280,
     },
     y: {
       show: true,
-      label: 'y axis',
-      lowerLimit: -18,
-      upperLimit: 18,
+      label: 'y-axis',
+      lowerLimit: -5,
+      upperLimit: 20,
     },
   },
+  allowCalibration: false,
 };
 
 //  graph dataset
@@ -34,8 +33,8 @@ const dataset1 = {
   values: [
     { x: 87, y: -2 },
     { x: 95, y: 1 },
-    { x: 160, y: 0 },
-    { x: 200, y: 14 },
+    { x: 160, y: -7 },
+    { x: 200, y: 28 },
     { x: 213, y: 11 },
     { x: 246, y: 1 },
   ],
@@ -43,19 +42,12 @@ const dataset1 = {
 
 // graph rendering
 
-const CustomLegendDomExample = () => {
+const NoDataGeneralExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
-  return (
-    <div id="custom-legend-example" style={{ display: 'flex', width: '100%' }}>
-      <div id="custom-legend-node" style={{ width: '20%' }} />
-      <div style={{ width: '80%' }}>
-        <div id="custom-legend-graph" />
-      </div>
-    </div>
-  );
+  return <div id="allow-calibration-disabled-example" />;
 };
 
-export default CustomLegendDomExample;
+export default NoDataGeneralExample;

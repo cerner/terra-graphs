@@ -1,5 +1,7 @@
 import NoDataGeneralExample from './examples/GraphWithNoData?dev-site-example';
 import CustomLegendDomExample from './examples/GraphWithCustomLegendDom?dev-site-example';
+import AllowCalibrationDisabledExample from './examples/AllowCalibrationDisabled?dev-site-example';
+import AllowCalibrationEnabledExample from './examples/AllowCalibrationEnabled?dev-site-example';
 
 # Graph Configuration Object
 
@@ -8,7 +10,10 @@ It hold various properties to configure a grid.
 
 -   [Valid Graphs](#valid-graphs)
 -   [Configuration Structure](#configuration-structure)
--   [Configuration Properties](#configuration-properties)
+-   [Configuration Properties Summary](#configuration-properties-summary)
+-   [Configuration Properties Details](#configuration-properties-details)
+    -   [allowCalibration](#allowcalibration)
+    -   [bindLegendTo](#bindlegendto)
     -   [clickPassThrough](#clickpassthrough)
     -   [dimension](#dimension)
     -   [legendPadding](#legendpadding)
@@ -71,13 +76,13 @@ const graphConfig = {
 }
 ```
 
-## Configuration Properties
+## Configuration Properties Summary
 
 | Property Name          | Expected | Default                                        | Required | Description                                                                                                                                                                                 |
 |------------------------|----------|------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | axis                   | object   | -                                              | yes      | See [Axis](./Axes).                                                                                                                                                                         |
 | bindTo                 | string   | -                                              | yes      | DOM ID to bind the graph container to.                                                                                                                                                      |
-| allowCalibration       | boolean  | `true`                                         | no       | Toggle to allow calibration to adjust the y axis.                                                                                                                                           |
+| [allowCalibration](#allowcalibration)       | boolean  | `true`                                         | no       | Toggle to automatically adjust the y axis based on the dataset.                                                                                                                             |
 | bindLegendTo           | string   | `null`                                         | no       | Container id for custom legend placement. See [bindLegendTo](#bindLegendTo).                                                                                                                |
 | clickPassThrough       | object   | `{}`                                           | no       | See [clickPassThrough](#clickpassthrough).                                                                                                                                                  |
 | dateline               | array    | `[]`                                           | no       | See [Dateline](./Dateline).                                                                                                                                                                 |
@@ -97,6 +102,19 @@ const graphConfig = {
 | showVGrid              | boolean  | `true`                                         | no       | Toggle to show vertical grid.                                                                                                                                                               |
 | showXLabel             | boolean  | `true`                                         | no       | Toggle to show the x-axis label. An x-axis label will be required by default in 3.0.0. Set this property to `false` for specific use cases where the x-axis label needs to be hidden.       |
 | ticksCount             | number   | `3`-`7` depending on the input range           | no       | See [ticksCount](#tickscount).                                                                                                                                                              |
+
+## Configuration Properties Details
+
+- ### `allowCalibration`
+
+The `allowCalibration` prop allows the y-axes to be automatically updated based on the dataset.
+
+<AllowCalibrationDisabledExample/>
+
+When enabled, the maximum and minimum points of the dataset are used to determine the new limits, regardless of if the datapoints are visible in the viewport.
+
+<AllowCalibrationEnabledExample/>
+
 
 - ### `bindLegendTo`
 
@@ -157,6 +175,7 @@ Container ID for custom legend placement.
   | bottom        | number | no       | `4`     | Bottom padding of legend container. |
   | left          | number | no       | `8`     | Left padding of legend container.   |
   | right         | number | no       | `8`     | Right padding of legend container.  |
+
 
 - ### `ticksCount`
   **type:** number
