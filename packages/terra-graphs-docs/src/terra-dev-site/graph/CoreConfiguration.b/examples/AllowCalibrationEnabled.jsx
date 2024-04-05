@@ -30,7 +30,7 @@ const graphConfig2 = {
       show: true,
       label: 'x-axis',
       lowerLimit: 80,
-      upperLimit: 100,
+      upperLimit: 130,
     },
     y: {
       show: true,
@@ -54,10 +54,17 @@ const dataset1 = {
   values: [
     { x: 87, y: -2 },
     { x: 95, y: 1 },
-    { x: 160, y: -7 },
-    { x: 200, y: 28 },
-    { x: 213, y: 11 },
-    { x: 246, y: 1 },
+    { x: 103, y: -4 },
+    { x: 109, y: -2 },
+    { x: 128, y: 3 },
+    { x: 145, y: 28 },
+    { x: 151, y: 7 },
+    { x: 164, y: 10 },
+    { x: 177, y: 1 },
+    { x: 192, y: 6 },
+    { x: 203, y: -21 },
+    { x: 209, y: -3 },
+    { x: 246, y: 3 },
   ],
 };
 

@@ -106,23 +106,31 @@ const graphConfig = {
 ## Configuration Properties Details
 
 - ### `allowCalibration`
+  **type:** boolean
 
 The `allowCalibration` prop allows the y-axes to be automatically updated based on the dataset.
-
 <AllowCalibrationDisabledExample/>
 
 When enabled, the maximum and minimum points of the dataset are used to determine the new limits, regardless of if the datapoints are visible in the viewport.
-
 <AllowCalibrationEnabledExample/>
 
 
 - ### `bindLegendTo`
+  **type:** string
 
 Container ID for custom legend placement.
-
 <CustomLegendDomExample/>
 
+
 - ### `clickPassThrough`
+  **type:** object
+
+  ```js
+      clickPassThrough: {
+        datelines: <bool>,
+        eventlines: <bool>,
+      }
+  ```
 
   | Property Name | Expected | Default | Required |                         Description                         |
   | ------------- | -------- | ------- | -------- | ----------------------------------------------------------- |
@@ -156,7 +164,7 @@ Container ID for custom legend placement.
 
 
 - ### `legendPadding`
-    **type:** object
+  **type:** object
 
   Sets the legend padding and removes the carbon default margin of `8px` around legend.
 
