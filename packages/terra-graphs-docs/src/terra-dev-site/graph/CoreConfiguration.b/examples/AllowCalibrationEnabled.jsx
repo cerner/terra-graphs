@@ -64,11 +64,10 @@ const dataset1 = {
 // graph rendering
 
 const NoDataGeneralExample = () => {
-
   React.useEffect(() => {
     const graph1 = Carbon.api.graph(graphConfig1);
     graph1.loadContent(Carbon.api.line(dataset1));
-    
+
     const graph2 = Carbon.api.graph(graphConfig2);
     graph2.loadContent(Carbon.api.line(dataset1));
   }, []);
