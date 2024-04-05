@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/*
+Animations should be fast and nimble, never keeping the user waiting longer than is necessary.
+The aim is to prioritize user-perceived performance over technical benchmarks.
+Animations should last 150ms–250ms and should feel quick and responsive.
+Using cubic-bezier with ->
+Incoming Velocity: 70%
+Outgoing Velocity: 0%
+We quickly accelerate at the beginning of the animation and slowly decelerate by the end.
+*/
+:root {
+  --default-transition-timing: cubic-bezier(0.07, 0.95, 0, 1);
+  --default-transition-duration: 1s;
+}
+
+/*
+User agent gives `geometric precision` more importance than `speed` and `crisp edges`
+*/
+:root {
+  --terra-graphs-white: #fff;
+  --terra-graphs-dark: #1c1f21;
+  --terra-graphs-grey5: #f4f4f4;
+  --terra-graphs-grey10: #e8e9ea;
+  --terra-graphs-grey15: #dedfe0;
+  --terra-graphs-grey25: #c8cacb;
+  --terra-graphs-grey30: #bcbfc0;
+  --terra-graphs-grey45: #9b9fa1;
+  --terra-graphs-grey65: #6f7477;
+  --terra-graphs-blue100: #004c76;
+  --terra-graphs-blue30: #a6d9f4;
+  --terra-graphs-blue10: #ebf6fd;
+  --terra-graphs-red85: #c00;
+  --terra-graphs-yellow60: #ffc20a;
+  --terra-graphs-grey55: #868a8c;
+}
+
+/*
+We are forcing display of the hidden item for data points,
+this is only applicable when legend toggle is applied
+and one of the data point is selected.
+*/
+.carbon-data-pair--selected {
+  -moz-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -moz-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -moz-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -moz-transform var(--default-transition-duration) var(--default-transition-timing);
+  -webkit-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -webkit-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -webkit-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -webkit-transform var(--default-transition-duration) var(--default-transition-timing);
+  -ms-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -ms-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -ms-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -ms-transform var(--default-transition-duration) var(--default-transition-timing);
+  -o-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -o-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -o-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -o-transform var(--default-transition-duration) var(--default-transition-timing);
+  transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  transition: opacity var(--default-transition-duration) var(--default-transition-timing), transform var(--default-transition-duration) var(--default-transition-timing);
+  opacity: 1;
+  visibility: visible;
+}
+
+.carbon-paired-point[aria-disabled=false] {
+  cursor: pointer;
+}
+.carbon-paired-point[aria-hidden=true] {
+  -moz-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -moz-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -moz-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -moz-transform var(--default-transition-duration) var(--default-transition-timing);
+  -webkit-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -webkit-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -webkit-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -webkit-transform var(--default-transition-duration) var(--default-transition-timing);
+  -ms-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -ms-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -ms-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -ms-transform var(--default-transition-duration) var(--default-transition-timing);
+  -o-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -o-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -o-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -o-transform var(--default-transition-duration) var(--default-transition-timing);
+  transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  transition: opacity var(--default-transition-duration) var(--default-transition-timing), transform var(--default-transition-duration) var(--default-transition-timing);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.carbon-paired-line {
+  fill: none;
+  stroke: #1c1f21;
+  stroke: var(--terra-graphs-dark);
+  stroke-width: 1px;
+}
+.carbon-paired-line[aria-disabled=false] {
+  cursor: pointer;
+}
+.carbon-paired-line[aria-hidden=true] {
+  -moz-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -moz-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -moz-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -moz-transform var(--default-transition-duration) var(--default-transition-timing);
+  -webkit-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -webkit-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -webkit-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -webkit-transform var(--default-transition-duration) var(--default-transition-timing);
+  -ms-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -ms-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -ms-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -ms-transform var(--default-transition-duration) var(--default-transition-timing);
+  -o-transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), -o-transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  -o-transition: opacity var(--default-transition-duration) var(--default-transition-timing), -o-transform var(--default-transition-duration) var(--default-transition-timing);
+  transition: opacity 1s cubic-bezier(0.07, 0.95, 0, 1), transform 1s cubic-bezier(0.07, 0.95, 0, 1);
+  transition: opacity var(--default-transition-duration) var(--default-transition-timing), transform var(--default-transition-duration) var(--default-transition-timing);
+  opacity: 0;
+  visibility: hidden;
+}
