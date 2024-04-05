@@ -4,7 +4,7 @@ import Carbon from '@cerner/carbon-graphs';
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#allow-calibration-disabled-example',
+  bindTo: '#allow-calibration-x-axis-disabled-example',
   axis: {
     x: {
       label: 'x-axis',
@@ -53,7 +53,7 @@ const AllowCalibrationDisabledExample = () => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
-  return <div id="allow-calibration-disabled-example" />;
+  return <div id="allow-calibration-x-axis-disabled-example" />;
 };
 
 export default AllowCalibrationDisabledExample;
