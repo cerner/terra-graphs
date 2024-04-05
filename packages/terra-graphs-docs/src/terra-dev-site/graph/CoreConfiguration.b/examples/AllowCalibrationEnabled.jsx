@@ -70,7 +70,7 @@ const dataset1 = {
 
 // graph rendering
 
-const NoDataGeneralExample = () => {
+const AllowCalibrationEnabledExample = () => {
   React.useEffect(() => {
     const graph1 = Carbon.api.graph(graphConfig1);
     graph1.loadContent(Carbon.api.line(dataset1));
@@ -87,4 +87,4 @@ const NoDataGeneralExample = () => {
   );
 };
 
-export default NoDataGeneralExample;
+export default AllowCalibrationEnabledExample;

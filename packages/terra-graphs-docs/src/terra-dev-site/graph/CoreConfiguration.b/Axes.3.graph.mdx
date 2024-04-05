@@ -67,9 +67,7 @@ axis: {
 }
 
 ```
-
-
-## Properties
+## Properties Summary
 
 | Property Name         | Type           | Default                    | Required | Description                                                                                                                                                                                                                                                           |
 |-----------------------|----------------|----------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -87,18 +85,34 @@ axis: {
 | type                  | string         | `AXIS_TYPE.DEFAULT`        | no       | See [type](#type). Normal number value or time-based. Only for x-axis.                                                                                                                                                                                                |    
 | tickLabelsRotation    | integer        | -                          | no       | Sets the rotation of the x-axis tick labels to `0º` or `-45º`. Accepted values: 0 or -45. Only for x-axis.                                                                                                                                                            |
 
+## Properties Details
 
 - ### `allowCalibration`
     Set calibration for the axis. 
     If `true`, then the axis upper and lower limits will update to fit the entire graph on the x-axis. 
     This feature can _not_ be used in conjunction with panning. 
-    If panning is enabled then this property will be ignored if `true`.
+    If panning is enabled then this property will be ignored if it is `true`.
 
     NOTE: This property is only implemented for the x-axis (`config.axis.x.allowCalibration`). 
     Please refer to [config.allowCalibration](./graph-configuration-object/#allowcalibration) for calibrating the y-axes.
 
     <AllowCalibrationXAxisDisabledExample/>
     <AllowCalibrationXAxisEnabledExample/>
+
+- ### `label`
+
+Axis label value. Will not be rendered if nothing is provided. 
+
+- ### `orientation`
+
+
+- ### `rangeRounding`
+  `rangeRounding` property extends the domain so that it starts and ends on nice round values.
+  This method typically modifies the scale's domain, and may only extend the bounds to the nearest round value.
+
+- ### `show`
+
+
 
 
 - ### `type`
@@ -121,7 +135,7 @@ axis: {
 
   #### Note:
 
-  -   y2 axis is mandatory if the **y2.show** is enabled.
+  -   y2 axis is mandatory if **y2.show** is enabled.
   -   Ticks are mandatory for Bar graphs.
   -   `rangeRounding` property extends the domain so that it starts and ends on nice round values. This method typically modifies the scale’s domain, and may only extend the bounds to the nearest round value.
   -   `padDomain` property is only for Y and Y2 axes.

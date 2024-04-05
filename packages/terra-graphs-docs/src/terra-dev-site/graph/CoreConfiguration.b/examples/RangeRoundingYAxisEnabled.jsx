@@ -4,14 +4,13 @@ import Carbon from '@cerner/carbon-graphs';
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#allow-calibration-enabled-example',
+  bindTo: '#range-rounding-enabled-example',
   axis: {
     x: {
       show: true,
       label: 'x-axis',
       lowerLimit: 100,
       upperLimit: 200,
-      allowCalibration: true,
     },
     y: {
       show: true,
@@ -49,12 +48,12 @@ const dataset1 = {
 
 // graph rendering
 
-const AllowCalibrationEnabledExample = () => {
+const RangeRoundingEnabledExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
-  return <div id="allow-calibration-enabled-example" />;
+  return <div id="range-rounding-enabled-example" />;
 };
 
-export default AllowCalibrationEnabledExample;
+export default RangeRoundingEnabledExample;
