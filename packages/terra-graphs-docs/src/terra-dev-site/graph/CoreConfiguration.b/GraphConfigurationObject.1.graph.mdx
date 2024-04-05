@@ -78,30 +78,30 @@ const graphConfig = {
 
 ## Configuration Properties Summary
 
-| Property Name          | Expected | Default                                        | Required | Description                                                                                                                                                                                 |
-|------------------------|----------|------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| axis                   | object   | -                                              | yes      | See [Axis](./Axes).                                                                                                                                                                         |
-| bindTo                 | string   | -                                              | yes      | DOM ID to bind the graph container to.                                                                                                                                                      |
-| [allowCalibration](#allowcalibration)       | boolean  | `true`                                         | no       | Toggle to automatically adjust the y axis based on the dataset.                                                                                                                             |
-| bindLegendTo           | string   | `null`                                         | no       | Container id for custom legend placement. See [bindLegendTo](#bindLegendTo).                                                                                                                |
-| clickPassThrough       | object   | `{}`                                           | no       | See [clickPassThrough](#clickpassthrough).                                                                                                                                                  |
-| dateline               | array    | `[]`                                           | no       | See [Dateline](./Dateline).                                                                                                                                                                 |
-| eventline              | array    | `[]`                                           | no       | See [Eventline](./Eventline).                                                                                                                                                               |
-| dimension              | object   | `{}`                                           | no       | See [dimension](#dimension).                                                                                                                                                                |
-| legendPadding          | object   | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | no       | Sets the legend padding and removes the carbon default margin of `8px` around legend.                                                                                                       |
-| locale                 | object   | `LOCALE.en_US`                                 | no       | Locale object for x-Axis tick values.                                                                                                                                                       |
-| opaqueBackground       | false    | `false`                                        | no       | Toggle between a `transparent` or `white` background for the container.                                                                                                                     |
-| padding                | object   | `{ top: 10, bottom: 10, left: 30, right: 50 }` | no       | See [Padding](./Padding).                                                                                                                                                                   |
-| pan                    | object   | `{}`                                           | no       | See [Panning](./Panning).                                                                                                                                                                   |
-| removeContainerPadding | boolean  | `false`                                        | no       | Toggle to remove the top and bottom padding of the carbon container.                                                                                                                        |
-| showHGrid              | boolean  | `true`                                         | no       | Toggle to show horizontal grid.                                                                                                                                                             |
-| showLabel              | boolean  | `true`                                         | no       | Toggle to show axes labels.                                                                                                                                                                 |
-| showLegend             | boolean  | `true`                                         | no       | Toggle to show graph legend.                                                                                                                                                                |
-| showNoDataText         | boolean  | `true`                                         | no       | Toggle to show no data text.                                                                                                                                                                |
-| showShapes             | boolean  | `true`                                         | no       | Toggle to show shapes in the line graph.                                                                                                                                                    |
-| showVGrid              | boolean  | `true`                                         | no       | Toggle to show vertical grid.                                                                                                                                                               |
-| showXLabel             | boolean  | `true`                                         | no       | Toggle to show the x-axis label. An x-axis label will be required by default in 3.0.0. Set this property to `false` for specific use cases where the x-axis label needs to be hidden.       |
-| ticksCount             | number   | `3`-`7` depending on the input range           | no       | See [ticksCount](#tickscount).                                                                                                                                                              |
+|             Property Name             | Expected |                    Default                     | Required |                                                                                      Description                                                                                      |
+| ------------------------------------- | -------- | ---------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| axis                                  | object   | -                                              | yes      | See [Axis](./Axes).                                                                                                                                                                   |
+| bindTo                                | string   | -                                              | yes      | DOM ID to bind the graph container to.                                                                                                                                                |
+| [allowCalibration](#allowcalibration) | boolean  | `true`                                         | no       | Toggle to automatically adjust the y axis based on the dataset.                                                                                                                       |
+| [bindLegendTo](#bindlegendto)         | string   | `null`                                         | no       | Container id for custom legend placement. See [bindLegendTo](#bindLegendTo).                                                                                                          |
+| [clickPassThrough](#clickpassthrough) | object   | `{}`                                           | no       | See [clickPassThrough](#clickpassthrough).                                                                                                                                            |
+| dateline                              | array    | `[]`                                           | no       | See [Dateline](./Dateline).                                                                                                                                                           |
+| eventline                             | array    | `[]`                                           | no       | See [Eventline](./Eventline).                                                                                                                                                         |
+| [dimension](#dimension)               | object   | `{}`                                           | no       | See [dimension](#dimension).                                                                                                                                                          |
+| [legendPadding](#legendpadding)       | object   | `{ top: 4, bottom: 4, left: 8, right: 8 }`     | no       | Sets the legend padding and removes the carbon default margin of `8px` around legend.                                                                                                 |
+| locale                                | object   | `LOCALE.en_US`                                 | no       | Locale object for x-Axis tick values.                                                                                                                                                 |
+| opaqueBackground                      | false    | `false`                                        | no       | Toggle between a `transparent` or `white` background for the container.                                                                                                               |
+| padding                               | object   | `{ top: 10, bottom: 10, left: 30, right: 50 }` | no       | See [Padding](./Padding).                                                                                                                                                             |
+| pan                                   | object   | `{}`                                           | no       | See [Panning](./Panning).                                                                                                                                                             |
+| removeContainerPadding                | boolean  | `false`                                        | no       | Toggle to remove the top and bottom padding of the carbon container.                                                                                                                  |
+| showHGrid                             | boolean  | `true`                                         | no       | Toggle to show horizontal grid.                                                                                                                                                       |
+| showLabel                             | boolean  | `true`                                         | no       | Toggle to show axes labels.                                                                                                                                                           |
+| showLegend                            | boolean  | `true`                                         | no       | Toggle to show graph legend.                                                                                                                                                          |
+| showNoDataText                        | boolean  | `true`                                         | no       | Toggle to show no data text.                                                                                                                                                          |
+| showShapes                            | boolean  | `true`                                         | no       | Toggle to show shapes in the line graph.                                                                                                                                              |
+| showVGrid                             | boolean  | `true`                                         | no       | Toggle to show vertical grid.                                                                                                                                                         |
+| showXLabel                            | boolean  | `true`                                         | no       | Toggle to show the x-axis label. An x-axis label will be required by default in 3.0.0. Set this property to `false` for specific use cases where the x-axis label needs to be hidden. |
+| [ticksCount](#tickscount)             | number   | `3`-`7` depending on the input range           | no       | See [ticksCount](#tickscount).                                                                                                                                                        |
 
 ## Configuration Properties Details
 
@@ -124,8 +124,8 @@ Container ID for custom legend placement.
 
 - ### `clickPassThrough`
 
-  | Property Name | Expected | Default | Required | Description                                                 |
-  |---------------|----------|---------|----------|-------------------------------------------------------------|
+  | Property Name | Expected | Default | Required |                         Description                         |
+  | ------------- | -------- | ------- | -------- | ----------------------------------------------------------- |
   | datelines     | object   | null    | no       | Toggle for allowing click events to items below datelines.  |
   | eventlines    | object   | null    | no       | Toggle for allowing click events to items below eventlines. |
 
@@ -133,16 +133,16 @@ Container ID for custom legend placement.
 
   ##### `dateline`
 
-  | `clickPassThrough.dateline` Value | `onClick` function | Result                                                                                                             |
-  |-----------------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------|
+  | `clickPassThrough.dateline` Value | `onClick` function |                                                       Result                                                       |
+  | --------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------ |
   | `true`                            | defined            | `onClick` function is executed  and cursor pointer is visible top of the element.                                  |
   | `true`                            | `undefined`        | The element beneath it is clickable. If the bottom element is selectable, then the cursor pointer is also visible. |
   | `false`                           | defined            | `onClick` function is executed  and cursor pointer is visible top of the element.                                  |
   | `false`                           | `undefined`        | All mouse events are disabled.                                                                                     |
 
   ##### `eventline`
-  | `clickPassThrough.eventline` Value | Result                                                                                                       |
-  |------------------------------------|--------------------------------------------------------------------------------------------------------------|
+  | `clickPassThrough.eventline` Value |                                                    Result                                                    |
+  | ---------------------------------- | ------------------------------------------------------------------------------------------------------------ |
   | `true`                             | Clicking underneath the element is allowed and if bottom element is selectable, then the pointer is visible. |
   | `false`                            | All mouse events are disabled.                                                                               |
 
@@ -150,8 +150,8 @@ Container ID for custom legend placement.
 - ### `dimension`
   **type:** object
 
-  | Property Name | Type   | Required | Description                   |
-  |---------------|--------|----------|-------------------------------|
+  | Property Name |  Type  | Required |          Description          |
+  | ------------- | ------ | -------- | ----------------------------- |
   | height        | number | no       | Sets the height of the graph. |
 
 
@@ -169,8 +169,8 @@ Container ID for custom legend placement.
     }
   ```
 
-  | Property Name | Type   | Required | Default | Description                         |
-  |---------------|--------|----------|---------|-------------------------------------|
+  | Property Name |  Type  | Required | Default |             Description             |
+  | ------------- | ------ | -------- | ------- | ----------------------------------- |
   | top           | number | no       | `4`     | Top padding of legend container.    |
   | bottom        | number | no       | `4`     | Bottom padding of legend container. |
   | left          | number | no       | `8`     | Left padding of legend container.   |
