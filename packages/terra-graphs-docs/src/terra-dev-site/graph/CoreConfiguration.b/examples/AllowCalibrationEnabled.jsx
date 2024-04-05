@@ -27,13 +27,11 @@ const graphConfig2 = {
   bindTo: '#allow-calibration-enabled-example2',
   axis: {
     x: {
-      show: true,
       label: 'x-axis',
       lowerLimit: 80,
       upperLimit: 130,
     },
     y: {
-      show: true,
       label: 'y-axis',
       lowerLimit: -5,
       upperLimit: 20,

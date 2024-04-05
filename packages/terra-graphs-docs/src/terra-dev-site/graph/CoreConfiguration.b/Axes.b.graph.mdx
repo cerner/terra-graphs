@@ -1,6 +1,11 @@
 import AllowCalibrationXAxisDisabledExample from './examples/axes/AllowCalibrationXAxisDisabled?dev-site-example';
 import AllowCalibrationXAxisEnabledExample from './examples/axes/AllowCalibrationXAxisEnabled?dev-site-example';
+
 import RangeRoundingDisabledExample from './examples/axes/RangeRoundingYAxisDisabled?dev-site-example';
+import RangeRoundingEnabledExample from './examples/axes/RangeRoundingYAxisEnabled?dev-site-example';
+
+import YAxisHiddenExample from './examples/axes/YAxisHidden?dev-site-example';
+
 
 
 # Axes
@@ -8,11 +13,15 @@ import RangeRoundingDisabledExample from './examples/axes/RangeRoundingYAxisDisa
 Any graph that inherits from `Graph` API will inherit the following `Axis` and `Tick` properties as well.
 
 -   [Structure](#structure)
--   [Properties](#properties)
+-   [Properties Summary](#properties-summary)
+-   [Properties Details](#properties-details)
     -   [allowCalibration](#allowCalibration)
-    -   [type](#type)
+    -   [label](#label)
     -   [orientation](#orientation)
-    -   [Note](#note)
+    -   [rangeRounding](#rangerounding)
+    -   [show](#show)
+    -   [type](#type)
+    -   [Notes](#notes)
 -   [X Axis Domain Padding](#x-axis-domain-padding)
 
 
@@ -101,17 +110,22 @@ axis: {
     <AllowCalibrationXAxisDisabledExample/>
     <AllowCalibrationXAxisEnabledExample/>
 
+
 - ### `label`
 
 Axis label value. Will not be rendered if nothing is provided. 
 
 - ### `orientation`
 
+  <YAxisHiddenExample/>
+
 
 - ### `rangeRounding`
   `rangeRounding` property extends the domain so that it starts and ends on nice round values.
   This method typically modifies the scale's domain, and may only extend the bounds to the nearest round value.
   <RangeRoundingDisabledExample/>
+  <RangeRoundingEnabledExample/>
+
 
 - ### `show`
 
@@ -136,7 +150,7 @@ Axis label value. Will not be rendered if nothing is provided.
     - `AXES_ORIENTATION.BOTTOM`
 
 
-  #### Note:
+  #### Notes:
 
   -   y2 axis is mandatory if **y2.show** is enabled.
   -   Ticks are mandatory for Bar graphs.
@@ -163,3 +177,5 @@ const datetime = padXAxisLimits(
     ])
 );
 ```
+import { jsx } from "react/jsx-runtime"
+

@@ -7,14 +7,12 @@ const graphConfig = {
   bindTo: '#allow-calibration-enabled-example',
   axis: {
     x: {
-      show: true,
       label: 'x-axis',
       lowerLimit: 100,
       upperLimit: 200,
       allowCalibration: true,
     },
     y: {
-      show: true,
       label: 'y-axis',
       lowerLimit: -5,
       upperLimit: 20,

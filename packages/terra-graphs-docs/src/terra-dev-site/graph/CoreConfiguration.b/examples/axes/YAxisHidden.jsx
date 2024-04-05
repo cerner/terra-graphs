@@ -7,14 +7,15 @@ const graphConfig = {
   bindTo: '#y-axis-hidden-example',
   axis: {
     x: {
-      show: true,
+      // show is true by default
+      // show: true,
       label: 'x-axis',
       lowerLimit: 100,
       upperLimit: 200,
       allowCalibration: true,
     },
     y: {
-      show: true,
+      show: false,
       label: 'y-axis',
       lowerLimit: -5,
       upperLimit: 20,
