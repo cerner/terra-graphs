@@ -70,9 +70,9 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-disabled-x-axis');
       Terra.validates.screenshot('x-axis_allowcalibration_disabled', { selector: '.carbon-graph-container' });
     });
-    it('validates y-axis allowCalibration disabled graph container', () => {
-      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/axes/allow-calibration-disabled-y-axis');
-      Terra.validates.screenshot('y-axis_allowcalibration_disabled', { selector: '.carbon-graph-container' });
+    it('validates y-axis allowCalibration graphs', () => {
+      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/allow-calibration');
+      Terra.validates.screenshot('y-axis_allowcalibration_disabled', { selector: '#allow-calibration-examples' });
     });
 
     it('validates timeseries x-axis allowCalibration enabled graph container', () => {
