@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Changed
+  * Updated order of core-configuration documentation.
   * Updated core-configuration/graph-config-object documentation and examples.
   * Updated core-configuration/axes documentation and examples.
   * Optimized published package size by removing unecessary files.
