@@ -63,8 +63,6 @@
     "less-loader": "7",
     "one-cerner-style-icons": "https://github.com/cerner/one-cerner-style-icons/archive/v1.34.0.tar.gz",
     "postcss": "8",
-    "react-json-pretty": "2",
-    "react-test-renderer": "16",
     "stylelint": "15",
     "uuid": "3.4.0",
     "webpack": "5",
