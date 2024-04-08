@@ -21,6 +21,9 @@
   "engines": {
     "node": "10 || 12 || 14"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
   ],
@@ -102,7 +105,6 @@
     "webpack-merge": "5"
   },
   "scripts": {
-    "bootstrap:hoist": "lerna bootstrap --hoist",
     "build": "webpack --config ./packages/carbon-graphs/webpack/webpack.config.js",
     "build:dist": "webpack --config ./packages/carbon-graphs/webpack/webpack.config.js",
     "clean": "npm run clean:root && npm run clean:lib",
@@ -126,7 +128,7 @@
     "lint:scss": "stylelint 'packages/**/src/**/*.scss'",
     "lint:scss:no-warnings": "stylelint 'packages/**/src/**/*.scss' --quiet",
     "prepare-for-release": "terra prepare-for-release",
-    "postinstall": "npm run bootstrap:hoist && npm run compile && npm run build && npm run build:dist",
+    "postinstall": "npm run compile && npm run build && npm run build:dist",
     "start": "webpack serve --config webpack.config.js",
     "start-prod": "webpack-dev-server --env.disableHotReloading -p",
     "start-static": "npm run compile:prod && terra express-server --site ./build",
