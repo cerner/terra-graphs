@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-## 1.9.1 - (April 9, 2024)
+* Fixed
+  * Fixed incorrect imports.
+
+## 1.9.2 - (April 9, 2024)
 
 * Fixed
   * Added missing files in published package.
