@@ -28,6 +28,7 @@
     "access": "public"
   },
   "files": [
+    "docs",
     "lib",
     "CHANGELOG.md",
     "LICENSE",
