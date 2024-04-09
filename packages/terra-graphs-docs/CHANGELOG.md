@@ -5,6 +5,11 @@
 ## 1.9.1 - (April 9, 2024)
 
 * Fixed
+  * Added missing files in published package.
+
+## 1.9.1 - (April 9, 2024)
+
+* Fixed
   * Removed extra peer dependency.
 
 ## 1.9.0 - (April 5, 2024)
