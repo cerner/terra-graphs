@@ -42,7 +42,6 @@
     "terra-theme-context": "1"
   },
   "peerDependencies": {
-    "@cerner/terra-dev-site": "8",
     "react": "16",
     "react-dom": "16"
   },
