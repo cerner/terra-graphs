@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.9.3 - (April 9, 2024)
+
 * Fixed
   * Fixed incorrect imports.
 
