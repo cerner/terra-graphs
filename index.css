@@ -564,6 +564,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
 }
 .Button-module__button___3afIE.Button-module__is-left-aligned___31tNT {
   justify-content: start;
+  text-align: start;
 }
 .Button-module__button-label-mac___3ziTE {
   display: inline-block;
@@ -10081,7 +10082,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-hyperlink-hover-text-decoration: underline;
   --terra-hyperlink-focus-background-color: transparent;
   --terra-hyperlink-focus-border-radius: 0.2142rem;
-  --terra-hyperlink-focus-box-shadow: 0 0 1px 3px #004c76, 0 0 7px 4px #004c76;
+  --terra-hyperlink-focus-outline: 2px dashed #fff;
   --terra-hyperlink-focus-color: #007ee0;
   --terra-hyperlink-focus-text-decoration: underline;
   --terra-hyperlink-active-color: #007ee0;
@@ -10114,6 +10115,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-hyperlink-focus-background-color: transparent;
   --terra-hyperlink-focus-border-radius: 3px;
   --terra-hyperlink-focus-box-shadow: 0 0 0 1px #4cb2e9, 0 0 0 3px rgba(76, 178, 233, 0.25);
+  --terra-hyperlink-focus-outline: none;
   --terra-hyperlink-focus-color: #004c76;
   --terra-hyperlink-focus-text-decoration: underline;
   --terra-hyperlink-active-color: #0065a3;
@@ -10222,10 +10224,14 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   background-color: var(--terra-hyperlink-focus-background-color, transparent);
   border-radius: 0.2142rem;
   border-radius: var(--terra-hyperlink-focus-border-radius, 0.2142rem);
-  box-shadow: 0 0 0 1px #4cb2e9, 0 0 0 3px rgba(76, 178, 233, 0.25);
-  box-shadow: var(--terra-hyperlink-focus-box-shadow, 0 0 0 1px #4cb2e9, 0 0 0 3px rgba(76, 178, 233, 0.25));
+  box-shadow: none;
+  box-shadow: var(--terra-hyperlink-focus-box-shadow, none);
   color: #001f67;
   color: var(--terra-hyperlink-focus-color, #001f67);
+  outline: 2px dashed #000;
+  outline: var(--terra-hyperlink-focus-outline, 2px dashed #000);
+  outline-offset: 1px;
+  outline-offset: var(--terra-hyperlink-focus-outline-offset, 1px);
   text-decoration: underline;
   text-decoration: var(--terra-hyperlink-focus-text-decoration, underline);
 }
