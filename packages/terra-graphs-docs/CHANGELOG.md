@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.9.1 - (April 9, 2024)
+
 * Fixed
   * Removed extra peer dependency.
 
