@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from 'terra-button';
 
@@ -21,7 +21,7 @@ const graphConfig = {
       upperLimit: 20,
     },
   },
-  allowCalibration: false,
+  allowCalibration: true,
 };
 
 //  graph dataset
@@ -51,32 +51,44 @@ const dataset1 = {
 
 // graph rendering
 let graph;
-
 const BasicReflowExample = () => {
+  const [allowCalibrationStatus, SetAllowCalibrationStatus] = useState(graphConfig.allowCalibration.toString());
+
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
 
-  const handleClick = () => {
-    if (!graph) { return; }
+  const handleClickToggleCalibration = () => {
+    graph.config.allowCalibration = !graph.config.allowCalibration;
+    SetAllowCalibrationStatus(graph.config.allowCalibration.toString());
 
+    graph.reflowMultipleDatasets();
+  };
 
+  const handleClickUpdateLimits = () => {
+    graph.config.axis.y.domain.lowerLimit = -52;
+    graph.config.axis.y.domain.upperLimit = 52;
 
-    // graph.config.axis.y.lowerLimit = -50;
-    // graph.config.axis.y.upperLimit = 20;
+    graph.reflowMultipleDatasets();
+  };
 
-    graph.config.axis.y.lowerLimit = -50;
-
-
-    // graph.config.allowCalibration = !graph.config.allowCalibration;
+  const handleClickReset = () => {
+    graph.config.axis.y.domain.lowerLimit = 0;
+    graph.config.axis.y.domain.upperLimit = 20;
 
     graph.reflowMultipleDatasets();
   };
 
   return (
     <>
-      <Button text="Toggle Calibration" onClick={handleClick} />
+      <Button text="Toggle Calibration" onClick={handleClickToggleCalibration} />
+      <Button text="Update Axis Limits" onClick={handleClickUpdateLimits} />
+      <Button text="Reset" onClick={handleClickReset} />
+      <div>
+        AllowCalibration:
+        {allowCalibrationStatus}
+      </div>
       <div id="basic-reflow-example" />
     </>
   );

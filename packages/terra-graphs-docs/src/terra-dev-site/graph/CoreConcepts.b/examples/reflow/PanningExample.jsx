@@ -22,6 +22,9 @@ const graphConfig = {
       upperLimit: 20,
     },
   },
+  panning: {
+    enabled: true,
+  },
 };
 
 //  graph dataset
