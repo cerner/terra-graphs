@@ -1,4 +1,4 @@
 import React from 'react';
-import NoDataExample from '../../../../graph/CoreConfiguration.b/examples/GraphWithNoData';
+import NoDataExample from '../../../../graph/CoreConcepts.b/examples/GraphWithNoData';
 
 export default () => <NoDataExample />;

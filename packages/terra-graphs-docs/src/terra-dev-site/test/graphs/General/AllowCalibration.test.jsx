@@ -1,6 +1,6 @@
 import React from 'react';
-import AllowCalibrationDisabled from '../../../graph/CoreConfiguration.b/examples/AllowCalibrationDisabled';
-import AllowCalibrationEnabled from '../../../graph/CoreConfiguration.b/examples/AllowCalibrationEnabled';
+import AllowCalibrationDisabled from '../../../graph/CoreConcepts.b/examples/AllowCalibrationDisabled';
+import AllowCalibrationEnabled from '../../../graph/CoreConcepts.b/examples/AllowCalibrationEnabled';
 
 export default () => (
   <div id="allow-calibration-examples">
