@@ -1,0 +1,10 @@
+  return (
+    <>
+      <Button icon={<IconLeft />} text="<" onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button icon={<IconRight />} text=">" onClick={() => dispatch({ type: 'panRight' })} />
+      <div id="panning-example" />
+    </>
+    );
+    
+    import Button from 'terra-button';
+import {IconLeft, IconRight} from 'terra-icon';
