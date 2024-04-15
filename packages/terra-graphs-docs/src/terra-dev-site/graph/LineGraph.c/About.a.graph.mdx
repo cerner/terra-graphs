@@ -1,4 +1,5 @@
 import BasicLineGraphExample from './examples/BasicLineGraph?dev-site-example';
+import SplineGraphExample from './examples/SplineGraph?dev-site-example';
 
 import DefaultLineGraph from '../example/Graphs-Carbon/LineGraph/BasicLineGraphs/SimpleLine?dev-site-example';
 import DefaultGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
@@ -208,6 +209,7 @@ See [Graph](../core-configuration/documentation/graph) for graph configuration p
     | style         | object  | no       | {}      | Any style that can be applied. See [styles](#style). |
     | showElement   | boolean | no       | true    | Toggle to hide legend when legend item has no data.  |
 
+
 - ### `regions`
 
     -   Each dataset can have 1 or more regions.
@@ -246,6 +248,14 @@ See [Graph](../core-configuration/documentation/graph) for graph configuration p
     | strokeDashArray | string | no       | "0"     | Applies stroke-dasharray CSS property to the SVG line. |
 
 
+- ### `type`
+
+Nature of line that needs to be drawn (Linear or Cardinal). Valid values are:
+- `Carbon.helpers.LINE_TYPE.LINEAR`
+- `Carbon.helpers.LINE_TYPE.SPLINE`
+
+  <SplineGraphExample/>
+
 - ### `values`
 
     ```js
@@ -267,6 +277,7 @@ See [Graph](../core-configuration/documentation/graph) for graph configuration p
     | y             | string  | yes      | -       | Co-ordinate y, for plotting the data point.                 |
     | isCritical    | boolean | no       | `false` | Shows an indicator surrounding the data point when enabled. |
     | region        | object  | no       | {}      | See [Regions](#regions).                                    |
+
 
 
 
