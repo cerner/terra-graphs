@@ -1,4 +1,8 @@
 import React from 'react';
+
+import Button from 'terra-button';
+import { IconLeft, IconRight } from 'terra-icon';
+
 import Carbon from '@cerner/carbon-graphs';
 
 
@@ -53,7 +57,14 @@ const PanningExample = () => {
     const graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
-  return <div id="panning-example" />;
+
+  return (
+    <>
+      <Button icon={<IconLeft />} onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button icon={<IconRight />} onClick={() => dispatch({ type: 'panRight' })} />
+      <div id="panning-example" />
+    </>
+  );
 };
 
 export default PanningExample;
