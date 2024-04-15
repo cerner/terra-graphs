@@ -98,8 +98,8 @@ const PanningExample = () => {
 
   return (
     <>
-      <Button icon={<IconLeft />} onClick={() => dispatch({ type: 'panLeft' })} />
-      <Button icon={<IconRight />} onClick={() => dispatch({ type: 'panRight' })} />
+      <Button icon={<IconLeft />} isIconOnly onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button icon={<IconRight />} isIconOnly onClick={() => dispatch({ type: 'panRight' })} />
       <div id="panning-example" />
     </>
   );
