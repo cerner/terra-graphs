@@ -1,3 +1,5 @@
+import BasicLineGraphExample from './examples/BasicLineGraph?dev-site-example';
+
 import DefaultLineGraph from '../example/Graphs-Carbon/LineGraph/BasicLineGraphs/SimpleLine?dev-site-example';
 import DefaultGraphConfig from '@cerner/terra-graphs-docs/lib/example-datasets/graphConfigObjects/Line/lineDefault.js?dev-site-codeblock';
 import DefaultDataObject from '@cerner/terra-graphs-docs/lib/example-datasets/dataObjects/Line/dataset1.js?dev-site-codeblock';
@@ -30,7 +32,7 @@ A native line graph using D3 based on standard design patterns.
 ## Getting Started
 
 - Install with [npmjs](https://www.npmjs.com):
-  - `npm i @cerner/carbon-graphs --save-dev`
+  - `npm i @cerner/carbon-graphs`
 
 ## Usage
 
@@ -43,7 +45,7 @@ A Line graph can be plotted as follows:
 
 ```js
 import Carbon from '@cerner/carbon-graphs';
-import '@cerner/carbon-graphs/dist/css/carbon-graphs.css';
+
 const graph = Carbon.api.graph(/* graph config JSON */);
 graph.loadContent(Carbon.api.line(/* dataset 1 */));
 
@@ -51,6 +53,9 @@ graph.loadContent(Carbon.api.line(/* dataset 1 */));
 graph.loadContent(Carbon.api.line(/* dataset 1 */));
 graph.loadContent(Carbon.api.line(/* dataset 2 */));
 ```
+
+<BasicLineGraphExample/>
+
 
 ## Configuration Structure
 
@@ -168,32 +173,21 @@ See [Graph](../core-configuration/documentation/graph) for graph configuration p
 
 ## Dataset Properties
 
-| Property Name | Type     | Required   |Default             | Description                                                                                                          |
-| ------------- | -------- | ---------- | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| key           | string   | yes        | -                  | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.              |
-| values        | Array    | yes        | -                  | See [Values](#values).                                                                                               |
-| color         | string   | no         | COLORS.BLACK       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [colors](../core-configuration/documentation/colors). |
-| label         | object   | no         | {}                 | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                  |
-| legendOptions | object   | no         | undefined          | Toggle to show shape, line and legend. See [LegendOptions](#legendoptions).                                          |
-| onClick       | Function | no         | undefined          | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
-| regions       | array    | no         | []                 | See [Regions](#regions).                                                                                             |
-| shape         | string   | no         | SHAPES.DARK.CIRCLE | Shape for representing the data points.                                                                              |
-| style         | object   | no         | {}                 | Any style that can be applied. See [styles](#style).                                                                 |
-| showShapes    | boolean  | no         | true               | Option to show/hide shapes per data set. This option overrides the graph's showShapes property.                      |
-| type          | string   | no         | LINE_TYPE.LINEAR   | Nature of line that needs to be drawn (Linear or Cardinal).                                                          |
-| yAxis         | string   | no         | "y"                | Function to execute upon clicking a datapoint, such as, to display a popup.                                          |
+| Property Name |   Type   | Required |      Default       |                                                            Description                                                             |
+| ------------- | -------- | -------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| key           | string   | yes      | -                  | A unique `id` to identify the dataset. Adding two datasets with the same `key` will result in an error.                            |
+| values        | Array    | yes      | -                  | See [Values](#values).                                                                                                             |
+| color         | string   | no       | COLORS.BLACK       | Color for the data points. Can be a hex value (`#ffffff`) or a constant from [colors](../core-configuration/documentation/colors). |
+| label         | object   | no       | {}                 | Label for the dataset in the Legend. If it is not provided then it will not be shown in the legend.                                |
+| legendOptions | object   | no       | undefined          | Toggle to show shape, line and legend. See [LegendOptions](#legendoptions).                                                        |
+| onClick       | Function | no       | undefined          | Function to execute upon clicking a datapoint, such as, to display a popup.                                                        |
+| regions       | array    | no       | []                 | See [Regions](#regions).                                                                                                           |
+| shape         | string   | no       | SHAPES.DARK.CIRCLE | Shape for representing the data points.                                                                                            |
+| style         | object   | no       | {}                 | Any style that can be applied. See [styles](#style).                                                                               |
+| showShapes    | boolean  | no       | true               | Option to show/hide shapes per data set. This option overrides the graph's showShapes property.                                    |
+| type          | string   | no       | LINE_TYPE.LINEAR   | Nature of line that needs to be drawn (Linear or Cardinal).                                                                        |
+| yAxis         | string   | no       | "y"                | Function to execute upon clicking a datapoint, such as, to display a popup.                                                        |
 
-- ### `style`
-
-    Each line can have a style object in the [values](#values) level.
-
-    ```js
-       style: { strokeDashArray: '2,2' },
-    ```
-
-    | Property Name   | Type     | Required   | Default | Description                                            |
-    | --------------- | -------- | ---------- | ------- | ------------------------------------------------------ |
-    | strokeDashArray | string   | no         | "0"     | Applies stroke-dasharray CSS property to the SVG line. |
 
 
 - ### `legendOptions`
@@ -207,34 +201,12 @@ See [Graph](../core-configuration/documentation/graph) for graph configuration p
       },
     ```
 
-    | Property Name | Type     | Required |Default   | Description                                           |
-    | ------------- | -------- | -------- | -------- | ----------------------------------------------------- |
-    | showLine      | boolean  | no       | false    | Toggle to display the line in the legend.             |
-    | showShape     | boolean  | no       | true     | Toggle to display the shape in the legend.            |
-    | style         | object   | no       | {}       | Any style that can be applied. See [styles](#style).  |
-    | showElement   | boolean  | no       | true     | Toggle to hide legend when legend item has no data.   |
-
-- ### `values`
-
-    ```js
-        values: [
-            {
-                x: <number> or <Date>,
-                y: <number>,
-            },
-            {
-                x: <number> or <Date>,
-                y: <number>,
-                isCritical: <bool>
-            },
-        ]
-    ```
-    | Property Name | Type     | Required | Default | Description                                                 |
-    | ------------- | -------- | -------- | ------- | ----------------------------------------------------------- |
-    | x             | string   | yes      | -       | Co-ordinate x, for plotting the data point.                 |
-    | y             | string   | yes      | -       | Co-ordinate y, for plotting the data point.                 |
-    | isCritical    | boolean  | no       | `false` | Shows an indicator surrounding the data point when enabled. |
-    | region        | object   | no       | {}      | See [Regions](#regions).                                    |
+    | Property Name |  Type   | Required | Default |                     Description                      |
+    | ------------- | ------- | -------- | ------- | ---------------------------------------------------- |
+    | showLine      | boolean | no       | false   | Toggle to display the line in the legend.            |
+    | showShape     | boolean | no       | true    | Toggle to display the shape in the legend.           |
+    | style         | object  | no       | {}      | Any style that can be applied. See [styles](#style). |
+    | showElement   | boolean | no       | true    | Toggle to hide legend when legend item has no data.  |
 
 - ### `regions`
 
@@ -253,12 +225,50 @@ See [Graph](../core-configuration/documentation/graph) for graph configuration p
         },
       ],
     ```
-    | Property Name | Type     | Required | Default                                                                                         | Description                           |
-    | ------------- | -------- | -------- | ----------------------------------------------------------------------------------------------- | ------------------------------------- |
-    | start         | number   | yes      | -                                                                                               | Start of the region.                  |
-    | end           | number   | yes      | -                                                                                               | End of the region.                    |
-    | axis          | string   | yes      |"y"                                                                                              | Defines which axis if represents from.|
-    | color         | string   | yes      | <img width="16px" height="16px" src="https://placehold.it/15/f4f4f4/000000?text=+" /> `#f4f4f4`.| Default color of the region area.     |
+    | Property Name |  Type  | Required |                                             Default                                              |            Description            |
+    | ------------- | ------ | -------- | ------------------------------------------------------------------------------------------------ | --------------------------------- |
+    | start         | number | yes      | -                                                                                                | Start of the region.              |
+    | end           | number | yes      | -                                                                                                | End of the region.                |
+    | axis          | string | yes      | "y"                                                                                              | Defines which axis it represents  |
+    | color         | string | yes      | <img width="16px" height="16px" src="https://placehold.it/15/f4f4f4/000000?text=+" /> `#f4f4f4`. | Default color of the region area. |
+
+
+- ### `style`
+
+    Each line can have a style object in the [values](#values) level.
+
+    ```js
+       style: { strokeDashArray: '2,2' },
+    ```
+
+    |  Property Name  |  Type  | Required | Default |                      Description                       |
+    | --------------- | ------ | -------- | ------- | ------------------------------------------------------ |
+    | strokeDashArray | string | no       | "0"     | Applies stroke-dasharray CSS property to the SVG line. |
+
+
+- ### `values`
+
+    ```js
+        values: [
+            {
+                x: <number> or <Date>,
+                y: <number>,
+            },
+            {
+                x: <number> or <Date>,
+                y: <number>,
+                isCritical: <bool>
+            },
+        ]
+    ```
+    | Property Name |  Type   | Required | Default |                         Description                         |
+    | ------------- | ------- | -------- | ------- | ----------------------------------------------------------- |
+    | x             | string  | yes      | -       | Co-ordinate x, for plotting the data point.                 |
+    | y             | string  | yes      | -       | Co-ordinate y, for plotting the data point.                 |
+    | isCritical    | boolean | no       | `false` | Shows an indicator surrounding the data point when enabled. |
+    | region        | object  | no       | {}      | See [Regions](#regions).                                    |
+
+
 
 - ### Constraints
     -  If dataset `label` display is not provided then the legend item will not be shown as well.
