@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+* Changed
+  * Moved the _Getting Started_ page to the top level.
+  * Renamed _Core Configuration_ to _Core Concepts_.
+
 ## 1.9.3 - (April 9, 2024)
 
 * Fixed
