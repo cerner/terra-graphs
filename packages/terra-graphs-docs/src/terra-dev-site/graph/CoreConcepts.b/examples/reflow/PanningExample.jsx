@@ -5,7 +5,6 @@ import { IconLeft, IconRight } from 'terra-icon';
 
 import Carbon from '@cerner/carbon-graphs';
 
-
 //  graph configuration object
 
 const graphConfig = {
@@ -15,6 +14,7 @@ const graphConfig = {
       label: 'x-axis',
       lowerLimit: 80,
       upperLimit: 280,
+      rangeRounding: false,
     },
     y: {
       label: 'y-axis',
@@ -22,7 +22,6 @@ const graphConfig = {
       upperLimit: 20,
     },
   },
-  allowCalibration: false,
 };
 
 //  graph dataset
@@ -51,12 +50,51 @@ const dataset1 = {
 };
 
 // graph rendering
+let graph;
+const panningFactor = 10;
 
 const PanningExample = () => {
   React.useEffect(() => {
-    const graph = Carbon.api.graph(graphConfig);
+    graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
   }, []);
+
+  const reducer = (panState, action) => {
+    let newLowerLimit = graph.config.axis.x.lowerLimit;
+    let newUpperLimit = graph.config.axis.x.upperLimit;
+
+    switch (action.type) {
+      case 'panLeft':
+        newLowerLimit = graph.config.axis.x.lowerLimit - panningFactor;
+        newUpperLimit = graph.config.axis.x.upperLimit - panningFactor;
+        break;
+      case 'panRight':
+        newLowerLimit = graph.config.axis.x.lowerLimit + panningFactor;
+        newUpperLimit = graph.config.axis.x.upperLimit + panningFactor;
+        break;
+      default:
+        return {
+          newLowerLimit,
+          newUpperLimit,
+        };
+    }
+
+    return {
+      newLowerLimit,
+      newUpperLimit,
+    };
+  };
+
+  const [panState, dispatch] = React.useReducer(reducer, panningFactor);
+
+  React.useLayoutEffect(() => {
+    if (!graph) { return; }
+
+    graph.config.axis.x.lowerLimit = panState.newLowerLimit;
+    graph.config.axis.x.upperLimit = panState.newUpperLimit;
+
+    graph.reflowMultipleDatasets();
+  }, [panState]);
 
   return (
     <>
