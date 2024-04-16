@@ -32,7 +32,7 @@ const graphConfig = {
 const dataset1 = {
   key: 'uid_1',
   label: {
-    display: 'Data Label 1',
+    display: 'Dataset 1',
   },
   color: Carbon.helpers.COLORS.BLACK,
   values: [
@@ -101,8 +101,8 @@ const PanningExample = () => {
 
   return (
     <>
-      <Button icon={<IconLeft />} isIconOnly onClick={() => dispatch({ type: 'panLeft' })} />
-      <Button icon={<IconRight />} isIconOnly onClick={() => dispatch({ type: 'panRight' })} />
+      <Button icon={<IconLeft />} text="pan left" isIconOnly onClick={() => dispatch({ type: 'panLeft' })} />
+      <Button icon={<IconRight />} text="pan right" isIconOnly onClick={() => dispatch({ type: 'panRight' })} />
       <div id="panning-example" />
     </>
   );
