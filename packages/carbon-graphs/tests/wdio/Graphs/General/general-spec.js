@@ -71,7 +71,7 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('x-axis_allowcalibration_disabled', { selector: '.carbon-graph-container' });
     });
     it('validates y-axis allowCalibration disabled graph', () => {
-      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/allow-calibration');
+      browser.url('/raw/tests/cerner-terra-graphs-docs/general/allow-calibration');
       Terra.validates.screenshot('y-axis_allowcalibration_disabled', { selector: '#allow-calibration-disabled-example' });
     });
 
@@ -90,7 +90,7 @@ Terra.describeViewports('General', ['tiny', 'medium', 'large'], () => {
       Terra.validates.screenshot('x-axis_allowcalibration_enabled', { selector: '.carbon-graph-container' });
     });
     it('validates y-axis allowCalibration enabled graph container', () => {
-      browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/general/allow-calibration');
+      browser.url('/raw/tests/cerner-terra-graphs-docs/general/allow-calibration');
       Terra.validates.screenshot('y-axis_allowcalibration_enabled', { selector: '#allow-calibration-enabled-example' });
     });
 
