@@ -7,7 +7,7 @@ import Carbon from '@cerner/carbon-graphs';
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#dynamic-data-update-example',
+  bindTo: '#dynamic-data-update-multiple-datasets-example',
   axis: {
     x: {
       label: 'x-axis',
@@ -46,7 +46,7 @@ const dataset1 = {
     { x: 203, y: -21 },
     { x: 209, y: -3 },
     { x: 246, y: 3 },
-  ],
+    ],
 };
 
 // Updated values for dataset 1
@@ -74,6 +74,50 @@ const updatedDataset1 = {
     { x: 191, y: -2 },
     { x: 193, y: 38 },
     { x: 198, y: 40 },
+    ],
+};
+
+const dataset2 = {
+  key: 'uid_2',
+  label: {
+    display: 'Dataset 2',
+  },
+  color: Carbon.helpers.COLORS.LAVENDER,
+  values: [
+    {x: 106, y: 19 },
+    {x: 111, y: 45 },
+    {x: 111, y: -1 },
+    {x: 113, y: 25 },
+    {x: 130, y: 12 },
+    {x: 133, y: 39 },
+    {x: 144, y: 45 },
+    {x: 155, y: 37 },
+    {x: 166, y: 20 },
+    {x: 181, y: 60 },
+    {x: 182, y: 29 },
+    {x: 187, y: -6 },
+    {x: 189, y: 54 },
+    {x: 195, y: 59 },
+    {x: 222, y: 32 },
+  ],
+};
+
+const updatedDataset2 = {
+  key: 'uid_2',
+  values: [
+    {x: 101, y: 31 },
+    {x: 104, y: 7 },
+    {x: 107, y: 120 },
+    {x: 131, y: 19 },
+    {x: 141, y: -5 },
+    {x: 150, y: 27 },
+    {x: 150, y: -1 },
+    {x: 158, y: 28 },
+    {x: 192, y: 27 },
+    {x: 212, y: 13 },
+    {x: 212, y: 46 },
+    {x: 217, y: 3 },
+    {x: 224, y: 0 },
   ],
 };
 
@@ -85,7 +129,8 @@ const DynamicallyUpdatingDataExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
-  }, []);
+    graph.loadContent(Carbon.api.line(dataset2));
+    }, []);
 
   const handleClickToggleCalibration = () => {
     graph.config.allowCalibration = !graph.config.allowCalibration;
@@ -93,33 +138,32 @@ const DynamicallyUpdatingDataExample = () => {
 
     graph.reflowMultipleDatasets();
   };
-  
+
   const handleClickUpdateData = () => {
-//    graph.config.axis.y.domain.lowerLimit = 0;
-//    graph.config.axis.y.domain.upperLimit = 20;
-    
     graph.reflowMultipleDatasets({
-      panData: [updatedDataset1],
+      panData: [updatedDataset1, updatedDataset2],
     });
   };
 
   const handleClickReset = () => {
     graph.unloadContent(Carbon.api.line(dataset1));
+    graph.unloadContent(Carbon.api.line(dataset2));
     graph.loadContent(Carbon.api.line(dataset1));
+    graph.loadContent(Carbon.api.line(dataset2));
   };
 
   return (
     <>
-      <Button text="Toggle Calibration" onClick={handleClickToggleCalibration} />
-      <Button text="Update Data" onClick={handleClickUpdateData} />
-      <Button text="Reset" onClick={handleClickReset} />
-      <div>
-        AllowCalibration:
-        {allowCalibrationStatus}
-      </div>
-      <div id="dynamic-data-update-example" />
+    <Button text="Toggle Calibration" onClick={handleClickToggleCalibration} />
+    <Button text="Update Data" onClick={handleClickUpdateData} />
+    <Button text="Reset" onClick={handleClickReset} />
+    <div>
+      AllowCalibration:
+      {allowCalibrationStatus}
+    </div>
+    <div id="dynamic-data-update-multiple-datasets-example" />
     </>
-  );
+    );
 };
 
 export default DynamicallyUpdatingDataExample;
