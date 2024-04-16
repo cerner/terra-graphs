@@ -7,7 +7,7 @@ import Carbon from '@cerner/carbon-graphs';
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#basic-reflow-example',
+  bindTo: '#dynamic-data-upate-example',
   axis: {
     x: {
       label: 'x-axis',
@@ -31,7 +31,7 @@ const dataset1 = {
   label: {
     display: 'Dataset 1',
   },
-  color: Carbon.helpers.COLORS.BLACK,
+  color: Carbon.helpers.COLORS.PINK,
   values: [
     { x: 87, y: -2 },
     { x: 95, y: 1 },
@@ -49,9 +49,37 @@ const dataset1 = {
   ],
 };
 
+
+// color and shape of the original dataset is retained
+const updatedDataset1 = {
+  key: 'uid_1',
+  values: [
+    { x: 81, y: 21 },
+    { x: 107, y: 6 },
+    { x: 109, y: 7 },
+    { x: 118, y: 5 },
+    { x: 117, y: 21 },
+    { x: 127, y: -20 },
+    { x: 137, y: -9 },
+    { x: 141, y: -6 },
+    { x: 144, y: 39 },
+    { x: 151, y: -14 },
+    { x: 156, y: -9 },
+    { x: 163, y: 4 },
+    { x: 164, y: 29 },
+    { x: 170, y: 30 },
+    { x: 172, y: 31 },
+    { x: 176, y: 34 },
+    { x: 185, y: 1 },
+    { x: 191, y: -2 },
+    { x: 193, y: 38 },
+    { x: 198, y: 40 },
+  ],
+};
+
 // graph rendering
 let graph;
-const BasicReflowExample = () => {
+const DynamicallyUpdatingDataExample = () => {
   const [allowCalibrationStatus, SetAllowCalibrationStatus] = useState(graphConfig.allowCalibration.toString());
 
   React.useEffect(() => {
@@ -65,33 +93,38 @@ const BasicReflowExample = () => {
 
     graph.reflowMultipleDatasets();
   };
-
-  const handleClickUpdateLimits1 = () => {
-    graph.config.axis.y.domain.lowerLimit = -52;
-    graph.config.axis.y.domain.upperLimit = 52;
-
-    graph.reflowMultipleDatasets();
-  };
-
-  const handleClickUpdateLimits2 = () => {
+  
+  const handleClickUpdateData = () => {
+    
     graph.config.axis.y.domain.lowerLimit = 0;
     graph.config.axis.y.domain.upperLimit = 20;
+    
+    graph.reflowMultipleDatasets({
+      panData: [
+        updatedDataset1,
+      ],
+    });
+  };
 
-    graph.reflowMultipleDatasets();
+  const handleClickReset = () => {
+//    graph.destroy();
+//    graph = Carbon.api.graph(graphConfig);
+    graph.unloadContent(Carbon.api.line(dataset1));
+    graph.loadContent(Carbon.api.line(dataset1));
   };
 
   return (
     <>
       <Button text="Toggle Calibration" onClick={handleClickToggleCalibration} />
-      <Button text="Update y-axis limits to -52, 52" onClick={handleClickUpdateLimits1} />
-      <Button text="Update y-axis limits to 0, 20" onClick={handleClickUpdateLimits2} />
+      <Button text="Update Data" onClick={handleClickUpdateData} />
+      <Button text="Reset" onClick={handleClickReset} />
       <div>
         AllowCalibration:
         {allowCalibrationStatus}
       </div>
-      <div id="basic-reflow-example" />
+      <div id="dynamic-data-upate-example" />
     </>
   );
 };
 
-export default BasicReflowExample;
+export default DynamicallyUpdatingDataExample;

@@ -32,7 +32,7 @@ const graphConfig = {
 const dataset1 = {
   key: 'uid_1',
   label: {
-    display: 'Data Label 1',
+    display: 'Dataset 1',
   },
   color: Carbon.helpers.COLORS.BLACK,
   values: [

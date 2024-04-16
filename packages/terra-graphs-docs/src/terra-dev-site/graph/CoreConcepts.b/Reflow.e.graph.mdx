@@ -1,10 +1,24 @@
-import BasicReflowExample from './examples/reflow/BasicReflowExample';
-import PanningExample from './examples/reflow/PanningExample';
+import {Notice} from '@cerner/terra-docs'
 
+import BasicReflowExample from './examples/reflow/BasicReflowExample?dev-site-example';
+import PanningExample from './examples/reflow/PanningExample?dev-site-example';
+import DynamicallyUpdatingDataExample from './examples/reflow/DynamicallyUpdatingData?dev-site-example';
 
 # Reflow
 
-Reflow can be used to dynamically update a graph.
+Reflow can be used to dynamically update a graph without causing a full redraw from scratch.
+It can be invoked by using the `GraphInstance.reflowMultipleDatasets` method.
+
+```js
+const graphInstance = Carbon.api.graph(graphConfig);
+graphInstance.reflowMultipleDatasets();
+```
+
+<Notice variant="deprecation">
+
+The original reflow method, `GraphInstance.reflow()`, is depreacted.
+
+</Notice>
 
 ## Overview
 
@@ -14,3 +28,7 @@ Reflow can be used to dynamically update a graph.
 
 ### Panning
 <PanningExample/>
+
+### Dynamic Data
+
+<DynamicallyUpdatingDataExample />
