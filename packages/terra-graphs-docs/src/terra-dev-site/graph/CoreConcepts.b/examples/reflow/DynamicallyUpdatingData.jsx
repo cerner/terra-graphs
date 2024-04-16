@@ -93,11 +93,11 @@ const DynamicallyUpdatingDataExample = () => {
 
     graph.reflowMultipleDatasets();
   };
-  
+
   const handleClickUpdateData = () => {
-//    graph.config.axis.y.domain.lowerLimit = 0;
-//    graph.config.axis.y.domain.upperLimit = 20;
-    
+    //    graph.config.axis.y.domain.lowerLimit = 0;
+    //    graph.config.axis.y.domain.upperLimit = 20;
+
     graph.reflowMultipleDatasets({
       panData: [updatedDataset1],
     });

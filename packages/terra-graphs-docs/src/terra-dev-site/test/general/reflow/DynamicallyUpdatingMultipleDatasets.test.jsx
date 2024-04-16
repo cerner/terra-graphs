@@ -1,7 +1,6 @@
 import React from 'react';
 import DynamicallyUpdatingMultipleDatasetsExample from '../../../graph/CoreConcepts.b/examples/reflow/DynamicallyUpdatingMultipleDatasets';
-const DynamicallyUpdatingMultipleDatasetsTest = () => {
-  return <DynamicallyUpdatingMultipleDatasetsExample/>;
-};
+
+const DynamicallyUpdatingMultipleDatasetsTest = () => <DynamicallyUpdatingMultipleDatasetsExample />;
 
 export default DynamicallyUpdatingMultipleDatasetsTest;
