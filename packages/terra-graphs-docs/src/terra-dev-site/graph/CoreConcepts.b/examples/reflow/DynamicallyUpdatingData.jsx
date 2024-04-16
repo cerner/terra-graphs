@@ -7,7 +7,7 @@ import Carbon from '@cerner/carbon-graphs';
 //  graph configuration object
 
 const graphConfig = {
-  bindTo: '#dynamic-data-upate-example',
+  bindTo: '#dynamic-data-update-example',
   axis: {
     x: {
       label: 'x-axis',
@@ -49,8 +49,8 @@ const dataset1 = {
   ],
 };
 
-
-// color and shape of the original dataset is retained
+// Updated values for dataset 1
+// Color, shape & label of the original dataset is retained if it is not updated
 const updatedDataset1 = {
   key: 'uid_1',
   values: [
@@ -100,9 +100,7 @@ const DynamicallyUpdatingDataExample = () => {
     graph.config.axis.y.domain.upperLimit = 20;
     
     graph.reflowMultipleDatasets({
-      panData: [
-        updatedDataset1,
-      ],
+      panData: [updatedDataset1],
     });
   };
 
@@ -122,7 +120,7 @@ const DynamicallyUpdatingDataExample = () => {
         AllowCalibration:
         {allowCalibrationStatus}
       </div>
-      <div id="dynamic-data-upate-example" />
+      <div id="dynamic-data-update-example" />
     </>
   );
 };
