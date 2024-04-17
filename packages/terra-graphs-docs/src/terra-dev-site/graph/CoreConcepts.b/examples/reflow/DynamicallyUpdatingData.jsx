@@ -77,7 +77,7 @@ const updatedDataset1 = {
   ],
 };
 
-const getNewTicks = (currentUpper, currentLower, dataset) => {
+const getNewTicks = (currentLower, currentUpper, dataset) => {
   const maxValue = Math.max(...dataset.values.map(value => value.y), currentUpper);
   const minValue = Math.min(...dataset.values.map(value => value.y), currentLower);
 
@@ -131,7 +131,7 @@ const DynamicallyUpdatingDataExample = () => {
     const maxValue = Math.max(...updatedDataset1.values.map(value => value.y), graph.config.axis.y.upperLimit);
     const minValue = Math.min(...updatedDataset1.values.map(value => value.y), graph.config.axis.y.lowerLimit);
 
-    const newTicks = getNewTicks(graph.config.axis.y.upperLimit, graph.config.axis.y.lowerLimit, updatedDataset1);
+    const newTicks = getNewTicks(graph.config.axis.y.lowerLimit, graph.config.axis.y.upperLimit, updatedDataset1);
 
     graph.config.axis.y.domain.lowerLimit = newTicks.newLower;
     graph.config.axis.y.domain.upperLimit = newTicks.newUpper;
@@ -146,7 +146,7 @@ const DynamicallyUpdatingDataExample = () => {
     graph.unloadContent(Carbon.api.line(dataset1));
     graph.loadContent(Carbon.api.line(dataset1));
 
-    const newTicks = getNewTicks(graph.config.axis.y.upperLimit, graph.config.axis.y.lowerLimit, dataset1);
+    const newTicks = getNewTicks(graph.config.axis.y.lowerLimit, graph.config.axis.y.upperLimit, dataset1);
 
     graph.config.axis.y.domain.lowerLimit = newTicks.newLower;
     graph.config.axis.y.domain.upperLimit = newTicks.newUpper;
