@@ -38,6 +38,7 @@
   "dependencies": {
     "@cerner/carbon-graphs": "^2.25.0",
     "classnames": "2",
+    "d3-array": "^3.2.4",
     "d3-selection": "1",
     "details-polyfill": "1",
     "prop-types": "15",

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import * as d3 from'd3-array';
 
 import Button from 'terra-button';
-
 import Carbon from '@cerner/carbon-graphs';
 
 //  graph configuration object
@@ -21,7 +21,7 @@ const graphConfig = {
       upperLimit: 20,
     },
   },
-  allowCalibration: true,
+  allowCalibration: false,
 };
 
 //  graph dataset
@@ -77,6 +77,28 @@ const updatedDataset1 = {
   ],
 };
 
+const getNewTicks = (currentUpper, currentLower, dataset) => {
+  const maxValue = Math.max(...dataset.values.map(value => value.y), currentUpper);
+  const minValue = Math.min(...dataset.values.map(value => value.y), currentLower);
+
+  // add padding by using the nice function
+  const [newLower, newUpper] = d3.nice(minValue-1, maxValue+1, 10);
+
+  // get new tick values
+  const ticksCount = 3;
+  const ticks = new Array().concat(d3.ticks(newLower, newUpper, ticksCount), [newLower, newUpper] );
+
+  console.log("ticks",ticks);
+  console.log("current min, max",[minValue, maxValue]);
+  console.log("new min, max", [newLower, newUpper]);
+
+  return {
+    newLower,
+    newUpper,
+    ticks,
+  }
+}
+
 // graph rendering
 let graph;
 const DynamicallyUpdatingDataExample = () => {
@@ -85,6 +107,17 @@ const DynamicallyUpdatingDataExample = () => {
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
+
+    const newTicks = getNewTicks(graph.config.axis.y.upperLimit, graph.config.axis.y.lowerLimit, dataset1);
+
+    graph.config.axis.y.domain.lowerLimit = newTicks.newLower;
+    graph.config.axis.y.domain.upperLimit = newTicks.newUpper;
+    graph.config.axis.y.ticks.values = newTicks.ticks;
+
+    graph.reflowMultipleDatasets();
+
+    console.log(graph.config.axis.y.upperLimit)
+
   }, []);
 
   const handleClickToggleCalibration = () => {
@@ -95,8 +128,14 @@ const DynamicallyUpdatingDataExample = () => {
   };
 
   const handleClickUpdateData = () => {
-    //    graph.config.axis.y.domain.lowerLimit = 0;
-    //    graph.config.axis.y.domain.upperLimit = 20;
+    const maxValue = Math.max(...updatedDataset1.values.map(value => value.y), graph.config.axis.y.upperLimit);
+    const minValue = Math.min(...updatedDataset1.values.map(value => value.y), graph.config.axis.y.lowerLimit);
+
+    const newTicks = getNewTicks(graph.config.axis.y.upperLimit, graph.config.axis.y.lowerLimit, updatedDataset1);
+
+    graph.config.axis.y.domain.lowerLimit = newTicks.newLower;
+    graph.config.axis.y.domain.upperLimit = newTicks.newUpper;
+    graph.config.axis.y.ticks.values = newTicks.ticks;
 
     graph.reflowMultipleDatasets({
       panData: [updatedDataset1],
@@ -106,6 +145,14 @@ const DynamicallyUpdatingDataExample = () => {
   const handleClickReset = () => {
     graph.unloadContent(Carbon.api.line(dataset1));
     graph.loadContent(Carbon.api.line(dataset1));
+
+    const newTicks = getNewTicks(graph.config.axis.y.upperLimit, graph.config.axis.y.lowerLimit, dataset1);
+
+    graph.config.axis.y.domain.lowerLimit = newTicks.newLower;
+    graph.config.axis.y.domain.upperLimit = newTicks.newUpper;
+    graph.config.axis.y.ticks.values = newTicks.ticks;
+
+    graph.reflowMultipleDatasets();
   };
 
   return (
