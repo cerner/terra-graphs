@@ -82,7 +82,7 @@ const getNewTicks = (currentLower, currentUpper, dataset) => {
   const minValue = Math.min(...dataset.values.map(value => value.y), currentLower);
 
   // add padding by using the nice function
-  const [newLower, newUpper] = d3.nice(minValue-1, maxValue+1, 10);
+  const [newLower, newUpper] = d3.nice(minValue, maxValue, 10);
 
   // get new tick values
   const ticksCount = 3;
@@ -104,6 +104,7 @@ let graph;
 const DynamicallyUpdatingDataExample = () => {
   const [allowCalibrationStatus, SetAllowCalibrationStatus] = useState(graphConfig.allowCalibration.toString());
 
+  // initial graph load
   React.useEffect(() => {
     graph = Carbon.api.graph(graphConfig);
     graph.loadContent(Carbon.api.line(dataset1));
@@ -127,10 +128,8 @@ const DynamicallyUpdatingDataExample = () => {
     graph.reflowMultipleDatasets();
   };
 
+  // dynamically update graph data
   const handleClickUpdateData = () => {
-    const maxValue = Math.max(...updatedDataset1.values.map(value => value.y), graph.config.axis.y.upperLimit);
-    const minValue = Math.min(...updatedDataset1.values.map(value => value.y), graph.config.axis.y.lowerLimit);
-
     const newTicks = getNewTicks(graph.config.axis.y.lowerLimit, graph.config.axis.y.upperLimit, updatedDataset1);
 
     graph.config.axis.y.domain.lowerLimit = newTicks.newLower;
@@ -142,17 +141,17 @@ const DynamicallyUpdatingDataExample = () => {
     });
   };
 
+  // reset graph to it's original state
   const handleClickReset = () => {
-    graph.unloadContent(Carbon.api.line(dataset1));
-    graph.loadContent(Carbon.api.line(dataset1));
-
     const newTicks = getNewTicks(graph.config.axis.y.lowerLimit, graph.config.axis.y.upperLimit, dataset1);
 
     graph.config.axis.y.domain.lowerLimit = newTicks.newLower;
     graph.config.axis.y.domain.upperLimit = newTicks.newUpper;
     graph.config.axis.y.ticks.values = newTicks.ticks;
 
-    graph.reflowMultipleDatasets();
+    graph.reflowMultipleDatasets({
+      panData: [dataset1],
+    });
   };
 
   return (
