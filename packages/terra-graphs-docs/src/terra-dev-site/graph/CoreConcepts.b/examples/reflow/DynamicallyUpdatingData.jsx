@@ -82,7 +82,7 @@ const getNewTicks = (currentLower, currentUpper, dataset) => {
   const minValue = Math.min(...dataset.values.map(value => value.y), currentLower);
 
   // add padding by using the nice function
-  const [newLower, newUpper] = d3.nice(minValue, maxValue, 10);
+  const [newLower, newUpper] = d3.nice(minValue - 1, maxValue + 1, 10);
 
   // get new tick values
   const ticksCount = 3;
