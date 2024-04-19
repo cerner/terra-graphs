@@ -95,17 +95,15 @@ const DynamicallyUpdatingDataExample = () => {
   };
 
   const handleClickUpdateData = () => {
-    //    graph.config.axis.y.domain.lowerLimit = 0;
-    //    graph.config.axis.y.domain.upperLimit = 20;
-
     graph.reflowMultipleDatasets({
       panData: [updatedDataset1],
     });
   };
 
   const handleClickReset = () => {
-    graph.unloadContent(Carbon.api.line(dataset1));
-    graph.loadContent(Carbon.api.line(dataset1));
+    graph.reflowMultipleDatasets({
+      panData: [dataset1],
+    });
   };
 
   return (
