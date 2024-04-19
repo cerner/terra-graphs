@@ -36,7 +36,7 @@
     "NOTICE"
   ],
   "dependencies": {
-    "@cerner/carbon-graphs": "^2.26.0",
+    "@cerner/carbon-graphs": "^2.25.0",
     "classnames": "2",
     "d3-selection": "1",
     "details-polyfill": "1",
