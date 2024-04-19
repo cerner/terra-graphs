@@ -11,6 +11,7 @@
   * Moved the _Getting Started_ page to the top level.
   * Renamed _Core Configuration_ to _Core Concepts_.
   * Added `src` to the published files list for rendering example code correctly.
+  * Corrected Carbon imports in examples.
 
 ## 1.9.3 - (April 9, 2024)
 
