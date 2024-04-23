@@ -391,37 +391,55 @@ const getValueRegionSubset = (dataTarget, getXDataValues) => {
     color: undefined,
     values: [],
   };
-  let previousColor;
-  dataTarget.values.forEach((value) => {
-    if (
-      !utils.isEmpty(value.region)
-            && !utils.isEmpty(value.region.start)
-            && !utils.isEmpty(value.region.end)
-    ) {
-      // If the color is different, then move it to new region set
-      if (previousColor !== value.region.color) {
-        if (valueRegion.values.length > 0) {
+  let continuousRegionSubset = [];
+
+  dataTarget.values.forEach((value, index) => {
+    if (!utils.isEmpty(value.regions)) {
+      const previousValueRegions = index > 0 ? dataTarget.values[index - 1].regions : null;
+      const previousColors = previousValueRegions ? previousValueRegions.map(r => r.color) : [];
+
+      value.regions.forEach((region) => {
+        if (!utils.isEmpty(region)
+                && !utils.isEmpty(region.start)
+                && !utils.isEmpty(region.end)
+        ) {
+          // If the color is not present in the previous value regions, then move it to new region set
+          if (!previousColors.includes(region.color)) {
+            if (valueRegion.values.length > 0) {
+              valueRegionSubset.push(valueRegion);
+            }
+
+            valueRegion = {
+              color: region.color,
+              values: [],
+            };
+
+            // Remove colors that are no longer being used
+            continuousRegionSubset = continuousRegionSubset.filter((r) => r.color !== region.color);
+            continuousRegionSubset.push(valueRegion);
+          }
+
+          const adjacentValueRegions = continuousRegionSubset.find(r => r.color === region.color);
+          adjacentValueRegions.values.push({
+            x: getXDataValues(value.x),
+            start: region.start,
+            end: region.end,
+          });
+        } else {
           valueRegionSubset.push(valueRegion);
+          valueRegion = {
+            color: undefined,
+            values: [],
+          };
         }
-        valueRegion = {
-          color: value.region.color,
-          values: [],
-        };
-      }
-      previousColor = value.region.color;
-      valueRegion.color = value.region.color;
-      valueRegion.values.push({
-        x: getXDataValues(value.x),
-        start: value.region.start,
-        end: value.region.end,
       });
     } else {
       valueRegionSubset.push(valueRegion);
-      previousColor = undefined;
       valueRegion = {
         color: undefined,
         values: [],
       };
+      continuousRegionSubset = [];
     }
   });
   valueRegionSubset.push(valueRegion);

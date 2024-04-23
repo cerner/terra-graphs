@@ -104,6 +104,22 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/line/value-region');
         Terra.validates.screenshot('value_region', { selector: '.carbon-graph-container' });
       });
+
+      it('validates multiple value regions graph container', () => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/line/multiple-value-regions');
+        Terra.validates.screenshot('multiple_value_regions', { selector: '.carbon-graph-container' });
+      });
+
+      it('validates multiple value regions with spanning region graph container', () => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/line/multiple-value-regions-spanning');
+        Terra.validates.screenshot('multiple_value_regions_spanning', { selector: '.carbon-graph-container' });
+      });
+
+      it('validates multiple value regions with overlapping region graph container', () => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/line/multiple-value-regions-overlapping');
+        Terra.validates.screenshot('multiple_value_regions_overlapping', { selector: '.carbon-graph-container' });
+      });
+
       describe('Y2-Axis', () => {
         beforeEach(() => browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/line/y-2-axis'));
 
@@ -128,6 +144,14 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       it('validates multiple line region graph container', () => {
         browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/multi-line/multi-line');
         Terra.validates.screenshot('multiple_line_region', { selector: '.carbon-graph-container' });
+      });
+
+      it('validates multiple value regions graph container', () => {
+        browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/multi-line/multiple-value-regions');
+
+        let element = $('.carbon-legend').$$('li');
+        element[3].moveTo();
+        Terra.validates.screenshot('multiline_multiple_value_regions', { selector: '.carbon-graph-container' });
       });
 
       describe('when hovered on multiple line region legends', () => {

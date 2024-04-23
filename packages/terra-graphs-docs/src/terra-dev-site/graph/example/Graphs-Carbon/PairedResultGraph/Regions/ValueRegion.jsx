@@ -12,7 +12,7 @@ Please refer to the documentation below to see the graphConfig and data objects
 const graphConfig = utils.deepClone(pairedResultDefault('#pairedResultGraphValueRegion'));
 const dataset = [utils.deepClone(exampleData)];
 
-const ValueRegionPiaredResultExample = () => {
+const ValueRegionPairedResultExample = () => {
   React.useEffect(() => {
     const graph = Carbon.api.graph(graphConfig);
     dataset.forEach((data) => {
@@ -24,4 +24,4 @@ const ValueRegionPiaredResultExample = () => {
   );
 };
 
-export default ValueRegionPiaredResultExample;
+export default ValueRegionPairedResultExample;
