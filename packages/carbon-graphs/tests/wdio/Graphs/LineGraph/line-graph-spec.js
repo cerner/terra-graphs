@@ -149,7 +149,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
       it('validates multiple value regions graph container', () => {
         browser.url('/raw/tests/cerner-terra-graphs-docs/graphs/line-graph/regions/multi-line/multiple-value-regions');
 
-        let element = $('.carbon-legend').$$('li');
+        const element = $('.carbon-legend').$$('li');
         element[3].moveTo();
         Terra.validates.screenshot('multiline_multiple_value_regions', { selector: '.carbon-graph-container' });
       });

@@ -71,11 +71,11 @@ const exampleData = {
         start: 10,
         end: 20,
         color: Carbon.helpers.COLORS.GREY,
-      },{
+      }, {
         start: 21,
         end: 36,
         color: Carbon.helpers.COLORS.LIGHT_GREEN,
-      },],
+      }],
     },
     {
       x: new Date(2016, 0, 1, 5, 15).toISOString(),
@@ -84,11 +84,11 @@ const exampleData = {
         start: 10,
         end: 20,
         color: Carbon.helpers.COLORS.GREY,
-      },{
+      }, {
         start: 21,
         end: 36,
         color: Carbon.helpers.COLORS.LIGHT_GREEN,
-      },],
+      }],
     },
     {
       x: new Date(2016, 0, 1, 6, 15).toISOString(),

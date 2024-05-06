@@ -393,16 +393,15 @@ const getValueRegionSubset = (dataTarget, getXDataValues) => {
   };
   let continuousRegions = [];
 
+  const isValidValueRegion = (region) => (!utils.isEmpty(region) && !utils.isEmpty(region.start) && !utils.isEmpty(region.end));
+
   dataTarget.values.forEach((value, index) => {
     if (!utils.isEmpty(value.regions)) {
       const previousValueRegions = index > 0 ? dataTarget.values[index - 1].regions : null;
-      const previousColors = previousValueRegions ? previousValueRegions.map(r => r.color) : [];
+      const previousColors = previousValueRegions ? previousValueRegions.map(r => isValidValueRegion(r) && r.color) : [];
 
       value.regions.forEach((region) => {
-        if (!utils.isEmpty(region)
-                && !utils.isEmpty(region.start)
-                && !utils.isEmpty(region.end)
-        ) {
+        if (isValidValueRegion(region)) {
           // If the color is not present in the previous value regions, then move it to new region set
           if (!previousColors.includes(region.color)) {
             if (valueRegion.values.length > 0) {
