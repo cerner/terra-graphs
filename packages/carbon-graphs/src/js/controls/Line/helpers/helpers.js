@@ -391,7 +391,7 @@ const getValueRegionSubset = (dataTarget, getXDataValues) => {
     color: undefined,
     values: [],
   };
-  let continuousRegionSubset = [];
+  let continuousRegions = [];
 
   dataTarget.values.forEach((value, index) => {
     if (!utils.isEmpty(value.regions)) {
@@ -415,11 +415,11 @@ const getValueRegionSubset = (dataTarget, getXDataValues) => {
             };
 
             // Remove colors that are no longer being used
-            continuousRegionSubset = continuousRegionSubset.filter((r) => r.color !== region.color);
-            continuousRegionSubset.push(valueRegion);
+            continuousRegions = continuousRegions.filter((r) => r.color !== region.color);
+            continuousRegions.push(valueRegion);
           }
 
-          const adjacentValueRegions = continuousRegionSubset.find(r => r.color === region.color);
+          const adjacentValueRegions = continuousRegions.find(r => r.color === region.color);
           adjacentValueRegions.values.push({
             x: getXDataValues(value.x),
             start: region.start,
@@ -439,7 +439,7 @@ const getValueRegionSubset = (dataTarget, getXDataValues) => {
         color: undefined,
         values: [],
       };
-      continuousRegionSubset = [];
+      continuousRegions = [];
     }
   });
   valueRegionSubset.push(valueRegion);
