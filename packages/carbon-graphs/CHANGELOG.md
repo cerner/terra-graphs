@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added support for multiple value regions for line graph.
+
 ## 2.25.0 - (April 5, 2024)
 
 * Added
