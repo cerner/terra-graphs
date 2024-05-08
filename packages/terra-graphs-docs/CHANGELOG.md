@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added tests for multiple value regions.
+
 ## 1.10.0 - (April 19, 2024)
 
 * Added

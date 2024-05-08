@@ -23,6 +23,11 @@ const exampleData = {
         start: 3,
         end: 8,
         color: Carbon.helpers.COLORS.GREY,
+      },
+      {
+        start: 20,
+        end: 27,
+        color: Carbon.helpers.COLORS.LAVENDER,
       }],
     },
     {
@@ -32,6 +37,11 @@ const exampleData = {
         start: 4,
         end: 14,
         color: Carbon.helpers.COLORS.GREY,
+      },
+      {
+        start: 22,
+        end: 29,
+        color: Carbon.helpers.COLORS.LAVENDER,
       }],
     },
     {
@@ -41,6 +51,11 @@ const exampleData = {
         start: 5,
         end: 15,
         color: Carbon.helpers.COLORS.GREY,
+      },
+      {
+        start: 22,
+        end: 29,
+        color: Carbon.helpers.COLORS.LAVENDER,
       }],
     },
     {
@@ -50,6 +65,11 @@ const exampleData = {
         start: 10,
         end: 20,
         color: Carbon.helpers.COLORS.GREY,
+      },
+      {
+        start: 22,
+        end: 29,
+        color: Carbon.helpers.COLORS.LAVENDER,
       }],
     },
     {
@@ -59,6 +79,11 @@ const exampleData = {
         start: 10,
         end: 20,
         color: Carbon.helpers.COLORS.GREY,
+      },
+      {
+        start: 23,
+        end: 30,
+        color: Carbon.helpers.COLORS.LAVENDER,
       }],
     },
     {
@@ -71,6 +96,16 @@ const exampleData = {
       regions: [{
         start: 8,
         end: 15,
+      },
+      {
+        start: 18,
+        end: 25,
+        color: Carbon.helpers.COLORS.LAVENDER,
+      },
+      {
+        start: 27,
+        end: 30,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
     },
     {
@@ -79,6 +114,16 @@ const exampleData = {
       regions: [{
         start: 8,
         end: 15,
+      },
+      {
+        start: 18,
+        end: 25,
+        color: Carbon.helpers.COLORS.LAVENDER,
+      },
+      {
+        start: 27,
+        end: 30,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
     },
     {
@@ -87,6 +132,16 @@ const exampleData = {
       regions: [{
         start: 10,
         end: 20,
+      },
+      {
+        start: 22,
+        end: 27,
+        color: Carbon.helpers.COLORS.LAVENDER,
+      },
+      {
+        start: 28,
+        end: 31,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
     },
     {
@@ -95,6 +150,16 @@ const exampleData = {
       regions: [{
         start: 10,
         end: 20,
+      },
+      {
+        start: 22,
+        end: 27,
+        color: Carbon.helpers.COLORS.LAVENDER,
+      },
+      {
+        start: 28,
+        end: 31,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
     },
     {
@@ -103,6 +168,11 @@ const exampleData = {
       regions: [{
         start: 10,
         end: 20,
+      },
+      {
+        start: 28,
+        end: 31,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
       isCritical: true,
     },
@@ -112,6 +182,16 @@ const exampleData = {
       regions: [{
         start: 8,
         end: 15,
+      },
+      {
+        start: 18,
+        end: 25,
+        color: Carbon.helpers.COLORS.LAVENDER,
+      },
+      {
+        start: 27,
+        end: 30,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
     },
     {
@@ -120,6 +200,16 @@ const exampleData = {
       regions: [{
         start: 9,
         end: 16,
+      },
+      {
+        start: 18,
+        end: 25,
+        color: Carbon.helpers.COLORS.LAVENDER,
+      },
+      {
+        start: 28,
+        end: 31,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
     },
     {
@@ -129,6 +219,16 @@ const exampleData = {
         start: 9,
         end: 16,
         color: Carbon.helpers.COLORS.GREY,
+      },
+      {
+        start: 18,
+        end: 25,
+        color: Carbon.helpers.COLORS.LAVENDER,
+      },
+      {
+        start: 27,
+        end: 30,
+        color: Carbon.helpers.COLORS.ORANGE,
       }],
     },
   ],
