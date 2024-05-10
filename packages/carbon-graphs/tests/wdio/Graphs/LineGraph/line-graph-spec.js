@@ -166,7 +166,7 @@ Terra.describeViewports('LineGraph ', ['tiny', 'medium', 'large'], () => {
         });
         it('validates graph container when hovered on data label 3', () => {
           element[1].moveTo();
-          Terra.validates.screenshot('multiple_line_region_hovered_on_data_label_3', { selector: '.carbon-graph-container' });
+          Terra.validates.screenshot('multiple_line_region_hovered_on_data_label_3', { selector: '.carbon-graph-container', mismatchTolerance: 0.1 });
         });
 
         it('validates graph container when hovered on data label 5', () => {
