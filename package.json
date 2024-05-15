@@ -58,7 +58,7 @@
     "eslint": "7",
     "glob": "7",
     "html-webpack-plugin": "4",
-    "jest": "27",
+    "jest": "29",
     "lerna": "6",
     "less-loader": "7",
     "one-cerner-style-icons": "https://github.com/cerner/one-cerner-style-icons/archive/v1.34.0.tar.gz",
