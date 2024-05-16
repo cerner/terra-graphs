@@ -2144,6 +2144,9 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
 .ApplicationLoadingOverlayProvider-module__container___2oBEt {
   height: 100%;
 }
+.ApplicationLoadingOverlayProvider-module__remove-scroll___1RRyy {
+  overflow: visible;
+}
 .Divider-module__clinical-lowlight-theme___y93nw {
   --terra-divider-border-color: #181b1d;
   --terra-divider-border-top-width: 1px;
@@ -3993,6 +3996,7 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   margin-right: 0.7142857143rem;
 }
 .PopupMenuUser-module__utility-user-layout___2WTBz .PopupMenuUser-module__info-container___3n9oI {
+  align-items: flex-start;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -4018,6 +4022,9 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   white-space: normal;
   word-break: break-word;
   word-wrap: break-word;
+}
+.PopupMenuUser-module__utility-user-layout___2WTBz .PopupMenuUser-module__action-button___WPz4Q {
+  margin-top: 0.2142857143rem;
 }
 .PopupMenu-module__clinical-lowlight-theme___EQpbK {
   --terra-application-navigation-popup-content-background-color: #222a2e;
@@ -5099,6 +5106,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #222a2e;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #868a8c;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #dae2e7;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #181b1d;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #b2b5b6;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid #181b1d;
   --terra-application-navigation-drawer-menu-background-color: #222a2e;
@@ -5155,6 +5172,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #004c76;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #a7aaab;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #0065a3;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #fff;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #005685;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #dedfe0;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid rgba(255, 255, 255, 0.1);
   --terra-application-navigation-drawer-menu-background-color: #0a5488;
@@ -5239,6 +5266,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #222a2e;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #868a8c;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #dae2e7;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #181b1d;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #b2b5b6;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid #181b1d;
   --terra-application-navigation-drawer-menu-background-color: #222a2e;
@@ -5295,6 +5332,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #004c76;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #a7aaab;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #0065a3;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #fff;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #005685;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #dedfe0;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid rgba(255, 255, 255, 0.1);
   --terra-application-navigation-drawer-menu-background-color: #0a5488;
@@ -5366,6 +5413,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #222a2e;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #868a8c;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #dae2e7;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #181b1d;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #b2b5b6;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid #181b1d;
   --terra-application-navigation-drawer-menu-background-color: #222a2e;
@@ -5422,6 +5479,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #004c76;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #a7aaab;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #0065a3;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #fff;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #005685;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #dedfe0;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid rgba(255, 255, 255, 0.1);
   --terra-application-navigation-drawer-menu-background-color: #0a5488;
@@ -5545,6 +5612,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #222a2e;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #868a8c;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #dae2e7;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #181b1d;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #b2b5b6;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid #181b1d;
   --terra-application-navigation-drawer-menu-background-color: #222a2e;
@@ -5601,6 +5678,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #004c76;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #a7aaab;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #0065a3;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #fff;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #005685;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #dedfe0;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid rgba(255, 255, 255, 0.1);
   --terra-application-navigation-drawer-menu-background-color: #0a5488;
@@ -5659,6 +5746,46 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
 .DrawerMenuUser-module__small-user-layout___DoFJg .DrawerMenuUser-module__avatar-inner___cKv1D, .DrawerMenuUser-module__large-user-layout___2yjfZ .DrawerMenuUser-module__avatar-inner___cKv1D {
   z-index: 0;
 }
+.DrawerMenuUser-module__small-user-layout___DoFJg .DrawerMenuUser-module__drawer-menu-action-button___-kIhW, .DrawerMenuUser-module__large-user-layout___2yjfZ .DrawerMenuUser-module__drawer-menu-action-button___-kIhW {
+  background-color: #004c76;
+  background-color: var(--terra-application-navigation-drawer-menu-action-button-background-color, #004c76);
+  border: 1px solid #a7aaab;
+  border: var(--terra-application-navigation-drawer-menu-action-button-border, 1px solid #a7aaab);
+  border-radius: 3px;
+  border-radius: var(--terra-application-navigation-drawer-menu-action-button-border-radius, 3px);
+  color: #dedfe0;
+  color: var(--terra-application-navigation-drawer-menu-action-button-color, #dedfe0);
+  font-size: 1rem;
+  outline: none;
+  overflow-wrap: break-word; /* Modern browsers */
+  padding: 3px 0.7142857143rem;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  white-space: normal;
+  width: 100%;
+  word-wrap: break-word; /* For IE 10 and IE 11 */
+}
+.DrawerMenuUser-module__small-user-layout___DoFJg .DrawerMenuUser-module__drawer-menu-action-button___-kIhW[data-focus-styles-enabled=true]:focus, .DrawerMenuUser-module__large-user-layout___2yjfZ .DrawerMenuUser-module__drawer-menu-action-button___-kIhW[data-focus-styles-enabled=true]:focus {
+  outline: 2px dashed #fff;
+  outline: var(--terra-application-navigation-drawer-menu-action-button-focus-outline, 2px dashed #fff);
+  outline-offset: 1px;
+  outline-offset: var(--terra-application-navigation-drawer-menu-action-button-focus-outline-offset, 1px);
+}
+.DrawerMenuUser-module__small-user-layout___DoFJg .DrawerMenuUser-module__drawer-menu-action-button___-kIhW:hover, .DrawerMenuUser-module__large-user-layout___2yjfZ .DrawerMenuUser-module__drawer-menu-action-button___-kIhW:hover {
+  background-color: #005685;
+  background-color: var(--terra-application-navigation-drawer-menu-action-button-hover-background-color, #005685);
+  color: #dedfe0;
+  color: var(--terra-application-navigation-drawer-menu-action-button-hover-color, #dedfe0);
+}
+.DrawerMenuUser-module__small-user-layout___DoFJg .DrawerMenuUser-module__drawer-menu-action-button___-kIhW:active, .DrawerMenuUser-module__large-user-layout___2yjfZ .DrawerMenuUser-module__drawer-menu-action-button___-kIhW:active {
+  background-color: #0065a3;
+  background-color: var(--terra-application-navigation-drawer-menu-action-button-active-background-color, #0065a3);
+  color: #dedfe0;
+  color: var(--terra-application-navigation-drawer-menu-action-button-active-color, #dedfe0);
+}
 .DrawerMenuUser-module__large-user-layout___2yjfZ {
   align-items: center;
   display: flex;
@@ -5712,6 +5839,9 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   word-break: break-word;
   word-wrap: break-word;
 }
+.DrawerMenuUser-module__large-user-layout___2yjfZ .DrawerMenuUser-module__drawer-menu-action-button___-kIhW {
+  margin-top: 12px;
+}
 .DrawerMenuUser-module__small-user-layout___DoFJg {
   align-items: flex-start;
   display: flex;
@@ -5761,6 +5891,9 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   word-break: break-word;
   word-wrap: break-word;
 }
+.DrawerMenuUser-module__small-user-layout___DoFJg .DrawerMenuUser-module__drawer-menu-action-button___-kIhW {
+  margin-top: 6px;
+}
 
 /* stylelint-enable selector-max-compound-selectors */
 .DrawerMenuFooterButton-module__clinical-lowlight-theme___2SLvs {
@@ -5768,6 +5901,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #222a2e;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #868a8c;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #dae2e7;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #181b1d;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #b2b5b6;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid #181b1d;
   --terra-application-navigation-drawer-menu-background-color: #222a2e;
@@ -5824,6 +5967,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #004c76;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #a7aaab;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #0065a3;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #fff;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #005685;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #dedfe0;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid rgba(255, 255, 255, 0.1);
   --terra-application-navigation-drawer-menu-background-color: #0a5488;
@@ -5936,6 +6089,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #222a2e;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #868a8c;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #b2b5b6;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #dae2e7;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #181b1d;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #b2b5b6;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid #181b1d;
   --terra-application-navigation-drawer-menu-background-color: #222a2e;
@@ -5992,6 +6155,16 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-application-navigation-drawer-count-background-color: #ffda6c;
   --terra-application-navigation-drawer-count-border: 1px solid #ffb20b;
   --terra-application-navigation-drawer-count-color: #000;
+  --terra-application-navigation-drawer-menu-action-button-background-color: #004c76;
+  --terra-application-navigation-drawer-menu-action-button-border: 1px solid #a7aaab;
+  --terra-application-navigation-drawer-menu-action-button-border-radius: 3px;
+  --terra-application-navigation-drawer-menu-action-button-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-active-background-color: #0065a3;
+  --terra-application-navigation-drawer-menu-action-button-active-color: #dedfe0;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline: 2px dashed #fff;
+  --terra-application-navigation-drawer-menu-action-button-focus-outline-offset: 1px;
+  --terra-application-navigation-drawer-menu-action-button-hover-background-color: #005685;
+  --terra-application-navigation-drawer-menu-action-button-hover-color: #dedfe0;
   --terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size: 1.6521rem;
   --terra-application-navigation-drawer-menu-avatar-outline-border: 0.1429rem solid rgba(255, 255, 255, 0.1);
   --terra-application-navigation-drawer-menu-background-color: #0a5488;
@@ -6358,6 +6531,9 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   position: absolute;
   width: 100%;
   z-index: 1;
+}
+.ApplicationStatusOverlayProvider-module__remove-scroll___2Zj2v {
+  overflow: visible;
 }
 .ActionMenuHeader-module__clinical-lowlight-theme___25yV7 {
   --terra-application-action-menu-header-align-items: flex-start;
@@ -8221,7 +8397,8 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   overflow: hidden;
 }
 .CardLayout-module__card-layout___2MUPL {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   outline: none;
   overflow-x: auto;
@@ -8229,13 +8406,8 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   padding: 0 15px;
   position: relative;
 }
-.CardLayout-module__card-layout___2MUPL::before, .CardLayout-module__card-layout___2MUPL::after {
-  content: "";
-  display: block;
-  height: 15px;
-}
 .CardLayout-module__card-container___1Z6Nt:not(:first-child) {
-  margin-top: 15px;
+  margin-top: -15px;
 }
 .Card-module__clinical-lowlight-theme___fJTNq {
   --terra-dev-site-card-background-color: #222a2e;
@@ -8255,9 +8427,10 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   border-top: 1px solid #eeefee;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
-  min-height: calc(100% - 30px);
-  overflow: hidden;
+  margin-bottom: 15px;
+  margin-top: 15px;
   padding: 0 10px 10px;
 }
 @media screen and (min-width: 768px) {
@@ -8648,12 +8821,15 @@ button.Button-module__button___3afIE, html input[type=button].Button-module__but
   --terra-dev-site-token-diff-bold-background: #ffebda;
 }
 
-.ContentLoaded-module__scroll___1-npH {
+.ContentLoaded-module__dev-site-content___3Tsb2 {
+  flex: 1 1 auto;
   height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+.ContentLoaded-module__scroll___1-npH {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  position: relative;
-  width: 100%;
 }
 
 .ContentLoaded-module__markdown___3PRA7 {
